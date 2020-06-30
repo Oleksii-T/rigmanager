@@ -17,7 +17,7 @@
     <link type="text/css" href="{{ asset('css/base.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('css/normalize.css') }}" rel="stylesheet" >
     @yield('styles')
-    <!--
+    
     <style>
         #developmentStage {
             position: fixed;
@@ -35,6 +35,7 @@
             white-space: pre-line;
         }
     </style>
+    <!--
     -->
 </head>
 <body>
@@ -127,11 +128,11 @@
 
         <!-- Main content -->
         <main>
-            <!--
             <div id="developmentStage">
                 <p id="developmentStageText">Сайт находиться на стадии 
                     активной разработки.</p>
-            </div>
+                </div>
+            <!--
             -->
             @yield('content')
         </main>
