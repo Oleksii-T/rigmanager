@@ -47,7 +47,7 @@
                             <td> <x-tags.drilling.rotory/> </td>
                         </tr>
                         <tr>
-                            <td> <x-tags.drilling.drillString/> </td>
+                            <td> <x-tags.drilling.drill-string/> </td>
                             <td> <x-tags.drilling.bha/> </td>
                             <td> <x-tags.drilling.grouning/> </td>
                         </tr>
@@ -70,7 +70,7 @@
                         <tr>
                             <td> <x-tags.repair.bop/> </td>
                             <td> <x-tags.repair.emergency/> </td>
-                            <td> <x-tags.repair.wellHead/> </td>
+                            <td> <x-tags.repair.well-head/> </td>
                         </tr>
                         <tr>
                             <td> <x-tags.repair.power/> </td>
@@ -78,7 +78,7 @@
                             <td> <x-tags.repair.rotory/> </td>
                         </tr>
                         <tr>
-                            <td> <x-tags.repair.drillString/> </td>
+                            <td> <x-tags.repair.drill-string/> </td>
                             <td> <x-tags.repair.fhf/> </td>
                             <td> <x-tags.repair.coll-tubing/> </td>
                         </tr>
@@ -94,8 +94,8 @@
                     <table>
                         <tr>
                             <td> <x-tags.production.tubing/> </td>
-                            <td> <x-tags.production.wellHead/> </td>
-                            <td> <x-tags.production.xMassTree/> </td>
+                            <td> <x-tags.production.well-head/> </td>
+                            <td> <x-tags.production.x-mass-tree/> </td>
                         </tr>
                     </table>
                 </ul>

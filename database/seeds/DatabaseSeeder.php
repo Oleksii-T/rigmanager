@@ -12,6 +12,119 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Seed for Demonstrating To Production 
+        DB::table('users')->insert([
+            'id' => 1,
+            'name' => 'Administrator',
+            'phone' => '0000000000',
+            'email' => 'alex.tarbeev@gmail.com',
+            'email_verified_at' => Carbon\Carbon::now(),
+            'password' => Hash::make('Admin1')
+        ]);
+
+        DB::table('posts')->insert([
+            'user_id' => 1,
+            'title' => 'Тест Заголовок На Русском DEMO',
+            'condition' => 'Б/У',
+            'tag' => 'Бур. колонна и оборудывание, Подземное, Трубы',
+            'description' => 'Только Для Демонстрации
+                Пример Описания
+                DEMO
+                .',
+            'cost' => '000000 руб',
+            'location' => 'Украина',
+            'user_email' => 'dummy.email@example.com',
+            'user_phone' => '000000000',
+            'viber' => '1',
+            'telegram' => '1',
+            'whatsapp' => '1'
+        ]);
+
+        DB::table('posts')->insert([
+            'user_id' => 1,
+            'title' => 'Тест Заловку На Українській DEMO',
+            'condition' => 'Новое',
+            'tag' => 'КНБК, Наземное, Клинья',
+            'description' => 'Тільки у Демонстраційних цілях
+                Приклад Опису
+                DEMO
+                .',
+            'cost' => '000000 грн',
+            'location' => 'Україна',
+            'user_email' => 'dummy.email@example.com',
+            'user_phone' => '000000000',
+            'viber' => '1',
+            'telegram' => '1',
+            'whatsapp' => '1'
+        ]);
+
+        DB::table('posts')->insert([
+            'user_id' => 1,
+            'title' => 'Test Title In English DEMO',
+            'condition' => 'Новое',
+            'tag' => 'Буровой раствор, Циркуляция, Шланги',
+            'description' => 'Demonstrationg Purposes Only
+                Sample Description
+                DEMO
+                .',
+            'cost' => '000000 $',
+            'location' => 'Ukraine',
+            'user_email' => 'dummy.email@example.com',
+            'user_phone' => '000000000',
+            'viber' => '1',
+            'telegram' => '1',
+            'whatsapp' => '1'
+        ]);
+
+        DB::table('posts')->insert([
+            'user_id' => 1,
+            'title' => 'Заголовок. Пустое Обьявление 1',
+            'condition' => 'Новое',
+            'tag' => 'Другое',
+            'description' => 'Описание. Пустое Обьявление 1
+                ----',
+            'user_email' => 'dummy.email@example.com'
+        ]);
+        DB::table('posts')->insert([
+            'user_id' => 1,
+            'title' => 'Заголовок. Пустое Обьявление 2',
+            'condition' => 'Новое',
+            'tag' => 'Другое',
+            'description' => 'Описание. Пустое Обьявление 2
+                ----',
+            'user_email' => 'dummy.email@example.com'
+        ]);
+        DB::table('posts')->insert([
+            'user_id' => 1,
+            'title' => 'Заголовок. Пустое Обьявление 3',
+            'condition' => 'Новое',
+            'tag' => 'Другое',
+            'description' => 'Описание. Пустое Обьявление 3
+                ----',
+            'user_email' => 'dummy.email@example.com'
+        ]);
+        DB::table('posts')->insert([
+            'user_id' => 1,
+            'title' => 'Заголовок. Пустое Обьявление 4',
+            'condition' => 'Новое',
+            'tag' => 'Другое',
+            'description' => 'Описание. Пустое Обьявление 4
+                ----',
+            'user_email' => 'dummy.email@example.com'
+        ]);
+        DB::table('posts')->insert([
+            'user_id' => 1,
+            'title' => 'Заголовок. Пустое Обьявление 5',
+            'condition' => 'Новое',
+            'tag' => 'Другое',
+            'description' => 'Описание. Пустое Обьявление 5
+                ----',
+            'user_email' => 'dummy.email@example.com'
+        ]);
+
+
+        /*
+        // Seed For Development
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'admin',
@@ -199,6 +312,6 @@ class DatabaseSeeder extends Seeder
             'telegram' => '1',
             'whatsapp' => '1'
         ]);
-
+        */
     }
 }

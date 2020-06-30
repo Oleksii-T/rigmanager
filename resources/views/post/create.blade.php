@@ -58,7 +58,7 @@
                             <x-tags.drilling.power/> 
                             <x-tags.drilling.lifting/> 
                             <x-tags.drilling.rotory/> 
-                            <x-tags.drilling.drillString/> 
+                            <x-tags.drilling.drill-string/> 
                             <x-tags.drilling.bha/> 
                             <x-tags.drilling.grouning/> 
                             <x-tags.drilling.mud/>
@@ -72,13 +72,13 @@
                             <x-tags.repair.logging/> 
                             <x-tags.repair.bop/> 
                             <x-tags.repair.emergency/> 
-                            <x-tags.repair.wellHead/>
+                            <x-tags.repair.well-head/>
                             <x-tags.repair.power/>
                             <x-tags.repair.lifting/> 
                             <x-tags.repair.rotory/> 
-                            <x-tags.repair.drillString/> 
+                            <x-tags.repair.drill-string/> 
                             <x-tags.repair.fhf/>
-                            <x-tags.repair.collTubing/>
+                            <x-tags.repair.coll-tubing/>
                             <li><a href="#">{{__('ui.other')}}</a></li> 
                         </ul>
                     </div>
@@ -86,8 +86,8 @@
                     <div class="typeOfEq" id="productionEq">
                         <ul id="mainMenu">
                             <x-tags.production.tubing/> 
-                            <x-tags.production.wellHead/>
-                            <x-tags.production.xMassTree/> 
+                            <x-tags.production.well-head/>
+                            <x-tags.production.x-mass-tree/> 
                         </ul>
                     </div>
         
