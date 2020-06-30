@@ -1,0 +1,57 @@
+@extends('layouts.app')
+
+@section('styles')
+    <style>
+        #verifyNoticeBody {
+            margin-top: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        #verifyNoticeBody h1 {
+            white-space: pre-line;
+            font-size: 210%;
+            color: #FE9042;
+        }
+
+        #verifyNoticeBody p {
+            font-size: 150%;
+            white-space: pre-line;
+        }
+
+        #verifyNoticeBody form {
+            margin-top: 10px;
+        }
+
+        #verifyNoticeBody button {
+            font-size: 140%;
+            cursor: pointer;
+            border: none;
+            padding: 10px;
+            background: none;
+            background-color: rgb(149, 149, 149, 0.7);
+        }
+
+        #verifyNoticeBody button:hover {
+            background-color: rgb(149, 149, 149);
+        }
+
+    </style>
+@endsection
+
+@section('content')
+    <div id="verifyNoticeBody">
+        @if (session('resent'))
+            <div id="resendBody">
+                <p>{{__('ui.verifyNoticeResend')}}</p>
+            </div>
+        @endif
+            <h1>{{__('ui.verifyNoticeThank')}}</h1>
+            <h1>{{__('ui.verifyNoticeTitle')}}</h1>
+            <p>{{__('ui.verifyNoticeBody')}}</p>
+            <form method="POST" action="{{ route('verification.resend') }}">
+                @csrf
+                <button type="submit">{{ __('ui.verifyClickToResend') }}</button>.
+            </form>
+    </div>
+@endsection

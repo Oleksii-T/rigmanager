@@ -1,0 +1,352 @@
+#editItemBody {
+    padding: 20px 20px 40px 20px;
+    width: 100%;
+    background-color: rgb(149, 149, 149, 0.6);
+}
+
+#editItemBody>form {
+    background-color: rgb(11, 11, 11, 0.6);
+}
+
+label { font-size: 110%; }
+
+input {
+    padding: 7px;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    transition: 0.2s;
+    background-color: rgb(149, 149, 149, 0.7);
+}
+
+.element {
+    position: relative;
+    padding: 20px;
+    border-bottom: 2px solid #888888;
+    transition: 0.2s;
+    width: 100%;
+}
+
+.elementHeading { font-size: 120%; }
+
+.element:hover { box-shadow: 0px 0px 10px 0px #888888; }
+
+.element:hover .help { opacity: 1; }
+
+div.help {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.2s;
+    width: 28%; 
+    opacity: 0;
+    margin: 0px;
+    overflow: hidden;
+}
+
+label.error, div.error {
+    display: block;
+    padding: 5px 10px 5px 10px;
+    border-left: 2px solid #f44336;
+    color: #eb837c;
+    white-space: normal;
+}
+
+div.error p { color: #eb837c; }
+
+input.error, textarea.error {
+    border-left: 2px solid #f44336 !important;
+    /*border-bottom-left-radius: none !important;*/
+}
+
+input:hover, textarea:hover, 
+#navTags button:hover, #imgs label:hover
+ { background-color: rgb(149, 149, 149, 0.8); }
+ input:focus, textarea:focus 
+ { background-color: rgb(149, 149, 149, 0.9); }
+ input:active, textarea:active, 
+ #navTags button:active
+ { background-color: rgb(149, 149, 149, 0.7); }
+
+/*==================PAGE_TITLE==================*/
+
+#pageTitle {
+    text-align: center;
+    font-size: 190%;
+    margin-bottom: 30px;
+    padding-top: 0px;
+}
+
+/*==================TITLE==================*/
+
+#title #inputTitle { width: 70%; }
+
+/*==================CONDITION==================*/
+
+#condition select {
+    margin-top: 20px;
+    width: 100px;
+    cursor: pointer;
+    outline: none;
+}
+
+/*==================TAG==================*/
+
+#tag .elementHeading { margin-bottom: 14px; }
+
+#navTags {
+    margin-bottom: 20px;
+}
+
+#navTags ul li{
+    text-decoration: none;
+    list-style: none;
+}
+
+#navTags button {
+    padding: 7px;
+    cursor: pointer;
+    border: none;
+    background-color: rgb(149, 149, 149, 0.7);
+    border-bottom: 2px solid #ffffff;
+}
+
+#drillingEq,
+#repairEq,
+#productionEq,
+#loggingEq {
+    display: none;
+}
+
+#dropDown ul {
+    list-style: none;
+    z-index: 3;
+    margin-bottom: 20px;
+}
+
+#mainMenu>li {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+#dropDown {
+    background-color: rgb(149, 149, 149, 0.7);
+    width: 70%;
+}
+
+#dropDown a {
+    color: #ffffff;
+    margin: 0;
+    text-align: left;
+    padding: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-decoration: none;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#dropDown a:hover { background-color: rgb(149, 149, 149, 0.7); }
+
+#dropDown .arrow{
+    display: inline-block;
+    border: 2px solid #f1f1f1;
+    border-left: none;
+    border-bottom: none;
+    width: 9px;
+    height: 9px;
+    margin-left: 5px;
+    margin-bottom: 0.2em;
+}
+
+#dropDown .arrowDown { transform: rotateZ(135deg); }
+
+#dropDown .arrowRight { transform: rotateZ(45deg); }
+
+#mainMenu>li:hover .secondLevel,
+.secondLevel>li:hover>.thirdLevel,
+.thirdLevel>li:hover>.fourthLevel,
+.fourthLevel>li:hover>.fifthLevel {
+    display: block;
+    background-color: rgb(11, 11, 11, 0.8);
+}
+
+.secondLevel,
+.thirdLevel,
+.fourthLevel,
+.fifthLevel {
+    position: absolute;
+    display: none;
+}
+
+.secondLevel a,
+.thirdLevel a,
+.fourthLevel a,
+.fifthLevel a {
+    text-align: left !important;
+}
+
+.secondLevel li {
+    position: relative;
+}
+
+.thirdLevel, .fourthLevel, .fifthLevel{
+    top: 0;
+    right: 0;
+    transform: translate(100%,0);
+}
+
+/*==================DESCRIPTION==================*/
+
+#desc textarea {
+    margin-top: 20px;
+    width: 70%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    background-color: rgb(149, 149, 149, 0.7);
+    border-radius: 10px;
+}
+
+/*==================IMAGES==================*/
+
+#imgs p.elementHeading {
+    margin-bottom: 15px;
+}
+
+#imgs label {
+    cursor: pointer;
+    padding: 7px;
+    background-color: rgb(149, 149, 149, 0.7);
+}
+
+.gallery {
+    max-width: 560px;
+    margin-top: 15px;
+}
+
+.gallery .previewImg {
+    width: 70px;
+    height: 70px;
+    padding: 5px;
+    margin-right: 20px;
+    display: inline-block;
+    background: #f1f1f1;
+}
+
+.gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+}
+
+/*==================MISC_INFO==================*/
+
+#locationField { margin-top: 20px; }
+
+#inputLocation { width: 60%; }
+
+/*==================CONTACT_INFO==================*/
+
+#inputEmail { width: 30%; }
+
+#phoneField { margin-top: 20px; }
+
+#phoneField img { height: 20px; }
+
+#phoneField input[type=checkbox] { 
+    margin: 0px; 
+}
+
+/*==================BUTTONS==================*/
+
+#btns { border-bottom: none; }
+
+#btns:hover { box-shadow: none; }
+
+#btns button,
+.modalContent div > button {
+    padding: 14px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #4CAF50;
+    cursor: pointer;
+}
+
+#btns button:hover,
+.modalContent div > button:hover {
+    background: rgb(114, 190, 116);
+}
+
+#btns a,
+.modalContent form button  {
+    padding: 14px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: none;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    border-bottom: 2px solid #f44336;
+}
+
+#btns a:hover,
+.modalContent form button:hover {
+    background: #eb837c;
+}
+
+#btns #modalTriger {
+    float: right;
+    color: #f44336;
+    border-bottom: 2px solid #f44336;
+}
+
+#btns #modalTriger:hover {
+    color: #ffffff;
+    background: #eb837c;
+}
+
+/*==================MODAL==================*/
+
+.modalView {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    cursor: pointer;
+}
+
+.modalContent {
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgb(11, 11, 11, 0.6);
+    box-shadow: 0px 0px 20px 5px #000000;
+    display: block;
+    padding: 20px;
+    cursor: default;
+}
+
+.modalContent p {
+    text-align: center;
+    font-size: 120%;
+    margin-bottom: 20px;
+}
+
+.modalContent form { display: inline; }
+
+.modalContent div > button { margin-right: 20px; }

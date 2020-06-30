@@ -1,0 +1,21 @@
+#myItemsTab { background-color: #FE9042; }
+
+.editBtn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    z-index: 2;
+}
+
+.editBtn img {
+    height: 35px;
+    transition: 0.2s;
+}
+
+.editBtn img:hover {
+    height: 40px;
+}
+
+#items {
+    margin-top: 25px;
+}

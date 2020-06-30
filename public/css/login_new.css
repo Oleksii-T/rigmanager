@@ -1,0 +1,130 @@
+#loginTab, #loginBtn {
+    background-color: #FE9042 !important;
+}
+
+.authBody {
+    background-color: rgb(149, 149, 149, 0.6);
+    padding: 40px 0px;
+    height: auto;
+}
+
+.authBody>div {
+    background-color: rgb(11, 11, 11, 0.6);
+    width: 40%;
+    height: auto;
+    margin: 0px auto;
+}
+
+.authBody>div>nav { overflow: hidden; }
+
+.authBody>div>nav li { display: inline; }
+
+.authBody>div>nav a {
+    float: left;
+    text-align: center;
+    width: 50%;
+    padding: 14px;
+    text-decoration: none;
+    font-size: 100%;
+    transition: 0.2s;
+    border-bottom: 2px solid #ffffff;
+}
+
+.authBody>div>nav a:hover {
+    background-color: rgb(149, 149, 149, 0.7);;
+}
+
+#authWraper {
+    height: auto;
+    width: 100%;
+}
+
+form { padding: 40px; }
+
+input[type=text],
+input[type=email],
+input[type=password] {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #888888; 
+    background: none;
+    padding: 7px;
+    outline: 0;
+}
+
+
+#passwordField, #rememberField {
+    margin-top: 30px;
+}
+
+.invalidInput {
+    border-bottom: 2px solid #f44336 !important;
+}
+
+.invalidInput:hover {
+    border-bottom: 2px solid #eb837c !important;
+}
+
+div.error {
+    display: block;
+    padding: 5px 10px 5px 10px;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 110%;
+    color: #eb837c;
+    white-space: normal;
+}
+
+div.error p {
+    color: #eb837c;
+}
+
+input:hover, .animated input:focus {
+    border-bottom: 2px solid #ffffff;
+}
+
+input:focus { border-bottom: 2px solid #ffffff; }
+
+button.hideShowPassword-toggle {
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    border-radius: 0px;
+    font-size: 90%;
+    cursor: pointer;
+    padding: 0px 3px;
+    height: 87%; /* leave space for border (13%) */
+    width: 8%;
+}
+
+button.hideShowPassword-toggle>img {
+    width: 100%;
+    object-fit: contain;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+button.hideShowPassword-toggle:hover {
+    background-color: rgb(11, 11, 11, 0.6);
+}
+
+label[for=inputRememberMe] { font-size: 90%; }
+
+#btns {  margin-top: 30px; }
+
+#submitBtn {
+    padding: 14px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid #4CAF50;
+    cursor: pointer;
+}
+
+#submitBtn:hover { background-color: rgb(114, 190, 116); }
+
+#btns a { 
+    float: right; 
+    padding-top: 14px;
+}

@@ -1,0 +1,338 @@
+
+=======TO_DO======
+
+CODE CSS: make good fonts
+
+CODE CSS: add line-height, letter-spacing, font-weight and bold/italic effects where needed
+
+CODE: make small/avarage/actual versions of each image so that browser do not resize anything
+
+CODE HTML: add proper visualization of location
+
+CODE PHP: impement search engine
+
+CODE PHP: add guest features
+
+BUG: popup Slide Down to rude
+
+DO?: delete from html useless popUp classes after it flowed ups
+
+CODE PHP/HTML: Remeber conacts when user input new one and then suggest them when user creating new item
+
+CODE: make company registration
+
+CODE: make enchanced item creation for companies
+
+CODE: make second public email when registered
+
+CODE PHP: add email encryption
+
+BUG: if user enters '0' inner check will treat as a false and think that it is empty
+
+BUG: when item submited with arrors, condition is reset
+
+BUG: broken footer in image show if there is no image
+
+BUG: on item new/edit pages help info sometimes overflows element div
+
+CODE HTML/JS: add curency sign to cost
+
+CODE: add functionality to delete all images
+
+BUG: cover case if there is more then 999 fav items
+
+CHECK: front-end/back-end on more browsers
+
+CODE CSS: style secondary pages e.g activation acount or reset pass send page
+
+BUG: when fast click on addToFav btn, color brakes
+
+CODE: complete system of tags
+
+BUG: when click on addToFav btn, pointer cursor does not change to 'wait' cursor
+
+CODE: change phone regular expression
+
+CODE: implement soft delete
+
+CODE: implement messeging within the app
+
+CODE: make email notifications for user who subscribed for post uplaoded
+
+CHECK: spelling
+
+CODE: implement mail sender engine
+
+CHECK: functionality of password forget
+
+CODE: add redirect()->back() where needed
+
+CODE: translate tags
+
+CODE: change style of verify.blade.php
+
+CODE: add Edit and Delete buttons to myPosts page
+
+CODE: add title attr
+
+CODE: fix all stype bugs on existing styled pages
+
+
+=======DONE======
+
+CODE: add digital number of how many fav posts user have to nav bar
+CODE: add functionality to change lang
+BUG: edit post, not validating the textarea and throws a js error
+CODE: translate all ui messages
+CODE: make email verification
+CODE: change static links to {{ asset() }}
+BUG: broken hover effect when hovering on addtofav btn of yours post
+CODE: make number of users`s fav posts in nav bar
+CODE: push to git via
+BUG: not all pop messages are fade out
+CODE JQ: improve jquery validation plugin
+CODE CSS: style pagination links
+CODE: make dynamic post loading (depend on scrolling) OR pagination (pagination choosed)
+BUG: when tag is choosen page scrolled to the very top
+CODE PHP/HtML: change max mb of loaded img
+CODE HTML: cover case if user do not have js running in browser + add <noscript>
+CODE CSS: add styles for errors in edit/login pages
+CODE HTML: add alt tag where needed
+CODE CSS: add :active/:focus rule to any interactive element
+CHECK: output fields for overflow
+BUG: show/hide pass jump down when clicked
+CODE: make Viber/Telegram/WhatsApp integration
+CODE _: make more complicated system of tags
+CODE HTML: add hide/show button to login page
+CODE: delete old images from server storage when upload new images
+CODE HTML: add div to all occurances of server errors
+CODE PHP: translate to RU all user massages
+CODE HTML: make dropdawn tags button
+CHECK: check if TWIG output uses specialchars to display data (development moved to Laravel with Blade)
+BUG: if user add/remode fav item, the number in near heart icon in header do not change (only after reload page)
+CODE HTML/JS: make preview gallery when uploading images
+CODE PHP: implement change img feature
+BUG: name of user does not change in his item if user change his name in profile
+CODE _: add profile picture and its features
+BUG: /n does not displayed in item description
+BUG: tag do not displayed when choosed in item creation page
+CODE: add addToFav buttion in item show page
+BUG: fav icon always black when page loaded even if item is in user`s favourits list
+CHECK: small images in item show
+CODE JS: cover case if user call a lot of popups
+CODE HTML: add textarea tag in item creation
+CODE PHP: impement addToFav methods in Profile controllers
+BUG: header in profile preferences jump down when page loaded --- FIXED by itself :/
+CODE JS: make button active depends on which tab on profile is active
+CODE JS: make correct it parsing when click on item in Home
+CODE JS: make item highlight when hover on addToFav btn as well
+
+=======NOTES======
+
+input colors: 
+dafault:    background-color: rgb(149, 149, 149, 0.7);
+hover:      background-color: rgb(149, 149, 149, 0.8);
+focus:      background-color: rgb(149, 149, 149, 0.9);
+active:     background-color: rgb(149, 149, 149, 0.7);
+
+NOTE: if user changes his phone number and login email, this value is still remembered in item which was created in past
+
+update vagrant box:
+    vagrant box update
+
+update npm:
+    npm install -g npm
+
+require package for API based email drivers
+composer require guzzlehttp/guzzle
+
+requieres to use AWS s3 storage
+composer require league/flysystem-aws-s3-v3
+
+php artisan storage:link
+The [/home/vagrant/code/rigmanager/public/storage] link has been connected to [/home/vagrant/code/rigmanager/storage/app/public].
+
+=======DEPLOYMENT NOTES=======
+
+Change charset and collation in config/database.php to utf8
+
+rename resources/views/components/tags/production/* to Camel Case
+
+
+@ Your typical nerd who likes coding and videogames. I don't mind having a drink either.
+
+======Equipment TAGS=========
+
+КНБК
+    Наземное
+        Ключи
+        Эаторы
+        Спайдера
+        Клинья
+        Шаблоны
+    Подземное
+        ТБТ
+        УБТ
+        Переводники
+        ЯС
+        ВЗД
+        Породоразрущающий инструмент
+            Долото
+                PDC
+                Шарошечное
+                TSP
+        КЛС
+            Вращающийся
+            Не Вращающийся
+        Фрез
+
+
+Противофонтанное оборудывание
+    Наземное
+        ПВО
+            Универсальный
+            Плашки
+            Катушки
+            Задвижки
+        Манифольды
+        Выкидные линии
+        Факельная система
+        Блоки управление ПВО
+            Ручные
+            Система дистанционного управления
+            Гидроаккумуляторы
+        Аварийные клапана
+    Подземное
+        ???
+        ???
+
+
+
+Бур. колонна и оборудывание
+    Наземное
+        Ключи
+        Элеваторы
+        Спайдера
+        Клинья
+        Шаблоны
+    Подземное
+        Трубы
+        Ведущие трубы
+        Переводники
+        Клапана
+        Фильтры
+
+
+
+Ликвидация аварий
+    Ловильный инструмент
+        Овершот
+        Шламоуловитель
+        Магнитный
+    Скребок
+    Печатка
+    Фрез
+
+
+
+Система крипления скважены
+    ОК и оснастка
+        Обсадные трубы
+        Оснастка
+        Оборудывание для спуска
+            Ключи
+            Элеваторы
+            Спайдера
+            Клинья
+            Шаблоны
+    Цементаж
+        ???
+        ???
+    Испытание
+    Подготовка
+
+
+
+ТБ
+    Пожарная система
+    Сигнализация
+    Систма жизнеобеспечения
+    Световая система
+    Персональная защита
+
+
+
+
+Талевая система и лебедки
+    Кронблок
+    Талевый блок
+    Буровой крюк
+    Крепление непод. конца тал. каната
+    Лебедка
+    Вспомогательные лебедки
+    Буровой канат
+    Штропы
+
+
+Система контроля параметров
+    Датчики
+    Кабеля
+    Регестрационное оборудывание
+    Инструменты для измерения
+
+
+
+Мачта
+    Анкера и оттяжки
+    Палатья
+    Высота1
+    Высота2
+    Высота3
+
+
+
+Основа бур. верстата
+    Рельса
+    Буровая основа
+    Таннаж1
+    Таннаж2
+    Таннаж3
+
+
+Буровой раствор
+    Циркуляция
+        Насосы
+        Шланги
+        Фильтра
+        Компрессоры
+        Манифольды
+    Хранение
+    Очитка
+    Подготовка
+    Переработка
+    Склад
+    Лаборатория
+    
+
+
+Система питания
+    Трансформаторы (MMC)
+    Генераторы
+    Блок распределения
+    Кабеля
+
+
+
+
+Роторная система
+    Ротор
+    Система верхнего привода
+        Система подвески
+        Грязевые грубы
+        КШЦ
+        Направляющая рельса
+        Электрическая обвязка
+        Промывочный переводник
+    Вертлюг
+
+

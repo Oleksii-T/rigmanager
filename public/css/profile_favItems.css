@@ -1,0 +1,11 @@
+.deletedItem { 
+    display: none; 
+}
+
+#favItemsTab { 
+    background-color: #FE9042; 
+}
+
+#items {
+    margin-top: 25px;
+}
