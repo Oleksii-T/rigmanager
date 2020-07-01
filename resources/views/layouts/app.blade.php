@@ -17,7 +17,7 @@
     <link type="text/css" href="{{ asset('css/base.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('css/normalize.css') }}" rel="stylesheet" >
     @yield('styles')
-    <!--
+    <!---->
     <style>
         #developmentStage {
             position: fixed;
@@ -28,14 +28,15 @@
             background-color: rgb(255, 0, 0, 0.7);
             text-align: center;
             border-radius: 10px;
+            padding: 5px
         }
-        #developmentStageText {
+        #developmentStage p {
             font-size: 120%;
-            padding: 5px;
             white-space: pre-line;
+            display: inline;
         }
     </style>
-    -->
+    
 </head>
 <body>
     <div id="container">
@@ -127,22 +128,36 @@
 
         <!-- Main content -->
         <main>
-            <!--
+            <!---->
             <div id="developmentStage">
-                <p id="developmentStageText">Сайт находиться на стадии 
-                    активной разработки.</p>
-                </div>
-            -->
+                <p id="developmentStageText">{{__('ui.development')}}</p>
+                <a href="{{route('about')}}">{{__('ui.foterAbout')}}</a>
+            </div>
+            
             @yield('content')
         </main>
 
         <!-- Footer -->
-        <div class="footer"> <!-- footer -->
-            <div>
-                <p>&copy; {{__('ui.copyright')}}</p>
-            </div>
-            <div id="iconsReferense">
-                {{__('ui.roundicons1')}} <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> (<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>)
+        <div class="footer">
+            <div id="footerWraper">
+                <div id="leftS">
+                    <a href="{{ route('home') }}"><img id="logo" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
+                    <a class="footerLinks" id="footerAbout" href="{{route('about')}}">{{__('ui.foterAbout')}}</a>
+                </div>
+                <div id="rightS">
+                    <p>&copy; 2020 <span>rigmanager.com.ua</span>. {{__('ui.footerCopyright')}}</p>
+                    <p>{{__('ui.footerIconsRef')}} <a class="footerLinks" href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> (<a class="footerLinks" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>)</p>
+                    <table>
+                        <tr>
+                            <td><a class="footerLinks" href="#">{{__('ui.footerSubscription')}}</a></td>
+                            <td><a class="footerLinks" href="#">{{__('ui.footerContact')}}</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="footerLinks" href="#">{{__('ui.footerTerms')}}</a></td>
+                            <td><a class="footerLinks" href="#">{{__('ui.footerDevelop')}}</a></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

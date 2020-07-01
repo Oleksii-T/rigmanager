@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    @if ($posts_list)
+    @if (!$posts_list->isEmpty())
         <div id="items">
             @foreach ($posts_list as $post)
                 <div class="item id_{{ $post->id }}">
@@ -18,7 +18,7 @@
                             <img src="{{ $post->images->first()->url }}" alt="Оборудывание нефть и газ."></li>
                         @endif
                     </div>
-                    <button class="addToFavButton id_{{ $post->id }}"><img class="addToFavImg" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="Оборудывание нефть и газ."><span><i>Удалить из избранных</i></span></button>
+                    <button class="addToFavButton id_{{ $post->id }}"><img class="addToFavImg" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="Оборудывание нефть и газ."><span><i>{{__('ui.removeFromFavHelp')}}</i></span></button>
                     <div class="textWraper">
                         <h3 class="heading4">{{ $post->title }}</h3>
                         <p class="desc">{{ $post->description }}</p>
@@ -43,7 +43,7 @@
             {{ $posts_list->links() }}
         </div>
     @else
-        <div id="emptyItems">
+        <div class="emptyItems">
             <p>{{__('ui.noFavPosts')}}</p>
         </div>
     @endif

@@ -2,9 +2,13 @@
 
 return [
 
+    'development' => 'Сайт знаходиться на стадії
+    активної розробки.',
+
     'signIn' => 'Увійти',
     'signOut' => 'Вийти',
     'signUp' => 'Регестрація',
+    'login' => 'Логін',
     'home' => 'Головна',
     'myPosts' => 'Мої оголошення',
     'favourites' => 'Обрані',
@@ -12,9 +16,6 @@ return [
     'addPost' => 'Додати оголошення',
     'noscript' => 'У вашому браузері відключений Javascript. 
         Це може серйозно вплинути на функціональность нашого сайту',
-    //'copyright' => '2020 RigManager.com. All Rights Reserved',
-    'copyright' => '2020 rigmanager.com.ua. Всі права захищені',
-    'roundicons1' => 'Всі іконки надані',
     'search' => 'Пошук',
     'drillingEq' => 'Обладнання для
         Буріння',
@@ -25,7 +26,8 @@ return [
     'loggingEq' => 'Обладнання для
         Каротажа',
     'other' => 'Інше',
-    'login' => 'Логін',
+    'addToFavHelp' => 'Додати в Обране',
+    'removeFromFavHelp' => 'Видалити з Обраного',
     'loginHelp' => 'Логіном повинна бути електронна пошта.',
     'password' => 'Пароль',
     'passwordHelp' => 'Мінімум 6 символів.
@@ -93,4 +95,13 @@ return [
     'verifyNoticeBody' => 'До того як продовжити, будь ласка перевірте свою пошту та пройдіть за посиланням.
         Якщо ви не отримали посилання для підтвердження',
     'verifyClickToResend' => 'Натисніть сюди щоб відправити нове',
+
+    'foterAbout' => 'Про нас',
+    'footerCopyright' => 'Всі права захищені.',
+    'footerIconsRef' => 'Всі іконки надані',
+    'footerSubscription' => 'Підписки',
+    'footerContact' => 'Контакти',
+    'footerTerms' => 'Угода rористувача ',
+    'footerDevelop' => 'Розробка',
+    '' => '',
 ];

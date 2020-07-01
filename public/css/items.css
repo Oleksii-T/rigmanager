@@ -1,4 +1,13 @@
 
+.emptyItems {
+    padding: 20px;
+    text-align: center;
+}
+
+.emptyItems p {
+    font-size: 130%;
+}
+
 .item {
     margin: 0px auto;
     background-color: rgb(149, 149, 149, 0.7);

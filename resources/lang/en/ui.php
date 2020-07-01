@@ -2,6 +2,9 @@
 
 return [
 
+    'development' => 'The website is on the stage
+    of active development.',
+
     'signIn' => 'Sign in',
     'signOut' => 'Sign out',
     'signUp' => 'Sign up',
@@ -13,11 +16,9 @@ return [
     'addPost' => 'Add post',
     'noscript' => 'Javascript is disabled in your browser. 
         It may serously reflect the web site functionality.',
-    'copyright' => '2020 rigmanager.com.ua. All Rights Reserved.',
-    'roundicons1' => 'Icons made by',
     'search' => 'Search',
     'drillingEq' => 'Equipment for
-        Dripping',
+        Drilling',
     'repairEq' => 'Equipment for
         Repair',
     'productionEq' => 'Equipment for
@@ -25,6 +26,8 @@ return [
     'loggingEq' => 'Equipment for
         Logging',
     'other' => 'Other',
+    'addToFavHelp' => 'Add to Favourites',
+    'removeFromFavHelp' => 'Remove from Favourites',
     'loginHelp' => 'Login should be the email address.',
     'password' => 'Password',
     'passwordHelp' => 'Minimum 6 symbols.
@@ -93,4 +96,13 @@ return [
     'verifyNoticeBody' => 'Before proceeding, please check your email for a verification link.
         If you did not receive the email',
     'verifyClickToResend' => 'Click here to request another',
+
+    'foterAbout' => 'About',
+    'footerCopyright' => 'All Rights Reserved.',
+    'footerIconsRef' => 'Icons made by',
+    'footerSubscription' => 'Our Plans',
+    'footerContact' => 'Contact Us',
+    'footerTerms' => 'Terms of Service',
+    'footerDevelop' => 'Delelopment',
+    '' => '',
 ];

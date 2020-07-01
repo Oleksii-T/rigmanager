@@ -1,10 +1,10 @@
 
 #itemWraper {
-    padding-top: 40px;
-    padding-bottom: 20px;
+    padding-top: 20px;
     height: auto;
     position: relative;
     background-color: rgb(149, 149, 149, 0.6);
+    border-bottom: 2px solid #ffffff;
 }
 
 .element {
@@ -29,15 +29,23 @@ p, h1 {
 
 /*=V============V======V====LEFT_CONTENT====V======V============V=*/
 
-#leftContent {
-    width: 700px;
-    margin-left: 20px;
+#leftContentWraper {
+    width: 70%;
+    height: auto;
+    display: inline-block;
+    padding-left: 20px;
+    padding-right: 15px;
+    vertical-align: top;
 }
 
-/*==================MAIN_INAGE==================*/
+#leftContent {
+    width: 100%;
+}
+
+/*==================MAIN_IMAGE==================*/
 
 #mainImgWraper {
-    width: 700px;
+    width: 100%;
     height: 590px;
 }
 
@@ -108,14 +116,17 @@ p, h1 {
 
 /*=V============V======V====RIGHT_CONTENT====V======V============V=*/
 
-#misc {
-    position: absolute;
-    top: 0;
-    right: 20px;
-    width: 284px; /* 1044-20*3-700 */
+#rightContentWraper {
+    width: 29.4%;
     height: auto;
-    margin-top: 40px;
-    
+    display: inline-block;
+    padding-right: 20px;
+    vertical-align: top;
+}
+
+#rightContent {
+    width: 100%;
+    height: auto;
 }
 
 /*================ADD_TO_FAV_BTN================*/

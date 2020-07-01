@@ -22,6 +22,7 @@ html {
 body {
     height: 100%;
     position: relative;
+    overflow-x: hidden;
 }
 
 #container {
@@ -31,8 +32,7 @@ body {
     margin: 0px auto;
     display: block;
     position: relative;
-    padding-bottom: 120px;
-    overflow: -moz-hidden-unscrollable;
+    padding-bottom: 150px;
 }
 
 div.sideBg {
@@ -229,13 +229,13 @@ div.iconWraper img {
 }
 
 .mainNav p {
-    max-width: 110px;
+    max-width: 100%;
     text-align: center;
     position: absolute;
     top: 65px;
     left: 50%;
     transform: translateX(-50%);
-    white-space: pre-line;
+    white-space: normal;
     overflow: hidden;
 }
 
@@ -247,13 +247,66 @@ div.iconWraper img {
 
 .footer {
     position: absolute;
-    height: 100px;
+    height: 150px;
     width: 100%;
     left: 50%;
     transform: translateX(-50%);
     bottom: 0;
     border-top: 2px solid #ffffff;
-    padding: 20px;
     display: block;
     text-align: center;
+}
+
+#footerWraper {
+    margin: 0px auto;
+    width: 90%;
+}
+
+#leftS {
+    width: 40%;
+    height: 100%;
+    float: left;
+}
+
+#leftS a {
+    display: block;
+    margin-top: 20px;
+}
+
+.footerLinks {
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.footerLinks:hover {
+    text-decoration: underline;
+    color: #FE9042;
+}
+
+#footerAbout {
+    font-size: 120%;
+}
+
+#rightS {
+    width: 60%;
+    height: 100%;
+    float: right;
+}
+
+#rightS p {
+    margin-top: 10px;
+    font-size: 110%;
+}
+
+#rightS p span {
+    color: #FE9042;
+    font-size: 115%;
+}
+
+#rightS table {
+    width: 100%;
+}
+
+#rightS td {
+    padding-top: 10px;
 }

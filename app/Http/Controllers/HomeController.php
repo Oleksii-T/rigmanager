@@ -27,4 +27,9 @@ class HomeController extends Controller
         $posts_list = Post::orderBy('created_at', 'desc')->paginate(env('POSTS_PER_PAGE'));
         return view('home', compact('posts_list'));
     }
+
+    public function about()
+    {
+        return view('about');
+    }
 }

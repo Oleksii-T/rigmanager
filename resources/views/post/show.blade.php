@@ -6,90 +6,93 @@
 
 @section('content')
     <div id="itemWraper">
-        <div id="leftContent">
-            @if ( !$post->images->isEmpty() )
-                <div class="element" id="mainImgWraper">
-                    <a target="_blank" href="{{ asset('icons/noImageIcon.svg') }}">
-                        <img id="mainImg" src="{{ asset('icons/noImageIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                    </a>
-                </div>
+        <div id="leftContentWraper">
+            <div id="leftContent">
+                @if ( !$post->images->isEmpty() )
+                    <div class="element" id="mainImgWraper">
+                        <a target="_blank" href="{{ asset('icons/noImageIcon.svg') }}">
+                            <img id="mainImg" src="{{ asset('icons/noImageIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        </a>
+                    </div>
 
-                <div class="element" id="otherImg">
-                    @foreach ($post->images as $image)
-                        <div class="moreImg">
-                            <img class="imgTriger" src="{{ $image->url }}" alt="{{__('alt.keyword')}}">
-                        </div>
-                    @endforeach
+                    <div class="element" id="otherImg">
+                        @foreach ($post->images as $image)
+                            <div class="moreImg">
+                                <img class="imgTriger" src="{{ $image->url }}" alt="{{__('alt.keyword')}}">
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+                <div class="element" id="mainInfo">
+                    <h1>{{ $post->title }}</h1>
+                    <p id="allTags" hidden >{{ $post->tag }}</p>
+                    <p>{{ $post->description }}</p>
                 </div>
-            @endif
-            <div class="element" id="mainInfo">
-                <h1>{{ $post->title }}</h1>
-                <p id="allTags" hidden >{{ $post->tag }}</p>
-                <p>{{ $post->description }}</p>
             </div>
         </div>
-
-        <div id="misc">
-            @if ($post->user_id != Auth::id())
-                <div class="element" id="addToFavBtn">
-                    @if ($isFav)
-                        <p>{{__('ui.inFav')}}</p>
-                        <button class="addToFavButton id_{{$post->id}}">
-                            <img src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                        </button>
-                    @else
-                        <p>{{__('ui.addToFav')}}</p>
-                        <button class="addToFavButton id_{{$post->id}}">
-                            <img src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                        </button>
-                    @endif
-                </div>
-            @else
-                <div class="element" id="editBtn">
-                    <p>{{__('ui.yoursPost')}}</p>
-                    <a href="{{ route('posts.edit', $post->id) }}">{{__('ui.edit')}}</a>
-                </div>
-            @endif
-
-            <div class="element" id="authorView">
-                <h4>{{__('ui.postAuthor')}}</h4>
-                <div id="authorInfo">
-                    @if ($post->user->image)
-                        <img src="{{ $post->user->image->url }}" alt="{{__('alt.keyword')}}">
-                    @else
-                        <img src="{{ asset('icons/emptyUserIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                    @endif
-                    <div>
-                        <p>{{ $post->user->name }}</p>
+        
+        <div id="rightContentWraper">
+            <div id="rightContent">
+                @if ($post->user_id != Auth::id())
+                    <div class="element" id="addToFavBtn">
+                        @if ($isFav)
+                            <p>{{__('ui.inFav')}}</p>
+                            <button class="addToFavButton id_{{$post->id}}">
+                                <img src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            </button>
+                        @else
+                            <p>{{__('ui.addToFav')}}</p>
+                            <button class="addToFavButton id_{{$post->id}}">
+                                <img src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            </button>
+                        @endif
                     </div>
-                    <!-- mb add time how many days registered -->
-                </div>
-                <a href="#">{{__('ui.otherAuthorPosts')}}</a>
-                <button id="modalTriger">{{__('ui.showContacts')}}</button>
-            </div>
-
-            <div class="element" id="status">
-                <p>{{__('ui.condition')}}: {{ $post->condition }}</p>
-            </div>
-
-            @if ($post->location)
-                <div class="element" id="location">
-                    <p>{{__('ui.location')}}: {{ $post->location }}</p>
-                </div>
-            @endif
-
-            @if ($post->cost)
-                <div class="element" id="cost">
-                    <div>
-                        <p>{{__('ui.cost')}}: {{ $post->cost }} </p>
+                @else
+                    <div class="element" id="editBtn">
+                        <p>{{__('ui.yoursPost')}}</p>
+                        <a href="{{ route('posts.edit', $post->id) }}">{{__('ui.edit')}}</a>
                     </div>
+                @endif
+
+                <div class="element" id="authorView">
+                    <h4>{{__('ui.postAuthor')}}</h4>
+                    <div id="authorInfo">
+                        @if ($post->user->image)
+                            <img src="{{ $post->user->image->url }}" alt="{{__('alt.keyword')}}">
+                        @else
+                            <img src="{{ asset('icons/emptyUserIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        @endif
+                        <div>
+                            <p>{{ $post->user->name }}</p>
+                        </div>
+                        <!-- mb add time how many days registered -->
+                    </div>
+                    <a href="#">{{__('ui.otherAuthorPosts')}}</a>
+                    <button id="modalTriger">{{__('ui.showContacts')}}</button>
                 </div>
-            @endif
 
-            <div class="element" id="createdOn">
-                <p>{{__('ui.postCreated')}}: {{ $post->created_at }} </p>
+                <div class="element" id="status">
+                    <p>{{__('ui.condition')}}: {{ $post->condition }}</p>
+                </div>
+
+                @if ($post->location)
+                    <div class="element" id="location">
+                        <p>{{__('ui.location')}}: {{ $post->location }}</p>
+                    </div>
+                @endif
+
+                @if ($post->cost)
+                    <div class="element" id="cost">
+                        <div>
+                            <p>{{__('ui.cost')}}: {{ $post->cost }} </p>
+                        </div>
+                    </div>
+                @endif
+
+                <div class="element" id="createdOn">
+                    <p>{{__('ui.postCreated')}}: {{ $post->created_at }} </p>
+                </div>
             </div>
-
         </div>
 
         <div class="modalView animate" id="modal">
@@ -120,7 +123,6 @@
                 </ul>
             </div>
         </div>
-
     </div>
 
 @endsection

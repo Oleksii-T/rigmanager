@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    @if ($posts_list)
+    @if (!$posts_list->isEmpty())
         <div id="items">
             @foreach ($posts_list as $item)
                 <div class="item">
@@ -48,7 +48,7 @@
             {{ $posts_list->links() }}
         </div>
     @else
-        <div id="emptyItems">
+        <div class="emptyItems">
             <p>{{__('ui.noMyPosts')}}</p>
         </div>
     @endif
