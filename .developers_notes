@@ -77,6 +77,10 @@ CODE: add title attr
 
 CODE: fix all stype bugs on existing styled pages
 
+BUG: on profile.index page. there is a little extra scrolling
+
+BUG: on profile.index page. if user magnify page, border of footer collide with edit btn
+
 
 =======DONE======
 

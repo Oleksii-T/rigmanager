@@ -18,7 +18,7 @@
                             <img src="{{ $post->images->first()->url }}" alt="Оборудывание нефть и газ."></li>
                         @endif
                     </div>
-                    <button class="addToFavButton id_{{ $post->id }}"><img class="addToFavImg" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="Оборудывание нефть и газ."><span><i>{{__('ui.removeFromFavHelp')}}</i></span></button>
+                    <button class="addToFavButton id_{{ $post->id }}"><img class="addToFavImg" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}"><span><i>{{__('ui.removeFromFav')}}</i></span></button>
                     <div class="textWraper">
                         <h3 class="heading4">{{ $post->title }}</h3>
                         <p class="desc">{{ $post->description }}</p>

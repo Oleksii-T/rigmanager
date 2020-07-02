@@ -35,15 +35,15 @@
             <div id="rightContent">
                 @if ($post->user_id != Auth::id())
                     <div class="element" id="addToFavBtn">
-                        @if ($isFav)
-                            <p>{{__('ui.inFav')}}</p>
-                            <button class="addToFavButton id_{{$post->id}}">
-                                <img src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            </button>
-                        @else
+                        @if ($isFav === false)
                             <p>{{__('ui.addToFav')}}</p>
                             <button class="addToFavButton id_{{$post->id}}">
                                 <img src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            </button>   
+                        @else
+                            <p>{{__('ui.inFav')}}</p>
+                            <button class="addToFavButton id_{{$post->id}}">
+                                <img src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
                             </button>
                         @endif
                     </div>
@@ -177,36 +177,43 @@
                 }, 3000);
             }
 
-            //action when clicked on addToFav btn
+            //action when user clicks on addToFav icon
             $(".addToFavButton").click(function(){
-                var id = $(this).attr("class").split(' ')[1].split('_')[1];
-                $(".id_"+id).attr('disabled', true); //disable button antill db gives feedback
+                $(".id_"+item_id).attr('disabled', true); //disable button until feedback
+                $(document.body).css('cursor', 'wait');
+                var item_id = $(this).attr("class").split(' ')[1].split('_')[1];
                 $.ajax({
-                    type: "POST",
-                    url: "/profile/fav",
-                    data: { id: id },
+                    type: "GET",
+                    url: '{{ route('toFav') }}',
+                    data: { post_id: item_id },
                     success: function(data) {
-                        confirmation(data, id);
+                        confirmation(data, item_id);
                     }
                 });
             });
 
-            //visual confirmation that item was added to FavList
-            function confirmation(data, id) {
-                if ( !data.includes("Произошла ошибка.") ) {
-                    var target = $(".id_"+id+" img");
-                    var n = $("#favIcon span").text();
+            //paint addToFav btn into red and incr/decr number of  favItems if succes
+            function confirmation(data, item_id) {
+                if ( data ) {
+                    var target = $(".id_"+item_id+" img");
+                    var n = $("#favItemsTab span").text();
                     n = parseInt(n,10);
                     if ( target.attr("src") != "{{ asset('icons/heartOrangeIcon.svg') }}" ) {
-                        $("#favIcon span").html(n+1);
+                        $("#favItemsTab span").html(n+1);
                         target.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
+                        $('#addToFavBtn p').html('{{__('ui.inFav')}}');
+                        popUpMassage("{{ __('messages.postAddedFav') }}");
                     }   else {
-                        $("#favIcon span").html(n-1);
+                        $("#favItemsTab span").html(n-1);
                         target.attr("src", "{{ asset('icons/heartWhiteIcon.svg') }}");
+                        $('#addToFavBtn p').html('{{__('ui.addToFav')}}');
+                        popUpMassage("{{ __('messages.postRemovedFav') }}");
                     }
+                } else {
+                    popUpMassage("{{ __('messages.postAddFavError') }}");
                 }
-                $(".id_"+id).attr('disabled', false);
-                popUpMassage(data);
+                $(document.body).css('cursor', 'default');
+                $(".id_"+item_id).attr('disabled', false);
             }
 
             //show modal contacts 

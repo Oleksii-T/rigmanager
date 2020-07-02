@@ -136,7 +136,7 @@
                 @else
                     <img class="addToFavImg" src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
                 @endif
-                    <span><i>{{__('ui.addToFavHelp')}}</i></span>
+                    <span><i>{{__('ui.addToFav')}}</i></span>
                     </button>
 
                 <div class="textWraper">

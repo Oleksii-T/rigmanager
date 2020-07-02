@@ -153,7 +153,7 @@
                             <td><a class="footerLinks" href="#">{{__('ui.footerContact')}}</a></td>
                         </tr>
                         <tr>
-                            <td><a class="footerLinks" href="#">{{__('ui.footerTerms')}}</a></td>
+                            <td><a class="footerLinks wrap" href="#">{{__('ui.footerTerms')}}</a></td>
                             <td><a class="footerLinks" href="#">{{__('ui.footerDevelop')}}</a></td>
                         </tr>
                     </table>

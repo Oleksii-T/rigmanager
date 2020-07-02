@@ -26,8 +26,9 @@ return [
     'loggingEq' => 'Оборудывание для
         Каротажа',
     'other' => 'Другое',
-    'addToFavHelp' => 'Добавить в Избранное',
-    'removeFromFavHelp' => 'Удалить их Избранного',
+    'addToFav' => 'Добавить в Избранное',
+    'inFav' => 'В Избранном',
+    'removeFromFav' => 'Удалить их Избранного',
     'loginHelp' => 'Логином должна быть электронная почта.',
     'password' => 'Пароль',
     'passwordHelp' => 'Минимум 6 симфолов.
@@ -101,7 +102,8 @@ return [
     'footerIconsRef' => 'Все иконки предоставлены',
     'footerSubscription' => 'Подписки',
     'footerContact' => 'Контакты',
-    'footerTerms' => 'Пользовательское соглашение',
+    'footerTerms' => 'Пользовательское 
+    соглашение',
     'footerDevelop' => 'Разработка',
     '' => '',
 ];

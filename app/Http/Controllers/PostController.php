@@ -62,7 +62,17 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        $isFav = false;
+        /*
+        $post->favofUser->each(function($item, $key) use (&$isFav){
+            if ($item->id == auth()->user()->id) {
+                $isFav = true;
+                return false;
+            }
+        });
+        */
+        $isFav = $post->favofUser->search(function($item, $key){
+            return $item->id == auth()->user()->id;
+        });
         return view('post.show', compact('post', 'isFav'));
     }
 

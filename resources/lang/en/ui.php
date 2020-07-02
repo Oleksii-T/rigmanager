@@ -26,8 +26,9 @@ return [
     'loggingEq' => 'Equipment for
         Logging',
     'other' => 'Other',
-    'addToFavHelp' => 'Add to Favourites',
-    'removeFromFavHelp' => 'Remove from Favourites',
+    'addToFav' => 'Add to Favourites',
+    'inFav' => 'In Favourites',
+    'removeFromFav' => 'Remove from Favourites',
     'loginHelp' => 'Login should be the email address.',
     'password' => 'Password',
     'passwordHelp' => 'Minimum 6 symbols.
@@ -102,7 +103,8 @@ return [
     'footerIconsRef' => 'Icons made by',
     'footerSubscription' => 'Our Plans',
     'footerContact' => 'Contact Us',
-    'footerTerms' => 'Terms of Service',
+    'footerTerms' => 'Terms of 
+    Service',
     'footerDevelop' => 'Delelopment',
     '' => '',
 ];

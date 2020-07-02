@@ -32,7 +32,7 @@ body {
     margin: 0px auto;
     display: block;
     position: relative;
-    padding-bottom: 150px;
+    padding-bottom: 170px;
 }
 
 div.sideBg {
@@ -247,7 +247,7 @@ div.iconWraper img {
 
 .footer {
     position: absolute;
-    height: 150px;
+    height: 170px;
     width: 100%;
     left: 50%;
     transform: translateX(-50%);
@@ -255,6 +255,10 @@ div.iconWraper img {
     border-top: 2px solid #ffffff;
     display: block;
     text-align: center;
+}
+
+.wrap {
+    white-space: pre-line;
 }
 
 #footerWraper {

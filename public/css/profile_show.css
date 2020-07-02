@@ -34,14 +34,14 @@ p {
     border-radius: 50%;
 }
 
-table {
+#userData table {
     width: 90%;
     max-width: 95%;
     margin: 0px auto;
     border-collapse: collapse;
 }
 
-td {
+#userData td {
     overflow: hidden;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -102,6 +102,7 @@ td {
     padding: 10px;
     text-decoration: none;
     background-color: rgb(149, 149, 149, 0.7);
+    margin-bottom: 10px;
 }
 
 #editBtn:hover {

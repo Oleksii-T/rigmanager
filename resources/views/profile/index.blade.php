@@ -53,8 +53,10 @@
         </table>
         <p class="helpText"><i>{{__('ui.passwordEncrypted')}}</i></p>
     </div>
-
-    <a id="editBtn" href="{{ route('profile.edit') }}">{{__('ui.edit')}}</a>
+    
+    <div>
+        <a id="editBtn" href="{{ route('profile.edit') }}">{{__('ui.edit')}}</a>
+    </div>
 @endsection
 
 @section('scripts')
