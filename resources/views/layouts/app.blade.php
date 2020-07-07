@@ -154,7 +154,7 @@
                         </tr>
                         <tr>
                             <td><a class="footerLinks wrap" href="#">{{__('ui.footerTerms')}}</a></td>
-                            <td><a class="footerLinks" href="#">{{__('ui.footerDevelop')}}</a></td>
+                            <td><a class="footerLinks" href="https://github.com/Oleksii-T/rigmanager">{{__('ui.footerDevelop')}}</a></td>
                         </tr>
                     </table>
                 </div>

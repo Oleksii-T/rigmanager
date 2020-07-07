@@ -19,8 +19,12 @@
                         @endif
                     </div>
 
-                    <a class="editBtn id_{{$item->id}}" href="{{ route('posts.edit', $item->id) }}">
-                        <img title="{{__('ui.edit')}}" src="{{ asset('icons/editIcon.svg') }}" alt="">
+                    <button class="modalPostDeleteOn" id="{{$item->id}}">
+                        <img src="{{ asset('icons/deleteIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                    </button>
+
+                    <a class="editBtn" id="{{$item->id}}" href="{{ route('posts.edit', $item->id) }}">
+                        <img title="{{__('ui.edit')}}" src="{{ asset('icons/editIcon.svg') }}" alt="{{__('alt.keyword')}}">
                     </a>
 
                     <div class="textWraper">
@@ -41,6 +45,20 @@
                     <a href="{{ route('posts.show', $item->id) }}"><span class="globalItemButton item_id_{{ $item->id }}"></span></a>
 
                 </div>
+
+                <div class="modalView animate" id="modalPostDelete">
+                    <div class="modalContent"> 
+                        <p>{{__('ui.sure?')}}</p>
+                        <div>
+                            <button type="button" id="modalPostDeleteOff">{{__('ui.no')}}</button>
+                            <form method="POST" action="{{ route('posts.destroy', $item->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button>{{__('ui.delete')}}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             @endforeach
 
         </div>
@@ -53,6 +71,7 @@
         </div>
     @endif
 
+
 @endsection
 
 @section('scripts')
@@ -64,12 +83,39 @@
 
             //add hover effect on item when hover on addToFav btn
             $(".editBtn").hover(function(){
-                    var item_id = $(this).attr("class").split('_')[1];
+                    var item_id = $(this).attr("id");
                     $(".item_id_"+item_id).addClass('hover');
                 }, function(){
-                    var item_id = $(this).attr("class").split('_')[1];
+                    var item_id = $(this).attr("id");
                     $(".item_id_"+item_id).removeClass('hover');
             });
+
+            //add hover effect on item when hover on addToFav btn
+            $(".modalPostDeleteOn").hover(function(){
+                    var item_id = $(this).attr("id");
+                    $(".item_id_"+item_id).addClass('hover');
+                }, function(){
+                    var item_id = $(this).attr("id");
+                    $(".item_id_"+item_id).removeClass('hover');
+            });
+
+            //open modal delete confirm when user ask to
+            $('.modalPostDeleteOn').click(function() {
+                $('#modalPostDelete').css("display", "block");
+            });
+
+            //close delete confirmation
+            $('#modalPostDeleteOff').click(function(){
+                $('#modalPostDelete').css("display", "none");
+            });
+
+            //make any click beyong the modal to close modal
+            window.onclick = function(event) {
+                var modal = document.getElementById("modalPostDelete");
+                if (event.target == modal) {
+                    $('#modalPostDelete').css("display", "none");
+                }
+            }
 
         });
     </script>

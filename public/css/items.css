@@ -76,7 +76,8 @@
 
 .misc { font-size: 80%; }
 
-.item button {
+.addToFavButton,
+.addToFavButtonBlocked {
     position: absolute;
     top: 0;
     right: 0;

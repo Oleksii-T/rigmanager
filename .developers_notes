@@ -31,8 +31,6 @@ BUG: if user enters '0' inner check will treat as a false and think that it is e
 
 BUG: when item submited with arrors, condition is reset
 
-BUG: broken footer in image show if there is no image
-
 BUG: on item new/edit pages help info sometimes overflows element div
 
 CODE HTML/JS: add curency sign to cost
@@ -83,8 +81,11 @@ BUG: on profile.index page. if user magnify page, border of footer collide with 
 
 CODE: add posibility to create RU user name
 
+BUG: footer link on post/edit page alligned to left
+
 =======DONE======
 
+BUG: broken footer in post show if there is no image
 CODE: add digital number of how many fav posts user have to nav bar
 CODE: add functionality to change lang
 BUG: edit post, not validating the textarea and throws a js error
