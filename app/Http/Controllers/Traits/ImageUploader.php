@@ -32,11 +32,6 @@ trait ImageUploader
         }
     }   
 
-    public function postImageUpdate($files, $post) {
-        $this->postImagesDelete($post);
-        $this->postImageUpload($files, $post);
-    }
-
     public function userImageUpload($file, $user)
     {
         $path = $file->store($user->id); //save to local disk

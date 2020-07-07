@@ -16,6 +16,7 @@ return [
     'postAddFavPersonal' => 'Your oun post can not be added to Favourites.',
     'postRemovedFav' => 'Post has been deleted from Favourites successfully!',
     'postRemoveFavError' => 'An error occured.',
+    'postEditedErrorTooManyImages' => 'Too many images, maximum 5.',
 
     'profileEdited' => 'Profile has been changed successfully!',
     

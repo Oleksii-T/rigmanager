@@ -90,6 +90,7 @@ return [
     'showContacts' => 'Show contacts',
     'postCreated' => 'Post uploaded',
     'condition' => 'Condition',
+    'deleteAllImgs' => 'Delete all saved images',
 
     'verifyNoticeThank' => 'Thank you, for choosing our resource',
     'verifyNoticeBody' => 'The account activation message was sent to Your Email address.

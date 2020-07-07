@@ -25,6 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('profile/myPosts', 'UserController@myPosts')->name('myPosts');
     Route::get('profile/favourite', 'UserController@addToFav')->name('toFav');
     Route::get('posts/create', 'PostController@create')->name('posts.create');
+    Route::patch('posts/images/delete/{post}', 'PostController@ImgsDel')->name('post.imgs.delete');
     Route::patch('profile/update', 'UserController@update')->name('profile.update');
     Route::get('profile/edit', 'UserController@edit')->name('profile.edit');
 });

@@ -16,6 +16,7 @@ return [
     'postAddFavPersonal' => 'Свое объявление нельзя добавить в избранное',
     'postRemovedFav' => 'Удалено из избранного!',
     'postRemoveFavError' => 'Произошла ошибка.',
+    'postEditedErrorTooManyImages' => 'Слишком много изображений, максимум 5.',
 
     'profileEdited' => 'Профиль изменен успешно!',
 

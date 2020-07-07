@@ -97,17 +97,25 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, $id)
     {
+        
+        $post = Post::findOrFail($id);
+        if ( $request->hasFile('images')) {
+            $imagesAmount = count($request->file('images')) + $post->images->count();
+            if ($imagesAmount > 5) {
+                Session::flash('tooManyImagesError', __('messages.postEditedErrorTooManyImages'));
+                return redirect()->back();
+            }
+        }
         $input = $request->all();
         $input['viber'] = $request->viber ? 1 : 0;
         $input['telegram'] = $request->telegram ? 1 : 0;
         $input['whatsapp'] = $request->whatsapp ? 1 : 0;
-        $post = Post::findOrFail($id);
         if (!$post->update($input)) {
             Session::flash('message-error', __('messages.postEditedError'));
             return redirect(route('home'));
         }
-        if ($request->hasFile('images')) {
-            $this->postImageUpdate($request->file('images'), $post);
+        if ( $request->hasFile('images')) {
+            $this->postImageUpload($request->file('images'), $post);
         }
         Session::flash('message-success', __('messages.postEdited'));
         return $this->show($post->id);
@@ -126,5 +134,13 @@ class PostController extends Controller
         $post->delete();
         Session::flash('message-success', __('messages.postDeleted'));
         return redirect(route('myPosts'));
+    }
+
+    public function ImgsDel($id)
+    {
+        $post = Post::findOrFail($id);
+        $this->postImagesDelete($post);
+        Session::flash('message-success', __('messages.postEdited'));
+        return $this->show($post->id);
     }
 }

@@ -130,10 +130,26 @@
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
+
+                @if (Session::has('tooManyImagesError'))
+                    <div class="error">
+                        <p>{{ Session::get('tooManyImagesError') }}</p>
+                    </div>
+                @endif
                 
+                <p>{{__('ui.preview')}}:</p>
+
                 <div class="gallery">
-                    <p>{{__('ui.preview')}}: {{__('ui.empty')}}</p>
+                    @if ( $post->images->isNotEmpty() )
+                        @foreach ($post->images as $image)
+                            <div class="previewImg">
+                                <img src="{{ $image->url }}" alt="{{__('alt.keyword')}}">
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
+
+                <button type="button" id="modalImgsDeleteOn">{{__('ui.deleteAllImgs')}}</button>
 
                 <div class="help">
                     <p><i>{{__('ui.imageHelp')}}</i></p>
@@ -202,15 +218,29 @@
             <div id="btns" class="element">
                 <button type="submit">{{__('ui.save')}}</button>
                 <a href="{{ route('posts.show', $post->id) }}">{{__('ui.cancel')}}</a>
-                <button type="button" id="modalTriger">{{__('ui.deletePost')}}</button>
+                <button type="button" id="modalPostDeleteOn">{{__('ui.deletePost')}}</button>
             </div>
         </form>
 
-        <div class="modalView animate" id="modal">
+        <div class="modalView animate" id="modalImgsDelete">
             <div class="modalContent"> 
                 <p>{{__('ui.sure?')}}</p>
                 <div>
-                    <button type="button" id="modalTrigerOff">{{__('ui.no')}}</button>
+                    <button type="button" id="modalImgsDeleteOff">{{__('ui.no')}}</button>
+                    <form method="POST" action="{{ route('post.imgs.delete', $post->id) }}">
+                        @csrf
+                        @method('PATCH')
+                        <button>{{__('ui.delete')}}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modalView animate" id="modalPostDelete">
+            <div class="modalContent"> 
+                <p>{{__('ui.sure?')}}</p>
+                <div>
+                    <button type="button" id="modalPostDeleteOff">{{__('ui.no')}}</button>
                     <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
                         @csrf
                         @method('DELETE')
@@ -229,6 +259,9 @@
     <script type="text/javascript">
 
         $(document).ready(function() {
+
+            //fade out flash massages
+            $("div.flash").delay(3000).fadeOut(350);
 
             //add active effect in nav bar
             $('#myItemsTab').addClass('isActiveBtn');
@@ -288,20 +321,34 @@
             });
 
             //open modal delete confirm when user ask to
-            $('#modalTriger').click(function(){
-                $('.modalView').css("display", "block");
+            $('#modalPostDeleteOn').click(function(){
+                $('#modalPostDelete').css("display", "block");
             });
 
             //close delete confirmation
-            $('#modalTrigerOff').click(function(){
-                $('.modalView').css("display", "none");
+            $('#modalPostDeleteOff').click(function(){
+                $('#modalPostDelete').css("display", "none");
+            });
+
+            //open modal delete confirm when user ask to
+            $('#modalImgsDeleteOn').click(function(){
+                $('#modalImgsDelete').css("display", "block");
+            });
+
+            //close delete confirmation
+            $('#modalImgsDeleteOff').click(function(){
+                $('#modalImgsDelete').css("display", "none");
             });
 
             //make any click beyong the modal to close modal
             window.onclick = function(event) {
-                var modal = document.getElementById("modal");
+                var modal = document.getElementById("modalImgsDelete");
                 if (event.target == modal) {
-                    $('#modal').css("display", "none");
+                    $('#modalImgsDelete').css("display", "none");
+                }
+                var modal = document.getElementById("modalPostDelete");
+                if (event.target == modal) {
+                    $('#modalPostDelete').css("display", "none");
                 }
             }
 
@@ -330,7 +377,7 @@
 
                 $('#inputImg').on('change', function() {
                     var gallery = $('div.gallery');
-                    $(".gallery").empty();
+                    //$(".gallery").empty();
                     imagesPreview(this, gallery);
                 });
             });
