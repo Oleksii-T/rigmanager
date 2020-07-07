@@ -41,14 +41,14 @@ form>div>p {
     padding-top: 10px;
 }
 
-table {
+#userData table {
     width: 90%;
     max-width: 95%;
     margin: 0px auto;
     border-collapse: collapse;
 }
 
-td {
+#userData td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

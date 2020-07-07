@@ -42,7 +42,7 @@
                     </div>
 
                     <div id="btns">
-                        <button id="submitBtn" type="submit">Войти</button>
+                        <button id="submitBtn" type="submit">{{__('ui.signIn')}}</button>
                         <a href="/password/forgot">{{__('ui.forget password')}}</a>
                     </div>
             

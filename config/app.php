@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Kiev',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locate' => 'ru',
+    'locate' => 'uk',
     /*
     'locale' => 'en',
     */
@@ -96,7 +96,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'ru',
+    'fallback_locale' => 'uk',
     /*
     'fallback_locale' => 'en',
     */

@@ -81,6 +81,7 @@ BUG: on profile.index page. there is a little extra scrolling
 
 BUG: on profile.index page. if user magnify page, border of footer collide with edit btn
 
+CODE: add posibility to create RU user name
 
 =======DONE======
 
@@ -156,6 +157,9 @@ composer require league/flysystem-aws-s3-v3
 php artisan storage:link
 The [/home/vagrant/code/rigmanager/public/storage] link has been connected to [/home/vagrant/code/rigmanager/storage/app/public].
 
+spam-check for email sand uysing Mailgun:
+https://www.mail-tester.com/test-ht1ohsbf3
+
 =======DEPLOYMENT NOTES=======
 
 Change charset and collation in config/database.php to utf8
@@ -164,6 +168,35 @@ rename resources/views/components/tags/production/* to Camel Case
 
 
 @ Your typical nerd who likes coding and videogames. I don't mind having a drink either.
+
+====OLD EMAIL .ENV CONFIG=====
+
+
+MAIL_MAILER=smtp
+MAIL_HOST=mail.adm.tools
+MAIL_PORT=2525
+MAIL_DOMAIN=null
+MAIL_USERNAME=noreply@rigmanager.com.ua
+MAIL_PASSWORD=kVj8DPy3Bz35
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=noreply@rigmanager.com.ua
+MAIL_FROM_NAME=Rigmanager
+
+
+
+
+MAIL_MAILER=mailgun
+MAIL_HOST=smtp.mailgun.org
+MAILGUN_DOMAIN=rigmanager.com.ua
+MAILGUN_SECRET=474d0113776030654ea619526ba20e01-8b34de1b-91c75655
+MAILGUN_ENDPOINT=null
+MAIL_PORT=2525
+MAIL_DOMAIN=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=noreply@rigmanager.com.ua
+MAIL_FROM_NAME=Rigmanager
+
+
 
 ======Equipment TAGS=========
 

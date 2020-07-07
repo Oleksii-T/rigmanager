@@ -17,17 +17,19 @@
         #verifyNoticeBody p {
             font-size: 150%;
             white-space: pre-line;
+            display: inline;
         }
 
         #verifyNoticeBody form {
             margin-top: 10px;
+            display: inline;
         }
 
         #verifyNoticeBody button {
             font-size: 140%;
             cursor: pointer;
             border: none;
-            padding: 10px;
+            padding: 5px 7px;
             background: none;
             background-color: rgb(149, 149, 149, 0.7);
         }
@@ -36,22 +38,29 @@
             background-color: rgb(149, 149, 149);
         }
 
+        #resendBody {
+            margin-top: 30px;
+        }
+
+        #resendBody p {
+            border-bottom: 2px solid #FE9042;
+        }
+
     </style>
 @endsection
 
 @section('content')
     <div id="verifyNoticeBody">
+        <h1>{{__('ui.verifyNoticeThank')}}</h1>
+        <p>{{__('ui.verifyNoticeBody')}}</p>
+        <form method="POST" action="{{ route('verification.resend') }}">
+            @csrf
+            <button type="submit">{{ __('ui.verifyClickToResend') }}</button>.
+        </form>
         @if (session('resent'))
             <div id="resendBody">
                 <p>{{__('ui.verifyNoticeResend')}}</p>
             </div>
         @endif
-            <h1>{{__('ui.verifyNoticeThank')}}</h1>
-            <h1>{{__('ui.verifyNoticeTitle')}}</h1>
-            <p>{{__('ui.verifyNoticeBody')}}</p>
-            <form method="POST" action="{{ route('verification.resend') }}">
-                @csrf
-                <button type="submit">{{ __('ui.verifyClickToResend') }}</button>.
-            </form>
     </div>
 @endsection

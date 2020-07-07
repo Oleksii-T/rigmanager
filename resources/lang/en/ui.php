@@ -90,13 +90,14 @@ return [
     'showContacts' => 'Show contacts',
     'postCreated' => 'Post uploaded',
     'condition' => 'Condition',
-    'verifyNoticeThank' => 'Thank you, for choosing out resource',
-    'verifyNoticeTitle' => 'Please, verify Your Email Address to activate account',
-    'verifyNoticeResend' => 'A fresh verification link has been sent 
-        to your email address.',
-    'verifyNoticeBody' => 'Before proceeding, please check your email for a verification link.
-        If you did not receive the email',
-    'verifyClickToResend' => 'Click here to request another',
+
+    'verifyNoticeThank' => 'Thank you, for choosing our resource',
+    'verifyNoticeBody' => 'The account activation message was sent to Your Email address.
+    Please, follow the link in our message.
+    If You can not find the message, check Spam folder or we can send',
+    'verifyClickToResend' => 'new activation message',
+    'verifyNoticeResend' => 'new account activation message 
+    was sent to Your Email address.',
 
     'foterAbout' => 'About',
     'footerCopyright' => 'All Rights Reserved.',
