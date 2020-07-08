@@ -43,14 +43,14 @@
     top: 50%;
     transform: translateY(-50%);
     left: 5px;
-    width: 23px;
+    width: 30px;
 }
 
 #searchBar input {
     width: 100%;
     font-size: 100%;
     padding: 10px;
-    padding-left: 35px;
+    padding-left: 45px;
     height: 50px;
     outline: none;
     border: none;

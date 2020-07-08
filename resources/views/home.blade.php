@@ -8,7 +8,7 @@
 
 @section('content')
     <div id="searchBar">
-        <form action="/items/search">
+        <form action="#">
             <div id="inputWraper">
                 <img src="{{ asset('icons/search.svg') }}" alt="{{__('alt.keyword')}}">
                 <input id="inputSearch" name="search" placeholder="{{__('ui.search')}}..." />

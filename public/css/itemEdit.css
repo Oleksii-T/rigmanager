@@ -10,7 +10,7 @@
 
 label { font-size: 110%; }
 
-input {
+#editItemBody input {
     padding: 7px;
     margin-top: 20px;
     border: none;
@@ -60,12 +60,12 @@ input.error, textarea.error {
     /*border-bottom-left-radius: none !important;*/
 }
 
-input:hover, textarea:hover, 
+#editItemBody input:hover, #desc textarea:hover, 
 #navTags button:hover, #imgs label:hover
  { background-color: rgb(149, 149, 149, 0.8); }
- input:focus, textarea:focus 
+ #editItemBody input:focus, #desc textarea:focus 
  { background-color: rgb(149, 149, 149, 0.9); }
- input:active, textarea:active, 
+ #editItemBody input:active, #desc textarea:active, 
  #navTags button:active
  { background-color: rgb(149, 149, 149, 0.7); }
 
@@ -127,7 +127,7 @@ input:hover, textarea:hover,
 
 #mainMenu>li {
     display: inline-block;
-    margin-bottom: 15px;
+    margin: 5px 0px;
 }
 
 #dropDown {
@@ -204,9 +204,9 @@ input:hover, textarea:hover,
 /*==================DESCRIPTION==================*/
 
 #desc textarea {
+    padding: 10px;
     margin-top: 20px;
     width: 70%;
-    padding: 10px;
     outline: none;
     border: none;
     background-color: rgb(149, 149, 149, 0.7);
@@ -354,7 +354,7 @@ input:hover, textarea:hover,
     top: 300px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgb(11, 11, 11, 0.6);
+    background: rgb(11, 11, 11, 0.7);
     box-shadow: 0px 0px 20px 5px #000000;
     display: block;
     padding: 20px;

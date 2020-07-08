@@ -26,6 +26,7 @@
                 <div class="element" id="mainInfo">
                     <h1>{{ $post->title }}</h1>
                     <p id="allTags" hidden >{{ $post->tag }}</p>
+                    <div></div>
                     <p>{{ $post->description }}</p>
                 </div>
             </div>
@@ -95,18 +96,18 @@
             </div>
         </div>
 
-        <div class="modalView animate" id="modal">
+        <div class="modalView" id="modal">
             <div class="modalContent"> 
                 <h1>{{__('ui.contactInfo')}}:</h1>
                 <ul>
                     @if ($post->user_email)
-                        <li>{{__('ui.email')}}: {{ $post->user_email }}</li>
+                        <li>{{__('ui.email')}}: <span>{{ $post->user_email }}</span></li>
                     @else
-                        <li>{{__('ui.email')}}: {{__('ui.empty')}}.</li>
+                        <li>{{__('ui.email')}}: <span>{{__('ui.empty')}}.</span></li>
                     @endif
                     @if ($post->user_phone)
                         <li>
-                            {{__('ui.phone')}}:  {{ $post->user_phone }}
+                            {{__('ui.phone')}}:  <span>{{ $post->user_phone }}</span>
                             @if ( $post->viber )
                                 <img src="{{ asset('icons/viberIcon.svg') }}" alt="{{__('alt.keyword')}}">
                             @endif

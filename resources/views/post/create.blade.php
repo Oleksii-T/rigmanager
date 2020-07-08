@@ -12,10 +12,8 @@
             @csrf
             
             <div id="title" class="element">
-                <div>
-                    <label class="elementHeading" for="inputTitle">{{__('ui.title')}}</label><br>
-                    <input id="inputTitle" name="title" placeholder="{{__('ui.title')}}" value="{{ old('title') }}"/>
-                </div>
+                <label class="elementHeading" for="inputTitle">{{__('ui.title')}}</label><br>
+                <input id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') }}"/>
                 <x-server-input-error errorName='title' inputName='inputTitle' errorClass='error'/>
                 <div class="help">
                     <p><i>{{__('ui.titleHelp')}}</i></p>
@@ -31,11 +29,8 @@
             </div>
 
             <div id="tag" class="element">
-                
                 <p class="elementHeading">{{__('ui.tag')}}</p>
-                
                 <input id="hiddenTag" type="text" name="tag" value="{{ old('tag') ?? 'Другое' }}" hidden/>
-
                 <div id="navTags">
                     <ul>
                         <li><button type="button" class="tagsTrigger drillingEq">{{__('ui.drillingEq')}}</button></li>
