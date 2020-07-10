@@ -3,7 +3,7 @@
 return [
 
     'success' => '',
-    'error' => '',
+    'error' => 'Виникла помилка.',
     'info' => '',
     
     'postUploaded' => 'Оголошення додано успішно!',

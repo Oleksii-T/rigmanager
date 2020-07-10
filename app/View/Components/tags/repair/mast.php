@@ -4,7 +4,7 @@ namespace App\View\Components\tags\repair;
 
 use Illuminate\View\Component;
 
-class bop extends Component
+class mast extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class bop extends Component
      */
     public function render()
     {
-        return view('components.tags.repair.bop');
+        return view('components.tags.repair.mast');
     }
 }

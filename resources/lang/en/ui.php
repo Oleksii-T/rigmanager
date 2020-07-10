@@ -91,6 +91,8 @@ return [
     'postCreated' => 'Post uploaded',
     'condition' => 'Condition',
     'deleteAllImgs' => 'Delete all saved images',
+    'searchSuccess' => 'That is what we found',
+    'searchFail' => 'Sorry, we can not find posts for your request',
 
     'verifyNoticeThank' => 'Thank you, for choosing our resource',
     'verifyNoticeBody' => 'The account activation message was sent to Your Email address.

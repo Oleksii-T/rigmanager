@@ -8,10 +8,10 @@
 
 @section('content')
     <div id="searchBar">
-        <form action="#">
+        <form method="GET" action="{{ route('search') }}">
             <div id="inputWraper">
                 <img src="{{ asset('icons/search.svg') }}" alt="{{__('alt.keyword')}}">
-                <input id="inputSearch" name="search" placeholder="{{__('ui.search')}}..." />
+                <input id="inputSearch" name="searchStrings" value="{{ Session::get('oldSearch') }}" placeholder="{{__('ui.search')}}..."  />
             </div>
             <button type="submit">{{__('ui.search')}}</button>
         </form>
@@ -20,13 +20,31 @@
     <div id="searchBtns">
 
         <div id="navTags">
-            <button class="tagsTrigger drillingEq">{{__('ui.drillingEq')}}<span class="arrow arrowDown"></span></button>
-            <button class="tagsTrigger repairEq">{{__('ui.repairEq')}}<span class="arrow arrowDown"></span></button>
-            <button class="tagsTrigger productionEq">{{__('ui.productionEq')}}<span class="arrow arrowDown"></span></button>
-            <button class="tagsTrigger loggingEq">{{__('ui.loggingEq')}}<span class="arrow arrowDown"></span></button>
+            <button class="tagsTrigger hseEq">{{__('tags.hseEq')}}<span class="arrow arrowDown"></span></button>
+            <button class="tagsTrigger drillingEq">{{__('tags.drillingEq')}}<span class="arrow arrowDown"></span></button>
+            <button class="tagsTrigger repairEq">{{__('tags.repairEq')}}<span class="arrow arrowDown"></span></button>
+            <button class="tagsTrigger productionEq">{{__('tags.productionEq')}}<span class="arrow arrowDown"></span></button>
+            <button class="tagsTrigger loggingEq">{{__('tags.loggingEq')}}<span class="arrow arrowDown"></span></button>
         </div>
 
         <div id="dropDown">
+
+            <div class="typeOfEq" id="hseEq">
+                <ul id="mainMenu">
+                    <table>
+                        <tr>
+                            <td> <x-tags.hse.fire-hazard/> </td>
+                            <td> <x-tags.hse.life-support/> </td>
+                            <td> <x-tags.hse.light/> </td>
+                        </tr>
+                        <tr>
+                            <td> <x-tags.hse.misc-eq/> </td>
+                            <td> <x-tags.hse.ppo/> </td>
+                            <td> <x-tags.hse.signalization/> </td>
+                        </tr>
+                    </table>
+                </ul>
+            </div>
 
             <div class="typeOfEq" id="drillingEq">
                 <ul id="mainMenu">
@@ -37,9 +55,9 @@
                             <td> <x-tags.drilling.logging/> </td>
                         </tr>
                         <tr>
-                            <td> <x-tags.drilling.bop/> </td>
+                            <td> <x-tags.drilling.boe/> </td>
                             <td> <x-tags.drilling.emergency/> </td>
-                            <td> <x-tags.drilling.hse/> </td>
+                            <td>  </td>
                         </tr>
                         <tr>
                             <td> <x-tags.drilling.power/> </td>
@@ -68,7 +86,7 @@
                             <td> <x-tags.repair.logging/> </td>
                         </tr>
                         <tr>
-                            <td> <x-tags.repair.bop/> </td>
+                            <td> <x-tags.repair.boe/> </td>
                             <td> <x-tags.repair.emergency/> </td>
                             <td> <x-tags.repair.well-head/> </td>
                         </tr>
@@ -79,7 +97,7 @@
                         </tr>
                         <tr>
                             <td> <x-tags.repair.drill-string/> </td>
-                            <td> <x-tags.repair.fhf/> </td>
+                            <td> <x-tags.repair.frac/> </td>
                             <td> <x-tags.repair.coll-tubing/> </td>
                         </tr>
                         <tr>
@@ -114,6 +132,12 @@
 
         </div>
     </div>
+
+    @if ( Session::has('search') )
+        <div id="searchTitle">
+            <h1>{{Session::get('search')}}</h1>
+        </div>
+    @endif
 
     <div id="items">
         @foreach ($posts_list as $item)
@@ -158,7 +182,6 @@
 
             </div>
         @endforeach
-
     </div>
     <div class="pagination-field">
         {{ $posts_list->links() }}
@@ -178,6 +201,14 @@
             Generator.prototype.rand =  0;
             Generator.prototype.getId = function() {return this.rand++;};
             var idGen =new Generator();
+
+            //search for clicked category 
+            $('#dropDown a').click(function(){
+                var id = $(this).attr('id');
+                var url = '{{ route("searchTag", ":id") }}';
+                url = url.replace(':id', id);
+                window.location.href=url;
+            });
 
             //main Equipment types buttons click action
             $('.tagsTrigger').click(function(){
@@ -215,40 +246,49 @@
 
             //action when user clicks on addToFav icon
             $(".addToFavButton").click(function(){
-                $(".id_"+item_id).attr('disabled', true); //disable button until feedback
-                $(document.body).css('cursor', 'wait');
                 var item_id = $(this).attr("class").split(' ')[1].split('_')[1];
+                //make cursor wait
+                $("button.id_"+item_id).addClass('loading');
+                $("span.item_id_"+item_id).addClass('loading');
+                //send Ajax reqeust to add Item to fav list of user
                 $.ajax({
                     type: "GET",
                     url: '{{ route('toFav') }}',
                     data: { post_id: item_id },
                     success: function(data) {
-                        confirmation(data, item_id);
+                        //if no server errors, change digit of favItemsAmount in nav bar 
+                        //and change color of AddToFav btn
+                        if ( data ) {
+                            var target = $(".id_"+item_id+" img");
+                            var n = $("#favItemsTab span").text();
+                            n = parseInt(n,10);
+                            if ( target.attr("src") != "{{ asset('icons/heartOrangeIcon.svg') }}" ) {
+                                //visualize adding to fav list
+                                $("#favItemsTab span").html(n+1);
+                                target.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
+                                popUpMassage("{{ __('messages.postAddedFav') }}");
+                            } else {
+                                //visualize removing from fav list
+                                $("#favItemsTab span").html(n-1);
+                                target.attr("src", "{{ asset('icons/heartWhiteIcon.svg') }}");
+                                popUpMassage("{{ __('messages.postRemovedFav') }}");
+                            }
+                        //if server errors occures, pop up error massage
+                        } else {
+                            popUpMassage("{{ __('messages.postAddFavError') }}");
+                        }
+                        //remove cursor wait
+                        $("button.id_"+item_id).removeClass('loading');
+                        $("span.item_id_"+item_id).removeClass('loading');
+                    },
+                    error: function() {
+                        //pop up error massage and remove cursor wait
+                        popUpMassage("{{ __('messages.error') }}");
+                        $("button.id_"+item_id).removeClass('loading');
+                        $("span.item_id_"+item_id).removeClass('loading');
                     }
                 });
             });
-
-            //paint addToFav btn into red and incr/decr number of  favItems if succes
-            function confirmation(data, item_id) {
-                if ( data ) {
-                    var target = $(".id_"+item_id+" img");
-                    var n = $("#favItemsTab span").text();
-                    n = parseInt(n,10);
-                    if ( target.attr("src") != "{{ asset('icons/heartOrangeIcon.svg') }}" ) {
-                        $("#favItemsTab span").html(n+1);
-                        target.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
-                        popUpMassage("{{ __('messages.postAddedFav') }}");
-                    }   else {
-                        $("#favItemsTab span").html(n-1);
-                        target.attr("src", "{{ asset('icons/heartWhiteIcon.svg') }}");
-                        popUpMassage("{{ __('messages.postRemovedFav') }}");
-                    }
-                } else {
-                    popUpMassage("{{ __('messages.postAddFavError') }}");
-                }
-                $(document.body).css('cursor', 'default');
-                $(".id_"+item_id).attr('disabled', false);
-            }
 
             //add hover effect on item when hover on addToFav btn
             $(".addToFavButton").hover(function(){

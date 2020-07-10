@@ -18,7 +18,10 @@
                             <img src="{{ $post->images->first()->url }}" alt="Оборудывание нефть и газ."></li>
                         @endif
                     </div>
-                    <button class="addToFavButton id_{{ $post->id }}"><img class="addToFavImg" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}"><span><i>{{__('ui.removeFromFav')}}</i></span></button>
+                    <button class="addToFavButton id_{{ $post->id }}">
+                        <img class="addToFavImg" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        <span><i>{{__('ui.removeFromFav')}}</i></span>
+                    </button>
                     <div class="textWraper">
                         <h3 class="heading4">{{ $post->title }}</h3>
                         <p class="desc">{{ $post->description }}</p>
@@ -77,20 +80,36 @@
             //delete item from fav
             $(".addToFavButton").click(function(){
                 var item_id = $(this).attr("class").split('_')[1];
-                $(".id_"+item_id).addClass('deletedItem');
+                //make cursor wait
+                $("button.id_"+item_id).addClass('loading');
+                $("span.item_id_"+item_id).addClass('loading');
+                //send Ajax reqeust to add Item to fav list of user
                 $.ajax({
                     type: "GET",
                     url: '{{ route('toFav') }}',
                     data: { post_id: item_id },
                     success: function(data) {
+                        //if no server errors, decrement digit of favItemsAmount in nav bar 
+                        //and hide post from page
                         if ( data ) {
                             var n = $("#favItemsTab span").text();
                             n = parseInt(n,10);
                             $("#favItemsTab span").html(n-1);
+                            $(".id_"+item_id).addClass('deletedItem');
                             popUpMassage("{{ __('messages.postRemovedFav') }}");
+                        //if server errors occures, pop up error massage
                         } else {
                             popUpMassage("{{ __('messages.postRemoveFavError') }}");
                         }
+                        //remove cursor wait
+                        $("button.id_"+item_id).removeClass('loading');
+                        $("span.item_id_"+item_id).removeClass('loading');
+                    },
+                    error: function() {
+                        //pop up error massage and remove cursor wait
+                        popUpMassage("{{ __('messages.error') }}");
+                        $("button.id_"+item_id).removeClass('loading');
+                        $("span.item_id_"+item_id).removeClass('loading');
                     }
                 });
             });

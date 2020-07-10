@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Post;
 use App\Http\Controllers\Traits\ImageUploader;
 use Illuminate\Support\Facades\Session;
+use App\Tags;
 
 class PostController extends Controller
 {
-    use ImageUploader;
+    use ImageUploader, Tags;
 
     /**
      * Display a listing of the resource.
@@ -62,18 +64,11 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        /*
-        $post->favofUser->each(function($item, $key) use (&$isFav){
-            if ($item->id == auth()->user()->id) {
-                $isFav = true;
-                return false;
-            }
-        });
-        */
-        $isFav = $post->favofUser->search(function($item, $key){
+        $tagsArray = $this->getTagNameByIdWithPath($post->tag);
+        $isFav = $post->favOfUser->search(function($item, $key){
             return $item->id == auth()->user()->id;
         });
-        return view('post.show', compact('post', 'isFav'));
+        return view('post.show', compact('post', 'isFav', 'tagsArray'));
     }
 
     /**
@@ -85,7 +80,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        return view('post.edit', compact('post'));
+        $tagReadble = $this->getTagPathAsString($post->tag);
+        return view('post.edit', compact('post', 'tagReadble'));
     }
 
     /**
@@ -97,7 +93,6 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, $id)
     {
-        
         $post = Post::findOrFail($id);
         if ( $request->hasFile('images')) {
             $imagesAmount = count($request->file('images')) + $post->images->count();
@@ -136,11 +131,36 @@ class PostController extends Controller
         return redirect(route('myPosts'));
     }
 
-    public function ImgsDel($id)
+    public function imgsDel($id)
     {
         $post = Post::findOrFail($id);
         $this->postImagesDelete($post);
         Session::flash('message-success', __('messages.postEdited'));
         return $this->show($post->id);
+    }
+
+    public function search(Request $request) {
+        Session::flash('oldSearch', $request->searchStrings);
+        if ($request->searchStrings) {
+            $posts_list = Post::whereLike(['title', 'description', 'tag'], $request->searchStrings)->paginate(env('POSTS_PER_PAGE'));
+            if( $posts_list->total() == 0 ) {
+                Session::flash('search', __('ui.searchFail'));
+            } else {
+                Session::flash('search', __('ui.searchSuccess'));
+            }
+            return view('home', compact('posts_list'));
+        } else {
+            return redirect(route('home'));
+        }
+    }
+
+    public function searchTag($tagId) {
+        $posts_list = Post::where('tag', $tagId)->paginate(env('POSTS_PER_PAGE'));
+        if( $posts_list->total() == 0 ) {
+            Session::flash('search', __('ui.searchFail'));
+        } else {
+            Session::flash('search', __('ui.searchSuccess'));
+        }
+        return view('home', compact('posts_list'));
     }
 }

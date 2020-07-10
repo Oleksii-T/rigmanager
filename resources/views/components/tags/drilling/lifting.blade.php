@@ -1,12 +1,11 @@
-<li><a href="#">Талевая система и лебедки<span class="arrow arrowDown"></span></a>
+<li><a href="#" id="2.7">{{__('tags.lifting')}}<span class="arrow arrowDown"></span></a>
     <ul class="secondLevel">
-        <li><a href="#">Кронблок</a></li>
-        <li><a href="#">Талевый блок</a></li>
-        <li><a href="#">Буровой крюк</a></li>
-        <li><a href="#">Крепление непод. конца тал. каната</a></li>
-        <li><a href="#">Лебедка</a></li>
-        <li><a href="#">Вспомогательные лебедки</a></li>
-        <li><a href="#">Буровой канат</a></li>
-        <li><a href="#">Штропы</a></li>
+        <li><a href="#" id="2.7.1">{{__('tags.crownBlock')}}</a></li>
+        <li><a href="#" id="2.7.2">{{__('tags.travelBlock')}}</a></li>
+        <li><a href="#" id="2.7.3">{{__('tags.drillHook')}}</a></li>
+        <li><a href="#" id="2.7.4">{{__('tags.deadAnchor')}}</a></li>
+        <li><a href="#" id="2.7.5">{{__('tags.winch')}}</a></li>
+        <li><a href="#" id="2.7.6">{{__('tags.drillLine')}}</a></li>
+        <li><a href="#" id="2.7.7">{{__('tags.bail')}}</a></li>
     </ul>
 </li>

@@ -3,7 +3,7 @@
 return [
 
     'success' => '',
-    'error' => '',
+    'error' => 'An error occured.',
     'info' => '',
     
     'postUploaded' => 'Post has been published successfully!',

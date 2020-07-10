@@ -4,7 +4,7 @@ namespace App\View\Components\tags\repair;
 
 use Illuminate\View\Component;
 
-class fhf extends Component
+class frac extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class fhf extends Component
      */
     public function render()
     {
-        return view('components.tags.repair.fhf');
+        return view('components.tags.repair.frac');
     }
 }

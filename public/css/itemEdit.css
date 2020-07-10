@@ -93,7 +93,13 @@ input.error, textarea.error {
 
 /*==================TAG==================*/
 
-#tag .elementHeading { margin-bottom: 14px; }
+.loading {
+    cursor: wait !important;
+}
+
+#tag .elementHeading { 
+    margin-bottom: 14px; 
+}
 
 #navTags {
     margin-bottom: 20px;
@@ -112,6 +118,7 @@ input.error, textarea.error {
     border-bottom: 2px solid #ffffff;
 }
 
+#hseEq,
 #drillingEq,
 #repairEq,
 #productionEq,

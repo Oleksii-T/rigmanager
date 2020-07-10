@@ -30,30 +30,38 @@
             </div>
 
             <div id="tag" class="element">
-                
                 <p class="elementHeading">{{__('ui.tag')}}</p>
-                
-                <input id="hiddenTag" type="text" name="tag" value="{{ old('tag') ?? $post->tag }}" hidden/>
 
                 <div id="navTags">
                     <ul>
-                        <li><button type="button" class="tagsTrigger drillingEq">{{__('ui.drillingEq')}}</button></li>
-                        <li><button type="button" class="tagsTrigger repairEq">{{__('ui.repairEq')}}</button></li>
-                        <li><button type="button" class="tagsTrigger productionEq">{{__('ui.productionEq')}}</button></li>
-                        <li><button type="button" class="tagsTrigger loggingEq">{{__('ui.loggingEq')}}</button></li>
+                        <li><button type="button" class="tagsTrigger hseEq">{{__('tags.hseEq')}}<span class="arrow arrowDown"></span></button></li>
+                        <li><button type="button" class="tagsTrigger drillingEq">{{__('tags.drillingEq')}}</button></li>
+                        <li><button type="button" class="tagsTrigger repairEq">{{__('tags.repairEq')}}</button></li>
+                        <li><button type="button" class="tagsTrigger productionEq">{{__('tags.productionEq')}}</button></li>
+                        <li><button type="button" class="tagsTrigger loggingEq">{{__('tags.loggingEq')}}</button></li>
                     </ul>
                 </div>
 
                 <div id="dropDown">
+
+                    <div class="typeOfEq" id="hseEq">
+                        <ul id="mainMenu">
+                            <x-tags.hse.fire-hazard/>
+                            <x-tags.hse.life-support/> 
+                            <x-tags.hse.light/>
+                            <x-tags.hse.misc-eq/> 
+                            <x-tags.hse.ppo/>
+                            <x-tags.hse.signalization/>
+                        </ul>
+                    </div>
 
                     <div class="typeOfEq" id="drillingEq">
                         <ul id="mainMenu">
                             <x-tags.drilling.substructure/>
                             <x-tags.drilling.mast/>
                             <x-tags.drilling.logging/> 
-                            <x-tags.drilling.bop/> 
+                            <x-tags.drilling.boe/> 
                             <x-tags.drilling.emergency/> 
-                            <x-tags.drilling.hse/>
                             <x-tags.drilling.power/> 
                             <x-tags.drilling.lifting/> 
                             <x-tags.drilling.rotory/> 
@@ -69,14 +77,14 @@
                         <ul id="mainMenu">
                             <x-tags.repair.substructure/> 
                             <x-tags.repair.logging/> 
-                            <x-tags.repair.bop/> 
+                            <x-tags.repair.boe/> 
                             <x-tags.repair.emergency/> 
                             <x-tags.repair.well-head/>
                             <x-tags.repair.power/>
                             <x-tags.repair.lifting/> 
                             <x-tags.repair.rotory/> 
                             <x-tags.repair.drill-string/> 
-                            <x-tags.repair.fhf/>
+                            <x-tags.repair.frac/>
                             <x-tags.repair.coll-tubing/>
                             <li><a href="#">{{__('ui.other')}}</a></li> 
                         </ul>
@@ -99,7 +107,12 @@
 
                 </div>
 
-                <p id="choosenTags">{{__('ui.chosenTags')}}: <span id="ChoosedTags">{{ old('tag') ?? $post->tag }}</span></p>
+                <!--Hidden field for encoded tag for DB-->
+                <input id="tagEncodedHidden" type="text" name="tag" value="{{ old('tag') ?? $post->tag }}" hidden/>
+                
+                <!--Hidden and visible fields for readable tag-->
+                <input id="tagReadbleHidden" type="text" name="tagReadbleHidden" value="{{ old('tagReadbleHidden') ?? $tagReadble }}" hidden/>
+                <p id="choosenTags">{{__('ui.chosenTags')}}: <span id="tagReadbleVisible">{{ old('tagReadbleHidden') ?? $tagReadble }}</span></p>
                 
                 <div class="help">
                     <p><i>{{__('ui.tagHelp')}}</i></p>
@@ -299,26 +312,47 @@
             //action when user chose tag
             $('#dropDown a').click(function($e){
                 $e.preventDefault();
-                parent = $(this).parent();
-                var allTags = '';
-                do {
-                    var text = parent.text();
-                    var array = text.split('\n')[0];
-                    var text = array.split('  ')[0];
-                    allTags += text+'>';
-                    parent = $(parent).parent();
-                    if ( parent.get(0).tagName == 'UL' ) { parent = $(parent).parent(); }
-                } while ( parent.get(0).tagName != 'DIV' );
-                allTags = allTags.substring(0, allTags.length - 1);
-                allTags = allTags.split('>');
-                var res = '';
-                for ( i=0 ; i<allTags.length ; i++ ) {
-                    res += allTags[allTags.length - i - 1] + ", ";
-                }
-                res = res.substring(0, res.length - 2);
-                $('#hiddenTag').attr("value",res); //write result to hidden field
-                $('#ChoosedTags').text(res); //write result to user
+                //make cursor wait
+                $('#dropDown a').addClass('loading');
+                $(document.body).css('cursor', 'wait');
+                //get readable tags path via ajax request
+                var tagId = $(this).attr('id');
+                var tagEncoded = $(this).attr('id');
+                var ajaxUrl = '{{ route("get.readble.tag", ":tagId") }}';
+                ajaxUrl = ajaxUrl.replace(':tagId', tagId);
+                $.ajax({
+                    type: "GET",
+                    url: ajaxUrl,
+                    success: function(data) {
+                        //write encoded tag to hidden input for DB
+                        $('#tagEncodedHidden').attr("value",tagEncoded);
+                        //write readble tag to hidden input for old() feature
+                        $('#tagReadbleHidden').attr("value",data);
+                        //write readble tag to visible field for user
+                        $('#tagReadbleVisible').text(data);
+                        //remove wait cursor
+                        $(document.body).css('cursor', 'default');
+                        $('#dropDown a').removeClass('loading'); 
+                    },
+                    error: function() {
+                        //print error massage and remove wait cursor
+                        popUpMassage("{{ __('messages.error') }}");
+                        $(document.body).css('cursor', 'default');
+                        $('#dropDown a').removeClass('loading'); 
+                    }
+                });
             });
+
+            //make pop up massage from text
+            function popUpMassage (text) {
+                var uniqueId = "num" + idGen.getId();
+                $('#container').append('<div class="popUp" id="'+uniqueId+'"><p>'+text+'</p></div>');
+                $('#'+uniqueId).addClass('popUpShow');
+                $('#'+uniqueId).click(function(){ $(this).removeClass('popUpShow') });
+                setTimeout(function(){
+                    $('#'+uniqueId).removeClass('popUpShow');
+                }, 3000);
+            }
 
             //open modal delete confirm when user ask to
             $('#modalPostDeleteOn').click(function(){

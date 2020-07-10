@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/about', 'HomeController@about')->name('about');
-
+Route::get('about', 'HomeController@about')->name('about');
+Route::get('emailexists', 'UserController@emailExists')->name('email.exist');
+Route::get('search', 'PostController@search')->name('search');
+Route::get('search/category/{category}', 'PostController@searchTag')->name('searchTag');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('posts', 'PostController');
@@ -25,17 +27,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('profile/myPosts', 'UserController@myPosts')->name('myPosts');
     Route::get('profile/favourite', 'UserController@addToFav')->name('toFav');
     Route::get('posts/create', 'PostController@create')->name('posts.create');
-    Route::patch('posts/images/delete/{post}', 'PostController@ImgsDel')->name('post.imgs.delete');
+    Route::patch('posts/images/delete/{post}', 'PostController@imgsDel')->name('post.imgs.delete');
     Route::patch('profile/update', 'UserController@update')->name('profile.update');
     Route::get('profile/edit', 'UserController@edit')->name('profile.edit');
+    Route::get('category/{tagId}', 'PostController@getTagPathAsString')->name('get.readble.tag');
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('profile', 'UserController@index')->name('profile');
     Route::delete('profile/delete', 'UserController@destroy')->name('profile.delete');
 });
-
-Route::get('emailexists', 'UserController@emailExists')->name('email.exist');
 
 Route::get('set-locale/{locale}', function ($locale) {
     App::setLocale($locale);

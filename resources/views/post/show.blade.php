@@ -25,8 +25,11 @@
                 @endif
                 <div class="element" id="mainInfo">
                     <h1>{{ $post->title }}</h1>
-                    <p id="allTags" hidden >{{ $post->tag }}</p>
-                    <div></div>
+                    <div>
+                        @foreach ($tagsArray as $id => $tag)
+                            <button class="itemTag" id="{{$id}}">{{$tag}}</button>
+                        @endforeach
+                    </div>
                     <p>{{ $post->description }}</p>
                 </div>
             </div>
@@ -146,25 +149,24 @@
                 $('#myItemsTab').addClass('isActiveBtn');
             }
 
-            //for each item tag make button
-            var allTags = $('#allTags').text().split(',');
-            allTags.forEach(displayTagBtn);
-
             //static generator of unique ids for popUp massages
             function Generator() {};
             Generator.prototype.rand =  0;
             Generator.prototype.getId = function() {return this.rand++;};
             var idGen =new Generator();
 
-            //make button for tag
-            function displayTagBtn (tag, index) {
-                $('#mainInfo div').append('<button class="itemTag">'+tag+'</button>');
-            }
-
             //redirect to search result of clicked tag
             $('.itemTag').click(function(){
                 var tag = $(this).text();
                 window.location.href = "#?targetTag="+tag;
+            });
+
+            //search for clicked category 
+            $('#mainInfo button').click(function(){
+                var id = $(this).attr('id');
+                var url = '{{ route("searchTag", ":id") }}';
+                url = url.replace(':id', id);
+                window.location.href=url;
             });
 
             //show popup massage

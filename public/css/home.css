@@ -97,7 +97,7 @@
     float: left;
     border: none;
     background-color: rgb(105, 105, 105, 0.8);
-    width: 25%;
+    width: 20%;
     text-align: center;
     white-space: pre-line;
     overflow: hidden;
@@ -105,6 +105,7 @@
 
 #navTags button:hover { background-color: rgb(149, 149, 149, 0.7); }
 
+#hseEq,
 #drillingEq,
 #repairEq,
 #productionEq,
@@ -198,4 +199,14 @@ td>li:hover .secondLevel,
     top: 0;
     right: 0;
     transform: translate(100%,0);
+}
+
+#searchTitle {
+    text-align: center;
+    padding: 0px 20px;
+}
+
+#searchTitle h1 {
+    font-size: 200%;
+    margin: 20px 0px;
 }

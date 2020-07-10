@@ -65,11 +65,27 @@
             <a href="{{ route('home') }}"><img id="logo" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
             <!--{{ config('app.name') }}-->
             <ul>
-                <li><a href="{{ route('locale.setting', 'uk') }}">UKR</a></li>
+                @if (App::getLocale() == 'uk')
+                    <li>UKR</li>
+                @else
+                    <li><a href="{{ route('locale.setting', 'uk') }}">UKR</a></li>
+                @endif
+                
                 <li> | </li>
-                <li><a href="{{ route('locale.setting', 'ru') }}">RU</a></li>
+                
+                @if (App::getLocale() == 'ru')
+                    <li>RU</li>
+                @else
+                    <li><a href="{{ route('locale.setting', 'ru') }}">RU</a></li>
+                @endif
+                
                 <li> | </li>
-                <li><a href="{{ route('locale.setting', 'en') }}">ENG</a></li>
+                
+                @if (App::getLocale() == 'en')
+                    <li>ENG</li>
+                @else
+                    <li><a href="{{ route('locale.setting', 'en') }}">ENG</a></li>
+                @endif
             </ul>
         </div> 
 

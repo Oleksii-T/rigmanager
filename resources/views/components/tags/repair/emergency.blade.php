@@ -1,6 +1,6 @@
-<li><a href="#">Ликвидация аварий<span class="arrow arrowDown"></span></a>
+<li><a href="#" id="3.4">{{__('tags.emergency')}}<span class="arrow arrowDown"></span></a>
     <ul class="secondLevel">
-        <li><a href="#">???</a></li>
-        <li><a href="#">???</a></li>
+        <li><a href="#" id="3.4.?">???</a></li>
+        <li><a href="#" id="3.4.?">???</a></li>
     </ul>
 </li>

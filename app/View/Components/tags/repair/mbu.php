@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\tags\drilling;
+namespace App\View\Components\tags\repair;
 
 use Illuminate\View\Component;
 
-class bop extends Component
+class mbu extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class bop extends Component
      */
     public function render()
     {
-        return view('components.tags.drilling.bop');
+        return view('components.tags.repair.mbu');
     }
 }

@@ -8,6 +8,10 @@
     font-size: 130%;
 }
 
+.loading {
+    cursor: wait !important;
+}
+
 .item {
     margin: 0px auto;
     background-color: rgb(149, 149, 149, 0.7);

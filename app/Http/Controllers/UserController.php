@@ -88,7 +88,6 @@ class UserController extends Controller
     }
 
     public function addToFav(Request $request) {
-        //dd($request->all());
         if ( !$post = Post::find($request->post_id)) {
             return false;
         }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Post;
-use Illuminate\Support\Facades\Lang;
+
 
 class HomeController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -25,10 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
         $posts_list = Post::orderBy('created_at', 'desc')->paginate(env('POSTS_PER_PAGE'));
         return view('home', compact('posts_list'));
     }
-
+    
     public function about()
     {
         return view('about');
