@@ -2,6 +2,9 @@
 
 return [
 
+    'other' => 'Other',
+
+
     'hseEq' => 'Equipment for
     HSE', 
         'fireHazard' => 'Fire Hazard',
@@ -10,6 +13,9 @@ return [
         'light' => 'Light System',
         'ppo' => 'PPO',
         'miscEq' => 'Additional equipment',
+        //'other' => 'Other',
+
+
     'drillingEq' => 'Equipment for
     Drilling', 
         'bha' => 'BHA', 
@@ -72,7 +78,7 @@ return [
                 'magnetic' => 'Magnetic',
             'scratcher' => 'Scratcher',
             'sigil' => 'Sigil',
-            'mill' => 'Jjnk mill', 
+            'mill' => 'Junk mill', 
         'grouning' => 'Casing & Cementing', 
             'casingEq' => 'Casing & Equipment',
                 'casingPipe' => 'Casing pipes',
@@ -89,7 +95,7 @@ return [
         'lifting' => 'Block and tackle system & Winches', 
             'crownBlock' => 'Crown block', 
             'travelBlock' => 'Travel Block', 
-            'DrillHook' => 'Drilling hook', 
+            'drillHook' => 'Drilling hook', 
             'deadAnchor' => 'Dead-line anchorage', 
             'winch' => 'Winches', 
             'drillLine' => 'Drilling line', 
@@ -122,7 +128,7 @@ return [
             'transformator' => 'Power converters (MMC)',
             'generator' => 'Generators',
             'distributionUnit' => 'Distribution unit',
-            //'cabel' => 'Кабеля',
+            'cabel' => 'Cables',
         'rotory' => 'Rotory system',
             'rotor' => 'Rotory table',
             'tdsSystem' => 'TDS',
@@ -138,7 +144,9 @@ return [
             'weight1' => 'Weight 1',
             'weight2' => 'Weight 2',
             'weight3' => 'Weight 3',
-        'other' => 'Other',
+        //'other' => 'Other',
+
+
     'repairEq' => 'Equipment for
     well work-out',
         'mdu' => 'MDU',
@@ -155,14 +163,21 @@ return [
         'frac' => 'Formation fracturing',
         'coilTubing' => 'Coil tubing',
         'tubing' => 'Tubing',
+        //'other' => 'Other',
+
+
     'productionEq' => 'Equipment for
     Production',
         //'tubing' => 'НКТ',
         'wellHead' => 'Casing spool',
         'xMassTree' => 'X-mass tree',
+        //'other' => 'Other',
+
+        
     'loggingEq' => 'Equipment for
     Logging', 
         'loggingTool' => 'Logging tools',
         //'miscEq' => 'Доп оборудывание',
+        //'other' => 'Other',
     
 ];

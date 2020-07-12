@@ -43,7 +43,7 @@
                 </div>
 
                 <div id="dropDown">
-
+                    
                     <div class="typeOfEq" id="hseEq">
                         <ul id="mainMenu">
                             <x-tags.hse.fire-hazard/>
@@ -52,6 +52,7 @@
                             <x-tags.hse.misc-eq/> 
                             <x-tags.hse.ppo/>
                             <x-tags.hse.signalization/>
+                            <li><a href="#" id="1.0">{{__('tags.other')}}</a></li>
                         </ul>
                     </div>
 
@@ -69,7 +70,7 @@
                             <x-tags.drilling.bha/> 
                             <x-tags.drilling.grouning/> 
                             <x-tags.drilling.mud/>
-                            <li><a href="#">{{__('ui.other')}}</a></li>
+                            <li><a href="#" id="2.0">{{__('tags.other')}}</a></li>
                         </ul>
                     </div>
         
@@ -86,7 +87,7 @@
                             <x-tags.repair.drill-string/> 
                             <x-tags.repair.frac/>
                             <x-tags.repair.coll-tubing/>
-                            <li><a href="#">{{__('ui.other')}}</a></li> 
+                            <li><a href="#" id="3.0">{{__('tags.other')}}</a></li> 
                         </ul>
                     </div>
                     
@@ -95,6 +96,7 @@
                             <x-tags.production.tubing/> 
                             <x-tags.production.well-head/>
                             <x-tags.production.x-mass-tree/> 
+                            <li><a href="#" id="4.0">{{__('tags.other')}}</a></li> 
                         </ul>
                     </div>
         
@@ -102,6 +104,7 @@
                         <ul id="mainMenu">
                             <x-tags.logging.sensors/>
                             <x-tags.logging.eq/>
+                            <li><a href="#" id="5.0">{{__('tags.other')}}</a></li> 
                         </ul>
                     </div>
 

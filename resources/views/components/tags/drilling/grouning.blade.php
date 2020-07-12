@@ -15,11 +15,8 @@
                 </li>
             </ul>
         </li>
-        <li><a href="#" id="2.5.2">{{__('tags.cementing')}}<span class="arrow arrowRight"></span></a>
-            <ul class="thirdLevel">
-                <li><a href="#" id="2.5.2.?">???</a></li>
-                <li><a href="#" id="2.5.2.?">???</a></li>
-            </ul>
+        <li><a href="#" id="2.5.2">{{__('tags.cementing')}}</a>
+
         </li>
         <li><a href="#" id="2.5.3">{{__('tags.test')}}</a></li>
         <li><a href="#" id="2.5.4">{{__('tags.preparation')}}</a></li>

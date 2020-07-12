@@ -7,11 +7,13 @@ trait Tags
 
     protected $tagsMap = [];
 
-    public function __construct()
+    //not a  __constructor because those methods is not effacted by app locale
+    public function constructTagsMap() 
     {
         $this->tagsMap = [
             '0' => __('tags.other'), //if user did not specify tag when creating post
             '1' => __('tags.hseEq'),
+                '1.0' => __('tags.other'),
                 '1.1' => __('tags.fireHazard'),
                 '1.2' => __('tags.lifeSupport'),
                 '1.3' => __('tags.light'),
@@ -19,6 +21,7 @@ trait Tags
                 '1.5' => __('tags.ppo'),
                 '1.6' => __('tags.signalization'),
             '2' => __('tags.drillingEq'),
+                '2.0' => __('tags.other'),
                 '2.1' => __('tags.bha'),
                     '2.1.1' => __('tags.upGround'),
                         '2.1.1.1' => __('tags.tong'),
@@ -31,7 +34,7 @@ trait Tags
                         '2.1.2.2' => __('tags.dc'),
                             '2.1.2.2.1' => __('tags.dcStrait'),
                             '2.1.2.2.2' => __('tags.dcSpiral'),
-                        '2.1.2.3' => __('tags.xover'),
+                        '2.1.2.3' => __('tags.xOver'),
                         '2.1.2.4' => __('tags.jar'),
                         '2.1.2.5' => __('tags.motor'),
                         '2.1.2.6' => __('tags.digger'),
@@ -96,7 +99,7 @@ trait Tags
                 '2.7' => __('tags.lifting'),
                     '2.7.1' => __('tags.crownBlock'),
                     '2.7.2' => __('tags.travelBlock'),
-                    '2.7.3' => __('tags.DrillHook'),
+                    '2.7.3' => __('tags.drillHook'),
                     '2.7.4' => __('tags.deadAnchor'),
                     '2.7.5' => __('tags.winch'),
                     '2.7.6' => __('tags.drillLine'),
@@ -147,9 +150,10 @@ trait Tags
                     '2.13.4' => __('tags.weight3'),
                 '2.14' => __('tags.other'),
             '3' => __('tags.repairEq'),
+                '3.0' => __('tags.other'),
                 '3.1' => __('tags.boe'),
                 '3.2' => __('tags.coilTubing'),
-                '3.3' => __('tags.drillingString'),
+                '3.3' => __('tags.drillString'),
                 '3.4' => __('tags.emergency'),
                 '3.5' => __('tags.frac'),
                 '3.6' => __('tags.lifting'),
@@ -162,16 +166,19 @@ trait Tags
                 '3.13' => __('tags.tubing'),
                 '3.14' => __('tags.wellHeadEq'),
             '4' => __('tags.productionEq'),
+                '4.0' => __('tags.other'),
                 '4.1' => __('tags.tubing'),
                 '4.2' => __('tags.wellHead'),
                 '4.3' => __('tags.xMassTree'),
             '5' => __('tags.loggingEq'), 
+                '5.0' => __('tags.other'), 
                 '5.1' => __('tags.loggingTool'), 
                 '5.2' => __('tags.miscEq'), 
         ];
     }
 
     public function getTagPathAsString($id) {
+        $this->constructTagsMap();
         $tagsArray = $this->getTagNameByIdWithPath($id);
         $tagsInString = '';
         foreach($tagsArray as $tag) {
@@ -185,6 +192,7 @@ trait Tags
     }
 
     public function getTagNameByIdWithPath($id) {
+        $this->constructTagsMap();
         $idPath = [];
         $this->makeIdPath($id, $idPath);
         return $idPath;

@@ -42,6 +42,9 @@
                             <td> <x-tags.hse.ppo/> </td>
                             <td> <x-tags.hse.signalization/> </td>
                         </tr>
+                        <tr>
+                            <td><li><a href="#" id="1.0">{{__('tags.other')}}</a></li></td>
+                        </tr>
                     </table>
                 </ul>
             </div>
@@ -71,7 +74,7 @@
                         </tr>
                         <tr>
                             <td> <x-tags.drilling.mud/> </td>
-                            <td> <li><a href="#">{{__('ui.other')}}</a></li> </td>
+                            <td><li><a href="#" id="2.0">{{__('tags.other')}}</a></li></td>
                         </tr>
                     </table>
                 </ul>
@@ -101,7 +104,7 @@
                             <td> <x-tags.repair.coll-tubing/> </td>
                         </tr>
                         <tr>
-                            <td> <li><a href="#">{{__('ui.other')}}</a></li> </td>
+                            <td><li><a href="#" id="3.0">{{__('tags.other')}}</a></li></td>
                         </tr>
                     </table>
                 </ul>
@@ -115,6 +118,9 @@
                             <td> <x-tags.production.well-head/> </td>
                             <td> <x-tags.production.x-mass-tree/> </td>
                         </tr>
+                        <tr>
+                            <td><li><a href="#" id="4.0">{{__('tags.other')}}</a></li></td>
+                        </tr>
                     </table>
                 </ul>
             </div>
@@ -125,6 +131,7 @@
                         <tr>
                             <td> <x-tags.logging.sensors/> </td>
                             <td> <x-tags.logging.eq/> </td>
+                            <td><li><a href="#" id="5.0">{{__('tags.other')}}</a></li></td>
                         </tr>
                     </table>
                 </ul>

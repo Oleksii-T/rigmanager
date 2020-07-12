@@ -23,11 +23,8 @@
                 <li><a href="#" id="2.2.1.6">{{__('tags.emergencyValve')}}</a></li>
             </ul>
         </li>
-        <li><a href="#" id="2.2.2">{{__('tags.underGround')}}<span class="arrow arrowRight"></span></a>
-            <ul class="thirdLevel">
-                <li><a href="#" id="2.2.">???</a></li>
-                <li><a href="#" id="2.2.">???</a></li>
-            </ul>
+        <li><a href="#" id="2.2.2">{{__('tags.underGround')}}</a>
+
         </li>
     </ul>
 </li>
