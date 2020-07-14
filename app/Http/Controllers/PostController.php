@@ -159,7 +159,7 @@ class PostController extends Controller
 
     public function searchTag($tagId) {
         $regex = "^$tagId(.[0-9]+)*$"; //make regular expr form tag id to find sub catogories as well
-        $regex = str_replace('.', '\.', $regex,); //escape regex '.' via '\'
+        $regex = str_replace('.', '\.', $regex); //escape regex '.' via '\'
         $posts_list = Post::whereRaw("tag REGEXP '$regex'")->paginate(env('POSTS_PER_PAGE')); //search appropriate for posts using raw where query
         $tagsArray = array_reverse($this->getTagNameByIdWithPath($tagId), true); //reverse result array to better visual representation in fron-end
         //add success/fail flash depends on result

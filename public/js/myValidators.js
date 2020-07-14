@@ -47,7 +47,7 @@ $.validator.addMethod('validName',
     function(value, element, param) {
 
         if (value != '') {
-            if (value.match(/^[a-zа-я\sA-ZА-Я0-9]*$/) == null) {
+            if (value.match(/^[(\x7F-\xFF)|(\s)|(a-z)|(A-Z)|(1-9)]*$/) == null) {
                 return false;
             }
         }
