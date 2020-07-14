@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -25,9 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+        Session::forget('search');
+        Session::forget('oldSearch');
         $posts_list = Post::orderBy('created_at', 'desc')->paginate(env('POSTS_PER_PAGE'));
-        return view('home', compact('posts_list'));
+        $tagsArray = "";
+        return view('home', compact('posts_list', 'tagsArray'));
     }
     
     public function about()

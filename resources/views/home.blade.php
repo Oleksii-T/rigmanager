@@ -7,11 +7,13 @@
 @endsection
 
 @section('content')
+
     <div id="searchBar">
         <form method="GET" action="{{ route('search') }}">
             <div id="inputWraper">
-                <img src="{{ asset('icons/search.svg') }}" alt="{{__('alt.keyword')}}">
-                <input id="inputSearch" name="searchStrings" value="{{ Session::get('oldSearch') }}" placeholder="{{__('ui.search')}}..."  />
+                <img id="searchIcon" src="{{ asset('icons/searchIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                <a href="{{ route('home') }}"><img id="clearIcon" src="{{ asset('icons/clearIcon.svg') }}" alt="{{__('alt.keyword')}}"></a>
+                <input id="inputSearch" name="searchStrings" value="{{ Session::get('oldSearch') }}" placeholder="{{__('ui.search')}}..." required />
             </div>
             <button type="submit">{{__('ui.search')}}</button>
         </form>
@@ -140,58 +142,25 @@
         </div>
     </div>
 
+    @if ( $tagsArray != "" )
+        <div id="searchTags">
+            @foreach ($tagsArray as $id => $tag)
+                <a class="itemTag" href="{{ route('searchTag', $id) }}">{{$tag}}</a> 
+                <span>></span>
+            @endforeach
+        </div>
+    @endif
+
     @if ( Session::has('search') )
         <div id="searchTitle">
             <h1>{{Session::get('search')}}</h1>
         </div>
     @endif
+    
+    <x-items :posts="$posts_list" button='addToFav' />
 
-    <div id="items">
-        @foreach ($posts_list as $item)
-            <div class="item">
-                <div class="imgWraper">
-                    @if ( $item->images->count() == 0 )
-                        <img src="{{ asset('icons/noImageIcon.svg') }}" alt="{{__('alt.keyword')}}"></li>
-                    @else    
-                        <img src="{{ $item->images->first()->url }}" alt="{{__('alt.keyword')}}"></li>
-                    @endif
-                </div>
-
-                @if ($item->user_id == Auth::id())
-                    <button class="addToFavButtonBlocked id_{{ $item->id }}">
-                @else
-                    <button class="addToFavButton id_{{ $item->id }}">
-                @endif
-                @if ( auth()->user() && !$item->favOfUser->where('id', auth()->user()->id)->isEmpty() )
-                    <img class="addToFavImg" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                @else
-                    <img class="addToFavImg" src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                @endif
-                    <span><i>{{__('ui.addToFav')}}</i></span>
-                    </button>
-
-                <div class="textWraper">
-                    <h3 class="heading4">{{ $item->title }}</h3>
-                    <p class="desc">{{ $item->description }}</p>
-                    <ul id="ulMisc">
-                        @if ($item->location)
-                            <li><p class="location misc">{{ $item->location }}</p></li>
-                            <li><p>&#x02022</p></li>
-                        @endif
-                        <li><p class="date misc" >{{ $item->created_at }}</p></li>
-                        @if ($item->cost)
-                            <li><p>&#x02022</p></li>
-                            <li><p class="cost misc">{{ $item->cost }}</p></li>
-                        @endif
-                    </ul>
-                </div>
-                <a href="{{ route('posts.show', $item->id) }}"><span class="globalItemButton item_id_{{ $item->id }}"></span></a>
-
-            </div>
-        @endforeach
-    </div>
     <div class="pagination-field">
-        {{ $posts_list->links() }}
+        {{ $posts_list->appends(request()->except('page'))->links() }}
     </div>
 
 @endsection
@@ -200,6 +169,9 @@
     <script type="text/javascript">
         $(document).ready(function(){
 
+            //remove last '>' symbol from searched tags
+            $('#searchTags span').last().remove();
+
             //fade out flash massages
             $("div.flash").delay(3000).fadeOut(350);
 
@@ -207,7 +179,7 @@
             function Generator() {};
             Generator.prototype.rand =  0;
             Generator.prototype.getId = function() {return this.rand++;};
-            var idGen =new Generator();
+            var idGen = new Generator();
 
             //search for clicked category 
             $('#dropDown a').click(function(){
@@ -266,7 +238,7 @@
                         //if no server errors, change digit of favItemsAmount in nav bar 
                         //and change color of AddToFav btn
                         if ( data ) {
-                            var target = $(".id_"+item_id+" img");
+                            var target = $(".id_"+item_id+" img.addToFavImg");
                             var n = $("#favItemsTab span").text();
                             n = parseInt(n,10);
                             if ( target.attr("src") != "{{ asset('icons/heartOrangeIcon.svg') }}" ) {

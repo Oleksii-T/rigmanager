@@ -1,3 +1,7 @@
+#cursor-inherit {
+    cursor: inherit !important;
+}
+
 #loginTab, #loginBtn {
     background-color: #FE9042 !important;
 }

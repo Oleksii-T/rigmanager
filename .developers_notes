@@ -9,8 +9,6 @@ CODE: make small/avarage/actual versions of each image so that browser do not re
 
 CODE HTML: add proper visualization of location
 
-CODE PHP: impement search engine
-
 CODE PHP: add guest features
 
 BUG: popup Slide Down to rude
@@ -31,11 +29,7 @@ BUG: if user enters '0' inner check will treat as a false and think that it is e
 
 BUG: when item submited with arrors, condition is reset
 
-BUG: on item new/edit pages help info sometimes overflows element div
-
 CODE HTML/JS: add curency sign to cost
-
-CODE: add functionality to delete all images
 
 BUG: cover case if there is more then 999 fav items
 
@@ -43,23 +37,15 @@ CHECK: front-end/back-end on more browsers
 
 CODE CSS: style secondary pages e.g activation acount or reset pass send page
 
-BUG: when fast click on addToFav btn, color brakes
-
-CODE: complete system of tags
-
-BUG: when click on addToFav btn, pointer cursor does not change to 'wait' cursor
-
 CODE: change phone regular expression
 
 CODE: implement soft delete
 
-CODE: implement messeging within the app
+CODE: implement massaging within the app
 
 CODE: make email notifications for user who subscribed for post uplaoded
 
 CHECK: spelling
-
-CODE: implement mail sender engine
 
 CHECK: functionality of password forget
 
@@ -67,41 +53,41 @@ CODE: add redirect()->back() where needed
 
 CODE: translate tags
 
-CODE: change style of verify.blade.php
-
-CODE: add Edit and Delete buttons to myPosts page
-
 CODE: add title attr
 
 CODE: fix all stype bugs on existing styled pages
 
-BUG: on profile.index page. there is a little extra scrolling
-
 BUG: on profile.index page. if user magnify page, border of footer collide with edit btn
-
-CODE: add posibility to create RU user name
-
-BUG: footer link on post/edit page alligned to left
-
-CODE: change 'tag' record in table to json type
-
-CODE: implement possiblility to delete tags from post
-
-CODE: make different Controller for search
-
-CHECK: is Ajax reqeust prevent spaming by default, if not, add spam protection
 
 ADD: wait cursor to buttons in ligin (mb in other places as well)
 
 ADD: change wait cursor to some gif animation
 
-BUG: session searchText does not vanish when going to HOME page
+CODE PHP: implement elasticSearch
+
+CODE: make registratiob via Ajax request
+
 
 =======DONE======
 
+CODE: add posibility to create RU user name
+CODE: implement possiblility to delete tags from post
+CHECK: is Ajax reqeust prevent spaming by default, if not, add spam protection
+BUG: on item new/edit pages help info sometimes overflows element div
+CODE: add functionality to delete all images
+BUG: when fast click on addToFav btn, color brakes
+BUG: when click on addToFav btn, pointer cursor does not change to 'wait' cursor
+BUG: on profile.index page. there is a little extra scrolling
+BUG: session searchText does not vanish when going to HOME page
+BUG: footer link on post/edit page alligned to left
+CODE PHP: impement simple search engine
+CODE: re-implement system of tags
+CODE: add Edit and Delete buttons to myPosts page
+CODE: change style of verify.blade.php
 BUG: broken footer in post show if there is no image
 CODE: add digital number of how many fav posts user have to nav bar
 CODE: add functionality to change lang
+CODE: implement mail sender engine
 BUG: edit post, not validating the textarea and throws a js error
 CODE: translate all ui messages
 CODE: make email verification
@@ -149,13 +135,15 @@ CODE JS: make item highlight when hover on addToFav btn as well
 
 =======NOTES======
 
+NOTE: user have no possiblility to browse all posts by master category
+
+NOTE: if user changes his phone number and login email, this value is still remembered in item which was created in past
+
 input colors: 
 dafault:    background-color: rgb(149, 149, 149, 0.7);
 hover:      background-color: rgb(149, 149, 149, 0.8);
 focus:      background-color: rgb(149, 149, 149, 0.9);
 active:     background-color: rgb(149, 149, 149, 0.7);
-
-NOTE: if user changes his phone number and login email, this value is still remembered in item which was created in past
 
 update vagrant box:
     vagrant box update

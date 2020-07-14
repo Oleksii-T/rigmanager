@@ -241,7 +241,8 @@ input.error, textarea.error {
     border-left: none;
 }
 
-#modalImgsDeleteOn {
+#modalImgsDeleteOn,
+#clearTagsBtn {
     background: none;
     border: none;
     outline: none;
@@ -336,7 +337,8 @@ input.error, textarea.error {
 }
 
 #modalPostDeleteOn:hover,
-#modalImgsDeleteOn:hover {
+#modalImgsDeleteOn:hover,
+#clearTagsBtn:hover {
     color: #ffffff !important;
     background: #eb837c;
 }

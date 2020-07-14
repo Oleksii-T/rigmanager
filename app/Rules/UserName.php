@@ -25,7 +25,7 @@ class UserName implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/^[a-zа-я\sA-ZА-Я0-9]*$/', $value);
+        return preg_match('/^[(\x7F-\xFF)|(\s)|(a-z)|(A-Z)|(1-9)]*$/', $value);
     }
 
     /**

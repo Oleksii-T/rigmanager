@@ -8,60 +8,7 @@
 
 @section('content')
     @if (!$posts_list->isEmpty())
-        <div id="items">
-            @foreach ($posts_list as $item)
-                <div class="item">
-                    <div class="imgWraper">
-                        @if ( $item->images->isEmpty() )
-                            <img src="{{ asset('icons/noImageIcon.svg') }}" alt="{{__('alt.keyword')}}"></li>
-                        @else    
-                            <img src="{{ $item->images->first()->url }}" alt="{{__('alt.keyword')}}"></li>
-                        @endif
-                    </div>
-
-                    <button class="modalPostDeleteOn" id="{{$item->id}}">
-                        <img src="{{ asset('icons/deleteIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                    </button>
-
-                    <a class="editBtn" id="{{$item->id}}" href="{{ route('posts.edit', $item->id) }}">
-                        <img title="{{__('ui.edit')}}" src="{{ asset('icons/editIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                    </a>
-
-                    <div class="textWraper">
-                        <h3 class="heading4">{{ $item->title }}</h3>
-                        <p class="desc">{{ $item->description }}</p>
-                        <ul id="ulMisc">
-                            @if ($item->location)
-                                <li><p class="location misc">{{ $item->location }}</p></li>
-                                <li><p>&#x02022</p></li>
-                            @endif
-                            <li><p class="date misc" >{{ $item->created_at }}</p></li>
-                            @if ($item->cost)
-                                <li><p>&#x02022</p></li>
-                                <li><p class="cost misc">{{ $item->cost }}</p></li>
-                            @endif
-                        </ul>
-                    </div>
-                    <a href="{{ route('posts.show', $item->id) }}"><span class="globalItemButton item_id_{{ $item->id }}"></span></a>
-
-                </div>
-
-                <div class="modalView animate" id="modalPostDelete">
-                    <div class="modalContent"> 
-                        <p>{{__('ui.sure?')}}</p>
-                        <div>
-                            <button type="button" id="modalPostDeleteOff">{{__('ui.no')}}</button>
-                            <form method="POST" action="{{ route('posts.destroy', $item->id) }}">
-                                @csrf
-                                @method('DELETE')
-                                <button>{{__('ui.delete')}}</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-
-        </div>
+        <x-items :posts="$posts_list" button='deleteAndEdit' />
         <div class="pagination-field">
             {{ $posts_list->links() }}
         </div>

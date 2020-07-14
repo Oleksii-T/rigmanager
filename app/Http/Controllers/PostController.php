@@ -141,26 +141,36 @@ class PostController extends Controller
 
     public function search(Request $request) {
         Session::flash('oldSearch', $request->searchStrings);
+        $tagsArray = "";
         if ($request->searchStrings) {
-            $posts_list = Post::whereLike(['title', 'description', 'tag'], $request->searchStrings)->paginate(env('POSTS_PER_PAGE'));
-            if( $posts_list->total() == 0 ) {
-                Session::flash('search', __('ui.searchFail'));
-            } else {
-                Session::flash('search', __('ui.searchSuccess'));
+            $posts_list = Post::whereLike(['title', 'description'], $request->searchStrings)
+                ->paginate(env('POSTS_PER_PAGE'));
+            $posts_list->total() == 0 
+                ? Session::flash('search', __('ui.searchFail')) 
+                : Session::flash('search', __('ui.searchSuccess'));
+            if ($request->links) {
+                dd('there is page query!');
             }
-            return view('home', compact('posts_list'));
+            return view('home', compact('posts_list', 'tagsArray'));
         } else {
             return redirect(route('home'));
         }
     }
 
     public function searchTag($tagId) {
-        $posts_list = Post::where('tag', $tagId)->paginate(env('POSTS_PER_PAGE'));
+        $regex = "^$tagId(.[0-9]+)*$"; //make regular expr form tag id to find sub catogories as well
+        $regex = str_replace('.', '\.', $regex,); //escape regex '.' via '\'
+        $posts_list = Post::whereRaw("tag REGEXP '$regex'")->paginate(env('POSTS_PER_PAGE')); //search appropriate for posts using raw where query
+        $tagsArray = array_reverse($this->getTagNameByIdWithPath($tagId), true); //reverse result array to better visual representation in fron-end
+        //add success/fail flash depends on result
         if( $posts_list->total() == 0 ) {
             Session::flash('search', __('ui.searchFail'));
         } else {
             Session::flash('search', __('ui.searchSuccess'));
         }
-        return view('home', compact('posts_list'));
+        return view('home', compact('posts_list', 'tagsArray'));
     }
+
 }
+
+

@@ -17,14 +17,6 @@ return [
     'noscript' => 'Javascript is disabled in your browser. 
         It may serously reflect the web site functionality.',
     'search' => 'Search',
-    'drillingEq' => 'Equipment for
-        Drilling',
-    'repairEq' => 'Equipment for
-        Repair',
-    'productionEq' => 'Equipment for
-        Production',
-    'loggingEq' => 'Equipment for
-        Logging',
     'other' => 'Other',
     'addToFav' => 'Add to Favourites',
     'inFav' => 'In Favourites',
@@ -62,6 +54,7 @@ return [
     'tagHelp' => 'Category is important for proper work of search engine.
         Be sure that categoty is chosen correctly, so your post will be easy to find!',
     'chosenTags' => 'Chosen category',
+    'clearTagsFromPost' => 'Clear сhosen categories',
     'description' => 'Description',
     'descriptionHelp' => 'Maximum 9000 symbols.',
     'image' => 'Choose images',

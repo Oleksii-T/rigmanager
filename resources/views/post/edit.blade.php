@@ -117,6 +117,8 @@
                 <input id="tagReadbleHidden" type="text" name="tagReadbleHidden" value="{{ old('tagReadbleHidden') ?? $tagReadble }}" hidden/>
                 <p id="choosenTags">{{__('ui.chosenTags')}}: <span id="tagReadbleVisible">{{ old('tagReadbleHidden') ?? $tagReadble }}</span></p>
                 
+                <button type="button" id="clearTagsBtn">{{__('ui.clearTagsFromPost')}}</button>
+
                 <div class="help">
                     <p><i>{{__('ui.tagHelp')}}</i></p>
                 </div>
@@ -291,6 +293,16 @@
             Generator.prototype.rand = 1;
             Generator.prototype.getId = function() {return this.rand++; };
             var idGen =new Generator();
+
+            //clean chosen catorories
+            $('#clearTagsBtn').click(function(){
+                //write encoded tag to hidden input for DB
+                $('#tagEncodedHidden').attr("value",'0');
+                //write readble tag to hidden input for old() feature
+                $('#tagReadbleHidden').attr("value","{{__('tags.other')}}");
+                //write readble tag to visible field for user
+                $('#tagReadbleVisible').text("{{__('tags.other')}}");
+            });
 
             //main Eq Types buttons to open tags to choose
             $('.tagsTrigger').click(function(){
