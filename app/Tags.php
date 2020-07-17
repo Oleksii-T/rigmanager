@@ -195,7 +195,7 @@ trait Tags
         $this->constructTagsMap();
         $idPath = [];
         $this->makeIdPath($id, $idPath);
-        return $idPath;
+        return array_reverse($idPath, true);
     }
 
     private function getTagNameById($id) {

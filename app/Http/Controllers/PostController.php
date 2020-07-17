@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Post;
+use App\User;
 use App\Http\Controllers\Traits\ImageUploader;
 use Illuminate\Support\Facades\Session;
 use App\Tags;
@@ -140,6 +141,7 @@ class PostController extends Controller
     }
 
     public function search(Request $request) {
+        Session::forget('searchAuthor');
         Session::flash('oldSearch', $request->searchStrings);
         $tagsArray = "";
         if ($request->searchStrings) {
@@ -158,16 +160,26 @@ class PostController extends Controller
     }
 
     public function searchTag($tagId) {
+        Session::forget('searchAuthor');
         $regex = "^$tagId(.[0-9]+)*$"; //make regular expr form tag id to find sub catogories as well
         $regex = str_replace('.', '\.', $regex); //escape regex '.' via '\'
         $posts_list = Post::whereRaw("tag REGEXP '$regex'")->paginate(env('POSTS_PER_PAGE')); //search appropriate for posts using raw where query
-        $tagsArray = array_reverse($this->getTagNameByIdWithPath($tagId), true); //reverse result array to better visual representation in fron-end
+        $tagsArray = $this->getTagNameByIdWithPath($tagId); //reverse result array to better visual representation in fron-end
         //add success/fail flash depends on result
-        if( $posts_list->total() == 0 ) {
-            Session::flash('search', __('ui.searchFail'));
-        } else {
-            Session::flash('search', __('ui.searchSuccess'));
-        }
+        $posts_list->total() == 0 
+            ? Session::flash('search', __('ui.searchFail')) 
+            : Session::flash('search', __('ui.searchSuccess'));
+        return view('home', compact('posts_list', 'tagsArray'));
+    }
+
+    public function searchAuthor($authorId) {
+        $user = User::findOrFail($authorId);
+        $posts_list = $user->posts->paginate(env('POSTS_PER_PAGE'));
+        $tagsArray = "";
+        $posts_list->total() == 0 
+            ? Session::flash('search', __('ui.searchFail')) 
+            : Session::flash('search', __('ui.searchSuccess'));
+        Session::flash('searchAuthor', $user->name);
         return view('home', compact('posts_list', 'tagsArray'));
     }
 

@@ -142,7 +142,13 @@
         </div>
     </div>
 
-    @if ( $tagsArray != "" )
+    @if ( Session::has('searchAuthor') )
+        <div id="searchAuthor">
+            <p>{{__('ui.searchByAuthor')}} <span>{{Session::get('searchAuthor')}}</span>:</p>
+        </div>
+    @endif
+
+    @if ( $tagsArray )
         <div id="searchTags">
             @foreach ($tagsArray as $id => $tag)
                 <a class="itemTag" href="{{ route('searchTag', $id) }}">{{$tag}}</a> 

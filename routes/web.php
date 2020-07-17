@@ -20,12 +20,14 @@ Route::get('about', 'HomeController@about')->name('about');
 Route::get('emailexists', 'UserController@emailExists')->name('email.exist');
 Route::get('search', 'PostController@search')->name('search');
 Route::get('search/category/{category}', 'PostController@searchTag')->name('searchTag');
+Route::get('search/author/{author}', 'PostController@searchAuthor')->name('searchAuthor');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('posts', 'PostController');
     Route::get('profile/favPosts', 'UserController@favPosts')->name('favPosts');
     Route::get('profile/myPosts', 'UserController@myPosts')->name('myPosts');
     Route::get('profile/favourite', 'UserController@addToFav')->name('toFav');
+    Route::patch('profile/image/delete', 'userController@userImageDelete')->name('profile.img.delete');
     Route::get('posts/create', 'PostController@create')->name('posts.create');
     Route::patch('posts/images/delete/{post}', 'PostController@imgsDel')->name('post.imgs.delete');
     Route::patch('profile/update', 'UserController@update')->name('profile.update');

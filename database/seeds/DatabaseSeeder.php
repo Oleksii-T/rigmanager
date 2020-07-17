@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Seed for Demonstrating To Production 
+        /**/
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'Administrator',
@@ -26,12 +27,12 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'title' => 'Тест Заголовок На Русском DEMO',
             'condition' => 'Б/У',
-            'tag' => 'Бур. колонна и оборудывание, Подземное, Трубы',
+            'tag' => '2.3.2.1',
             'description' => 'Только Для Демонстрации
                 Пример Описания
                 DEMO
                 .',
-            'cost' => '000000 руб',
+            'cost' => '000000',
             'location' => 'Украина',
             'user_email' => 'dummy.email@example.com',
             'user_phone' => '000000000',
@@ -44,7 +45,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'title' => 'Тест Заловку На Українській DEMO',
             'condition' => 'Новое',
-            'tag' => 'КНБК, Наземное, Клинья',
+            'tag' => '2.1.1.4',
             'description' => 'Тільки у Демонстраційних цілях
                 Приклад Опису
                 DEMO
@@ -62,7 +63,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'title' => 'Test Title In English DEMO',
             'condition' => 'Новое',
-            'tag' => 'Буровой раствор, Циркуляция, Шланги',
+            'tag' => '2.10.1.2',
             'description' => 'Demonstrationg Purposes Only
                 Sample Description
                 DEMO
@@ -80,7 +81,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'title' => 'Заголовок. Пустое Обьявление 1',
             'condition' => 'Новое',
-            'tag' => 'Другое',
+            'tag' => '0',
             'description' => 'Описание. Пустое Обьявление 1
                 ----',
             'user_email' => 'dummy.email@example.com'
@@ -89,7 +90,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'title' => 'Заголовок. Пустое Обьявление 2',
             'condition' => 'Новое',
-            'tag' => 'Другое',
+            'tag' => '0',
             'description' => 'Описание. Пустое Обьявление 2
                 ----',
             'user_email' => 'dummy.email@example.com'
@@ -98,7 +99,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'title' => 'Заголовок. Пустое Обьявление 3',
             'condition' => 'Новое',
-            'tag' => 'Другое',
+            'tag' => '0',
             'description' => 'Описание. Пустое Обьявление 3
                 ----',
             'user_email' => 'dummy.email@example.com'
@@ -107,7 +108,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'title' => 'Заголовок. Пустое Обьявление 4',
             'condition' => 'Новое',
-            'tag' => 'Другое',
+            'tag' => '0',
             'description' => 'Описание. Пустое Обьявление 4
                 ----',
             'user_email' => 'dummy.email@example.com'
@@ -116,15 +117,19 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'title' => 'Заголовок. Пустое Обьявление 5',
             'condition' => 'Новое',
-            'tag' => 'Другое',
+            'tag' => '0',
             'description' => 'Описание. Пустое Обьявление 5
                 ----',
             'user_email' => 'dummy.email@example.com'
         ]);
-
+        /**/
 
         /*
         // Seed For Development
+
+        // $this->call(UserSeeder::class);
+        factory('App\Post', 10)->create();
+
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'admin',
@@ -142,9 +147,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('Qwerty1')
         ]);
 
-        // $this->call(UserSeeder::class);
-        factory('App\Post', 10)->create();
-
         DB::table('users')->insert([
             'id' => 2,
             'name' => 'Drill Market',
@@ -158,7 +160,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 2,
             'title' => 'Буровая штанга 89х6,5х1000 мм, резьба З-73',
             'condition' => 'Новое',
-            'tag' => 'Бур. колонна и оборудывание, Подземное, Трубы',
+            'tag' => '2.3.2.1',
             'description' => 'Производитель:	DM Bits
                 Страна происхождения:	РОССИЯ
                 Cрок поставки:	3-4 недели
@@ -182,7 +184,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 2,
             'title' => 'Вертлюг 6WC',
             'condition' => 'Новое',
-            'tag' => 'Роторная система, Вертлюг',
+            'tag' => '2.12.3',
             'description' => 'Производитель:	Western Rubber
                 Страна происхождения:	СОЕДИНЕННЫЕ ШТАТЫ
                 Cрок поставки:	8-10 недель
@@ -217,7 +219,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 2,
             'title' => 'Трехшарошечное долото 76 мм (3") К-ЦА (IADC 743) Уралбурмаш',
             'condition' => 'Новое',
-            'tag' => 'КНБК, Подземное, Породоразрущающий инструмент, Долото, Шарошечное',
+            'tag' => '2.1.2.6.1.2',
             'description' => 'Страна происхождения:	РОССИЯ
                 Производитель:	УралБурМаш
                 Основные технические параметры
@@ -258,7 +260,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 4,
             'title' => 'Extra long post title tttttttttttttt t t t tttttt t tttttt tttttt tttt',
             'condition' => 'Новое',
-            'tag' => 'КНБК, Подземное, Породоразрущающий инструмент, Долото, Шарошечное',
+            'tag' => '2.1.2.6.1.3',
             'description' => 'Am of mr friendly by strongly peculiar juvenile. Unpleasant it sufficient simplicity am by friendship no inhabiting. Goodness doubtful material has denoting suitable she two. Dear mean she way and poor bred they come. He otherwise me incommode explained so in remaining. Polite barton in it warmly do county length an. 
 
                 Demesne far hearted suppose venture excited see had has. Dependent on so extremely delivered by. Yet ﻿no jokes worse her why. Bed one supposing breakfast day fulfilled off depending questions. Whatever boy her exertion his extended. Ecstatic followed handsome drawings entirely mrs one yet outweigh. Of acceptance insipidity remarkably is invitation. 

@@ -161,6 +161,9 @@ button.hideShowPassword-toggle:hover {
     border-bottom: 2px solid #4CAF50;
     margin-right: 20px;
     transition: 0.2s;
+    cursor: pointer;
 }
 
-#userData #sumbitBtn:hover { background-color: rgb(114, 190, 116); }
+#userData #sumbitBtn:hover { 
+    background-color: rgb(114, 190, 116); 
+}

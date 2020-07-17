@@ -8,7 +8,7 @@ use App\Post;
 
 class PostImage extends Model
 {
-    protected $fillable = ['path', 'size'];
+    protected $fillable = ['path', 'size', 'version'];
 
     public $appends = ['url'];
 

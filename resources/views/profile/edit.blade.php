@@ -25,6 +25,7 @@
                                 </div>
                             </label>
                             <input id="inputAva" type="file" name="ava" hidden>
+                            <button type="button" id="modalShow">{{__('ui.deleteProfileImg')}}</button>
                             @error('ava')
                                 <div class="error">
                                     <p>{{ $message }}</p>
@@ -89,6 +90,15 @@
             <a id="cancelBtn" href="{{ route('profile') }}">{{__('ui.cancel')}}</a>
         </form>
     </div>
+    <div class="modalView animate" id="modalProfileImgDelete">
+        <div class="modalContent"> 
+            <p>{{__('ui.sure?')}}</p>
+            <div>
+                <button type="button" id="modalHide">{{__('ui.no')}}</button>
+                <button id="modalSubmit">{{__('ui.delete')}}</button>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
@@ -101,6 +111,20 @@
 
         //fade out flash massages
         $("div.flash").delay(3000).fadeOut(350);
+
+        $('#modalSubmit').click(function(){
+            $.ajax({
+                url: "{{route('profile.img.delete')}}",
+                type: 'PATCH',
+                data: {
+                    _method: "PATCH",
+                    _token: "{{ csrf_token() }}",
+                },
+                success: function() {
+                    location.reload();
+                }
+            });
+        });
 
         //pre-view of picture
         function readURL(input) {
@@ -134,16 +158,7 @@
                 }
             }
         });
-        /*
-                    remote: {
-                        url: '/account/validate-email',
-                        data: {
-                            ignore_id: function() {
-                                return userId;
-                            }
-                        }
-                    },
-        */
+
         //Validate the form
         var userId = '{{ $user->id }}';
         $('#formProfile').validate({
@@ -200,12 +215,28 @@
             }
         });
 
-
         // Show password toggle button
         $('#inputPassword').hideShowPassword({
             show: false,
             innerToggle: 'focus'
         });
+
+        //open modal delete confirm when user ask to
+        $('#modalShow').click(function(){
+            $('#modalProfileImgDelete').css("display", "block");
+        });
+
+        //close delete confirmation
+        $('#modalHide').click(function(){
+            $('#modalProfileImgDelete').css("display", "none");
+        });
+
+        //make any click beyong the modal to close modal
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("modalProfileImgDelete")) {
+                $('#modalProfileImgDelete').css("display", "none");
+            }
+        }
 
     });
 </script>

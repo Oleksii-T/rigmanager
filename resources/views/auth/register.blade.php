@@ -6,7 +6,7 @@
 
 @section('content')
 <div id="userData">
-    <form method="POST" action="{{ route('register') }}" id="formSignup" enctype="multipart/form-data">
+    <form id="formSignup" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
         <div>
             <nav>
@@ -100,6 +100,18 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+            
+            //make cursor wait
+            function makeCursorWait() {
+                alert('here');
+                document.body.style.cursor = "wait"
+                $('button').css('cursor', 'inherit');
+                $('input').css('cursor', 'inherit');
+                $('label').css('cursor', 'inherit');
+                $('a').css('cursor', 'inherit');
+                $('img').css('cursor', 'inherit');
+                return false;
+            }
 
             //show image (help func)
             function readURL(input) {
@@ -177,6 +189,20 @@
                         minlength: 'Минимум 6 символов',
                         maxlength: 'Максимум 20 символов'
                     }
+                },
+                submitHandler: function (form) {
+                    alert('submitHandler');
+                    document.body.style.cursor = "wait"
+                    $('button').css('cursor', 'inherit');
+                    $('input').css('cursor', 'inherit');
+                    $('label').css('cursor', 'inherit');
+                    $('a').css('cursor', 'inherit');
+                    $('img').css('cursor', 'inherit');
+                    /*
+                    $(form).ajaxSubmit();
+                    window.location.href='{{ route("verification.notice") }}';
+                    */
+                    form.submit(); // submit the form
                 }
             });
 

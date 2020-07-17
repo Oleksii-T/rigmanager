@@ -159,7 +159,7 @@
 
                 <div class="gallery">
                     @if ( $post->images->isNotEmpty() )
-                        @foreach ($post->images as $image)
+                        @foreach ($post->images->where('version', 'optimized') as $image)
                             <div class="previewImg">
                                 <img src="{{ $image->url }}" alt="{{__('alt.keyword')}}">
                             </div>

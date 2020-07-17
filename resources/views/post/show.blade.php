@@ -8,15 +8,15 @@
     <div id="itemWraper">
         <div id="leftContentWraper">
             <div id="leftContent">
-                @if ( !$post->images->isEmpty() )
+                @if ( $post->images->isNotEmpty() )
                     <div class="element" id="mainImgWraper">
-                        <a target="_blank" href="{{ asset('icons/noImageIcon.svg') }}">
-                            <img id="mainImg" src="{{ asset('icons/noImageIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        <a target="_blank" href="{{ $post->images->where('version', 'origin')->first()->url }}">
+                            <img id="mainImg" src="{{ $post->images->where('version', 'origin')->first()->url }}" alt="{{__('alt.keyword')}}">
                         </a>
                     </div>
 
                     <div class="element" id="otherImg">
-                        @foreach ($post->images as $image)
+                        @foreach ($post->images->where('version', 'optimized') as $image)
                             <div class="moreImg">
                                 <img class="imgTriger" src="{{ $image->url }}" alt="{{__('alt.keyword')}}">
                             </div>
@@ -71,7 +71,7 @@
                         </div>
                         <!-- mb add time how many days registered -->
                     </div>
-                    <a href="#">{{__('ui.otherAuthorPosts')}}</a>
+                    <a href="{{route('searchAuthor', $post->user->id)}}">{{__('ui.otherAuthorPosts')}}</a>
                     <button id="modalTriger">{{__('ui.showContacts')}}</button>
                 </div>
 
@@ -138,11 +138,6 @@
 
             //fade out flash massages
             $("div.flash").delay(3000).fadeOut(350);
-
-            //put first image from images preview field to big preview field
-            var url = $('#otherImg > div img').attr('src');
-            $('#mainImgWraper a').attr('href', url);
-            $('#mainImgWraper a img').attr('src', url);
 
             //add active effect in nav bar
             if ( '{{Auth::id()}}' == '{{$post->user_id}}' ) {
@@ -226,10 +221,12 @@
 
             //change main image to clicked image from gallery
             $(".imgTriger").click(function(){
-                var img_path = $(this).attr("src");
-                $("#mainImgWraper img").attr("src",img_path)
+                var smallUrl = $(this).attr('src');
+                var url = smallUrl.replace('optimized', 'origin');
+                $("#mainImgWraper img").attr("src",url);
+                $("#mainImgWraper a").attr("href",url);
             });
-
+            
             //close modal if clicked beyong the modal
             window.onclick = function(event) {
                 var modal = document.getElementById("modal");
@@ -237,7 +234,8 @@
                     $('#modal').css("display", "none");
                 }
             }
-
+            
         });
+        
     </script>
 @endsection

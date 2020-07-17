@@ -106,7 +106,8 @@ class UserController extends Controller
      * @return false email not available
      * @return true email is available
      */
-    public function emailExists(Request $request) {
+    public function emailExists(Request $request) 
+    {
         $email = $request->email;
         $user = User::where('email', $email)->get();
         if ( $user->isEmpty()) {

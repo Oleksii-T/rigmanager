@@ -74,6 +74,7 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
+        sleep(5);
         //Session::flash('message-success', __('messages.signedIn'));
     }
 }

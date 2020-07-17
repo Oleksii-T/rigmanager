@@ -5,7 +5,7 @@
                 @if ( $post->images->isEmpty() )
                     <img src="{{ asset('icons/noImageIcon.svg') }}" alt="Оборудывание нефть и газ."></li>
                 @else    
-                    <img src="{{ $post->images->first()->url }}" alt="Оборудывание нефть и газ."></li>
+                    <img src="{{ $post->images()->where('version', 'optimized')->first()->url }}" alt="Оборудывание нефть и газ."></li>
                 @endif
             </div>
             
@@ -51,5 +51,21 @@
 
             <a href="{{ route('posts.show', $post->id) }}"><span class="globalItemButton item_id_{{$post->id}}"></span></a>
         </div>
+
+        @if ($button == 'deleteAndEdit')
+            <div class="modalView animate" id="modalPostDelete">
+                <div class="modalContent"> 
+                    <p>{{__('ui.sure?')}}</p>
+                    <div>
+                        <button type="button" id="modalPostDeleteOff">{{__('ui.no')}}</button>
+                        <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button>{{__('ui.delete')}}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endif
     @endforeach
 </div>

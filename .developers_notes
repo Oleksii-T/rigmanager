@@ -5,21 +5,15 @@ CODE CSS: make good fonts
 
 CODE CSS: add line-height, letter-spacing, font-weight and bold/italic effects where needed
 
-CODE: make small/avarage/actual versions of each image so that browser do not resize anything
-
 CODE HTML: add proper visualization of location
 
 CODE PHP: add guest features
 
 BUG: popup Slide Down to rude
 
-DO?: delete from html useless popUp classes after it flowed ups
+DO?: delete from html useless popUp classes after it flowed up
 
-CODE PHP/HTML: Remeber conacts when user input new one and then suggest them when user creating new item
-
-CODE: make company registration
-
-CODE: make enchanced item creation for companies
+CODE PHP/HTML: Remeber contacts when user input new one and then suggest them when user creating new item
 
 CODE: make second public email when registered
 
@@ -33,17 +27,11 @@ CODE HTML/JS: add curency sign to cost
 
 BUG: cover case if there is more then 999 fav items
 
-CHECK: front-end/back-end on more browsers
-
 CODE CSS: style secondary pages e.g activation acount or reset pass send page
 
 CODE: change phone regular expression
 
 CODE: implement soft delete
-
-CODE: implement massaging within the app
-
-CODE: make email notifications for user who subscribed for post uplaoded
 
 CHECK: spelling
 
@@ -51,25 +39,51 @@ CHECK: functionality of password forget
 
 CODE: add redirect()->back() where needed
 
-CODE: translate tags
-
 CODE: add title attr
 
-CODE: fix all stype bugs on existing styled pages
+CODE: fix all style bugs on existing styled pages
 
 BUG: on profile.index page. if user magnify page, border of footer collide with edit btn
 
-ADD: wait cursor to buttons in ligin (mb in other places as well)
-
 ADD: change wait cursor to some gif animation
 
-CODE PHP: implement elasticSearch
+CODE: make registration via Ajax request
 
-CODE: make registratiob via Ajax request
+CODE: implenet Admin page for getting chars and stistics about website and data
+
+CODE: make form from every button which uses link with data
+
+
+=========MASTER_OBEJECTIVES===========
+
+CODE: make company registration and all features
+
+CHECK: front-end/back-end on more browsers
+
+CODE: massaging within the app
+
+CODE: email notifications for user who subscribed for post uplaoded
+
+CODE: finish tags system and translate
+
+CODE: Elastic Search
+
+CODE: registration via popular resources e.g Google
+
+CODE: adaptive styling
+
+CODE: add roles and subscription feature
+
+CODE: configure server for production
+
+CODE: loaning system for equipment
 
 
 =======DONE======
 
+CODE: optimize images
+CODE: search by author
+ADD: wait cursor to buttons in login and register
 CODE: add posibility to create RU user name
 CODE: implement possiblility to delete tags from post
 CHECK: is Ajax reqeust prevent spaming by default, if not, add spam protection
@@ -133,11 +147,36 @@ CODE JS: make button active depends on which tab on profile is active
 CODE JS: make correct it parsing when click on item in Home
 CODE JS: make item highlight when hover on addToFav btn as well
 
-=======NOTES======
+
+=======DEVELOPER_NOTES======
+
+NOTE: changing of image in post/show in made by rude string.replase() of img name (change '60x60' to 'origin')
 
 NOTE: user have no possiblility to browse all posts by master category
 
 NOTE: if user changes his phone number and login email, this value is still remembered in item which was created in past
+
+
+========REQUIERED_PACKAGES============
+
+API based email drivers (for mailgun):
+    composer require guzzlehttp/guzzle
+
+AWS s3 storage:
+    composer require league/flysystem-aws-s3-v3
+
+Image resizing: 
+    composer require intervention/image
+
+Image optimization:
+    composer require spatie/image-optimizer
+        This package use 3/6 binaries:
+            sudo apt-get install jpegoptim / brew install jpegoptim
+            sudo apt-get install optipng / brew install optipng
+            sudo apt-get install pngquant / brew install pngquant
+    
+
+=======MISC_NOTES===========
 
 input colors: 
 dafault:    background-color: rgb(149, 149, 149, 0.7);
@@ -151,26 +190,15 @@ update vagrant box:
 update npm:
     npm install -g npm
 
-require package for API based email drivers
-composer require guzzlehttp/guzzle
-
-requieres to use AWS s3 storage
-composer require league/flysystem-aws-s3-v3
-
 php artisan storage:link
 The [/home/vagrant/code/rigmanager/public/storage] link has been connected to [/home/vagrant/code/rigmanager/storage/app/public].
 
 spam-check for email sand uysing Mailgun:
 https://www.mail-tester.com/test-ht1ohsbf3
 
-=======DEPLOYMENT NOTES=======
+@   Your typical nerd who likes coding and videogames. 
+    I don't mind having a drink either.
 
-Change charset and collation in config/database.php to utf8
-
-rename resources/views/components/tags/production/* to Camel Case
-
-
-@ Your typical nerd who likes coding and videogames. I don't mind having a drink either.
 
 ====OLD EMAIL .ENV CONFIG=====
 
@@ -201,7 +229,8 @@ MAIL_FROM_NAME=Rigmanager
 
 
 
-======Equipment TAGS=========
+======Equipment_TAGS=========
+
 ТБ
     Пожарная система
     Сигнализация

@@ -7,10 +7,10 @@ use Faker\Generator as Faker;
 
 $factory->define(Post::class, function (Faker $faker) {
     return [
-        'user_id' => 3,
+        'user_id' => 1,
         'title' => $faker->realText($maxNbChars = 60, $indexSize = 2),
         'condition' => 'Новое',
-        'tag' => 'Другое',
+        'tag' => '0',
         'description' => $faker->realText($maxNbChars = 1000, $indexSize = 2),
         'cost' => $faker->numberBetween($min = 1000, $max = 100000),
         'location' => $faker->city,

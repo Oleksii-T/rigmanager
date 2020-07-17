@@ -17,6 +17,7 @@ return [
     'noscript' => 'Javascript is disabled in your browser. 
         It may serously reflect the web site functionality.',
     'search' => 'Search',
+    'searchByAuthor' => 'Posts by author',
     'other' => 'Other',
     'addToFav' => 'Add to Favourites',
     'inFav' => 'In Favourites',
@@ -37,6 +38,7 @@ return [
     'phone' => 'Phone number',
     'phoneHelp' => 'Optional.',
     'profileInfo' => 'Profile information',
+    'deleteProfileImg' => 'Delete image',
     'passwordEncrypted' => 'In terms of safety, we store encrypted password. If forget password, you can change it in profile settings.',
     'edit' => 'Edit',
     'profileSettings' => 'Profile settings',

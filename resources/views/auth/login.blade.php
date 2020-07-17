@@ -62,6 +62,15 @@
                 show: false,
                 innerToggle: 'focus'
             });
+
+            //make cursor wait
+            $('#submitBtn').click(function(){
+                document.body.style.cursor = "wait"
+                $('button').css('cursor', 'inherit');
+                $('input').css('cursor', 'inherit');
+                $('label').css('cursor', 'inherit');
+                $('a').css('cursor', 'inherit');
+            });
         });
     </script>
 @endsection

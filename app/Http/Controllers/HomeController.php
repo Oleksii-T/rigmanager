@@ -27,6 +27,7 @@ class HomeController extends Controller
     {
         Session::forget('search');
         Session::forget('oldSearch');
+        Session::forget('searchAuthor');
         $posts_list = Post::orderBy('created_at', 'desc')->paginate(env('POSTS_PER_PAGE'));
         $tagsArray = "";
         return view('home', compact('posts_list', 'tagsArray'));
