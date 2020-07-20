@@ -2,8 +2,12 @@
 
 return [
 
-    'development' => 'The website is on the stage
-    of active development.',
+    'development' => 
+    'The website is on the stage of active development. 
+    The functionality for regular users is limited.
+    Release is scheduled for the 01.09.2020.
+    If you want to find out more or take part in beta-testing,
+    contact us by this email',
 
     'signIn' => 'Sign in',
     'signOut' => 'Sign out',

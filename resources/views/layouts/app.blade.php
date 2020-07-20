@@ -17,26 +17,6 @@
     <link type="text/css" href="{{ asset('css/base.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('css/normalize.css') }}" rel="stylesheet" >
     @yield('styles')
-    <!---->
-    <style>
-        #developmentStage {
-            position: fixed;
-            left: 50%; 
-            transform: translateX(-50%);
-            top: 20px;
-            z-index: 10;
-            background-color: rgb(255, 0, 0, 0.7);
-            text-align: center;
-            border-radius: 10px;
-            padding: 5px
-        }
-        #developmentStage p {
-            font-size: 120%;
-            white-space: pre-line;
-            display: inline;
-        }
-    </style>
-    
 </head>
 <body>
     <div id="container">
@@ -144,12 +124,7 @@
 
         <!-- Main content -->
         <main>
-            <!---->
-            <div id="developmentStage">
-                <p id="developmentStageText">{{__('ui.development')}}</p>
-                <a href="{{route('about')}}">{{__('ui.foterAbout')}}</a>
-            </div>
-            
+            <!--Yielding content of each page-->
             @yield('content')
         </main>
 

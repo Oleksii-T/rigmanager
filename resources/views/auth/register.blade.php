@@ -2,95 +2,123 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{asset('css/register_new.css')}}" />
+    <style>
+        #developmentStage {
+            position: fixed;
+            left: 50%; 
+            transform: translateX(-50%);
+            top: 20px;
+            z-index: 10;
+            background-color: rgb(255, 0, 0, 0.7);
+            text-align: center;
+            border-radius: 10px;
+            padding: 5px
+        }
+        #developmentStage p {
+            font-size: 120%;
+            white-space: pre-line;
+            display: inline;
+        }
+        #developmentStage a {
+            font-size: 120%;
+        }
+    </style>
 @endsection
 
 @section('content')
-<div id="userData">
-    <form id="formSignup" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-        @csrf
-        <div>
-            <nav>
-                <ul>
-                    <li><a id="loginBtn" href="{{route('login')}}">{{__('ui.signIn')}}</a></li>
-                    <li><a id="registerBtn" href="{{route('register')}}">{{__('ui.signUp')}}</a></li>
-                </ul>
-            </nav>
-            <p>{{__('ui.signUp')}}</p>
-            <table>
-                <tr id="avaEdit">
-                    <td><p>{{__('ui.avatar')}}</p></td>
-                    <td>
-                        <label for="inputAva">
-                            <div id="avaPreview"><img src="{{ asset('icons/emptyUserIcon.svg') }}" alt="{{__('alt.keyword')}}"></div>
-                        </label>
-                        <input id="inputAva" type="file" name="ava">
-                        @error('ava')
-                            <div class="error" id="fileError">
-                                <p>{{ $message }}</p>
+
+    <div id="developmentStage">
+        <p id="developmentStageText">{{__('ui.development')}}</p>
+        <br>
+        <a href = "mailto: web.rigmanager@gmail.com">web.rigmanager@gmail.com</a>
+    </div>
+
+    <div id="userData">
+        <form id="formSignup" method="POST" action="#" enctype="multipart/form-data">
+            @csrf
+            <div>
+                <nav>
+                    <ul>
+                        <li><a id="loginBtn" href="{{route('login')}}">{{__('ui.signIn')}}</a></li>
+                        <li><a id="registerBtn" href="{{route('register')}}">{{__('ui.signUp')}}</a></li>
+                    </ul>
+                </nav>
+                <p>{{__('ui.signUp')}}</p>
+                <table>
+                    <tr id="avaEdit">
+                        <td><p>{{__('ui.avatar')}}</p></td>
+                        <td>
+                            <label for="inputAva">
+                                <div id="avaPreview"><img src="{{ asset('icons/emptyUserIcon.svg') }}" alt="{{__('alt.keyword')}}"></div>
+                            </label>
+                            <input id="inputAva" type="file" name="ava">
+                            @error('ava')
+                                <div class="error" id="fileError">
+                                    <p>{{ $message }}</p>
+                                </div>
+                            @enderror
+                        </td>
+                    </tr>
+
+                    <tr id="nameShow">
+                        <td><p>{{__('ui.userName')}}</p></td>
+                        <td>
+                            <input id="inputName" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            <x-server-input-error errorName='name' inputName='inputName' errorClass='error'/>
+                            <div class="help"><p><i>{{__('ui.userNameHelp')}}</i></p></div>
+                        </td>
+                    </tr>
+
+                    <tr id="phoneShow">
+                        <td><p>{{__('ui.phone')}}</p></td>
+                        <td>
+                            <input id="inputPhone" type="text" name="phone" value="{{ old('phone') }}" autocomplete="phone" autofocus>
+                            <x-server-input-error errorName='phone' inputName='inputPhone' errorClass='error'/>
+                            <div>
+                                <input type="checkbox" id="viberInput" name="viber" value="1" {{ old('viber') ? 'checked' : '' }}>
+                                <label for="viberInput">
+                                    Viber
+                                    <img src="{{ asset('icons/viberIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                </label>
+                                <br>
+                                <input type="checkbox" id="telegramInput" name="telegram" value="1" {{ old('telegram') ? 'checked' : '' }}>
+                                <label for="telegramInput">
+                                    Telegram
+                                    <img src="{{ asset('icons/telegramIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                </label>
+                                <br>
+                                <input type="checkbox" id="whatsappInput" name="whatsapp" value="1" {{ old('whatsapp') ? 'checked' : '' }}>
+                                <label for="whatsappInput">
+                                    WhatsApp
+                                    <img src="{{ asset('icons/whatsappIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                </label>
                             </div>
-                        @enderror
-                    </td>
-                </tr>
+                            <div class="help"><p><i>{{__('ui.phoneHelp')}}</i></p></div>
+                        </td> 
+                    </tr>
 
-                <tr id="nameShow">
-                    <td><p>{{__('ui.userName')}}</p></td>
-                    <td>
-                        <input id="inputName" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                        <x-server-input-error errorName='name' inputName='inputName' errorClass='error'/>
-                        <div class="help"><p><i>{{__('ui.userNameHelp')}}</i></p></div>
-                    </td>
-                </tr>
+                    <tr id="emailShow">
+                        <td><p>{{__('ui.login')}}</p></td>
+                        <td>
+                            <input id="inputEmail" type="email" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
+                            <div class="help"><p><i>{{__('ui.loginHelp')}}</i></p></div>
+                        </td>
+                    </tr>
 
-                <tr id="phoneShow">
-                    <td><p>{{__('ui.phone')}}</p></td>
-                    <td>
-                        <input id="inputPhone" type="text" name="phone" value="{{ old('phone') }}" autocomplete="phone" autofocus>
-                        <x-server-input-error errorName='phone' inputName='inputPhone' errorClass='error'/>
-                        <div>
-                            <input type="checkbox" id="viberInput" name="viber" value="1" {{ old('viber') ? 'checked' : '' }}>
-                            <label for="viberInput">
-                                Viber
-                                <img src="{{ asset('icons/viberIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            </label>
-                            <br>
-                            <input type="checkbox" id="telegramInput" name="telegram" value="1" {{ old('telegram') ? 'checked' : '' }}>
-                            <label for="telegramInput">
-                                Telegram
-                                <img src="{{ asset('icons/telegramIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            </label>
-                            <br>
-                            <input type="checkbox" id="whatsappInput" name="whatsapp" value="1" {{ old('whatsapp') ? 'checked' : '' }}>
-                            <label for="whatsappInput">
-                                WhatsApp
-                                <img src="{{ asset('icons/whatsappIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            </label>
-                        </div>
-                        <div class="help"><p><i>{{__('ui.phoneHelp')}}</i></p></div>
-                    </td> 
-                </tr>
-
-                <tr id="emailShow">
-                    <td><p>{{__('ui.login')}}</p></td>
-                    <td>
-                        <input id="inputEmail" type="email" name="email" value="{{ old('email') }}" required autocomplete="email">
-                        <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
-                        <div class="help"><p><i>{{__('ui.loginHelp')}}</i></p></div>
-                    </td>
-                </tr>
-
-                <tr id="passShow">
-                    <td><p>{{__('ui.password')}}</p></td>
-                    <td>
-                        <input id="inputPassword" type="password" name="password" required autocomplete="new-password">
-                        <x-server-input-error errorName='password' inputName='inputPassword' errorClass='error'/>
-                        <div class="help"><p><i>{{__('ui.passwordHelp')}}</i></p></div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <button id="sumbitBtn" type="submit">{{__('ui.signUp')}}</button>
-    </form>
-</div>
+                    <tr id="passShow">
+                        <td><p>{{__('ui.password')}}</p></td>
+                        <td>
+                            <input id="inputPassword" type="password" name="password" required autocomplete="new-password">
+                            <x-server-input-error errorName='password' inputName='inputPassword' errorClass='error'/>
+                            <div class="help"><p><i>{{__('ui.passwordHelp')}}</i></p></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <button id="sumbitBtn" type="submit">{{__('ui.signUp')}}</button>
+        </form>
+    </div>
 @endsection
 
 @section('scripts')

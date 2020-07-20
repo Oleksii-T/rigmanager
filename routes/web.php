@@ -15,12 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('about', 'HomeController@about')->name('about');
-Route::get('emailexists', 'UserController@emailExists')->name('email.exist');
-Route::get('search', 'PostController@search')->name('search');
-Route::get('search/category/{category}', 'PostController@searchTag')->name('searchTag');
-Route::get('search/author/{author}', 'PostController@searchAuthor')->name('searchAuthor');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('posts', 'PostController');
@@ -33,6 +27,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('profile/update', 'UserController@update')->name('profile.update');
     Route::get('profile/edit', 'UserController@edit')->name('profile.edit');
     Route::get('category/{tagId}', 'PostController@getTagPathAsString')->name('get.readble.tag');
+
+    /* Folloing routes shall be for non-registered users on production stage */
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('about', 'HomeController@about')->name('about');
+    Route::get('emailexists', 'UserController@emailExists')->name('email.exist');
+    Route::get('search', 'PostController@search')->name('search');
+    Route::get('search/category/{category}', 'PostController@searchTag')->name('searchTag');
+    Route::get('search/author/{author}', 'PostController@searchAuthor')->name('searchAuthor');
 });
 
 Route::middleware('auth')->group(function () {

@@ -2,9 +2,37 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{asset('css/login_new.css')}}" />
+    <style>
+        #developmentStage {
+            position: fixed;
+            left: 50%; 
+            transform: translateX(-50%);
+            top: 20px;
+            z-index: 10;
+            background-color: rgb(255, 0, 0, 0.7);
+            text-align: center;
+            border-radius: 10px;
+            padding: 5px
+        }
+        #developmentStage p {
+            font-size: 120%;
+            white-space: pre-line;
+            display: inline;
+        }
+        #developmentStage a {
+            font-size: 120%;
+        }
+    </style>
 @endsection
 
 @section('content')
+
+    <div id="developmentStage">
+        <p id="developmentStageText">{{__('ui.development')}}</p>
+        <br>
+        <a href = "mailto: web.rigmanager@gmail.com">web.rigmanager@gmail.com</a>
+    </div>
+
     <div class="authBody">
         <div>
             <nav>

@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'Administrator',
-            'phone' => '0000000000',
+            'phone' => '0502115147',
             'email' => 'alex.tarbeev@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
             'password' => Hash::make('Admin1')
@@ -25,17 +25,26 @@ class DatabaseSeeder extends Seeder
 
         DB::table('posts')->insert([
             'user_id' => 1,
-            'title' => 'Тест Заголовок На Русском DEMO',
-            'condition' => 'Б/У',
+            'title' => 'Буровая штанга 89х6,5х1000 мм, резьба З-73',
+            'condition' => 'Новое',
             'tag' => '2.3.2.1',
-            'description' => 'Только Для Демонстрации
-                Пример Описания
-                DEMO
-                .',
-            'cost' => '000000',
-            'location' => 'Украина',
-            'user_email' => 'dummy.email@example.com',
-            'user_phone' => '000000000',
+            'description' => 'Производитель:	DM Bits
+                Страна происхождения:	РОССИЯ
+                Cрок поставки:	3-4 недели
+                Основные технические параметры
+                
+                Длина, мм:	1 000
+                Резьба:	2 3/8" IF - З-73
+                Материал корпуса трубы:	сталь 45
+                Толщина стенки, мм:	6,5
+                Способ присоединения замков:	сварка полуавтоматом
+                Материал замка трубы:	сталь 30ХГСА с термообработкой до 32 HRC
+                Резьба ГОСТ:	З-73
+                Резьба API 7-1 (ГОСТ):	З-73
+                Резьба API (ГОСТ):	З-73',
+            'cost' => '5 148.00 руб / 1 шт',
+            'user_email' => 'alex.tarbeev@gmail.com',
+            'user_phone' => '0502115147',
             'viber' => '1',
             'telegram' => '1',
             'whatsapp' => '1'
@@ -43,84 +52,85 @@ class DatabaseSeeder extends Seeder
 
         DB::table('posts')->insert([
             'user_id' => 1,
-            'title' => 'Тест Заловку На Українській DEMO',
+            'title' => 'Вертлюг 6WC',
             'condition' => 'Новое',
-            'tag' => '2.1.1.4',
-            'description' => 'Тільки у Демонстраційних цілях
-                Приклад Опису
-                DEMO
-                .',
-            'cost' => '000000 грн',
-            'location' => 'Україна',
-            'user_email' => 'dummy.email@example.com',
-            'user_phone' => '000000000',
-            'viber' => '1',
-            'telegram' => '1',
-            'whatsapp' => '1'
+            'tag' => '2.12.3',
+            'description' => 'Производитель:	Western Rubber
+                Страна происхождения:	СОЕДИНЕННЫЕ ШТАТЫ
+                Cрок поставки:	8-10 недель
+                Информация о товаре
+                Буровой вертлгюг 6WC спроектирован для бурения водозаборных скважин большого диаметра и скважин при ведении строительных работ. Данный вертлюг очень компактный и имеет внутреннее проходное отверстие 6" (152 мм), может использоваться как для прямой, так и обратной циркуляции скважин.
+                
+                Основные преимущества:
+                
+                - большое проходное отверстие 6" (152 мм)
+                - быстрая замена сальников вертлюга
+                - регулируемые подшипники и уплотнения
+                - 2" NPT соедениен для воздушной трубки
+                Основные технические параметры
+                
+                Длина, мм:	1 524
+                Проходное отверстие, мм:	152,4
+                Макс.нагрузка при вращении, кг:	36
+                Макс.статичесткая нагрузка, кг:	78,75
+                Макс.давление, кПа:	10 200
+                Вес нетто, кг:	408
+                Тип соединения на выходе:	6" фланец
+                Информация для отгрузки
+                
+                Вес, кг:	508
+                Отгрузочные размеры, мм:	1800x710x970',
+            'cost' => '2 345 808.10 руб',
+            'location' => 'Москва',
+            'user_email' => 'alex.tarbeev@gmail.com',
         ]);
 
         DB::table('posts')->insert([
             'user_id' => 1,
-            'title' => 'Test Title In English DEMO',
+            'title' => 'Трехшарошечное долото 76 мм (3") К-ЦА (IADC 743) Уралбурмаш',
             'condition' => 'Новое',
-            'tag' => '2.10.1.2',
-            'description' => 'Demonstrationg Purposes Only
-                Sample Description
-                DEMO
-                .',
-            'cost' => '000000 $',
-            'location' => 'Ukraine',
-            'user_email' => 'dummy.email@example.com',
-            'user_phone' => '000000000',
-            'viber' => '1',
-            'telegram' => '1',
-            'whatsapp' => '1'
+            'tag' => '2.1.2.6.1.2',
+            'description' => 'Страна происхождения:	РОССИЯ
+                Производитель:	УралБурМаш
+                Основные технические параметры
+                
+                Маркировка производителя:	A-C74Z-R1005
+                Диаметр, мм (дюйм):	76 (3)
+                Код IADC:	743
+                Обозначение ГОСТ:	К-ЦА
+                Тип горных пород:	крепкие породы
+                Тип промывки:	центральная промывка
+                Тип опорного подшипника:	два и более подшипников скольжения
+                Тип опоры:	открытая
+                Тип вооружения:	твердосплавное
+                Состояние:	с хранения
+                Осевая нагрузка, кН:	50-80
+                Частота вращения, об/мин:	100-40
+                Резьба API (ГОСТ):	З-42
+                Вес нетто, кг:	1,8
+                Информация для отгрузки
+                
+                Вес, кг:	2',
+            'user_email' => 'alex.tarbeev@gmail.com',
         ]);
 
-        DB::table('posts')->insert([
-            'user_id' => 1,
-            'title' => 'Заголовок. Пустое Обьявление 1',
-            'condition' => 'Новое',
-            'tag' => '0',
-            'description' => 'Описание. Пустое Обьявление 1
-                ----',
-            'user_email' => 'dummy.email@example.com'
+
+        DB::table('users')->insert([
+            'id' => 2,
+            'name' => 'Pavel',
+            'phone' => '0000000000',
+            'email' => 'pavlo.tarb@gmail.com',
+            'email_verified_at' => Carbon\Carbon::now(),
+            'password' => Hash::make('Pavel123')
         ]);
-        DB::table('posts')->insert([
-            'user_id' => 1,
-            'title' => 'Заголовок. Пустое Обьявление 2',
-            'condition' => 'Новое',
-            'tag' => '0',
-            'description' => 'Описание. Пустое Обьявление 2
-                ----',
-            'user_email' => 'dummy.email@example.com'
-        ]);
-        DB::table('posts')->insert([
-            'user_id' => 1,
-            'title' => 'Заголовок. Пустое Обьявление 3',
-            'condition' => 'Новое',
-            'tag' => '0',
-            'description' => 'Описание. Пустое Обьявление 3
-                ----',
-            'user_email' => 'dummy.email@example.com'
-        ]);
-        DB::table('posts')->insert([
-            'user_id' => 1,
-            'title' => 'Заголовок. Пустое Обьявление 4',
-            'condition' => 'Новое',
-            'tag' => '0',
-            'description' => 'Описание. Пустое Обьявление 4
-                ----',
-            'user_email' => 'dummy.email@example.com'
-        ]);
-        DB::table('posts')->insert([
-            'user_id' => 1,
-            'title' => 'Заголовок. Пустое Обьявление 5',
-            'condition' => 'Новое',
-            'tag' => '0',
-            'description' => 'Описание. Пустое Обьявление 5
-                ----',
-            'user_email' => 'dummy.email@example.com'
+
+        DB::table('users')->insert([
+            'id' => 3,
+            'name' => 'Dmitriy',
+            'phone' => '0000000000',
+            'email' => 'dmytro.tarbeiev@gmail.com',
+            'email_verified_at' => Carbon\Carbon::now(),
+            'password' => Hash::make('Dmitriy123')
         ]);
         /**/
 
@@ -128,7 +138,7 @@ class DatabaseSeeder extends Seeder
         // Seed For Development
 
         // $this->call(UserSeeder::class);
-        factory('App\Post', 10)->create();
+        //factory('App\Post', 10)->create();
 
         DB::table('users')->insert([
             'id' => 1,
