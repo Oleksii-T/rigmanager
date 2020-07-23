@@ -36,7 +36,7 @@
     <div id="userData">
         <form id="formSignup" method="POST" action="#" enctype="multipart/form-data">
             @csrf
-            <div>
+            <div id="formContent">
                 <nav>
                     <ul>
                         <li><a id="loginBtn" href="{{route('login')}}">{{__('ui.signIn')}}</a></li>
@@ -116,7 +116,24 @@
                     </tr>
                 </table>
             </div>
-            <button id="sumbitBtn" type="submit">{{__('ui.signUp')}}</button>
+            <div>
+                <button id="sumbitBtn" type="submit">{{__('ui.signUp')}}</button>
+                <div class="social">
+                    <p class="socialText"><span>{{__('ui.or')}}</span>{{__('ui.socialSignIn')}}:</p>
+                    <div>
+                        <a class="socialLink" href="{{route('login.social', 'google')}}">
+                            <img class="socialLogo" src="{{ asset('icons/googleIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            Google
+                        </a>
+                    </div>
+                    <div>
+                        <a class="socialLink" href="{{route('login.social', 'facebook')}}">
+                            <img class="socialLogo" src="{{ asset('icons/facebookIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            Facebook
+                        </a>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 @endsection

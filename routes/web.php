@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
+Route::get('login/{social}', 'Auth\LoginController@redirectToProvider')->name('login.social');
+Route::get('login/{social}/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('posts', 'PostController');

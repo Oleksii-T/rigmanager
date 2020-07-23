@@ -75,10 +75,26 @@
                     </div>
             
                 </form>
-            </div>
 
+                <div class="social">
+                    <p class="socialText">{{__('ui.socialSignIn')}}:</p>
+                    <div>
+                        <a class="socialLink" href="{{route('login.social', 'google')}}">
+                            <img class="socialLogo" src="{{ asset('icons/googleIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            Google
+                        </a>
+                    </div>
+                    <div>
+                        <a class="socialLink" href="{{route('login.social', 'facebook')}}">
+                            <img class="socialLogo" src="{{ asset('icons/facebookIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            Facebook
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
 @endsection
 
 @section('scripts')
@@ -99,6 +115,16 @@
                 $('label').css('cursor', 'inherit');
                 $('a').css('cursor', 'inherit');
             });
+
+            //add hover effect on item when hover on addToFavBlocked btn
+            $("div.social").hover(function(){
+                $('p.socialText').css('display', 'block');
+                $(this).css('width', '150px');
+                }, function(){
+                $('p.socialText').css('display', 'none');
+                $(this).css('width', '45px');
+            });
+
         });
     </script>
 @endsection

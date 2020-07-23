@@ -10,8 +10,10 @@ return [
     contact us by this email',
 
     'signIn' => 'Sign in',
+    'socialSignIn' => 'Sign as user',
     'signOut' => 'Sign out',
     'signUp' => 'Sign up',
+    'or' => 'Or',
     'login' => 'Login',
     'home' => 'Home',
     'myPosts' => 'My posts',

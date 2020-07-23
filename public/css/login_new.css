@@ -41,6 +41,7 @@
 #authWraper {
     height: auto;
     width: 100%;
+    position: relative;
 }
 
 form { padding: 40px; }
@@ -131,4 +132,49 @@ label[for=inputRememberMe] { font-size: 90%; }
 #btns a { 
     float: right; 
     padding-top: 14px;
+}
+
+div.social {
+    background-color: rgb(11, 11, 11, 0.6);
+    width: 45px;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    padding: 10px;
+    overflow: hidden;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: inset 7px 0 9px -7px #000000;
+    transition: 0.2s;
+}
+
+div.social>div {
+    margin: 20px 0px;
+}
+
+p.socialText {
+    display: none;
+    white-space: pre;
+}
+
+a.socialLink {
+    position: relative;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: 0.2s;
+    padding-left: 35px;
+}
+
+img.socialLogo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0px;
+    width: 25px;
+    height: 25px;
+}
+
+a.socialLink:hover {
+    color: #FE9042;
+    text-decoration: underline;
 }

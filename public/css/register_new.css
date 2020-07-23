@@ -28,13 +28,13 @@
     padding-bottom: 40px;
 }
 
-form>div {
+#formContent {
     background-color: rgb(11, 11, 11, 0.6);
     margin: 0px 40px;
     margin-bottom: 20px;
 }
 
-form>div>p {
+#formContent>p {
     text-align: center;
     font-size: 190%;
     margin-bottom: 30px;
@@ -159,11 +159,53 @@ button.hideShowPassword-toggle:hover {
     border: none;
     margin-left: 40px;
     border-bottom: 2px solid #4CAF50;
-    margin-right: 20px;
     transition: 0.2s;
     cursor: pointer;
 }
 
 #userData #sumbitBtn:hover { 
     background-color: rgb(114, 190, 116); 
+}
+
+div.social {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+p.socialText span {
+    margin: 0px 30px;
+}
+
+p.socialText,
+a.socialLink,
+div.social>div {
+    float: left;
+}
+
+div.social>div {
+    position: relative;
+}
+
+a.socialLink {
+    text-decoration: none;
+    white-space: nowrap;
+    margin-left: 20px;
+    padding-left: 35px;
+    transition: 0.2s;
+    z-index: 4;
+}
+
+a.socialLink:hover {
+    color: #FE9042;
+    text-decoration: underline;
+}
+
+img.socialLogo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 20px;
+    width: 25px;
+    height: 25px;
+    z-index: 0;
 }

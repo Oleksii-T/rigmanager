@@ -53,6 +53,12 @@ CODE: implenet Admin page for getting chars and stistics about website and data
 
 CODE: make form from every button which uses link with data
 
+CODE: fix queues
+
+BUG: 1px bug of js password validation error
+
+BUG: backgorund gray color displaying wrong on ligin page
+
 
 =========MASTER_OBEJECTIVES===========
 
@@ -170,10 +176,12 @@ Image resizing:
 
 Image optimization:
     composer require spatie/image-optimizer
-        This package use 3/6 binaries:
+        This package use 2/6 binaries:
             sudo apt-get install jpegoptim / brew install jpegoptim
             sudo apt-get install optipng / brew install optipng
-            sudo apt-get install pngquant / brew install pngquant
+
+Registration using other resurces
+    composer require laravel/socialite
     
 
 =======MISC_NOTES===========

@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File; 
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
-use Spatie\ImageOptimizer\OptimizerChainFactory;
+//use Spatie\ImageOptimizer\OptimizerChainFactory;
+use App\Jobs\OptimizeImg;
 
 // It is abstract because this controller is called only 
 //   from other controllers and do not have instanse of itself
@@ -20,10 +21,8 @@ trait ImageUploader
         //for each submitted file
         foreach ($files as $file) {
             $name = Str::random(30);
-            //optimize image
-            $optimizerChain = OptimizerChainFactory::create();
-            $optimizerChain->setTimeout(5)->optimize($file->getPathname());
-            //save original image. Firstly to server then to DB
+            
+            // save origin image to storage and DB;
             $path = $file->storeAs(auth()->id(), $name."_origin.".$file->extension());
             $image = new PostImage([
                 'size' => $file->getSize(), 
@@ -31,8 +30,10 @@ trait ImageUploader
                 'version' => 'origin'
             ]);
             $post->images()->save($image);
-            
-            //save resized to 300 max side image. Firstly to server then to DB
+            // optimize the original image via queue;
+            OptimizeImg::dispatch($path, $image->id)->onQueue('optimizeImg');
+
+            // resize and save image as secon version.
             $this->resizeImg($file->getPathname(), 300);
             $path = $file->storeAs(auth()->id(), $name."_optimized.".$file->extension());
             $image = new PostImage([
@@ -40,7 +41,7 @@ trait ImageUploader
                 'path' => $path, 
                 'version' => 'optimized'
             ]);
-            $post->images()->save($image); //insert Image object with a ralation to post
+            $post->images()->save($image);
         }
         return true;
     }
