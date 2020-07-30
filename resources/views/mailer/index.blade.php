@@ -69,7 +69,7 @@
 
                     <div class="mailerBtns">
                         <a class="mailerBtn" id="editBtn" href="{{ route('mailer.create') }}">{{__('ui.setUpMailer')}}</a>
-                        <a class="mailerBtn" id="helpBtn" href="#">{{__('ui.whatIsMailer')}}?</a>
+                        <a class="mailerBtn" id="helpBtn" href="{{route('faq')}}">{{__('ui.whatIsMailer')}}?</a>
                     </div>
                 @endif
             </div>

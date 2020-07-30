@@ -52,7 +52,7 @@ class MailerController extends Controller
             return view('mailer.index', ["mailer"=>null]);
         }
         Session::flash('message-success', __('messages.mailerUploaded'));
-        return view('mailer.index', compact('mailer'));
+        return redirect(route('mailer.index'));
     }
 
     /**
@@ -93,7 +93,7 @@ class MailerController extends Controller
         $mailer = auth()->user()->mailer;
         $mailer->delete();
         Session::flash('message-success', __('messages.mailerDeleted'));
-        return view('mailer.index', ["mailer"=>null]);
+        return redirect(route('mailer.index'));
     }
 
     public function addRemoveAuthor($user_id) {

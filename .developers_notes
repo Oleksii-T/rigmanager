@@ -77,6 +77,8 @@ CODE: redesigh pop up and flash massages (make em like in adm.tool)
 
 NOTE: in mailer when user deletes author, value become EMPTY not NULL
 
+BUG: flash notif is keeps on second page (possible fix: use return redirect() instead return view())
+
 
 =========MASTER_OBEJECTIVES===========
 
