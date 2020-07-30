@@ -133,19 +133,23 @@
             <div id="footerWraper">
                 <div id="leftS">
                     <a href="{{ route('home') }}"><img id="logo" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
-                    <a class="footerLinks" id="footerAbout" href="{{route('about')}}">{{__('ui.foterAbout')}}</a>
+                    <a class="footerLinks" id="footerFAQ" href="{{route('faq')}}">{{__('ui.foterFAQ')}}</a>
                 </div>
                 <div id="rightS">
                     <p>&copy; 2020 <span>rigmanager.com.ua</span>. {{__('ui.footerCopyright')}}</p>
                     <p>{{__('ui.footerIconsRef')}} <a class="footerLinks" href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> (<a class="footerLinks" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>)</p>
                     <table>
                         <tr>
-                            <td><a class="footerLinks" href="#">{{__('ui.footerSubscription')}}</a></td>
-                            <td><a class="footerLinks" href="#">{{__('ui.footerContact')}}</a></td>
+                            <td><a class="footerLinks" href="{{route('plans')}}">{{__('ui.footerSubscription')}}</a></td>
+                            <td><a class="footerLinks" href="{{route('contacts')}}">{{__('ui.footerContact')}}</a></td>
                         </tr>
                         <tr>
-                            <td><a class="footerLinks wrap" href="#">{{__('ui.footerTerms')}}</a></td>
+                            <td><a class="footerLinks wrap" href="{{route('terms')}}">{{__('ui.footerTerms')}}</a></td>
                             <td><a class="footerLinks" href="https://github.com/Oleksii-T/rigmanager">{{__('ui.footerDevelop')}}</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="footerLinks wrap" href="{{route('privacy')}}">{{__('ui.footerPrivacy')}}</a></td>
+                            <td><a class="footerLinks wrap" href="{{route('site.map')}}">{{__('ui.footerSiteMap')}}</a></td>
                         </tr>
                     </table>
                 </div>

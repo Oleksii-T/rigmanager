@@ -32,7 +32,7 @@ body {
     margin: 0px auto;
     display: block;
     position: relative;
-    padding-bottom: 170px;
+    padding-bottom: 230px;
 }
 
 div.sideBg {
@@ -247,7 +247,7 @@ div.iconWraper img {
 
 .footer {
     position: absolute;
-    height: 170px;
+    height: 230px;
     width: 100%;
     left: 50%;
     transform: translateX(-50%);
@@ -287,7 +287,7 @@ div.iconWraper img {
     color: #FE9042;
 }
 
-#footerAbout {
+#footerFAQ {
     font-size: 120%;
 }
 

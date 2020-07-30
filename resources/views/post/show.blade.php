@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('css/item.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/item_show.css')}}" />
 @endsection
 
 @section('content')
@@ -39,16 +39,16 @@
             <div id="rightContent">
                 @if ($post->user_id != Auth::id())
                     <div class="element" id="addToFavBtn">
-                        @if ($isFav === false)
-                            <p>{{__('ui.addToFav')}}</p>
-                            <button class="addToFavButton id_{{$post->id}}">
-                                <img src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            </button>   
-                        @else
+                        @if (auth()->user()->favPosts->contains($post))
                             <p>{{__('ui.inFav')}}</p>
                             <button class="addToFavButton id_{{$post->id}}">
                                 <img src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            </button>
+                            </button> 
+                        @else
+                            <p>{{__('ui.addToFav')}}</p>
+                            <button class="addToFavButton id_{{$post->id}}">
+                                <img src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            </button>  
                         @endif
                     </div>
                 @else
@@ -71,8 +71,17 @@
                         </div>
                         <!-- mb add time how many days registered -->
                     </div>
-                    <a href="{{route('searchAuthor', $post->user->id)}}">{{__('ui.otherAuthorPosts')}}</a>
-                    <button id="modalTriger">{{__('ui.showContacts')}}</button>
+                    <a class="authorBtns" href="{{route('searchAuthor', $post->user->id)}}">{{__('ui.otherAuthorPosts')}}</a>
+                    <button class="authorBtns" id="modalTriger">{{__('ui.showContacts')}}</button>
+                    @if ($post->user_id != Auth::id() && auth()->user()->mailer)
+                        <button class="authorBtns" id="mailerAddAuthor">    
+                            @if ( in_array( $post->user_id, explode(" ", auth()->user()->mailer->authors) ) )
+                                {{__('ui.mailerRemoveAuthor')}}
+                            @else
+                                {{__('ui.mailerAddAuthor')}}
+                            @endif
+                        </button>
+                    @endif
                 </div>
 
                 <div class="element" id="status">
@@ -175,6 +184,25 @@
                 }, 3000);
             }
 
+            // user click add author to mailer btn
+            $('#mailerAddAuthor').click(function() {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('mailer.add.remove.author', $post->user_id) }}",
+                    success: function(data) {
+                        if (data) {
+                            // Author was added to Mailer
+                            popUpMassage("{{ __('messages.mailerAddedAuthor') }}");
+                            $('#mailerAddAuthor').html("{{__('ui.mailerRemoveAuthor')}}");
+                        } else {
+                            // Author was removed from Mailer
+                            popUpMassage("{{ __('messages.mailerRemovedAuthor') }}");
+                            $('#mailerAddAuthor').html("{{__('ui.mailerAddAuthor')}}");
+                        }
+                    }
+                });
+            });
+
             //action when user clicks on addToFav icon
             $(".addToFavButton").click(function(){
                 $(".id_"+item_id).attr('disabled', true); //disable button until feedback
@@ -182,7 +210,7 @@
                 var item_id = $(this).attr("class").split(' ')[1].split('_')[1];
                 $.ajax({
                     type: "GET",
-                    url: '{{ route('toFav') }}',
+                    url: "{{ route('toFav') }}",
                     data: { post_id: item_id },
                     success: function(data) {
                         confirmation(data, item_id);

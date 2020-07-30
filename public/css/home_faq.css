@@ -3,22 +3,12 @@
     padding: 30px;
 }
 
-#paragraphTitle {
-    text-align: center;
-}
-
 #paragraphTitle h1 {
     font-size: 200%;
 }
 
-#paragraphTitle h1 span {
-    font-size: 100%;
-    color: #FE9042;
-}
-
-#intro {
-    font-size: 150%;
-    text-align: center;
+#paragraphBody {
+    padding-left: 10px;
 }
 
 .question {

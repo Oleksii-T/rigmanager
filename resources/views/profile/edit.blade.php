@@ -25,7 +25,9 @@
                                 </div>
                             </label>
                             <input id="inputAva" type="file" name="ava" hidden>
-                            <button type="button" id="modalShow">{{__('ui.deleteProfileImg')}}</button>
+                            @if ($user->image)
+                                <button type="button" id="modalShow">{{__('ui.deleteProfileImg')}}</button>
+                            @endif
                             @error('ava')
                                 <div class="error">
                                     <p>{{ $message }}</p>

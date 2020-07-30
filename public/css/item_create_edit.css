@@ -232,8 +232,8 @@ input.error, textarea.error {
     background-color: rgb(149, 149, 149, 0.7);
 }
 
-#imgs>p{
-    margin-top: 15px;
+#previewText {
+    margin: 15px 0px;
 }
 
 #imgs .error {

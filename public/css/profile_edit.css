@@ -29,7 +29,7 @@ table {
     border-collapse: collapse;
 }
 
-td {
+#userData td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

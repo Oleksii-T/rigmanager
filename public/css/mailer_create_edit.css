@@ -1,0 +1,244 @@
+#mailerBtn { 
+    background-color: #FE9042; 
+}
+
+div.mailerContent {
+    padding: 30px;
+}
+
+div.element {
+    margin-bottom: 30px;
+}
+
+.isActiveBtn {
+    background-color: #FE9042;
+}
+
+.loading {
+    cursor: wait !important;
+}
+
+.elementHeading {
+    font-size: 120%;
+}
+
+#keywords textarea:hover, 
+#navTags button:hover { 
+    background-color: rgb(149, 149, 149, 0.8); 
+}
+
+#keywords textarea:focus  { 
+    background-color: rgb(149, 149, 149, 0.9); 
+}
+
+#keywords textarea:active, 
+ #navTags button:active { 
+    background-color: rgb(149, 149, 149, 0.7); 
+}
+
+label.error, div.error {
+    display: block;
+    padding: 5px 10px 5px 10px;
+    border-left: 2px solid #f44336;
+    color: #eb837c;
+    white-space: normal;
+}
+
+div.error p { color: #eb837c; }
+
+.elementHeading { 
+    margin-bottom: 20px; 
+}
+
+/*================KEYWORDS================*/
+
+#keywords {
+    padding-bottom: 20px;
+    border-bottom: 2px solid #888888;
+}
+
+#keywords textarea {
+    padding: 10px;
+    margin-top: 20px;
+    width: 70%;
+    outline: none;
+    border: none;
+    background-color: rgb(149, 149, 149, 0.7);
+    border-radius: 10px;
+}
+
+/*================TAGS================*/
+
+#tags {
+    padding-bottom: 20px;
+    border-bottom: 2px solid #888888;
+}
+
+#navTags {
+    margin-bottom: 20px;
+}
+
+#navTags ul li{
+    text-decoration: none;
+    list-style: none;
+}
+
+#navTags button {
+    padding: 7px;
+    cursor: pointer;
+    border: none;
+    background-color: rgb(149, 149, 149, 0.7);
+    border-bottom: 2px solid #ffffff;
+}
+
+#hseEq,
+#drillingEq,
+#repairEq,
+#productionEq,
+#loggingEq {
+    display: none;
+}
+
+#dropDown ul {
+    list-style: none;
+    z-index: 3;
+    margin-bottom: 20px;
+}
+
+#mainMenu>li {
+    display: inline-block;
+    margin: 5px 0px;
+}
+
+#dropDown {
+    background-color: rgb(149, 149, 149, 0.7);
+    width: 70%;
+}
+
+#dropDown a {
+    color: #ffffff;
+    margin: 0;
+    text-align: left;
+    padding: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-decoration: none;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#dropDown a:hover { background-color: rgb(149, 149, 149, 0.7); }
+
+#dropDown .arrow{
+    display: inline-block;
+    border: 2px solid #f1f1f1;
+    border-left: none;
+    border-bottom: none;
+    width: 9px;
+    height: 9px;
+    margin-left: 5px;
+    margin-bottom: 0.2em;
+}
+
+#dropDown .arrowDown { transform: rotateZ(135deg); }
+
+#dropDown .arrowRight { transform: rotateZ(45deg); }
+
+#mainMenu>li:hover .secondLevel,
+.secondLevel>li:hover>.thirdLevel,
+.thirdLevel>li:hover>.fourthLevel,
+.fourthLevel>li:hover>.fifthLevel {
+    display: block;
+    background-color: rgb(11, 11, 11, 0.8);
+}
+
+.secondLevel,
+.thirdLevel,
+.fourthLevel,
+.fifthLevel {
+    position: absolute;
+    display: none;
+}
+
+.secondLevel a,
+.thirdLevel a,
+.fourthLevel a,
+.fifthLevel a {
+    text-align: left !important;
+}
+
+.secondLevel li {
+    position: relative;
+}
+
+.thirdLevel, .fourthLevel, .fifthLevel{
+    top: 0;
+    right: 0;
+    transform: translate(100%,0);
+}
+/*
+*/
+#choosenTags {
+    display: none;
+}
+
+#choosenTags p {
+    margin-bottom: 10px;
+}
+
+.orderedList {
+    list-style-position: outside;
+    margin-left: 2em;
+}
+
+.orderedList button {
+    background-color: transparent;
+    border: none;
+    transition: 0.2s;
+    cursor: pointer;
+    text-align: left;
+}
+
+.orderedList button:hover {
+    color: red;
+}
+
+/*================AUTHORS================*/
+
+#noAuthors {
+    margin-left: 1em;
+}
+
+/*================BUTTONS================*/
+
+.submitBtn{
+    padding: 15px 30px;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #4CAF50;
+    cursor: pointer;
+}
+
+.submitBtn:hover[type=submit] {
+    background: rgb(114, 190, 116);
+}
+
+.cancelBtn {
+    padding: 14px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: none;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    border-bottom: 2px solid #f44336;
+}
+
+.cancelBtn:hover{
+    background: #eb837c;
+}

@@ -18,6 +18,15 @@ return [
     'postRemoveFavError' => 'An error occured.',
     'postEditedErrorTooManyImages' => 'Too many images, maximum 5.',
 
+    'mailerToManyTags' => 'Too many categories',
+    'mailerUploaded' => 'Mailer has been configured successfully!',
+    'mailerUploadedError' => 'Error occured while configuring the Mailer.',
+    'mailerDeleted' => 'Mailer has been deleted successfully!',
+    'mailerEditedError' => 'Error occured while editing the Mailer.',
+    'mailerEdited' => 'Mailer has been changed successfully!',
+    'mailerAddedAuthor' => 'Author added to Mailer',
+    'mailerRemovedAuthor' => 'Author removed from Mailer',
+
     'profileEdited' => 'Profile has been changed successfully!',
     
     'signedIn' => 'Welcome!',

@@ -1,0 +1,38 @@
+#profileTab { 
+    background-color: #FE9042; 
+}
+
+#profileContentWraper{
+    background-color: rgb(149, 149, 149, 0.6);
+    padding: 40px 0px;
+}
+
+#profileContent {
+    background-color: rgb(11, 11, 11, 0.6);
+    position: relative;
+    width: 75%;
+    margin: 0px auto;
+}
+
+.profileNavBar { 
+    overflow: hidden;
+}
+
+.profileNavBar li { 
+    display: inline; 
+}
+
+.profileNavBar a {
+    float: left;
+    text-align: center;
+    width: 33.333333%;
+    padding: 14px;
+    text-decoration: none;
+    font-size: 100%;
+    transition: 0.2s;
+    border-bottom: 2px solid #ffffff;
+}
+
+.profileNavBar a:hover {
+    background-color: rgb(149, 149, 149, 0.7);;
+}

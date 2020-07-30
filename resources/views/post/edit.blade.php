@@ -1,5 +1,5 @@
 @extends('layouts.app')
-    <link rel="stylesheet" href="{{asset('css/itemEdit.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/item_create_edit.css')}}" />
 @section('styles')
 
 @endsection
@@ -155,10 +155,10 @@
                     </div>
                 @endif
                 
-                <p>{{__('ui.preview')}}:</p>
-
+                
                 <div class="gallery">
                     @if ( $post->images->isNotEmpty() )
+                        <p id="previewText">{{__('ui.preview')}}:</p>
                         @foreach ($post->images->where('version', 'optimized') as $image)
                             <div class="previewImg">
                                 <img src="{{ $image->url }}" alt="{{__('alt.keyword')}}">
@@ -167,7 +167,9 @@
                     @endif
                 </div>
 
-                <button type="button" id="modalImgsDeleteOn">{{__('ui.deleteAllImgs')}}</button>
+                @if ( $post->images->isNotEmpty() )
+                    <button type="button" id="modalImgsDeleteOn">{{__('ui.deleteAllImgs')}}</button>
+                @endif
 
                 <div class="help">
                     <p><i>{{__('ui.imageHelp')}}</i></p>
@@ -245,7 +247,7 @@
                 <p>{{__('ui.sure?')}}</p>
                 <div>
                     <button type="button" id="modalImgsDeleteOff">{{__('ui.no')}}</button>
-                    <form method="POST" action="{{ route('post.imgs.delete', $post->id) }}">
+                    <form method="POST" action="{{ route('posts.imgs.delete', $post->id) }}">
                         @csrf
                         @method('PATCH')
                         <button>{{__('ui.delete')}}</button>
@@ -408,7 +410,9 @@
 
                     if (input.files) {
                         var filesAmount = input.files.length;
-
+                        if ( !$('#previewText').length ) {
+                            $($.parseHTML("<p id='previewText'>{{__('ui.preview')}}:</p>")).appendTo(gallery);
+                        } 
                         for (i = 0; i < filesAmount; i++) {
                             var reader = new FileReader();
 
@@ -426,7 +430,6 @@
 
                 $('#inputImg').on('change', function() {
                     var gallery = $('div.gallery');
-                    //$(".gallery").empty();
                     imagesPreview(this, gallery);
                 });
             });
@@ -469,7 +472,7 @@
                     description: {
                         required: 'Минимум 10 символов.',
                         minlength: 'Минимум 10 символов.',
-                        maxlength: 'Максимум 255 символов'
+                        maxlength: 'Максимум 9000 символов'
                     },
                     cost: {
                         maxlength: 'Максимум 50 символов'

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('css/login_new.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/login.css')}}" />
     <style>
         #developmentStage {
             position: fixed;

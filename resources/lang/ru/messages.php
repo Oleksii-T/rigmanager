@@ -18,6 +18,15 @@ return [
     'postRemoveFavError' => 'Произошла ошибка.',
     'postEditedErrorTooManyImages' => 'Слишком много изображений, максимум 5.',
 
+    'mailerToManyTags' => 'Слишком много категорий',
+    'mailerUploaded' => 'Mailer настроен успешно!',
+    'mailerUploadedError' => 'При настройке Mailer произошла ошибка.',
+    'mailerDeleted' => 'Mailer было удалено успешно!',
+    'mailerEditedError' => 'При изменении Mailer произошла ошибка.',
+    'mailerEdited' => 'Mailer был изменен успешно!',
+    'mailerAddedAuthor' => 'Автор был добавлен в Mailer успешно!',
+    'mailerRemovedAuthor' => 'Автор был удален из Mailer успешно!',
+
     'profileEdited' => 'Профиль изменен успешно!',
 
     'signedIn' => 'Добро пожаловать!',

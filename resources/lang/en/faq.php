@@ -2,8 +2,7 @@
 
 return [
 
-    'title' => 'Welcome to',
-    'intro' => 'Here You can find answers on the main question relating to the website.',
+    'intro' => 'Frequently Asked Questions',
     
     'qPurpose' => 'What for this website?',
     'aPurpose1' => 'We introduce Ukrainian area for publishing sale and buy offers relating to Oil & Gas Equipment, such as equipment for:',

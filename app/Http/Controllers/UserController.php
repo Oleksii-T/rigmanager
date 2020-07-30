@@ -87,7 +87,8 @@ class UserController extends Controller
         return view('profile.myPosts', compact('posts_list'));
     }
 
-    public function addToFav(Request $request) {
+    public function addToFav(Request $request) 
+    {
         if ( !$post = Post::find($request->post_id)) {
             return false;
         }
@@ -119,4 +120,10 @@ class UserController extends Controller
         }
         return json_encode(false);
     }
+
+    public function subscription()
+    {
+        return view('subscription.show');
+    }
+    
 }

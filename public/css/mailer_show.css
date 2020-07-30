@@ -1,0 +1,223 @@
+#mailerBtn { 
+    background-color: #FE9042; 
+}
+
+div.mailerContent {
+    padding: 30px;
+}
+
+div.mailerBody {
+    margin-bottom: 30px;
+}
+
+#description {
+    margin-left: 1em;
+    white-space: pre-line;
+}
+
+h2.mailerHeader {
+    font-size: 130%;
+    display: inline-block;
+}
+
+.enable {
+    border-bottom: 2px solid #4CAF50;
+}
+
+.disable {
+    border-bottom: 2px solid #f44336;
+}
+
+.elementHeader {
+    font-size: 120%;
+    margin: 20px 0px 10px 0px;
+}
+
+/* Customize the label (the container) */
+#checkboxContainer {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+#checkboxContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+#checkboxContainer:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a orange background */
+#checkboxContainer input:checked ~ .checkmark {
+    background-color: #FE9042;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+#checkboxContainer input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+#checkboxContainer .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.orderedList {
+    list-style-position: outside;
+    margin-left: 2em;
+}
+
+.orderedList li {
+    margin-top: 5px;
+}
+
+#helpBtn {
+    display: inline-block;
+    transition: 0.2s;
+}
+
+#helpBtn:hover {
+    color: #FE9042;
+}
+
+#editBtn {
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: rgb(149, 149, 149, 0.7);
+    display: inline-block;
+    transition: 0.2s;
+    margin-right: 10px;
+}
+
+#editBtn:hover {
+    background-color: rgb(149, 149, 149, 0.8);
+}
+
+#editBtn:active {
+    background-color: rgb(149, 149, 149, 0.7);
+}
+
+
+/*==================MODAL==================*/
+
+#modalMailerDeleteShow {
+    float: right;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #f44336;
+    padding: 10px 20px;
+    border-bottom: 2px solid #f44336;
+}
+
+#modalMailerDeleteShow:hover{
+    color: #ffffff !important;
+    background: #eb837c;
+}
+
+.modalView {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black with opacity */
+    cursor: pointer;
+}
+
+.modalContent {
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgb(11, 11, 11, 0.7);
+    box-shadow: 0px 0px 20px 5px #000000;
+    display: block;
+    padding: 20px;
+    cursor: default;
+}
+
+.modalContent p {
+    text-align: center;
+    font-size: 120%;
+    margin-bottom: 20px;
+}
+
+.modalContent form { 
+    display: inline; 
+}
+
+.modalCancelDelete {
+    padding: 14px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #4CAF50;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.modalCancelDelete:hover {
+    background: rgb(114, 190, 116);
+}
+
+.modalSubmitDelete  {
+    padding: 14px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: none;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    border-bottom: 2px solid #f44336;
+}
+
+.modalSubmitDelete:hover {
+    background: #eb837c;
+}
+

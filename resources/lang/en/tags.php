@@ -21,7 +21,7 @@ return [
         'bha' => 'BHA', 
             'upGround' => 'Surface',
                 'tong' => 'Tongs', 
-                'elevator' => 'Elevagors', 
+                'elevator' => 'Elevators', 
                 'spider' => 'Spiders', 
                 'slip' => 'Slips', 
                 'drift' => 'Drifts', 

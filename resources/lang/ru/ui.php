@@ -2,6 +2,8 @@
 
 return [
 
+    // Dev massages
+    'workInProgress' => 'Работа в процессе',
     'development' => 
     'Сайт находиться на стадии активной разработки.
     Функциональность для обычных пользователей ограничены.
@@ -9,27 +11,47 @@ return [
     Если вы хотите узнать больше или 
     хотите принять участие в бета тестировании, 
     свяжитесь с нами по почтовому адресу',
+    
+    // no script massage
+    'noscript' => 'В вашем браузере отключен Javascript. 
+    Это может серьезно отразиться на функциональности нащего сайта.',
 
+    // jeneral massages
+    'delete' => 'Удалить',
+    'no' => 'Нет',
+    'edit' => 'Править',
+    'submit' => 'Подтвердить',
+    'cancel' => 'Отмена',
+    'empty' => 'Пусто',
+    'save' => 'Сохранить',
+
+    // auth massages
     'signIn' => 'Войти',
     'socialSignIn' => 'Войти как
-пользователь',
+    пользователь',
     'signOut' => 'Выйти',
     'signUp' => 'Регестрация',
     'or' => 'Или',
     'login' => 'Логин',
+    'remember me' => 'Запомнить меня',
+    'forget password' => 'Забыли пароль?',
+    
+    //home massages
     'home' => 'Домой',
-    'myPosts' => 'Мои объявления',
-    'favourites' => 'Избранное',
-    'profile' => 'Профиль',
-    'addPost' => 'Добавить объявление',
-    'noscript' => 'В вашем браузере отключен Javascript. 
-        Это может серьезно отразиться на функциональности нащего сайта.',
-    'search' => 'Поиск',
-    'searchByAuthor' => 'Объявления автора',
-    'other' => 'Другое',
     'addToFav' => 'Добавить в Избранное',
+
+    // my posts massages
+    'myPosts' => 'Мои объявления',
+    'noMyPosts' => 'У вас еще нет объявлений.',
+
+    // favoutites massages
+    'favourites' => 'Избранное',
+    'noFavPosts' => 'У вас еще нет избранных объявлений.',
     'inFav' => 'В Избранном',
     'removeFromFav' => 'Удалить их Избранного',
+
+    // profile massages
+    'profile' => 'Профиль',
     'loginHelp' => 'Логином должна быть электронная почта.',
     'password' => 'Пароль',
     'passwordHelp' => 'Минимум 6 симфолов.
@@ -37,8 +59,6 @@ return [
     'passwordEditHelp' => 'Минимум 6 симфолов.
         Минимум одна буква и одна цифра.
         Оставте поле пустым, чтобы оставить старый пароль.',
-    'remember me' => 'Запомнить меня',
-    'forget password' => 'Забыли пароль?',
     'avatar' => 'Изображение профиля',
     'userName' => 'Имя',
     'userNameHelp' => 'Ваше имя будет видно всем на сайте.
@@ -48,12 +68,42 @@ return [
     'profileInfo' => 'Данные профиля',
     'deleteProfileImg' => 'Удалить изображение',
     'passwordEncrypted' => 'В целях безопасности мы сохраняем пароль в закодированом виде. Если вы забыли пароль, то всегда можете поменять его в настройках профиля.',
-    'edit' => 'Править',
     'profileSettings' => 'Настройки профиля',
-    //'submit' => 'Подтвердить',
-    'cancel' => 'Отмена',
-    'noFavPosts' => 'У вас еще нет избранных объявлений.',
-    'noMyPosts' => 'У вас еще нет объявлений.',
+
+    //mailer massages
+    'mailer' => 'Mailer',
+    'setUpMailer' => 'Настроить Mailer',
+    'noMailer' => 'Ваш Mailer не настроен',
+    'whatIsMailer' => 'Что такое Mailer',
+    'settingUpMailer' => 'Конфигурация Mailer',
+    'mailerDescription' => 'Описиние',
+    'mailerChooseDescription' => 'Опишите что Вы ищите',
+    'mailerDescriptionHelp' => '',
+    'mailerTags' => 'Категории',
+    'mailerChooseTags' => 'Выберите интересующие Вас категории',
+    'mailerTagsHelp' => 'Нажмите на запись чтобы удалить',
+    'mailerAuthors' => 'Авторы',
+    'deleteMailer' => 'Удалить Mailer',
+    'mailerIsActive' => 'Mailer активный',
+    'mailerNotActive' => 'Mailer не активный',
+    'mailerAuthorsHelp' => 'Вы можете подписаться на Автора на странице любого объявления, возле кнопки \'Показать контакты\'. Нажмите на запись чтобы удалить',
+    'mailerAddAuthor' => 'Добавить Автора в Mailer',
+    'mailerRemoveAuthor' => 'Удалить Автора из Mailer',
+    'mailerNoAuthors' => 'Вы не подписаны ни на одного автора',
+
+    //subscription massages
+    'mySubscription' => 'Моя подписка',
+
+    // search bar and search result massages
+    'search' => 'Поиск',
+    'searchByAuthor' => 'Объявления автора',
+    'other' => 'Другое',
+    'searchSuccess' => 'Вот что нам удалось найти',
+    'searchFail' => 'К сожалению, нам не удалось найти объявление по Вашему запросу',
+
+    // post edit/create massages
+    'addPost' => 'Добавить объявление',
+    'postCreate' => 'Создание объявления',
     'postSettings' => 'Изменение объявления',
     'title' => 'Заголовок',
     'titleHelp' => 'Максимум 70 символов.',
@@ -73,19 +123,16 @@ return [
         Максимальный размер 5МБ.',
     'uploadFile' => 'Выбрать файл',
     'preview' => 'Предосмотр',
-    'empty' => 'Пусто',
     'cost' => 'Цена',
     'location' => 'Расположение товара',
     'costLocationHelp' => 'Не обязательно.',
     'email' => 'Электронная почта',
     'emailPhoneHelp' => 'Одно из полей обязательно.
         Для каждого объявления вы сможете выбрать новую эл. почту и номер теефона.',
-    'save' => 'Сохранить',
     'deletePost' => 'Удалить объявление',
-    'delete' => 'Удалить',
-    'no' => 'Нет',
     'sure?' => 'Вы уверены?',
-    'postCreate' => 'Создание объявления',
+    
+    // post show masssages
     'yoursPost' => 'Это объявление принадлежит вам',
     'postAuthor' => 'Автор объявления',
     'otherAuthorPosts' => 'Другие объявления автора',
@@ -94,9 +141,8 @@ return [
     'postCreated' => 'Объявление добавленно',
     'condition' => 'Состояние',
     'deleteAllImgs' => 'Удалить все изображения',
-    'searchSuccess' => 'Вот что нам удалось найти',
-    'searchFail' => 'К сожалению, нам не удалось найти объявление по Вашему запросу',
 
+    // verification notice massages
     'verifyNoticeThank' => 'Спасибо, что выбрали наш ресурс',
     'verifyNoticeBody' => 'На ваш Электронный адрес было выслано письмо для активации учетной записи.
     Пожалуйста, перейдите по ссылке предоставленной в нашем письме.
@@ -105,13 +151,18 @@ return [
     'verifyNoticeResend' => 'Новое письмо для активации учетной записи
     отправленно на Ваш электронный адрес.',
 
+    // footer massages
     'foterAbout' => 'О нас',
+    'foterFAQ' => 'FAQ',
     'footerCopyright' => 'Всё права защищёны.',
     'footerIconsRef' => 'Все иконки предоставлены',
     'footerSubscription' => 'Подписки',
     'footerContact' => 'Контакты',
     'footerTerms' => 'Пользовательское 
     соглашение',
+    'footerPrivacy' => 'Политика
+    Конфиденциальности',
     'footerDevelop' => 'Разработка',
-    '' => '',
+    'footerSiteMap' => 'Карта Сайта',
+
 ];

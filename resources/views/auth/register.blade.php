@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('css/register_new.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/register.css')}}" />
     <style>
         #developmentStage {
             position: fixed;

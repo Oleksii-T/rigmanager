@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use App\ProfileImage;
 use App\Post;
 use App\Favourite;
+use App\Mailer;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -40,17 +41,19 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-
-    //One To Many repationship
     public function posts()
     {
         return $this->hasMany(Post::class);
     }
 
-    //One To One repationship
     public function image()
     {
         return $this->hasOne(ProfileImage::class)->latest();
+    }
+
+    public function mailer()
+    {
+        return $this->hasOne(Mailer::class);
     }
 
     public function favPosts()

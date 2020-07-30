@@ -30,11 +30,31 @@ class HomeController extends Controller
         Session::forget('searchAuthor');
         $posts_list = Post::orderBy('created_at', 'desc')->paginate(env('POSTS_PER_PAGE'));
         $tagsArray = "";
-        return view('home', compact('posts_list', 'tagsArray'));
+        return view('home.home', compact('posts_list', 'tagsArray'));
     }
     
-    public function about()
+    public function faq()
     {
-        return view('about');
+        return view('home.faq');
+    }
+    public function plans()
+    {
+        return view('home.plans');
+    }
+    public function contacts()
+    {
+        return view('home.contacts');
+    }
+    public function terms()
+    {
+        return view('home.terms');
+    }
+    public function privacy()
+    {
+        return view('home.privacy');
+    }
+    public function sitemap()
+    {
+        return view('home.sitemap');
     }
 }

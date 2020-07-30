@@ -17,13 +17,11 @@ class PostController extends Controller
 
     /**
      * Display a listing of the resource.
+     * This method and appropriate route is implemented as 'home' route
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('post.index');
-    }
+    //public function index() {}
 
     /**
      * Show the form for creating a new resource.
@@ -66,10 +64,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $tagsArray = $this->getTagNameByIdWithPath($post->tag);
-        $isFav = $post->favOfUser->search(function($item, $key){
-            return $item->id == auth()->user()->id;
-        });
-        return view('post.show', compact('post', 'isFav', 'tagsArray'));
+        return view('post.show', compact('post', 'tagsArray'));
     }
 
     /**
@@ -114,7 +109,7 @@ class PostController extends Controller
             $this->postImageUpload($request->file('images'), $post);
         }
         Session::flash('message-success', __('messages.postEdited'));
-        return $this->show($post->id);
+        return redirect(route('posts.show', $id));
     }
 
     /**
@@ -169,7 +164,7 @@ class PostController extends Controller
         $posts_list->total() == 0 
             ? Session::flash('search', __('ui.searchFail')) 
             : Session::flash('search', __('ui.searchSuccess'));
-        return view('home', compact('posts_list', 'tagsArray'));
+        return view('home.home', compact('posts_list', 'tagsArray'));
     }
 
     public function searchAuthor($authorId) {
@@ -180,7 +175,7 @@ class PostController extends Controller
             ? Session::flash('search', __('ui.searchFail')) 
             : Session::flash('search', __('ui.searchSuccess'));
         Session::flash('searchAuthor', $user->name);
-        return view('home', compact('posts_list', 'tagsArray'));
+        return view('home.home', compact('posts_list', 'tagsArray'));
     }
 
 }

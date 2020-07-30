@@ -59,6 +59,24 @@ BUG: 1px bug of js password validation error
 
 BUG: backgorund gray color displaying wrong on ligin page
 
+CODE: Make post contact info request as a ajax request
+
+BUG: post.index and profile.show route is empty
+
+BUG: author search bug
+
+CODE: protect mail/create and mail/edit from category choose spaming
+
+CODE: translate fotm js validation
+
+BUG: cursor wait is show when form submited with errors (login page)
+
+CODE: fix Ajax. some requests done odd, some are GET with query string and some are GET with reqeust data. redesign: GET for read data, POST for write data
+
+CODE: redesigh pop up and flash massages (make em like in adm.tool)
+
+NOTE: in mailer when user deletes author, value become EMPTY not NULL
+
 
 =========MASTER_OBEJECTIVES===========
 

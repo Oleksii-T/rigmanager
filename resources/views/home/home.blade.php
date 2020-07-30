@@ -2,8 +2,8 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/items.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/item_items.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/item_pagination.css') }}" />
 @endsection
 
 @section('content')

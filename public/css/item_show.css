@@ -203,27 +203,26 @@ p, h1 {
     height: 40px;
 }
 
-#authorView a {
+.authorBtns {
+    background-color: rgb(149, 149, 149, 0.7);
     margin-top: 10px;
-    display: block;
-    padding: 7px;
-    text-decoration: none;
-    transition: 0.2s;
-    font-size: 95%;
-}
-
-#authorView button {
-    margin: 0px auto;
-    margin-top: 10px;
-    background: none;
     border: none;
+    text-decoration: none;
     padding: 7px;
     transition: 0.2s;
     font-size: 95%;
+    display: block;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
 }
 
-#authorView a:hover,
-#authorView button:hover {
+
+.authorBtns:hover {
+    background-color: rgb(149, 149, 149, 0.8);
+}
+
+.authorBtns:active {
     background-color: rgb(149, 149, 149, 0.7);
 }
 

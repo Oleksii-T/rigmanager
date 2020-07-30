@@ -1,6 +1,8 @@
-#profileTab { background-color: #FE9042; }
+#personlaInfoBtn { 
+    background-color: #FE9042; 
+}
 
-p {
+#profileContent p {
     white-space: pre-line;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -10,20 +12,11 @@ p {
     text-align: center;
 }
 
-#userData {
-    background-color: rgb(149, 149, 149, 0.7);
-    margin-left: 40px;
-    margin-right: 40px;
-    position: relative;
-    margin-bottom: 30px; /* 20+10padding */
-}
-
 #avaShow {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    margin: 0px auto;
-    margin-bottom: 20px;
+    margin: 40px auto 40px auto;
 }
 
 #avaShow img {
@@ -34,14 +27,14 @@ p {
     border-radius: 50%;
 }
 
-#userData table {
+#profileContent table {
     width: 90%;
     max-width: 95%;
     margin: 0px auto;
     border-collapse: collapse;
 }
 
-#userData td {
+#profileContent td {
     overflow: hidden;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -49,24 +42,28 @@ p {
     max-width: 300px;
 }
 
-#nameShow,
-#emailShow,
-#phoneShow,
+#usernameField,
+#emailField,
+#phoneField,
 #avaEdit {
     border-bottom: 2px solid #888888;
 }
 
-#phoneShow img {
+.fieldName p {
+    padding-left: 20px;
+}
+
+#phoneField img {
     height: 30px;
     vertical-align: middle;
 }
 
-#passShow td {
+#passwordField td {
     position: relative;
     transition: 0.2s;
 }
 
-#emailShow div {
+#emailField div {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -84,7 +81,7 @@ p {
 
 .helpText {
     position: absolute;
-    bottom: -20px;
+    bottom: 20px;
     right: 10px;
     font-size: 90%;
     color: #888888;
@@ -98,11 +95,10 @@ p {
 }
 
 #editBtn {
-    margin-left: 40px;
-    padding: 10px;
+    padding: 10px 20px;
     text-decoration: none;
     background-color: rgb(149, 149, 149, 0.7);
-    margin-bottom: 10px;
+    display: inline-block;
 }
 
 #editBtn:hover {

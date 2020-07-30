@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('css/itemEdit.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/item_create_edit.css')}}" />
 @endsection
 
 @section('content')
@@ -146,9 +146,7 @@
                     </div>
                 @enderror
 
-                <div class="gallery">
-                    <p>{{__('ui.preview')}}: {{__('ui.empty')}}</p>
-                </div>
+                <div class="gallery"></div>
 
                 <div class="help">
                     <p><i>{{__('ui.imageHelp')}}</i></p>
@@ -315,7 +313,9 @@
 
                     if (input.files) {
                         var filesAmount = input.files.length;
-
+                        if ( !$('#previewText').length ) {
+                            $($.parseHTML("<p id='previewText'>{{__('ui.preview')}}:</p>")).appendTo(gallery);
+                        } 
                         for (i = 0; i < filesAmount; i++) {
                             var reader = new FileReader();
 
@@ -376,7 +376,7 @@
                     description: {
                         required: 'Минимум 10 символов',
                         minlength: 'Минимум 10 символов',
-                        maxlength: 'Максимум 255 символов'
+                        maxlength: 'Максимум 9000 символов'
                     },
                     cost: {
                         maxlength: 'Максимум 50 символов'
