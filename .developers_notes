@@ -67,7 +67,7 @@ BUG: author search bug
 
 CODE: protect mail/create and mail/edit from category choose spaming
 
-CODE: translate fotm js validation
+CODE: translate form js validation
 
 BUG: cursor wait is show when form submited with errors (login page)
 
@@ -77,7 +77,9 @@ CODE: redesigh pop up and flash massages (make em like in adm.tool)
 
 NOTE: in mailer when user deletes author, value become EMPTY not NULL
 
-BUG: flash notif is keeps on second page (possible fix: use return redirect() instead return view())
+BUG: sometimes flash notif is keeps on second page (possible fix: use return redirect() instead return view())
+
+CODE: prevent dafault in drop dawn tags in home and search pages
 
 
 =========MASTER_OBEJECTIVES===========
@@ -107,6 +109,8 @@ CODE: loaning system for equipment
 
 =======DONE======
 
+BUG: with flash massages in search 
+CODE: add posibility to add search request to mailer 
 CODE: optimize images
 CODE: search by author
 ADD: wait cursor to buttons in login and register

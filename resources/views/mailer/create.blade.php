@@ -117,7 +117,7 @@
                             <ol class="orderedList"></ol>
                         </div>
                         <x-server-input-error errorName='tags' inputName='tagEncodedHidden' errorClass='error'/>
-                        <div class="help">
+                        <div class="help hidden">
                             <p><i>{{__('ui.mailerTagsHelp')}}</i></p>
                         </div>
         
@@ -159,6 +159,7 @@
             //check for empty
             if ( $('#tagEncodedHidden').attr('value') == "" ) {
                 $('#choosenTags').css('display', 'none');
+                $('#tags div.help').addClass('hidden');
             }
         };
 
@@ -233,14 +234,17 @@
                     type: "GET",
                     url: ajaxUrl,
                     success: function(data) {
-                        $(this).addClass('choosen');
+                        // Mark drop down button as choosen
+                        clickedTag.addClass('choosen');
                         clickedTag.addClass('isActiveBtn');
+                        // Show help text and choosen tag
+                        $('#tags div.help').removeClass('hidden');
+                        $('#choosenTags').css('display', 'block');
                         // Write encoded tag to hidden form field
                         var newValue = $('#tagEncodedHidden').attr('value') + tagEncoded + " ";
                         $('#tagEncodedHidden').attr('value', newValue);
                         // Write readble tag to visible form field for user
                         $( "#choosenTags ol" ).append( "<li id=\"encoded_"+tagEncoded+"\"><button onclick=\"removeFromChoosenTags('"+tagEncoded+"')\" type=\"button\" title=\"{{__('ui.delete')}}\">"+data+"</button></li>" );
-                        $('#choosenTags').css('display', 'block');
                         // Remove wait cursor
                         $(document.body).css('cursor', 'default');
                         $('#dropDown a').removeClass('loading'); 

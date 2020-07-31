@@ -41,6 +41,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('mailer/destroy', 'MailerController@destroy')->name('mailer.destroy');//remove default parametes
     Route::get('mailer/author/{author}', 'MailerController@addRemoveAuthor')->name('mailer.add.remove.author');// Ajax request
     Route::get('mailer/toggle', 'MailerController@toggle')->name('mailer.toggle');// Ajax request
+    Route::get('mailer/tag/{tag}', 'MailerController@addTag')->name('mailer.add.tag');// Ajax request
+    Route::get('mailer/text/{text}', 'MailerController@addText')->name('mailer.add.text');// Ajax request
+    Route::get('mailer/author/add/{author}', 'MailerController@addAuthor')->name('mailer.add.author');// Ajax request
 
 
     // Folloing routes shall be for non-registered users on production stage
@@ -55,9 +58,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // user routes
     Route::get('emailexists', 'UserController@emailExists')->name('email.exist');
     // post routes
-    Route::get('search', 'PostController@search')->name('search');
-    Route::get('search/category/{category}', 'PostController@searchTag')->name('searchTag');
-    Route::get('search/author/{author}', 'PostController@searchAuthor')->name('searchAuthor');
+    // search routes
+    //Route::get('search/result/{posts}', 'SearchController@showResult')->name('search.result');
+    Route::get('search/result', 'SearchController@showResult')->name('search.result');
+    Route::get('search/text', 'SearchController@searchText')->name('search.text');
+    Route::get('search/category/{category}', 'SearchController@searchTag')->name('search.tag');
+    Route::get('search/author/{author}', 'SearchController@searchAuthor')->name('search.author');
 });
 
 Route::middleware('auth')->group(function () {

@@ -22,7 +22,7 @@
                     @method('PATCH')
 
                     <div class="element" id="keywords">
-                        <label class="elementHeading" for="inputKeywords">{{__('ui.mailerChooseDescription')}}</label><br>
+                        <p class="elementHeading">{{__('ui.mailerChooseDescription')}}</p>
                         <textarea id="inputKeywords" name="keywords" form="formUpdateMailer" rows="5" maxlength="9000">{{ old('keywords') ?? $mailer->keywords }}</textarea>
                         <x-server-input-error errorName='keywords' inputName='inputKeywords' errorClass='error'/>
                     </div>
@@ -117,13 +117,13 @@
                             <ol class="orderedList">
                                 @if ($mailer->tags)
                                     @foreach ($mailer->tagsIdsAndNames as $id => $tag)
-                                        <li id="encoded_{{$id}}"><button class="removeTag" type="button" title="{{__('ui.delete')}}">{{$tag}}</button></li>
+                                        <li id="encoded_{{$id}}"><button class="removeTag" type="button" onclick="removeFromChoosenTags('{{$id}}')" title="{{__('ui.delete')}}">{{$tag}}</button></li>
                                     @endforeach
                                 @endif
                             </ol>
                         </div>
                         <x-server-input-error errorName='tags' inputName='tagEncodedHidden' errorClass='error'/>
-                        <div class="help">
+                        <div class="help {{$mailer->tags ? "" : "hidden"}}">
                             <p><i>{{__('ui.mailerTagsHelp')}}</i></p>
                         </div>
                     </div>
@@ -137,10 +137,10 @@
                                     <li id="author_{{$id}}"><button type="button" onclick="removeAuthor({{$id}})" title="{{__('ui.delete')}}">{{$author}} </button></li>
                                 @endforeach
                             </ol>
-                        @else
-                            <p id="noAuthors">{{__('ui.mailerNoAuthors')}}</p>
                         @endif
+                        <p class="{{$mailer->authors ? "hidden" : ""}}" id="noAuthors">{{__('ui.mailerNoAuthors')}}</p>
                         <div class="help">
+                            <p class="{{$mailer->authors ? "" : "hidden"}}" id="clickToDeleteHelp"><i>{{__('ui.mailerClickToDelete')}}</i></p>
                             <p><i>{{__('ui.mailerAuthorsHelp')}}</i></p>
                         </div>
                     </div>
@@ -170,7 +170,10 @@
         element.empty();
         element.remove();
         //check if empty
-        //if ( $('#inputAuthors').attr('value') == "" ) { TODO }
+        if ( $('#inputAuthors').attr('value') == "" ) {
+            $('#clickToDeleteHelp').addClass('hidden');
+            $('#noAuthors').removeClass('hidden');
+        }
     }
 
     // User choosed already choosen tag or removing the tag
@@ -194,6 +197,7 @@
         //check for empty
         if ( $('#tagEncodedHidden').attr('value') == "" ) {
             $('#choosenTags').css('display', 'none');
+            $('#tags div.help').addClass('hidden');
         }
     };
 
@@ -280,8 +284,11 @@
                 type: "GET",
                 url: ajaxUrl,
                 success: function(data) {
+                    // Mark drop down button as choosen
                     clickedTag.addClass('choosen');
                     clickedTag.addClass('isActiveBtn');
+                    // Show help text and choosen tag
+                    $('#tags div.help').removeClass('hidden');
                     $('#choosenTags').css('display', 'block');
                     // Write encoded tag to hidden form field
                     var newValue = $('#tagEncodedHidden').attr('value') + tagEncoded + " ";

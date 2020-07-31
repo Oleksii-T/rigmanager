@@ -26,6 +26,11 @@ return [
     'mailerEdited' => 'Mailer has been changed successfully!',
     'mailerAddedAuthor' => 'Author added to Mailer',
     'mailerRemovedAuthor' => 'Author removed from Mailer',
+    'mailerTagExists' => 'Specified tags already in your Mailer',
+    'mailerTagAdded' => 'Specified tags added to your Mailer successfully!',
+    'mailerCreatedWithTag' => 'A new Mailer with specified tags has been created',
+    'mailerTextAdded' => 'Specified keywords added to your Mailer successfully!',
+    'mailerCreatedWithText' => 'A new Mailer with specified keywords has been created',
 
     'profileEdited' => 'Profile has been changed successfully!',
     

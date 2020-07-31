@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/item_items.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/item_pagination.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
 @endsection
 
 @section('content')
@@ -13,7 +14,7 @@
             <div id="inputWraper">
                 <img id="searchIcon" src="{{ asset('icons/searchIcon.svg') }}" alt="{{__('alt.keyword')}}">
                 <a href="{{ route('home') }}"><img id="clearIcon" src="{{ asset('icons/clearIcon.svg') }}" alt="{{__('alt.keyword')}}"></a>
-                <input id="inputSearch" name="searchStrings" placeholder="{{__('ui.search')}}..." required />
+                <input id="inputSearch" name="searchStrings" value="{{ Session::get('searchText') }}" placeholder="{{__('ui.search')}}..." required />
             </div>
             <button type="submit">{{__('ui.search')}}</button>
         </form>
@@ -142,8 +143,47 @@
         </div>
     </div>
 
-    <x-items :posts="$posts_list" button='addToFav' />
+    <!-- Search result status show -->
+    <div id="search-status">
+        @if ( Session::has('searchText') )
+            <div id="mailer-suggestion">
+                <button id="addTextToMailer" class="{{ Session::get('searchText') }}">{{__('ui.mailerSuggestText')}}</button>
+                <a id="whatIsMailerHelp" href="{{route('faq')}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
+            </div>
+        @elseif ( Session::has('searchTags') )
+            <div id="searchTags">    
+                @foreach (Session::get('searchTags') as $id => $tag)
+                    <a class="itemTag" href="{{ route('search.tag', $id) }}">{{$tag}}</a> 
+                    <span>></span>
+                @endforeach
+            </div>
+            <div id="mailer-suggestion">
+                <button id="addTagToMailer" class="{{array_key_last(Session::get('searchTags'))}}">{{__('ui.mailerSuggestTag')}}</button>
+                <a id="whatIsMailerHelp" href="{{route('faq')}}#WhatIsMailer">({{__('ui.whatIsMailer')}})</a>
+            </div>
+        @elseif ( Session::has('searchAuthorName') )
+            <div id="searchAuthor">
+                <p>{{__('ui.searchByAuthor')}} <span>{{Session::get('searchAuthorName')}}</span>:</p>
+            </div>
+            <div id="mailer-suggestion">
+                <button id="addAuthorToMailer" class="{{Session::get('searchAuthorId')}}">{{__('ui.mailerSuggestAuthor')}}</button>
+                <a  id="whatIsMailerHelp"href="{{route('faq')}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
+            </div>   
+        @endif
+        <h1 id="searchStatus">{{Session::get('searchStatus')}}</h1>
+    </div>
 
+    <!-- Search fileters show -->
+    @if ($posts_list->total() != 0)
+        <div id="filters">
+            <!-- TO DO -->
+        </div>
+    @endif  
+
+    <!-- Search result posts -->
+    <x-items :posts="$posts_list" button='addToFav' />
+    
+    <!-- Pagination -->
     <div class="pagination-field">
         {{ $posts_list->appends(request()->except('page'))->links() }}
     </div>
@@ -154,14 +194,109 @@
     <script type="text/javascript">
         $(document).ready(function(){
 
-            //fade out flash massages
-            $("div.flash").delay(3000).fadeOut(350);
-
             //static generator of unique ids for popUp massages
             function Generator() {};
             Generator.prototype.rand =  0;
             Generator.prototype.getId = function() {return this.rand++;};
             var idGen = new Generator();
+
+            //make pop up massage from text
+            function popUpMassage (text) {
+                var uniqueId = "num" + idGen.getId();
+                $('#container').append('<div class="popUp" id="'+uniqueId+'"><p>'+text+'</p></div>');
+                $('#'+uniqueId).addClass('popUpShow');
+                $('#'+uniqueId).click(function(){ $(this).removeClass('popUpShow') });
+                setTimeout(function(){
+                    $('#'+uniqueId).removeClass('popUpShow');
+                }, 3000);
+            }
+
+            //remove last '>' symbol from searched tags
+            $('#searchTags span').last().remove();
+
+            //fade out flash massages
+            $("div.flash").delay(3000).fadeOut(350);
+
+            // user adds text to Mailer
+            $('#addTextToMailer').click(function() {
+                var searchString = $(this).attr('class');
+                // Add wait cursor
+                $(document.body).css('cursor', 'default');
+                $(this).addClass('loading'); 
+                var ajaxUrl = '{{ route("mailer.add.text", ":string") }}';
+                ajaxUrl = ajaxUrl.replace(':string', searchString);
+                $.ajax({
+                    type: "GET",
+                    url: ajaxUrl,
+                    success: function(data) {
+                        popUpMassage(data);
+                        // Remove wait cursor
+                        $(document.body).css('cursor', 'default');
+                        $('#addTextToMailer').removeClass('loading'); 
+                    },
+                    error: function() {
+                        // Print error massage
+                        popUpMassage("{{ __('messages.error') }}");
+                        // Remove wait cursor
+                        $(document.body).css('cursor', 'default');
+                        $('#addTextToMailer').removeClass('loading'); 
+                    }
+                });
+            });
+
+            // user adds tags to Mialer
+            $('#addTagToMailer').click(function() {
+                var tagId = $(this).attr('class');
+                // Add wait cursor
+                $(document.body).css('cursor', 'default');
+                $(this).addClass('loading'); 
+                var ajaxUrl = '{{ route("mailer.add.tag", ":tagId") }}';
+                ajaxUrl = ajaxUrl.replace(':tagId', tagId);
+                $.ajax({
+                    type: "GET",
+                    url: ajaxUrl,
+                    success: function(data) {
+                        popUpMassage(data);
+                        // Remove wait cursor
+                        $(document.body).css('cursor', 'default');
+                        $('#addTagToMailer').removeClass('loading'); 
+                    },
+                    error: function() {
+                        // Print error massage
+                        popUpMassage("{{ __('messages.error') }}");
+                        // Remove wait cursor
+                        $(document.body).css('cursor', 'default');
+                        $('#addTagToMailer').removeClass('loading'); 
+                    }
+                });
+            });
+
+            // user add author to mailer
+            $('#addAuthorToMailer').click(function() {
+                var author = $(this).attr('class');
+                // Add wait cursor
+                $(document.body).css('cursor', 'default');
+                $(this).addClass('loading'); 
+                var ajaxUrl = '{{ route("mailer.add.author", ":author") }}';
+                ajaxUrl = ajaxUrl.replace(':author', author);
+                $.ajax({
+                    type: "GET",
+                    url: ajaxUrl,
+                    success: function(data) {
+                        popUpMassage(data);
+                        // Remove wait cursor
+                        $(document.body).css('cursor', 'default');
+                        $('#addAuthorToMailer').removeClass('loading'); 
+                    },
+                    error: function() {
+                        // Print error massage
+                        popUpMassage("{{ __('messages.error') }}");
+                        // Remove wait cursor
+                        $(document.body).css('cursor', 'default');
+                        $('#addAuthorToMailer').removeClass('loading'); 
+                    }
+                });
+            });
 
             //search for clicked category 
             $('#dropDown a').click(function($e){
@@ -189,17 +324,6 @@
                     $(this).removeClass('isActiveBtn');
                 }
             });
-
-            //make pop up massage from text
-            function popUpMassage (text) {
-                var uniqueId = "num" + idGen.getId();
-                $('#container').append('<div class="popUp" id="'+uniqueId+'"><p>'+text+'</p></div>');
-                $('#'+uniqueId).addClass('popUpShow');
-                $('#'+uniqueId).click(function(){ $(this).removeClass('popUpShow') });
-                setTimeout(function(){
-                    $('#'+uniqueId).removeClass('popUpShow');
-                }, 3000);
-            }
 
             //if user tries to add his oun item to fav list
             $(".addToFavButtonBlocked").click(function(){

@@ -1,28 +1,16 @@
-#profileTab {
+#personlaInfoBtn {
     background-color: #FE9042;
 }
 
-#userData {
-    background-color: rgb(149, 149, 149, 0.6);
-    position: relative;
-    padding-top: 40px;
-    padding-bottom: 40px;
+#profileContent {
+    padding-bottom: 30px;
 }
 
-form>div {
-    background-color: rgb(11, 11, 11, 0.6);
-    margin: 0px 40px;
-    margin-bottom: 20px;
-}
-
-form>div>p {
+form>div>h1 {
     text-align: center;
-    font-size: 190%;
-    margin-bottom: 30px;
-    padding-top: 10px;
 }
 
-table {
+#userData table {
     width: 90%;
     max-width: 95%;
     margin: 0px auto;
@@ -34,10 +22,13 @@ table {
     overflow: hidden;
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 50%;
     vertical-align: top;
     position: relative;
     padding: 20px 5px;
+}
+
+#userData tr>td {
+    width: 35%;
 }
 
 #nameShow, #emailShow, #phoneShow, #avaEdit {
@@ -90,6 +81,10 @@ table input[type=password] {
     border: none;
     background-color: rgb(149, 149, 149, 0.7);
     transition: 0.2s;
+}
+
+.hideShowPassword-wrapper {
+    width: 100%;
 }
 
 #phoneShow img { height: 20px; }

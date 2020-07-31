@@ -11,7 +11,7 @@
         </div>
         <div id="paragraphBody">
             
-            <h2 class="question">{{__('faq.qPurpose')}}</h2>
+            <a class="question" id="Purpose">{{__('faq.qPurpose')}}</a>
             <p class="answer">{{__('faq.aPurpose1')}}</p>
             <ul>
                 <li>{{__('faq.aPurposeListDrilling')}}</li>
@@ -21,21 +21,26 @@
             </ul>
             <p class="answer">{{__('faq.aPurpose2')}}</p>
 
-            <h2 class="question">{{__('faq.qForWhat')}}</h2>
+            <a class="question" id="ForWhat">{{__('faq.qForWhat')}}</a>
             <p class="answer">{{__('faq.aForWhat')}}</p>
 
-            <h2 class="question">{{__('faq.qBuy')}}</h2>
-            <p class="answer">{{__('faq.aBuy1')}} <a href="{{ route('home') }}">{{__('faq.aBuyLink')}}</a> {{__('faq.aBuy2')}}</p>
+            <a class="question" id="Buy">{{__('faq.qBuy')}}</a>
+            <p class="answer">{{__('faq.aBuy1')}} <a class="link" href="{{ route('home') }}">{{__('faq.aBuyLink')}}</a> {{__('faq.aBuy2')}}</p>
             
-            <h2 class="question">{{__('faq.qSell')}}</h2>
-            <p class="answer">{{__('faq.aSell1')}} <a href="{{ route('posts.create') }}">{{__('faq.aSellLink')}}</a>, {{__('faq.aSell2')}}</p>
+            <a class="question" id="Sell">{{__('faq.qSell')}}</a>
+            <p class="answer">{{__('faq.aSell1')}} <a class="link" href="{{ route('posts.create') }}">{{__('faq.aSellLink')}}</a>, {{__('faq.aSell2')}}</p>
 
-            <h2 class="question">{{__('faq.qWhyWe')}}</h2>
+            <a class="question" id="WhyWe">{{__('faq.qWhyWe')}}</a>
             <p class="answer">{{__('faq.aWhyWe')}}</p>
+
+            <a class="question" id="WhatIsMailer">{{__('faq.qWhatIsMailer')}}</a>
+            <p class="answer">{{__('faq.aWhatIsMailer1')}} <a class="link" href="{{route('mailer.index')}}">{{__('faq.aWhatIsMailerLink')}}</a> {{__('faq.aWhatIsMailer2')}}</p>
             
-            <p id="slgText" id="sig">{{__('faq.slg1')}} <span>rigmanager.com.ua</span>.
-                {{__('faq.slg2')}}</p>
-            <a href = "mailto: web.rigmanager@gmail.com">web.rigmanager@gmail.com</a>
+            <div id="contacts">
+                <p id="slgText" id="sig">{{__('faq.slg1')}} <span>rigmanager.com.ua</span>.
+                    {{__('faq.slg2')}}</p>
+                <a class="link" href = "mailto: web.rigmanager@gmail.com">web.rigmanager@gmail.com</a>
+            </div>
         </div>
     </div>
 @endsection

@@ -2,95 +2,109 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{asset('css/profile_edit.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/profile_layout.css')}}" />
 @endsection
 
 @section('content')
-    <div id="userData">
-        <form method="POST" id="formProfile" action="{{ route('profile.update') }}" enctype="multipart/form-data">
-            @csrf
-            @method('PATCH')
-            <div>
-                <p>{{__('ui.profileSettings')}}</p>
-                <table>
-                    <tr id="avaEdit">
-                        <td><p>{{__('ui.avatar')}}</p></td>
-                        <td>
-                            <label for="inputAva">
-                                <div id="avaPreview">
+    
+    <div id="profileContentWraper">
+        <div id="profileContent">
+            <nav class="profileNavBar">
+                <ul>
+                    <li><a id="personlaInfoBtn" href="{{route('profile')}}">{{__('ui.profileInfo')}}</a></li>
+                    <li><a id="mailerBtn" href="{{route('mailer.index')}}">{{__('ui.mailer')}}</a></li>
+                    <li><a id="mySubscriptionBtn" href="{{route('profile.subscription')}}">{{__('ui.mySubscription')}}</a></li>
+                </ul>
+            </nav>
+
+            <div id="userData">
+                <form method="POST" id="formProfile" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PATCH')
+                    <div>
+                        <h1>{{__('ui.profileSettings')}}</h1>
+                        <table>
+                            <tr id="avaEdit">
+                                <td><p>{{__('ui.avatar')}}</p></td>
+                                <td>
+                                    <label for="inputAva">
+                                        <div id="avaPreview">
+                                            @if ($user->image)
+                                                <img src="{{ $user->image->url }}" alt="{{__('alt.keyword')}}">
+                                            @else
+                                                <img src="{{ asset('icons/emptyUserIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                            @endif
+                                        </div>
+                                    </label>
+                                    <input id="inputAva" type="file" name="ava" hidden>
                                     @if ($user->image)
-                                        <img src="{{ $user->image->url }}" alt="{{__('alt.keyword')}}">
-                                    @else
-                                        <img src="{{ asset('icons/emptyUserIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                        <button type="button" id="modalShow">{{__('ui.deleteProfileImg')}}</button>
                                     @endif
-                                </div>
-                            </label>
-                            <input id="inputAva" type="file" name="ava" hidden>
-                            @if ($user->image)
-                                <button type="button" id="modalShow">{{__('ui.deleteProfileImg')}}</button>
-                            @endif
-                            @error('ava')
-                                <div class="error">
-                                    <p>{{ $message }}</p>
-                                </div>
-                            @enderror
-                        </td>
-                    </tr>
-                    <tr id="nameShow">
-                        <td><p>{{__('ui.userName')}}</p></td>
-                        <td>
-                            <input id="inputName" name="name" type="text" placeholder="Имя" value="{{ old('name') ?? $user->name}}" required autocomplete="name" autofocus/>
-                            <x-server-input-error errorName='name' inputName='inputName' errorClass='error'/>
-                            <div class="help"><p><i>{{__('ui.userNameHelp')}}</i></p></div>
-                        </td>
-                    </tr>
-                    <tr id="phoneShow">
-                        <td><p>{{__('ui.phone')}}</p></td>
-                        <td>
-                            <input id="inputPhone" name="phone" type="text" placeholder="Ном. телефона" value="{{ old('phone') ?? $user->phone}}" autocomplete="phone" autofocus/>
-                            <x-server-input-error errorName='phone' inputName='inputPhone' errorClass='error'/>
-                            <div>
-                                <input type="checkbox" id="viberInput" name="viber" value="1" {{ $user->viber ? 'checked' : '' }}>
-                                <label for="viberInput">
-                                    Viber
-                                    <img src="{{ asset('icons/viberIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                                </label>
-                                <br>
-                                <input type="checkbox" id="telegramInput" name="telegram" value="1" {{ $user->telegram ? 'checked' : '' }}>
-                                <label for="telegramInput">
-                                    Telegram
-                                    <img src="{{ asset('icons/telegramIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                                </label>
-                                <br>
-                                <input type="checkbox" id="whatsappInput" name="whatsapp" value="1" {{ $user->whatsapp ? 'checked' : '' }}>
-                                <label for="whatsappInput">
-                                    WhatsApp
-                                    <img src="{{ asset('icons/whatsappIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                                </label>
-                            </div>
-                            <div class="help"><p><i>{{__('ui.phoneHelp')}}</i></p></div>
-                        </td> 
-                    </tr>
-                    <tr id="emailShow">
-                        <td><p>{{__('ui.login')}}</p></td>
-                        <td>
-                            <input id="inputEmail" type="email" name="email" type="email" placeholder="Логин" value="{{ old('email') ?? $user->email}}" required autocomplete="email"/> 
-                            <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
-                            <div class="help"><p><i>{{__('ui.loginHelp')}}</i></p></div>
-                        </td>
-                    </tr>
-                    <tr id="passShow">
-                        <td><p>{{__('ui.password')}}</p></td>
-                        <td>
-                            <input type="password" id="inputPassword" name="password" placeholder="Новый пароль..."/>
-                            <x-server-input-error errorName='password' inputName='inputPassword' errorClass='error'/>
-                            <div class="help"><p><i>{{__('ui.passwordEditHelp')}}</i></p></div>
-                        </td>
-                    </tr>
-                </table>
+                                    @error('ava')
+                                        <div class="error">
+                                            <p>{{ $message }}</p>
+                                        </div>
+                                    @enderror
+                                </td>
+                            </tr>
+                            <tr id="nameShow">
+                                <td><p>{{__('ui.userName')}}</p></td>
+                                <td>
+                                    <input id="inputName" name="name" type="text" placeholder="Имя" value="{{ old('name') ?? $user->name}}" required autocomplete="name" autofocus/>
+                                    <x-server-input-error errorName='name' inputName='inputName' errorClass='error'/>
+                                    <div class="help"><p><i>{{__('ui.userNameHelp')}}</i></p></div>
+                                </td>
+                            </tr>
+                            <tr id="phoneShow">
+                                <td><p>{{__('ui.phone')}}</p></td>
+                                <td>
+                                    <input id="inputPhone" name="phone" type="text" placeholder="Ном. телефона" value="{{ old('phone') ?? $user->phone}}" autocomplete="phone" autofocus/>
+                                    <x-server-input-error errorName='phone' inputName='inputPhone' errorClass='error'/>
+                                    <div>
+                                        <input type="checkbox" id="viberInput" name="viber" value="1" {{ $user->viber ? 'checked' : '' }}>
+                                        <label for="viberInput">
+                                            Viber
+                                            <img src="{{ asset('icons/viberIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                        </label>
+                                        <br>
+                                        <input type="checkbox" id="telegramInput" name="telegram" value="1" {{ $user->telegram ? 'checked' : '' }}>
+                                        <label for="telegramInput">
+                                            Telegram
+                                            <img src="{{ asset('icons/telegramIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                        </label>
+                                        <br>
+                                        <input type="checkbox" id="whatsappInput" name="whatsapp" value="1" {{ $user->whatsapp ? 'checked' : '' }}>
+                                        <label for="whatsappInput">
+                                            WhatsApp
+                                            <img src="{{ asset('icons/whatsappIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                        </label>
+                                    </div>
+                                    <div class="help"><p><i>{{__('ui.phoneHelp')}}</i></p></div>
+                                </td> 
+                            </tr>
+                            <tr id="emailShow">
+                                <td><p>{{__('ui.login')}}</p></td>
+                                <td>
+                                    <input id="inputEmail" type="email" name="email" type="email" placeholder="Логин" value="{{ old('email') ?? $user->email}}" required autocomplete="email"/> 
+                                    <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
+                                    <div class="help"><p><i>{{__('ui.loginHelp')}}</i></p></div>
+                                </td>
+                            </tr>
+                            <tr id="passShow">
+                                <td><p>{{__('ui.password')}}</p></td>
+                                <td>
+                                    <input type="password" id="inputPassword" name="password" placeholder="Новый пароль..."/>
+                                    <x-server-input-error errorName='password' inputName='inputPassword' errorClass='error'/>
+                                    <div class="help"><p><i>{{__('ui.passwordEditHelp')}}</i></p></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button id="sumbitBtn" type="submit">{{__('ui.save')}}</button>
+                    <a id="cancelBtn" href="{{ route('profile') }}">{{__('ui.cancel')}}</a>
+                </form>
             </div>
-            <button id="sumbitBtn" type="submit">{{__('ui.save')}}</button>
-            <a id="cancelBtn" href="{{ route('profile') }}">{{__('ui.cancel')}}</a>
-        </form>
+        </div>
     </div>
     <div class="modalView animate" id="modalProfileImgDelete">
         <div class="modalContent"> 

@@ -14,7 +14,7 @@ return [
 
     'qForWhat' => 'Why am I need this?',
     'aForWhat' => 'The main purpose of our resource is to make selling and buying of Oil & Gas Equipment easier.
-    In other words, here anyone who wants to sell can easily find someone who wants to buy and vice versa',
+    In other words, here any seller can easily find a buyer and vice versa.',
 
     'qBuy' => 'I need to buy equipment',
     'aBuy1' => 'Just use the category system or search bar on the',
@@ -36,6 +36,13 @@ return [
     The possibility to subscribe to Mailer and get notification about Oil & Gas Equipment you looking for. (in progress)
     Our website supports three languages, Ukrainian, Russian and English.
     We provide strict scope of content, only Oil & Gas Equipment. Nothing extra.',
+
+    'qWhatIsMailer' => 'What is Mailer?',
+    'aWhatIsMailer1' => 'Mailer is smart mailing engine, thanks to which You can be sure that no post You are interested in will pass You.
+    You are free to',
+    'aWhatIsMailerLink' => 'configure the Mailer',
+    'aWhatIsMailer2' => 'for Your personal needs. Describe equipment and/or choose category and just wait for someone post what you need.
+    Also, via Mailer, You can subscribe to any author (on the page of exact post), so that You will be noticed if chosen author made a post.',
 
     'slg1' => 'Sincerely, development team',
     'slg2' => 'If you have any questions or suggestions, please contact us by mail',

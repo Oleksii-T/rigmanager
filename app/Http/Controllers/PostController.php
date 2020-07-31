@@ -17,7 +17,7 @@ class PostController extends Controller
 
     /**
      * Display a listing of the resource.
-     * This method and appropriate route is implemented as 'home' route
+     * This method and appropriate route is implemented as 'home.home' route
      *
      * @return \Illuminate\Http\Response
      */
@@ -45,13 +45,13 @@ class PostController extends Controller
         $post = new Post($request->all());
         if (!auth()->user()->posts()->save($post)) {
             Session::flash('message-error', __('messages.postUploadedError'));
-            return redirect(route('home'));
+            return redirect(route('home.home'));
         }
         if ($request->hasFile('images')) {
             $this->postImageUpload($request->file('images'), $post);
         }
         Session::flash('message-success', __('messages.postUploaded'));
-        return redirect(route('home'));
+        return redirect(route('home.home'));
     }
 
     /**
@@ -103,7 +103,7 @@ class PostController extends Controller
         $input['whatsapp'] = $request->whatsapp ? 1 : 0;
         if (!$post->update($input)) {
             Session::flash('message-error', __('messages.postEditedError'));
-            return redirect(route('home'));
+            return redirect(route('home.home'));
         }
         if ( $request->hasFile('images')) {
             $this->postImageUpload($request->file('images'), $post);
@@ -133,49 +133,6 @@ class PostController extends Controller
         $this->postImagesDelete($post);
         Session::flash('message-success', __('messages.postEdited'));
         return $this->show($post->id);
-    }
-
-    public function search(Request $request) {
-        Session::forget('searchAuthor');
-        Session::flash('oldSearch', $request->searchStrings);
-        $tagsArray = "";
-        if ($request->searchStrings) {
-            $posts_list = Post::whereLike(['title', 'description'], $request->searchStrings)
-                ->paginate(env('POSTS_PER_PAGE'));
-            $posts_list->total() == 0 
-                ? Session::flash('search', __('ui.searchFail')) 
-                : Session::flash('search', __('ui.searchSuccess'));
-            if ($request->links) {
-                dd('there is page query!');
-            }
-            return view('home', compact('posts_list', 'tagsArray'));
-        } else {
-            return redirect(route('home'));
-        }
-    }
-
-    public function searchTag($tagId) {
-        Session::forget('searchAuthor');
-        $regex = "^$tagId(.[0-9]+)*$"; //make regular expr form tag id to find sub catogories as well
-        $regex = str_replace('.', '\.', $regex); //escape regex '.' via '\'
-        $posts_list = Post::whereRaw("tag REGEXP '$regex'")->paginate(env('POSTS_PER_PAGE')); //search appropriate for posts using raw where query
-        $tagsArray = $this->getTagNameByIdWithPath($tagId); //reverse result array to better visual representation in fron-end
-        //add success/fail flash depends on result
-        $posts_list->total() == 0 
-            ? Session::flash('search', __('ui.searchFail')) 
-            : Session::flash('search', __('ui.searchSuccess'));
-        return view('home.home', compact('posts_list', 'tagsArray'));
-    }
-
-    public function searchAuthor($authorId) {
-        $user = User::findOrFail($authorId);
-        $posts_list = $user->posts->paginate(env('POSTS_PER_PAGE'));
-        $tagsArray = "";
-        $posts_list->total() == 0 
-            ? Session::flash('search', __('ui.searchFail')) 
-            : Session::flash('search', __('ui.searchSuccess'));
-        Session::flash('searchAuthor', $user->name);
-        return view('home.home', compact('posts_list', 'tagsArray'));
     }
 
 }

@@ -71,12 +71,16 @@
                         </div>
                         <!-- mb add time how many days registered -->
                     </div>
-                    <a class="authorBtns" href="{{route('searchAuthor', $post->user->id)}}">{{__('ui.otherAuthorPosts')}}</a>
+                    <a class="authorBtns" href="{{route('search.author', $post->user->id)}}">{{__('ui.otherAuthorPosts')}}</a>
                     <button class="authorBtns" id="modalTriger">{{__('ui.showContacts')}}</button>
-                    @if ($post->user_id != Auth::id() && auth()->user()->mailer)
+                    @if ($post->user_id != Auth::id())
                         <button class="authorBtns" id="mailerAddAuthor">    
-                            @if ( in_array( $post->user_id, explode(" ", auth()->user()->mailer->authors) ) )
-                                {{__('ui.mailerRemoveAuthor')}}
+                            @if (auth()->user()->mailer)
+                                @if ( in_array( $post->user_id, explode(" ", auth()->user()->mailer->authors) ) )
+                                    {{__('ui.mailerRemoveAuthor')}}
+                                @else
+                                    {{__('ui.mailerAddAuthor')}}
+                                @endif
                             @else
                                 {{__('ui.mailerAddAuthor')}}
                             @endif
@@ -168,7 +172,7 @@
             //search for clicked category 
             $('#mainInfo button').click(function(){
                 var id = $(this).attr('id');
-                var url = '{{ route("searchTag", ":id") }}';
+                var url = '{{ route("search.tag", ":id") }}';
                 url = url.replace(':id', id);
                 window.location.href=url;
             });
@@ -199,6 +203,10 @@
                             popUpMassage("{{ __('messages.mailerRemovedAuthor') }}");
                             $('#mailerAddAuthor').html("{{__('ui.mailerAddAuthor')}}");
                         }
+                    },
+                    error: function() {
+                        // Print error massage
+                        popUpMassage("{{ __('messages.error') }}");
                     }
                 });
             });

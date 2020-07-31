@@ -21,11 +21,14 @@ return [
     'mailerToManyTags' => 'Занадто багато категорій',
     'mailerUploaded' => 'Mailer налаштований успішно!',
     'mailerUploadedError' => 'При налаштуваннi Mailer сталася помилка.',
-    'mailerDeleted' => 'Mailer has been deleted successfully!',
+    'mailerDeleted' => 'Mailer був видалений успішно!',
     'mailerEditedError' => 'При зміні Mailer виникла помилка.',
     'mailerEdited' => 'Mailer був змінений успішно!',
     'mailerAddedAuthor' => 'Автор був доданий в Mailer успішно!',
     'mailerRemovedAuthor' => 'Автор був видалений з Mailer успішно!',
+    'mailerTagExists' => 'Вказані теги, вже є у вашому Mailer',
+    'mailerTagAdded' => 'Зазначені теги успішно додані до Вашого Mailer!',
+    'mailerCreatedWithTag' => 'Створено новий Mailer з вказаними тегами',
 
     'profileEdited' => 'Профіль було видалено успішно!',
     

@@ -26,6 +26,9 @@ return [
     'mailerEdited' => 'Mailer был изменен успешно!',
     'mailerAddedAuthor' => 'Автор был добавлен в Mailer успешно!',
     'mailerRemovedAuthor' => 'Автор был удален из Mailer успешно!',
+    'mailerTagExists' => 'Указанные теги уже есть в вашем Mailer',
+    'mailerTagAdded' => 'Указанные тэги успешно добавлены в ваш Mailer!',
+    'mailerCreatedWithTag' => 'Создан новый Mailer с указанными тегами',
 
     'profileEdited' => 'Профиль изменен успешно!',
 

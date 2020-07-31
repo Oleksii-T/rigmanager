@@ -25,12 +25,12 @@
     margin-left: 7px;
 }
 
-#aboutWraper a {
+.link {
     font-size: 100%;    
     transition: 0.2s;
 }
 
-#aboutWraper a:hover {
+.link:hover {
     color: #FE9042;
 }
 

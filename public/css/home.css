@@ -213,36 +213,3 @@ td>li:hover .secondLevel,
     right: 0;
     transform: translate(100%,0);
 }
-
-/*=V============SEARCH_RESULT============V=*/
-
-#searchTags, #searchAuthor {
-    padding: 0px 20px;
-}
-
-#searchAuthor p {
-    font-size: 120%;
-}
-
-#searchAuthor p span {
-    font-size: 110%;
-    border-bottom: 2px solid #FE9042;
-}
-
-#searchTags a {
-    text-decoration: none;
-    border: none;
-    padding: 7px;
-    background-color: rgb(149, 149, 149, 0.7);
-}
-
-#searchTitle {
-    text-align: center;
-    padding: 0px 20px;
-}
-
-#searchTitle h1 {
-    font-size: 200%;
-    margin: 20px 0px;
-}
-

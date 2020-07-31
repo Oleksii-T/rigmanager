@@ -25,12 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        Session::forget('search');
-        Session::forget('oldSearch');
-        Session::forget('searchAuthor');
         $posts_list = Post::orderBy('created_at', 'desc')->paginate(env('POSTS_PER_PAGE'));
-        $tagsArray = "";
-        return view('home.home', compact('posts_list', 'tagsArray'));
+        return view('home.home', compact('posts_list'));
     }
     
     public function faq()
