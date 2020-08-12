@@ -101,6 +101,7 @@
     <script src="/js/hideShowPassword.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            
             // Show password toggle button
             $('#inputPassword').hideShowPassword({
                 show: false,

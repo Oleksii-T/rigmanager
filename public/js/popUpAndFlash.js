@@ -1,9 +1,14 @@
+// fade out flash massages after 3 sec
+$("div.flash").delay(3000).fadeOut(350);
+
+// counter for unique pop-up ids
 var popUpId = 10;
 function getPopUpId() {
     popUpId++;
     return popUpId;
 }
 
+// show message depends on role and fade out it after 3 sec
 function showPopUpMassage(role, massage) {
     var id = "pop-up-" + getPopUpId();
     if (role) {

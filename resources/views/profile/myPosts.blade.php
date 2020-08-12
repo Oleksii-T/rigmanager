@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{asset('css/profile_myItems.css')}}" />
     <link rel="stylesheet" href="{{asset('css/components/items.css')}}" />
     <link rel="stylesheet" href="{{asset('css/components/pagination.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/components/popUpAndFlash.css') }}" />
 @endsection
 
 @section('content')
@@ -22,11 +23,9 @@
 @endsection
 
 @section('scripts')
+    <script src={{ asset('js/popUpAndFlash.js') }}></script>
     <script type="text/javascript">
         $(document).ready(function(){
-
-            //fade out flash massages
-            $("div.flash").delay(3000).fadeOut(350);
 
             //add hover effect on item when hover on addToFav btn
             $(".editBtn").hover(function(){

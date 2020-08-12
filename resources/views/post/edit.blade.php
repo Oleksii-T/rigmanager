@@ -1,5 +1,6 @@
 @extends('layouts.app')
     <link rel="stylesheet" href="{{asset('css/item_create_edit.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/components/popUpAndFlash.css') }}" />
 @section('styles')
 
 @endsection
@@ -275,13 +276,11 @@
 @section('scripts')
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
     <script src="{{asset('js/myValidators.js')}}"></script> 
+    <script src={{ asset('js/popUpAndFlash.js') }}></script>
 
     <script type="text/javascript">
 
         $(document).ready(function() {
-
-            //fade out flash massages
-            $("div.flash").delay(3000).fadeOut(350);
 
             //add active effect in nav bar
             $('#myItemsTab').addClass('isActiveBtn');

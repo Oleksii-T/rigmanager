@@ -21,29 +21,26 @@
 <body>
     <div id="app">
 
-        <div id="pop-up-container"></div>
+        <div id="pop-up-container">
+            <!-- Session flash massages -->
+            @if (Session::has('message-success'))
+                <div class="flash flash-success">
+                    <p><img src="{{asset('icons/successIcon.svg')}}" alt="{{__('alt.keyword')}}">{{ Session::get('message-success') }}</p>
+                </div>
+            @endif
+            @if (Session::has('message-error'))
+                <div class="flash flash-error">
+                    <p><img src="{{asset('icons/alertIcon.svg')}}" alt="{{__('alt.keyword')}}">{{ Session::get('message-error') }}</p>
+                </div>
+            @endif
+        </div>
 
         <div id="container">
 
             <div class="sideBg" id="leftBg"></div>
             <div class="sideBg" id="rightBg"></div>
 
-            <!-- Session flash massages -->
-            @if (Session::has('message-success'))
-                <div class="flash flash-success">
-                    <p>{{ Session::get('message-success') }}</p>
-                </div>
-            @endif
-            @if (Session::has('message-error'))
-                <div class="flash flash-error">
-                    <p>{{ Session::get('message-error') }}</p>
-                </div>
-            @endif
-            @if (Session::has('message-info'))
-                <div class="flash flash-info">
-                    <p>{{ Session::get('message-info') }}</p>
-                </div>
-            @endif
+
             
             <!-- Header of all web pages -->
             <div id="header">

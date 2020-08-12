@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/components/items.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/components/pagination.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/components/popUpMassage.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/components/popUpAndFlash.css') }}" />
 @endsection
 
 @section('content')
@@ -192,15 +192,12 @@
 @endsection
 
 @section('scripts')
-    <script src={{ asset('js/showPopUpMassage.js') }}></script>
+    <script src={{ asset('js/popUpAndFlash.js') }}></script>
     <script type="text/javascript">
         $(document).ready(function(){
 
             //remove last '>' symbol from searched tags
             $('#searchTags span').last().remove();
-
-            //fade out flash massages
-            $("div.flash").delay(3000).fadeOut(350);
 
             // user adds text to Mailer
             $('#addTextToMailer').click(function() {
