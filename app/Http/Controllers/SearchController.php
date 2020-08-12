@@ -16,7 +16,7 @@ class SearchController extends Controller
     {
         $this->flush();
         if ($request->searchStrings) {
-            $posts_list = Post::whereLike(['title', 'description'], $request->searchStrings)->paginate(env('POSTS_PER_PAGE'));
+            $posts_list = Post::search($request->searchStrings)->paginate(env('POSTS_PER_PAGE'));
             $posts_list->total() == 0 
                 ? Session::flash('searchStatus', __('ui.searchFail'))
                 : Session::flash('searchStatus', __('ui.searchSuccess'));
