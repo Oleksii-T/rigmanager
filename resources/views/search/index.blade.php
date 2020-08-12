@@ -2,9 +2,10 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/item_items.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/item_pagination.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/components/items.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/components/pagination.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/components/popUpMassage.css') }}" />
 @endsection
 
 @section('content')
@@ -191,25 +192,9 @@
 @endsection
 
 @section('scripts')
+    <script src={{ asset('js/showPopUpMassage.js') }}></script>
     <script type="text/javascript">
         $(document).ready(function(){
-
-            //static generator of unique ids for popUp massages
-            function Generator() {};
-            Generator.prototype.rand =  0;
-            Generator.prototype.getId = function() {return this.rand++;};
-            var idGen = new Generator();
-
-            //make pop up massage from text
-            function popUpMassage (text) {
-                var uniqueId = "num" + idGen.getId();
-                $('#container').append('<div class="popUp" id="'+uniqueId+'"><p>'+text+'</p></div>');
-                $('#'+uniqueId).addClass('popUpShow');
-                $('#'+uniqueId).click(function(){ $(this).removeClass('popUpShow') });
-                setTimeout(function(){
-                    $('#'+uniqueId).removeClass('popUpShow');
-                }, 3000);
-            }
 
             //remove last '>' symbol from searched tags
             $('#searchTags span').last().remove();
@@ -228,18 +213,18 @@
                 $.ajax({
                     type: "GET",
                     url: ajaxUrl,
-                    success: function(data) {
-                        popUpMassage(data);
+                    success: function() {
+                        showPopUpMassage(true, "{{ __('messages.mailerTextAdded') }}");
                         // Remove wait cursor
                         $(document.body).css('cursor', 'default');
                         $('#addTextToMailer').removeClass('loading'); 
                     },
                     error: function() {
                         // Print error massage
-                        popUpMassage("{{ __('messages.error') }}");
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
                         // Remove wait cursor
                         $(document.body).css('cursor', 'default');
-                        $('#addTextToMailer').removeClass('loading'); 
+                        $('#addTextToMailer').removeClass('loading');
                     }
                 });
             });
@@ -256,14 +241,14 @@
                     type: "GET",
                     url: ajaxUrl,
                     success: function(data) {
-                        popUpMassage(data);
+                        data ? showPopUpMassage(true, "{{ __('messages.mailerTagAdded') }}") : showPopUpMassage(false, "{{ __('messages.mailerTagExists') }}") ;
                         // Remove wait cursor
                         $(document.body).css('cursor', 'default');
                         $('#addTagToMailer').removeClass('loading'); 
                     },
                     error: function() {
                         // Print error massage
-                        popUpMassage("{{ __('messages.error') }}");
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
                         // Remove wait cursor
                         $(document.body).css('cursor', 'default');
                         $('#addTagToMailer').removeClass('loading'); 
@@ -283,14 +268,14 @@
                     type: "GET",
                     url: ajaxUrl,
                     success: function(data) {
-                        popUpMassage(data);
+                        data ? showPopUpMassage(true, "{{ __('messages.mailerAddedAuthor') }}") : showPopUpMassage(false, "{{ __('messages.mailerAuthorExists') }}") ;
                         // Remove wait cursor
                         $(document.body).css('cursor', 'default');
                         $('#addAuthorToMailer').removeClass('loading'); 
                     },
                     error: function() {
                         // Print error massage
-                        popUpMassage("{{ __('messages.error') }}");
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
                         // Remove wait cursor
                         $(document.body).css('cursor', 'default');
                         $('#addAuthorToMailer').removeClass('loading'); 
@@ -327,7 +312,7 @@
 
             //if user tries to add his oun item to fav list
             $(".addToFavButtonBlocked").click(function(){
-                popUpMassage("{{ __('messages.postAddFavPersonal') }}");
+                showPopUpMassage(false, "{{ __('messages.postAddFavPersonal') }}");
             });
 
             //action when user clicks on addToFav icon
@@ -352,16 +337,16 @@
                                 //visualize adding to fav list
                                 $("#favItemsTab span").html(n+1);
                                 target.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
-                                popUpMassage("{{ __('messages.postAddedFav') }}");
+                                showPopUpMassage(true, "{{ __('messages.postAddedFav') }}");
                             } else {
                                 //visualize removing from fav list
                                 $("#favItemsTab span").html(n-1);
                                 target.attr("src", "{{ asset('icons/heartWhiteIcon.svg') }}");
-                                popUpMassage("{{ __('messages.postRemovedFav') }}");
+                                showPopUpMassage(true, "{{ __('messages.postRemovedFav') }}");
                             }
                         //if server errors occures, pop up error massage
                         } else {
-                            popUpMassage("{{ __('messages.postAddFavError') }}");
+                            showPopUpMassage(false, "{{ __('messages.postAddFavError') }}");
                         }
                         //remove cursor wait
                         $("button.id_"+item_id).removeClass('loading');
@@ -369,7 +354,7 @@
                     },
                     error: function() {
                         //pop up error massage and remove cursor wait
-                        popUpMassage("{{ __('messages.error') }}");
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
                         $("button.id_"+item_id).removeClass('loading');
                         $("span.item_id_"+item_id).removeClass('loading');
                     }

@@ -96,7 +96,8 @@ class MailerController extends Controller
         return redirect(route('mailer.index'));
     }
 
-    public function addRemoveAuthor($user_id) {
+    public function addRemoveAuthor($user_id) 
+    {
         $mailer = auth()->user()->mailer;
         if ($mailer) {
             $authorsArr = explode(" ", $mailer->authors);
@@ -149,52 +150,50 @@ class MailerController extends Controller
                 // Mailer have tags
                 if ( array_key_exists($tagId, $mailer->tagsIdsAndNames) ) {
                     // This tag already in Mailer
-                    return trans('messages.mailerTagExists');
+                    return false;
                 } else {
                     // Append tag to mailer
                     $mailer->tags = $mailer->tags." ".$tagId;
                     $mailer->save();
-                    return trans('messages.mailerTagAdded');
+                    return true;
                 }
             } else {
                 // Mailer have not no tags
                 $mailer->tags = $tagId;
                 $mailer->save();
-                return trans('messages.mailerTagAdded');
+                return true;
             }
         } else {
             // Mailer absent. Create new Mailer
             $mailer = new Mailer;
             $mailer->tags = $tagId;
             auth()->user()->mailer()->save($mailer);
-            return trans('messages.mailerCreatedWithTag');
+            return true;
         }
     }
 
     public function addText($string) 
     {
         $mailer = auth()->user()->mailer;
+        // check is Mailer exists
         if ($mailer) {
             // Mailer exists
             if ($mailer->keywords) {
                 // Append text to mailer
                 $mailer->keywords = $mailer->keywords."\n".$string;
                 $mailer->save();
-                return trans('messages.mailerTextAdded');
             } else {
                 // Mailer have no text
                 $mailer->keywords = $string;
                 $mailer->save();
-                return trans('messages.mailerTextAdded');
             }
         } else {
             // Mailer absent. Create new Mailer
             $mailer = new Mailer;
             $mailer->keywords = $string;
             auth()->user()->mailer()->save($mailer);
-            return trans('messages.mailerCreatedWithText');
         }
-
+        return true;
     }
 
     public function addAuthor($author) 
@@ -206,25 +205,25 @@ class MailerController extends Controller
                 // Mailer have authors
                 if ( in_array($author, explode(" ", $mailer->authors)) ) {
                     // This author already in Mailer
-                    return trans('messages.mailerAuthorExists');
+                    return false;
                 } else {
                     // Appent author to mailer
                     $mailer->authors = $mailer->authors." ".$author;
                     $mailer->save();
-                    return trans('messages.mailerAuthorAdded');
+                    return true;
                 }
             } else {
                 // Mailer have no authors
                 $mailer->authors = $author;
                 $mailer->save();
-                return trans('messages.mailerAuthorAdded');
+                return true;
             }
         } else {
             // Mailer absent. Create new Mailer
             $mailer = new Mailer;
             $mailer->authors = $author;
             auth()->user()->mailer()->save($mailer);
-            return trans('messages.mailerCreatedWithAuthor');
+            return true;
         }
     } 
 }

@@ -7,7 +7,7 @@
     cursor: pointer;
     border: 2px solid #00aee6;
     border-radius: 5px;
-    transition-duration: 0.3s;
+    transition-duration: 0.2s;
 }
 
 .searchButton:hover {

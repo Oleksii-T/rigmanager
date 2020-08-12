@@ -2,6 +2,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{asset('css/item_show.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/components/popUpMassage.css') }}" />
 @endsection
 
 @section('content')
@@ -145,7 +146,8 @@
 @endsection
 
 @section('scripts')
-    <script>
+    <script src={{ asset('js/showPopUpMassage.js') }}></script>
+    <script type="text/javascript">
 
         $(document).ready(function() {
 
@@ -156,12 +158,6 @@
             if ( '{{Auth::id()}}' == '{{$post->user_id}}' ) {
                 $('#myItemsTab').addClass('isActiveBtn');
             }
-
-            //static generator of unique ids for popUp massages
-            function Generator() {};
-            Generator.prototype.rand =  0;
-            Generator.prototype.getId = function() {return this.rand++;};
-            var idGen =new Generator();
 
             //redirect to search result of clicked tag
             $('.itemTag').click(function(){
@@ -177,17 +173,6 @@
                 window.location.href=url;
             });
 
-            //show popup massage
-            function popUpMassage (text) {
-                var uniqueId = "num" + idGen.getId();
-                $('#container').append('<div class="popUp" id="'+uniqueId+'"><p>'+text+'</p></div>');
-                $('#'+uniqueId).addClass('popUpShow');
-                $('#'+uniqueId).click(function(){ $(this).removeClass('popUpShow') });
-                setTimeout(function(){
-                    $('#'+uniqueId).removeClass('popUpShow');
-                }, 3000);
-            }
-
             // user click add author to mailer btn
             $('#mailerAddAuthor').click(function() {
                 $.ajax({
@@ -196,17 +181,17 @@
                     success: function(data) {
                         if (data) {
                             // Author was added to Mailer
-                            popUpMassage("{{ __('messages.mailerAddedAuthor') }}");
+                            showPopUpMassage(true, "{{ __('messages.mailerAddedAuthor') }}");
                             $('#mailerAddAuthor').html("{{__('ui.mailerRemoveAuthor')}}");
                         } else {
                             // Author was removed from Mailer
-                            popUpMassage("{{ __('messages.mailerRemovedAuthor') }}");
+                            showPopUpMassage(true, "{{ __('messages.mailerRemovedAuthor') }}");
                             $('#mailerAddAuthor').html("{{__('ui.mailerAddAuthor')}}");
                         }
                     },
                     error: function() {
                         // Print error massage
-                        popUpMassage("{{ __('messages.error') }}");
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
                     }
                 });
             });
@@ -222,6 +207,10 @@
                     data: { post_id: item_id },
                     success: function(data) {
                         confirmation(data, item_id);
+                    },
+                    error: function() {
+                        // Print error massage
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
                     }
                 });
             });
@@ -236,15 +225,15 @@
                         $("#favItemsTab span").html(n+1);
                         target.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
                         $('#addToFavBtn p').html('{{__('ui.inFav')}}');
-                        popUpMassage("{{ __('messages.postAddedFav') }}");
+                        showPopUpMassage(true, "{{ __('messages.postAddedFav') }}");
                     }   else {
                         $("#favItemsTab span").html(n-1);
                         target.attr("src", "{{ asset('icons/heartWhiteIcon.svg') }}");
                         $('#addToFavBtn p').html('{{__('ui.addToFav')}}');
-                        popUpMassage("{{ __('messages.postRemovedFav') }}");
+                        showPopUpMassage(true, "{{ __('messages.postRemovedFav') }}");
                     }
                 } else {
-                    popUpMassage("{{ __('messages.postAddFavError') }}");
+                    showPopUpMassage(false, "{{ __('messages.postAddFavError') }}");
                 }
                 $(document.body).css('cursor', 'default');
                 $(".id_"+item_id).attr('disabled', false);

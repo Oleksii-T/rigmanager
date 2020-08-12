@@ -3,6 +3,7 @@
 @section('styles')
     <link rel="stylesheet" href="{{asset('css/mailer_show.css')}}" />
     <link rel="stylesheet" href="{{asset('css/profile_layout.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/components/popUpMassage.css') }}" />
 @endsection
 
 @section('content')
@@ -94,25 +95,9 @@
 @endsection
 
 @section('scripts')
+    <script src={{ asset('js/showPopUpMassage.js') }}></script>
     <script type="text/javascript">
         $(document).ready(function(){
-
-            //static generator of unique ids for popUpMassages
-            function Generator() {};
-            Generator.prototype.rand = 1;
-            Generator.prototype.getId = function() {return this.rand++;};
-            var idGen =new Generator();
-
-            //make pop up massage from text
-            function popUpMassage (text) {
-                var uniqueId = "num" + idGen.getId();
-                $('#container').append('<div class="popUp" id="'+uniqueId+'"><p>'+text+'</p></div>');
-                $('#'+uniqueId).addClass('popUpShow');
-                $('#'+uniqueId).click(function(){ $(this).removeClass('popUpShow') });
-                setTimeout(function(){
-                    $('#'+uniqueId).removeClass('popUpShow');
-                }, 3000);
-            }
 
             // user clicks on is_active checkbox
             $('#checkboxContainer input').click(function() {
@@ -131,8 +116,11 @@
                 $.ajax({
                     type: "GET",
                     url: "{{ route('mailer.toggle') }}",
+                    success: function(data) {
+                        showPopUpMassage(true, "{{ __('messages.mailerUploaded') }}");
+                    },
                     error: function() {
-                        popUpMassage("{{ __('messages.error') }}");
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
                     }
                 });
             });

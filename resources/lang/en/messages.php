@@ -17,7 +17,7 @@ return [
     'postRemovedFav' => 'Post has been deleted from Favourites successfully!',
     'postRemoveFavError' => 'An error occured.',
     'postEditedErrorTooManyImages' => 'Too many images, maximum 5.',
-
+    
     'mailerToManyTags' => 'Too many categories',
     'mailerUploaded' => 'Mailer has been configured successfully!',
     'mailerUploadedError' => 'Error occured while configuring the Mailer.',
@@ -26,6 +26,7 @@ return [
     'mailerEdited' => 'Mailer has been changed successfully!',
     'mailerAddedAuthor' => 'Author added to Mailer',
     'mailerRemovedAuthor' => 'Author removed from Mailer',
+    'mailerAuthorExists' => 'Author already in Mailer',
     'mailerTagExists' => 'Specified tags already in your Mailer',
     'mailerTagAdded' => 'Specified tags added to your Mailer successfully!',
     'mailerCreatedWithTag' => 'A new Mailer with specified tags has been created',

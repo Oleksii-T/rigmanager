@@ -59,8 +59,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('emailexists', 'UserController@emailExists')->name('email.exist');
     // post routes
     // search routes
-    //Route::get('search/result/{posts}', 'SearchController@showResult')->name('search.result');
-    Route::get('search/result', 'SearchController@showResult')->name('search.result');
     Route::get('search/text', 'SearchController@searchText')->name('search.text');
     Route::get('search/category/{category}', 'SearchController@searchTag')->name('search.tag');
     Route::get('search/author/{author}', 'SearchController@searchAuthor')->name('search.author');

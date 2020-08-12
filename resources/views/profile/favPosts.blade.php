@@ -2,8 +2,9 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{asset('css/profile_favItems.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/item_items.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/item_pagination.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/components/items.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/components/pagination.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/components/popUpMassage.css') }}" />
 @endsection
 
 @section('content')
@@ -20,29 +21,12 @@
 @endsection
 
 @section('scripts')
+    <script src={{ asset('js/showPopUpMassage.js') }}></script>
     <script type="text/javascript">
         $(document).ready(function(){
 
             //fade out flash massages
             $("div.flash").delay(3000).fadeOut(350);
-
-            //static generator of unique ids for popUp massages
-            function Generator() {};
-            Generator.prototype.rand =  0;
-            Generator.prototype.getId = function() {return this.rand++;};
-            var idGen =new Generator();
-            $("#favView").addClass('active');
-
-            //make pop up massage from text
-            function popUpMassage (text) {
-                var uniqueId = "num" + idGen.getId();
-                $('#container').append('<div class="popUp" id="'+uniqueId+'"><p>'+text+'</p></div>');
-                $('#'+uniqueId).addClass('popUpShow');
-                $('#'+uniqueId).click(function(){ $(this).removeClass('popUpShow') });
-                setTimeout(function(){
-                    $('#'+uniqueId).removeClass('popUpShow');
-                }, 3000);
-            }
 
             //delete item from fav
             $(".addToFavButton").click(function(){
@@ -63,10 +47,10 @@
                             n = parseInt(n,10);
                             $("#favItemsTab span").html(n-1);
                             $("div.id_"+item_id).addClass('deletedItem');
-                            popUpMassage("{{ __('messages.postRemovedFav') }}");
+                            showPopUpMassage(true, "{{ __('messages.postRemovedFav') }}");
                         //if server errors occures, pop up error massage
                         } else {
-                            popUpMassage("{{ __('messages.postRemoveFavError') }}");
+                            showPopUpMassage(false, "{{ __('messages.postRemoveFavError') }}");
                         }
                         //remove cursor wait
                         $("button.id_"+item_id).removeClass('loading');
@@ -74,7 +58,7 @@
                     },
                     error: function() {
                         //pop up error massage and remove cursor wait
-                        popUpMassage("{{ __('messages.error') }}");
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
                         $("button.id_"+item_id).removeClass('loading');
                         $("span.item_id_"+item_id).removeClass('loading');
                     }

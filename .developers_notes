@@ -79,7 +79,7 @@ NOTE: in mailer when user deletes author, value become EMPTY not NULL
 
 BUG: sometimes flash notif is keeps on second page (possible fix: use return redirect() instead return view())
 
-CODE: prevent dafault in drop dawn tags in home and search pages
+CODE: color of profile buttons is different
 
 
 =========MASTER_OBEJECTIVES===========
@@ -109,6 +109,7 @@ CODE: loaning system for equipment
 
 =======DONE======
 
+CODE: prevent dafault in drop dawn tags in home and search pages
 BUG: with flash massages in search 
 CODE: add posibility to add search request to mailer 
 CODE: optimize images
@@ -180,6 +181,10 @@ CODE JS: make item highlight when hover on addToFav btn as well
 
 =======DEVELOPER_NOTES======
 
+NOTE: profile image delete functionality is not obvious 
+
+NOTE: in popUpMassage js component path to image implemented without {{ asset(...) }}
+
 NOTE: changing of image in post/show in made by rude string.replase() of img name (change '60x60' to 'origin')
 
 NOTE: user have no possiblility to browse all posts by master category
@@ -206,6 +211,9 @@ Image optimization:
 
 Registration using other resurces
     composer require laravel/socialite
+
+Install npm for easier Vue usage
+    npm install
     
 
 =======MISC_NOTES===========

@@ -45,13 +45,13 @@ class PostController extends Controller
         $post = new Post($request->all());
         if (!auth()->user()->posts()->save($post)) {
             Session::flash('message-error', __('messages.postUploadedError'));
-            return redirect(route('home.home'));
+            return redirect(route('home'));
         }
         if ($request->hasFile('images')) {
             $this->postImageUpload($request->file('images'), $post);
         }
         Session::flash('message-success', __('messages.postUploaded'));
-        return redirect(route('home.home'));
+        return redirect(route('home'));
     }
 
     /**
@@ -103,7 +103,7 @@ class PostController extends Controller
         $input['whatsapp'] = $request->whatsapp ? 1 : 0;
         if (!$post->update($input)) {
             Session::flash('message-error', __('messages.postEditedError'));
-            return redirect(route('home.home'));
+            return redirect(route('home'));
         }
         if ( $request->hasFile('images')) {
             $this->postImageUpload($request->file('images'), $post);
