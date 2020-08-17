@@ -113,25 +113,21 @@ button.hideShowPassword-toggle:hover {
     background-color: rgb(11, 11, 11, 0.6);
 }
 
-label[for=inputRememberMe] { font-size: 90%; }
-
-#btns {  margin-top: 30px; }
-
-#submitBtn {
-    padding: 14px;
-    padding-left: 30px;
-    padding-right: 30px;
-    background: none;
-    border: none;
-    border-bottom: 2px solid #4CAF50;
-    cursor: pointer;
+label[for=inputRememberMe] { 
+    font-size: 90%; 
 }
 
-#submitBtn:hover { background-color: rgb(114, 190, 116); }
+#btns {  
+    margin-top: 30px; 
+}
 
 #btns a { 
     float: right; 
     padding-top: 14px;
+}
+
+.submit-button {
+    background-color: transparent;
 }
 
 div.social {

@@ -45,3 +45,10 @@
 .flash-error {
     background-color: #fd8981;
 }
+
+/*
+-webkit-transition: width 7.6s ease-in;
+-o-transition: width 7.6s ease-in;
+transition: width 7.6s ease-in;
+background-color: #9EC600;
+*/

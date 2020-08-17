@@ -17,7 +17,7 @@
                 <a href="{{ route('home') }}"><img id="clearIcon" src="{{ asset('icons/clearIcon.svg') }}" alt="{{__('alt.keyword')}}"></a>
                 <input id="inputSearch" name="searchStrings" value="{{ Session::get('searchText') }}" placeholder="{{__('ui.search')}}..." required />
             </div>
-            <button type="submit">{{__('ui.search')}}</button>
+            <button class="def-button" type="submit">{{__('ui.search')}}</button>
         </form>
     </div>
 
@@ -150,6 +150,9 @@
             <div id="mailer-suggestion">
                 <button id="addTextToMailer" class="{{ Session::get('searchText') }}">{{__('ui.mailerSuggestText')}}</button>
                 <a id="whatIsMailerHelp" href="{{route('faq')}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
+                <div class="algolia-logo">
+                    <img src="{{asset('icons/algoliaIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                </div>
             </div>
         @elseif ( Session::has('searchTags') )
             <div id="searchTags">    
@@ -161,14 +164,21 @@
             <div id="mailer-suggestion">
                 <button id="addTagToMailer" class="{{array_key_last(Session::get('searchTags'))}}">{{__('ui.mailerSuggestTag')}}</button>
                 <a id="whatIsMailerHelp" href="{{route('faq')}}#WhatIsMailer">({{__('ui.whatIsMailer')}})</a>
+                <div class="algolia-logo">
+                    <img src="{{asset('icons/algoliaIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                </div>
             </div>
+            
         @elseif ( Session::has('searchAuthorName') )
             <div id="searchAuthor">
                 <p>{{__('ui.searchByAuthor')}} <span>{{Session::get('searchAuthorName')}}</span>:</p>
             </div>
             <div id="mailer-suggestion">
                 <button id="addAuthorToMailer" class="{{Session::get('searchAuthorId')}}">{{__('ui.mailerSuggestAuthor')}}</button>
-                <a  id="whatIsMailerHelp"href="{{route('faq')}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
+                <a id="whatIsMailerHelp"href="{{route('faq')}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
+                <div class="algolia-logo">
+                    <img src="{{asset('icons/algoliaIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                </div>
             </div>   
         @endif
         <h1 id="searchStatus">{{Session::get('searchStatus')}}</h1>

@@ -78,7 +78,8 @@ return [
     'settingUpMailer' => 'Конфiгурацiя Mailer',
     'mailerDescription' => 'Опис',
     'mailerChooseDescription' => 'Опишіть, що Ви укаєте',
-    'mailerDescriptionHelp' => '',
+    'mailerDescriptionHelp' => 'Тут вы можете кратко описаты продукт який вас цікавить.
+    Якщо Ви зацікавлені в двох або більше незалежних продуктів, будь ласка розділiть опис кожного новим рядком (enter).',
     'mailerTags' => 'Категорії',
     'mailerChooseTags' => 'Виберіть категорії, які Вас цікавлять',
     'mailerClickToDelete' => 'Натисніть на запис щоб видалити',
@@ -94,6 +95,14 @@ return [
     'mailerSuggestText' => 'Додати цей запит в Mailer?',
     'mailerSuggestTag' => 'Додати ці категорії в Mailer?',
     'mailerSuggestAuthor' => 'Додати цього Автора в Mailer?',
+    'mailerNotifGreetings' => 'Доброго дня',
+    'mailerNotifHeader' => 'Ми виявили, що ця пропозиція може Вас зацікавити.',
+    'mailerNotifBody' => 'Ви отримали цей лист, тому що через конфiгурацiю Mailer, :reason вважаються цікавими для вас:',
+    'mailerNotifBody2' => 'Ви можете в будь-який час налаштувати або відключити Mailer на сторінці',
+    'mailerNotifSlg' => 'З повагою,',
+    'mailerNotifTags' => 'ці категорії',
+    'mailerNotifDescription' => 'ці ключові слова',
+    'mailerNotifAuthors' => 'оголошення від цього автора',
 
     //subscription massages
     'mySubscription' => 'Підписка',

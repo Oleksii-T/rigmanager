@@ -27,8 +27,12 @@ form>div>h1 {
     padding: 20px 5px;
 }
 
-#userData tr>td {
-    width: 35%;
+td.nameOfField {
+    width: 40%;
+}
+
+td.valueOfField {
+    width: 60%;
 }
 
 #nameShow, #emailShow, #phoneShow, #avaEdit {
@@ -71,18 +75,6 @@ input.error { border-left: 2px solid #f44336 !important; }
     border-radius: 50%;
 }
 
-table input[type=text],
-table input[type=email], 
-table input[type=password] {
-    width: 100%;
-    padding: 0px 7px;
-    height: 38px;
-    outline: none;
-    border: none;
-    background-color: rgb(149, 149, 149, 0.7);
-    transition: 0.2s;
-}
-
 .hideShowPassword-wrapper {
     width: 100%;
 }
@@ -90,12 +82,6 @@ table input[type=password] {
 #phoneShow img { height: 20px; }
 
 .invalidInput { border-left: 2px solid #f44336; }
-
-table input:hover { background-color: rgb(149, 149, 149, 0.8); }
-
-table input:active { background-color: rgb(149, 149, 149, 0.7); }
-
-table input:focus { background-color: rgb(149, 149, 149, 0.9); }
 
 button.hideShowPassword-toggle {
     background-color: transparent;
@@ -121,31 +107,9 @@ button.hideShowPassword-toggle:hover {
 }
 
 #userData #sumbitBtn {
-    padding: 14px;
-    padding-left: 30px;
-    padding-right: 30px;
-    background: rgb(11, 11, 11, 0.6);
-    border: none;
     margin-left: 40px;
-    border-bottom: 2px solid #4CAF50;
     margin-right: 20px;
-    transition: 0.2s;
 }
-
-#userData #sumbitBtn:hover { background-color: rgb(114, 190, 116); }
-
-#userData #cancelBtn {
-    padding: 14px;
-    padding-left: 30px;
-    padding-right: 30px;
-    background-color: rgb(11, 11, 11, 0.6);
-    text-decoration: none;
-    border-bottom: 2px solid #f44336;
-    transition: 0.2s;
-}
-
-#userData #cancelBtn:hover { background-color: #eb837c; }
-
 
 /*==============MODAL=============*/
 
@@ -180,49 +144,12 @@ button.hideShowPassword-toggle:hover {
     margin-bottom: 20px;
 }
 
-.modalContent div > button { margin-right: 20px; }
-
-#modalSubmit:hover {
-    background: #eb837c;
-}
-
-#modalSubmit  {
-    padding: 14px;
-    padding-left: 30px;
-    padding-right: 30px;
-    background: none;
-    border: none;
-    outline: none;
-    text-decoration: none;
-    border-bottom: 2px solid #f44336;
+.modalContent div > button { 
+    margin-right: 20px; 
 }
 
 #modalShow {
-    margin-left: 30px;
+    margin-left: 20px;
     margin-top: 20px;
     padding: 5px;
-    border: none;
-    background: none;
-    color: #f44336;
-    border-bottom: 2px solid #f44336;
-}
-
-#modalShow:hover {
-    color: #ffffff !important;
-    background: #eb837c;
-}
-
-.modalContent div > button {
-    padding: 14px;
-    padding-left: 30px;
-    padding-right: 30px;
-    background: none;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #4CAF50;
-    cursor: pointer;
-}
-
-.modalContent div > button:hover {
-    background: rgb(114, 190, 116);
 }

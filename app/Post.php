@@ -7,7 +7,7 @@ use App\PostImage;
 use App\User;
 use Carbon\Carbon;
 use Laravel\Scout\Searchable;
-//use App\Favourite;
+use App\Favourite;
 
 class Post extends Model
 {

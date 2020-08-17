@@ -10,6 +10,7 @@ use App\User;
 use App\Http\Controllers\Traits\ImageUploader;
 use Illuminate\Support\Facades\Session;
 use App\Tags;
+use App\Jobs\MailersAnalizePost;
 
 class PostController extends Controller
 {
@@ -51,6 +52,7 @@ class PostController extends Controller
             $this->postImageUpload($request->file('images'), $post);
         }
         Session::flash('message-success', __('messages.postUploaded'));
+        MailersAnalizePost::dispatch($post, auth()->user()->id);
         return redirect(route('home'));
     }
 

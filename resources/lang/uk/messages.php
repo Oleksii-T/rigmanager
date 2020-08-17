@@ -27,9 +27,9 @@ return [
     'mailerAddedAuthor' => 'Автор був доданий в Mailer успішно!',
     'mailerRemovedAuthor' => 'Автор був видалений з Mailer успішно!',
     'mailerAuthorExists' => 'Author вже знаходиться в Mailer',
-    'mailerTagExists' => 'Вказані теги, вже є у вашому Mailer',
-    'mailerTagAdded' => 'Зазначені теги успішно додані до Вашого Mailer!',
-    'mailerCreatedWithTag' => 'Створено новий Mailer з вказаними тегами',
+    'mailerTagExists' => 'Вказані категорії, вже є у вашому Mailer',
+    'mailerTagAdded' => 'Вказані категорії успішно додані в ваш Mailer!',
+    'mailerTextAdded' => 'Зазначений запрос успішно доданий у Ваш Mailer!',
 
     'profileEdited' => 'Профіль було видалено успішно!',
     

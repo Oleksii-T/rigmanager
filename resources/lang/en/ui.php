@@ -77,7 +77,8 @@ return [
     'settingUpMailer' => 'Mailer configuration',
     'mailerDescription' => 'Description',
     'mailerChooseDescription' => 'Describe what you are looking for',
-    'mailerDescriptionHelp' => '',
+    'mailerDescriptionHelp' => 'Here you can briefly describe the product you are interested in.
+    If You are interested in few independent products, please split the description of them by new line.',
     'mailerTags' => 'Catogiries',
     'mailerChooseTags' => 'Select the categories you are interested in',
     'mailerClickToDelete' => 'Click on entry to delete',
@@ -93,6 +94,14 @@ return [
     'mailerSuggestText' => 'Add this request to Mailer?',
     'mailerSuggestTag' => 'Add this catogories to Mailer?',
     'mailerSuggestAuthor' => 'Add this Author to Mailer?',
+    'mailerNotifGreetings' => 'Hello',
+    'mailerNotifHeader' => 'We detected that You might be interested in this proposal.',
+    'mailerNotifBody' => 'You have got this email because due to Mailer configuration such :reason considered interesting for You:',
+    'mailerNotifBody2' => 'You are free to configure or disable Mailer at any time in your',
+    'mailerNotifSlg' => 'Regards,',
+    'mailerNotifTags' => 'this categories',
+    'mailerNotifDescription' => 'this keywords',
+    'mailerNotifAuthors' => 'posts by this author',
 
     //subscription massages
     'mySubscription' => 'My subscription',

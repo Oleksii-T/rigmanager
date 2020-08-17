@@ -6,25 +6,25 @@
 @endsection
 
 @section('content')
-    <div id="itemWraper">
+    <article id="itemWraper">
         <div id="leftContentWraper">
             <div id="leftContent">
                 @if ( $post->images->isNotEmpty() )
-                    <div class="element" id="mainImgWraper">
+                    <figure class="element" id="mainImgWraper">
                         <a target="_blank" href="{{ $post->images->where('version', 'origin')->first()->url }}">
                             <img id="mainImg" src="{{ $post->images->where('version', 'origin')->first()->url }}" alt="{{__('alt.keyword')}}">
                         </a>
-                    </div>
+                    </figure>
 
-                    <div class="element" id="otherImg">
+                    <figure class="element" id="otherImg">
                         @foreach ($post->images->where('version', 'optimized') as $image)
                             <div class="moreImg">
                                 <img class="imgTriger" src="{{ $image->url }}" alt="{{__('alt.keyword')}}">
                             </div>
                         @endforeach
-                    </div>
+                    </figure>
                 @endif
-                <div class="element" id="mainInfo">
+                <section class="element" id="mainInfo">
                     <h1>{{ $post->title }}</h1>
                     <div>
                         @foreach ($tagsArray as $id => $tag)
@@ -32,14 +32,14 @@
                         @endforeach
                     </div>
                     <p>{{ $post->description }}</p>
-                </div>
+                </section>
             </div>
         </div>
         
         <div id="rightContentWraper">
             <div id="rightContent">
                 @if ($post->user_id != Auth::id())
-                    <div class="element" id="addToFavBtn">
+                    <aside class="element" id="addToFavBtn">
                         @if (auth()->user()->favPosts->contains($post))
                             <p>{{__('ui.inFav')}}</p>
                             <button class="addToFavButton id_{{$post->id}}">
@@ -51,15 +51,15 @@
                                 <img src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
                             </button>  
                         @endif
-                    </div>
+                    </aside>
                 @else
-                    <div class="element" id="editBtn">
+                    <aside class="element" id="editBtn">
                         <p>{{__('ui.yoursPost')}}</p>
                         <a href="{{ route('posts.edit', $post->id) }}">{{__('ui.edit')}}</a>
-                    </div>
+                    </aside>
                 @endif
 
-                <div class="element" id="authorView">
+                <section class="element" id="authorView">
                     <h4>{{__('ui.postAuthor')}}</h4>
                     <div id="authorInfo">
                         @if ($post->user->image)
@@ -87,34 +87,34 @@
                             @endif
                         </button>
                     @endif
-                </div>
+                </section>
 
-                <div class="element" id="status">
+                <aside class="element" id="status">
                     <p>{{__('ui.condition')}}: {{ $post->condition }}</p>
-                </div>
+                </aside>
 
                 @if ($post->location)
-                    <div class="element" id="location">
+                    <aside class="element" id="location">
                         <p>{{__('ui.location')}}: {{ $post->location }}</p>
-                    </div>
+                    </aside>
                 @endif
 
                 @if ($post->cost)
-                    <div class="element" id="cost">
+                    <aside class="element" id="cost">
                         <div>
                             <p>{{__('ui.cost')}}: {{ $post->cost }} </p>
                         </div>
-                    </div>
+                    </aside>
                 @endif
 
-                <div class="element" id="createdOn">
-                    <p>{{__('ui.postCreated')}}: {{ $post->created_at }} </p>
-                </div>
+                <aside class="element" id="createdOn">
+                    <time>{{__('ui.postCreated')}}: {{ $post->created_at }} </time>
+                </aside>
             </div>
         </div>
 
         <div class="modalView" id="modal">
-            <div class="modalContent"> 
+            <address class="modalContent"> 
                 <h1>{{__('ui.contactInfo')}}:</h1>
                 <ul>
                     @if ($post->user_email)
@@ -139,9 +139,9 @@
                         <li>{{__('ui.phone')}}: {{__('ui.empty')}}.</li>
                     @endif
                 </ul>
-            </div>
+            </address>
         </div>
-    </div>
+    </article>
 
 @endsection
 

@@ -16,12 +16,11 @@
                 <a href="{{ route('home') }}"><img id="clearIcon" src="{{ asset('icons/clearIcon.svg') }}" alt="{{__('alt.keyword')}}"></a>
                 <input id="inputSearch" name="searchStrings" placeholder="{{__('ui.search')}}..." required />
             </div>
-            <button type="submit">{{__('ui.search')}}</button>
+            <button class="def-button" type="submit">{{__('ui.search')}}</button>
         </form>
     </div>
 
-    <div id="searchBtns">
-
+    <nav id="searchBtns">
         <div id="navTags">
             <button class="tagsTrigger hseEq">{{__('tags.hseEq')}}<span class="arrow arrowDown"></span></button>
             <button class="tagsTrigger drillingEq">{{__('tags.drillingEq')}}<span class="arrow arrowDown"></span></button>
@@ -141,7 +140,7 @@
             </div>
 
         </div>
-    </div>
+    </nav>
 
     <x-items :posts="$posts_list" button='addToFav' />
 

@@ -49,7 +49,7 @@ ADD: change wait cursor to some gif animation
 
 CODE: make registration via Ajax request
 
-CODE: implenet Admin page for getting chars and stistics about website and data
+CODE: implement Admin page for getting charts and stistics about website and data
 
 CODE: make form from every button which uses link with data
 
@@ -73,7 +73,13 @@ CODE: fix Ajax. some requests done odd, some are GET with query string and some 
 
 NOTE: in mailer when user deletes author, value become EMPTY not NULL
 
-CODE: color of profile buttons is different
+CODE: add Algolia logo for searc results
+
+BUG: on post create flash or pop up came out without css
+
+CODE: add semantic tags where needed
+
+BUG: on search page search button bg is bugged
 
 
 =========MASTER_OBEJECTIVES===========
@@ -103,6 +109,9 @@ CODE: loaning system for equipment
 
 =======DONE======
 
+CODE: color of profile buttons is different
+CODE: style all buttons via universal css class in base.css
+CODE: style all inputs via universal css class in base.css
 BUG: author search bug
 CODE: redesigh pop up and flash massages (make em like in adm.tool)
 BUG: sometimes flash notif is keeps on second page (possible fix: use return redirect() instead return view())

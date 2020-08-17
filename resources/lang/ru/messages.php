@@ -25,11 +25,11 @@ return [
     'mailerEditedError' => 'При изменении Mailer произошла ошибка.',
     'mailerEdited' => 'Mailer был изменен успешно!',
     'mailerAddedAuthor' => 'Автор был добавлен в Mailer успешно!',
-    'mailerAuthorExists' => 'Author уже находиться в Mailer',
     'mailerRemovedAuthor' => 'Автор был удален из Mailer успешно!',
-    'mailerTagExists' => 'Указанные теги уже есть в вашем Mailer',
-    'mailerTagAdded' => 'Указанные тэги успешно добавлены в ваш Mailer!',
-    'mailerCreatedWithTag' => 'Создан новый Mailer с указанными тегами',
+    'mailerAuthorExists' => 'Author уже находиться в Mailer',
+    'mailerTagExists' => 'Указанные категории уже есть в вашем Mailer',
+    'mailerTagAdded' => 'Указанные категории успешно добавлены в ваш Mailer!',
+    'mailerTextAdded' => 'Указанный запрос успешно добавлен в ваш Mailer!',
 
     'profileEdited' => 'Профиль изменен успешно!',
 

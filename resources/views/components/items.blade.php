@@ -1,14 +1,31 @@
-<div id="items">
+<section id="items">
     @foreach ($posts as $post)
-        <div class="item id_{{ $post->id }}">
-            <div class="imgWraper">
+        <article class="item id_{{ $post->id }}">
+            <figure class="imgWraper">
                 @if ( $post->images->isEmpty() )
-                    <img src="{{ asset('icons/noImageIcon.svg') }}" alt="Оборудывание нефть и газ."></li>
+                    <img src="{{ asset('icons/noImageIcon.svg') }}" alt="{{__('alt.keyword')}}"></li>
                 @else    
-                    <img src="{{ $post->images()->where('version', 'optimized')->first()->url }}" alt="Оборудывание нефть и газ."></li>
+                    <img src="{{ $post->images()->where('version', 'optimized')->first()->url }}" alt="{{__('alt.keyword')}}"></li>
                 @endif
-            </div>
+            </figure>
             
+            <div class="textWraper">
+                <h3 class="heading4">{{ $post->title }}</h3>
+                <p class="desc">{{ $post->description }}</p>
+                <ul id="ulMisc">
+                    @if ($post->location)
+                        <li><p class="location misc">{{ $post->location }}</p></li>
+                        <li><p>s &#x02022</p></li>
+                    @endif
+                    <li><time class="date misc" >{{ $post->created_at }}</time></li>
+                    @if ($post->cost)
+                        <li><p>&#x02022</p></li>
+                        <li><p class="cost misc">{{ $post->cost }}</p></li>
+                    @endif
+                </ul>
+            </div>
+
+                     
             @if ($button == 'addToFav')
                 <button class="{{ $post->user_id == Auth::id() ? 'addToFavButtonBlocked' : 'addToFavButton'}} id_{{ $post->id }}">
                     @if ( auth()->user() && $post->favOfUser->where('id', Auth::id())->isNotEmpty() )
@@ -32,25 +49,9 @@
                     <img title="{{__('ui.edit')}}" src="{{ asset('icons/editIcon.svg') }}" alt="{{__('alt.keyword')}}">
                 </a>
             @endif
-            
-            <div class="textWraper">
-                <h3 class="heading4">{{ $post->title }}</h3>
-                <p class="desc">{{ $post->description }}</p>
-                <ul id="ulMisc">
-                    @if ($post->location)
-                        <li><p class="location misc">{{ $post->location }}</p></li>
-                        <li><p>s &#x02022</p></li>
-                    @endif
-                    <li><p class="date misc" >{{ $post->created_at }}</p></li>
-                    @if ($post->cost)
-                        <li><p>&#x02022</p></li>
-                        <li><p class="cost misc">{{ $post->cost }}</p></li>
-                    @endif
-                </ul>
-            </div>
 
             <a href="{{ route('posts.show', $post->id) }}"><span class="globalItemButton item_id_{{$post->id}}"></span></a>
-        </div>
+        </article>
 
         @if ($button == 'deleteAndEdit')
             <div class="modalView animate" id="modalPostDelete">
@@ -68,4 +69,4 @@
             </div>
         @endif
     @endforeach
-</div>
+</section>

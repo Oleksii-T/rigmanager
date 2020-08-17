@@ -72,7 +72,7 @@
                 </tr>
                 <tr id="editBtnField">
                     <td>
-                        <a id="editBtn" href="{{ route('profile.edit') }}">{{__('ui.edit')}}</a>
+                        <a class="def-button" id="editBtn" href="{{ route('profile.edit') }}">{{__('ui.edit')}}</a>
                     </td>
                 </tr>
             </table>

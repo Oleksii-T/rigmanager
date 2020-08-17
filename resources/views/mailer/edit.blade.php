@@ -25,6 +25,9 @@
                         <p class="elementHeading">{{__('ui.mailerChooseDescription')}}</p>
                         <textarea id="inputKeywords" name="keywords" form="formUpdateMailer" rows="5" maxlength="9000">{{ old('keywords') ?? $mailer->keywords }}</textarea>
                         <x-server-input-error errorName='keywords' inputName='inputKeywords' errorClass='error'/>
+                        <div class="help">
+                            <p><i>{{__('ui.mailerDescriptionHelp')}}</i></p>
+                        </div>
                     </div>
 
                     <div class="element" id="tags" >
@@ -146,8 +149,8 @@
                     </div>
                     
                     <div class="element" id="btns">
-                        <button class="submitBtn" type="submit">{{__('ui.save')}}</button>
-                        <a class="cancelBtn" href="{{ route('mailer.index') }}">{{__('ui.cancel')}}</a>
+                        <button class="def-button submit-button" type="submit">{{__('ui.save')}}</button>
+                        <a class="def-button cancel-button" href="{{ route('mailer.index') }}">{{__('ui.cancel')}}</a>
                     </div>
                 </form>
             </div>

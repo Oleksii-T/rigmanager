@@ -26,8 +26,8 @@
                         <h1>{{__('ui.profileSettings')}}</h1>
                         <table>
                             <tr id="avaEdit">
-                                <td><p>{{__('ui.avatar')}}</p></td>
-                                <td>
+                                <td class="nameOfField"><p>{{__('ui.avatar')}}</p></td>
+                                <td class="valueOfField">
                                     <label for="inputAva">
                                         <div id="avaPreview">
                                             @if ($user->image)
@@ -39,7 +39,7 @@
                                     </label>
                                     <input id="inputAva" type="file" name="ava" hidden>
                                     @if ($user->image)
-                                        <button type="button" id="modalShow">{{__('ui.deleteProfileImg')}}</button>
+                                        <button class="def-button delete-button" type="button" id="modalShow">{{__('ui.deleteProfileImg')}}</button>
                                     @endif
                                     @error('ava')
                                         <div class="error">
@@ -49,17 +49,17 @@
                                 </td>
                             </tr>
                             <tr id="nameShow">
-                                <td><p>{{__('ui.userName')}}</p></td>
-                                <td>
-                                    <input id="inputName" name="name" type="text" placeholder="Имя" value="{{ old('name') ?? $user->name}}" required autocomplete="name" autofocus/>
+                                <td class="nameOfField"><p>{{__('ui.userName')}}</p></td>
+                                <td class="valueOfField">
+                                    <input class="def-input" id="inputName" name="name" type="text" placeholder="Имя" value="{{ old('name') ?? $user->name}}" required autocomplete="name" autofocus/>
                                     <x-server-input-error errorName='name' inputName='inputName' errorClass='error'/>
                                     <div class="help"><p><i>{{__('ui.userNameHelp')}}</i></p></div>
                                 </td>
                             </tr>
                             <tr id="phoneShow">
-                                <td><p>{{__('ui.phone')}}</p></td>
-                                <td>
-                                    <input id="inputPhone" name="phone" type="text" placeholder="Ном. телефона" value="{{ old('phone') ?? $user->phone}}" autocomplete="phone" autofocus/>
+                                <td class="nameOfField"><p>{{__('ui.phone')}}</p></td>
+                                <td class="valueOfField">
+                                    <input class="def-input" id="inputPhone" name="phone" type="text" placeholder="Ном. телефона" value="{{ old('phone') ?? $user->phone}}" autocomplete="phone" autofocus/>
                                     <x-server-input-error errorName='phone' inputName='inputPhone' errorClass='error'/>
                                     <div>
                                         <input type="checkbox" id="viberInput" name="viber" value="1" {{ $user->viber ? 'checked' : '' }}>
@@ -84,25 +84,25 @@
                                 </td> 
                             </tr>
                             <tr id="emailShow">
-                                <td><p>{{__('ui.login')}}</p></td>
-                                <td>
-                                    <input id="inputEmail" type="email" name="email" type="email" placeholder="Логин" value="{{ old('email') ?? $user->email}}" required autocomplete="email"/> 
+                                <td class="nameOfField"><p>{{__('ui.login')}}</p></td>
+                                <td class="valueOfField">
+                                    <input class="def-input" id="inputEmail" type="email" name="email" type="email" placeholder="Логин" value="{{ old('email') ?? $user->email}}" required autocomplete="email"/> 
                                     <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
                                     <div class="help"><p><i>{{__('ui.loginHelp')}}</i></p></div>
                                 </td>
                             </tr>
                             <tr id="passShow">
-                                <td><p>{{__('ui.password')}}</p></td>
-                                <td>
-                                    <input type="password" id="inputPassword" name="password" placeholder="Новый пароль..."/>
+                                <td class="nameOfField"><p>{{__('ui.password')}}</p></td>
+                                <td class="valueOfField">
+                                    <input class="def-input" type="password" id="inputPassword" name="password" placeholder="Новый пароль..."/>
                                     <x-server-input-error errorName='password' inputName='inputPassword' errorClass='error'/>
                                     <div class="help"><p><i>{{__('ui.passwordEditHelp')}}</i></p></div>
                                 </td>
                             </tr>
                         </table>
                     </div>
-                    <button id="sumbitBtn" type="submit">{{__('ui.save')}}</button>
-                    <a id="cancelBtn" href="{{ route('profile') }}">{{__('ui.cancel')}}</a>
+                    <button class="def-button submit-button" id="sumbitBtn" type="submit">{{__('ui.save')}}</button>
+                    <a class="def-button cancel-button" id="cancelBtn" href="{{ route('profile') }}">{{__('ui.cancel')}}</a>
                 </form>
             </div>
         </div>
@@ -111,8 +111,8 @@
         <div class="modalContent"> 
             <p>{{__('ui.sure?')}}</p>
             <div>
-                <button type="button" id="modalHide">{{__('ui.no')}}</button>
-                <button id="modalSubmit">{{__('ui.delete')}}</button>
+                <button class="def-button submit-button" type="button" id="modalHide">{{__('ui.no')}}</button>
+                <button class="def-button cancel-button" id="modalSubmit">{{__('ui.delete')}}</button>
             </div>
         </div>
     </div>

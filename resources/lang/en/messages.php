@@ -27,11 +27,9 @@ return [
     'mailerAddedAuthor' => 'Author added to Mailer',
     'mailerRemovedAuthor' => 'Author removed from Mailer',
     'mailerAuthorExists' => 'Author already in Mailer',
-    'mailerTagExists' => 'Specified tags already in your Mailer',
-    'mailerTagAdded' => 'Specified tags added to your Mailer successfully!',
-    'mailerCreatedWithTag' => 'A new Mailer with specified tags has been created',
+    'mailerTagExists' => 'Specified categories already in your Mailer',
+    'mailerTagAdded' => 'Specified categories added to your Mailer successfully!',
     'mailerTextAdded' => 'Specified keywords added to your Mailer successfully!',
-    'mailerCreatedWithText' => 'A new Mailer with specified keywords has been created',
 
     'profileEdited' => 'Profile has been changed successfully!',
     

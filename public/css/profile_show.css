@@ -93,18 +93,3 @@
     transition: 0.2s;
     padding: 5px;
 }
-
-#editBtn {
-    padding: 10px 20px;
-    text-decoration: none;
-    background-color: rgb(149, 149, 149, 0.7);
-    display: inline-block;
-}
-
-#editBtn:hover {
-    background-color: rgb(149, 149, 149, 0.8);
-}
-
-#editBtn:active {
-    background-color: rgb(149, 149, 149, 0.7);
-}

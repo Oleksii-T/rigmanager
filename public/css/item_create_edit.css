@@ -11,13 +11,7 @@
 label { font-size: 110%; }
 
 #editItemBody input {
-    padding: 7px;
-    margin-top: 20px;
-    border: none;
-    outline: none;
-    transition: 0.2s;
-    background-color: rgb(149, 149, 149, 0.7);
-}
+    margin-top: 20px;}
 
 .element {
     position: relative;
@@ -60,13 +54,13 @@ input.error, textarea.error {
     /*border-bottom-left-radius: none !important;*/
 }
 
-#editItemBody input:hover, #desc textarea:hover, 
+#desc textarea:hover, 
 #navTags button:hover, #imgs label:hover
  { background-color: rgb(149, 149, 149, 0.8); }
- #editItemBody input:focus, #desc textarea:focus 
+#desc textarea:focus 
  { background-color: rgb(149, 149, 149, 0.9); }
- #editItemBody input:active, #desc textarea:active, 
- #navTags button:active
+#desc textarea:active, 
+#navTags button:active
  { background-color: rgb(149, 149, 149, 0.7); }
 
 /*==================PAGE_TITLE==================*/
@@ -80,7 +74,9 @@ input.error, textarea.error {
 
 /*==================TITLE==================*/
 
-#title #inputTitle { width: 70%; }
+#title #inputTitle { 
+    width: 70%; 
+}
 
 /*==================CONDITION==================*/
 
@@ -243,11 +239,6 @@ input.error, textarea.error {
 
 #modalImgsDeleteOn,
 #clearTagsBtn {
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color: #f44336;
     margin-top: 10px;
     padding: 7px;
 }
@@ -274,6 +265,8 @@ input.error, textarea.error {
 
 /*==================MISC_INFO==================*/
 
+#inputCost { width: 30%; }
+
 #locationField { margin-top: 20px; }
 
 #inputLocation { width: 60%; }
@@ -286,61 +279,28 @@ input.error, textarea.error {
 
 #phoneField img { height: 20px; }
 
+#inputPhone { width: 30%; }
+
 #phoneField input[type=checkbox] { 
     margin: 0px; 
 }
 
 /*==================BUTTONS==================*/
 
-#btns { border-bottom: none; }
-
-#btns:hover { box-shadow: none; }
-
-#btns button,
-.modalContent div > button {
-    padding: 14px;
-    padding-left: 30px;
-    padding-right: 30px;
-    background: none;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #4CAF50;
-    cursor: pointer;
+#btns { 
+    border-bottom: none; 
 }
 
-#btns button:hover[type=submit],
-.modalContent div > button:hover {
-    background: rgb(114, 190, 116);
+#btns:hover { 
+    box-shadow: none; 
 }
 
-#btns a,
-.modalContent form button  {
-    padding: 14px;
-    padding-left: 30px;
-    padding-right: 30px;
-    background: none;
-    border: none;
-    outline: none;
-    text-decoration: none;
-    border-bottom: 2px solid #f44336;
-}
-
-#btns a:hover,
-.modalContent form button:hover {
-    background: #eb837c;
+.submit-button {
+    margin-right: 5px;
 }
 
 #btns #modalPostDeleteOn {
     float: right;
-    color: #f44336;
-    border-bottom: 2px solid #f44336;
-}
-
-#modalPostDeleteOn:hover,
-#modalImgsDeleteOn:hover,
-#clearTagsBtn:hover {
-    color: #ffffff !important;
-    background: #eb837c;
 }
 
 /*==================MODAL==================*/

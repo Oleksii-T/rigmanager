@@ -46,6 +46,11 @@
     margin-left: 10px;
 }
 
+div.algolia-logo {
+    float: right;
+    margin-right: 30px;
+}
+
 #searchStatus {
     text-align: center;
     margin: 20px 0px;

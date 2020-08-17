@@ -46,8 +46,8 @@
                 <p>{{__('ui.signUp')}}</p>
                 <table>
                     <tr id="avaEdit">
-                        <td><p>{{__('ui.avatar')}}</p></td>
-                        <td>
+                        <td class="nameOfField"><p>{{__('ui.avatar')}}</p></td>
+                        <td class="valueOfField">
                             <label for="inputAva">
                                 <div id="avaPreview"><img src="{{ asset('icons/emptyUserIcon.svg') }}" alt="{{__('alt.keyword')}}"></div>
                             </label>
@@ -61,18 +61,18 @@
                     </tr>
 
                     <tr id="nameShow">
-                        <td><p>{{__('ui.userName')}}</p></td>
-                        <td>
-                            <input id="inputName" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <td class="nameOfField"><p>{{__('ui.userName')}}</p></td>
+                        <td class="valueOfField">
+                            <input class="def-input" id="inputName" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                             <x-server-input-error errorName='name' inputName='inputName' errorClass='error'/>
                             <div class="help"><p><i>{{__('ui.userNameHelp')}}</i></p></div>
                         </td>
                     </tr>
 
                     <tr id="phoneShow">
-                        <td><p>{{__('ui.phone')}}</p></td>
-                        <td>
-                            <input id="inputPhone" type="text" name="phone" value="{{ old('phone') }}" autocomplete="phone" autofocus>
+                        <td class="nameOfField"><p>{{__('ui.phone')}}</p></td>
+                        <td class="valueOfField">
+                            <input class="def-input" id="inputPhone" type="text" name="phone" value="{{ old('phone') }}" autocomplete="phone" autofocus>
                             <x-server-input-error errorName='phone' inputName='inputPhone' errorClass='error'/>
                             <div>
                                 <input type="checkbox" id="viberInput" name="viber" value="1" {{ old('viber') ? 'checked' : '' }}>
@@ -98,18 +98,18 @@
                     </tr>
 
                     <tr id="emailShow">
-                        <td><p>{{__('ui.login')}}</p></td>
-                        <td>
-                            <input id="inputEmail" type="email" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <td class="nameOfField"><p>{{__('ui.login')}}</p></td>
+                        <td class="valueOfField">
+                            <input class="def-input" id="inputEmail" type="email" name="email" value="{{ old('email') }}" required autocomplete="email">
                             <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
                             <div class="help"><p><i>{{__('ui.loginHelp')}}</i></p></div>
                         </td>
                     </tr>
 
                     <tr id="passShow">
-                        <td><p>{{__('ui.password')}}</p></td>
-                        <td>
-                            <input id="inputPassword" type="password" name="password" required autocomplete="new-password">
+                        <td class="nameOfField"><p>{{__('ui.password')}}</p></td>
+                        <td class="valueOfField">
+                            <input class="def-input" id="inputPassword" type="password" name="password" required autocomplete="new-password">
                             <x-server-input-error errorName='password' inputName='inputPassword' errorClass='error'/>
                             <div class="help"><p><i>{{__('ui.passwordHelp')}}</i></p></div>
                         </td>
@@ -117,7 +117,7 @@
                 </table>
             </div>
             <div>
-                <button id="sumbitBtn" type="submit">{{__('ui.signUp')}}</button>
+                <button class="def-button submit-button" type="submit">{{__('ui.signUp')}}</button>
                 <div class="social">
                     <p class="socialText"><span>{{__('ui.or')}}</span>{{__('ui.socialSignIn')}}:</p>
                     <div>

@@ -15,7 +15,7 @@
 
             <div id="title" class="element">
                 <label class="elementHeading" for="inputTitle">{{__('ui.title')}}</label><br>
-                <input id="inputTitle" name="title" placeholder="{{__('ui.title')}}" value="{{ old('title') ?? $post->title }}"/>
+                <input class="def-input" id="inputTitle" name="title" placeholder="{{__('ui.title')}}" value="{{ old('title') ?? $post->title }}"/>
                 <x-server-input-error errorName='title' inputName='inputTitle' errorClass='error'/>
                 <div class="help">
                     <p><i>{{__('ui.titleHelp')}}</i></p>
@@ -118,7 +118,7 @@
                 <input id="tagReadbleHidden" type="text" name="tagReadbleHidden" value="{{ old('tagReadbleHidden') ?? $tagReadble }}" hidden/>
                 <p id="choosenTags">{{__('ui.chosenTags')}}: <span id="tagReadbleVisible">{{ old('tagReadbleHidden') ?? $tagReadble }}</span></p>
                 
-                <button type="button" id="clearTagsBtn">{{__('ui.clearTagsFromPost')}}</button>
+                <button class="def-button delete-button" id="clearTagsBtn" type="button">{{__('ui.clearTagsFromPost')}}</button>
 
                 <div class="help">
                     <p><i>{{__('ui.tagHelp')}}</i></p>
@@ -169,7 +169,7 @@
                 </div>
 
                 @if ( $post->images->isNotEmpty() )
-                    <button type="button" id="modalImgsDeleteOn">{{__('ui.deleteAllImgs')}}</button>
+                    <button class="def-button delete-button" id="modalImgsDeleteOn" type="button">{{__('ui.deleteAllImgs')}}</button>
                 @endif
 
                 <div class="help">
@@ -180,13 +180,13 @@
             <div id="miscInfo" class="element">
                 <div>
                     <label class="elementHeading" for="inputCost">{{__('ui.cost')}}</label><br>
-                    <input id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') ?? $post->cost }}"/>
+                    <input class="def-input" id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') ?? $post->cost }}"/>
                     <x-server-input-error errorName='cost' inputName='inputCost' errorClass='error'/>
                 </div>
 
                 <div>
                     <label class="elementHeading" for="inputTitle">{{__('ui.location')}}</label><br>
-                    <input id="inputLocation" name="location" type="text" placeholder="{{__('ui.location')}}" value="{{ old('location') ?? $post->location }}"/>
+                    <input class="def-input" id="inputLocation" name="location" type="text" placeholder="{{__('ui.location')}}" value="{{ old('location') ?? $post->location }}"/>
                     <x-server-input-error errorName='location' inputName='inputLocation' errorClass='error'/>
                 </div>
 
@@ -198,13 +198,13 @@
             <div id="contact" class="element">
                 <div id="emailField">
                     <label class="elementHeading" for="inputEmail">{{__('ui.email')}}</label><br>
-                    <input id="inputEmail" name="user_email" type="email" placeholder="{{__('ui.email')}}" value="{{ old('user_email') ?? $post->user_email }}">
+                    <input class="def-input" id="inputEmail" name="user_email" type="email" placeholder="{{__('ui.email')}}" value="{{ old('user_email') ?? $post->user_email }}">
                     <x-server-input-error errorName='user_email' inputName='inputEmail' errorClass='error'/>
                 </div>
 
                 <div id="phoneField">
                     <label class="elementHeading" id="phoneHeader" for="inputPhone">{{__('ui.phone')}}</label><br>
-                    <input id="inputPhone" name="user_phone" type="text" placeholder="{{__('ui.phone')}}" value="{{ old('user_phone') ?? $post->user_phone }}">
+                    <input class="def-input" id="inputPhone" name="user_phone" type="text" placeholder="{{__('ui.phone')}}" value="{{ old('user_phone') ?? $post->user_phone }}">
                     <x-server-input-error errorName='user_phone' inputName='inputPhone' errorClass='error'/>
                     <div class="mediaCheckBoxes">
                         <div>
@@ -237,9 +237,9 @@
             </div>
 
             <div id="btns" class="element">
-                <button type="submit">{{__('ui.save')}}</button>
-                <a href="{{ route('posts.show', $post->id) }}">{{__('ui.cancel')}}</a>
-                <button type="button" id="modalPostDeleteOn">{{__('ui.deletePost')}}</button>
+                <button class="def-button submit-button" type="submit">{{__('ui.save')}}</button>
+                <a class="def-button cancel-button" href="{{ route('posts.show', $post->id) }}">{{__('ui.cancel')}}</a>
+                <button class="def-button delete-button" type="button" id="modalPostDeleteOn">{{__('ui.deletePost')}}</button>
             </div>
         </form>
 
@@ -247,11 +247,11 @@
             <div class="modalContent"> 
                 <p>{{__('ui.sure?')}}</p>
                 <div>
-                    <button type="button" id="modalImgsDeleteOff">{{__('ui.no')}}</button>
+                    <button class="def-button submit-button" type="button" id="modalImgsDeleteOff">{{__('ui.no')}}</button>
                     <form method="POST" action="{{ route('posts.imgs.delete', $post->id) }}">
                         @csrf
                         @method('PATCH')
-                        <button>{{__('ui.delete')}}</button>
+                        <button class="def-button cancel-button">{{__('ui.delete')}}</button>
                     </form>
                 </div>
             </div>
@@ -261,11 +261,11 @@
             <div class="modalContent"> 
                 <p>{{__('ui.sure?')}}</p>
                 <div>
-                    <button type="button" id="modalPostDeleteOff">{{__('ui.no')}}</button>
+                    <button class="def-button submit-button" type="button" id="modalPostDeleteOff">{{__('ui.no')}}</button>
                     <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
                         @csrf
                         @method('DELETE')
-                        <button>{{__('ui.delete')}}</button>
+                        <button class="def-button cancel-button">{{__('ui.delete')}}</button>
                     </form>
                 </div>
             </div>

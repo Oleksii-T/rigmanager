@@ -13,7 +13,8 @@
             
             <div id="title" class="element">
                 <label class="elementHeading" for="inputTitle">{{__('ui.title')}}</label><br>
-                <input id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') }}"/>
+                <!--  <input id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') }}"/>  -->
+                <input class="def-input" id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="Элементы крепления буровой колонны на устье"/>
                 <x-server-input-error errorName='title' inputName='inputTitle' errorClass='error'/>
                 <div class="help">
                     <p><i>{{__('ui.titleHelp')}}</i></p>
@@ -124,7 +125,11 @@
 
             <div id="desc" class="element">
                 <label class="elementHeading" for="inputDecs">{{__('ui.description')}}</label><br>
-                <textarea name="description" id="inputDecs" form="formNewPost" rows="15" maxlength="9000">{{ old('description') }}</textarea>
+                <!--   <textarea name="description" id="inputDecs" form="formNewPost" rows="15" maxlength="9000">{{ old('description') }}</textarea>  -->
+                <textarea name="description" id="inputDecs" form="formNewPost" rows="15" maxlength="9000">Элеваторы и спайдера любый размеров
+                    для любых целей
+                    Есть оборудывание для Труб всех диаметров и всех назначений и вертлюг
+                </textarea>
                 <x-server-input-error errorName='description' inputName='inputDecs' errorClass='error'/>
                 <div class="help">
                     <p><i>{{__('ui.descriptionHelp')}}</i></p>
@@ -156,13 +161,13 @@
             <div id="miscInfo" class="element">
                 <div>
                     <label class="elementHeading" for="inputCost">{{__('ui.cost')}}</label><br>
-                    <input id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') }}"/>
+                    <input class="def-input" id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') }}"/>
                     <x-server-input-error errorName='cost' inputName='inputCost' errorClass='error'/>
                 </div>
 
                 <div id="locationField">
                     <label class="elementHeading" for="inputLocation">{{__('ui.location')}}</label><br>
-                    <input id="inputLocation" name="location" type="text" placeholder="{{__('ui.location')}}" value="{{ old('location') }}"/>
+                    <input class="def-input" id="inputLocation" name="location" type="text" placeholder="{{__('ui.location')}}" value="{{ old('location') }}"/>
                     <x-server-input-error errorName='location' inputName='inputLocation' errorClass='error'/>
                 </div>
                 
@@ -174,13 +179,13 @@
             <div id="contact" class="element">
                 <div id="emailField">
                     <label class="elementHeading" for="inputEmail">{{__('ui.email')}}</label><br>
-                    <input id="inputEmail" name="user_email" type="email" placeholder="{{__('ui.email')}}" value="{{ old('user_email') ?? $user->email }}" autocomplete="email">
+                    <input class="def-input" id="inputEmail" name="user_email" type="email" placeholder="{{__('ui.email')}}" value="{{ old('user_email') ?? $user->email }}" autocomplete="email">
                     <x-server-input-error errorName='user_email' inputName='inputEmail' errorClass='error'/>
                 </div>
 
                 <div id="phoneField">
                     <label class="elementHeading" id="phoneHeader" for="inputPhone">{{__('ui.phone')}}</label><br>
-                    <input id="inputPhone" name="user_phone" type="text" placeholder="{{__('ui.phone')}}" value="{{ old('user_phone') ?? $user->phone }}" autocomplete="phone">
+                    <input class="def-input" id="inputPhone" name="user_phone" type="text" placeholder="{{__('ui.phone')}}" value="{{ old('user_phone') ?? $user->phone }}" autocomplete="phone">
                     <x-server-input-error errorName='user_phone' inputName='inputPhone' errorClass='error'/>
                     <div class="mediaCheckBoxes">
                         <div>
@@ -213,8 +218,8 @@
             </div>
 
             <div id="btns" class="element">
-                <button type="submit">{{__('ui.save')}}</button>
-                <a href="{{ route('home') }}">{{__('ui.cancel')}}</a>
+                <button class="def-button submit-button" type="submit">{{__('ui.save')}}</button>
+                <a class="def-button cancel-button" href="{{ route('home') }}">{{__('ui.cancel')}}</a>
             </div>
         </form>
     </div> 

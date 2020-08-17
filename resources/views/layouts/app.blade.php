@@ -11,7 +11,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!--  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">  -->
 
     <!-- Styles -->
     <link type="text/css" href="{{ asset('css/base.css') }}" rel="stylesheet">
@@ -35,94 +35,94 @@
             @endif
         </div>
 
+        <div class="side-background"></div>
+        
+
         <div id="container">
 
-            <div class="sideBg" id="leftBg"></div>
-            <div class="sideBg" id="rightBg"></div>
-
-
-            
-            <!-- Header of all web pages -->
-            <div id="header">
-                <a href="{{ route('home') }}"><img id="logo" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
-                <!--{{ config('app.name') }}-->
-                <ul>
-                    @if (App::isLocale('uk'))
-                        <li>UKR</li>
-                    @else
-                        <li><a href="{{ route('locale.setting', 'uk') }}">UKR</a></li>
-                    @endif
-                    
-                    <li> | </li>
-                    
-                    @if (App::isLocale('ru'))
-                        <li>RU</li>
-                    @else
-                        <li><a href="{{ route('locale.setting', 'ru') }}">RU</a></li>
-                    @endif
-                    
-                    <li> | </li>
-                    
-                    @if (App::isLocale('en'))
-                        <li>ENG</li>
-                    @else
-                        <li><a href="{{ route('locale.setting', 'en') }}">ENG</a></li>
-                    @endif
-                </ul>
-            </div> 
-
-            <!-- Navigation bar of all web pages -->
-            <nav class="mainNav">
-                <a id="homeTab" href="{{ route('home') }}">
-                    <div class="iconWraper">
-                        <img src="{{ asset('icons/homeIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                    </div>
-                    <p>{{__('ui.home')}}</p>
-                </a>
-                <a id="myItemsTab" href="{{ route('myPosts') }}">
-                    <div class="iconWraper">
-                        <img src="{{ asset('icons/myItemsIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                    </div>
-                    <p>{{__('ui.myPosts')}}</p>
-                </a>
-                <a id="favItemsTab" href="{{ route('favPosts') }}">
-                    <div class="iconWraper">
-                        <img src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                        @if ( auth()->user() )
-                            <span> {{ auth()->user()->favPosts->count() }}</span>
+            <header>
+                <!-- Header of all web pages -->
+                <div id="header">
+                    <a href="{{ route('home') }}"><img id="logo" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
+                    <!--{{ config('app.name') }}-->
+                    <ul>
+                        @if (App::isLocale('uk'))
+                            <li>UKR</li>
+                        @else
+                            <li><a href="{{ route('locale.setting', 'uk') }}">UKR</a></li>
                         @endif
-                    </div>
-                    <p>{{__('ui.favourites')}}</p>
-                </a>
-                <a id="profileTab" href="{{route('profile')}}">
-                    <div class="iconWraper">
-                        <img src="{{ asset('icons/profileIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                    </div>
-                    <p>{{__('ui.profile')}}</p>
-                </a>
-                @guest
-                    <a id="loginTab" href="{{ route('login') }}">
+                        
+                        <li> | </li>
+                        
+                        @if (App::isLocale('ru'))
+                            <li>RU</li>
+                        @else
+                            <li><a href="{{ route('locale.setting', 'ru') }}">RU</a></li>
+                        @endif
+                        
+                        <li> | </li>
+                        
+                        @if (App::isLocale('en'))
+                            <li>ENG</li>
+                        @else
+                            <li><a href="{{ route('locale.setting', 'en') }}">ENG</a></li>
+                        @endif
+                    </ul>
+                </div> 
+
+                <!-- Navigation bar of all web pages -->
+                <nav class="main-navigation">
+                    <a id="homeTab" href="{{ route('home') }}">
                         <div class="iconWraper">
-                            <img src="{{ asset('icons/logInIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            <img src="{{ asset('icons/homeIcon.svg') }}" alt="{{__('alt.keyword')}}">
                         </div>
-                        <p>{{__('ui.signIn')}}</p>
+                        <p>{{__('ui.home')}}</p>
                     </a>
-                @else
-                    <a href="#" onclick="document.getElementById('logout-form').submit();">
+                    <a id="myItemsTab" href="{{ route('myPosts') }}">
                         <div class="iconWraper">
-                            <img src="{{ asset('icons/logOutIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            <img src="{{ asset('icons/myItemsIcon.svg') }}" alt="{{__('alt.keyword')}}">
                         </div>
-                        <p>{{__('ui.signOut')}}</p>
+                        <p>{{__('ui.myPosts')}}</p>
                     </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">@csrf</form>
-                @endguest
-                <a id="addItemTab" href="{{ route('posts.create') }}">
-                    <div class="iconWraper">
-                        <img src="{{ asset('icons/addItemIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                    </div>
-                    <p>{{__('ui.addPost')}}</p>
-                </a>
-            </nav>
+                    <a id="favItemsTab" href="{{ route('favPosts') }}">
+                        <div class="iconWraper">
+                            <img src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            @if ( auth()->user() )
+                                <span> {{ auth()->user()->favPosts->count() }}</span>
+                            @endif
+                        </div>
+                        <p>{{__('ui.favourites')}}</p>
+                    </a>
+                    <a id="profileTab" href="{{route('profile')}}">
+                        <div class="iconWraper">
+                            <img src="{{ asset('icons/profileIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        </div>
+                        <p>{{__('ui.profile')}}</p>
+                    </a>
+                    @guest
+                        <a id="loginTab" href="{{ route('login') }}">
+                            <div class="iconWraper">
+                                <img src="{{ asset('icons/logInIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            </div>
+                            <p>{{__('ui.signIn')}}</p>
+                        </a>
+                    @else
+                        <a href="#" onclick="document.getElementById('logout-form').submit();">
+                            <div class="iconWraper">
+                                <img src="{{ asset('icons/logOutIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            </div>
+                            <p>{{__('ui.signOut')}}</p>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">@csrf</form>
+                    @endguest
+                    <a id="addItemTab" href="{{ route('posts.create') }}">
+                        <div class="iconWraper">
+                            <img src="{{ asset('icons/addItemIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        </div>
+                        <p>{{__('ui.addPost')}}</p>
+                    </a>
+                </nav>
+            </header>
 
             <!-- Main content -->
             <main>
@@ -131,7 +131,7 @@
             </main>
 
             <!-- Footer -->
-            <div class="footer">
+            <footer class="footer">
                 <div id="footerWraper">
                     <div id="leftS">
                         <a href="{{ route('home') }}"><img id="logo" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
@@ -156,8 +156,11 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </footer>
         </div>
+
+        <div class="side-background"></div>
+
     </div>
     <!-- Scripts -->
     <script src={{ asset('js/jquery-3.1.1.min.js') }}></script>
