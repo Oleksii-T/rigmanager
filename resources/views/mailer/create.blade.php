@@ -271,7 +271,7 @@
                 },
                 messages: {
                     keywords: {
-                        maxlength: 'Максимум 255 символов'
+                        maxlength: '{{ __("validation.max.string", ["max" => 254]) }}'
                     }
                 }
             });

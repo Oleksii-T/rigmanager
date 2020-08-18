@@ -30,7 +30,6 @@ class HomeController extends Controller
 
     public function faq()
     {
-        return view('example');
         return view('home.faq');
     }
     public function plans()

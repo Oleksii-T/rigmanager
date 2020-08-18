@@ -71,15 +71,11 @@ BUG: cursor wait is show when form submited with errors (login page)
 
 CODE: fix Ajax. some requests done odd, some are GET with query string and some are GET with reqeust data. redesign: GET for read data, POST for write data
 
-NOTE: in mailer when user deletes author, value become EMPTY not NULL
-
-CODE: add Algolia logo for searc results
-
 BUG: on post create flash or pop up came out without css
 
 CODE: add semantic tags where needed
 
-BUG: on search page search button bg is bugged
+BUG: fix footer position on post/edit page
 
 
 =========MASTER_OBEJECTIVES===========
@@ -90,11 +86,7 @@ CHECK: front-end/back-end on more browsers
 
 CODE: massaging within the app
 
-CODE: email notifications for user who subscribed for post uplaoded
-
 CODE: finish tags system and translate
-
-CODE: Elastic Search
 
 CODE: registration via popular resources e.g Google
 
@@ -109,6 +101,11 @@ CODE: loaning system for equipment
 
 =======DONE======
 
+NOTE: in mailer when user deletes author, value become EMPTY not NULL
+CODE: add Algolia logo for searc results
+BUG: on search page search button bg is bugged
+CODE: add user name to header
+CODE: email notifications for user who subscribed for post uplaoded
 CODE: color of profile buttons is different
 CODE: style all buttons via universal css class in base.css
 CODE: style all inputs via universal css class in base.css

@@ -35,6 +35,7 @@ return [
     'login' => 'Логін',
     'remember me' => 'Запам\'ятати мене',
     'forget password' => 'Забули пароль?',
+    'loggedAs' => 'Ви увійшли як',
 
     //home massages
     'home' => 'Головна',

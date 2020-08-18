@@ -77,7 +77,7 @@
         </div>
     </div>
     @if ($mailer)
-        <div class="modalView animate" id="modalMailerDelete">
+        <div class="modalView" id="modalMailerDelete">
             <div class="modalContent"> 
                 <p>{{__('ui.sure?')}}</p>
                 <div>

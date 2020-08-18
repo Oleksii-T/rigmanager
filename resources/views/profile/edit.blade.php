@@ -215,24 +215,24 @@
                 },
                 messages: {
                     name: { 
-                        required: 'Это поле обязательно',
-                        minlength: 'Минимум 3 символа',
-                        maxlength: 'Максимум 40 символов'
+                        required: '{{ __("validation.required") }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 3]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 40]) }}'
                     },
                     phone: {
-                        minlength: 'Минимум 8 символов',
-                        maxlength: 'Максимум 20 символов',
-                        validPhone: 'Не правильный номер'
+                        minlength: '{{ __("validation.min.string", ["min" => 8]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 20]) }}',
+                        validPhone: '{{ __("validation.phone") }}'
                     },
                     email: {
-                        required: 'Это поле обязательно',
-                        remote: 'Такая электронная почта уже используется',
-                        email: 'Не верный адрес почты',
-                        maxlength: 'Максимум 254 символов'
+                        required: '{{ __("validation.required") }}',
+                        remote: '{{ __("validation.unique") }}',
+                        email: '{{ __("validation.email") }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 254]) }}'
                     },
                     password: {
-                        minlength: 'Минимум 6 символов',
-                        maxlength: 'Максимум 40 символов'
+                        minlength: '{{ __("validation.min.string", ["min" => 6]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 40]) }}'
                     }
                 }
             });

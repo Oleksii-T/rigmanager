@@ -5,6 +5,7 @@
 #profileContentWraper{
     background-color: rgb(149, 149, 149, 0.6);
     padding: 40px 0px;
+    height: 100%;
 }
 
 #profileContent {

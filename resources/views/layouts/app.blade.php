@@ -39,12 +39,10 @@
         
 
         <div id="container">
-
             <header>
                 <!-- Header of all web pages -->
                 <div id="header">
                     <a href="{{ route('home') }}"><img id="logo" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
-                    <!--{{ config('app.name') }}-->
                     <ul>
                         @if (App::isLocale('uk'))
                             <li>UKR</li>
@@ -68,6 +66,12 @@
                             <li><a href="{{ route('locale.setting', 'en') }}">ENG</a></li>
                         @endif
                     </ul>
+
+                    @auth    
+                        <div class="logged-user-name">
+                            <p>{{__('ui.loggedAs')}}: {{auth()->user()->name}}</p>
+                        </div>
+                    @endauth
                 </div> 
 
                 <!-- Navigation bar of all web pages -->

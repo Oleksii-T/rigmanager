@@ -34,6 +34,7 @@ return [
     'login' => 'Login',
     'remember me' => 'remember me',
     'forget password' => 'Forget password?',
+    'loggedAs' => 'Logged In as',
 
     //home massages
     'home' => 'Home',

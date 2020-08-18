@@ -13,8 +13,7 @@
             
             <div id="title" class="element">
                 <label class="elementHeading" for="inputTitle">{{__('ui.title')}}</label><br>
-                <!--  <input id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') }}"/>  -->
-                <input class="def-input" id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="Элементы крепления буровой колонны на устье"/>
+                <input class="def-input" id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') }}"/>
                 <x-server-input-error errorName='title' inputName='inputTitle' errorClass='error'/>
                 <div class="help">
                     <p><i>{{__('ui.titleHelp')}}</i></p>
@@ -125,11 +124,7 @@
 
             <div id="desc" class="element">
                 <label class="elementHeading" for="inputDecs">{{__('ui.description')}}</label><br>
-                <!--   <textarea name="description" id="inputDecs" form="formNewPost" rows="15" maxlength="9000">{{ old('description') }}</textarea>  -->
-                <textarea name="description" id="inputDecs" form="formNewPost" rows="15" maxlength="9000">Элеваторы и спайдера любый размеров
-                    для любых целей
-                    Есть оборудывание для Труб всех диаметров и всех назначений и вертлюг
-                </textarea>
+                <textarea name="description" id="inputDecs" form="formNewPost" rows="15" maxlength="9000">{{ old('description') }}</textarea>
                 <x-server-input-error errorName='description' inputName='inputDecs' errorClass='error'/>
                 <div class="help">
                     <p><i>{{__('ui.descriptionHelp')}}</i></p>
@@ -374,29 +369,29 @@
                 },
                 messages: {
                     title: {
-                        required: 'Минимум 10 символов',
-                        minlength: 'Минимум 10 символов',
-                        maxlength: 'Максимум 70 символов'
+                        required: '{{ __("validation.required") }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
                     },
                     description: {
-                        required: 'Минимум 10 символов',
-                        minlength: 'Минимум 10 символов',
-                        maxlength: 'Максимум 9000 символов'
+                        required: '{{ __("validation.required") }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 9000]) }}'
                     },
                     cost: {
-                        maxlength: 'Максимум 50 символов'
+                        maxlength: '{{ __("validation.max.string", ["max" => 50]) }}'
                     },
                     location: {
-                        maxlength: 'Максимум 100 символов'
+                        maxlength: '{{ __("validation.max.string", ["max" => 100]) }}'
                     },
                     user_email: {
-                        email: 'Не верный адрес почты',
-                        maxlength: 'Максимум 254 символов'
+                        email: '{{ __("validation.email") }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 254]) }}'
                     },
                     user_phone: {
-                        minlength: 'Минимум 8 символов',
-                        maxlength: 'Максимум 20 символов',
-                        validPhone: 'Не правильный номер'
+                        minlength: '{{ __("validation.min.string", ["min" => 8]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 20]) }}',
+                        validPhone: '{{ __("validation.phone") }}'
                     }
                 }
             });

@@ -464,29 +464,29 @@
                 },
                 messages: {
                     title: {
-                        required: 'Минимум 10 символов.',
-                        minlength: 'Минимум 10 символов.',
-                        maxlength: 'Максимум 70 символов'
+                        required: '{{ __("validation.required") }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
                     },
                     description: {
-                        required: 'Минимум 10 символов.',
-                        minlength: 'Минимум 10 символов.',
-                        maxlength: 'Максимум 9000 символов'
+                        required: '{{ __("validation.required") }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 9000]) }}'
                     },
                     cost: {
-                        maxlength: 'Максимум 50 символов'
+                        maxlength: '{{ __("validation.max.string", ["max" => 50]) }}'
                     },
                     location: {
-                        maxlength: 'Максимум 100 символов'
+                        maxlength: '{{ __("validation.max.string", ["max" => 100]) }}'
                     },
                     user_email: {
-                        email: 'Не верный адрес почты',
-                        maxlength: 'Максимум 254 символов'
+                        email: '{{ __("validation.email") }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 254]) }}'
                     },
                     user_phone: {
-                        minlength: 'Минимум 8 символов',
-                        maxlength: 'Максимум 20 символов',
-                        validPhone: 'Не правильный номер'
+                        minlength: '{{ __("validation.min.string", ["min" => 8]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 20]) }}',
+                        validPhone: '{{ __("validation.phone") }}'
                     }
                 }
             });
