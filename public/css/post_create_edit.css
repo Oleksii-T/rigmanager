@@ -89,10 +89,6 @@ input.error, textarea.error {
 
 /*==================TAG==================*/
 
-.loading {
-    cursor: wait !important;
-}
-
 #tag .elementHeading { 
     margin-bottom: 14px; 
 }

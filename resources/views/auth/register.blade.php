@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('css/register.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/register.css')}}" />
     <style>
         #developmentStage {
             position: fixed;
@@ -139,10 +139,9 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/jquery.validate.min.js') }}"></script> 
-    <script src="{{ asset('js/hideShowPassword.min.js') }}"></script>
-    <script src="{{ asset('js/myValidators.js') }}"></script>
-
+    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script> 
+    <script type="text/javascript" src="{{ asset('js/hideShowPassword.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/myValidators.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             

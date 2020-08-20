@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('css/subscription_show.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/profile_layout.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/subscription_show.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/components/profile_layout.css')}}" />
 @endsection
 
 @section('content')

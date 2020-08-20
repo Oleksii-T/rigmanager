@@ -43,16 +43,17 @@ class OptimizeImg implements ShouldQueue
     }
 
     /**
-     * Execute the job. Optimize image and update 'size' value in DB
+     * Execute the job. Optimize image and update 'size' value in DB 
      *
      * @return void
      */
     public function handle()
     {
-        $fullpath = 'storage/'.$this->path;
+        $fullpath = 'storage/' . $this->path;
+        $fullpath = public_path() . '/' . $fullpath; // make absolute path for queue job
+        // optimize original image
         $optimizerChain = OptimizerChainFactory::create();
         $optimizerChain->optimize($fullpath);
-        
         // change 'size' record in DB;
         $postImage = PostImage::findOrFail($this->imgId);
         $postImage->size = filesize($fullpath); // KB

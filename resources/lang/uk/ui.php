@@ -97,13 +97,15 @@ return [
     'mailerSuggestTag' => 'Додати ці категорії в Mailer?',
     'mailerSuggestAuthor' => 'Додати цього Автора в Mailer?',
     'mailerNotifGreetings' => 'Доброго дня',
-    'mailerNotifHeader' => 'Ми виявили, що ця пропозиція може Вас зацікавити.',
-    'mailerNotifBody' => 'Ви отримали цей лист, тому що через конфiгурацiю Mailer, :reason вважаються цікавими для вас:',
+    'mailerNotifHeader' => 'Ми виявили, що ця пропозиція може Вас зацікавити',
+    'mailerNotifBody' => 'Ви отримали цей лист, тому що через конфiгурацiю Mailer, :reason вважаються цікавими для вас',
     'mailerNotifBody2' => 'Ви можете в будь-який час налаштувати або відключити Mailer на сторінці',
+    'mailerNotifBody3' => 'Якщо у вас виникли проблеми натискаючи на оголошення вище, скопіюйте та вставте URL нижче у свій браузер',
     'mailerNotifSlg' => 'З повагою,',
     'mailerNotifTags' => 'ці категорії',
     'mailerNotifDescription' => 'ці ключові слова',
     'mailerNotifAuthors' => 'оголошення від цього автора',
+    'mailerNotifSubject' => 'Повідомлення від Вашого Mailer',
 
     //subscription massages
     'mySubscription' => 'Підписка',

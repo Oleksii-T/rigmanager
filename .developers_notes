@@ -7,12 +7,6 @@ CODE CSS: add line-height, letter-spacing, font-weight and bold/italic effects w
 
 CODE HTML: add proper visualization of location
 
-CODE PHP: add guest features
-
-BUG: popup Slide Down to rude
-
-DO?: delete from html useless popUp classes after it flowed up
-
 CODE PHP/HTML: Remeber contacts when user input new one and then suggest them when user creating new item
 
 CODE: make second public email when registered
@@ -43,10 +37,6 @@ CODE: add title attr
 
 CODE: fix all style bugs on existing styled pages
 
-BUG: on profile.index page. if user magnify page, border of footer collide with edit btn
-
-ADD: change wait cursor to some gif animation
-
 CODE: make registration via Ajax request
 
 CODE: implement Admin page for getting charts and stistics about website and data
@@ -57,15 +47,9 @@ CODE: fix queues
 
 BUG: 1px bug of js password validation error
 
-BUG: backgorund gray color displaying wrong on login page
-
 CODE: Make post contact info request as a ajax request
 
-BUG: post.index and profile.show route is empty
-
 CODE: protect mail/create and mail/edit from category choose spaming
-
-CODE: translate form js validation
 
 BUG: cursor wait is show when form submited with errors (login page)
 
@@ -79,6 +63,8 @@ BUG: fix footer position on post/edit page
 
 
 =========MASTER_OBEJECTIVES===========
+
+MOVE: move hosting server to VPS server
 
 CODE: make company registration and all features
 
@@ -101,6 +87,11 @@ CODE: loaning system for equipment
 
 =======DONE======
 
+DO?: delete from html useless popUp classes after it flowed up
+BUG: on profile.index page. if user magnify page, border of footer collide with edit btn
+BUG: backgorund gray color displaying wrong on login page
+BUG: post.index and profile.show route is empty
+CODE: translate form js validation
 NOTE: in mailer when user deletes author, value become EMPTY not NULL
 CODE: add Algolia logo for searc results
 BUG: on search page search button bg is bugged
@@ -183,6 +174,8 @@ CODE JS: make item highlight when hover on addToFav btn as well
 
 
 =======DEVELOPER_NOTES======
+
+NOTE: image resizing done without queues 
 
 NOTE: profile image delete functionality is not obvious 
 

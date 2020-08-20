@@ -1,6 +1,6 @@
 <section id="items">
     @foreach ($posts as $post)
-        <article class="item id_{{ $post->id }}">
+        <article class="item" id="{{$post->id}}">
             <figure class="imgWraper">
                 @if ( $post->images->isEmpty() )
                     <img src="{{ asset('icons/noImageIcon.svg') }}" alt="{{__('alt.keyword')}}"></li>
@@ -36,37 +36,33 @@
                     <span><i>{{__('ui.addToFav')}}</i></span>
                 </button>
             @elseif ($button == 'removeFromFav')
-                <button class="addToFavButton id_{{ $post->id }}">
+                <button class="addToFavButton id_{{$post->id}}">
                     <img class="addToFavImg" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
                     <span><i>{{__('ui.removeFromFav')}}</i></span>
                 </button>
             @elseif ($button == 'deleteAndEdit')
-                <button class="modalPostDeleteOn" id="{{$post->id}}">
+                <button class="modalPostDeleteOn id_{{$post->id}}">
                     <img src="{{ asset('icons/deleteIcon.svg') }}" alt="{{__('alt.keyword')}}">
                 </button>
 
-                <a class="editBtn" id="{{$post->id}}" href="{{ route('posts.edit', $post->id) }}">
+                <a class="editBtn" href="{{ route('posts.edit', $post->id) }}">
                     <img title="{{__('ui.edit')}}" src="{{ asset('icons/editIcon.svg') }}" alt="{{__('alt.keyword')}}">
                 </a>
             @endif
 
-            <a href="{{ route('posts.show', $post->id) }}"><span class="globalItemButton item_id_{{$post->id}}"></span></a>
+            <a href="{{ route('posts.show', $post->id) }}"><span class="globalItemButton"></span></a>
         </article>
+    @endforeach
 
-        @if ($button == 'deleteAndEdit')
-            <div class="modalView animate" id="modalPostDelete">
-                <div class="modalContent"> 
-                    <p>{{__('ui.sure?')}}</p>
-                    <div>
-                        <button type="button" id="modalPostDeleteOff">{{__('ui.no')}}</button>
-                        <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button>{{__('ui.delete')}}</button>
-                        </form>
-                    </div>
+    @if ($button == 'deleteAndEdit')
+        <div class="modalView animate" id="modalPostDelete">
+            <div class="modalContent"> 
+                <p>{{__('ui.sure?')}}</p>
+                <div>
+                    <button class="def-button submit-button" type="button" id="modalPostDeleteOff">{{__('ui.no')}}</button>
+                    <button class="def-button cancel-button modalSubmitButton">{{__('ui.delete')}}</button>
                 </div>
             </div>
-        @endif
-    @endforeach
+        </div>
+    @endif
 </section>

@@ -12,15 +12,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Seed for Demonstrating To Production 
-        /**/
+        
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'Administrator',
             'phone' => '0502115147',
             'email' => 'alex.tarbeev@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
-            'password' => Hash::make('Admin1')
+            'password' => Hash::make('Admin1'),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
         ]);
 
         DB::table('posts')->insert([
@@ -114,14 +115,35 @@ class DatabaseSeeder extends Seeder
             'user_email' => 'alex.tarbeev@gmail.com',
         ]);
 
-
         DB::table('users')->insert([
             'id' => 2,
             'name' => 'Pavel',
             'phone' => '0000000000',
             'email' => 'pavlo.tarb@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
-            'password' => Hash::make('Pavel123')
+            'password' => Hash::make('Pavel123'),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        DB::table('posts')->insert([
+            'user_id' => 2,
+            'title' => 'Гидравлический насос GPC4-32-322E1F4-L',
+            'condition' => 'Новое',
+            'tag' => '2.10',
+            'description' => 'Cтрана происхождения:	КИТАЙ
+            Cрок поставки:	4 недели
+            Основные технические параметры
+            
+            Вес нетто, кг:	22
+            Информация для отгрузки
+            
+            Вес, кг:	22',
+            'cost' => '78 732.00 руб',
+            'user_email' => 'pavlo.tarb@gmail.com',
+            'user_phone' => '0502318303',
+            'viber' => '1',
+            'whatsapp' => '1'
         ]);
 
         DB::table('users')->insert([
@@ -130,129 +152,36 @@ class DatabaseSeeder extends Seeder
             'phone' => '0000000000',
             'email' => 'dmytro.tarbeiev@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
-            'password' => Hash::make('Dmitriy123')
+            'password' => Hash::make('Dmitriy123'),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
         ]);
-        /**/
+
+        DB::table('posts')->insert([
+            'user_id' => 3,
+            'title' => 'Метчик ловильный B',
+            'condition' => 'Новое',
+            'tag' => '2.4.2',
+            'description' => 'Страна происхождения:	РОССИЯ
+            Cрок поставки:	10 дней
+            Основные технические параметры
+            
+            Диаметр захватываемого инструмента, мм:	20-57
+            Минимальный диаметр скважины, мм:	70
+            Резьба:	З-50
+            Направление резьбы:	правое
+            Промывочное отверстие:	нет
+            Резьба ГОСТ:	З-50
+            Резьба API 7-1 (ГОСТ):	З-50
+            Резьба API (ГОСТ):	З-50',
+            'cost' => '7 105.49 руб',
+            'user_email' => 'dmytro.tarbeiev@gmail.com',
+            'user_phone' => '0521345442',
+            'viber' => '1',
+        ]);
 
         /*
-        // Seed For Development
-
-        // $this->call(UserSeeder::class);
-        //factory('App\Post', 10)->create();
-
-        DB::table('users')->insert([
-            'id' => 1,
-            'name' => 'admin',
-            'phone' => '0502115147',
-            'email' => 'alex.tarbeev@gmail.com',
-            'email_verified_at' => Carbon\Carbon::now(),
-            'password' => Hash::make('Admin1')
-        ]);
-
-        DB::table('users')->insert([
-            'id' => 3,
-            'name' => 'Dummy User',
-            'email' => 'dummy.email@example.ua',
-            'email_verified_at' => Carbon\Carbon::now(),
-            'password' => Hash::make('Qwerty1')
-        ]);
-
-        DB::table('users')->insert([
-            'id' => 2,
-            'name' => 'Drill Market',
-            'phone' => '8 495 095-05-97',
-            'email' => 'drill.market@mail.ru',
-            'email_verified_at' => Carbon\Carbon::now(),
-            'password' => Hash::make('Qwerty1')
-        ]);
-
-        DB::table('posts')->insert([
-            'user_id' => 2,
-            'title' => 'Буровая штанга 89х6,5х1000 мм, резьба З-73',
-            'condition' => 'Новое',
-            'tag' => '2.3.2.1',
-            'description' => 'Производитель:	DM Bits
-                Страна происхождения:	РОССИЯ
-                Cрок поставки:	3-4 недели
-                Основные технические параметры
-                
-                Длина, мм:	1 000
-                Резьба:	2 3/8" IF - З-73
-                Материал корпуса трубы:	сталь 45
-                Толщина стенки, мм:	6,5
-                Способ присоединения замков:	сварка полуавтоматом
-                Материал замка трубы:	сталь 30ХГСА с термообработкой до 32 HRC
-                Резьба ГОСТ:	З-73
-                Резьба API 7-1 (ГОСТ):	З-73
-                Резьба API (ГОСТ):	З-73',
-            'cost' => '5 148.00 руб / 1 шт',
-            'user_email' => 'drill.market@mail.ru',
-            'user_phone' => '8 495 095-05-97'
-        ]);
-
-        DB::table('posts')->insert([
-            'user_id' => 2,
-            'title' => 'Вертлюг 6WC',
-            'condition' => 'Новое',
-            'tag' => '2.12.3',
-            'description' => 'Производитель:	Western Rubber
-                Страна происхождения:	СОЕДИНЕННЫЕ ШТАТЫ
-                Cрок поставки:	8-10 недель
-                Информация о товаре
-                Буровой вертлгюг 6WC спроектирован для бурения водозаборных скважин большого диаметра и скважин при ведении строительных работ. Данный вертлюг очень компактный и имеет внутреннее проходное отверстие 6" (152 мм), может использоваться как для прямой, так и обратной циркуляции скважин.
-                
-                Основные преимущества:
-                
-                - большое проходное отверстие 6" (152 мм)
-                - быстрая замена сальников вертлюга
-                - регулируемые подшипники и уплотнения
-                - 2" NPT соедениен для воздушной трубки
-                Основные технические параметры
-                
-                Длина, мм:	1 524
-                Проходное отверстие, мм:	152,4
-                Макс.нагрузка при вращении, кг:	36
-                Макс.статичесткая нагрузка, кг:	78,75
-                Макс.давление, кПа:	10 200
-                Вес нетто, кг:	408
-                Тип соединения на выходе:	6" фланец
-                Информация для отгрузки
-                
-                Вес, кг:	508
-                Отгрузочные размеры, мм:	1800x710x970',
-            'cost' => '2 345 808.10 руб',
-            'location' => 'Москва',
-            'user_email' => 'drill.market@mail.ru',
-        ]);
-
-        DB::table('posts')->insert([
-            'user_id' => 2,
-            'title' => 'Трехшарошечное долото 76 мм (3") К-ЦА (IADC 743) Уралбурмаш',
-            'condition' => 'Новое',
-            'tag' => '2.1.2.6.1.2',
-            'description' => 'Страна происхождения:	РОССИЯ
-                Производитель:	УралБурМаш
-                Основные технические параметры
-                
-                Маркировка производителя:	A-C74Z-R1005
-                Диаметр, мм (дюйм):	76 (3)
-                Код IADC:	743
-                Обозначение ГОСТ:	К-ЦА
-                Тип горных пород:	крепкие породы
-                Тип промывки:	центральная промывка
-                Тип опорного подшипника:	два и более подшипников скольжения
-                Тип опоры:	открытая
-                Тип вооружения:	твердосплавное
-                Состояние:	с хранения
-                Осевая нагрузка, кН:	50-80
-                Частота вращения, об/мин:	100-40
-                Резьба API (ГОСТ):	З-42
-                Вес нетто, кг:	1,8
-                Информация для отгрузки
-                
-                Вес, кг:	2',
-            'user_email' => 'drill.market@mail.ru',
-        ]);
+        // Long Data Test
 
         DB::table('users')->insert([
             'id' => 4,

@@ -1,11 +1,9 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/components/items.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/components/pagination.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/components/popUpAndFlash.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/components/post_posts.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/search.css') }}" />
 @endsection
 
 @section('content')
@@ -202,9 +200,26 @@
 @endsection
 
 @section('scripts')
-    <script src={{ asset('js/popUpAndFlash.js') }}></script>
     <script type="text/javascript">
         $(document).ready(function(){
+
+            //get digit from classes of DOM element (depends on prefix)
+            function getIdFromClasses(classes, prefix) {
+                // regex special chars does not escaped in prefix!!!
+                var reg = new RegExp("^"+prefix+"[0-9]+$", 'g');
+                var result = '';
+                classes.split(' ').every(function(string){
+                    result = reg.exec(string);
+                    if ( result != null ) {
+                        result = result + '';
+                        result = result.split('_')[1];
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+                return result;
+            }
 
             //remove last '>' symbol from searched tags
             $('#searchTags span').last().remove();
@@ -213,8 +228,8 @@
             $('#addTextToMailer').click(function() {
                 var searchString = $(this).attr('class');
                 // Add wait cursor
-                $(document.body).css('cursor', 'default');
-                $(this).addClass('loading'); 
+                var button = $(this);
+                button.addClass('loading'); 
                 var ajaxUrl = '{{ route("mailer.add.text", ":string") }}';
                 ajaxUrl = ajaxUrl.replace(':string', searchString);
                 $.ajax({
@@ -223,15 +238,13 @@
                     success: function() {
                         showPopUpMassage(true, "{{ __('messages.mailerTextAdded') }}");
                         // Remove wait cursor
-                        $(document.body).css('cursor', 'default');
-                        $('#addTextToMailer').removeClass('loading'); 
+                        button.removeClass('loading'); 
                     },
                     error: function() {
                         // Print error massage
                         showPopUpMassage(false, "{{ __('messages.error') }}");
                         // Remove wait cursor
-                        $(document.body).css('cursor', 'default');
-                        $('#addTextToMailer').removeClass('loading');
+                        button.removeClass('loading');
                     }
                 });
             });
@@ -240,8 +253,8 @@
             $('#addTagToMailer').click(function() {
                 var tagId = $(this).attr('class');
                 // Add wait cursor
-                $(document.body).css('cursor', 'default');
-                $(this).addClass('loading'); 
+                var button = $(this);
+                button.addClass('loading');
                 var ajaxUrl = '{{ route("mailer.add.tag", ":tagId") }}';
                 ajaxUrl = ajaxUrl.replace(':tagId', tagId);
                 $.ajax({
@@ -250,15 +263,13 @@
                     success: function(data) {
                         data ? showPopUpMassage(true, "{{ __('messages.mailerTagAdded') }}") : showPopUpMassage(false, "{{ __('messages.mailerTagExists') }}") ;
                         // Remove wait cursor
-                        $(document.body).css('cursor', 'default');
-                        $('#addTagToMailer').removeClass('loading'); 
+                        button.removeClass('loading'); 
                     },
                     error: function() {
                         // Print error massage
                         showPopUpMassage(false, "{{ __('messages.error') }}");
                         // Remove wait cursor
-                        $(document.body).css('cursor', 'default');
-                        $('#addTagToMailer').removeClass('loading'); 
+                        button.removeClass('loading'); 
                     }
                 });
             });
@@ -267,8 +278,8 @@
             $('#addAuthorToMailer').click(function() {
                 var author = $(this).attr('class');
                 // Add wait cursor
-                $(document.body).css('cursor', 'default');
-                $(this).addClass('loading'); 
+                var button = $(this);
+                button.addClass('loading');
                 var ajaxUrl = '{{ route("mailer.add.author", ":author") }}';
                 ajaxUrl = ajaxUrl.replace(':author', author);
                 $.ajax({
@@ -277,15 +288,13 @@
                     success: function(data) {
                         data ? showPopUpMassage(true, "{{ __('messages.mailerAddedAuthor') }}") : showPopUpMassage(false, "{{ __('messages.mailerAuthorExists') }}") ;
                         // Remove wait cursor
-                        $(document.body).css('cursor', 'default');
-                        $('#addAuthorToMailer').removeClass('loading'); 
+                        button.removeClass('loading'); 
                     },
                     error: function() {
                         // Print error massage
                         showPopUpMassage(false, "{{ __('messages.error') }}");
                         // Remove wait cursor
-                        $(document.body).css('cursor', 'default');
-                        $('#addAuthorToMailer').removeClass('loading'); 
+                        button.removeClass('loading'); 
                     }
                 });
             });
@@ -324,20 +333,20 @@
 
             //action when user clicks on addToFav icon
             $(".addToFavButton").click(function(){
-                var item_id = $(this).attr("class").split(' ')[1].split('_')[1];
+                var postId = getIdFromClasses($(this).attr("class"), 'id_');
                 //make cursor wait
-                $("button.id_"+item_id).addClass('loading');
-                $("span.item_id_"+item_id).addClass('loading');
+                var button = $(this);
+                button.addClass('loading');
                 //send Ajax reqeust to add Item to fav list of user
                 $.ajax({
                     type: "GET",
                     url: '{{ route('toFav') }}',
-                    data: { post_id: item_id },
+                    data: { post_id: postId },
                     success: function(data) {
                         //if no server errors, change digit of favItemsAmount in nav bar 
                         //and change color of AddToFav btn
                         if ( data ) {
-                            var target = $(".id_"+item_id+" img.addToFavImg");
+                            var target = $("#"+postId+" img.addToFavImg");
                             var n = $("#favItemsTab span").text();
                             n = parseInt(n,10);
                             if ( target.attr("src") != "{{ asset('icons/heartOrangeIcon.svg') }}" ) {
@@ -356,14 +365,12 @@
                             showPopUpMassage(false, "{{ __('messages.postAddFavError') }}");
                         }
                         //remove cursor wait
-                        $("button.id_"+item_id).removeClass('loading');
-                        $("span.item_id_"+item_id).removeClass('loading');
+                        button.removeClass('loading');
                     },
                     error: function() {
                         //pop up error massage and remove cursor wait
-                        showPopUpMassage(false, "{{ __('messages.error') }}");
-                        $("button.id_"+item_id).removeClass('loading');
-                        $("span.item_id_"+item_id).removeClass('loading');
+                        showPopUpMassage(false, "{{ __('messages.') }}");
+                        button.removeClass('loading');
                     }
                 });
             });

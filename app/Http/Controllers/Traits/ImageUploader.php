@@ -31,7 +31,7 @@ trait ImageUploader
             ]);
             $post->images()->save($image);
             // optimize the original image via queue;
-            OptimizeImg::dispatch($path, $image->id)->onQueue('optimizeImg');
+            OptimizeImg::dispatch($path, $image->id)->onQueue('optimizeImg')->onQueue('imgOptimization');
 
             // resize and save image as secon version.
             $this->resizeImg($file->getPathname(), 300);

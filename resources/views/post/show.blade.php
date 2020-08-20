@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('css/item_show.css')}}" />
-    <link rel="stylesheet" href="{{ asset('css/components/popUpAndFlash.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/post_show.css')}}" />
 @endsection
 
 @section('content')
@@ -26,9 +25,10 @@
                 @endif
                 <section class="element" id="mainInfo">
                     <h1>{{ $post->title }}</h1>
-                    <div>
-                        @foreach ($tagsArray as $id => $tag)
-                            <button class="itemTag" id="{{$id}}">{{$tag}}</button>
+                    <div id="item-tag-section">
+                        @foreach ($tagsArray as $tagId => $tagReadable)
+                            <a class="item-tag" href="{{route('search.tag', $tagId)}}">{{$tagReadable}}</a>
+                            <span class="item-tag-delim">></span>
                         @endforeach
                     </div>
                     <p>{{ $post->description }}</p>
@@ -55,7 +55,7 @@
                 @else
                     <aside class="element" id="editBtn">
                         <p>{{__('ui.yoursPost')}}</p>
-                        <a href="{{ route('posts.edit', $post->id) }}">{{__('ui.edit')}}</a>
+                        <a class="def-button" href="{{ route('posts.edit', $post->id) }}">{{__('ui.edit')}}</a>
                     </aside>
                 @endif
 
@@ -72,10 +72,10 @@
                         </div>
                         <!-- mb add time how many days registered -->
                     </div>
-                    <a class="authorBtns" href="{{route('search.author', $post->user->id)}}">{{__('ui.otherAuthorPosts')}}</a>
-                    <button class="authorBtns" id="modalTriger">{{__('ui.showContacts')}}</button>
+                    <a class="def-button" href="{{route('search.author', $post->user->id)}}">{{__('ui.otherAuthorPosts')}}</a>
+                    <button class="def-button" id="modalTriger">{{__('ui.showContacts')}}</button>
                     @if ($post->user_id != Auth::id())
-                        <button class="authorBtns" id="mailerAddAuthor">    
+                        <button class="def-button" id="mailerAddAuthor">    
                             @if (auth()->user()->mailer)
                                 @if ( in_array( $post->user_id, explode(" ", auth()->user()->mailer->authors) ) )
                                     {{__('ui.mailerRemoveAuthor')}}
@@ -116,28 +116,16 @@
         <div class="modalView" id="modal">
             <address class="modalContent"> 
                 <h1>{{__('ui.contactInfo')}}:</h1>
+
                 <ul>
-                    @if ($post->user_email)
-                        <li>{{__('ui.email')}}: <span>{{ $post->user_email }}</span></li>
-                    @else
-                        <li>{{__('ui.email')}}: <span>{{__('ui.empty')}}.</span></li>
-                    @endif
-                    @if ($post->user_phone)
-                        <li>
-                            {{__('ui.phone')}}:  <span>{{ $post->user_phone }}</span>
-                            @if ( $post->viber )
-                                <img src="{{ asset('icons/viberIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            @endif
-                            @if ( $post->telegram )
-                                <img src="{{ asset('icons/telegramIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            @endif
-                            @if ( $post->whatsapp )
-                                <img src="{{ asset('icons/whatsappIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            @endif
-                        </li>
-                    @else
-                        <li>{{__('ui.phone')}}: {{__('ui.empty')}}.</li>
-                    @endif
+                    <li>
+                        <p>{{__('ui.email')}}:</p>
+                        <span class="emailField"></span>
+                    </li>
+                    <li class="phoneField">
+                        <p>{{__('ui.phone')}}: </p>
+                        <span></span>
+                    </li>
                 </ul>
             </address>
         </div>
@@ -146,32 +134,40 @@
 @endsection
 
 @section('scripts')
-    <script src={{ asset('js/popUpAndFlash.js') }}></script>
     <script type="text/javascript">
 
         $(document).ready(function() {
+
+            //get digit from classes of DOM element (depends on prefix)
+            function getIdFromClasses(classes, prefix) {
+                // regex special chars does not escaped in prefix!!!
+                var reg = new RegExp("^"+prefix+"[0-9]+$", 'g');
+                var result = '';
+                classes.split(' ').every(function(string){
+                    result = reg.exec(string);
+                    if ( result != null ) {
+                        result = result + '';
+                        result = result.split('_')[1];
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+                return result;
+            }
 
             //add active effect in nav bar
             if ( '{{Auth::id()}}' == '{{$post->user_id}}' ) {
                 $('#myItemsTab').addClass('isActiveBtn');
             }
 
-            //redirect to search result of clicked tag
-            $('.itemTag').click(function(){
-                var tag = $(this).text();
-                window.location.href = "#?targetTag="+tag;
-            });
-
-            //search for clicked category 
-            $('#mainInfo button').click(function(){
-                var id = $(this).attr('id');
-                var url = '{{ route("search.tag", ":id") }}';
-                url = url.replace(':id', id);
-                window.location.href=url;
-            });
+            //remove last '>' symbol from searched tags
+            $('#item-tag-section span').last().remove();
 
             // user click add author to mailer btn
             $('#mailerAddAuthor').click(function() {
+                var button = $(this);
+                button.addClass('loading');
                 $.ajax({
                     type: "GET",
                     url: "{{ route('mailer.add.remove.author', $post->user_id) }}",
@@ -185,9 +181,11 @@
                             showPopUpMassage(true, "{{ __('messages.mailerRemovedAuthor') }}");
                             $('#mailerAddAuthor').html("{{__('ui.mailerAddAuthor')}}");
                         }
+                        button.removeClass('loading');
                     },
                     error: function() {
                         // Print error massage
+                        button.removeClass('loading');
                         showPopUpMassage(false, "{{ __('messages.error') }}");
                     }
                 });
@@ -195,27 +193,29 @@
 
             //action when user clicks on addToFav icon
             $(".addToFavButton").click(function(){
-                $(".id_"+item_id).attr('disabled', true); //disable button until feedback
-                $(document.body).css('cursor', 'wait');
-                var item_id = $(this).attr("class").split(' ')[1].split('_')[1];
+                var postId = getIdFromClasses($(this).attr("class"), 'id_');
+                var button = $(this);
+                button.addClass('loading');
                 $.ajax({
                     type: "GET",
                     url: "{{ route('toFav') }}",
-                    data: { post_id: item_id },
+                    data: { post_id: postId },
                     success: function(data) {
-                        confirmation(data, item_id);
+                        confirmation(data, postId);
+                        button.removeClass('loading');
                     },
                     error: function() {
                         // Print error massage
                         showPopUpMassage(false, "{{ __('messages.error') }}");
+                        button.removeClass('loading');
                     }
                 });
             });
 
-            //paint addToFav btn into red and incr/decr number of  favItems if succes
-            function confirmation(data, item_id) {
+            //change addToFav btn color and incr/decr number of favItems if succes
+            function confirmation(data, postId) {
                 if ( data ) {
-                    var target = $(".id_"+item_id+" img");
+                    var target = $(".id_"+postId+" img");
                     var n = $("#favItemsTab span").text();
                     n = parseInt(n,10);
                     if ( target.attr("src") != "{{ asset('icons/heartOrangeIcon.svg') }}" ) {
@@ -232,14 +232,53 @@
                 } else {
                     showPopUpMassage(false, "{{ __('messages.postAddFavError') }}");
                 }
-                $(document.body).css('cursor', 'default');
-                $(".id_"+item_id).attr('disabled', false);
             }
 
             //show modal contacts 
             $('#modalTriger').click(function(){
-                $('.modalView').css("display", "block");
+                var button = $(this);
+                button.addClass('loading');
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('get.contacts', $post->id) }}",
+                    success: function(data) {
+                        if ( data ) {
+                            fillUpContacts(data);
+                            $('.modalView').css("display", "block");
+                        } else {
+                            showPopUpMassage(false, "{{ __('messages.error') }}");
+                            isSubscribed();
+                        }
+                        button.removeClass('loading');
+                    },
+                    error: function() {
+                        // Print error massage
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
+                        button.removeClass('loading');
+                    }
+                });
+                
             });
+
+            function fillUpContacts (data) {
+                var contacts = JSON.parse(data);
+                $('span.emailField').text(contacts['email']);
+                $('li.phoneField span').text(contacts['phone']);
+                if (contacts['viber']) {
+                    $('li.phoneField').append("<img src='{{ asset('icons/viberIcon.svg') }}' alt='{{__('alt.keyword')}}'>");
+                }
+                if (contacts['telegram']) {
+                    $('li.phoneField').append("<img src='{{ asset('icons/telegramIcon.svg') }}' alt='{{__('alt.keyword')}}'>");
+                }
+                if (contacts['whatsapp']) {
+                    $('li.phoneField').append("<img src='{{ asset('icons/whatsappIcon.svg') }}' alt='{{__('alt.keyword')}}'>");
+                }
+            }
+
+            // check is use subscribed to plan, if not sujjest to do so
+            function isSubscribed() {
+                // TO DO
+            }
 
             //change main image to clicked image from gallery
             $(".imgTriger").click(function(){
@@ -254,6 +293,9 @@
                 var modal = document.getElementById("modal");
                 if (event.target == modal) {
                     $('#modal').css("display", "none");
+                    $('.emailField').text('');
+                    $('.phoneField span').text('');
+                    $('.phoneField img').remove();
                 }
             }
             

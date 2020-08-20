@@ -12,11 +12,10 @@ use App\Mailer;
 //use App\Jobs\MailerSendNotification;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailerNotification;
-use App\Tags;
 
 class MailersAnalizePost implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, Tags;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * The number of times the job may be attempted.
@@ -75,11 +74,10 @@ class MailersAnalizePost implements ShouldQueue
     }
 
     private function checkKeywords($mailer, $post) {
-        foreach ( explode("\n", $mailer->keywords) as $string) {
-            $string = str_replace("\r", '', $string);
-            if ( mb_stristr($post->description, $string) ) {
-                //dispatch(new MailerSendNotification($mailer->user->email, $post->id, 'keyword', $string)); // Dispatch job of sending a Notification to user
-                Mail::to($mailer->user->email)->send(new MailerNotification($post, __('mailerNotifDescription'), $string)); //send mail notification to user
+        foreach ( explode("\n", $mailer->keywords) as $keywords) {
+            $keywords = str_replace("\r", '', $keywords);
+            if ( mb_stristr($post->description, $keywords) ) {
+                Mail::to($mailer->user->email)->send(new MailerNotification($post, 'keywords', $keywords, $mailer->user->language)); //send mail notification to user
                 return true;
             }
         }
@@ -90,8 +88,7 @@ class MailersAnalizePost implements ShouldQueue
         // Iterate througth each subscribed author in Mailer
         foreach (explode(" ", $mailer->authors) as $author) {
             if ($author == $post->user->id ) {
-                //dispatch(new MailerSendNotification($mailer->user->email, $post->id, 'author', $post->user->name)); // Dispatch job of sending a Notification to user
-                Mail::to($mailer->user->email)->send(new MailerNotification($post, __('ui.mailerNotifAuthors'), $post->user->name)); //send mail notification to user
+                Mail::to($mailer->user->email)->send(new MailerNotification($post, 'author', $post->user->name, $mailer->user->language)); //send mail notification to user
                 return true;
             }
         }
@@ -106,9 +103,7 @@ class MailersAnalizePost implements ShouldQueue
             $regex = "/^$tag(.[0-9]+)*$/"; // Create regex from tag
             // Check is tag of new post is comply with tag in Mailer
             if ( preg_match($regex, $post->tag) ) {
-                //dispatch(new MailerSendNotification($mailer->user->email, $post->id, 'tag', $post->tag)); // Dispatch job of sending a Notification to user
-                $tagsReadable = $this->getTagPathAsString($post->tag);
-                Mail::to($mailer->user->email)->send(new MailerNotification($post, __('ui.mailerNotifTags'), $tagsReadable)); //send mail notification to user
+                Mail::to($mailer->user->email)->send(new MailerNotification($post, 'tags', $post->tag, $mailer->user->language)); //send mail notification to user
                 return true;
             }
         }

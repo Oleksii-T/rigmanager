@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('css/login.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/login.css')}}" />
     <style>
         #developmentStage {
             position: fixed;
@@ -98,7 +98,7 @@
 @endsection
 
 @section('scripts')
-    <script src="/js/hideShowPassword.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/hideShowPassword.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             

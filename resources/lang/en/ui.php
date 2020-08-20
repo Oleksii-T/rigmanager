@@ -96,13 +96,15 @@ return [
     'mailerSuggestTag' => 'Add this catogories to Mailer?',
     'mailerSuggestAuthor' => 'Add this Author to Mailer?',
     'mailerNotifGreetings' => 'Hello',
-    'mailerNotifHeader' => 'We detected that You might be interested in this proposal.',
-    'mailerNotifBody' => 'You have got this email because due to Mailer configuration such :reason considered interesting for You:',
+    'mailerNotifHeader' => 'We detected that You might be interested in this proposal',
+    'mailerNotifBody' => 'You received this email because due to Mailer configuration such :reason considered interesting for You',
     'mailerNotifBody2' => 'You are free to configure or disable Mailer at any time in your',
+    'mailerNotifBody3' => 'If you’re having trouble clicking the Post above, copy and paste the URL below into your web browser',
     'mailerNotifSlg' => 'Regards,',
     'mailerNotifTags' => 'this categories',
     'mailerNotifDescription' => 'this keywords',
     'mailerNotifAuthors' => 'posts by this author',
+    'mailerNotifSubject' => 'Notification from your Mailer',
 
     //subscription massages
     'mySubscription' => 'My subscription',

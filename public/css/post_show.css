@@ -98,19 +98,19 @@ p, h1 {
     margin-bottom: 20px;
 }
 
-.itemTag {
-    background: none;
-    border: none;
+a.item-tag {
+    text-decoration: none;
     padding: 7px 20px;
     transition: 0.2s;
     font-size: 95%;
-    cursor: pointer;
     border-bottom: 2px solid #888888;
     font-size: 110%;
-    margin-left: 10px;
+    margin: 0px 5px;
+    display: inline-block;
+    
 }
 
-.itemTag:hover {
+a.item-tag:hover {
     background-color: rgb(149, 149, 149, 0.7);
 }
 
@@ -135,6 +135,10 @@ p, h1 {
     text-align: center;
 }
 
+#addToFavBtn p {
+    margin-bottom: 10px;
+}
+
 #addToFavBtn button {
     width: 50px;
     height: 50px;
@@ -157,24 +161,9 @@ p, h1 {
 
 /*==================EDIT_BTN==================*/
 
-#editBtn {
-    text-align: center;
-    position: relative;
-}
-
 #editBtn p {
-    margin-bottom: 20px;
+    text-align: center;
 }
-
-#editBtn a {
-    padding: 7px;
-    text-decoration: none;
-    transition: 0.2s;
-    font-size: 95%;
-}
-
-#editBtn a:hover { background-color: rgb(149, 149, 149, 0.7); }
-
 /*==================AUTHOR_INFO==================*/
 
 #authorView {
@@ -203,20 +192,12 @@ p, h1 {
     height: 40px;
 }
 
-.authorBtns {
-    background-color: rgb(149, 149, 149, 0.7);
+.def-button {
     margin-top: 10px;
-    border: none;
-    text-decoration: none;
     padding: 7px;
-    transition: 0.2s;
     font-size: 95%;
-    display: block;
-    text-align: center;
     width: 100%;
-    cursor: pointer;
 }
-
 
 .authorBtns:hover {
     background-color: rgb(149, 149, 149, 0.8);
@@ -251,6 +232,7 @@ p, h1 {
     display: block;
     padding: 20px;
     cursor: default;
+    max-width: 90%;
 }
 
 .modalContent h1 {
@@ -261,19 +243,24 @@ p, h1 {
 
 .modalContent li {
     list-style: none;
-    font-size: 120%;
-    word-break: break-all;
-    word-wrap: pre-line;
     border-bottom: 2px solid #888888;
     margin-bottom: 20px;
+}
+
+.modalContent li p {
+    font-size: 120%;
+    display: inline;
 }
 
 .modalContent li span {
     cursor: text;
     color: #FE9242;
-    font-size: 120%;
+    font-size: 130%;
+    word-wrap: normal;
+    word-break: break-all;
 }
 
 .modalContent ul li img {
-    height: 20px;
+    height: 35px;
+    margin-right: 5px;
 }

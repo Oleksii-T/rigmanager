@@ -18,10 +18,6 @@ div.element {
     display: none;
 }
 
-.loading {
-    cursor: wait !important;
-}
-
 .elementHeading {
     font-size: 120%;
 }

@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/components/items.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/components/pagination.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/components/popUpAndFlash.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/components/post_posts.css') }}" />
 @endsection
 
 @section('content')
@@ -151,11 +149,26 @@
 @endsection
 
 @section('scripts')
-    <script src={{ asset('js/popUpAndFlash.js') }}></script>
     <script type="text/javascript">
-    
         $(document).ready(function(){
 
+            //get digit from classes of DOM element (depends on prefix)
+            function getIdFromClasses(classes, prefix) {
+                // regex special chars does not escaped in prefix!!!
+                var reg = new RegExp("^"+prefix+"[0-9]+$", 'g');
+                var result = '';
+                classes.split(' ').every(function(string){
+                    result = reg.exec(string);
+                    if ( result != null ) {
+                        result = result + '';
+                        result = result.split('_')[1];
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+                return result;
+            }
             //search for clicked category 
             $('#dropDown a').click(function($e){
                 $e.preventDefault();
@@ -190,20 +203,20 @@
 
             //action when user clicks on addToFav icon
             $(".addToFavButton").click(function(){
-                var item_id = $(this).attr("class").split(' ')[1].split('_')[1];
+                var postId = getIdFromClasses($(this).attr("class"), 'id_');
                 //make cursor wait
-                $("button.id_"+item_id).addClass('loading');
-                $("span.item_id_"+item_id).addClass('loading');
+                var button = $(this);
+                button.addClass('loading');
                 //send Ajax reqeust to add Item to fav list of user
                 $.ajax({
                     type: "GET",
                     url: '{{ route('toFav') }}',
-                    data: { post_id: item_id },
+                    data: { post_id: postId },
                     success: function(data) {
                         //if no server errors, change digit of favItemsAmount in nav bar 
                         //and change color of AddToFav btn
                         if ( data ) {
-                            var target = $(".id_"+item_id+" img.addToFavImg");
+                            var target = $("#"+postId+" img.addToFavImg");
                             var n = $("#favItemsTab span").text();
                             n = parseInt(n,10);
                             if ( target.attr("src") != "{{ asset('icons/heartOrangeIcon.svg') }}" ) {
@@ -222,34 +235,32 @@
                             showPopUpMassage(false, "{{ __('messages.postAddFavError') }}");
                         }
                         //remove cursor wait
-                        $("button.id_"+item_id).removeClass('loading');
-                        $("span.item_id_"+item_id).removeClass('loading');
+                        button.removeClass('loading');
                     },
                     error: function() {
                         //pop up error massage and remove cursor wait
                         showPopUpMassage(false, "{{ __('messages.') }}");
-                        $("button.id_"+item_id).removeClass('loading');
-                        $("span.item_id_"+item_id).removeClass('loading');
+                        button.removeClass('loading');
                     }
                 });
             });
 
             //add hover effect on item when hover on addToFav btn
             $(".addToFavButton").hover(function(){
-                var item_id = $(this).attr("class").split('_')[1];
-                $(".item_id_"+item_id).addClass('hover');
+                var postId = $(this).attr("class").split('_')[1];
+                $(".postId_"+postId).addClass('hover');
                 }, function(){
-                var item_id = $(this).attr("class").split('_')[1];
-                $(".item_id_"+item_id).removeClass('hover');
+                var postId = $(this).attr("class").split('_')[1];
+                $(".postId_"+postId).removeClass('hover');
             });
 
             //add hover effect on item when hover on addToFavBlocked btn
             $(".addToFavButtonBlocked").hover(function(){
-                var item_id = $(this).attr("class").split('_')[1];
-                $(".item_id_"+item_id).addClass('hover');
+                var postId = $(this).attr("class").split('_')[1];
+                $(".postId_"+postId).addClass('hover');
                 }, function(){
-                var item_id = $(this).attr("class").split('_')[1];
-                $(".item_id_"+item_id).removeClass('hover');
+                var postId = $(this).attr("class").split('_')[1];
+                $(".postId_"+postId).removeClass('hover');
             });
 
         });

@@ -14,8 +14,9 @@
     <!--  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">  -->
 
     <!-- Styles -->
-    <link type="text/css" href="{{ asset('css/base.css') }}" rel="stylesheet">
-    <link type="text/css" href="{{ asset('css/normalize.css') }}" rel="stylesheet" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/base.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/components/popUpAndFlash.css') }}" >
     @yield('styles')
 </head>
 <body>
@@ -142,7 +143,7 @@
                         <a class="footerLinks" id="footerFAQ" href="{{route('faq')}}">{{__('ui.foterFAQ')}}</a>
                     </div>
                     <div id="rightS">
-                        <p>&copy; 2020 <span>rigmanager.com.ua</span>. {{__('ui.footerCopyright')}}</p>
+                        <p>&copy; {{env('COPY_RIGHT_YEAR')}} <span>rigmanager.com.ua</span>. {{__('ui.footerCopyright')}}</p>
                         <p>{{__('ui.footerIconsRef')}} <a class="footerLinks" href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> (<a class="footerLinks" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>)</p>
                         <table>
                             <tr>
@@ -167,7 +168,15 @@
 
     </div>
     <!-- Scripts -->
-    <script src={{ asset('js/jquery-3.1.1.min.js') }}></script>
+    <script type="text/javascript" src={{ asset('js/jquery-3.1.1.min.js') }}></script>
+    <script type="text/javascript" src={{ asset('js/popUpAndFlash.js') }}></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('a').click(function(){
+                $(this).addClass('loading');
+            });
+        });
+    </script>
     @yield('scripts')
     <noscript>
         <div id="noscript">

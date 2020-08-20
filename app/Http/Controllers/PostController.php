@@ -52,7 +52,7 @@ class PostController extends Controller
             $this->postImageUpload($request->file('images'), $post);
         }
         Session::flash('message-success', __('messages.postUploaded'));
-        MailersAnalizePost::dispatch($post, auth()->user()->id);
+        MailersAnalizePost::dispatch($post, auth()->user()->id)->onQueue('mailer');
         return redirect(route('home'));
     }
 
@@ -123,10 +123,29 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        $this->postImagesDelete($post);
-        $post->delete();
+        if ($post->user == auth()->user()) {
+            $this->postImagesDelete($post);
+            $post->delete();
+        }
         Session::flash('message-success', __('messages.postDeleted'));
         return redirect(route('myPosts'));
+    }
+
+    /**
+     * Remove the specified resource from storage. Call via Ajax
+     *
+     * @param  int  $id
+     * @return boolean
+     */
+    public function destroyAjax($id)
+    {
+        $post = Post::findOrFail($id);
+        if ($post->user == auth()->user()) {
+            $this->postImagesDelete($post);
+            $post->delete();
+            return true;
+        }
+        return false;
     }
 
     public function imgsDel($id)
@@ -135,6 +154,16 @@ class PostController extends Controller
         $this->postImagesDelete($post);
         Session::flash('message-success', __('messages.postEdited'));
         return $this->show($post->id);
+    }
+
+    public function getContacts($postId) {
+        $post = Post::findOrFail($postId);
+        $contacts['email'] = $post->user_email;
+        $contacts['phone'] = $post->user_phone;
+        $contacts['viber'] = $post->viber;
+        $contacts['telegram'] = $post->telegram;
+        $contacts['whatsapp'] = $post->whatsapp;
+        return json_encode($contacts);
     }
 
 }

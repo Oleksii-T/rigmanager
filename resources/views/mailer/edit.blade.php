@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('css/mailer_create_edit.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/profile_layout.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/mailer_create_edit.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/components/profile_layout.css')}}" />
 @endsection
 
 @section('content')
@@ -159,174 +159,157 @@
 @endsection
 
 @section('scripts')
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
-    
-<script type="text/javascript">
+    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript">
 
-    // Remove author
-    function removeAuthor ($id) {
-        //remove from hidden input
-        newValue = $('#inputAuthors').attr('value').replace($id+" ", "");
-        $('#inputAuthors').attr('value', newValue);
-        //remove from visible list
-        var element = $('#author_'+$id);
-        element.empty();
-        element.remove();
-        //check if empty
-        if ( $('#inputAuthors').attr('value') == "" ) {
-            $('#clickToDeleteHelp').addClass('hidden');
-            $('#noAuthors').removeClass('hidden');
-        }
-    }
-
-    // User choosed already choosen tag or removing the tag
-    function removeFromChoosenTags (clickedTag) {
-        if (typeof clickedTag == 'object') {
-            var tagEncoded = clickedTag.attr('id');
-        } else {
-            var tagEncoded = clickedTag;
-            clickedTag = $('#'+tagEncoded.replace(/\./g, '\\.'));
-        }
-        //remove class from tag btn
-        clickedTag.removeClass('choosen');
-        clickedTag.removeClass('isActiveBtn');
-        //remove from hidden array
-        newValue = $('#tagEncodedHidden').attr('value').replace(tagEncoded+" ", "");
-        $('#tagEncodedHidden').attr('value', newValue);
-        //remove from visible
-        var element = $('#encoded_'+tagEncoded.replace(/\./g, '\\.'));
-        element.empty();
-        element.remove();
-        //check for empty
-        if ( $('#tagEncodedHidden').attr('value') == "" ) {
-            $('#choosenTags').css('display', 'none');
-            $('#tags div.help').addClass('hidden');
-        }
-    };
-
-    $(document).ready(function(){
-
-        // If there is any tags choosen
-        if ("{{$mailer->tags}}") {
-            // Show choosen tags
-            $('#choosenTags').css('display', 'block');
-            // Mark choosen tags in drop down menu
-            var choosenTags = "{{$mailer->tags}}".split(' ');
-            choosenTags.forEach(tag => {
-                $('#'+tag.replace(/\./g, '\\.')).addClass('choosen');
-                $('#'+tag.replace(/\./g, '\\.')).addClass('isActiveBtn');
-            });
-        }
-
-        //static generator of unique ids for popUpMassages
-        function Generator() {};
-        Generator.prototype.rand = 1;
-        Generator.prototype.getId = function() {return this.rand++;};
-        var idGen =new Generator();
-
-        //fade out flash massages
-        $("div.flash").delay(3000).fadeOut(350);
-
-        //main Eq Types buttons to open tags to choose
-        $('.tagsTrigger').click(function(){
-            var type = $(this).attr('class').split(' ')[1];
-            var display = $("#"+type).css('display');
-            var color = $(this).css('background-color');
-            $('.tagsTrigger').removeClass('isActiveBtn');
-            if ( color == 'rgba(149, 149, 149, 0.8)' ) {
-                $(this).addClass('isActiveBtn');
-            } else {
-                $(this).removeClass('isActiveBtn');
+        // Remove author
+        function removeAuthor ($id) {
+            //remove from hidden input
+            newValue = $('#inputAuthors').attr('value').replace($id+" ", "");
+            $('#inputAuthors').attr('value', newValue);
+            //remove from visible list
+            var element = $('#author_'+$id);
+            element.empty();
+            element.remove();
+            //check if empty
+            if ( $('#inputAuthors').attr('value') == "" ) {
+                $('#clickToDeleteHelp').addClass('hidden');
+                $('#noAuthors').removeClass('hidden');
             }
-            
-            $('.typeOfEq').css('display', 'none');
-            if (display == 'none') {
-                $("#"+type).css('display', 'block');
-            } else {
-                $("#"+type).css('display', 'none');
-            }
-        });
-
-        //make pop up massage from text
-        function popUpMassage (text) {
-            var uniqueId = "num" + idGen.getId();
-            $('#container').append('<div class="popUp" id="'+uniqueId+'"><p>'+text+'</p></div>');
-            $('#'+uniqueId).addClass('popUpShow');
-            $('#'+uniqueId).click(function(){ $(this).removeClass('popUpShow') });
-            setTimeout(function(){
-                $('#'+uniqueId).removeClass('popUpShow');
-            }, 3000);
         }
 
-        // User click tag from drop down menu
-        $('#dropDown a').click(function($e){
-            $e.preventDefault();
-            if ( $(this).hasClass('choosen') ) {
-                removeFromChoosenTags($(this));
+        // User choosed already choosen tag or removing the tag
+        function removeFromChoosenTags (clickedTag) {
+            if (typeof clickedTag == 'object') {
+                var tagEncoded = clickedTag.attr('id');
             } else {
-                if ( $('#tagEncodedHidden').attr('value').split(' ').length > 9 ) {
-                    popUpMassage("{{ __('messages.mailerToManyTags') }}");
-                } else {
-                    // Make cursor wait
-                    $('#dropDown a').addClass('loading');
-                    $(document.body).css('cursor', 'wait');
-                    // Choose the tag
-                    addToChoosenTags($(this));
-                }
+                var tagEncoded = clickedTag;
+                clickedTag = $('#'+tagEncoded.replace(/\./g, '\\.'));
             }
-        });
-
-        // User adding new tag to choosen tags
-        function addToChoosenTags (clickedTag) {
-            var tagId = clickedTag.attr('id');
-            var tagEncoded = clickedTag.attr('id');
-            var ajaxUrl = '{{ route("get.readble.tag", ":tagId") }}';
-            ajaxUrl = ajaxUrl.replace(':tagId', tagId);
-            // Get readable tags path via ajax request
-            $.ajax({
-                type: "GET",
-                url: ajaxUrl,
-                success: function(data) {
-                    // Mark drop down button as choosen
-                    clickedTag.addClass('choosen');
-                    clickedTag.addClass('isActiveBtn');
-                    // Show help text and choosen tag
-                    $('#tags div.help').removeClass('hidden');
-                    $('#choosenTags').css('display', 'block');
-                    // Write encoded tag to hidden form field
-                    var newValue = $('#tagEncodedHidden').attr('value') + tagEncoded + " ";
-                    $('#tagEncodedHidden').attr('value', newValue);
-                    // Write readble tag to visible form field for user
-                    $( "#choosenTags ol" ).append( "<li id=\"encoded_"+tagEncoded+"\"><button onclick=\"removeFromChoosenTags('"+tagEncoded+"')\" type=\"button\" title=\"{{__('ui.delete')}}\">"+data+"</button></li>" );
-                    // Remove wait cursor
-                    $(document.body).css('cursor', 'default');
-                    $('#dropDown a').removeClass('loading'); 
-                },
-                error: function() {
-                    // Print error massage
-                    popUpMassage("{{ __('messages.error') }}");
-                    // Remove wait cursor
-                    $(document.body).css('cursor', 'default');
-                    $('#dropDown a').removeClass('loading'); 
-                }
-            });
+            //remove class from tag btn
+            clickedTag.removeClass('choosen');
+            clickedTag.removeClass('isActiveBtn');
+            //remove from hidden array
+            newValue = $('#tagEncodedHidden').attr('value').replace(tagEncoded+" ", "");
+            $('#tagEncodedHidden').attr('value', newValue);
+            //remove from visible
+            var element = $('#encoded_'+tagEncoded.replace(/\./g, '\\.'));
+            element.empty();
+            element.remove();
+            //check for empty
+            if ( $('#tagEncodedHidden').attr('value') == "" ) {
+                $('#choosenTags').css('display', 'none');
+                $('#tags div.help').addClass('hidden');
+            }
         };
 
-        //Validate the form
-        $('#formUpdateMailer').validate({
-            rules: {
-                keywords: {
-                    maxlength: 255
-                }
-            },
-            messages: {
-                keywords: {
-                    maxlength: '{{ __("validation.max.string", ["max" => 254]) }}'
-                }
-            }
-        });
+        $(document).ready(function(){
 
-    });
-    
-</script>
+            // If there is any tags choosen
+            if ("{{$mailer->tags}}") {
+                // Show choosen tags
+                $('#choosenTags').css('display', 'block');
+                // Mark choosen tags in drop down menu
+                var choosenTags = "{{$mailer->tags}}".split(' ');
+                choosenTags.forEach(tag => {
+                    $('#'+tag.replace(/\./g, '\\.')).addClass('choosen');
+                    $('#'+tag.replace(/\./g, '\\.')).addClass('isActiveBtn');
+                });
+            }
+
+            //fade out flash massages
+            $("div.flash").delay(3000).fadeOut(350);
+
+            //main Eq Types buttons to open tags to choose
+            $('.tagsTrigger').click(function(){
+                var type = $(this).attr('class').split(' ')[1];
+                var display = $("#"+type).css('display');
+                var color = $(this).css('background-color');
+                $('.tagsTrigger').removeClass('isActiveBtn');
+                if ( color == 'rgba(149, 149, 149, 0.8)' ) {
+                    $(this).addClass('isActiveBtn');
+                } else {
+                    $(this).removeClass('isActiveBtn');
+                }
+                
+                $('.typeOfEq').css('display', 'none');
+                if (display == 'none') {
+                    $("#"+type).css('display', 'block');
+                } else {
+                    $("#"+type).css('display', 'none');
+                }
+            });
+
+            // User click tag from drop down menu
+            $('#dropDown a').click(function($e){
+                $e.preventDefault();
+                if ( $(this).hasClass('choosen') ) {
+                    removeFromChoosenTags($(this));
+                    $(this).removeClass('loading');
+                } else {
+                    if ( $('#tagEncodedHidden').attr('value').split(' ').length > 9 ) {
+                        showPopUpMassage(false, "{{ __('messages.mailerToManyTags') }}");
+                        $(this).removeClass('loading');
+                    } else {
+                        // Make cursor wait
+                        $(document.body).css('cursor', 'wait');
+                        // Choose the tag
+                        addToChoosenTags($(this));
+                    }
+                }
+            });
+
+            // User adding new tag to choosen tags
+            function addToChoosenTags (clickedTag) {
+                var tagId = clickedTag.attr('id');
+                var tagEncoded = clickedTag.attr('id');
+                var ajaxUrl = '{{ route("get.readble.tag", ":tagId") }}';
+                ajaxUrl = ajaxUrl.replace(':tagId', tagId);
+                // Get readable tags path via ajax request
+                $.ajax({
+                    type: "GET",
+                    url: ajaxUrl,
+                    success: function(data) {
+                        // Mark drop down button as choosen
+                        clickedTag.addClass('choosen');
+                        clickedTag.addClass('isActiveBtn');
+                        // Show help text and choosen tag
+                        $('#tags div.help').removeClass('hidden');
+                        $('#choosenTags').css('display', 'block');
+                        // Write encoded tag to hidden form field
+                        var newValue = $('#tagEncodedHidden').attr('value') + tagEncoded + " ";
+                        $('#tagEncodedHidden').attr('value', newValue);
+                        // Write readble tag to visible form field for user
+                        $( "#choosenTags ol" ).append( "<li id=\"encoded_"+tagEncoded+"\"><button onclick=\"removeFromChoosenTags('"+tagEncoded+"')\" type=\"button\" title=\"{{__('ui.delete')}}\">"+data+"</button></li>" );
+                        // Remove wait cursor
+                        $(document.body).css('cursor', 'default');
+                        $('#dropDown a').removeClass('loading'); 
+                    },
+                    error: function() {
+                        // Print error massage
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
+                        // Remove wait cursor
+                        $(document.body).css('cursor', 'default');
+                        $('#dropDown a').removeClass('loading'); 
+                    }
+                });
+            };
+
+            //Validate the form
+            $('#formUpdateMailer').validate({
+                rules: {
+                    keywords: {
+                        maxlength: 255
+                    }
+                },
+                messages: {
+                    keywords: {
+                        maxlength: '{{ __("validation.max.string", ["max" => 254]) }}'
+                    }
+                }
+            });
+
+        });
+        
+    </script>
 @endsection

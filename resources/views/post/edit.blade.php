@@ -1,6 +1,5 @@
 @extends('layouts.app')
-    <link rel="stylesheet" href="{{asset('css/item_create_edit.css')}}" />
-    <link rel="stylesheet" href="{{ asset('css/components/popUpAndFlash.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/post_create_edit.css')}}" />
 @section('styles')
 
 @endsection
@@ -274,10 +273,8 @@
 @endsection
 
 @section('scripts')
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
-    <script src="{{asset('js/myValidators.js')}}"></script> 
-    <script src={{ asset('js/popUpAndFlash.js') }}></script>
-
+    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{asset('js/myValidators.js')}}"></script> 
     <script type="text/javascript">
 
         $(document).ready(function() {
@@ -288,12 +285,6 @@
             //print choosen tag to user
             var tag_ = $('#hiddenTag').attr('value');
             $('#TagChoosen').text(tag_);
-
-            //static generator of unique ids for gallery`s div
-            function Generator() {};
-            Generator.prototype.rand = 1;
-            Generator.prototype.getId = function() {return this.rand++; };
-            var idGen =new Generator();
 
             //clean chosen catorories
             $('#clearTagsBtn').click(function(){
@@ -328,9 +319,6 @@
             //action when user chose tag
             $('#dropDown a').click(function($e){
                 $e.preventDefault();
-                //make cursor wait
-                $('#dropDown a').addClass('loading');
-                $(document.body).css('cursor', 'wait');
                 //get readable tags path via ajax request
                 var tagId = $(this).attr('id');
                 var tagEncoded = $(this).attr('id');
@@ -347,28 +335,15 @@
                         //write readble tag to visible field for user
                         $('#tagReadbleVisible').text(data);
                         //remove wait cursor
-                        $(document.body).css('cursor', 'default');
                         $('#dropDown a').removeClass('loading'); 
                     },
                     error: function() {
                         //print error massage and remove wait cursor
-                        popUpMassage("{{ __('messages.error') }}");
-                        $(document.body).css('cursor', 'default');
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
                         $('#dropDown a').removeClass('loading'); 
                     }
                 });
             });
-
-            //make pop up massage from text
-            function popUpMassage (text) {
-                var uniqueId = "num" + idGen.getId();
-                $('#container').append('<div class="popUp" id="'+uniqueId+'"><p>'+text+'</p></div>');
-                $('#'+uniqueId).addClass('popUpShow');
-                $('#'+uniqueId).click(function(){ $(this).removeClass('popUpShow') });
-                setTimeout(function(){
-                    $('#'+uniqueId).removeClass('popUpShow');
-                }, 3000);
-            }
 
             //open modal delete confirm when user ask to
             $('#modalPostDeleteOn').click(function(){

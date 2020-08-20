@@ -39,9 +39,13 @@ return [
     | with your search engines are queued. When this is set to "true" then
     | all automatic data syncing will get queued for better performance.
     |
+    | 'queue' => env('SCOUT_QUEUE', false),
     */
 
-    'queue' => env('SCOUT_QUEUE', false),
+    'queue' => [
+        'queue' => env('SCOUT_QUEUE_NAME', 'scout'),
+        'connection' => env('QUEUE_CONNECTION', 'sync'),
+    ],
 
     /*
     |--------------------------------------------------------------------------

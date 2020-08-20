@@ -2,7 +2,7 @@
 $("div.flash").delay(3000).fadeOut(350);
 
 // counter for unique pop-up ids
-var popUpId = 10;
+var popUpId = 1;
 function getPopUpId() {
     popUpId++;
     return popUpId;

@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('email', 255)->unique(); // login email for user
             $table->timestamp('email_verified_at')->nullable(); //date when user confirms his email
             $table->string('password', 255); // password hash
+            $table->string('language', 2)->default('uk'); // password hash
             $table->rememberToken(); //Adds a nullable remember_token VARCHAR(100) equivalent column.
             $table->timestamps(); // Adds nullable created_at and updated_at TIMESTAMP equivalent columns with precision (total digits).
             $table->softDeletes('deleted_at', 0); // Adds a nullable deleted_at TIMESTAMP equivalent column for soft deletes with precision (total digits).

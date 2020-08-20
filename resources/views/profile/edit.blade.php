@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('css/profile_edit.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/profile_layout.css')}}" />
-    <link rel="stylesheet" href="{{ asset('css/components/popUpAndFlash.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/profile_edit.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/components/profile_layout.css')}}" />
 @endsection
 
 @section('content')
@@ -119,11 +118,9 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/jquery.validate.min.js') }}"></script> 
-    <script src="{{ asset('js/hideShowPassword.min.js') }}"></script>
-    <script src="{{ asset('js/myValidators.js') }}"></script>
-    <script src={{ asset('js/popUpAndFlash.js') }}></script>
-
+    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script> 
+    <script type="text/javascript" src="{{ asset('js/hideShowPassword.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/myValidators.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
 

@@ -9,6 +9,7 @@ return [
     'postUploaded' => 'Post has been published successfully!',
     'postUploadedError' => 'Error occured while publishing the Post.',
     'postDeleted' => 'Post has been deleted successfully!',
+    'postDeleteError' => 'Error occured while deleting the Post.',
     'postEdited' => 'Post has been changed successfully!',
     'postEditedError' => 'Error occured while editing the post.',
     'postAddedFav' => 'Post has been added to Favourites!',
@@ -32,6 +33,7 @@ return [
     'mailerTextAdded' => 'Specified keywords added to your Mailer successfully!',
 
     'profileEdited' => 'Profile has been changed successfully!',
+    'profileImgDeleted' => 'Profile picture was deleted successfully!',
     
     'signedIn' => 'Welcome!',
     'signedOut' => 'Good bye',

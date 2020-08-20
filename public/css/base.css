@@ -80,6 +80,10 @@ div.side-background {
     color: #888888;
 }
 
+.loading {
+    cursor: wait !important;
+}
+
 .isActiveBtn {
     background-color: #FE9042 !important;
 }
@@ -117,6 +121,7 @@ div.side-background {
     transition-duration: 0.2s;
     padding: 0.5em 1.5em;
     background-color: rgb(149, 149, 149, 0.7);
+    text-align: center;
 }
 
 .def-button:hover {

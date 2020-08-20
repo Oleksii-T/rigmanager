@@ -21,9 +21,11 @@ Route::get('login/{social}/callback', 'Auth\LoginController@handleProviderCallba
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // posts routes
-    Route::resource('posts', 'PostController')->except(['index']);
     Route::patch('posts/images/delete/{post}', 'PostController@imgsDel')->name('posts.imgs.delete');
     Route::get('category/{tagId}', 'PostController@getTagPathAsString')->name('get.readble.tag'); //Ajax reqeust
+    Route::get('contacts/{postId}', 'PostController@getContacts')->name('get.contacts'); //Ajax reqeust
+    Route::delete('posts/a/{post}', 'PostController@destroyAjax')->name('posts.destroy.ajax'); //Ajax reqeust
+    Route::resource('posts', 'PostController')->except(['index']);
     
     // prifile/user routes
     Route::get('profile/edit', 'UserController@edit')->name('profile.edit');
@@ -35,7 +37,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('profile/subscription', 'UserController@subscription')->name('profile.subscription');
 
     // mailer routes
-    Route::resource('mailer', 'MailerController')->except(['show', 'edit', 'update', 'destroy']); 
     Route::get('mailer/edit', 'MailerController@edit')->name('mailer.edit');//remove default parametes
     Route::patch('mailer/update', 'MailerController@update')->name('mailer.update');//remove default parametes
     Route::delete('mailer/destroy', 'MailerController@destroy')->name('mailer.destroy');//remove default parametes
@@ -44,9 +45,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('mailer/tag/{tag}', 'MailerController@addTag')->name('mailer.add.tag');// Ajax request
     Route::get('mailer/text/{text}', 'MailerController@addText')->name('mailer.add.text');// Ajax request
     Route::get('mailer/author/add/{author}', 'MailerController@addAuthor')->name('mailer.add.author');// Ajax request
+    Route::resource('mailer', 'MailerController')->except(['show', 'edit', 'update', 'destroy']); 
 
 
-    // Folloing routes shall be for non-registered users on production stage
+    /*== Folloing routes shall be for non-registered users on production stage ==*/
+
     // home routes
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('faq', 'HomeController@faq')->name('faq');
@@ -55,9 +58,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('terms', 'HomeController@terms')->name('terms');
     Route::get('privacy', 'HomeController@privacy')->name('privacy');
     Route::get('sitemap', 'HomeController@sitemap')->name('site.map');
+
     // user routes
     Route::get('emailexists', 'UserController@emailExists')->name('email.exist');
+
     // post routes
+
     // search routes
     Route::get('search/text', 'SearchController@searchText')->name('search.text');
     Route::get('search/category/{category}', 'SearchController@searchTag')->name('search.tag');
@@ -72,5 +78,8 @@ Route::middleware('auth')->group(function () {
 Route::get('set-locale/{locale}', function ($locale) {
     App::setLocale($locale);
     session()->put('locale', $locale);
+    $user = auth()->user();
+    $user->language = $locale;
+    $user->save();
     return redirect()->back();
 })->middleware('check.locale')->name('locale.setting');
