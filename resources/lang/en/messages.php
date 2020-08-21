@@ -18,6 +18,8 @@ return [
     'postRemovedFav' => 'Post has been deleted from Favourites successfully!',
     'postRemoveFavError' => 'An error occured.',
     'postEditedErrorTooManyImages' => 'Too many images, maximum 5.',
+    'postNewImgsDeleted' => 'Images have been cleared',
+    'postImgsDeleted' => 'Images have been deleted',
     
     'mailerToManyTags' => 'Too many categories',
     'mailerUploaded' => 'Mailer has been configured successfully!',

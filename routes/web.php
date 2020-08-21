@@ -30,8 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // prifile/user routes
     Route::get('profile/edit', 'UserController@edit')->name('profile.edit');
     Route::patch('profile/update', 'UserController@update')->name('profile.update');
-    Route::get('profile/favPosts', 'UserController@favPosts')->name('favPosts');
-    Route::get('profile/myPosts', 'UserController@myPosts')->name('myPosts');
+    Route::get('profile/favourites', 'UserController@favourites')->name('profile.favourites');
+    Route::get('profile/posts', 'UserController@userPosts')->name('profile.posts');
     Route::get('profile/favourite', 'UserController@addToFav')->name('toFav'); //Ajax reqeust
     Route::patch('profile/image/delete', 'userController@userImageDelete')->name('profile.img.delete');
     Route::get('profile/subscription', 'UserController@subscription')->name('profile.subscription');

@@ -167,9 +167,7 @@
                     @endif
                 </div>
 
-                @if ( $post->images->isNotEmpty() )
-                    <button class="def-button delete-button" id="modalImgsDeleteOn" type="button">{{__('ui.deleteAllImgs')}}</button>
-                @endif
+                <button class="def-button delete-button {{$post->images->isEmpty() ? 'hidden' : ''}}" id="modalImgsDeleteOn" type="button">{{__('ui.deleteAllImgs')}}</button>
 
                 <div class="help">
                     <p><i>{{__('ui.imageHelp')}}</i></p>
@@ -247,11 +245,7 @@
                 <p>{{__('ui.sure?')}}</p>
                 <div>
                     <button class="def-button submit-button" type="button" id="modalImgsDeleteOff">{{__('ui.no')}}</button>
-                    <form method="POST" action="{{ route('posts.imgs.delete', $post->id) }}">
-                        @csrf
-                        @method('PATCH')
-                        <button class="def-button cancel-button">{{__('ui.delete')}}</button>
-                    </form>
+                    <button class="def-button cancel-button imagesDeleteSubmit">{{__('ui.delete')}}</button>
                 </div>
             </div>
         </div>
@@ -278,6 +272,36 @@
     <script type="text/javascript">
 
         $(document).ready(function() {
+
+            $('.imagesDeleteSubmit').click(function(){
+                var button = $(this);
+                button.addClass('loading');
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('posts.imgs.delete', $post->id) }}",
+                    data: {
+                        _method: 'PATCH',
+                        _token: "{{ csrf_token() }}",
+                    },
+                    success: function(data) {
+                        if ( data ) {
+                            $('div.gallery').empty();
+                            $('#modalImgsDeleteOn').toggleClass('hidden');
+                            $('#modalImgsDelete').css("display", "none");
+                            showPopUpMassage(true, "{{ __('messages.postImgsDeleted') }}");
+                            $('#inputImg').val('');
+                        } else {
+                            showPopUpMassage(false, "{{ __('messages.error') }}");
+                        }
+                        button.removeClass('loading');
+                    },
+                    error: function() {
+                        // Print error massage
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
+                        button.removeClass('loading');
+                    }
+                });
+            });
 
             //add active effect in nav bar
             $('#myItemsTab').addClass('isActiveBtn');
@@ -381,21 +405,20 @@
             $(function() {
                 // Multiple images preview in browser
                 var imagesPreview = function(input, gallery) {
-
                     if (input.files) {
                         var filesAmount = input.files.length;
                         if ( !$('#previewText').length ) {
                             $($.parseHTML("<p id='previewText'>{{__('ui.preview')}}:</p>")).appendTo(gallery);
-                        } 
+                        }
+                        if ( $('#modalImgsDeleteOn').hasClass('hidden') ) {
+                            $('#modalImgsDeleteOn').toggleClass('hidden');
+                        }
+                        $('div.newImg').remove();
                         for (i = 0; i < filesAmount; i++) {
                             var reader = new FileReader();
-
                             reader.onload = function(event) {
-                                var imgWraper = "num"+idGen.getId();
-                                $($.parseHTML('<div></div>')).attr({'class': 'previewImg', 'id': imgWraper}).appendTo(gallery);
-                                $($.parseHTML('<img>')).attr('src', event.target.result).appendTo("#"+imgWraper);
+                                $($.parseHTML('<div class="previewImg newImg"><img src="'+event.target.result+'"></div>')).appendTo(gallery);
                             }
-
                             reader.readAsDataURL(input.files[i]);
                         }
                     }
@@ -405,6 +428,7 @@
                 $('#inputImg').on('change', function() {
                     var gallery = $('div.gallery');
                     imagesPreview(this, gallery);
+                    console.log( $('#inputImg').val() ); 
                 });
             });
             

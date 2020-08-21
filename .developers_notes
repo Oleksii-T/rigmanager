@@ -43,19 +43,11 @@ CODE: implement Admin page for getting charts and stistics about website and dat
 
 CODE: make form from every button which uses link with data
 
-CODE: fix queues
-
 BUG: 1px bug of js password validation error
-
-CODE: Make post contact info request as a ajax request
-
-CODE: protect mail/create and mail/edit from category choose spaming
 
 BUG: cursor wait is show when form submited with errors (login page)
 
 CODE: fix Ajax. some requests done odd, some are GET with query string and some are GET with reqeust data. redesign: GET for read data, POST for write data
-
-BUG: on post create flash or pop up came out without css
 
 CODE: add semantic tags where needed
 
@@ -63,6 +55,10 @@ BUG: fix footer position on post/edit page
 
 
 =========MASTER_OBEJECTIVES===========
+
+MAKE: LOGO
+
+CODE: make filters
 
 MOVE: move hosting server to VPS server
 
@@ -87,6 +83,15 @@ CODE: loaning system for equipment
 
 =======DONE======
 
+CODE: rename prifile/myPosts to profile/posts and profile/favPosts to profile/favourites
+BUG: image previw on post/edit and post/create bugged
+CODE: make image post delete as a ajax
+BUG: hover effect in post preview in bugged
+CODE: add animation line to popups and flash
+CODE: fix queues
+CODE: Make post contact info request as a ajax request
+CODE: protect mail/create and mail/edit from category choose spaming
+BUG: on post create flash or pop up came out without css
 DO?: delete from html useless popUp classes after it flowed up
 BUG: on profile.index page. if user magnify page, border of footer collide with edit btn
 BUG: backgorund gray color displaying wrong on login page

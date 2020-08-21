@@ -16,32 +16,19 @@
     </head>
     <body>
         <div id="app">
-            
-            <div class="pop-up">
-                <p>pop up massage!</p>
-            </div>
-            
-            <div class="sideBg" id="leftBg"></div>
-            
-            <div class="sideBg" id="rightBg"></div>
-
-            <div id="container">
-                
-                <header>
-                    <h1>header time!</h1>
-                </header>
-
-                <main>
-                    <p>It's not only writers who can benefit from this free online tool. If you're a programmer who's working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.
-
-                        Above are a few examples of how the random paragraph generator can be beneficial. The best way to see if this random paragraph picker will be useful for your intended purposes is to give it a try. Generate a number of paragraphs to see if they are beneficial to your current project.
-                    </p>
-                </main>
-
-                <footer>
-                    Cpyright rigmanager.com.ua 2020 C
-                </footer>
-
+            <div id="pop-up-container">
+                <div class="flash flash-success">
+                    <p><img src="{{asset('icons/successIcon.svg')}}" alt="{{__('alt.keyword')}}">Sample flash massage!</p>
+                    <div class="animated-line"></div>
+                </div>
+                <div class="flash flash-success">
+                    <p><img src="{{asset('icons/successIcon.svg')}}" alt="{{__('alt.keyword')}}">Another flash massage!</p>
+                    <div class="animated-line"></div>
+                </div>
+                <div class="flash flash-success">
+                    <p><img src="{{asset('icons/successIcon.svg')}}" alt="{{__('alt.keyword')}}">Pop me up !</p>
+                    <div class="animated-line"></div>
+                </div>
             </div>
         </div>
     </body>

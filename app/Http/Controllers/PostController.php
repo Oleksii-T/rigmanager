@@ -128,7 +128,7 @@ class PostController extends Controller
             $post->delete();
         }
         Session::flash('message-success', __('messages.postDeleted'));
-        return redirect(route('myPosts'));
+        return redirect(route('profile.posts'));
     }
 
     /**
@@ -151,9 +151,11 @@ class PostController extends Controller
     public function imgsDel($id)
     {
         $post = Post::findOrFail($id);
-        $this->postImagesDelete($post);
-        Session::flash('message-success', __('messages.postEdited'));
-        return $this->show($post->id);
+        if ($post->user == auth()->user()) {
+            $this->postImagesDelete($post);
+            return true;
+        }
+        return false;
     }
 
     public function getContacts($postId) {

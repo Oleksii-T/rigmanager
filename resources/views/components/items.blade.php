@@ -27,26 +27,22 @@
 
                      
             @if ($button == 'addToFav')
-                <button class="{{ $post->user_id == Auth::id() ? 'addToFavButtonBlocked' : 'addToFavButton'}} id_{{ $post->id }}">
-                    @if ( auth()->user() && $post->favOfUser->where('id', Auth::id())->isNotEmpty() )
-                        <img class="addToFavImg" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                    @else
-                        <img class="addToFavImg" src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                    @endif
+                <button class="{{ $post->user_id == auth()->user()->id ? 'addToFavButtonBlocked' : 'addToFavButton'}} id_{{$post->id}}">
+                    <img class="{{ auth()->user()->favPosts->contains($post) ? 'active-fav-img' : '' }} addToFavImg id_{{$post->id}} img-hover-scale" src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
                     <span><i>{{__('ui.addToFav')}}</i></span>
                 </button>
             @elseif ($button == 'removeFromFav')
                 <button class="addToFavButton id_{{$post->id}}">
-                    <img class="addToFavImg" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                    <img class="addToFavImg img-hover-scale" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
                     <span><i>{{__('ui.removeFromFav')}}</i></span>
                 </button>
             @elseif ($button == 'deleteAndEdit')
                 <button class="modalPostDeleteOn id_{{$post->id}}">
-                    <img src="{{ asset('icons/deleteIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                    <img class="img-hover-scale" src="{{ asset('icons/deleteIcon.svg') }}" alt="{{__('alt.keyword')}}">
                 </button>
 
-                <a class="editBtn" href="{{ route('posts.edit', $post->id) }}">
-                    <img title="{{__('ui.edit')}}" src="{{ asset('icons/editIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                <a class="editBtn id_{{$post->id}}" href="{{ route('posts.edit', $post->id) }}">
+                    <img class="img-hover-scale" title="{{__('ui.edit')}}" src="{{ asset('icons/editIcon.svg') }}" alt="{{__('alt.keyword')}}">
                 </a>
             @endif
 

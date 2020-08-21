@@ -19,10 +19,6 @@
     transition: 0.2s;  
 }
 
-.modalPostDeleteOn img:hover {
-    height: 40px; 
-}
-
 .editBtn {
     position: absolute;
     right: 15px;
@@ -33,10 +29,6 @@
 .editBtn img {
     height: 35px;
     transition: 0.2s;
-}
-
-.editBtn img:hover {
-    height: 40px;
 }
 
 #items {

@@ -257,7 +257,6 @@
                         button.removeClass('loading');
                     }
                 });
-                
             });
 
             function fillUpContacts (data) {

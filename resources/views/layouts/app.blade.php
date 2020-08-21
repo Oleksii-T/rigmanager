@@ -27,11 +27,13 @@
             @if (Session::has('message-success'))
                 <div class="flash flash-success">
                     <p><img src="{{asset('icons/successIcon.svg')}}" alt="{{__('alt.keyword')}}">{{ Session::get('message-success') }}</p>
+                    <div class="animated-line"></div>
                 </div>
             @endif
             @if (Session::has('message-error'))
                 <div class="flash flash-error">
                     <p><img src="{{asset('icons/alertIcon.svg')}}" alt="{{__('alt.keyword')}}">{{ Session::get('message-error') }}</p>
+                    <div class="animated-line"></div>
                 </div>
             @endif
         </div>
@@ -83,13 +85,13 @@
                         </div>
                         <p>{{__('ui.home')}}</p>
                     </a>
-                    <a id="myItemsTab" href="{{ route('myPosts') }}">
+                    <a id="myItemsTab" href="{{ route('profile.posts') }}">
                         <div class="iconWraper">
                             <img src="{{ asset('icons/myItemsIcon.svg') }}" alt="{{__('alt.keyword')}}">
                         </div>
                         <p>{{__('ui.myPosts')}}</p>
                     </a>
-                    <a id="favItemsTab" href="{{ route('favPosts') }}">
+                    <a id="favItemsTab" href="{{ route('profile.favourites') }}">
                         <div class="iconWraper">
                             <img src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
                             @if ( auth()->user() )

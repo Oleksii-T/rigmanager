@@ -25,7 +25,7 @@
                 <div style="margin-right:10px;width:25%;">
                     <a style="color:initial;text-decoration:none;" href="{{ route('posts.show', $post->id) }}">
                         @if ($post->images->isNotEmpty())
-                            <img style="height:100%;width:100%;object-fit:contain;" src="{{ $message->embed($post->images()->where('version', 'origin')->first()->url) }}" alt="{{__('alt.keyword')}}">
+                            <img style="height:100%;width:100%;object-fit:contain;" src="{{ $message->embed($post->images()->where('version', 'optimized')->first()->url) }}" alt="{{__('alt.keyword')}}">
                         @else
                             <img style="height:100%;width:100%;object-fit:contain;" src="{{ $message->embed(asset('icons/noImageIcon.svg')) }}" alt="{{__('alt.keyword')}}"><!---->
                         @endif

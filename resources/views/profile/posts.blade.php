@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/profile_myItems.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/profile_posts.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/post_posts.css')}}" />
 @endsection
 
@@ -43,22 +43,16 @@
             }
 
             //add hover effect on item when hover on addToFav btn
-            $(".editBtn").hover(function(){
-                    var item_id = $(this).attr("id");
-                    $(".item_id_"+item_id).addClass('hover');
-                }, function(){
-                    var item_id = $(this).attr("id");
-                    $(".item_id_"+item_id).removeClass('hover');
-            });
+            $(".modalPostDeleteOn").hover(function(){togglePostHover($(this))}, function(){togglePostHover($(this))});
 
             //add hover effect on item when hover on addToFav btn
-            $(".modalPostDeleteOn").hover(function(){
-                    var item_id = $(this).attr("id");
-                    $(".item_id_"+item_id).addClass('hover');
-                }, function(){
-                    var item_id = $(this).attr("id");
-                    $(".item_id_"+item_id).removeClass('hover');
-            });
+            $(".editBtn").hover(function(){togglePostHover($(this))}, function(){togglePostHover($(this))});
+
+            // toggle hover effect on hoverIn/Out on exat post
+            function togglePostHover(element) {
+                var postId = getIdFromClasses(element.attr("class"), 'id_');
+                $("#"+postId+" .globalItemButton").toggleClass('hover');
+            }
 
             //open modal delete confirm when user ask to
             $('.modalPostDeleteOn').click(function() {

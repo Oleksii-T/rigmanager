@@ -1,64 +1,69 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 19px;
-    font-weight: 400;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    color: #ffffff;
-}
-
-html {
-    text-rendering: optimizeLegibility;
-    background-image: url("/icons/mast_blur.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-body {
-    position: relative;
-    overflow-x: hidden;
-}
-
-#app {
-    display: flex;
-    min-height: 100vh;
-}
-
-div.pop-up {
+#pop-up-container {
+    z-index: 10;
     position: fixed;
     top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: lawngreen;
+    right: 30px;
+    max-width: 30%;
+    max-height: 40%;
+    overflow: hidden;
 }
 
-.sideBg {
-    background-color: rgb(11, 11, 11, 0.8);
-    border: 1px solid red;
+.pop-up,
+.flash {
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    border-left: 5px solid #FE9042;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    float: right;
+    display: block;
+    clear: right;
+    position: relative;
 }
 
-#leftBg {
-    flex: 1;
+.pop-up img,
+.flash img {
+    position: absolute;
+    left: 0px;
+    height: 25px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-#rightBg {
-    flex: 1;
-    order: 3;
+.pop-up p,
+.flash p{
+    font-size: 110%;
+    position: relative;
+    padding-left: 30px;
 }
 
-#container {
-    background-color: rgb(11, 11, 11, 0.6);
-    border: 1px solid red;
-    flex: 1;
-    order: 2;
-    min-width: 1044px;
-    max-width: 1045px;
-    display: flex;
+.pop-up-success, 
+.flash-success {
+    background-color: rgb(114, 190, 117);
 }
 
+.pop-up-error,
+.flash-error {
+    background-color: #fd8981;
+}
 
+.animated-line {
+    height: 5px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: #FE9042;
+    animation-duration: 3.3s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-name: flash-line;
+}
 
+@keyframes flash-line {
+    0% {width: 100%;}
+    25% { width: 75%;}
+    50% {width: 50%;}
+    75% {width: 25%;}
+    100% {width: 0%;}
+}

@@ -75,16 +75,16 @@ class UserController extends Controller
         return view('/');
     }
 
-    public function favPosts()
+    public function favourites()
     {
         $posts_list = auth()->user()->favPosts->reverse()->paginate(env('POSTS_PER_PAGE'));
-        return view('profile.favPosts', compact('posts_list'));
+        return view('profile.favourites', compact('posts_list'));
     }
 
-    public function myPosts()
+    public function userPosts()
     {
         $posts_list = auth()->user()->posts()->orderBy('created_at', 'desc')->paginate(env('POSTS_PER_PAGE'));
-        return view('profile.myPosts', compact('posts_list'));
+        return view('profile.posts', compact('posts_list'));
     }
 
     public function addToFav(Request $request) 

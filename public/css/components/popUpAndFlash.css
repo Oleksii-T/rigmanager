@@ -18,6 +18,7 @@
     float: right;
     display: block;
     clear: right;
+    position: relative;
 }
 
 .pop-up img,
@@ -46,9 +47,32 @@
     background-color: #fd8981;
 }
 
-/*
--webkit-transition: width 7.6s ease-in;
--o-transition: width 7.6s ease-in;
-transition: width 7.6s ease-in;
-background-color: #9EC600;
-*/
+.animated-line {
+    height: 5px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: #FE9042;
+    background-color: #3936f0bd;
+    animation-duration: 3s;
+    animation-delay: 0s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-name: animated-line;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-delay: 0s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-name: animated-line;
+}
+
+@keyframes animated-line {
+    0% {width: 100%;}
+    100% {width: 0%;}
+}
+
+@-webkit-keyframes animated-line {
+    0% {width: 100%;}
+    100% {width: 0%;}
+}

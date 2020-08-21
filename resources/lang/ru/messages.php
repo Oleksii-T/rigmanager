@@ -18,6 +18,8 @@ return [
     'postRemovedFav' => 'Удалено из избранного!',
     'postRemoveFavError' => 'Произошла ошибка.',
     'postEditedErrorTooManyImages' => 'Слишком много изображений, максимум 5.',
+    'postNewImgsDeleted' => 'Изображения были удалены',
+    'postImgsDeleted' => 'Изображения были удалены',
 
     'mailerToManyTags' => 'Слишком много категорий',
     'mailerUploaded' => 'Mailer настроен успешно!',

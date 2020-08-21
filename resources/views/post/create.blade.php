@@ -147,6 +147,8 @@
                 @enderror
 
                 <div class="gallery"></div>
+                
+                <button type="button" class="def-button delete-button hidden" id="delete-imgs-btn">{{__("ui.deleteAllImgs")}}</button>
 
                 <div class="help">
                     <p><i>{{__('ui.imageHelp')}}</i></p>
@@ -287,25 +289,21 @@
             $(function() {
                 // Multiple images preview in browser
                 var imagesPreview = function(input, gallery) {
-
                     if (input.files) {
                         var filesAmount = input.files.length;
-                        if ( !$('#previewText').length ) {
-                            $($.parseHTML("<p id='previewText'>{{__('ui.preview')}}:</p>")).appendTo(gallery);
-                        } 
+                        if ( $('#delete-imgs-btn').hasClass('hidden') ) {
+                            $('#delete-imgs-btn').toggleClass('hidden');
+                        }
+                        $('div.gallery').empty();
+                        $($.parseHTML("<p id='previewText'>{{__('ui.preview')}}:</p>")).appendTo(gallery);
                         for (i = 0; i < filesAmount; i++) {
                             var reader = new FileReader();
-
                             reader.onload = function(event) {
-                                var imgWraper = "num"+idGen.getId();
-                                $($.parseHTML('<div></div>')).attr({'class': 'previewImg', 'id': imgWraper}).appendTo(gallery);
-                                $($.parseHTML('<img>')).attr('src', event.target.result).appendTo("#"+imgWraper);
+                                $($.parseHTML('<div class="previewImg"><img src="'+event.target.result+'"></div>')).appendTo(gallery);
                             }
-
                             reader.readAsDataURL(input.files[i]);
                         }
                     }
-
                 };
 
                 $('#inputImg').on('change', function() {
@@ -313,6 +311,13 @@
                     $(".gallery").empty();
                     imagesPreview(this, gallery);
                 });
+            });
+
+            $('#delete-imgs-btn').click(function(){
+                $('div.gallery').empty();
+                $('#delete-imgs-btn').toggleClass('hidden');
+                $('#inputImg').val('');
+                showPopUpMassage(true, "{{ __('messages.postNewImgsDeleted') }}");
             });
             
             //Validate the form

@@ -8,6 +8,10 @@
     font-size: 130%;
 }
 
+.hidden {
+    display: none;
+}
+
 .item {
     margin: 0px auto;
     background-color: rgb(149, 149, 149, 0.7);
@@ -112,9 +116,8 @@
     transition: 0.2s;
 }
 
-.item button:hover .addToFavImg {
-    height: 35px;
-    opacity: 1;
+.img-hover-scale:hover {
+    transform: scale(1.2);
 }
 
 .item .globalItemButton {

@@ -152,6 +152,9 @@
     <script type="text/javascript">
         $(document).ready(function(){
 
+            // paint in orange addToFav btn of appropriate items 
+            $('.active-fav-img').attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
+
             //get digit from classes of DOM element (depends on prefix)
             function getIdFromClasses(classes, prefix) {
                 // regex special chars does not escaped in prefix!!!
@@ -210,26 +213,27 @@
                 //send Ajax reqeust to add Item to fav list of user
                 $.ajax({
                     type: "GET",
-                    url: '{{ route('toFav') }}',
+                    url: '{{ route("toFav") }}',
                     data: { post_id: postId },
                     success: function(data) {
                         //if no server errors, change digit of favItemsAmount in nav bar 
-                        //and change color of AddToFav btn
+                        //and change color of AddToFav btn img
                         if ( data ) {
                             var target = $("#"+postId+" img.addToFavImg");
                             var n = $("#favItemsTab span").text();
                             n = parseInt(n,10);
-                            if ( target.attr("src") != "{{ asset('icons/heartOrangeIcon.svg') }}" ) {
-                                //visualize adding to fav list
-                                $("#favItemsTab span").html(n+1);
-                                target.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
-                                showPopUpMassage(true, "{{ __('messages.postAddedFav') }}");
-                            } else {
-                                //visualize removing from fav list
+                            //visualize removing from fav list
+                            if ( target.hasClass('active-fav-img') ) {
                                 $("#favItemsTab span").html(n-1);
                                 target.attr("src", "{{ asset('icons/heartWhiteIcon.svg') }}");
                                 showPopUpMassage(true, "{{ __('messages.postRemovedFav') }}");
+                            //visualize adding to fav list
+                            } else {
+                                $("#favItemsTab span").html(n+1);
+                                target.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
+                                showPopUpMassage(true, "{{ __('messages.postAddedFav') }}");
                             }
+                            target.toggleClass('active-fav-img');
                         //if server errors occures, pop up error massage
                         } else {
                             showPopUpMassage(false, "{{ __('messages.postAddFavError') }}");
@@ -246,13 +250,13 @@
             });
 
             //add hover effect on item when hover on addToFav btn
-            $(".addToFavButton").hover(function(){
-                var postId = $(this).attr("class").split('_')[1];
-                $(".postId_"+postId).addClass('hover');
-                }, function(){
-                var postId = $(this).attr("class").split('_')[1];
-                $(".postId_"+postId).removeClass('hover');
-            });
+            $(".addToFavImg").hover(function(){togglePostHover($(this))}, function(){togglePostHover($(this))});
+
+            // toggle hover effect on hoverIn/Out on exat post
+            function togglePostHover(element) {
+                var postId = getIdFromClasses(element.attr("class"), 'id_');
+                $("#"+postId+" .globalItemButton").toggleClass('hover');
+            }
 
             //add hover effect on item when hover on addToFavBlocked btn
             $(".addToFavButtonBlocked").hover(function(){
