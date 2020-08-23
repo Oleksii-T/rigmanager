@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Mailer;
-use App\Tags;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateMailerRequest;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Traits\Tags;
 
 class MailerController extends Controller
 {
     use Tags;
-
     /**
      * Display a user`s resourse.
      *
@@ -96,39 +95,6 @@ class MailerController extends Controller
         return redirect(route('mailer.index'));
     }
 
-    public function addRemoveAuthor($user_id) 
-    {
-        $mailer = auth()->user()->mailer;
-        if ($mailer) {
-            $authorsArr = explode(" ", $mailer->authors);
-            $pos = array_search($user_id, $authorsArr);
-            if ( $pos === false ) {
-                //add author to mailer
-                $mailer->authors = $mailer->authors ? $mailer->authors." ".$user_id : $user_id;
-                $mailer->save();
-                // return true as it was added
-                return true;
-            } else {
-                // remove autor from mailer
-                if ( count($authorsArr) == 1 ) {
-                    $mailer->authors = null;
-                } else if ( $pos == count($authorsArr)-1 ) {
-                    $mailer->authors = str_replace(" ".$user_id, "", $mailer->authors);
-                } else {
-                    $mailer->authors = str_replace($user_id." ", "", $mailer->authors);
-                }
-                $mailer->save();
-                // return false as it was removed
-                return false;
-            }
-        } else {
-            $mailer = new Mailer;
-            $mailer->authors = $user_id;
-            auth()->user()->mailer()->save($mailer);
-            return true;
-        }
-    }
-
     public function toggle()
     {
         $mailer = auth()->user()->mailer;
@@ -144,32 +110,25 @@ class MailerController extends Controller
     public function addTag($tagId) 
     {
         $mailer = auth()->user()->mailer;
-        if ($mailer) {
-            // Mailer exists
-            if ($mailer->tags) {
-                // Mailer have tags
-                if ( array_key_exists($tagId, $mailer->tagsIdsAndNames) ) {
-                    // This tag already in Mailer
-                    return false;
-                } else {
-                    // Append tag to mailer
-                    $mailer->tags = $mailer->tags." ".$tagId;
-                    $mailer->save();
-                    return true;
-                }
-            } else {
-                // Mailer have not no tags
-                $mailer->tags = $tagId;
-                $mailer->save();
-                return true;
-            }
-        } else {
-            // Mailer absent. Create new Mailer
+        if (!$mailer) {
             $mailer = new Mailer;
-            $mailer->tags = $tagId;
+            $mailer->tags_encoded = $tagId;
             auth()->user()->mailer()->save($mailer);
             return true;
         }
+        if (!$mailer->tags_encoded) {
+            $mailer->tags_encoded = $tagId;
+            $mailer->save();
+            return true;
+        }
+        $tagsArr = $mailer->tags_encoded;
+        if ( !array_key_exists($tagId, $mailer->tags_map) ) {
+            $tagsArr[] = $tagId;
+            $mailer->tags_encoded = $tagsArr;
+            $mailer->save();
+            return true;
+        }
+        return false;
     }
 
     public function addText($string) 
@@ -196,34 +155,41 @@ class MailerController extends Controller
         return true;
     }
 
-    public function addAuthor($author) 
+    public function toggleAuthor($user_id)
+    {
+        if (!$this->addAuthor($user_id)) {
+            $mailer = auth()->user()->mailer;
+            $authorsArr = $mailer->authors_encoded;
+            $pos = array_search($user_id, $authorsArr);
+            unset($authorsArr[$pos]);
+            $mailer->authors_encoded = $authorsArr;
+            $mailer->save();
+            return false;
+        }
+        return true;
+    }
+
+    public function addAuthor($user_id) 
     {
         $mailer = auth()->user()->mailer;
-        if ($mailer) {
-            // Mailer exists
-            if ($mailer->authors) {
-                // Mailer have authors
-                if ( in_array($author, explode(" ", $mailer->authors)) ) {
-                    // This author already in Mailer
-                    return false;
-                } else {
-                    // Appent author to mailer
-                    $mailer->authors = $mailer->authors." ".$author;
-                    $mailer->save();
-                    return true;
-                }
-            } else {
-                // Mailer have no authors
-                $mailer->authors = $author;
-                $mailer->save();
-                return true;
-            }
-        } else {
-            // Mailer absent. Create new Mailer
+        if (!$mailer) {
             $mailer = new Mailer;
-            $mailer->authors = $author;
+            $mailer->authors_encoded = $user_id;
             auth()->user()->mailer()->save($mailer);
             return true;
         }
+        if (!$mailer->authors_encoded) {
+            $mailer->authors_encoded = $user_id;
+            $mailer->save();
+            return true;
+        }
+        $authorsArr = $mailer->authors_encoded;
+        if ( array_search($user_id, $authorsArr) === false ) {
+            $authorsArr[] = $user_id;
+            $mailer->authors_encoded = $authorsArr; 
+            $mailer->save();
+            return true;
+        }
+        return false;
     } 
 }

@@ -16,9 +16,9 @@ class CreateMailersTable extends Migration
         Schema::create('mailers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('tags', 255)->nullable();
+            $table->string('tags_encoded', 255)->nullable();
             $table->string('keywords', 255)->nullable();
-            $table->string('authors', 255)->nullable();
+            $table->string('authors_encoded', 255)->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

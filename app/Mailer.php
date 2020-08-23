@@ -1,65 +1,109 @@
 <?php
 
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Http\Controllers\MailerController;
+use App\Http\Controllers\Traits\Tags;
 
 class Mailer extends Model
 {
-    protected $appends = ['authors_names', 'authors_ids_and_names', 'tags_names', 'tags_ids_and_names'];
+    use Tags;
 
-    protected $fillable = [ //mass assigment
-        'tags', 'keywords', 'authors', 'is_active'
+    protected $appends = [
+        'authors_readable', 'authors_map', 'authors_string', 'tags_readable', 'tags_map', 'tags_string'
+    ];
+
+    protected $fillable = [
+        'tags_encoded', 'keywords', 'authors_encoded', 'is_active'
     ];
 
     public function user() {
         return $this->belongsTo(User::class);
     }
 
-    public function getAuthorsNamesAttribute() {
-        if (!$this->authors) {
+    public function setTagsEncodedAttribute($value) {
+        if (!$value) {
+            $this->attributes['tags_encoded'] = null;
+        }
+        else if (!is_array($value)) {
+            $arrTags = explode(' ', $value);
+            $this->attributes['tags_encoded'] = json_encode($arrTags);
+        } else {
+            $this->attributes['tags_encoded'] = json_encode($value);
+        }
+    }
+
+    public function getTagsEncodedAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function setAuthorsEncodedAttribute($value) {
+        if (!$value) {
+            $this->attributes['authors_encoded'] = null;
+        }
+        else if (!is_array($value)) {
+            $arrTags = explode(' ', $value);
+            $this->attributes['authors_encoded'] = json_encode($arrTags);
+        } else {
+            $this->attributes['authors_encoded'] = json_encode($value);
+        }
+    }
+
+    public function getAuthorsEncodedAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function getTagsReadableAttribute() {
+        if (!$this->tags_encoded) {
             return null;
         }
-        $authors = explode(" ", $this->authors);
+        $tags = $this->tags_encoded;
+        foreach ($tags as &$tag) {
+            $tag = $this->getTagReadable($tag);
+        }
+        return $tags;
+    }
+
+    public function getTagsMapAttribute() {
+        if (!$this->tags_encoded) {
+            return null;
+        }
+        foreach ($this->tags_encoded as $tag) {
+            $tags[$tag] = $this->getTagReadable($tag);
+        }
+        return $tags;
+    }
+
+    public function getTagsStringAttribute() {
+        return $this->tags_encoded ? implode(' ', $this->tags_encoded) : null;
+    }
+
+    public function getAuthorsReadableAttribute() {
+        if (!$this->authors_encoded) {
+            return null;
+        }
+        $authors = $this->authors_encoded;
         foreach ($authors as &$author) {
             $author = User::findOrfail($author)->name;
         }
         return $authors;
     }
 
-    public function getAuthorsIdsAndNamesAttribute() {
-        if (!$this->authors) {
+    public function getAuthorsMapAttribute() {
+        if (!$this->authors_encoded) {
             return null;
         }
-        foreach (explode(" ", $this->authors) as $author) {
+        foreach ($this->authors_encoded as $author) {
             $authors[$author] = User::findOrfail($author)->name;
         }
         return $authors;
     }
 
-    public function getTagsNamesAttribute() {
-        if (!$this->tags) {
-            return null;
-        }
-        $mailer = new MailerController;
-        $tags = explode(" ", $this->tags);
-        foreach ($tags as &$tag) {
-            $tag = $mailer->getTagPathAsString($tag);
-        }
-        return $tags;
-    }
-
-    public function getTagsIdsAndNamesAttribute() {
-        if (!$this->tags) {
-            return null;
-        }
-        $mailer = new MailerController;
-        foreach (explode(" ", $this->tags) as $tag) {
-            $tags[$tag] = $mailer->getTagPathAsString($tag);
-        }
-        return $tags;
+    public function getAuthorsStringAttribute() {
+        return $this->authors_encoded ? implode(' ', $this->authors_encoded) : null;
     }
     
 }

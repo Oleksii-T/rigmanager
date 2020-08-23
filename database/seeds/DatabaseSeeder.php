@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'title' => 'Буровая штанга 89х6,5х1000 мм, резьба З-73',
             'condition' => 'Новое',
-            'tag' => '2.3.2.1',
+            'tag_encoded' => '2.3.2.1',
             'description' => 'Производитель:	DM Bits
                 Страна происхождения:	РОССИЯ
                 Cрок поставки:	3-4 недели
@@ -48,14 +48,16 @@ class DatabaseSeeder extends Seeder
             'user_phone' => '0502115147',
             'viber' => '1',
             'telegram' => '1',
-            'whatsapp' => '1'
+            'whatsapp' => '1',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
         ]);
 
         DB::table('posts')->insert([
             'user_id' => 1,
             'title' => 'Вертлюг 6WC',
             'condition' => 'Новое',
-            'tag' => '2.12.3',
+            'tag_encoded' => '2.12.3',
             'description' => 'Производитель:	Western Rubber
                 Страна происхождения:	СОЕДИНЕННЫЕ ШТАТЫ
                 Cрок поставки:	8-10 недель
@@ -84,13 +86,15 @@ class DatabaseSeeder extends Seeder
             'cost' => '2 345 808.10 руб',
             'location' => 'Москва',
             'user_email' => 'alex.tarbeev@gmail.com',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
         ]);
 
         DB::table('posts')->insert([
             'user_id' => 1,
             'title' => 'Трехшарошечное долото 76 мм (3") К-ЦА (IADC 743) Уралбурмаш',
             'condition' => 'Новое',
-            'tag' => '2.1.2.6.1.2',
+            'tag_encoded' => '2.1.2.6.1.2',
             'description' => 'Страна происхождения:	РОССИЯ
                 Производитель:	УралБурМаш
                 Основные технические параметры
@@ -113,6 +117,8 @@ class DatabaseSeeder extends Seeder
                 
                 Вес, кг:	2',
             'user_email' => 'alex.tarbeev@gmail.com',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
         ]);
 
         DB::table('users')->insert([
@@ -130,7 +136,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 2,
             'title' => 'Гидравлический насос GPC4-32-322E1F4-L',
             'condition' => 'Новое',
-            'tag' => '2.10',
+            'tag_encoded' => '2.10',
             'description' => 'Cтрана происхождения:	КИТАЙ
             Cрок поставки:	4 недели
             Основные технические параметры
@@ -143,7 +149,9 @@ class DatabaseSeeder extends Seeder
             'user_email' => 'pavlo.tarb@gmail.com',
             'user_phone' => '0502318303',
             'viber' => '1',
-            'whatsapp' => '1'
+            'whatsapp' => '1',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
         ]);
 
         DB::table('users')->insert([
@@ -161,7 +169,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 3,
             'title' => 'Метчик ловильный B',
             'condition' => 'Новое',
-            'tag' => '2.4.2',
+            'tag_encoded' => '2.4.2',
             'description' => 'Страна происхождения:	РОССИЯ
             Cрок поставки:	10 дней
             Основные технические параметры
@@ -178,6 +186,8 @@ class DatabaseSeeder extends Seeder
             'user_email' => 'dmytro.tarbeiev@gmail.com',
             'user_phone' => '0521345442',
             'viber' => '1',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
         ]);
 
         /*
@@ -199,7 +209,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 4,
             'title' => 'Extra long post title tttttttttttttt t t t tttttt t tttttt tttttt tttt',
             'condition' => 'Новое',
-            'tag' => '2.1.2.6.1.3',
+            'tag_encoded' => '2.1.2.6.1.3',
             'description' => 'Am of mr friendly by strongly peculiar juvenile. Unpleasant it sufficient simplicity am by friendship no inhabiting. Goodness doubtful material has denoting suitable she two. Dear mean she way and poor bred they come. He otherwise me incommode explained so in remaining. Polite barton in it warmly do county length an. 
 
                 Demesne far hearted suppose venture excited see had has. Dependent on so extremely delivered by. Yet ﻿no jokes worse her why. Bed one supposing breakfast day fulfilled off depending questions. Whatever boy her exertion his extended. Ecstatic followed handsome drawings entirely mrs one yet outweigh. Of acceptance insipidity remarkably is invitation. 

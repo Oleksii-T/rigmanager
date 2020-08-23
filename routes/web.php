@@ -22,7 +22,7 @@ Route::get('login/{social}/callback', 'Auth\LoginController@handleProviderCallba
 Route::middleware(['auth', 'verified'])->group(function () {
     // posts routes
     Route::patch('posts/images/delete/{post}', 'PostController@imgsDel')->name('posts.imgs.delete');
-    Route::get('category/{tagId}', 'PostController@getTagPathAsString')->name('get.readble.tag'); //Ajax reqeust
+    Route::get('category/{tagId}', 'PostController@getTagReadable')->name('get.readble.tag'); //Ajax reqeust
     Route::get('contacts/{postId}', 'PostController@getContacts')->name('get.contacts'); //Ajax reqeust
     Route::delete('posts/a/{post}', 'PostController@destroyAjax')->name('posts.destroy.ajax'); //Ajax reqeust
     Route::resource('posts', 'PostController')->except(['index']);
@@ -40,7 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('mailer/edit', 'MailerController@edit')->name('mailer.edit');//remove default parametes
     Route::patch('mailer/update', 'MailerController@update')->name('mailer.update');//remove default parametes
     Route::delete('mailer/destroy', 'MailerController@destroy')->name('mailer.destroy');//remove default parametes
-    Route::get('mailer/author/{author}', 'MailerController@addRemoveAuthor')->name('mailer.add.remove.author');// Ajax request
+    Route::get('mailer/author/{author}', 'MailerController@toggleAuthor')->name('mailer.toggle.author');// Ajax request
     Route::get('mailer/toggle', 'MailerController@toggle')->name('mailer.toggle');// Ajax request
     Route::get('mailer/tag/{tag}', 'MailerController@addTag')->name('mailer.add.tag');// Ajax request
     Route::get('mailer/text/{text}', 'MailerController@addText')->name('mailer.add.text');// Ajax request

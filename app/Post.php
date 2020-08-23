@@ -8,10 +8,18 @@ use App\User;
 use Carbon\Carbon;
 use Laravel\Scout\Searchable;
 use App\Favourite;
+use App\Http\Controllers\Traits\Tags;
 
 class Post extends Model
 {
-    use Searchable;
+    use Searchable, Tags;
+
+    protected $appends = ['tag_readable', 'tag_map'];
+
+    protected $fillable = [ //mass assigment
+        'title', 'description', 'tag_encoded', 'condition', 'location', 'cost', 
+        'user_email', 'user_phone', 'viber', 'telegram', 'whatsapp'
+    ];
 
     /**
      * Get the indexable data array for the model.
@@ -23,10 +31,6 @@ class Post extends Model
         $array = $this->only('title', 'description', 'location', 'condition');
         return $array;
     }
-
-    protected $fillable = [ //mass assigment
-        'title', 'description', 'tag', 'condition', 'location', 'cost', 'user_email', 'user_phone', 'viber', 'telegram', 'whatsapp'
-    ];
 
     public function user() {
         return $this->belongsTo(User::class);
@@ -50,6 +54,16 @@ class Post extends Model
     public function getUpdatedAtAttribute($value)
     {
         return Carbon::parse($value)->diffForHumans();
+    }
+
+    public function getTagReadableAttribute()
+    {
+        return $this->getTagReadable($this->tag_encoded);
+    }
+
+    public function getTagMapAttribute()
+    {
+        return $this->getTagMap($this->tag_encoded);
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http\Controllers\Traits;
 
 trait Tags
 {
@@ -177,43 +177,43 @@ trait Tags
         ];
     }
 
-    public function getTagPathAsString($id) {
+    // transform '2.3.1.4' to 'drillingEq, drillString, upGround, slip'
+    public function getTagReadable($id) {
         $this->constructTagsMap();
-        $tagsArray = $this->getTagNameByIdWithPath($id);
+        $tagsMap = $this->getTagMap($id);
         $tagsInString = '';
-        foreach($tagsArray as $tag) {
-            if ($tagsInString == '') {
-                $tagsInString = $tag;
-            } else {
-                $tagsInString = $tagsInString . ", " . $tag;
-            }
+        foreach($tagsMap as $tag) {
+            $tagsInString = $tagsInString == '' ? $tag : $tagsInString.", ".$tag;
         }
         return $tagsInString;
     }
 
-    public function getTagNameByIdWithPath($id) {
+    // transform '2.3.1.4' to [2=>'drillingEq', 3=>'drillString', 1=>'upGround', 4=>'slip']
+    public function getTagMap($id) {
         $this->constructTagsMap();
         $idPath = [];
-        $this->makeIdPath($id, $idPath);
+        $this->getTagMapHelper($id, $idPath);
         return array_reverse($idPath, true);
     }
 
+    // transform '2.3' to 'drillString'
     private function getTagNameById($id) {
         return $this->tagsMap[$id];
     }
 
-    private function makeIdPath($id, &$idPath) { 
+    // recursive helper for getTagMap()
+    private function getTagMapHelper($id, &$idPath) { 
         $idPath[$id] = $this->getTagNameById($id);
         if ( strpos($id, '.') !== false ) {
             for ( $i=strlen($id)-1; $i>0 ; $i--) {
                 if ($id[$i] == '.') {
                     $id = substr_replace($id ,"",-1);
                     break;
-            } else {
+                } else {
                     $id = substr_replace($id ,"",-1);
                 }
             }
-            $this->makeIdPath($id, $idPath);
+            $this->getTagMapHelper($id, $idPath);
         } else {
             return;
         }

@@ -112,14 +112,14 @@
                         </div>
         
                         <!--Hidden field for encoded tag for DB-->
-                        <input id="tagEncodedHidden" type="text" name="tags" value="{{$mailer->tags}} " hidden/>
+                        <input id="tagEncodedHidden" type="text" name="tags_encoded" value="{{$mailer->tags_string}} " hidden/>
         
                         <!--Visible fields for readable tag-->                        
                         <div id="choosenTags">
                             <p>{{__('ui.chosenTags')}}:</p>
                             <ol class="orderedList">
-                                @if ($mailer->tags)
-                                    @foreach ($mailer->tagsIdsAndNames as $id => $tag)
+                                @if ($mailer->tags_encoded)
+                                    @foreach ($mailer->tags_map as $id => $tag)
                                         <li id="encoded_{{$id}}"><button class="removeTag" type="button" onclick="removeFromChoosenTags('{{$id}}')" title="{{__('ui.delete')}}">{{$tag}}</button></li>
                                     @endforeach
                                 @endif
@@ -133,17 +133,17 @@
 
                     <div class="element" id="authors">
                         <p class="elementHeading" for="inputKeywords">{{__('ui.mailerAuthors')}}</p>
-                        <input id="inputAuthors" name="authors" value="{{ $mailer->authors }} " hidden>
-                        @if ($mailer->authors)
+                        <input id="inputAuthors" name="authors_encoded" value="{{ $mailer->authors_string }} " hidden>
+                        @if ($mailer->authors_encoded)
                             <ol class="orderedList">
-                                @foreach ($mailer->authorsIdsAndNames as $id => $author)
+                                @foreach ($mailer->authors_map as $id => $author)
                                     <li id="author_{{$id}}"><button type="button" onclick="removeAuthor({{$id}})" title="{{__('ui.delete')}}">{{$author}} </button></li>
                                 @endforeach
                             </ol>
                         @endif
-                        <p class="{{$mailer->authors ? "hidden" : ""}}" id="noAuthors">{{__('ui.mailerNoAuthors')}}</p>
+                        <p class="{{$mailer->authors_encoded ? "hidden" : ""}}" id="noAuthors">{{__('ui.mailerNoAuthors')}}</p>
                         <div class="help">
-                            <p class="{{$mailer->authors ? "" : "hidden"}}" id="clickToDeleteHelp"><i>{{__('ui.mailerClickToDelete')}}</i></p>
+                            <p class="{{$mailer->authors_encoded ? "" : "hidden"}}" id="clickToDeleteHelp"><i>{{__('ui.mailerClickToDelete')}}</i></p>
                             <p><i>{{__('ui.mailerAuthorsHelp')}}</i></p>
                         </div>
                     </div>
@@ -168,9 +168,8 @@
             newValue = $('#inputAuthors').attr('value').replace($id+" ", "");
             $('#inputAuthors').attr('value', newValue);
             //remove from visible list
-            var element = $('#author_'+$id);
-            element.empty();
-            element.remove();
+            $('#author_'+$id).empty();
+            $('#author_'+$id).remove();
             //check if empty
             if ( $('#inputAuthors').attr('value') == "" ) {
                 $('#clickToDeleteHelp').addClass('hidden');
@@ -206,11 +205,11 @@
         $(document).ready(function(){
 
             // If there is any tags choosen
-            if ("{{$mailer->tags}}") {
+            if ("{{$mailer->tags_string}}") {
                 // Show choosen tags
                 $('#choosenTags').css('display', 'block');
                 // Mark choosen tags in drop down menu
-                var choosenTags = "{{$mailer->tags}}".split(' ');
+                var choosenTags = "{{$mailer->tags_string}}".split(' ');
                 choosenTags.forEach(tag => {
                     $('#'+tag.replace(/\./g, '\\.')).addClass('choosen');
                     $('#'+tag.replace(/\./g, '\\.')).addClass('isActiveBtn');

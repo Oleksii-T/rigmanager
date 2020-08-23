@@ -30,7 +30,11 @@ class HomeController extends Controller
 
     public function faq()
     {
-        return view('example');
+        $var = explode(' ', '2.3.1 2.1.4 7.11');
+        $col = collect($var);
+        $json = $col->toJson();
+        $col = json_decode($json);
+        dd(collect($col));
         return view('home.faq');
     }
     public function plans()

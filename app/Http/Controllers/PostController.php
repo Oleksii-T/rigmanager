@@ -9,8 +9,8 @@ use App\Post;
 use App\User;
 use App\Http\Controllers\Traits\ImageUploader;
 use Illuminate\Support\Facades\Session;
-use App\Tags;
 use App\Jobs\MailersAnalizePost;
+use App\Http\Controllers\Traits\Tags;
 
 class PostController extends Controller
 {
@@ -65,8 +65,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        $tagsArray = $this->getTagNameByIdWithPath($post->tag);
-        return view('post.show', compact('post', 'tagsArray'));
+        return view('post.show', compact('post'));
     }
 
     /**
@@ -78,8 +77,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        $tagReadble = $this->getTagPathAsString($post->tag);
-        return view('post.edit', compact('post', 'tagReadble'));
+        return view('post.edit', compact('post'));
     }
 
     /**

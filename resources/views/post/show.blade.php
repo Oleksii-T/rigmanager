@@ -26,7 +26,7 @@
                 <section class="element" id="mainInfo">
                     <h1>{{ $post->title }}</h1>
                     <div id="item-tag-section">
-                        @foreach ($tagsArray as $tagId => $tagReadable)
+                        @foreach ($post->tag_map as $tagId => $tagReadable)
                             <a class="item-tag" href="{{route('search.tag', $tagId)}}">{{$tagReadable}}</a>
                             <span class="item-tag-delim">></span>
                         @endforeach
@@ -35,7 +35,6 @@
                 </section>
             </div>
         </div>
-        
         <div id="rightContentWraper">
             <div id="rightContent">
                 @if ($post->user_id != Auth::id())
@@ -76,8 +75,8 @@
                     <button class="def-button" id="modalTriger">{{__('ui.showContacts')}}</button>
                     @if ($post->user_id != Auth::id())
                         <button class="def-button" id="mailerAddAuthor">    
-                            @if (auth()->user()->mailer)
-                                @if ( in_array( $post->user_id, explode(" ", auth()->user()->mailer->authors) ) )
+                            @if (auth()->user()->mailer && auth()->user()->mailer->authors_encoded)
+                                @if ( in_array( $post->user_id, auth()->user()->mailer->authors_encoded ) )
                                     {{__('ui.mailerRemoveAuthor')}}
                                 @else
                                     {{__('ui.mailerAddAuthor')}}
@@ -170,7 +169,7 @@
                 button.addClass('loading');
                 $.ajax({
                     type: "GET",
-                    url: "{{ route('mailer.add.remove.author', $post->user_id) }}",
+                    url: "{{ route('mailer.toggle.author', $post->user_id) }}",
                     success: function(data) {
                         if (data) {
                             // Author was added to Mailer

@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id');
             $table->string('title', 255);
             $table->string('condition', 255);
-            $table->string('tag', 255);
+            $table->string('tag_encoded', 255);
             $table->text('description', 9000);
             $table->string('cost', 255)->nullable();
             $table->string('location', 255)->nullable();

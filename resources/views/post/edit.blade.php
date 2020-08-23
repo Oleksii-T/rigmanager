@@ -111,11 +111,11 @@
                 </div>
 
                 <!--Hidden field for encoded tag for DB-->
-                <input id="tagEncodedHidden" type="text" name="tag" value="{{ old('tag') ?? $post->tag }}" hidden/>
+                <input id="tagEncodedHidden" type="text" name="tag_encoded" value="{{ old('tag_encoded') ?? $post->tag_encoded }}" hidden/>
                 
                 <!--Hidden and visible fields for readable tag-->
-                <input id="tagReadbleHidden" type="text" name="tagReadbleHidden" value="{{ old('tagReadbleHidden') ?? $tagReadble }}" hidden/>
-                <p id="choosenTags">{{__('ui.chosenTags')}}: <span id="tagReadbleVisible">{{ old('tagReadbleHidden') ?? $tagReadble }}</span></p>
+                <input id="tagReadbleHidden" type="text" name="tagReadbleHidden" value="{{ old('tagReadbleHidden') ?? $post->tag_readable }}" hidden/>
+                <p id="choosenTags">{{__('ui.chosenTags')}}: <span id="tagReadbleVisible">{{ old('tagReadbleHidden') ?? $post->tag_readable }}</span></p>
                 
                 <button class="def-button delete-button" id="clearTagsBtn" type="button">{{__('ui.clearTagsFromPost')}}</button>
 

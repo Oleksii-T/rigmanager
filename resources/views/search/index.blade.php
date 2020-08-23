@@ -252,7 +252,6 @@
             // user adds tags to Mialer
             $('#addTagToMailer').click(function() {
                 var tagId = $(this).attr('class');
-                // Add wait cursor
                 var button = $(this);
                 button.addClass('loading');
                 var ajaxUrl = '{{ route("mailer.add.tag", ":tagId") }}';
@@ -261,14 +260,13 @@
                     type: "GET",
                     url: ajaxUrl,
                     success: function(data) {
-                        data ? showPopUpMassage(true, "{{ __('messages.mailerTagAdded') }}") : showPopUpMassage(false, "{{ __('messages.mailerTagExists') }}") ;
-                        // Remove wait cursor
+                        data 
+                            ? showPopUpMassage(true, "{{ __('messages.mailerTagAdded') }}") 
+                            : showPopUpMassage(false, "{{ __('messages.mailerTagExists') }}") ;
                         button.removeClass('loading'); 
                     },
                     error: function() {
-                        // Print error massage
                         showPopUpMassage(false, "{{ __('messages.error') }}");
-                        // Remove wait cursor
                         button.removeClass('loading'); 
                     }
                 });

@@ -179,8 +179,7 @@ div.error p { color: #eb837c; }
     right: 0;
     transform: translate(100%,0);
 }
-/*
-*/
+
 #choosenTags {
     display: none;
 }

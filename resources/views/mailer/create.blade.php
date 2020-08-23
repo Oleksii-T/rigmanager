@@ -112,7 +112,7 @@
                         </div>
         
                         <!--Hidden field for encoded tag for DB-->
-                        <input id="tagEncodedHidden" type="text" name="tags" value="" hidden/>
+                        <input id="tagEncodedHidden" type="text" name="tags_encoded" value="" hidden/>
         
                         <!--Visible fields for readable tag-->                        
                         <div id="choosenTags">

@@ -29,7 +29,7 @@ return [
     'mailerEdited' => 'Mailer был изменен успешно!',
     'mailerAddedAuthor' => 'Автор был добавлен в Mailer успешно!',
     'mailerRemovedAuthor' => 'Автор был удален из Mailer успешно!',
-    'mailerAuthorExists' => 'Author уже находиться в Mailer',
+    'mailerAuthorExists' => 'Автор уже находиться в Mailer',
     'mailerTagExists' => 'Указанные категории уже есть в вашем Mailer',
     'mailerTagAdded' => 'Указанные категории успешно добавлены в ваш Mailer!',
     'mailerTextAdded' => 'Указанный запрос успешно добавлен в ваш Mailer!',

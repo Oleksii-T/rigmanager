@@ -110,7 +110,7 @@
                 </div>
 
                 <!--Hidden field for encoded tag for DB-->
-                <input id="tagEncodedHidden" type="text" name="tag" value="{{ old('tag') ?? 0 }}" hidden/>
+                <input id="tagEncodedHidden" type="text" name="tag_encoded" value="{{ old('tag_encoded') ?? 0 }}" hidden/>
 
                 <!--Hidden and visible fields for readable tag-->
                 <input id="tagReadbleHidden" type="text" name="tagReadbleHidden" value="{{ old('tagReadbleHidden') ?? __('tags.other') }}" hidden/>

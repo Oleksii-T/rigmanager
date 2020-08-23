@@ -38,19 +38,19 @@
                             <p id="description">{{$mailer->keywords}}</p>
                         @endif
 
-                        @if ($mailer->tags)
+                        @if ($mailer->tags_encoded)
                             <h3 class="elementHeader">{{__('ui.mailerTags')}}:</h3>
                             <ol class="orderedList">
-                                @foreach ($mailer->tagsNames as $tag)
-                                    <li>{{$tag}}</li>    
+                                @foreach ($mailer->tags_readable as $tag)
+                                    <li>{{$tag}}</li> 
                                 @endforeach
                             </ol>
                         @endif
 
-                        @if ($mailer->authors)
+                        @if ($mailer->authors_encoded)
                             <h3 class="elementHeader">{{__('ui.mailerAuthors')}}:</h3>
                             <ol class="orderedList">
-                                @foreach ($mailer->authorsNames as $author)
+                                @foreach ($mailer->authors_readable as $author)
                                     <li>{{$author}}</li>    
                                 @endforeach
                             </ol>
