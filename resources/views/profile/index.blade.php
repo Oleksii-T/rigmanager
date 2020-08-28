@@ -33,13 +33,13 @@
                         <p>{{ $user->name }}</p>
                     </td>
                 </tr>
-                @if ($user->phone)
-                    <tr id="phoneField">
-                        <td class="fieldName">
-                            <p>{{__('ui.phone')}}</p>
-                        </td>
-                        <td class="fieldValue">
-                            <p style="display: inline">{{ $user->phone }}</p>
+                <tr id="phoneField">
+                    <td class="fieldName">
+                        <p>{{__('ui.phone')}}</p>
+                    </td>
+                    <td class="fieldValue">
+                        @if ($user->phone_raw)
+                            <p style="display: inline">{{ $user->phone_intern }}</p>
                             @if ( $user->viber )
                                 <img src="{{ asset('icons/viberIcon.svg') }}" alt="{{__('alt.keyword')}}">
                             @endif
@@ -49,9 +49,11 @@
                             @if ( $user->whatsapp )
                                 <img src="{{ asset('icons/whatsappIcon.svg') }}" alt="{{__('alt.keyword')}}">
                             @endif
-                        </td> 
-                    </tr>
-                @endif
+                        @else 
+                            <p>{{__('ui.notSpecified')}}</p>
+                        @endif
+                    </td> 
+                </tr>
                 <tr id="emailField">
                     <td class="fieldName">
                         <p>{{__('ui.login')}}</p>

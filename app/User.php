@@ -14,7 +14,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
-    protected $appends = ['phone_readable'];
+    protected $appends = ['phone_readable', 'phone_intern'];
 
     /**
      * The attributes that are mass assignable.
@@ -79,5 +79,10 @@ class User extends Authenticatable implements MustVerifyEmail
             }
         }
         return $phone;
+    }
+
+    public function getPhoneInternAttribute() {
+        $phone = $this->phone_readable;
+        return $phone ? '+38 '.$phone : $phone;
     }
 }

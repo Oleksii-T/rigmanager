@@ -77,7 +77,7 @@
 @endsection
 
 @section('input-phone')
-    <input class="def-input" id="inputPhone" name="user_phone_raw" maxlength="10" type="text" placeholder="(000) 00-00-000" value="{{ old('user_phone_raw') ?? $user->phone_readable }}" autocomplete="phone">
+    <input class="def-input format-phone" id="inputPhone" name="user_phone_raw" maxlength="10" type="text" placeholder="(000) 00-00-000" value="{{ old('user_phone_raw') ?? $user->phone_readable }}" autocomplete="phone">
 @endsection
 
 @section('input-viber')
@@ -117,6 +117,7 @@
                 dictMaxFilesExceeded: "{{__('ui.dzTooFewFiles')}}",
                 init: function () {
                     var myDropzone = this;
+
                     $("#form-submit").click(function (e) {
                         e.preventDefault();
                         $('.error').empty();
@@ -152,8 +153,8 @@
                             showPopUpMassage(false, "{{ __('messages.postInputErrors') }}");
                             var invalidInputErrors = errorMessage['errors'];
                             $.each(invalidInputErrors, function(key, value) {
-                                $('.'+key+'.error').append("<p>"+value+"</p>");
-                                $('.'+key+'.error').removeClass('hidden');
+                                $('.'+key+'.error-dz').append("<p>"+value+"</p>");
+                                $('.'+key+'.error-dz').removeClass('hidden');
                             });
                             myDropzone.removeAllFiles();
                         } else {

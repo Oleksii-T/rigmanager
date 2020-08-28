@@ -23,6 +23,7 @@ return [
     'submit' => 'Submit',
     'cancel' => 'Cancel',
     'empty' => 'Empty',
+    'notSpecified' => 'Not Specified',
     'save' => 'Save',
 
     // auth massages
@@ -79,16 +80,18 @@ return [
     'mailerDescription' => 'Description',
     'mailerChooseDescription' => 'Describe what you are looking for',
     'mailerDescriptionHelp' => 'Here you can briefly describe the product you are interested in.
-    If You are interested in few independent products, please split the description of them by new line.',
+        If You are interested in few independent products, please split the description of them by new line.',
     'mailerTags' => 'Catogiries',
     'mailerChooseTags' => 'Select the categories you are interested in',
-    'mailerClickToDelete' => 'Click on entry to delete',
-    'mailerTagsHelp' => '',
+    'mailerTagsHelp' => 'You can choose up to 10 categories.
+        Click on entry to delete.',
     'mailerAuthors' => 'Authors',
+    'mailerAuthorsHelp' => 'You can add an Author to Mailer on the page of any Post, near the \'Show contacts\' button.
+        You can add up to 10 authors.
+        Click on entry to delete.',
     'deleteMailer' => 'Delete Mailer',
     'mailerIsActive' => 'Mailer is enabled',
     'mailerNotActive' => 'Mailer is disabled',
-    'mailerAuthorsHelp' => 'You can subscribe to Author on the page of any exact Post, near the \'Show contacts\' button.',
     'mailerAddAuthor' => 'Add Author to Mailer',
     'mailerRemoveAuthor' => 'Remove Author from Mailer',
     'mailerNoAuthors' => 'You have not subscribed to any Author',

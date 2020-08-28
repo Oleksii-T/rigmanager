@@ -88,6 +88,8 @@ div.error p { color: #eb837c; }
     border: none;
     background-color: rgb(149, 149, 149, 0.7);
     border-bottom: 2px solid #ffffff;
+    min-width: 300px;
+    text-align: center;
 }
 
 #hseEq,
@@ -130,9 +132,12 @@ div.error p { color: #eb837c; }
     overflow: hidden;
 }
 
-#dropDown a:hover { background-color: rgb(149, 149, 149, 0.7); }
+#dropDown a:hover { 
+    background-color: rgb(149, 149, 149, 0.7); 
+}
 
-#dropDown .arrow{
+#dropDown .arrow,
+#navTags .arrow {
     display: inline-block;
     border: 2px solid #f1f1f1;
     border-left: none;
@@ -143,9 +148,14 @@ div.error p { color: #eb837c; }
     margin-bottom: 0.2em;
 }
 
-#dropDown .arrowDown { transform: rotateZ(135deg); }
+#dropDown .arrowDown,
+#navTags .arrow { 
+    transform: rotateZ(135deg); 
+}
 
-#dropDown .arrowRight { transform: rotateZ(45deg); }
+#dropDown .arrowRight { 
+    transform: rotateZ(45deg); 
+}
 
 #mainMenu>li:hover .secondLevel,
 .secondLevel>li:hover>.thirdLevel,

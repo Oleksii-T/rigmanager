@@ -83,7 +83,7 @@
 @endsection 
 
 @section('input-phone')
-    <input class="def-input" id="inputPhone" name="user_phone_raw" maxlength="10" type="text" placeholder="(000) 00-00-000" value="{{ old('user_phone_raw') ?? $post->user_phone_readable }}">
+    <input class="def-input format-phone" id="inputPhone" name="user_phone_raw" maxlength="10" type="text" placeholder="(000) 00-00-000" value="{{ old('user_phone_raw') ?? $post->user_phone_readable }}">
 @endsection 
 
 @section('input-viber')
@@ -214,8 +214,8 @@
                             showPopUpMassage(false, "{{ __('messages.postInputErrors') }}");
                             var invalidInputErrors = errorMessage['errors'];
                             $.each(invalidInputErrors, function(key, value) {
-                                $('.'+key+'.error').append("<p>"+value+"</p>");
-                                $('.'+key+'.error').removeClass('hidden');
+                                $('.'+key+'.error-dz').append("<p>"+value+"</p>");
+                                $('.'+key+'.error-dz').removeClass('hidden');
                             });
                             thisDropzone.removeAllFiles();
                         } else {

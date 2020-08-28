@@ -171,14 +171,17 @@
                     type: "GET",
                     url: "{{ route('mailer.toggle.author', $post->user_id) }}",
                     success: function(data) {
-                        if (data) {
+                        if (data == 1) {
                             // Author was added to Mailer
                             showPopUpMassage(true, "{{ __('messages.mailerAddedAuthor') }}");
                             $('#mailerAddAuthor').html("{{__('ui.mailerRemoveAuthor')}}");
-                        } else {
+                        } else if (data == 0) {
                             // Author was removed from Mailer
                             showPopUpMassage(true, "{{ __('messages.mailerRemovedAuthor') }}");
                             $('#mailerAddAuthor').html("{{__('ui.mailerAddAuthor')}}");
+                        } else {
+                            // Error, too many authors
+                            showPopUpMassage(false, "{{ __('messages.mailerTooManyAuthors') }}");
                         }
                         button.removeClass('loading');
                     },
@@ -260,8 +263,12 @@
 
             function fillUpContacts (data) {
                 var contacts = JSON.parse(data);
-                $('span.emailField').text(contacts['email']);
-                $('li.phoneField span').text(contacts['phone']);
+                contacts['email'] 
+                    ? $('span.emailField').text(contacts['email']) 
+                    : $('span.emailField').text("{{__('ui.notSpecified')}}");
+                contacts['phone']
+                    ? $('li.phoneField span').text(contacts['phone'])
+                    : $('li.phoneField span').text("{{__('ui.notSpecified')}}");
                 if (contacts['viber']) {
                     $('li.phoneField').append("<img src='{{ asset('icons/viberIcon.svg') }}' alt='{{__('alt.keyword')}}'>");
                 }

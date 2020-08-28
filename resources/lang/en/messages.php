@@ -30,6 +30,7 @@ return [
     'mailerEditedError' => 'Error occured while editing the Mailer.',
     'mailerEdited' => 'Mailer has been changed successfully!',
     'mailerAddedAuthor' => 'Author added to Mailer',
+    'mailerTooManyAuthors' => 'You have reached the maximum number of Authors',
     'mailerRemovedAuthor' => 'Author removed from Mailer',
     'mailerAuthorExists' => 'Author already in Mailer',
     'mailerTagExists' => 'Specified categories already in your Mailer',

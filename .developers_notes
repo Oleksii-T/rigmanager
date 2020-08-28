@@ -88,6 +88,12 @@ CODE: add loadign effect of delete btn on profile/posts
 
 =======OPTIONAL======
 
+CODE: make profile img fully fit the circle
+
+ADD: water mark to all photoes
+
+CODE: add big preview of post photoes
+
 BUG: can not scroll to bottom on post/edit
 
 MOVE mailer suggestion in search result to the bottom of result post list

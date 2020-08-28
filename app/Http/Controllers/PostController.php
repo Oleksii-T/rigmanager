@@ -48,6 +48,11 @@ class PostController extends Controller
             unset($input['currency']);
             unset($input['cost']);
         }
+        if ( !$input['user_phone_raw'] ) {
+            $input['viber'] = 0;
+            $input['telegram'] = 0;
+            $input['whatsapp'] = 0;
+        }
         $post = new Post($input);
         if (!auth()->user()->posts()->save($post)) {
             Session::flash('message-error', __('messages.postUploadedError'));
@@ -121,9 +126,15 @@ class PostController extends Controller
             }
         }
         $input = $request->all();
-        $input['viber'] = $request->viber ? 1 : 0;
-        $input['telegram'] = $request->telegram ? 1 : 0;
-        $input['whatsapp'] = $request->whatsapp ? 1 : 0;
+        if ( $input['user_phone_raw'] ) {
+            $input['viber'] = $request->viber ? 1 : 0;
+            $input['telegram'] = $request->telegram ? 1 : 0;
+            $input['whatsapp'] = $request->whatsapp ? 1 : 0;
+        } else {
+            $input['viber'] = 0;
+            $input['telegram'] = 0;
+            $input['whatsapp'] = 0;
+        }
         if ( !$input['cost'] ) {
             unset($input['currency']);
             unset($input['cost']);

@@ -99,6 +99,7 @@ class Post extends Model
         }
         return $phone;
     }
+    
     public function getUserPhoneInternAttribute() {
         $phone = $this->user_phone_readable;
         return $phone ? '+38 '.$phone : $phone;

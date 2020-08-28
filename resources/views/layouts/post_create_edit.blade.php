@@ -15,6 +15,7 @@
                 <h3 class="elementHeading" for="inputTitle">{{__('ui.title')}}</h3>
                 @yield('input-title')
                 <x-server-input-error errorName='title' inputName='inputTitle' errorClass='error'/>
+                <div class="title error error-dz hidden"></div>
                 <div class="help">
                     <p><i>{{__('ui.titleHelp')}}</i></p>
                 </div>
@@ -119,6 +120,7 @@
                 <h3 class="elementHeading" for="inputDecs">{{__('ui.description')}}</h3>
                 @yield('input-description')
                 <x-server-input-error errorName='description' inputName='inputDecs' errorClass='error'/>
+                <div class="description error error-dz hidden"></div>
                 <div class="help">
                     <p><i>{{__('ui.descriptionHelp')}}</i></p>
                 </div>
@@ -143,6 +145,7 @@
                     <h3 class="elementHeading" for="inputCost">{{__('ui.cost')}}</h3>
                     @yield('input-cost')
                     <x-server-input-error errorName='cost' inputName='inputCost' errorClass='error'/>
+                    <div class="cost error error-dz hidden"></div>
                 </div>
 
                 <div id="provinceField">
@@ -151,6 +154,7 @@
                         @yield('input-province')
                     </div>
                     <x-server-input-error errorName='province' inputName='inputProvince' errorClass='error'/>
+                    <div class="province error error-dz hidden"></div>
                 </div>
 
                 @yield('input-town')
@@ -165,6 +169,7 @@
                     <h3 class="elementHeading" for="inputEmail">{{__('ui.email')}}</h3>
                     @yield('input-email')
                     <x-server-input-error errorName='user_email' inputName='inputEmail' errorClass='error'/>
+                    <div class="user_email error error-dz hidden"></div>
                 </div>
 
                 <div id="phoneField">
@@ -176,7 +181,8 @@
                         </div>
                         @yield('input-phone')
                     </div>
-                    <x-server-input-error errorName='user_phone' inputName='inputPhone' errorClass='error'/>
+                    <x-server-input-error errorName='user_phone_raw' inputName='inputPhone' errorClass='error'/>
+                    <div class="user_phone_raw error error-dz hidden"></div>
                     <div class="mediaCheckBoxes">
                         <div>
                             @yield('input-viber')
@@ -327,18 +333,19 @@
             autocomplete( document.getElementById("inputProvince"), provinces );
 
             // formate phone field
-            $('#inputPhone').focusin(function(){
+            $('.format-phone').focusin(function(){
                 var newVal = phoneFormater( $(this).val(), false );
                 $(this).val(newVal);
             });
 
             // formate phone field
-            $('#inputPhone').focusout(function(){
+            $('.format-phone').focusout(function(){
                 var newVal = phoneFormater( $(this).val(), false );
                 var newVal = phoneFormater( newVal, true );
                 $(this).val(newVal);
             });
 
+            // formate phone field helper
             function phoneFormater(phone, mode) {
                 if (phone) {
                     if (mode) {
@@ -433,7 +440,7 @@
             });
 
             //Validate the form
-            $('.post-form').validate({
+            $('.post-formm').validate({
                 rules: {
                     title: {
                         required: true,

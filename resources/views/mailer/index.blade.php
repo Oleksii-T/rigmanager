@@ -33,27 +33,33 @@
                             </label>
                         @endif
                             
+                        <h3 class="elementHeader">{{__('ui.mailerDescription')}}:</h3>
                         @if ($mailer->keywords)                            
-                            <h3 class="elementHeader">{{__('ui.mailerDescription')}}:</h3>
                             <p id="description">{{$mailer->keywords}}</p>
+                        @else
+                            <p class="empty-value">{{__('ui.empty')}}</p>
                         @endif
 
+                        <h3 class="elementHeader">{{__('ui.mailerTags')}}:</h3>
                         @if ($mailer->tags_encoded)
-                            <h3 class="elementHeader">{{__('ui.mailerTags')}}:</h3>
                             <ol class="orderedList">
                                 @foreach ($mailer->tags_readable as $tag)
                                     <li>{{$tag}}</li> 
                                 @endforeach
                             </ol>
+                        @else
+                            <p class="empty-value">{{__('ui.empty')}}</p>
                         @endif
 
+                        <h3 class="elementHeader">{{__('ui.mailerAuthors')}}:</h3>
                         @if ($mailer->authors_encoded)
-                            <h3 class="elementHeader">{{__('ui.mailerAuthors')}}:</h3>
                             <ol class="orderedList">
                                 @foreach ($mailer->authors_readable as $author)
                                     <li>{{$author}}</li>    
                                 @endforeach
                             </ol>
+                        @else
+                            <p class="empty-value">{{__('ui.empty')}}</p>
                         @endif
                     </div>
 

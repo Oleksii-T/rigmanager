@@ -176,20 +176,23 @@ class MailerController extends Controller
             $mailer = new Mailer;
             $mailer->authors_encoded = $user_id;
             auth()->user()->mailer()->save($mailer);
-            return true;
+            return 1;
         }
         if (!$mailer->authors_encoded) {
             $mailer->authors_encoded = $user_id;
             $mailer->save();
-            return true;
+            return 1;
         }
         $authorsArr = $mailer->authors_encoded;
+        if ( count($authorsArr) == 10 ) {
+            return -1;
+        }
         if ( array_search($user_id, $authorsArr) === false ) {
             $authorsArr[] = $user_id;
             $mailer->authors_encoded = $authorsArr; 
             $mailer->save();
-            return true;
+            return 1;
         }
-        return false;
+        return 0;
     } 
 }

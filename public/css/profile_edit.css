@@ -79,7 +79,40 @@ input.error { border-left: 2px solid #f44336 !important; }
     width: 100%;
 }
 
-#phoneShow img { height: 20px; }
+div.phone-wraper {
+    position: relative;
+    vertical-align: middle;
+}
+
+#inputPhone {
+    padding-left: 72px;
+}
+
+div.phone-prefix {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+img.country-flag {
+    vertical-align: middle;
+    height: 25px;
+}
+
+span.country-code {
+    vertical-align: middle;
+    display: inline;
+    cursor: default;
+}
+
+img.messengers-image { 
+    height: 20px; 
+}
+
+.mediaCheckBoxes {
+    margin-left: 10px;
+    margin-top: 5px;
+}
 
 .invalidInput { border-left: 2px solid #f44336; }
 

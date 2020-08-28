@@ -101,6 +101,10 @@ h2.mailerHeader {
     transform: rotate(45deg);
 }
 
+.empty-value {
+    margin-left: 10px;
+}
+
 .orderedList {
     list-style-position: outside;
     margin-left: 2em;

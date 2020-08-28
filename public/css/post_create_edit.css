@@ -163,7 +163,9 @@ input.error, textarea.error {
     overflow: hidden;
 }
 
-#dropDown a:hover { background-color: rgb(149, 149, 149, 0.7); }
+#dropDown a:hover { 
+    background-color: rgb(149, 149, 149, 0.7); 
+}
 
 #dropDown .arrow,
 #navTags .arrow {

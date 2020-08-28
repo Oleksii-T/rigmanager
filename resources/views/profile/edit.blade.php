@@ -58,26 +58,36 @@
                             <tr id="phoneShow">
                                 <td class="nameOfField"><p>{{__('ui.phone')}}</p></td>
                                 <td class="valueOfField">
-                                    <input class="def-input" id="inputPhone" name="phone" type="text" placeholder="Ном. телефона" value="{{ old('phone') ?? $user->phone}}" autocomplete="phone" autofocus/>
-                                    <x-server-input-error errorName='phone' inputName='inputPhone' errorClass='error'/>
-                                    <div>
-                                        <input type="checkbox" id="viberInput" name="viber" value="1" {{ $user->viber ? 'checked' : '' }}>
-                                        <label for="viberInput">
-                                            Viber
-                                            <img src="{{ asset('icons/viberIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                                        </label>
-                                        <br>
-                                        <input type="checkbox" id="telegramInput" name="telegram" value="1" {{ $user->telegram ? 'checked' : '' }}>
-                                        <label for="telegramInput">
-                                            Telegram
-                                            <img src="{{ asset('icons/telegramIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                                        </label>
-                                        <br>
-                                        <input type="checkbox" id="whatsappInput" name="whatsapp" value="1" {{ $user->whatsapp ? 'checked' : '' }}>
-                                        <label for="whatsappInput">
-                                            WhatsApp
-                                            <img src="{{ asset('icons/whatsappIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                                        </label>
+                                    <div class="phone-wraper">
+                                        <div class="phone-prefix">
+                                            <img class="country-flag" src="{{asset('icons/ukraineIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                                            <span class="country-code">+38</span>
+                                        </div>
+                                        <input class="def-input format-phone" id="inputPhone" name="phone_raw" type="text" placeholder="(000) 000-00-00" value="{{ old('phone') ?? $user->phone_readable}}" autocomplete="phone" autofocus/>
+                                    </div>
+                                    <x-server-input-error errorName='phone_raw' inputName='inputPhone' errorClass='error'/>
+                                    <div class="mediaCheckBoxes">
+                                        <div>
+                                            <input type="checkbox" id="viberInput" name="viber" value="1" {{ $user->viber ? 'checked' : '' }}>
+                                            <label for="viberInput">
+                                                Viber
+                                                <img class="messengers-image" src="{{ asset('icons/viberIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="telegramInput" name="telegram" value="1" {{ $user->telegram ? 'checked' : '' }}>
+                                            <label for="telegramInput">
+                                                Telegram
+                                                <img class="messengers-image" src="{{ asset('icons/telegramIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="whatsappInput" name="whatsapp" value="1" {{ $user->whatsapp ? 'checked' : '' }}>
+                                            <label for="whatsappInput">
+                                                WhatsApp
+                                                <img class="messengers-image" src="{{ asset('icons/whatsappIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                            </label>
+                                        </div>
                                     </div>
                                     <div class="help"><p><i>{{__('ui.phoneHelp')}}</i></p></div>
                                 </td> 
@@ -144,6 +154,41 @@
                     }
                 });
             });
+
+            // formate phone field
+            $('.format-phone').focusin(function(){
+                var newVal = phoneFormater( $(this).val(), false );
+                $(this).val(newVal);
+            });
+
+            // formate phone field
+            $('.format-phone').focusout(function(){
+                var newVal = phoneFormater( $(this).val(), false );
+                var newVal = phoneFormater( newVal, true );
+                $(this).val(newVal);
+            });
+
+            // formate phone field helper
+            function phoneFormater(phone, mode) {
+                if (phone) {
+                    if (mode) {
+                        phone = '('+phone;
+                        for (let i = 0; i < phone.length; i++) {
+                            if (i==4) {
+                                phone = phone.slice(0, i) + ') ' + phone.slice(i);
+                                i+=2;
+                            }
+                            else if (i==8 || i==11) {
+                                phone = phone.slice(0, i) + '-' + phone.slice(i);
+                                i++;
+                            }
+                        }
+                        return phone;
+                    } else {
+                        return phone.replace(/[^0-9]+/g,"");
+                    }
+                }
+            };
 
             //pre-view of picture
             function readURL(input) {
