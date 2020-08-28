@@ -89,19 +89,19 @@
                 </section>
 
                 <aside class="element" id="status">
-                    <p>{{__('ui.condition')}}: {{ $post->condition }}</p>
+                    <p>{{__('ui.condition')}}: {{ $post->condition_readable }}</p>
                 </aside>
 
-                @if ($post->location)
-                    <aside class="element" id="location">
-                        <p>{{__('ui.location')}}: {{ $post->location }}</p>
+                @if ($post->province)
+                    <aside class="element" id="province">
+                        <p>{{__('ui.location')}}: {{ $post->province}}{{ $post->town ? ", ".$post->town : "" }}</p>
                     </aside>
                 @endif
 
                 @if ($post->cost)
                     <aside class="element" id="cost">
                         <div>
-                            <p>{{__('ui.cost')}}: {{ $post->cost }} </p>
+                            <p>{{__('ui.cost')}}: {{ $post->cost_readable }} </p>
                         </div>
                     </aside>
                 @endif

@@ -14,13 +14,15 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
+    protected $appends = ['phone_readable'];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'activation_token', 'phone', 'viber', 'telegram', 'whatsapp', 'language'
+        'name', 'email', 'password', 'activation_token', 'phone_raw', 'viber', 'telegram', 'whatsapp', 'language'
     ];
 
     /**
@@ -60,5 +62,22 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         //return $this->belongsToMany(Post::class)->using(Favourite::class);
         return $this->belongsToMany(Post::class)->withTimestamps();
+    }
+
+    public function getPhoneReadableAttribute() {
+        $phone = $this->phone_raw;
+        if ($phone){
+            $phone = '('.$phone;
+            for ($i=0; $i < strlen($phone) ; $i++) { 
+                if ($i == 4) {
+                    $phone = substr_replace($phone, ') ', $i, 0);
+                    $i+=2;
+                } else if ($i==8 || $i==11) {
+                    $phone = substr_replace($phone, '-', $i, 0);
+                    $i++;
+                }
+            }
+        }
+        return $phone;
     }
 }

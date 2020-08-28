@@ -46,7 +46,10 @@
     width: 30px;
 }
 
-#clearIcon {
+#search-bar-clear-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -55,33 +58,28 @@
     transition: 0.2s;
 }
 
-#clearIcon:hover {
-    width: 23px;
+#search-bar-clear-btn img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    transition: 0.2s;
+}
+
+#search-bar-clear-btn img:hover {
+    transform: scale(1.2);
 }
 
 #searchBar input {
-    width: 100%;
     font-size: 100%;
     padding: 10px 35px 10px 45px;
     height: 50px;
-    outline: none;
-    border: none;
-    background-color: rgb(149, 149, 149, 0.7);
 }
 
-#searchBar input:hover {
-    background-color: rgb(149, 149, 149, 0.8);
-}
-
-#searchBar button {
+#searchBar button[type="submit"] {
     width: 14%;
     height: 50px;
     padding: 0px 6px;
     float: right;
-}
-
-#searchTags a:hover {
-    background-color: rgb(149, 149, 149, 0.8);
 }
 
 /*=V============SEARCH_BUTTONS============V=*/

@@ -11,8 +11,8 @@
         <form method="GET" action="{{ route('search.text') }}">
             <div id="inputWraper">
                 <img id="searchIcon" src="{{ asset('icons/searchIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                <a href="{{ route('home') }}"><img id="clearIcon" src="{{ asset('icons/clearIcon.svg') }}" alt="{{__('alt.keyword')}}"></a>
-                <input id="inputSearch" name="searchStrings" placeholder="{{__('ui.search')}}..." required />
+                <button id="search-bar-clear-btn" type="button"><img src="{{ asset('icons/clearIcon.svg') }}" alt="{{__('alt.keyword')}}"></button>
+                <input id="inputSearch" class="def-input" name="searchStrings" placeholder="{{__('ui.search')}}..." required />
             </div>
             <button class="def-button" type="submit">{{__('ui.search')}}</button>
         </form>
@@ -154,6 +154,10 @@
 
             // paint in orange addToFav btn of appropriate items 
             $('.active-fav-img').attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
+
+            $('#search-bar-clear-btn').click(function(){
+                $('#inputSearch').val("");
+            });
 
             //get digit from classes of DOM element (depends on prefix)
             function getIdFromClasses(classes, prefix) {

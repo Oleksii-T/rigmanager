@@ -20,6 +20,8 @@ return [
     'postEditedErrorTooManyImages' => 'Too many images, maximum 5.',
     'postNewImgsDeleted' => 'Images have been cleared',
     'postImgsDeleted' => 'Images have been deleted',
+    'postImgDeleted' => 'Image have been deleted',
+    'postInputErrors' => 'Some fields are incorrect.',
     
     'mailerToManyTags' => 'Too many categories',
     'mailerUploaded' => 'Mailer has been configured successfully!',

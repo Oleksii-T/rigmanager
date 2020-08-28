@@ -43,7 +43,12 @@ class PostController extends Controller
      */
     public function store(CreatePostRequest $request)
     {
-        $post = new Post($request->all());
+        $input = $request->all();
+        if ( !$input['cost'] ) {
+            unset($input['currency']);
+            unset($input['cost']);
+        }
+        $post = new Post($input);
         if (!auth()->user()->posts()->save($post)) {
             Session::flash('message-error', __('messages.postUploadedError'));
             return redirect(route('home'));
@@ -53,6 +58,12 @@ class PostController extends Controller
         }
         Session::flash('message-success', __('messages.postUploaded'));
         MailersAnalizePost::dispatch($post, auth()->user()->id)->onQueue('mailer');
+        return redirect(route('home'));
+    }
+    
+    public function storeFake()
+    {
+        Session::flash('message-success', __('messages.postUploaded'));
         return redirect(route('home'));
     }
 
@@ -77,7 +88,19 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        return view('post.edit', compact('post'));
+        $images = false;
+        if ( $post->images->isNotEmpty() ) {
+            $images = array();
+            foreach ($post->images()->where('version', 'origin')->get() as $image) {
+                $img['name'] = $image->name;
+                $img['size'] = $image->size_b;
+                $img['url'] = $image->url;
+                $img['id'] = $image->serial_no;
+                $images[] = $img;
+            }
+            $images = json_encode($images);
+        }
+        return view('post.edit', compact('post', 'images'));
     }
 
     /**
@@ -101,6 +124,10 @@ class PostController extends Controller
         $input['viber'] = $request->viber ? 1 : 0;
         $input['telegram'] = $request->telegram ? 1 : 0;
         $input['whatsapp'] = $request->whatsapp ? 1 : 0;
+        if ( !$input['cost'] ) {
+            unset($input['currency']);
+            unset($input['cost']);
+        }
         if (!$post->update($input)) {
             Session::flash('message-error', __('messages.postEditedError'));
             return redirect(route('home'));
@@ -156,14 +183,42 @@ class PostController extends Controller
         return false;
     }
 
+    public function imgDel($postId, $imgNo)
+    {
+        $post = Post::findOrFail($postId);
+        if ($post->user == auth()->user()) {
+            $this->postImageDelete($post, $imgNo);
+            return true;
+        }
+        return false;
+    }
+
     public function getContacts($postId) {
         $post = Post::findOrFail($postId);
         $contacts['email'] = $post->user_email;
-        $contacts['phone'] = $post->user_phone;
+        $contacts['phone'] = $post->user_phone_intern;
         $contacts['viber'] = $post->viber;
         $contacts['telegram'] = $post->telegram;
         $contacts['whatsapp'] = $post->whatsapp;
         return json_encode($contacts);
+    }
+
+    public function getImages($postId) {
+        $post = Post::findOrFail($postId);
+        if ($post->user == auth()->user()) {
+            if ( $post->images->isNotEmpty() ) {
+                $result = array();
+                foreach ($post->images()->where('version', 'origin')->get() as $image) {
+                    $img['name'] = $image->name;
+                    $img['size'] = $image->size_b;
+                    $img['url'] = $image->url;
+                    $img['id'] = $image->serial_no;
+                    $result[] = $img;
+                }
+                return json_encode($result);
+            }
+        }
+        return false;
     }
 
 }

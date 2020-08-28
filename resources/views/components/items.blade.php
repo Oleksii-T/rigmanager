@@ -13,14 +13,14 @@
                 <h3 class="heading4">{{ $post->title }}</h3>
                 <p class="desc">{{ $post->description }}</p>
                 <ul id="ulMisc">
-                    @if ($post->location)
-                        <li><p class="location misc">{{ $post->location }}</p></li>
-                        <li><p>s &#x02022</p></li>
+                    @if ($post->province)
+                        <li><p class="province misc">{{ $post->province }}</p></li>
+                        <li><p>&#x02022</p></li>
                     @endif
                     <li><time class="date misc" >{{ $post->created_at }}</time></li>
                     @if ($post->cost)
                         <li><p>&#x02022</p></li>
-                        <li><p class="cost misc">{{ $post->cost }}</p></li>
+                        <li><p class="cost misc">{{ $post->cost_readable }}</p></li>
                     @endif
                 </ul>
             </div>

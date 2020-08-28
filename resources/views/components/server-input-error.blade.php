@@ -6,3 +6,4 @@
         <p>{{ $message }}</p>
     </div>
 @enderror
+<div class="{{$errorName}} {{$errorClass}} hidden"></div>

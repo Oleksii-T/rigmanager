@@ -40,7 +40,6 @@
 
         <div class="side-background"></div>
         
-
         <div id="container">
             <header>
                 <!-- Header of all web pages -->
@@ -151,12 +150,10 @@
                             <tr>
                                 <td><a class="footerLinks" href="{{route('plans')}}">{{__('ui.footerSubscription')}}</a></td>
                                 <td><a class="footerLinks" href="{{route('contacts')}}">{{__('ui.footerContact')}}</a></td>
-                            </tr>
-                            <tr>
                                 <td><a class="footerLinks wrap" href="{{route('terms')}}">{{__('ui.footerTerms')}}</a></td>
-                                <td><a class="footerLinks" href="https://github.com/Oleksii-T/rigmanager">{{__('ui.footerDevelop')}}</a></td>
                             </tr>
                             <tr>
+                                <td><a class="footerLinks" href="https://github.com/Oleksii-T/rigmanager">{{__('ui.footerDevelop')}}</a></td>
                                 <td><a class="footerLinks wrap" href="{{route('privacy')}}">{{__('ui.footerPrivacy')}}</a></td>
                                 <td><a class="footerLinks wrap" href="{{route('site.map')}}">{{__('ui.footerSiteMap')}}</a></td>
                             </tr>

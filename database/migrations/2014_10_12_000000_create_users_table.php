@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id(); // id of user
             $table->string('name', 255); //name of user
-            $table->string('phone', 255)->nullable(); //phone number of user
+            $table->string('phone_raw', 11)->nullable(); //phone number of user
             $table->boolean('viber')->default(false);
             $table->boolean('telegram')->default(false);
             $table->boolean('whatsapp')->default(false);

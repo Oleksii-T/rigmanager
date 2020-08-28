@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'Administrator',
-            'phone' => '0502115147',
+            'phone_raw' => '0502115147',
             'email' => 'alex.tarbeev@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
             'password' => Hash::make('Admin1'),
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 1,
             'title' => 'Буровая штанга 89х6,5х1000 мм, резьба З-73',
-            'condition' => 'Новое',
+            'condition' => 2,
             'tag_encoded' => '2.3.2.1',
             'description' => 'Производитель:	DM Bits
                 Страна происхождения:	РОССИЯ
@@ -43,9 +43,10 @@ class DatabaseSeeder extends Seeder
                 Резьба ГОСТ:	З-73
                 Резьба API 7-1 (ГОСТ):	З-73
                 Резьба API (ГОСТ):	З-73',
-            'cost' => '5 148.00 руб / 1 шт',
+            'cost' => '5148.00',
+            'currency' => 'UAH',
             'user_email' => 'alex.tarbeev@gmail.com',
-            'user_phone' => '0502115147',
+            'user_phone_raw' => '0502115147',
             'viber' => '1',
             'telegram' => '1',
             'whatsapp' => '1',
@@ -56,7 +57,7 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 1,
             'title' => 'Вертлюг 6WC',
-            'condition' => 'Новое',
+            'condition' => 1,
             'tag_encoded' => '2.12.3',
             'description' => 'Производитель:	Western Rubber
                 Страна происхождения:	СОЕДИНЕННЫЕ ШТАТЫ
@@ -83,8 +84,9 @@ class DatabaseSeeder extends Seeder
                 
                 Вес, кг:	508
                 Отгрузочные размеры, мм:	1800x710x970',
-            'cost' => '2 345 808.10 руб',
-            'location' => 'Москва',
+            'cost' => '2345808.10',
+            'currency' => 'USD',
+            'province' => 'Івано-Франківська область',
             'user_email' => 'alex.tarbeev@gmail.com',
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
@@ -93,7 +95,7 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 1,
             'title' => 'Трехшарошечное долото 76 мм (3") К-ЦА (IADC 743) Уралбурмаш',
-            'condition' => 'Новое',
+            'condition' => 2,
             'tag_encoded' => '2.1.2.6.1.2',
             'description' => 'Страна происхождения:	РОССИЯ
                 Производитель:	УралБурМаш
@@ -124,7 +126,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 2,
             'name' => 'Pavel',
-            'phone' => '0000000000',
+            'phone_raw' => '0000000000',
             'email' => 'pavlo.tarb@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
             'password' => Hash::make('Pavel123'),
@@ -134,22 +136,45 @@ class DatabaseSeeder extends Seeder
 
         DB::table('posts')->insert([
             'user_id' => 2,
-            'title' => 'Гидравлический насос GPC4-32-322E1F4-L',
-            'condition' => 'Новое',
-            'tag_encoded' => '2.10',
-            'description' => 'Cтрана происхождения:	КИТАЙ
-            Cрок поставки:	4 недели
-            Основные технические параметры
-            
-            Вес нетто, кг:	22
-            Информация для отгрузки
-            
-            Вес, кг:	22',
-            'cost' => '78 732.00 руб',
-            'user_email' => 'pavlo.tarb@gmail.com',
-            'user_phone' => '0502318303',
+            'title' => 'Роторні клини',
+            'condition' => 2,
+            'tag_encoded' => '2.5.1.3.4',
+            'description' => 'ТОВ “Бейкень енергетика Україна” продає  нові роторні клини для обсадної колони, бурильної труби, обваженої бурильної труби, сухарі для роторних клинів.
+
+                У в наявності на складі нові:
+
+                Роторні клини обсадної колони WG(CMS-XL) 5”, WG(CMS-XL) 20”;
+                Роторні клини ТБТ 9” ~ 8-1/2”;
+                Роторні клини УБТ WT(DCS-S) 3-1/2”, WT (DSC-R) 5-1/2” ~ 7”, Сухарі для роторних клинів УБТ 4 1/2”;
+                Роторні клини БТ W(SDXL) 5”.',
+            'user_email' => 'pavlo.tarbeiev@beiken.com',
+            'user_phone_raw' => '0671859633',
+            'province' => 'Полтавська область',
             'viber' => '1',
             'whatsapp' => '1',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        DB::table('posts')->insert([
+            'user_id' => 2,
+            'title' => 'Лебідка та запчастини',
+            'condition' => 2,
+            'tag_encoded' => '2.7.6',
+            'description' => 'ТОВ “Бейкень енергетика Україна” продає нові пневматичні лебідки 5т та запчастини для бурової лебідки.
+
+                У в наявності на складі нові:
+
+                Пневматична лебідка 5т;
+                Тормозні колодки для бурової лебідки;
+                Цеп бурової лебідки 254 576, цеп бурової лебідки 32S-2, цеп бурової лебідки 33S-4;
+                Супорт в зборі DBS75-3-00.
+                Більш детальну інформацію (сертифікати, паспорти і т. д.) ви можете отримати, надіславши запит за адресою електронної пошти або по телефону нижче.',
+            'user_email' => 'pavlo.tarbeiev@beiken.com',
+            'user_phone_raw' => '0671859633',
+            'province' => 'Полтавська область',
+            'town' => 'Полтава',
+            'viber' => '1',
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
@@ -157,7 +182,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 3,
             'name' => 'Dmitriy',
-            'phone' => '0000000000',
+            'phone_raw' => '0000000000',
             'email' => 'dmytro.tarbeiev@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
             'password' => Hash::make('Dmitriy123'),
@@ -168,23 +193,58 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 3,
             'title' => 'Метчик ловильный B',
-            'condition' => 'Новое',
+            'condition' => 4,
             'tag_encoded' => '2.4.2',
             'description' => 'Страна происхождения:	РОССИЯ
-            Cрок поставки:	10 дней
-            Основные технические параметры
-            
-            Диаметр захватываемого инструмента, мм:	20-57
-            Минимальный диаметр скважины, мм:	70
-            Резьба:	З-50
-            Направление резьбы:	правое
-            Промывочное отверстие:	нет
-            Резьба ГОСТ:	З-50
-            Резьба API 7-1 (ГОСТ):	З-50
-            Резьба API (ГОСТ):	З-50',
-            'cost' => '7 105.49 руб',
+                Cрок поставки:	10 дней
+                Основные технические параметры
+                
+                Диаметр захватываемого инструмента, мм:	20-57
+                Минимальный диаметр скважины, мм:	70
+                Резьба:	З-50
+                Направление резьбы:	правое
+                Промывочное отверстие:	нет
+                Резьба ГОСТ:	З-50
+                Резьба API 7-1 (ГОСТ):	З-50
+                Резьба API (ГОСТ):	З-50',
+            'cost' => '7105.49',
+            'currency' => 'UAH',
             'user_email' => 'dmytro.tarbeiev@gmail.com',
-            'user_phone' => '0521345442',
+            'user_phone_raw' => '0521345442',
+            'province' => 'Киевская область',
+            'viber' => '1',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        DB::table('posts')->insert([
+            'user_id' => 3,
+            'title' => 'Скважинная камера TEL1, кабель 300 м',
+            'condition' => 2,
+            'tag_encoded' => '5.1',
+            'description' => 'Камера TEL 1 предназначена для исследования скважины в процессе бурения. Камера TEL 1 является легким, простым в использовании и очень надежным инструментом для использования в буровых условиях.
+                Полный комплект состоит из: катушки, камеры, монитора с LCD дисплеем, USB выхода и входа для микрофона для записи видео и звука на любой ноутбук.
+
+                МОБИЛЬНОСТЬ
+                ЛЕГКОСТЬ ИСПОЛЬЗОВАНИЯ
+                ВЫСОКАЯ НАДЕЖНОСТЬ
+                ВОДОНЕПРОНИЦАЕМОСТЬ ДО 35 АТМ.
+                ВЫСОКОЕ КАЧЕСТВО СЪЕМКИ
+                Основные технические параметры
+
+                Глубина использования, м:	350
+                Диаметр камеры, мм:	40
+                Длина камеры, мм:	150
+                Длина кабеля, м:	300
+                Гарантия:	1 год
+                Вес нетто, кг:	15
+                Информация для отгрузки
+
+                Вес, кг:	20',
+            'cost' => '620153.70',
+            'currency' => 'UAH',
+            'user_email' => 'dmytro.tarbeiev@gmail.com',
+            'user_phone_raw' => '0521345442',
             'viber' => '1',
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
@@ -198,7 +258,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Extra long user name tttt t ttt tt ttttt',
             'email' => 'ExtraLongUserEmailtttttttttttttttttttttttytttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt@mail.ru',
             'email_verified_at' => Carbon\Carbon::now(),
-            'phone' => '12312312312312312331',
+            'phone_raw' => '12312312312312312331',
             'viber' => '1',
             'telegram' => '1',
             'whatsapp' => '1',
@@ -258,7 +318,7 @@ class DatabaseSeeder extends Seeder
                 
                 To they four in love.',
             'user_email' => 'ExtraLongUserEmailtttttttttttttttttttttttytttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt@mail.ru',
-            'user_phone' => '12312312312312312331',
+            'user_phone_raw' => '12312312312312312331',
             'viber' => '1',
             'telegram' => '1',
             'whatsapp' => '1'

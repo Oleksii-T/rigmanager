@@ -125,6 +125,7 @@ return [
     'required_without-email' => 'The Phone Number field is required if Email is empty.',
     'required_without-tags' => 'The Description field is required if no categories are chosen.',
     'required_without-keywords' => 'At least one category is required if Description field is empty.',
+    'phoneLength' => 'Phone number should be 10 digits long.',
 
     /*
     |--------------------------------------------------------------------------

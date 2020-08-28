@@ -1,5 +1,5 @@
 // fade out flash massages after 3 sec
-$("div.flash").delay(3000).fadeOut(350);
+$("div.flash").delay(4000).fadeOut(350);
 
 // counter for unique pop-up ids
 var popUpId = 1;
@@ -19,8 +19,8 @@ function showPopUpMassage(role, massage) {
         role = role = "pop-up-error";
     }
     $('#pop-up-container').append("<div class='pop-up "+role+"' id="+id+"><p><img src="+src+" alt='{{__('alt.keyword')}}'>"+massage+"</p><div class='animated-line'></div></div>");
-    $("#"+id).delay(3000).fadeOut(350);
+    $("#"+id).delay(4000).fadeOut(350);
     setTimeout(function(){
         $("#"+id).remove();
-    }, 3500);
+    }, 4500);
 }

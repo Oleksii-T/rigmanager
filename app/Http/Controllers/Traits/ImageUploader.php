@@ -18,6 +18,7 @@ trait ImageUploader
 
     public function postImageUpload($files, $post)
     {
+        $serialNo = $post->images->count() === 0 ? 1 : $post->images->where('version', 'origin')->count()+1;
         //for each submitted file
         foreach ($files as $file) {
             $name = Str::random(30);
@@ -25,9 +26,10 @@ trait ImageUploader
             // save origin image to storage and DB;
             $path = $file->storeAs(auth()->id(), $name."_origin.".$file->extension());
             $image = new PostImage([
-                'size' => $file->getSize(), 
+                'serial_no' => $serialNo,
                 'path' => $path, 
-                'version' => 'origin'
+                'version' => 'origin',
+                'size' => $file->getSize()
             ]);
             $post->images()->save($image);
             // optimize the original image via queue;
@@ -37,16 +39,19 @@ trait ImageUploader
             $this->resizeImg($file->getPathname(), 300);
             $path = $file->storeAs(auth()->id(), $name."_optimized.".$file->extension());
             $image = new PostImage([
-                'size' => $file->getSize(), 
+                'serial_no' => $serialNo,
                 'path' => $path, 
-                'version' => 'optimized'
+                'version' => 'optimized',
+                'size' => $file->getSize()
             ]);
             $post->images()->save($image);
+            $serialNo++;
         }
         return true;
     }
 
-    public function postImagesDelete($post) {
+    public function postImagesDelete($post) 
+    {
         if (!$post->images->isEmpty()) {
             foreach ($post->images as $image) {
                 Storage::delete($image->path); //delete from public storage
@@ -54,6 +59,16 @@ trait ImageUploader
             }
         }
     }   
+
+    public function postImageDelete($post, $imgNo) 
+    {    
+        var_dump('inner delete of image');
+        $images = $post->images->where('serial_no', $imgNo);
+        foreach ($images as $image) {
+            Storage::delete($image->path); //delete from public storage
+            $image->delete(); //delete alias from DB
+        }
+    }
 
     public function userImageUpload($file)
     {

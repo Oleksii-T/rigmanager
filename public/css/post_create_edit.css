@@ -8,11 +8,6 @@
     background-color: rgb(11, 11, 11, 0.6);
 }
 
-label { font-size: 110%; }
-
-#editItemBody input {
-    margin-top: 20px;}
-
 .element {
     position: relative;
     padding: 20px;
@@ -21,11 +16,29 @@ label { font-size: 110%; }
     width: 100%;
 }
 
-.elementHeading { font-size: 120%; }
+.element:hover { 
+    box-shadow: 0px 0px 10px 0px #888888; 
+}
 
-.element:hover { box-shadow: 0px 0px 10px 0px #888888; }
+.elementHeading { 
+    font-size: 120%;
+    margin-bottom: 15px;
+}
 
-.element:hover .help { opacity: 1; }
+.element:hover .help { 
+    opacity: 1; 
+}
+
+input,
+textarea,
+div.phone-wraper,
+div.upload-zone,
+button.tagsTrigger,
+#choosenTags,
+#clearTagsBtn,
+#dropDown {
+    margin-left: 10px;
+}
 
 div.help {
     position: absolute;
@@ -45,6 +58,7 @@ label.error, div.error {
     border-left: 2px solid #f44336;
     color: #eb837c;
     white-space: normal;
+    margin-left: 10px;
 }
 
 div.error p { color: #eb837c; }
@@ -80,18 +94,15 @@ input.error, textarea.error {
 
 /*==================CONDITION==================*/
 
-#condition select {
-    margin-top: 20px;
-    width: 100px;
+#condition input {
     cursor: pointer;
-    outline: none;
+}
+
+#condition label {
+    cursor: pointer;
 }
 
 /*==================TAG==================*/
-
-#tag .elementHeading { 
-    margin-bottom: 14px; 
-}
 
 #navTags {
     margin-bottom: 20px;
@@ -108,6 +119,8 @@ input.error, textarea.error {
     border: none;
     background-color: rgb(149, 149, 149, 0.7);
     border-bottom: 2px solid #ffffff;
+    min-width: 300px;
+    text-align: center;
 }
 
 #hseEq,
@@ -152,7 +165,8 @@ input.error, textarea.error {
 
 #dropDown a:hover { background-color: rgb(149, 149, 149, 0.7); }
 
-#dropDown .arrow{
+#dropDown .arrow,
+#navTags .arrow {
     display: inline-block;
     border: 2px solid #f1f1f1;
     border-left: none;
@@ -163,9 +177,14 @@ input.error, textarea.error {
     margin-bottom: 0.2em;
 }
 
-#dropDown .arrowDown { transform: rotateZ(135deg); }
+#dropDown .arrowDown,
+#navTags .arrow  { 
+    transform: rotateZ(135deg); 
+}
 
-#dropDown .arrowRight { transform: rotateZ(45deg); }
+#dropDown .arrowRight { 
+    transform: rotateZ(45deg); 
+}
 
 #mainMenu>li:hover .secondLevel,
 .secondLevel>li:hover>.thirdLevel,
@@ -204,7 +223,6 @@ input.error, textarea.error {
 
 #desc textarea {
     padding: 10px;
-    margin-top: 20px;
     width: 70%;
     outline: none;
     border: none;
@@ -216,10 +234,6 @@ input.error, textarea.error {
 
 .hidden {
     display: none !important;
-}
-
-#imgs p.elementHeading {
-    margin-bottom: 15px;
 }
 
 #imgs label {
@@ -243,45 +257,104 @@ input.error, textarea.error {
     padding: 7px;
 }
 
-.gallery {
-    max-width: 560px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.gallery .previewImg {
-    width: 70px;
-    height: 70px;
-    padding: 5px;
-    margin-right: 20px;
-    display: inline-block;
-    background: #f1f1f1;
-    cursor: pointer;
-}
-
-.gallery img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; 
-}
-
 /*==================MISC_INFO==================*/
 
-#inputCost { width: 30%; }
+#inputCost,
+#inputTown,
+.autocomplete-province { 
+    width: 30%; 
+}
 
-#locationField { margin-top: 20px; }
+#costField {
+    margin-bottom: 20px;
+}
 
-#inputLocation { width: 60%; }
+.autocomplete {
+    /*the container must be positioned relative:*/
+    position: relative;
+    display: inline-block;
+}
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 10px;
+    right: 0;
+}
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: rgba(11, 11, 11, 0.8); 
+    border-bottom: 1px solid #d4d4d4; 
+}
+.autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: rgb(149, 149, 149); 
+}
+.autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important; 
+    color: #ffffff; 
+}
+
+#townField {
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
 
 /*==================CONTACT_INFO==================*/
 
-#inputEmail { width: 30%; }
+#emailField {
+    margin-bottom: 20px;
+}
 
-#phoneField { margin-top: 20px; }
+#inputEmail { 
+    width: 30%; 
+}
 
-#phoneField img { height: 20px; }
+img.messengers-image { 
+    height: 20px; 
+}
 
-#inputPhone { width: 30%; }
+div.phone-wraper {
+    position: relative;
+    vertical-align: middle;
+}
+
+#inputPhone { 
+    width: 30%;
+    padding-left: 72px;
+    margin-left: 0px;
+}
+
+div.phone-prefix {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+img.country-flag {
+    vertical-align: middle;
+    height: 25px;
+}
+
+span.country-code {
+    vertical-align: middle;
+    display: inline;
+    cursor: default;
+}
+
+.mediaCheckBoxes {
+    margin: 5px 0px 0px 15px;
+}
 
 #phoneField input[type=checkbox] { 
     margin: 0px; 
@@ -338,6 +411,10 @@ input.error, textarea.error {
     margin-bottom: 20px;
 }
 
-.modalContent form { display: inline; }
+.modalContent form { 
+    display: inline; 
+}
 
-.modalContent div > button { margin-right: 20px; }
+.modalContent div > button { 
+    margin-right: 20px; 
+}

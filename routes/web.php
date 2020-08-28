@@ -22,9 +22,12 @@ Route::get('login/{social}/callback', 'Auth\LoginController@handleProviderCallba
 Route::middleware(['auth', 'verified'])->group(function () {
     // posts routes
     Route::patch('posts/images/delete/{post}', 'PostController@imgsDel')->name('posts.imgs.delete');
+    Route::patch('posts/images/delete/{post}/{image}', 'PostController@imgDel')->name('posts.img.delete');
     Route::get('category/{tagId}', 'PostController@getTagReadable')->name('get.readble.tag'); //Ajax reqeust
     Route::get('contacts/{postId}', 'PostController@getContacts')->name('get.contacts'); //Ajax reqeust
     Route::delete('posts/a/{post}', 'PostController@destroyAjax')->name('posts.destroy.ajax'); //Ajax reqeust
+    Route::get('posts/images/{post}', 'PostController@getImages')->name('get.images'); //Ajax reqeust
+    Route::get('posts/store', 'PostController@storeFake')->name('posts.store.fake');
     Route::resource('posts', 'PostController')->except(['index']);
     
     // prifile/user routes
@@ -46,6 +49,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('mailer/text/{text}', 'MailerController@addText')->name('mailer.add.text');// Ajax request
     Route::get('mailer/author/add/{author}', 'MailerController@addAuthor')->name('mailer.add.author');// Ajax request
     Route::resource('mailer', 'MailerController')->except(['show', 'edit', 'update', 'destroy']); 
+
+    Route::get('void', function(){
+        return true;
+    })->name('void');
 
 
     /*== Folloing routes shall be for non-registered users on production stage ==*/

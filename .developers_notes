@@ -1,58 +1,4 @@
 
-=======TO_DO======
-
-CODE CSS: make good fonts
-
-CODE CSS: add line-height, letter-spacing, font-weight and bold/italic effects where needed
-
-CODE HTML: add proper visualization of location
-
-CODE PHP/HTML: Remeber contacts when user input new one and then suggest them when user creating new item
-
-CODE: make second public email when registered
-
-CODE PHP: add email encryption
-
-BUG: if user enters '0' inner check will treat as a false and think that it is empty
-
-BUG: when item submited with arrors, condition is reset
-
-CODE HTML/JS: add curency sign to cost
-
-BUG: cover case if there is more then 999 fav items
-
-CODE CSS: style secondary pages e.g activation acount or reset pass send page
-
-CODE: change phone regular expression
-
-CODE: implement soft delete
-
-CHECK: spelling
-
-CHECK: functionality of password forget
-
-CODE: add redirect()->back() where needed
-
-CODE: add title attr
-
-CODE: fix all style bugs on existing styled pages
-
-CODE: make registration via Ajax request
-
-CODE: implement Admin page for getting charts and stistics about website and data
-
-CODE: make form from every button which uses link with data
-
-BUG: 1px bug of js password validation error
-
-BUG: cursor wait is show when form submited with errors (login page)
-
-CODE: fix Ajax. some requests done odd, some are GET with query string and some are GET with reqeust data. redesign: GET for read data, POST for write data
-
-CODE: add semantic tags where needed
-
-BUG: fix footer position on post/edit page
-
 
 =========MASTER_OBEJECTIVES===========
 
@@ -80,9 +26,104 @@ CODE: configure server for production
 
 CODE: loaning system for equipment
 
+BUG when serching 'other' tag on search result search bar is bugged
+
+
+
+=======TO_DO======
+
+CODE CSS: make good fonts
+
+CODE CSS: add line-height, letter-spacing, font-weight and bold/italic effects where needed
+
+CODE PHP: add email encryption
+
+BUG: if user enters '0' inner check will treat as a false and think that it is empty
+
+BUG: when item submited with arrors, condition is reset
+
+CODE HTML/JS: add curency sign to cost
+
+CODE CSS: style secondary pages e.g activation acount or reset pass send page
+
+CODE: implement soft delete
+
+CHECK: spelling
+
+CHECK: functionality of password forget
+
+CODE: add redirect()->back() where needed
+
+CODE: add title attr
+
+CODE: fix all style bugs on existing styled pages
+
+CODE: make form from every button which uses link with data
+
+BUG: 1px bug of js password validation error
+
+BUG: cursor wait is show when form submited with errors (login page)
+
+CODE: fix Ajax. some requests done odd, some are GET with query string and some are GET with reqeust data. redesign: GET for read data, POST for write data
+
+CODE: add semantic tags where needed
+
+BUG: 1px bug on pagination
+
+CODE: add model confirmation when leaving form pages without saving
+
+CODE: add user_email and user_phone to post preview on profile/favourites
+
+CODE: add rigmanager Logo to Mailer notification
+
+BUG: erorr classes which appended to input, rewrite my def style classes
+
+TEST: test errors about img 
+
+CODE: somewhow add flash notif when submiting post with files
+
+CODE: add loadign effect of delete btn on profile/posts
+
+
+
+=======OPTIONAL======
+
+BUG: can not scroll to bottom on post/edit
+
+MOVE mailer suggestion in search result to the bottom of result post list
+
+CODE: make second public email when registered
+
+CODE PHP/HTML: Remeber contacts when user input new one and then suggest them when user creating new item
+
+CODE HTML: add proper visualization of location (Google maps integration)
+
+BUG: cover case if there is more then 999 fav items
+
+CODE: make registration via Ajax request
+
+CODE: implement Admin page for getting charts and stistics about website and data
+
+CODE: increase maximum number of tags to choose for post
+
+
 
 =======DONE======
 
+BUG: delete tags btn is not created when choosing tag of post/create
+CODE: improve phone fields
+CODE: improve cost field
+BUG: fix footer position on post/edit page
+CODE: make status choises as radio bottons
+CODE: add 'for parts' to status choises
+CODE: redesign image upload system.
+CODE: improve 'location' name. 
+CODE: merge edit and create pages into one.
+CODE: change functionality of cross in search bar
+CODE: change 'Logged In as:' string in the header
+CODE: shrink footer hight
+BUG: when click on location lable page jumps up
+CODE: rename Mailer in 'ru' and 'uk' langs
 CODE: rename prifile/myPosts to profile/posts and profile/favPosts to profile/favourites
 BUG: image previw on post/edit and post/create bugged
 CODE: make image post delete as a ajax

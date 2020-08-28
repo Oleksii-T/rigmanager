@@ -34,7 +34,7 @@ return [
     'login' => 'Login',
     'remember me' => 'remember me',
     'forget password' => 'Forget password?',
-    'loggedAs' => 'Logged In as',
+    'loggedAs' => 'Logged as',
 
     //home massages
     'home' => 'Home',
@@ -125,6 +125,7 @@ return [
     'chooseCondition' => 'Сhoose condition',
     'conditionNew' => 'New',
     'conditionSH' => 'Used',
+    'conditionForParts' => 'For Parts',
     'tag' => 'Choose category',
     'tagHelp' => 'Category is important for proper work of search engine.
         Be sure that categoty is chosen correctly, so your post will be easy to find!',
@@ -139,14 +140,30 @@ return [
     'uploadFile' => 'Choose File',
     'preview' => 'Preview',
     'cost' => 'Cost',
-    'location' => 'Location',
+    'locationProvince' => 'Location of product (province)',
+    'locationTown' => 'Location of product (town)',
+    'location' => 'Location of product',
+    'province' => 'Province',
+    'town' => 'Town or Urban Settlement',
     'costLocationHelp' => 'Optional.',
     'email' => 'Email',
     'emailPhoneHelp' => 'One of fields is compulsory.
-        For each post you can shooce unique email and phone number.',
+        You can enter any email and phone number.',
     'deletePost' => 'Delete post',
     'sure?' => 'Are you sure?',
+    'grivna' => 'Grivna (UAH)',
+    'dollar' => 'Dollar (USD)',
     
+    //dropzone
+    'dropzoneDesc' => 'Drop files or click 
+    to upload images',
+    'dropzoneBigFile' => 'This image is too big',
+    'dropzoneInvalidMime' => 'Only .jpeg, .jpg, .png allowed',
+    'dropzoneServerError' => 'Server error occurred',
+    'dropzoneUploadCanceled' => 'Uploading was canceled',
+    'dropzoneUploadRemoveLink' => 'Remove',
+    'dropzoneTooFewFiles' => 'Too many images',
+
     // post show masssages
     'yoursPost' => 'This post is yours',
     'postAuthor' => 'Post author',
@@ -179,4 +196,5 @@ return [
     Policy',
     'footerDevelop' => 'Delelopment',
     'footerSiteMap' => 'Site Map',
+
 ];
