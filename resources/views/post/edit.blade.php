@@ -200,7 +200,7 @@
                     });
 
                     this.on("successmultiple", function(){
-                        window.location="{{ route('home', ['flash_success'=>__('messages.postUploaded')]) }}";
+                        window.location="{{ route('posts.store.fake') }}";
                     });
 
                     this.on("errormultiple", function(file, errorMessage, xhr){
