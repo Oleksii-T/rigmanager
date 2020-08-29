@@ -37,7 +37,7 @@
 @endsection 
 
 @section('input-description')
-    <textarea name="description" id="inputDecs" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description') ?? $post->description }}</textarea>
+    <textarea class="def-textarea" id="inputDecs" name="description" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description') ?? $post->description }}</textarea>
 @endsection 
 
 @section('dz-message')
