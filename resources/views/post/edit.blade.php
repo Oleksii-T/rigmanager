@@ -59,11 +59,14 @@
 
 @section('input-cost')
     <input class="def-input input-cost" id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') ?? $post->cost_readable }}"/>
-        
-    <select class="currency-select" id="inputCurrency" name="currency">
-        <option value="UAH" {{$post->currency=='UAH' ? 'selected' : ''}}>{{__('ui.grivna')}}</option>
-        <option value="USD" {{$post->currency=='USD' ? 'selected' : ''}}>{{__('ui.dollar')}}</option>
-    </select>
+    
+    <div class="currency-wraper">
+        <select class="currency-select" id="inputCurrency" name="currency">
+            <option value="UAH" {{$post->currency=='UAH' ? 'selected' : ''}}>{{__('ui.grivna')}}</option>
+            <option value="USD" {{$post->currency=='USD' ? 'selected' : ''}}>{{__('ui.dollar')}}</option>
+        </select>
+        <span class="arrow arrowDown"></span>
+    </div>
 @endsection 
 
 @section('input-region')
