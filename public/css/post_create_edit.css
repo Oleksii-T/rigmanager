@@ -36,7 +36,8 @@ div.upload-zone,
 button.tagsTrigger,
 #choosenTags,
 #clearTagsBtn,
-#dropDown {
+#dropDown,
+.region-select {
     margin-left: 10px;
 }
 
@@ -50,6 +51,25 @@ div.help {
     opacity: 0;
     margin: 0px;
     overflow: hidden;
+}
+
+span.arrow {
+    display: inline-block;
+    border: 2px solid #f1f1f1;
+    border-left: none;
+    border-bottom: none;
+    width: 9px;
+    height: 9px;
+    margin-left: 5px;
+    margin-bottom: 0.2em;
+}
+
+span.arrow {
+    transform: rotateZ(135deg); 
+}
+
+span.arrowRight { 
+    transform: rotateZ(45deg); 
 }
 
 label.error, div.error {
@@ -68,14 +88,13 @@ input.error, textarea.error {
     /*border-bottom-left-radius: none !important;*/
 }
 
-#desc textarea:hover, 
-#navTags button:hover, #imgs label:hover
- { background-color: rgb(149, 149, 149, 0.8); }
-#desc textarea:focus 
- { background-color: rgb(149, 149, 149, 0.9); }
-#desc textarea:active, 
-#navTags button:active
- { background-color: rgb(149, 149, 149, 0.7); }
+#navTags button:hover { 
+    background-color: rgb(149, 149, 149, 0.8); 
+}
+
+#navTags button:active {
+    background-color: rgb(149, 149, 149, 0.7); 
+}
 
 /*==================PAGE_TITLE==================*/
 
@@ -123,14 +142,6 @@ input.error, textarea.error {
     text-align: center;
 }
 
-#hseEq,
-#drillingEq,
-#repairEq,
-#productionEq,
-#loggingEq {
-    display: none;
-}
-
 #dropDown ul {
     list-style: none;
     z-index: 3;
@@ -165,27 +176,6 @@ input.error, textarea.error {
 
 #dropDown a:hover { 
     background-color: rgb(149, 149, 149, 0.7); 
-}
-
-#dropDown .arrow,
-#navTags .arrow {
-    display: inline-block;
-    border: 2px solid #f1f1f1;
-    border-left: none;
-    border-bottom: none;
-    width: 9px;
-    height: 9px;
-    margin-left: 5px;
-    margin-bottom: 0.2em;
-}
-
-#dropDown .arrowDown,
-#navTags .arrow  { 
-    transform: rotateZ(135deg); 
-}
-
-#dropDown .arrowRight { 
-    transform: rotateZ(45deg); 
 }
 
 #mainMenu>li:hover .secondLevel,
@@ -223,20 +213,11 @@ input.error, textarea.error {
 
 /*==================DESCRIPTION==================*/
 
-#desc textarea {
-    padding: 10px;
+#inputDecs {
     width: 70%;
-    outline: none;
-    border: none;
-    background-color: rgb(149, 149, 149, 0.7);
-    border-radius: 10px;
 }
 
 /*==================IMAGES==================*/
-
-.hidden {
-    display: none !important;
-}
 
 #imgs label {
     cursor: pointer;
@@ -261,46 +242,48 @@ input.error, textarea.error {
 
 /*==================MISC_INFO==================*/
 
-#inputCost,
-#inputTown,
-.autocomplete-province { 
-    width: 30%; 
-}
-
 #costField {
     margin-bottom: 20px;
 }
 
-.autocomplete {
-    /*the container must be positioned relative:*/
+#inputCost { 
+    width: 30%; 
+}    
+
+.region-wraper,
+.currency-wraper {
     position: relative;
     display: inline-block;
 }
-.autocomplete-items {
+
+.region-select,
+.currency-select {
+    background-color: rgb(149, 149, 149, 0.7);
+    padding: 7px 20px 7px 5px;
+    border: none;
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+    border-radius: 0px;
+    transition: 0.2s;
+}
+
+.region-select:hover,
+.currency-select:hover {
+    background-color: rgb(149, 149, 149, 0.8);
+}
+
+.region-select:active,
+.currency-select:hover {
+    background-color: rgb(149, 149, 149, 0.9);
+}
+
+.region-wraper .arrow,
+.currency-wraper .arrow {
     position: absolute;
-    border: 1px solid #d4d4d4;
-    border-bottom: none;
-    border-top: none;
-    z-index: 99;
-    /*position the autocomplete items to be the same width as the container:*/
-    top: 100%;
-    left: 10px;
-    right: 0;
-}
-.autocomplete-items div {
-    padding: 10px;
-    cursor: pointer;
-    background-color: rgba(11, 11, 11, 0.8); 
-    border-bottom: 1px solid #d4d4d4; 
-}
-.autocomplete-items div:hover {
-    /*when hovering an item:*/
-    background-color: rgb(149, 149, 149); 
-}
-.autocomplete-active {
-    /*when navigating through the items using the arrow keys:*/
-    background-color: DodgerBlue !important; 
-    color: #ffffff; 
+    top: 10px;
+    right: 8px;
+    z-index: 10;
 }
 
 #townField {
@@ -308,8 +291,8 @@ input.error, textarea.error {
     margin-top: 20px;
 }
 
-.hidden {
-    display: none;
+#inputTown { 
+    width: 40%; 
 }
 
 /*==================CONTACT_INFO==================*/

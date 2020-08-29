@@ -14,10 +14,10 @@ class Post extends Model
 {
     use Searchable, Tags;
 
-    protected $appends = ['tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable', 'user_phone_intern'];
+    protected $appends = ['tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable', 'user_phone_intern', 'region_readable'];
 
     protected $fillable = [ //mass assigment
-        'title', 'description', 'tag_encoded', 'condition', 'province', 'town', 'cost', 
+        'title', 'description', 'tag_encoded', 'condition', 'region_encoded', 'town', 'cost', 
         'currency', 'user_email', 'user_phone_raw', 'viber', 'telegram', 'whatsapp'
     ];
 
@@ -28,7 +28,7 @@ class Post extends Model
      */
     public function toSearchableArray()
     {
-        $array = $this->only('title', 'description', 'province', 'town');
+        $array = $this->only('title', 'description', 'region', 'town');
         return $array;
     }
 
@@ -53,6 +53,89 @@ class Post extends Model
     public function setUserPhoneRawAttribute($value)
     {
         $this->attributes['user_phone_raw'] = preg_replace('/[^0-9]+/', '', $value);
+    }
+
+    public function getRegionReadableAttribute()
+    {
+        switch ($this->region_encoded) {
+            case '1':
+                return __('ui.regionCrimea');
+                break;
+            case '2':
+                return __('ui.regionVinnytsia');
+                break;
+            case '3':
+                return __('ui.regionVolyn');
+                break;
+            case '4':
+                return __('ui.regionDnipropetrovsk');
+                break;
+            case '5':
+                return __('ui.regionDonetsk');
+                break;
+            case '6':
+                return __('ui.regionZhytomyr');
+                break;
+            case '7':
+                return __('ui.regionCarpathian');
+                break;
+            case '8':
+                return __('ui.regionZaporozhye');
+                break;
+            case '9':
+                return __('ui.regionIvano-Frankivsk');
+                break;
+            case '10':
+                return __('ui.regionKiev');
+                break;
+            case '11':
+                return __('ui.regionKirovograd');
+                break;
+            case '12':
+                return __('ui.regionLuhansk');
+                break;
+            case '13':
+                return __('ui.regionLviv');
+                break;
+            case '14':
+                return __('ui.regionMykolaiv');
+                break;
+            case '15':
+                return __('ui.regionOdessa');
+                break;
+            case '16':
+                return __('ui.regionPoltava');
+                break;
+            case '17':
+                return __('ui.regionRivne');
+                break;
+            case '18':
+                return __('ui.regionSumy');
+                break;
+            case '19':
+                return __('ui.regionTernopil');
+                break;
+            case '20':
+                return __('ui.regionKharkiv');
+                break;
+            case '21':
+                return __('ui.regionKherson');
+                break;
+            case '22':
+                return __('ui.regionKhmelnytsky');
+                break;
+            case '23':
+                return __('ui.regionCherkasy');
+                break;
+            case '24':
+                return __('ui.regionChernivtsi');
+                break;
+            case '25':
+                return __('ui.regionChernihiv');
+                break;
+            default:
+                return __('ui.notSpecified');
+        }
     }
 
     public function getCostReadableAttribute()
@@ -86,14 +169,13 @@ class Post extends Model
     public function getUserPhoneReadableAttribute() {
         $phone = $this->user_phone_raw;
         if ($phone){
-            $phone = '('.$phone;
-            for ($i=0; $i < strlen($phone) ; $i++) { 
-                if ($i == 4) {
+            for ($i=strlen($phone)-1; $i >= 0 ; $i--) {
+                if ($i==1){
+                    $phone = substr_replace($phone, ' (', $i, 0);
+                } else if ($i == 3) {
                     $phone = substr_replace($phone, ') ', $i, 0);
-                    $i+=2;
-                } else if ($i==8 || $i==11) {
-                    $phone = substr_replace($phone, '-', $i, 0);
-                    $i++;
+                } else if ($i==8 || $i==6) {
+                    $phone = substr_replace($phone, ' ', $i, 0);
                 }
             }
         }
@@ -102,7 +184,7 @@ class Post extends Model
     
     public function getUserPhoneInternAttribute() {
         $phone = $this->user_phone_readable;
-        return $phone ? '+38 '.$phone : $phone;
+        return $phone ? '+38'.$phone : $phone;
     }
 
     public function getCreatedAtAttribute($value)
@@ -118,7 +200,7 @@ class Post extends Model
     public function getConditionReadableAttribute() {
         switch ($this->condition) {
             case 1:
-                return __('ui.other');
+                return __('ui.notSpecified');
             break;
             case 2:
                 return __('ui.conditionNew');

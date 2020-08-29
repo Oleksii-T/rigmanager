@@ -78,9 +78,7 @@ CODE: add rigmanager Logo to Mailer notification
 
 BUG: erorr classes which appended to input, rewrite my def style classes
 
-TEST: test errors about img 
-
-CODE: somewhow add flash notif when submiting post with files
+TEST: test errors about img
 
 CODE: add loadign effect of delete btn on profile/posts
 
@@ -116,6 +114,11 @@ CODE: increase maximum number of tags to choose for post
 
 =======DONE======
 
+CODE: somewhow add flash notif when submiting post with files
+CODE: add RU and EN province suggestions
+CODE: change province to region
+CODE: make phone format [0 (00) 000 00 00]
+CODE: fix cost formation 
 BUG: delete tags btn is not created when choosing tag of post/create
 CODE: improve phone fields
 CODE: improve cost field

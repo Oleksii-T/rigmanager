@@ -40,8 +40,7 @@
                 </div>
                 
                 <div id="dropDown">
-                    
-                    <div class="typeOfEq" id="hseEq">
+                    <div class="typeOfEq hidden" id="hseEq">
                         <ul id="mainMenu">
                             <x-tags.hse.fire-hazard/>
                             <x-tags.hse.life-support/> 
@@ -53,7 +52,7 @@
                         </ul>
                     </div>
 
-                    <div class="typeOfEq" id="drillingEq">
+                    <div class="typeOfEq hidden" id="drillingEq">
                         <ul id="mainMenu">
                             <x-tags.drilling.substructure/>
                             <x-tags.drilling.mast/>
@@ -71,7 +70,7 @@
                         </ul>
                     </div>
         
-                    <div class="typeOfEq" id="repairEq">
+                    <div class="typeOfEq hidden" id="repairEq">
                         <ul id="mainMenu">
                             <x-tags.repair.substructure/> 
                             <x-tags.repair.logging/> 
@@ -88,7 +87,7 @@
                         </ul>
                     </div>
                     
-                    <div class="typeOfEq" id="productionEq">
+                    <div class="typeOfEq hidden" id="productionEq">
                         <ul id="mainMenu">
                             <x-tags.production.tubing/> 
                             <x-tags.production.well-head/>
@@ -97,7 +96,7 @@
                         </ul>
                     </div>
         
-                    <div class="typeOfEq" id="loggingEq">
+                    <div class="typeOfEq hidden" id="loggingEq">
                         <ul id="mainMenu">
                             <x-tags.logging.sensors/>
                             <x-tags.logging.eq/>
@@ -142,19 +141,20 @@
 
             <div id="miscInfo" class="element">
                 <div id="costField">
-                    <h3 class="elementHeading" for="inputCost">{{__('ui.cost')}}</h3>
+                    <h3 class="elementHeading">{{__('ui.cost')}}</h3>
                     @yield('input-cost')
                     <x-server-input-error errorName='cost' inputName='inputCost' errorClass='error'/>
                     <div class="cost error error-dz hidden"></div>
                 </div>
 
-                <div id="provinceField">
-                    <h3 class="elementHeading" for="inputProvince">{{__('ui.locationProvince')}}</h3>
-                    <div class="autocomplete autocomplete-province">
-                        @yield('input-province')
+                <div id="regionField">
+                    <h3 class="elementHeading">{{__('ui.locationRegion')}}</h3>
+                    <div class="region-wraper">
+                        @yield('input-region')
+                        <span class="arrow arrowDown"></span>
                     </div>
-                    <x-server-input-error errorName='province' inputName='inputProvince' errorClass='error'/>
-                    <div class="province error error-dz hidden"></div>
+                    <x-server-input-error errorName='region_encoded' inputName='inputregion' errorClass='error'/>
+                    <div class="region_encoded error error-dz hidden"></div>
                 </div>
 
                 @yield('input-town')
@@ -218,6 +218,7 @@
                 <a class="def-button cancel-button" href="{{ route('home') }}">{{__('ui.cancel')}}</a>
                 @yield('buttons')
             </div>
+            
         </form>
         @yield('modals')
     </div> 
@@ -230,107 +231,6 @@
     @yield('post-scripts')
     <script type="text/javascript">
         $(document).ready(function() {            
-
-            function autocomplete(inp, arr) {
-                /*the autocomplete function takes two arguments,
-                the text field element and an array of possible autocompleted values:*/
-                var currentFocus;
-                /*execute a function when someone writes in the text field:*/
-                inp.addEventListener("input", function(e) {
-                    var a, b, i, val = this.value;
-                    /*close any already open lists of autocompleted values*/
-                    closeAllLists();
-                    if (!val) { return false;}
-                    currentFocus = -1;
-                    /*create a DIV element that will contain the items (values):*/
-                    a = document.createElement("DIV");
-                    a.setAttribute("id", this.id + "autocomplete-list");
-                    a.setAttribute("class", "autocomplete-items");
-                    /*append the DIV element as a child of the autocomplete container:*/
-                    this.parentNode.appendChild(a);
-                    /*for each item in the array...*/
-                    for (i = 0; i < arr.length; i++) {
-                        /*check if the item starts with the same letters as the text field value:*/
-                        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                        /*create a DIV element for each matching element:*/
-                        b = document.createElement("DIV");
-                        /*make the matching letters bold:*/
-                        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                        b.innerHTML += arr[i].substr(val.length);
-                        /*insert a input field that will hold the current array item's value:*/
-                        b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                        /*execute a function when someone clicks on the item value (DIV element):*/
-                            b.addEventListener("click", function(e) {
-                            /*insert the value for the autocomplete text field:*/
-                            inp.value = this.getElementsByTagName("input")[0].value;
-                            /*close the list of autocompleted values,
-                            (or any other open lists of autocompleted values:*/
-                            closeAllLists();
-                        });
-                        a.appendChild(b);
-                        }
-                    }
-                });
-                /*execute a function presses a key on the keyboard:*/
-                inp.addEventListener("keydown", function(e) {
-                    var x = document.getElementById(this.id + "autocomplete-list");
-                    if (x) x = x.getElementsByTagName("div");
-                    if (e.keyCode == 40) {
-                        /*If the arrow DOWN key is pressed,
-                        increase the currentFocus variable:*/
-                        currentFocus++;
-                        /*and and make the current item more visible:*/
-                        addActive(x);
-                    } else if (e.keyCode == 38) { //up
-                        /*If the arrow UP key is pressed,
-                        decrease the currentFocus variable:*/
-                        currentFocus--;
-                        /*and and make the current item more visible:*/
-                        addActive(x);
-                    } else if (e.keyCode == 13) {
-                        /*If the ENTER key is pressed, prevent the form from being submitted,*/
-                        e.preventDefault();
-                        if (currentFocus > -1) {
-                        /*and simulate a click on the "active" item:*/
-                        if (x) x[currentFocus].click();
-                        }
-                    }
-                });
-                function addActive(x) {
-                    /*a function to classify an item as "active":*/
-                    if (!x) return false;
-                    /*start by removing the "active" class on all items:*/
-                    removeActive(x);
-                    if (currentFocus >= x.length) currentFocus = 0;
-                    if (currentFocus < 0) currentFocus = (x.length - 1);
-                    /*add class "autocomplete-active":*/
-                    x[currentFocus].classList.add("autocomplete-active");
-                }
-                function removeActive(x) {
-                    /*a function to remove the "active" class from all autocomplete items:*/
-                    for (var i = 0; i < x.length; i++) {
-                    x[i].classList.remove("autocomplete-active");
-                    }
-                }
-                function closeAllLists(elmnt) {
-                    /*close all autocomplete lists in the document,
-                    except the one passed as an argument:*/
-                    var x = document.getElementsByClassName("autocomplete-items");
-                    for (var i = 0; i < x.length; i++) {
-                    if (elmnt != x[i] && elmnt != inp) {
-                    x[i].parentNode.removeChild(x[i]);
-                    }
-                }
-                }
-                /*execute a function when someone clicks in the document:*/
-                document.addEventListener("click", function (e) {
-                    closeAllLists(e.target);
-                });
-            }
-
-            var provinces = ["Одеська область","Дніпропетровська область","Чернігівська область","Харківська область","Житомирська область","Полтавська область","Херсонська область","Київська область","Запорізька область","Луганська область","Донецька область","Вінницька область","Автономна Республіка Крим","Миколаївська область","Кіровоградська область", "Сумська область","Львівська область","Черкаська область","Хмельницька область","Волинська область","Рівненська область","Івано-Франківська область","Тернопільська область","Закарпатська область","Чернівецька область"];
-            
-            autocomplete( document.getElementById("inputProvince"), provinces );
 
             // formate phone field
             $('.format-phone').focusin(function(){
@@ -349,15 +249,14 @@
             function phoneFormater(phone, mode) {
                 if (phone) {
                     if (mode) {
-                        phone = '('+phone;
-                        for (let i = 0; i < phone.length; i++) {
-                            if (i==4) {
+                        for (let i = phone.length-1; i >= 0; i--) {
+                            if (i==1) {
+                                phone = phone.slice(0, i) + ' (' + phone.slice(i);
+                            } else if (i==3) {
                                 phone = phone.slice(0, i) + ') ' + phone.slice(i);
-                                i+=2;
                             }
-                            else if (i==8 || i==11) {
-                                phone = phone.slice(0, i) + '-' + phone.slice(i);
-                                i++;
+                            else if (i==8 || i==6) {
+                                phone = phone.slice(0, i) + ' ' + phone.slice(i);
                             }
                         }
                         return phone;
@@ -367,9 +266,10 @@
                 }
             };
 
-            // show town-input field if province has any value
-            $('#inputProvince').on('keyup change', function(){
-                if ($(this).val() == '') {
+            // show town-input field if region has any value
+            $('.region-select').on('change', function(){
+                val = $(this).children('option:selected').val();
+                if (val==0) {
                     $('#townField').addClass('hidden');
                     $('#inputTown').val('');
                 } else {
@@ -380,19 +280,15 @@
             // open/close tags when user choosed master tag category
             $('.tagsTrigger').click(function(){
                 var type = $(this).attr('class').split(' ')[1];
-                var display = $("#"+type).css('display');
-                var color = $(this).css('background-color');
-                $('.tagsTrigger').removeClass('isActiveBtn');
-                if ( color == 'rgba(149, 149, 149, 0.8)' ) {
-                    $(this).addClass('isActiveBtn');
+                _this = $(this);
+                if ( _this.hasClass('isActiveBtn') ) {
+                    _this.removeClass('isActiveBtn');
+                    $('#'+type).addClass('hidden')
                 } else {
-                    $(this).removeClass('isActiveBtn');
-                }
-                $('.typeOfEq').css('display', 'none');
-                if (display == 'none') {
-                    $("#"+type).css('display', 'block');
-                } else {
-                    $("#"+type).css('display', 'none');
+                    $('.typeOfEq').addClass('hidden');
+                    $('.tagsTrigger').removeClass('isActiveBtn');
+                    _this.addClass('isActiveBtn');
+                    $('#'+type).removeClass('hidden')
                 }
             });
 
@@ -455,7 +351,7 @@
                     cost: {
                         maxlength: 50
                     },
-                    location: {
+                    town: {
                         maxlength: 100
                     },
                     user_email: {
@@ -481,7 +377,7 @@
                     cost: {
                         maxlength: '{{ __("validation.max.string", ["max" => 50]) }}'
                     },
-                    location: {
+                    town: {
                         maxlength: '{{ __("validation.max.string", ["max" => 100]) }}'
                     },
                     user_email: {
@@ -500,48 +396,66 @@
 
             $(".input-cost").focusin(function(){
                 newVal = $(this).val()
-                    ? localStringToNumber($(this).val())
+                    ? CurrencyToNumber($(this).val())
                     : '';
                 $(this).val(newVal);
             });
 
             $(".input-cost").focusout(function(){
-                currency = $('#inputCurrency').children('option:selected').val();
-                var options = {
-                    maximumFractionDigits : 2,
-                    currency              : currency,
-                    style                 : "currency",
-                    currencyDisplay       : "symbol"
+                if ($(this).val()){
+                    var currency = $('#inputCurrency').children('option:selected').val();
+                    $(this).val( NumberToCurrency( currency, $(this).val() ) );
                 }
-                newVal = $(this).val()
-                    ? localStringToNumber($(this).val()).toLocaleString(undefined, options)
-                    : '';
-                if (currency == "UAH") {
-                    newVal = newVal.replace('UAH', '₴');
-                }
-                $(this).val(newVal);
             });
 
             $('#inputCurrency').on('change', function (e){
-                oldVal = localStringToNumber( $(".input-cost").val() );
+                oldVal = $(".input-cost").val();
                 if (oldVal) {
                     currency = $(this).children('option:selected').val();
-                    var options = {
-                        maximumFractionDigits : 2,
-                        currency              : currency,
-                        style                 : "currency",
-                        currencyDisplay       : "symbol"
-                    }
-                    newVal = oldVal.toLocaleString(undefined, options);
-                    if (currency == "UAH") {
-                        newVal = newVal.replace('UAH', '₴');
-                    }
-                    $(".input-cost").val(newVal);
+                    currency = currency=='UAH' ? '₴' : '$';
+                    newVal = oldVal.replace(oldVal[0], currency);
+                    $(".input-cost").val( newVal );
                 }
             });
 
-            function localStringToNumber( s ){
-                return Number(String(s).replace(/[^0-9.]+/g,""))
+            function CurrencyToNumber(str){
+                return str.replace(/[^0-9.]+/g,"");
+            }
+
+            function NumberToCurrency(currency, string) {
+                res = CurrencyToNumber(string);
+                if ( res.includes('.') ) {
+                    var firstDot = res.indexOf('.');
+                    var dots = (res.match(/\./g) || []).length;
+                    if ( dots != 1 ) {
+                        res = res.replace(/\./g,"");
+                        res = res.slice(0, firstDot) + '.' + res.slice(firstDot);
+                    }
+                    var coins = res.substring(firstDot);
+                    if ( coins.length > 3 ) {
+                        toCrop = coins.length - 3;
+                        res = res.substring(0, res.length-toCrop);
+                    } else if ( coins.length < 3 ) {
+                        // add coins
+                        toAdd = 3-coins.length;
+                        res = res+'0';
+                        if (toAdd == 2) {
+                            res = res+'0';
+                        }
+                    }
+                } else {
+                    res = res + ".00";
+                }
+                var step = 1;
+                for (let i = res.length-4; i >= 0; i--,step++) {
+                    if (step == 3) {
+                        res = res.slice(0, i) + ',' + res.slice(i);
+                        step = 0;
+                    }
+                    
+                }
+                currency=='UAH' ? res='₴'+res : res='$'+res;
+                return res;
             }
 
         });

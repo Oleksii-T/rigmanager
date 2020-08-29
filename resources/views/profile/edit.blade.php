@@ -63,7 +63,7 @@
                                             <img class="country-flag" src="{{asset('icons/ukraineIcon.svg')}}" alt="{{__('alt.keyword')}}">
                                             <span class="country-code">+38</span>
                                         </div>
-                                        <input class="def-input format-phone" id="inputPhone" name="phone_raw" type="text" placeholder="(000) 000-00-00" value="{{ old('phone') ?? $user->phone_readable}}" autocomplete="phone" autofocus/>
+                                        <input class="def-input format-phone" id="inputPhone" name="phone_raw" type="text" placeholder="0 (00) 000 00 00" value="{{ old('phone') ?? $user->phone_readable}}" autocomplete="phone" autofocus/>
                                     </div>
                                     <x-server-input-error errorName='phone_raw' inputName='inputPhone' errorClass='error'/>
                                     <div class="mediaCheckBoxes">

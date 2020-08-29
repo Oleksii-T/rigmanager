@@ -8,10 +8,6 @@
     font-size: 130%;
 }
 
-.hidden {
-    display: none;
-}
-
 .item {
     margin: 0px auto;
     background-color: rgb(149, 149, 149, 0.7);

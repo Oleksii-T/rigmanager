@@ -21,7 +21,7 @@
     <input type="radio" id="conditionForParts" name="condition" value="4">
     <label for="conditionForParts">{{__('ui.conditionForParts')}}</label><br>
     <input type="radio" id="other" name="condition" value="1" checked="checked">
-    <label for="other">{{__('ui.other')}}</label>
+    <label for="other">{{__('ui.notSpecified')}}</label>
 @endsection
 
 @section('inputs-tag')
@@ -36,7 +36,7 @@
 @endsection
     
 @section('input-description')
-    <textarea name="description" id="inputDecs" form="formCreatePost" rows="15" maxlength="9000">{{ old('description') }}</textarea>
+    <textarea class="def-textarea" id="inputDecs" name="description" form="formCreatePost" rows="15" maxlength="9000">{{ old('description') }}</textarea>
 @endsection
 
 @section('dz-message')
@@ -54,14 +54,17 @@
 @section('input-cost')
     <input class="def-input input-cost" id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') }}"/>
     
-    <select id="inputCurrency" name="currency">
-        <option value="UAH">{{__('ui.grivna')}}</option>
-        <option value="USD">{{__('ui.dollar')}}</option>
-    </select>
+    <div class="currency-wraper">
+        <select class="currency-select" id="inputCurrency" name="currency">
+            <option value="UAH">{{__('ui.grivna')}}</option>
+            <option value="USD">{{__('ui.dollar')}}</option>
+        </select>
+        <span class="arrow arrowDown"></span>
+    </div>
 @endsection
 
-@section('input-province')
-    <input class="def-input" id="inputProvince" name="province" type="text" placeholder="{{__('ui.province')}}" value="{{ old('province') }}"/>
+@section('input-region')
+    <x-region-select locale='{{app()->getLocale()}}'/>
 @endsection
 
 @section('input-town')
@@ -77,7 +80,7 @@
 @endsection
 
 @section('input-phone')
-    <input class="def-input format-phone" id="inputPhone" name="user_phone_raw" maxlength="10" type="text" placeholder="(000) 00-00-000" value="{{ old('user_phone_raw') ?? $user->phone_readable }}" autocomplete="phone">
+    <input class="def-input format-phone" id="inputPhone" name="user_phone_raw" maxlength="10" type="text" placeholder="0 (00) 000 00 00" value="{{ old('user_phone_raw') ?? $user->phone_readable }}" autocomplete="phone">
 @endsection
 
 @section('input-viber')

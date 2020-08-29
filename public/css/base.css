@@ -66,6 +66,10 @@ div.side-background {
     color: #f44336;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .help {
     height: auto;
     border-left: 1px solid #888888;
@@ -163,24 +167,36 @@ div.side-background {
     background: #ff9790c0;
 }
 
-.def-input {
+.def-input,
+.def-textarea {
     width: 100%;
-    padding: 7px 5px;
     outline: none;
     border: none;
     background-color: rgb(149, 149, 149, 0.7);
     transition: 0.2s;
 }
 
-.def-input:hover { 
+.def-input {
+    padding: 7px 5px;
+}
+
+.def-textarea {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.def-input:hover,
+.def-textarea:hover { 
     background-color: rgb(149, 149, 149, 0.8); 
 }
 
-.def-input:active { 
+.def-input:active,
+.def-textarea:active { 
     background-color: rgb(149, 149, 149, 0.9); 
 }
 
-.def-input:focus { 
+.def-input:focus,
+.def-textarea:focus { 
     background-color: rgb(149, 149, 149, 0.9); 
 }
 

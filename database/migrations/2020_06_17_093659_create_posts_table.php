@@ -22,7 +22,7 @@ class CreatePostsTable extends Migration
             $table->text('description', 9000);
             $table->double('cost', 50, 2)->nullable();
             $table->string('currency', 4)->nullable();
-            $table->string('province', 255)->nullable();
+            $table->string('region_encoded', 10)->nullable();
             $table->string('town', 255)->nullable();
             $table->string('user_email', 255)->nullable();
             $table->string('user_phone_raw', 11)->nullable();

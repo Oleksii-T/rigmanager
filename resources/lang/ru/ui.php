@@ -125,7 +125,8 @@ return [
     'postCreate' => 'Создание объявления',
     'postSettings' => 'Изменение объявления',
     'title' => 'Заголовок',
-    'titleHelp' => 'Максимум 70 символов.',
+    'titleHelp' => 'Минимум 10 символов.
+    Максимум 70 символов.',
     'chooseCondition' => 'Выберите состояние',
     'conditionNew' => 'Новое',
     'conditionSH' => 'Б/У',
@@ -136,7 +137,8 @@ return [
     'chosenTags' => 'Выбранные категории',
     'clearTagsFromPost' => 'Очистить выбранные категории',
     'description' => 'Описание',
-    'descriptionHelp' => 'Максимум 9000 символов.',
+    'descriptionHelp' => 'Минимум 10 символов.
+        Максимум 9000 символов.',
     'image' => 'Выберите изображения',
     'imageHelp' => 'Пять файлов максимум.
         Разрешены только изображения(.jpeg .jpg .png).
@@ -144,11 +146,11 @@ return [
     'uploadFile' => 'Выбрать файл',
     'preview' => 'Предосмотр',
     'cost' => 'Цена',
-    'locationProvince' => 'Местонахождения товара (область)',
-    'locationTown' => 'Местонахождения товара (город)',
+    'locationRegion' => 'Местонахождения товара (область)',
+    'locationTown' => 'Местонахождения товара (точнее)',
     'location' => 'Местонахождения товара',
     'province' => 'Область',
-    'town' => 'Город или ПГТ',
+    'town' => 'Город / ПГТ / Склад / Площадка',
     'costLocationHelp' => 'Не обязательно.',
     'email' => 'Электронная почта',
     'emailPhoneHelp' => 'Одно из полей обязательно.
@@ -200,5 +202,32 @@ return [
     Конфиденциальности',
     'footerDevelop' => 'Разработка',
     'footerSiteMap' => 'Карта Сайта',
+
+    // Regions
+    'regionOdessa' => 'Одесская область',
+    'regionDnipropetrovsk' => 'Днепропетровская область',
+    'regionChernihiv' => 'Черниговская область',
+    'regionKharkiv' => 'Харьковская область',
+    'regionZhytomyr' => 'Житомирская область',
+    'regionPoltava' => 'Полтавская область',
+    'regionKherson' => 'Херсонская область',
+    'regionKiev' => 'Киевская область',
+    'regionZaporozhye' => 'Запорожская область',
+    'regionLuhansk' => 'Луганская область',
+    'regionDonetsk' => 'Донецкая область',
+    'regionVinnytsia' => 'Винницкая область',
+    'regionCrimea' => 'Автономная Республика Крым',
+    'regionMykolaiv' => 'Николаевская область',
+    'regionKirovograd' => 'Кировоградская область',
+    'regionSumy' => 'Сумская область',
+    'regionLviv' => 'Львовская область',
+    'regionCherkasy' => 'Черкасская область',
+    'regionKhmelnytsky' => 'Хмельницкая область',
+    'regionVolyn' => 'Волынская область',
+    'regionRivne' => 'Ровенская область',
+    'regionIvano-Frankivsk' => 'Ивано-Франковская область',
+    'regionTernopil' => 'Тернопольская область',
+    'regionCarpathian' => 'Закарпатская область',
+    'regionChernivtsi' => 'Черновицкая область',
 
 ];

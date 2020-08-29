@@ -64,17 +64,22 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Post::class)->withTimestamps();
     }
 
+    public function setPhoneRawAttribute($value)
+    {
+        $this->attributes['phone_raw'] = preg_replace('/[^0-9]+/', '', $value);
+    }
+
     public function getPhoneReadableAttribute() {
         $phone = $this->phone_raw;
         if ($phone){
-            $phone = '('.$phone;
-            for ($i=0; $i < strlen($phone) ; $i++) { 
-                if ($i == 4) {
+            for ($i=strlen($phone)-1; $i >= 0 ; $i--) {
+                if ($i==1){
+                    $phone = substr_replace($phone, ' (', $i, 0);
+                }
+                else if ($i == 3) {
                     $phone = substr_replace($phone, ') ', $i, 0);
-                    $i+=2;
-                } else if ($i==8 || $i==11) {
-                    $phone = substr_replace($phone, '-', $i, 0);
-                    $i++;
+                } else if ($i==8 || $i==6) {
+                    $phone = substr_replace($phone, ' ', $i, 0);
                 }
             }
         }
@@ -83,6 +88,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getPhoneInternAttribute() {
         $phone = $this->phone_readable;
-        return $phone ? '+38 '.$phone : $phone;
+        return $phone ? '+38'.$phone : $phone;
     }
 }

@@ -22,7 +22,7 @@
     <input type="radio" id="conditionForParts" name="condition" value="4" {{$post->condition==4 ? 'checked="checked"' : "" }}>
     <label for="conditionForParts">{{__('ui.conditionForParts')}}</label><br>
     <input type="radio" id="other" name="condition" value="1"  {{$post->condition==1 ? 'checked="checked"' : "" }}>
-    <label for="other">{{__('ui.other')}}</label>
+    <label for="other">{{__('ui.notSpecified')}}</label>
 @endsection
 
 @section('inputs-tag')
@@ -60,18 +60,18 @@
 @section('input-cost')
     <input class="def-input input-cost" id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') ?? $post->cost_readable }}"/>
         
-    <select id="inputCurrency" name="currency">
+    <select class="currency-select" id="inputCurrency" name="currency">
         <option value="UAH" {{$post->currency=='UAH' ? 'selected' : ''}}>{{__('ui.grivna')}}</option>
         <option value="USD" {{$post->currency=='USD' ? 'selected' : ''}}>{{__('ui.dollar')}}</option>
     </select>
 @endsection 
 
-@section('input-province')
-    <input class="def-input" id="inputProvince" name="province" type="text" placeholder="{{__('ui.province')}}" value="{{ old('province') ?? $post->province }}">
+@section('input-region')
+    <x-region-select locale='{{app()->getLocale()}}' :defValue='$post->region_encoded'/>
 @endsection 
 
 @section('input-town')
-    <div class="{{$post->province ? '' : 'hidden'}}" id="townField">
+    <div class="{{$post->region_encoded ? '' : 'hidden'}}" id="townField">
         <h3 class="elementHeading" for="inputTown">{{__('ui.locationTown')}}</h3>
         <input class="def-input" id="inputTown" name="town" type="text" placeholder="{{__('ui.town')}}" value="{{ old('town') ?? $post->town }}">
         <x-server-input-error errorName='town' inputName='inputTown' errorClass='error'/>
@@ -83,7 +83,7 @@
 @endsection 
 
 @section('input-phone')
-    <input class="def-input format-phone" id="inputPhone" name="user_phone_raw" maxlength="10" type="text" placeholder="(000) 00-00-000" value="{{ old('user_phone_raw') ?? $post->user_phone_readable }}">
+    <input class="def-input format-phone" id="inputPhone" name="user_phone_raw" maxlength="10" type="text" placeholder="0 (00) 000 00 00" value="{{ old('user_phone_raw') ?? $post->user_phone_readable }}">
 @endsection 
 
 @section('input-viber')

@@ -92,9 +92,9 @@
                     <p>{{__('ui.condition')}}: {{ $post->condition_readable }}</p>
                 </aside>
 
-                @if ($post->province)
-                    <aside class="element" id="province">
-                        <p>{{__('ui.location')}}: {{ $post->province}}{{ $post->town ? ", ".$post->town : "" }}</p>
+                @if ($post->region_encoded)
+                    <aside class="element" id="region">
+                        <p>{{__('ui.location')}}: {{ $post->region_readable}}{{ $post->town ? ", ".$post->town : "" }}</p>
                     </aside>
                 @endif
 
