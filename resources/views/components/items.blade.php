@@ -13,8 +13,8 @@
                 <h3 class="heading4">{{ $post->title }}</h3>
                 <p class="desc">{{ $post->description }}</p>
                 <ul id="ulMisc">
-                    @if ($post->province)
-                        <li><p class="province misc">{{ $post->province }}</p></li>
+                    @if ($post->region_encoded)
+                        <li><p class="province misc">{{ $post->region_readable }}</p></li>
                         <li><p>&#x02022</p></li>
                     @endif
                     <li><time class="date misc" >{{ $post->created_at }}</time></li>
