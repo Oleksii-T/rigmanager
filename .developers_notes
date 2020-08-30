@@ -70,7 +70,7 @@ CODE: add semantic tags where needed
 
 BUG: 1px bug on pagination
 
-CODE: add model confirmation when leaving form pages without saving
+CODE: add modal confirmation when leaving form pages without saving
 
 CODE: add user_email and user_phone to post preview on profile/favourites
 
@@ -79,8 +79,6 @@ CODE: add rigmanager Logo to Mailer notification
 BUG: erorr classes which appended to input, rewrite my def style classes
 
 TEST: test errors about img
-
-CODE: add loadign effect of delete btn on profile/posts
 
 
 
@@ -114,6 +112,7 @@ CODE: increase maximum number of tags to choose for post
 
 =======DONE======
 
+CODE: add loadign effect of delete btn on profile/posts
 CODE: somewhow add flash notif when submiting post with files
 CODE: add RU and EN province suggestions
 CODE: change province to region

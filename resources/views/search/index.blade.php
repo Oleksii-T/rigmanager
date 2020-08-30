@@ -12,8 +12,8 @@
         <form method="GET" action="{{ route('search.text') }}">
             <div id="inputWraper">
                 <img id="searchIcon" src="{{ asset('icons/searchIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                <a href="{{ route('home') }}"><img id="clearIcon" src="{{ asset('icons/clearIcon.svg') }}" alt="{{__('alt.keyword')}}"></a>
-                <input id="inputSearch" name="searchStrings" value="{{ Session::get('searchText') }}" placeholder="{{__('ui.search')}}..." required />
+                <button id="search-bar-clear-btn" type="button"><img src="{{ asset('icons/clearIcon.svg') }}" alt="{{__('alt.keyword')}}"></button>
+                <input id="inputSearch" class="def-input" name="searchStrings" value="{{ Session::get('searchText') }}" placeholder="{{__('ui.search')}}..." required />
             </div>
             <button class="def-button" type="submit">{{__('ui.search')}}</button>
         </form>
@@ -162,11 +162,7 @@
             <div id="mailer-suggestion">
                 <button id="addTagToMailer" class="{{array_key_last(Session::get('searchTags'))}}">{{__('ui.mailerSuggestTag')}}</button>
                 <a id="whatIsMailerHelp" href="{{route('faq')}}#WhatIsMailer">({{__('ui.whatIsMailer')}})</a>
-                <div class="algolia-logo">
-                    <img src="{{asset('icons/algoliaIcon.svg')}}" alt="{{__('alt.keyword')}}">
-                </div>
             </div>
-            
         @elseif ( Session::has('searchAuthorName') )
             <div id="searchAuthor">
                 <p>{{__('ui.searchByAuthor')}} <span>{{Session::get('searchAuthorName')}}</span>:</p>
@@ -174,9 +170,6 @@
             <div id="mailer-suggestion">
                 <button id="addAuthorToMailer" class="{{Session::get('searchAuthorId')}}">{{__('ui.mailerSuggestAuthor')}}</button>
                 <a id="whatIsMailerHelp"href="{{route('faq')}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
-                <div class="algolia-logo">
-                    <img src="{{asset('icons/algoliaIcon.svg')}}" alt="{{__('alt.keyword')}}">
-                </div>
             </div>   
         @endif
         <h1 id="searchStatus">{{Session::get('searchStatus')}}</h1>
@@ -223,6 +216,10 @@
 
             //remove last '>' symbol from searched tags
             $('#searchTags span').last().remove();
+
+            $('#search-bar-clear-btn').click(function(){
+                $('#inputSearch').val("");
+            });
 
             // user adds text to Mailer
             $('#addTextToMailer').click(function() {

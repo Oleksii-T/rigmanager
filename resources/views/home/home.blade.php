@@ -5,8 +5,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/components/post_posts.css') }}" />
 @endsection
 
-@section('content')
 
+
+@section('content')
     <div id="searchBar">
         <form method="GET" action="{{ route('search.text') }}">
             <div id="inputWraper">

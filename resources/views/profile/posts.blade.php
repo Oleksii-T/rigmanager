@@ -72,6 +72,8 @@
                 $('#modalPostDelete').css("display", "none");
                 var ajaxUrl = '{{route("posts.destroy.ajax", ":postId")}}';
                 ajaxUrl = ajaxUrl.replace(':postId', postId);
+                $('#'+postId+' .globalItemButton').addClass('loading');
+                $('#'+postId+' img').addClass('loading');
                 $.ajax({
                     url: ajaxUrl,
                     type: 'POST',
@@ -86,8 +88,12 @@
                         } else {
                             showPopUpMassage(false, "{{ __('messages.postDeleteError') }}");
                         }
+                        $('#'+postId+' .globalItemButton').removeClass('loading');
+                        $('#'+postId+' img').removeClass('loading');
                     },
                     error: function() {
+                        $('#'+postId+' .globalItemButton').removeClass('loading');
+                        $('#'+postId+' .img').removeClass('loading');
                         showPopUpMassage(false, "{{ __('messages.error') }}");
                     }
                 });

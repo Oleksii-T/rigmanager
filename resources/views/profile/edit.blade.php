@@ -172,15 +172,14 @@
             function phoneFormater(phone, mode) {
                 if (phone) {
                     if (mode) {
-                        phone = '('+phone;
-                        for (let i = 0; i < phone.length; i++) {
-                            if (i==4) {
+                        for (let i = phone.length-1; i >= 0; i--) {
+                            if (i==1) {
+                                phone = phone.slice(0, i) + ' (' + phone.slice(i);
+                            } else if (i==3) {
                                 phone = phone.slice(0, i) + ') ' + phone.slice(i);
-                                i+=2;
                             }
-                            else if (i==8 || i==11) {
-                                phone = phone.slice(0, i) + '-' + phone.slice(i);
-                                i++;
+                            else if (i==8 || i==6) {
+                                phone = phone.slice(0, i) + ' ' + phone.slice(i);
                             }
                         }
                         return phone;
