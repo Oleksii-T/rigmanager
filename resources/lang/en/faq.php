@@ -45,5 +45,7 @@ return [
     Also, via Mailer, You can subscribe to any author (on the page of exact post), so that You will be noticed if chosen author made a post.',
 
     'slg1' => 'Sincerely, development team',
-    'slg2' => 'If you have any questions or suggestions, please contact us by mail',
+    'slg2' => 'If you have any questions or suggestions, 
+    please fill-up the',
+    'slg3' => 'Contact Us form',
 ];

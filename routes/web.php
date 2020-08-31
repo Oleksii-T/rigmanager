@@ -19,6 +19,9 @@ Auth::routes(['verify' => true]);
 Route::get('login/{social}', 'Auth\LoginController@redirectToProvider')->name('login.social');
 Route::get('login/{social}/callback', 'Auth\LoginController@handleProviderCallback');
 
+Route::post('contacting', 'HomeController@contactUs')->name('contact.us');
+Route::get('contants', 'HomeController@contacts')->name('contacts');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     // posts routes
     Route::patch('posts/images/delete/{post}', 'PostController@imgsDel')->name('posts.imgs.delete');
@@ -61,7 +64,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('faq', 'HomeController@faq')->name('faq');
     Route::get('plans', 'HomeController@plans')->name('plans');
-    Route::get('contants', 'HomeController@contacts')->name('contacts');
     Route::get('terms', 'HomeController@terms')->name('terms');
     Route::get('privacy', 'HomeController@privacy')->name('privacy');
     Route::get('sitemap', 'HomeController@sitemap')->name('site.map');

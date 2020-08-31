@@ -70,12 +70,40 @@ div.side-background {
     display: none !important;
 }
 
+label.error, div.error {
+    display: block;
+    padding: 5px 10px 5px 10px;
+    border-left: 2px solid #f44336;
+    color: #eb837c;
+    white-space: normal;
+}
+
+div.error p { 
+    color: #eb837c; 
+}
+
+input.error, textarea.error {
+    border-left: 2px solid #f44336 !important;
+    /*border-bottom-left-radius: none !important;*/
+}
+
 .help {
     height: auto;
     border-left: 1px solid #888888;
     padding-left: 10px;
     margin-left: 20px;
     margin-top: 10px;
+}
+
+.master-wraper {
+    height: 100%;
+    background-color: rgba(149, 149, 149, 0.6);
+    padding: 40px 0px;
+}
+
+.required-input {
+    color: red;
+    margin-left: 3px;
 }
 
 .help i{

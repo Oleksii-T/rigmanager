@@ -73,19 +73,7 @@ span.arrowRight {
 }
 
 label.error, div.error {
-    display: block;
-    padding: 5px 10px 5px 10px;
-    border-left: 2px solid #f44336;
-    color: #eb837c;
-    white-space: normal;
     margin-left: 10px;
-}
-
-div.error p { color: #eb837c; }
-
-input.error, textarea.error {
-    border-left: 2px solid #f44336 !important;
-    /*border-bottom-left-radius: none !important;*/
 }
 
 #navTags button:hover { 

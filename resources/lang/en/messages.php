@@ -42,4 +42,6 @@ return [
     
     'signedIn' => 'Welcome!',
     'signedOut' => 'Good bye',
+
+    'messageSent' => 'The message has been sent!',
 ];

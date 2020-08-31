@@ -26,9 +26,6 @@ CODE: configure server for production
 
 CODE: loaning system for equipment
 
-BUG when serching 'other' tag on search result search bar is bugged
-
-
 
 =======TO_DO======
 
@@ -76,10 +73,9 @@ CODE: add user_email and user_phone to post preview on profile/favourites
 
 CODE: add rigmanager Logo to Mailer notification
 
-BUG: erorr classes which appended to input, rewrite my def style classes
-
 TEST: test errors about img
 
+BUG when serching 'other' tag on search result search bar is bugged
 
 
 =======OPTIONAL======
@@ -112,6 +108,8 @@ CODE: increase maximum number of tags to choose for post
 
 =======DONE======
 
+BUG: erorr classes which appended to input, rewrite my def style classes
+CODE: add hover and active effect of serch result tags btn
 CODE: add loadign effect of delete btn on profile/posts
 CODE: somewhow add flash notif when submiting post with files
 CODE: add RU and EN province suggestions

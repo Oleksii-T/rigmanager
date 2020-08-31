@@ -228,4 +228,12 @@ return [
     'regionTernopil' => 'Ternopil region',
     'regionCarpathian' => 'Carpathian region',
     'regionChernivtsi' => 'Chernivtsi region',
+
+    // notification from user
+    'fromUserTitle' => 'Got a question?', 
+    'fromUserEmail' => 'Email (for feedback)', 
+    'fromUserSubject' => 'Subject', 
+    'fromUserText' => 'How can we help You?', 
+    'fromUserTextPlaceholder' => 'Describe your problem/offer/suggestion', 
+    'fromUserSubmit' => 'Send message', 
 ];

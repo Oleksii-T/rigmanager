@@ -195,7 +195,7 @@ return [
    'footerCopyright' => 'Всі права захищені.',
    'footerIconsRef' => 'Всі іконки надані',
    'footerSubscription' => 'Підписки',
-   'footerContact' => 'Контакти',
+   'footerContact' => 'зв\'язатися з нами',
    'footerTerms' => 'Угода 
    користувача ',
    'footerPrivacy' => 'Політика
@@ -229,4 +229,12 @@ return [
    'regionTernopil' => 'Тернопільська область',
    'regionCarpathian' => 'Закарпатська область',
    'regionChernivtsi' => 'Чернівецька область',
+
+   // notification from user
+   'fromUserTitle' => 'Є питання?', 
+   'fromUserEmail' => 'Электронная почта (для обратной связи)', 
+   'fromUserSubject' => 'Тема', 
+   'fromUserText' => 'Як ми можемо Вам допомогти?', 
+   'fromUserTextPlaceholder' => 'Опишіть Вашу проблему/пропозицію', 
+   'fromUserSubmit' => 'Відправити повідомлення', 
 ];

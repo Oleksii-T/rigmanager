@@ -38,8 +38,8 @@
             
             <div id="contacts">
                 <p id="slgText" id="sig">{{__('faq.slg1')}} <span>rigmanager.com.ua</span>.
-                    {{__('faq.slg2')}}</p>
-                <a class="link" href = "mailto: web.rigmanager@gmail.com">web.rigmanager@gmail.com</a>
+                    {{__('faq.slg2')}} <a class="link" href = "{{route('contacts')}}">{{__('faq.slg3')}}</a>.
+                </p>
             </div>
         </div>
     </div>

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Http\Requests\ContactUsRequest;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\fromUserNotification;
 
 class HomeController extends Controller
 {
@@ -32,22 +36,35 @@ class HomeController extends Controller
     {
         return view('home.faq');
     }
+
     public function plans()
     {
         return view('home.plans');
     }
+
     public function contacts()
     {
         return view('home.contacts');
     }
+
+    public function contactUs(ContactUsRequest $request)
+    {
+        $user = auth()->user();
+        Mail::to(env("MAIL_TO_ADDRESS"))->send(new fromUserNotification($request->name, $request->subject, $request->text, $request->email, $user)); //send mail notification to user
+        Session::flash('message-success', __('messages.messageSent'));
+        return redirect(route('home'));
+    }
+
     public function terms()
     {
         return view('home.terms');
     }
+
     public function privacy()
     {
         return view('home.privacy');
     }
+
     public function sitemap()
     {
         return view('home.sitemap');

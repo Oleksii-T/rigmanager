@@ -195,7 +195,7 @@ return [
     'footerCopyright' => 'Всё права защищёны.',
     'footerIconsRef' => 'Все иконки предоставлены',
     'footerSubscription' => 'Подписки',
-    'footerContact' => 'Контакты',
+    'footerContact' => 'Связаться с нами',
     'footerTerms' => 'Пользовательское 
     соглашение',
     'footerPrivacy' => 'Политика
@@ -229,5 +229,13 @@ return [
     'regionTernopil' => 'Тернопольская область',
     'regionCarpathian' => 'Закарпатская область',
     'regionChernivtsi' => 'Черновицкая область',
+
+    // notification from user
+    'fromUserTitle' => 'Есть вопрос?', 
+    'fromUserEmail' => 'Электронная почта (для обратной связи)', 
+    'fromUserSubject' => 'Тема', 
+    'fromUserText' => 'Как мы можем Вам помочь?', 
+    'fromUserTextPlaceholder' => 'Опишите Вашу проблему/предложение', 
+    'fromUserSubmit' => 'Отправить сообщение', 
 
 ];

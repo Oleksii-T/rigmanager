@@ -336,7 +336,7 @@
             });
 
             //Validate the form
-            $('.post-formm').validate({
+            $('.post-form').validate({
                 rules: {
                     title: {
                         required: true,

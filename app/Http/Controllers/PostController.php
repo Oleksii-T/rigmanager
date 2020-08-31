@@ -204,7 +204,8 @@ class PostController extends Controller
         return false;
     }
 
-    public function getContacts($postId) {
+    public function getContacts($postId) 
+    {
         $post = Post::findOrFail($postId);
         $contacts['email'] = $post->user_email;
         $contacts['phone'] = $post->user_phone_intern;
@@ -214,7 +215,8 @@ class PostController extends Controller
         return json_encode($contacts);
     }
 
-    public function getImages($postId) {
+    public function getImages($postId) 
+    {
         $post = Post::findOrFail($postId);
         if ($post->user == auth()->user()) {
             if ( $post->images->isNotEmpty() ) {

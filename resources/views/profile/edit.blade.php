@@ -7,7 +7,7 @@
 
 @section('content')
     
-    <div id="profileContentWraper">
+    <div class="master-wraper">
         <div id="profileContent">
             <nav class="profileNavBar">
                 <ul>
