@@ -157,22 +157,9 @@
     overflow: hidden;
 }
 
-#dropDown a:hover { background-color: rgb(149, 149, 149, 0.7); }
-
-#searchBtns .arrow{
-    display: inline-block;
-    border: 2px solid #f1f1f1;
-    border-left: none;
-    border-bottom: none;
-    width: 9px;
-    height: 9px;
-    margin-left: 5px;
-    margin-bottom: 0.2em;
+#dropDown a:hover { 
+    background-color: rgb(149, 149, 149, 0.7); 
 }
-
-#searchBtns .arrowDown { transform: rotateZ(135deg); }
-
-#searchBtns .arrowRight { transform: rotateZ(45deg); }
 
 td>li:hover .secondLevel,
 .secondLevel>li:hover>.thirdLevel,

@@ -53,25 +53,6 @@ div.help {
     overflow: hidden;
 }
 
-span.arrow {
-    display: inline-block;
-    border: 2px solid #f1f1f1;
-    border-left: none;
-    border-bottom: none;
-    width: 9px;
-    height: 9px;
-    margin-left: 5px;
-    margin-bottom: 0.2em;
-}
-
-span.arrow {
-    transform: rotateZ(135deg); 
-}
-
-span.arrowRight { 
-    transform: rotateZ(45deg); 
-}
-
 label.error, div.error {
     margin-left: 10px;
 }
@@ -237,42 +218,6 @@ label.error, div.error {
 #inputCost { 
     width: 30%; 
 }    
-
-.region-wraper,
-.currency-wraper {
-    position: relative;
-    display: inline-block;
-}
-
-.region-select,
-.currency-select {
-    background-color: rgb(149, 149, 149, 0.7);
-    padding: 7px 20px 7px 5px;
-    border: none;
-    -webkit-appearance: button;
-    appearance: button;
-    outline: none;
-    border-radius: 0px;
-    transition: 0.2s;
-}
-
-.region-select:hover,
-.currency-select:hover {
-    background-color: rgb(149, 149, 149, 0.8);
-}
-
-.region-select:active,
-.currency-select:hover {
-    background-color: rgb(149, 149, 149, 0.9);
-}
-
-.region-wraper .arrow,
-.currency-wraper .arrow {
-    position: absolute;
-    top: 10px;
-    right: 8px;
-    z-index: 10;
-}
 
 #townField {
     margin-left: 10px;

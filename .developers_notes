@@ -4,8 +4,6 @@
 
 MAKE: LOGO
 
-CODE: make filters
-
 MOVE: move hosting server to VPS server
 
 CODE: make company registration and all features
@@ -75,10 +73,22 @@ CODE: add rigmanager Logo to Mailer notification
 
 TEST: test errors about img
 
-BUG when serching 'other' tag on search result search bar is bugged
+BUG: post creation, proglen with js validation of phone
+
+BUG: if enters cost 700500.10
+
+CODE: implement chron task for exchange rate updates
+
+CODE: make pagionation for filtering and sorting
+
+BUG: with filtering/sorting of search by text
 
 
 =======OPTIONAL======
+
+CODE: add filters on profile/posts page
+
+CODE: add posibility to deactivate posts
 
 CODE: make profile img fully fit the circle
 
@@ -108,6 +118,7 @@ CODE: increase maximum number of tags to choose for post
 
 =======DONE======
 
+BUG when serching 'other' tag on search result search bar is bugged
 BUG: erorr classes which appended to input, rewrite my def style classes
 CODE: add hover and active effect of serch result tags btn
 CODE: add loadign effect of delete btn on profile/posts

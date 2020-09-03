@@ -13,7 +13,7 @@
             <div id="inputWraper">
                 <img id="searchIcon" src="{{ asset('icons/searchIcon.svg') }}" alt="{{__('alt.keyword')}}">
                 <button id="search-bar-clear-btn" type="button"><img src="{{ asset('icons/clearIcon.svg') }}" alt="{{__('alt.keyword')}}"></button>
-                <input id="inputSearch" class="def-input" name="searchStrings" value="{{ Session::get('searchText') }}" placeholder="{{__('ui.search')}}..." required />
+                <input id="inputSearch" class="def-input" name="searchStrings" value="{{$search['type']=='text' ? $search['value'] : ''}}" placeholder="{{__('ui.search')}}..." required />
             </div>
             <button class="def-button" type="submit">{{__('ui.search')}}</button>
         </form>
@@ -144,46 +144,145 @@
 
     <!-- Search result status show -->
     <div id="search-status">
-        @if ( Session::has('searchText') )
-            <div id="mailer-suggestion">
-                <button id="addTextToMailer" class="{{ Session::get('searchText') }}">{{__('ui.mailerSuggestText')}}</button>
+        @if ( $search['type'] == 'text' )
+            <div class="mailer-suggestion">
+                <p class="user-text-request" hidden>{{$search['value']}}</p>
+                <button id="addTextToMailer">{{__('ui.mailerSuggestText')}}</button>
                 <a id="whatIsMailerHelp" href="{{route('faq')}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
                 <div class="algolia-logo">
                     <img src="{{asset('icons/algoliaIcon.svg')}}" alt="{{__('alt.keyword')}}">
                 </div>
             </div>
-        @elseif ( Session::has('searchTags') )
-            <div id="searchTags">    
-                @foreach (Session::get('searchTags') as $id => $tag)
+        @elseif ( $search['type'] == 'tags' )
+            <div id="searchTags">
+                @foreach ($search['value'] as $id => $tag)
                     <a class="itemTag" href="{{ route('search.tag', $id) }}">{{$tag}}</a> 
                     <span>></span>
                 @endforeach
             </div>
-            <div id="mailer-suggestion">
-                <button id="addTagToMailer" class="{{array_key_last(Session::get('searchTags'))}}">{{__('ui.mailerSuggestTag')}}</button>
+            <div class="mailer-suggestion mailer-tag-suggestion">
+                <button id="addTagToMailer" class="{{array_key_last($search['value'])}}">{{__('ui.mailerSuggestTag')}}</button>
                 <a id="whatIsMailerHelp" href="{{route('faq')}}#WhatIsMailer">({{__('ui.whatIsMailer')}})</a>
             </div>
-        @elseif ( Session::has('searchAuthorName') )
+        @elseif ( $search['type'] == 'author' )
             <div id="searchAuthor">
-                <p>{{__('ui.searchByAuthor')}} <span>{{Session::get('searchAuthorName')}}</span>:</p>
+                <p>{{__('ui.searchByAuthor')}} <span>{{$search['value']['name']}}</span>:</p>
             </div>
-            <div id="mailer-suggestion">
-                <button id="addAuthorToMailer" class="{{Session::get('searchAuthorId')}}">{{__('ui.mailerSuggestAuthor')}}</button>
+            <div class="mailer-suggestion">
+                <button id="addAuthorToMailer" class="{{$search['value']['id']}}">{{__('ui.mailerSuggestAuthor')}}</button>
                 <a id="whatIsMailerHelp"href="{{route('faq')}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
             </div>   
         @endif
-        <h1 id="searchStatus">{{Session::get('searchStatus')}}</h1>
+        @if ($search['isEmpty'])
+            <div class="empty-search-wraper">
+                <img class="empty-search-icon fail-icon" src="{{asset('icons/failIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                <p class="empty-search-text">{{__('ui.searchFail')}}</p>
+            </div>
+        @else
+            <div class="filters">
+                <h2 class="filters-heading">{{__('ui.filters')}}:</h2>
+
+                <div class="filter filter-cost">
+                    <span class="filter-name">{{__('ui.cost')}}:</span>
+                    <div class="filter-input">
+                        <input class="def-input input-cost cost-from-input" name="costFrom" type="number" placeholder="{{__('ui.from')}}">
+                        <span class="cost-delimeter">-</span>
+                        <input class="def-input input-cost cost-to-input" name="costTo" type="number" placeholder="{{__('ui.to')}}">
+                        <div class="def-select-wraper">
+                            <select class="def-select currency-select" id="inputCurrency" name="currency">
+                                <option value="UAH">{{__('ui.grivna')}}</option>
+                                <option value="USD">{{__('ui.dollar')}}</option>
+                            </select>
+                            <span class="arrow arrowDown"></span>
+                        </div>
+                    </div>
+                    <span class="filters-delimeter">,</span>
+                </div>
+
+                <div class="filter filter-condition">
+                    <span class="filter-name">{{__('ui.condition')}}:</span>
+                    <div class="filter-input">
+                        <div class="def-select-wraper">
+                            <select class="def-select condition-select" name="condition">
+                                <option value="1">{{__('ui.notSpecified')}}</option>
+                                <option value="2">{{__('ui.conditionNew')}}</option>
+                                <option value="3">{{__('ui.conditionSH')}}</option>
+                                <option value="4">{{__('ui.conditionForParts')}}</option>
+                            </select>
+                            <span class="arrow arrowDown"></span>
+                        </div>
+                    </div>
+                    <span class="filters-delimeter">,</span>
+                </div>
+
+                <div class="filter filter-authorRole">
+                    <span class="filter-name">{{__('ui.authorRole')}}:</span>
+                    <div class="filter-input">
+                        <div class="def-select-wraper">
+                            <select class="def-select author-role-select" name="authorRole">
+                                <option value="1">{{__('ui.notSpecified')}}</option>
+                                <option value="2">{{__('ui.private')}}</option>
+                                <option value="3">{{__('ui.business')}}</option>
+                            </select>
+                            <span class="arrow arrowDown"></span>
+                        </div>
+                    </div>
+                    <span class="filters-delimeter">,</span>
+                </div>
+
+                <div class="filter region-filter">
+                    <span class="filter-name">{{__('ui.region')}}:</span>
+                    <div class="filter-input">
+                        <div class="def-select-wraper">
+                            <x-region-select locale='{{app()->getLocale()}}'/>
+                            <span class="arrow arrowDown"></span>
+                        </div>
+                    </div>
+                    <span class="filters-delimeter">,</span>
+                </div>
+
+                <div class="filter filter-sorting">
+                    <span class="filter-name">{{__('ui.sort')}}:</span>
+                    <div class="filter-input">
+                        <div class="def-select-wraper">
+                            <select class="def-select sort-select" name="sort">
+                                <option value="1">{{__('ui.notSpecified')}}</option>
+                                <option value="2">{{__('ui.sortNew')}}</option>
+                                <option value="3">{{__('ui.sortCheap')}}</option>
+                                <option value="4">{{__('ui.sortExpensive')}}</option>
+                            </select>
+                            <span class="arrow arrowDown"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-settings"></div>
+        @endif
     </div>
 
-    <!-- Search fileters show -->
-    @if ($posts_list->total() != 0)
-        <div id="filters">
-            <!-- TO DO -->
-        </div>
-    @endif  
+    <!-- DELETE -->
+    <form method="POST" action="{{route('post.filter')}}" hidden>
+        @csrf
+        <input class="def-input" style="width: 30%" type="text" name="filters" value='{"currency":"USD","costFrom":"140000","sort":"2","condition":"1"}'>
+        <input class="def-input" style="width: 30%" type="text" name="postsIds" value="{{$postsIds}}">
+        <button class="def-button">example</button>
+    </form >
 
     <!-- Search result posts -->
-    <x-items :posts="$posts_list" button='addToFav' />
+    <div id="searched-items">
+        <div class="posts-amount">
+            <p class="posts-amount-text">{{__('ui.searchAmount')}}: <span class="posts-amount-text">{{$postsAmount}}</span></p>
+        </div>
+        <div class="loading-gif hidden">
+            <img src="{{asset('icons/loadingIcon.svg')}}" alt="">
+        </div>
+        <div class="empty-search-wraper hidden">
+            <img class="empty-search-icon fail-icon" src="{{asset('icons/failIcon.svg')}}" alt="{{__('alt.keyword')}}">
+            <p class="empty-search-text">{{__('ui.searchFail')}}</p>
+        </div>
+        <x-items :posts="$posts_list" button='addToFav' />
+    </div>
     
     <!-- Pagination -->
     <div class="pagination-field">
@@ -195,6 +294,261 @@
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function(){
+
+            var filters = new Object();
+            filters.currency = 'UAH';
+
+            function filter(f) {
+                $('.pagination-field').empty();
+                // make loading gif
+                filterLable(f);
+                $('#items').addClass('hidden');
+                $('div.loading-gif').removeClass('hidden');
+                $('.empty-search-wraper').addClass('hidden');
+                // TODO
+                console.log('send reqeust with base items: ' + "{{$postsIds}}");
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('post.filter')}}",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        filters: JSON.stringify(f),
+                        postsIds: "{{$postsIds}}"
+                    },
+                    success: function(data) {
+                        if (data) {
+                            $('#items').remove();
+                            $('#searched-items').append(data);
+                            $('div.posts-amount span').text( $('.item').length );
+                        } else {
+                            $('#items').remove();
+                            $('.empty-search-wraper').removeClass('hidden');
+                        }
+                        $('div.loading-gif').addClass('hidden');
+                    },
+                    error: function() {
+                        //print error massage and remove wait cursor
+                        $('div.loading-gif').addClass('hidden');
+                        $('#items').removeClass('hidden');
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
+                    }
+                });
+            }
+
+            $('.user-settings').on("mouseenter", "button.remove-setting", function(){
+                $(this).parent().addClass('hover-lable');
+            });
+
+            $('.user-settings').on("mouseleave", "button.remove-setting", function(){
+                $(this).parent().removeClass('hover-lable');
+            });
+
+            $('.user-settings').on("click", "button.remove-setting", function(){
+                filterName = $(this).attr('class').split(' ')[0];
+                if (filterName=='currency') {
+                    return;
+                }
+                // rechoose def value of select
+                else if (filterName=='costFrom' || filterName=='costTo') {
+                    $('input[name='+filterName+']').val('');
+                }else if (filterName=='condition' || filterName=='authorRole' || filterName=='sort') {
+                    $('select[name='+filterName+']').val('1');
+                }else if (filterName=='region') {
+                    $('select.region-select').val('0');
+                }
+                delete filters[filterName];
+                filter(filters);
+                $(this).remove();
+            });
+
+            function filterLable(filters) {
+                $('.user-settings').empty();
+                var label = '';
+                for (filterName in filters) {   
+                    if ( filterName=='currency' ) {
+                        if (!filters.costFrom && !filters.costTo) {
+                            continue;
+                        } else {
+                            label = filters[filterName];
+                        }
+                    } else if (filterName=='costFrom') {
+                        label = '> ' + filters[filterName];
+                    } else if (filterName=='costTo') {
+                        label = '< ' + filters[filterName];
+                    } else if (filterName=='condition') {
+                        if (filters[filterName]==1) {
+                            continue;
+                        }
+                        label = conditionReadable(filters[filterName]);
+                    } else if (filterName=='authorRole') {
+                        if (filters[filterName]==1) {
+                            continue;
+                        }
+                        label = typeReadable(filters[filterName]);
+                    } else if (filterName=='region') {
+                        if (filters[filterName]==0) {
+                            continue;
+                        }
+                        label = regionReadable(filters[filterName]);
+                    } else if (filterName=='sort') {
+                        if (filters[filterName]==1) {
+                            continue;
+                        }
+                        label = sortReadable(filters[filterName]);
+                    }
+                    $('.user-settings').append('<div class="user-setting"><span class="setting-name">'+label+'</span><button class="'+filterName+' remove-setting" title="{{__("ui.delete")}}"><img src="{{asset("icons/closeWhiteIcon.svg")}}" alt="{{__("alt.keyword")}}"></button></div>');
+                }
+            }
+
+            function conditionReadable(value) {
+                switch (value) {
+                    case '2':
+                        return "{{__('ui.conditionNew')}}";
+                    case '3':
+                        return "{{__('ui.conditionSH')}}";
+                    case '4':
+                        return "{{__('ui.conditionForParts')}}";
+                    default:
+                        break;
+                }
+            }
+
+            function typeReadable(value) {
+                switch (value) {
+                    case '2':
+                        return "{{__('ui.private')}}";
+                    case '3':
+                        return "{{__('ui.business')}}";
+                    default:
+                        break;
+                }
+            }
+
+            function sortReadable(value) {
+                switch (value) {
+                    case '2':
+                        return "{{__('ui.sortNew')}}";
+                    case '3':
+                        return "{{__('ui.sortCheap')}}";
+                    case '4':
+                        return "{{__('ui.sortExpensive')}}";
+                    default:
+                        break;
+                }
+            }
+
+            function regionReadable(value) {
+                switch (value) {
+                    case '1':
+                        return "{{__('ui.regionCrimea')}}";
+                    case '2':
+                        return "{{__('ui.regionVinnytsia')}}";
+                    case '3':
+                        return "{{__('ui.regionVolyn')}}";
+                    case '4':
+                        return "{{__('ui.regionDnipropetrovsk')}}";
+                    case '5':
+                        return "{{__('ui.regionDonetsk')}}";
+                    case '6':
+                        return "{{__('ui.regionZhytomyr')}}";
+                    case '7':
+                        return "{{__('ui.regionCarpathian')}}";
+                    case '8':
+                        return "{{__('ui.regionZaporozhye')}}";
+                    case '9':
+                        return "{{__('ui.regionIvano-Frankivsk')}}";
+                    case '10':
+                        return "{{__('ui.regionKiev')}}";
+                    case '11':
+                        return "{{__('ui.regionKirovograd')}}";
+                    case '12':
+                        return "{{__('ui.regionLuhansk')}}";
+                    case '13':
+                        return "{{__('ui.regionLviv')}}";
+                    case '14':
+                        return "{{__('ui.regionMykolaiv')}}";
+                    case '15':
+                        return "{{__('ui.regionOdessa')}}";
+                    case '16':
+                        return "{{__('ui.regionPoltava')}}";
+                    case '17':
+                        return "{{__('ui.regionRivne')}}";
+                    case '18':
+                        return "{{__('ui.regionSumy')}}";
+                    case '19':
+                        return "{{__('ui.regionTernopil')}}";
+                    case '20':
+                        return "{{__('ui.regionKharkiv')}}";
+                    case '21':
+                        return "{{__('ui.regionKherson')}}";
+                    case '22':
+                        return "{{__('ui.regionKhmelnytsky')}}";
+                    case '23':
+                        return "{{__('ui.regionCherkasy')}}";
+                    case '24':
+                        return "{{__('ui.regionChernivtsi')}}";
+                    case '25':
+                        return "{{__('ui.regionChernihiv')}}";
+                    default:
+                        break;
+                }
+            }
+
+            // user uses costFrom filter
+            $('.cost-from-input').focusout(function(){
+                var newVal = $(this).val();
+                // edit filters array
+                newVal=="" ? delete filters.costFrom : filters.costFrom=newVal;
+                filter(filters);
+            });
+
+            // user uses costTo filter
+            $('.cost-to-input').focusout(function(){
+                var newVal = $(this).val();
+                // edit filters array
+                newVal=="" ? delete filters.costTo : filters.costTo=newVal;
+                filter(filters);
+            });
+
+            // user uses currency filter
+            $('.currency-select').change(function(){
+                var newVal = $(this).children('option:selected').val();
+                // edit filters array
+                filters.currency = newVal;
+                filter(filters);
+            });
+
+            // user uses condition filter
+            $('.condition-select').change(function(){
+                var newVal = $(this).children('option:selected').val();
+                // edit filters array
+                newVal==1 ? delete filters.condition : filters.condition=newVal;
+                filter(filters);
+            });
+
+            // user uses author role filter
+            $('.author-role-select').change(function(){
+                var newVal = $(this).children('option:selected').val();
+                // edit filters array
+                newVal==1 ? delete filters.authorRole : filters.authorRole=newVal;
+                filter(filters);
+            });
+
+            // user uses region filter
+            $('.region-select').change(function(){
+                var newVal = $(this).children('option:selected').val();
+                // edit filters array
+                newVal==0 ? delete filters.region : filters.region=newVal;
+                filter(filters);
+            });
+
+            // user uses sorting filter
+            $('.sort-select').change(function(){
+                var newVal = $(this).children('option:selected').val();
+                // edit filters array
+                newVal==1 ? delete filters.sort : filters.sort=newVal;
+                filter(filters);
+            });
 
             //get digit from classes of DOM element (depends on prefix)
             function getIdFromClasses(classes, prefix) {
@@ -223,7 +577,7 @@
 
             // user adds text to Mailer
             $('#addTextToMailer').click(function() {
-                var searchString = $(this).attr('class');
+                var searchString = $('p.user-text-request').text();
                 // Add wait cursor
                 var button = $(this);
                 button.addClass('loading'); 

@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+    //TESTING PURPOSES ONLY
+    Route::POST('example', 'HomeController@example')->name('example');
+
 // general auth routes
 Auth::routes(['verify' => true]);
+
 // Laravel Socialite auth routes
 Route::get('login/{social}', 'Auth\LoginController@redirectToProvider')->name('login.social');
 Route::get('login/{social}/callback', 'Auth\LoginController@handleProviderCallback');
@@ -32,6 +36,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('posts/images/{post}', 'PostController@getImages')->name('get.images'); //Ajax reqeust
     Route::get('posts/store', 'PostController@storeFake')->name('posts.store.fake');
     Route::resource('posts', 'PostController')->except(['index']);
+    
+    // post filters routes
+    Route::post('posts/filter', 'FiltersController@filter')->name('post.filter');
+
     
     // prifile/user routes
     Route::get('profile/edit', 'UserController@edit')->name('profile.edit');

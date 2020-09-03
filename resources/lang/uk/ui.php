@@ -118,7 +118,19 @@ return [
     'searchByAuthor' => 'Оголошення автора',
     'other' => 'Інше',
     'searchSuccess' => 'Ось що нам вдалося знайти',
-    'searchFail' => 'На жаль, нам не вдалося знайти оголошення за Вашим запитом',
+    'searchFail' => 'На жаль, нам не вдалося знайти 
+        оголошення за Вашим запитом',
+    'filters' => 'Фільтри',
+    'from' => 'Від',
+    'to' => 'До',
+    'sort' => 'Сортування',
+    'authorRole' => 'Тип оголошення',
+    'sortNew' => 'Найновіші',
+    'sortCheap' => 'Найдешевші',
+    'sortExpensive' => 'Найдорожчі',
+    'private' => 'Приватний',
+    'business' => 'Бізнес',
+    'searchAmount' => 'Результати Пошуку',
 
    // post edit/create massages
     'addPost' => 'Додати оголошення',
@@ -149,7 +161,7 @@ return [
     'locationRegion' => 'Місце знаходження товару (область)',
     'locationTown' => 'Місце знаходження товару (точніше)',
     'location' => 'Місце знаходження товару',
-    'province' => 'Область',
+    'region' => 'Область',
     'town' => 'Місто / СМТ / Склад / Майданчик',
     'costLocationHelp' => 'Не обов\'язково.',
     'email' => 'Електронна пошта',
@@ -195,7 +207,7 @@ return [
    'footerCopyright' => 'Всі права захищені.',
    'footerIconsRef' => 'Всі іконки надані',
    'footerSubscription' => 'Підписки',
-   'footerContact' => 'зв\'язатися з нами',
+   'footerContact' => 'Зв\'язатися з нами',
    'footerTerms' => 'Угода 
    користувача ',
    'footerPrivacy' => 'Політика

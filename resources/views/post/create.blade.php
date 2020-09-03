@@ -54,8 +54,8 @@
 @section('input-cost')
     <input class="def-input input-cost" id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') }}"/>
     
-    <div class="currency-wraper">
-        <select class="currency-select" id="inputCurrency" name="currency">
+    <div class="def-select-wraper">
+        <select class="def-select" id="inputCurrency" name="currency">
             <option value="UAH">{{__('ui.grivna')}}</option>
             <option value="USD">{{__('ui.dollar')}}</option>
         </select>

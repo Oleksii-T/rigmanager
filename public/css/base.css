@@ -228,6 +228,56 @@ input.error, textarea.error {
     background-color: rgb(149, 149, 149, 0.9); 
 }
 
+.def-select-wraper {
+    position: relative;
+    display: inline-block;
+}
+
+.def-select {
+    background-color: rgb(149, 149, 149, 0.7);
+    padding: 7px 20px 7px 5px;
+    border: none;
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+    border-radius: 0px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.def-select:hover {
+    background-color: rgb(149, 149, 149, 0.8);
+}
+
+.def-select:active{
+    background-color: rgb(149, 149, 149, 0.9);
+}
+
+.def-select-wraper .arrow{
+    position: absolute;
+    top: 10px;
+    right: 8px;
+    z-index: 10;
+}
+
+span.arrow {
+    display: inline-block;
+    border: 2px solid #f1f1f1;
+    border-left: none;
+    border-bottom: none;
+    width: 9px;
+    height: 9px;
+    margin-left: 5px;
+    margin-bottom: 0.2em;
+}
+
+span.arrowDown {
+    transform: rotateZ(135deg); 
+}
+
+span.arrowRight { 
+    transform: rotateZ(45deg); 
+}
 
 /*=V============V======V====HEADER====V======V============V=*/
 

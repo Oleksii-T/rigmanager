@@ -1,4 +1,4 @@
-<select class="region-select" name="region_encoded" id="inputProvince">
+<select class="def-select region-select" name="region_encoded">
     <option class="region-option" value="0" >{{__('ui.notSpecified')}}</option>
     <option class="region-option" value="1" {{$defValue==1 ? 'selected' : ''}}>{{__('ui.regionCrimea')}}</option>
     <option class="region-option" value="7" {{$defValue==7 ? 'selected' : ''}}>{{__('ui.regionCarpathian')}}</option>

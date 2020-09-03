@@ -13,6 +13,28 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         
+        factory(App\Post::class, 1000)->create();
+
+        DB::table('usd_exchanges')->insert([
+            'id' => 1,
+            'currency' => 'UAH',
+            'buy' => '0',
+            'sell' => '0',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        DB::table('usd_exchanges')->insert([
+            'id' => 2,
+            'currency' => 'EUR',
+            'buy' => '0',
+            'sell' => '0',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        \App\Http\Controllers\UsdExchangeController::update();
+
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'Administrator',

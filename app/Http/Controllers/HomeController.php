@@ -7,6 +7,7 @@ use App\Http\Requests\ContactUsRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\fromUserNotification;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -32,6 +33,18 @@ class HomeController extends Controller
         return view('home.home', compact('posts_list'));
     }
 
+    public function example(Request $request)
+    {
+        $posts = json_decode($request->foo);
+        $condition = $request->condition;
+        var_dump('filtering by condition ['.$condition.']');
+        $posts = collect(collect($posts)['data']);
+        $filtered = $posts->filter(function($post, $key) use ($condition){
+            return $post->condition == $condition;
+        });
+        dd($filtered);
+    }
+
     public function faq()
     {
         return view('home.faq');
@@ -49,8 +62,7 @@ class HomeController extends Controller
 
     public function contactUs(ContactUsRequest $request)
     {
-        $user = auth()->user();
-        Mail::to(env("MAIL_TO_ADDRESS"))->send(new fromUserNotification($request->name, $request->subject, $request->text, $request->email, $user)); //send mail notification to user
+        Mail::to(env("MAIL_TO_ADDRESS"))->send(new fromUserNotification($request->name, $request->subject, $request->text, $request->email, auth()->user()));
         Session::flash('message-success', __('messages.messageSent'));
         return redirect(route('home'));
     }

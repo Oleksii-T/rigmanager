@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Laravel\Scout\Searchable;
 use App\Favourite;
 use App\Http\Controllers\Traits\Tags;
+use App\Utilities\FilterBuilder;
 
 class Post extends Model
 {
@@ -28,7 +29,7 @@ class Post extends Model
      */
     public function toSearchableArray()
     {
-        $array = $this->only('title', 'description', 'region', 'town');
+        $array = $this->only('title', 'description', 'town');
         return $array;
     }
 
@@ -222,6 +223,14 @@ class Post extends Model
     public function getTagMapAttribute()
     {
         return $this->getTagMap($this->tag_encoded);
+    }
+
+    public function scopeFilterBy($query, $filters)
+    {
+        $namespace = 'App\Utilities\PostFilters';
+        $filter = new FilterBuilder($query, $filters, $namespace);
+
+        return $filter->apply();
     }
 
 }

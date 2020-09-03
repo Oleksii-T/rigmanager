@@ -149,7 +149,7 @@
 
                 <div id="regionField">
                     <h3 class="elementHeading">{{__('ui.locationRegion')}}</h3>
-                    <div class="region-wraper">
+                    <div class="def-select-wraper">
                         @yield('input-region')
                         <span class="arrow arrowDown"></span>
                     </div>
