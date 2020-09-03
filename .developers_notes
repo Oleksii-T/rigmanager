@@ -284,10 +284,10 @@ Sitemap generator
     composer require spatie/laravel-sitemap
 
 crone record for regeneration of sitemap every day
-    0 0 * * * cd /home/rmhoste/rigmanager.com.ua/www/ && php artisan sitemap:generate >> /dev/null 2>&1
+    * * * * * cd /home/rmhoste/rigmanager.com.ua/www/ && php artisan sitemap:generate >> /home/rmhoste/rigmanager.com.ua/cronjobs.log
 
 crone record for updating the exchange rates every day
-    0 0 * * * cd /home/rmhoste/rigmanager.com.ua/www/ && php artisan rates:update >> /dev/null 2>&1
+    0 0 * * * rmhoste cd /home/rmhoste/rigmanager.com.ua/www/ && php artisan rates:update >> /dev/null 2>&1
     
 
 =======MISC_NOTES===========

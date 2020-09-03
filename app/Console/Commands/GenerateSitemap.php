@@ -40,5 +40,8 @@ class GenerateSitemap extends Command
     {
         SitemapGenerator::create(env('APP_URL'))
             ->writeToFile(public_path('sitemap.xml'));
+        $log = '[' . \Carbon\Carbon::now() . '] Site map generated successfully.
+';
+        echo ($log);
     }
 }
