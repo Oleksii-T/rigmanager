@@ -15,12 +15,8 @@ class SearchController extends Controller
     public function searchText(Request $request) 
     {
         if ($request->searchStrings) {
-            dd( Post::search($request->searchStrings)->count() );
-            dd( Post::search($request->searchStrings)->paginate(900) );
             $posts_list = Post::search($request->searchStrings);
             $postsIds = json_encode($posts_list->get()->pluck('id'));
-            dd($posts_list->get());
-            //dd($postsIds);
             $posts_list = $posts_list->paginate(env('POSTS_PER_PAGE'));
             $postsAmount = $posts_list->total();
             $postsAmount == 0 

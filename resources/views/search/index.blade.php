@@ -305,8 +305,6 @@
                 $('#items').addClass('hidden');
                 $('div.loading-gif').removeClass('hidden');
                 $('.empty-search-wraper').addClass('hidden');
-                // TODO
-                console.log('send reqeust with base items: ' + "{{$postsIds}}");
                 $.ajax({
                     type: "POST",
                     url: "{{route('post.filter')}}",
