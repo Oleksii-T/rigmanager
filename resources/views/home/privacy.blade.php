@@ -218,7 +218,8 @@
         <div class="paragraph">
             <p>If you have any questions about this Privacy Policy, You can contact us:</p>
             <ul>
-                <li>By visiting this page on our website: <a href="http://rigmanager.test/contants" rel="external nofollow noopener" target="_blank">https://rigmanager.com.ua/privacy</a></li>
+                <li>By visiting this page on our website: <a href="{{route('contacts')}}" rel="external nofollow noopener" target="_blank">{{__('ui.footerContact')}}</a></li>
+            <li>By mailing us on: <a href="mailto:{{env('MAIL_TO_ADDRESS')}}">{{env('MAIL_TO_ADDRESS')}}</a></li>
             </ul>
         </div>
     </div>

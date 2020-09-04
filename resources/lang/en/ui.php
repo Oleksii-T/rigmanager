@@ -28,7 +28,7 @@ return [
 
     // auth massages
     'signIn' => 'Sign in',
-    'socialSignIn' => 'Sign in as user',
+    'socialSignIn' => 'Sign in via',
     'signOut' => 'Sign out',
     'signUp' => 'Sign up',
     'or' => 'Or',
@@ -213,6 +213,14 @@ return [
     Policy',
     'footerDevelop' => 'Delelopment',
     'footerSiteMap' => 'Site Map',
+    
+    // sitemap
+    'stMain' => 'Main',
+    'stPost' => 'Posts',
+    'stAuth' => 'Authentication',
+    'stProfile' => 'User',
+    'stMisc' => 'Details',
+    'siteMapDesc' => '',
 
     // Regions
     'regionOdessa' => 'Odessa region',

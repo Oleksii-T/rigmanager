@@ -28,8 +28,7 @@ return [
 
     // auth massages
     'signIn' => 'Войти',
-    'socialSignIn' => 'Войти как
-    пользователь',
+    'socialSignIn' => 'Войти через',
     'signOut' => 'Выйти',
     'signUp' => 'Регестрация',
     'or' => 'Или',
@@ -214,6 +213,14 @@ return [
     Конфиденциальности',
     'footerDevelop' => 'Разработка',
     'footerSiteMap' => 'Карта Сайта',
+
+    // sitemap
+    'stMain' => 'Главная',
+    'stPost' => 'Объявления',
+    'stAuth' => 'Аутентификация',
+    'stProfile' => 'Пользователь',
+    'stMisc' => 'Дополнительно/Детали',
+    'siteMapDesc' => '',
 
     // Regions
     'regionOdessa' => 'Одесская область',
