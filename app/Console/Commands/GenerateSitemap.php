@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
 
 class GenerateSitemap extends Command
 {
@@ -38,10 +40,83 @@ class GenerateSitemap extends Command
      */
     public function handle()
     {
-        SitemapGenerator::create(env('APP_URL'))
-            ->writeToFile(public_path('sitemap.xml'));
-        $log = '[' . \Carbon\Carbon::now() . '] Site map generated successfully.
+        try {
+            Sitemap::create()
+                ->add(Url::create('/')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/login')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/login/facebook')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/login/google')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/register')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/profile')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/profile/posts')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/profile/favourites')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/profile/mailer')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/profile/subscription')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/post/create')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/faq')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/plans')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/contact-us')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/terms')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/privacy')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->add(Url::create('/sitemap')
+                    ->setLastModificationDate(\Carbon\Carbon::now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.8))
+                ->writeToFile(public_path('sitemap.xml'));
+            $log = '[' . \Carbon\Carbon::now() . '] Site map generated successfully.
 ';
-        echo ($log);
+            echo ($log);
+        } catch (\Throwable $th) {
+            $log = '[' . \Carbon\Carbon::now() . '] Site map generation fails. Error message: ';
+            echo($log.$th->getMessage());
+        }
     }
 }

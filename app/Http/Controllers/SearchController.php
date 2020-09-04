@@ -26,7 +26,7 @@ class SearchController extends Controller
             $search['value'] = $request->searchStrings;
             return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount'));
         } else {
-            return redirect(route('home.home'));
+            return redirect(route('home'));
         }
     }
     

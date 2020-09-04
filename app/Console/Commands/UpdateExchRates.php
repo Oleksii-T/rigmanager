@@ -37,9 +37,14 @@ class UpdateExchRates extends Command
      */
     public function handle()
     {
-        \App\Http\Controllers\UsdExchangeController::update();
-        $log = '[' . \Carbon\Carbon::now() . '] Rates updated successfully.
+        try {
+            \App\Http\Controllers\UsdExchangeController::update();
+            $log = '[' . \Carbon\Carbon::now() . '] Rates updated successfully.
 ';
-        echo ($log);
+            echo ($log);
+        } catch (\Throwable $th) {
+            $log = '[' . \Carbon\Carbon::now() . '] Rates updating fails. Error message: ';
+            echo($log.$th->getMessage());
+        }
     }
 }
