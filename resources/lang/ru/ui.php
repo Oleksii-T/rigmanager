@@ -257,4 +257,9 @@ return [
     'fromUserTextPlaceholder' => 'Опишите Вашу проблему/предложение', 
     'fromUserSubmit' => 'Отправить сообщение', 
 
+    // server error
+    'serverErrorTittle' => 'Ой!',
+    'serverErrorDesc' => 'Похоже, на сервере произошла ошибка.',
+    'serverErrorContact' => 'Сообщить о проблеме',
+    'serverErrorGoBack' => 'Вернуться на предыдущую страницу',
 ];

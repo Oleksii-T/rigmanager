@@ -256,4 +256,10 @@ return [
    'fromUserText' => 'Як ми можемо Вам допомогти?', 
    'fromUserTextPlaceholder' => 'Опишіть Вашу проблему/пропозицію', 
    'fromUserSubmit' => 'Відправити повідомлення', 
+
+    // server error
+    'serverErrorTittle' => 'Ой!',
+    'serverErrorDesc' => 'Схоже, на сервері сталася помилка.',
+    'serverErrorContact' => 'Повідомити про проблему',
+    'serverErrorGoBack' => 'Повернутися на попередню сторінку',
 ];

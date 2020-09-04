@@ -256,4 +256,10 @@ return [
     'fromUserText' => 'How can we help You?', 
     'fromUserTextPlaceholder' => 'Describe your problem/offer/suggestion', 
     'fromUserSubmit' => 'Send message', 
+
+    // server error
+    'serverErrorTittle' => 'Oops!',
+    'serverErrorDesc' => 'Seems like you got a server error.',
+    'serverErrorContact' => 'Let us know about your issue',
+    'serverErrorGoBack' => 'Return to previous page',
 ];
