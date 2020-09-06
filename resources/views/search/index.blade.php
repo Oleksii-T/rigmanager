@@ -185,9 +185,9 @@
                 <div class="filter filter-cost">
                     <span class="filter-name">{{__('ui.cost')}}:</span>
                     <div class="filter-input">
-                        <input class="def-input input-cost cost-from-input" name="costFrom" type="number" placeholder="{{__('ui.from')}}">
+                        <input class="def-input input-cost cost-from-input" name="costFrom" type="text" placeholder="{{__('ui.from')}}">
                         <span class="cost-delimeter">-</span>
-                        <input class="def-input input-cost cost-to-input" name="costTo" type="number" placeholder="{{__('ui.to')}}">
+                        <input class="def-input input-cost cost-to-input" name="costTo" type="text" placeholder="{{__('ui.to')}}">
                         <div class="def-select-wraper">
                             <select class="def-select currency-select" id="inputCurrency" name="currency">
                                 <option value="UAH">{{__('ui.grivna')}}</option>
@@ -196,7 +196,16 @@
                             <span class="arrow arrowDown"></span>
                         </div>
                     </div>
-                    <span class="filters-delimeter">,</span>
+                </div>
+
+                <div class="filter region-filter">
+                    <span class="filter-name">{{__('ui.region')}}:</span>
+                    <div class="filter-input">
+                        <div class="def-select-wraper">
+                            <x-region-select locale='{{app()->getLocale()}}'/>
+                            <span class="arrow arrowDown"></span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="filter filter-condition">
@@ -212,7 +221,6 @@
                             <span class="arrow arrowDown"></span>
                         </div>
                     </div>
-                    <span class="filters-delimeter">,</span>
                 </div>
 
                 <div class="filter filter-authorRole">
@@ -227,18 +235,6 @@
                             <span class="arrow arrowDown"></span>
                         </div>
                     </div>
-                    <span class="filters-delimeter">,</span>
-                </div>
-
-                <div class="filter region-filter">
-                    <span class="filter-name">{{__('ui.region')}}:</span>
-                    <div class="filter-input">
-                        <div class="def-select-wraper">
-                            <x-region-select locale='{{app()->getLocale()}}'/>
-                            <span class="arrow arrowDown"></span>
-                        </div>
-                    </div>
-                    <span class="filters-delimeter">,</span>
                 </div>
 
                 <div class="filter filter-sorting">
@@ -267,7 +263,7 @@
         <input class="def-input" style="width: 30%" type="text" name="filters" value='{"currency":"USD","costFrom":"140000","sort":"2","condition":"1"}'>
         <input class="def-input" style="width: 30%" type="text" name="postsIds" value="{{$postsIds}}">
         <button class="def-button">example</button>
-    </form >
+    </form>
 
     <!-- Search result posts -->
     <div id="searched-items">
@@ -298,19 +294,20 @@
             var filters = new Object();
             filters.currency = 'UAH';
 
-            function filter(f) {
+            function filter() {
                 $('.pagination-field').empty();
                 // make loading gif
-                filterLable(f);
+                filterLable();
                 $('#items').addClass('hidden');
                 $('div.loading-gif').removeClass('hidden');
                 $('.empty-search-wraper').addClass('hidden');
+                console.log( filters );
                 $.ajax({
                     type: "POST",
                     url: "{{route('post.filter')}}",
                     data: {
                         _token: "{{ csrf_token() }}",
-                        filters: JSON.stringify(f),
+                        filters: JSON.stringify(filters),
                         postsIds: "{{$postsIds}}"
                     },
                     success: function(data) {
@@ -321,6 +318,7 @@
                         } else {
                             $('#items').remove();
                             $('.empty-search-wraper').removeClass('hidden');
+                            $('div.posts-amount span').text( 0 );
                         }
                         $('div.loading-gif').addClass('hidden');
                     },
@@ -355,11 +353,11 @@
                     $('select.region-select').val('0');
                 }
                 delete filters[filterName];
-                filter(filters);
+                filter();
                 $(this).remove();
             });
 
-            function filterLable(filters) {
+            function filterLable() {
                 $('.user-settings').empty();
                 var label = '';
                 for (filterName in filters) {   
@@ -370,9 +368,11 @@
                             label = filters[filterName];
                         }
                     } else if (filterName=='costFrom') {
-                        label = '> ' + filters[filterName];
+                        var currency = $('#inputCurrency').children('option:selected').val();
+                        label = "{{__('ui.from')}}" + ' ' + NumberToCurrency( currency, filters[filterName] );
                     } else if (filterName=='costTo') {
-                        label = '< ' + filters[filterName];
+                        var currency = $('#inputCurrency').children('option:selected').val();
+                        label = "{{__('ui.to')}}" + ' ' + NumberToCurrency( currency, filters[filterName] );
                     } else if (filterName=='condition') {
                         if (filters[filterName]==1) {
                             continue;
@@ -496,24 +496,96 @@
             $('.cost-from-input').focusout(function(){
                 var newVal = $(this).val();
                 // edit filters array
-                newVal=="" ? delete filters.costFrom : filters.costFrom=newVal;
-                filter(filters);
+                if (newVal){
+                    filters.costFrom = CurrencyToNumber(newVal);
+                    var currency = $('#inputCurrency').children('option:selected').val();
+                    newVal = NumberToCurrency( currency, $(this).val() );
+                    $(this).val(newVal);
+                } else {
+                    delete filters.costFrom;
+                }
+                filter();
             });
 
             // user uses costTo filter
             $('.cost-to-input').focusout(function(){
                 var newVal = $(this).val();
                 // edit filters array
-                newVal=="" ? delete filters.costTo : filters.costTo=newVal;
-                filter(filters);
+                if (newVal){
+                    filters.costTo = CurrencyToNumber(newVal);
+                    var currency = $('#inputCurrency').children('option:selected').val();
+                    newVal = NumberToCurrency( currency, $(this).val() );
+                    $(this).val(newVal);
+                } else {
+                    delete filters.costFrom;
+                }
+                filter();
             });
+
+            // remove currency format when user clicks on input
+            $('.cost-from-input, .cost-to-input').focusin(function(){
+                newVal = $(this).val()
+                    ? CurrencyToNumber($(this).val())
+                    : '';
+                $(this).val(newVal);
+            });
+
+            function CurrencyToNumber(str){
+                return str.replace(/[^0-9.]+/g,"");
+            }
+
+            function NumberToCurrency(currency, string) {
+                res = CurrencyToNumber(string);
+                if ( res.includes('.') ) {
+                    var firstDot = res.indexOf('.');
+                    var dots = (res.match(/\./g) || []).length;
+                    if ( dots != 1 ) {
+                        res = res.replace(/\./g,"");
+                        res = res.slice(0, firstDot) + '.' + res.slice(firstDot);
+                    }
+                    var coins = res.substring(firstDot);
+                    if ( coins.length > 3 ) {
+                        toCrop = coins.length - 3;
+                        res = res.substring(0, res.length-toCrop);
+                    } else if ( coins.length < 3 ) {
+                        // add coins
+                        toAdd = 3-coins.length;
+                        res = res+'0';
+                        if (toAdd == 2) {
+                            res = res+'0';
+                        }
+                    }
+                } else {
+                    res = res + ".00";
+                }
+                for (let i=res.length-4, step=1; i >= 0; i--,step++) {
+                    if (step == 4) {
+                        res = res.slice(0, i+1) + ',' + res.slice(i+1);
+                        step = 1;
+                    }
+                    
+                }
+                currency=='UAH' ? res='₴'+res : res='$'+res;
+                return res;
+            }
 
             // user uses currency filter
             $('.currency-select').change(function(){
                 var newVal = $(this).children('option:selected').val();
                 // edit filters array
                 filters.currency = newVal;
-                filter(filters);
+                //change currencu sign
+                oldFromCost = $(".cost-from-input").val();
+                oldToCost = $(".cost-to-input").val();
+                newCurrency = $(this).children('option:selected').val();
+                newCurrency = newCurrency=='UAH' ? '₴' : '$';
+                if (oldFromCost) {
+                    $(".cost-from-input").val( oldFromCost.replace(oldFromCost[0], newCurrency) );
+                }
+                if (oldToCost) {
+                    $(".cost-to-input").val( oldToCost.replace(oldToCost[0], newCurrency) );
+                }
+                filter();
             });
 
             // user uses condition filter
@@ -521,7 +593,7 @@
                 var newVal = $(this).children('option:selected').val();
                 // edit filters array
                 newVal==1 ? delete filters.condition : filters.condition=newVal;
-                filter(filters);
+                filter();
             });
 
             // user uses author role filter
@@ -529,7 +601,7 @@
                 var newVal = $(this).children('option:selected').val();
                 // edit filters array
                 newVal==1 ? delete filters.authorRole : filters.authorRole=newVal;
-                filter(filters);
+                filter();
             });
 
             // user uses region filter
@@ -537,7 +609,7 @@
                 var newVal = $(this).children('option:selected').val();
                 // edit filters array
                 newVal==0 ? delete filters.region : filters.region=newVal;
-                filter(filters);
+                filter();
             });
 
             // user uses sorting filter
@@ -545,7 +617,7 @@
                 var newVal = $(this).children('option:selected').val();
                 // edit filters array
                 newVal==1 ? delete filters.sort : filters.sort=newVal;
-                filter(filters);
+                filter();
             });
 
             //get digit from classes of DOM element (depends on prefix)

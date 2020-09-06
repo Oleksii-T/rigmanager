@@ -61,7 +61,7 @@
                     </tr>
 
                     <tr id="nameShow">
-                        <td class="nameOfField"><p>{{__('ui.userName')}}</p></td>
+                        <td class="nameOfField"><p>{{__('ui.userName')}}<span class="required-input">*</span></p></td>
                         <td class="valueOfField">
                             <input class="def-input" id="inputName" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                             <x-server-input-error errorName='name' inputName='inputName' errorClass='error'/>
@@ -98,7 +98,7 @@
                     </tr>
 
                     <tr id="emailShow">
-                        <td class="nameOfField"><p>{{__('ui.login')}}</p></td>
+                        <td class="nameOfField"><p>{{__('ui.login')}}<span class="required-input">*</span></p></td>
                         <td class="valueOfField">
                             <input class="def-input" id="inputEmail" type="email" name="email" value="{{ old('email') }}" required autocomplete="email">
                             <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
@@ -107,7 +107,7 @@
                     </tr>
 
                     <tr id="passShow">
-                        <td class="nameOfField"><p>{{__('ui.password')}}</p></td>
+                        <td class="nameOfField"><p>{{__('ui.password')}}<span class="required-input">*</span></p></td>
                         <td class="valueOfField">
                             <input class="def-input" id="inputPassword" type="password" name="password" required autocomplete="new-password">
                             <x-server-input-error errorName='password' inputName='inputPassword' errorClass='error'/>

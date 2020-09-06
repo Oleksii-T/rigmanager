@@ -12,7 +12,7 @@
         @yield('form')
 
             <div id="title" class="element">
-                <h3 class="elementHeading" for="inputTitle">{{__('ui.title')}}</h3>
+                <h3 class="elementHeading" for="inputTitle">{{__('ui.title')}}<span class="required-input">*</span></h3>
                 @yield('input-title')
                 <x-server-input-error errorName='title' inputName='inputTitle' errorClass='error'/>
                 <div class="title error error-dz hidden"></div>
@@ -116,7 +116,7 @@
             </div>
 
             <div id="desc" class="element">
-                <h3 class="elementHeading" for="inputDecs">{{__('ui.description')}}</h3>
+                <h3 class="elementHeading" for="inputDecs">{{__('ui.description')}}<span class="required-input">*</span></h3>
                 @yield('input-description')
                 <x-server-input-error errorName='description' inputName='inputDecs' errorClass='error'/>
                 <div class="description error error-dz hidden"></div>
@@ -166,14 +166,14 @@
             
             <div id="contact" class="element">
                 <div id="emailField">
-                    <h3 class="elementHeading" for="inputEmail">{{__('ui.email')}}</h3>
+                    <h3 class="elementHeading" for="inputEmail">{{__('ui.email')}}<span class="required-input">*</span></h3>
                     @yield('input-email')
                     <x-server-input-error errorName='user_email' inputName='inputEmail' errorClass='error'/>
                     <div class="user_email error error-dz hidden"></div>
                 </div>
-
+                
                 <div id="phoneField">
-                    <h3 class="elementHeading" id="phoneHeader" for="inputPhone">{{__('ui.phone')}}</h3>
+                    <h3 class="elementHeading" id="phoneHeader" for="inputPhone">{{__('ui.phone')}}<span class="required-input">*</span></h3>
                     <div class="phone-wraper">
                         <div class="phone-prefix">
                             <img class="country-flag" src="{{asset('icons/ukraineIcon.svg')}}" alt="{{__('alt.keyword')}}">
@@ -182,6 +182,9 @@
                         @yield('input-phone')
                     </div>
                     <x-server-input-error errorName='user_phone_raw' inputName='inputPhone' errorClass='error'/>
+                    <div class="user_phone_raw error error-man hidden">
+                        <p>{{__('validation.phoneLength')}}</p>
+                    </div>
                     <div class="user_phone_raw error error-dz hidden"></div>
                     <div class="mediaCheckBoxes">
                         <div>
@@ -359,8 +362,8 @@
                         maxlength: 254
                     },
                     user_phone_raw: {
-                        minlength: 15,
-                        maxlength: 15
+                        minlength: 16,
+                        maxlength: 16
                     }
                 },
                 messages: {
@@ -446,11 +449,10 @@
                 } else {
                     res = res + ".00";
                 }
-                var step = 1;
-                for (let i = res.length-4; i >= 0; i--,step++) {
-                    if (step == 3) {
-                        res = res.slice(0, i) + ',' + res.slice(i);
-                        step = 0;
+                for (let i=res.length-4, step=1; i >= 0; i--,step++) {
+                    if (step == 4) {
+                        res = res.slice(0, i+1) + ',' + res.slice(i+1);
+                        step = 1;
                     }
                     
                 }

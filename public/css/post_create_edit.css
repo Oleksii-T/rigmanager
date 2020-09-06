@@ -57,6 +57,10 @@ label.error, div.error {
     margin-left: 10px;
 }
 
+#inputPhone-error {
+    margin-left: 0px;
+}
+
 #navTags button:hover { 
     background-color: rgb(149, 149, 149, 0.8); 
 }

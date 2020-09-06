@@ -21,8 +21,6 @@
     <label for="conditionSH">{{__('ui.conditionSH')}}</label><br>
     <input type="radio" id="conditionForParts" name="condition" value="4" {{$post->condition==4 ? 'checked="checked"' : "" }}>
     <label for="conditionForParts">{{__('ui.conditionForParts')}}</label><br>
-    <input type="radio" id="other" name="condition" value="1"  {{$post->condition==1 ? 'checked="checked"' : "" }}>
-    <label for="other">{{__('ui.notSpecified')}}</label>
 @endsection
 
 @section('inputs-tag')
@@ -184,8 +182,8 @@
 
                     $("#form-submit").click(function (e) {
                         e.preventDefault();
-                        $('.error').empty();
-                        $('.error').addClass('hidden');
+                        $('.error-dz').empty();
+                        $('.error-dz').addClass('hidden');
                         $(this).addClass('loading');
                         if (thisDropzone.getQueuedFiles().length > 0) {
                             thisDropzone.processQueue();

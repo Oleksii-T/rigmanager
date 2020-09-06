@@ -79,7 +79,7 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 1,
             'title' => 'Вертлюг 6WC',
-            'condition' => 1,
+            'condition' => 2,
             'tag_encoded' => '2.12.3',
             'description' => 'Производитель:	Western Rubber
                 Страна происхождения:	СОЕДИНЕННЫЕ ШТАТЫ
