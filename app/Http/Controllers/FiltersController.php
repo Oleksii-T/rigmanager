@@ -71,12 +71,18 @@ class FiltersController extends Controller
         return $filtered;
     }
 
-    private function authorRole($posts, $role) {
-        return $posts;
-        //$filtered = $posts->filter(function($post, $key) use ($role) {
-            //return $post->user->role_encoded == $role;
-        //});
-        //return $filtered;
+    private function role($posts, $role) {
+        $filtered = $posts->filter(function($post, $key) use ($role) {
+            return $post->role == $role;
+        });
+        return $filtered;
+    }
+
+    private function type($posts, $type) {
+        $filtered = $posts->filter(function($post, $key) use ($type) {
+            return $post->type == $type;
+        });
+        return $filtered;
     }
 
     private function region($posts, $region) {

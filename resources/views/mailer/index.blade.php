@@ -61,6 +61,17 @@
                         @else
                             <p class="empty-value">{{__('ui.empty')}}</p>
                         @endif
+
+                        <h3 class="elementHeader">{{__('ui.postType')}}:</h3>
+                        @if ($mailer->types)
+                        <ul class="orderedList">
+                            @foreach ($mailer->types_map as $type)
+                                <li>{{$type}}</li>
+                            @endforeach
+                        </ul>
+                        @else
+                            <p class="empty-value">{{__('ui.empty')}}</p>
+                        @endif
                     </div>
 
                     <div class="mailerBtns">

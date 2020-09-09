@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Post;
 use Illuminate\Support\Facades\App;
-use App\Tags;
+use App\Http\Controllers\Traits\Tags;
 
 class MailerNotification extends Mailable
 {
@@ -54,6 +54,7 @@ class MailerNotification extends Mailable
         switch ($this->reason) {
             case 'tags':
                 $this->reason = __('ui.mailerNotifTags');
+                $this->reasonValue = $this->getTagReadable($this->reasonValue);
                 break;
             case 'author':
                 $this->reason = __('ui.mailerNotifAuthors');
@@ -62,6 +63,5 @@ class MailerNotification extends Mailable
                 $this->reason =  __('mailerNotifDescription');
                 break;
         }
-        $this->reasonValue = $this->getTagPathAsString($this->reasonValue);
     }
 }

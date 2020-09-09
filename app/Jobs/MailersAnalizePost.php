@@ -55,55 +55,55 @@ class MailersAnalizePost implements ShouldQueue
         $mailers = Mailer::all()->where('is_active', true); // Get all active Mailers
         // Iterate througth Mailers
         foreach($mailers as $mailer) {
-            // Skip posts if Mailer and post belong to same user
-            if ($mailer->user_id != $this->post->user_id) {
+            // Skip posts if Mailer and post belong to same user or if type of post is inapropriate
+            if ( $mailer->user_id != $this->post->user_id || array_key_exists($this->post->type, $mailer->types_map) ) {
                 // If keywords are configured in Mailer 
-                if ($mailer->keywords && $this->checkKeywords($mailer, $this->post) ) {
+                if ($mailer->keywords && $this->checkKeywords($mailer) ) {
                     continue;
                 }
                 // If authors are configured in Mailer 
-                if ($mailer->authors && $this->checkAuthors($mailer, $this->post) ) {
+                if ($mailer->authors_encoded && $this->checkAuthors($mailer) ) {
                     continue;
                 }
                 // If tags are configured in Mailer 
-                if ($mailer->tags && $this->ckeckTags($mailer, $this->post) ) {
+                if ($mailer->tags_encoded && $this->ckeckTags($mailer) ) {
                     continue;
                 }
             }
         }
     }
 
-    private function checkKeywords($mailer, $post) {
+    private function checkKeywords($mailer) {
         foreach ( explode("\n", $mailer->keywords) as $keywords) {
             $keywords = str_replace("\r", '', $keywords);
-            if ( mb_stristr($post->description, $keywords) ) {
-                Mail::to($mailer->user->email)->send(new MailerNotification($post, 'keywords', $keywords, $mailer->user->language)); //send mail notification to user
+            if ( mb_stristr($this->post->description, $keywords) ) {
+                Mail::to($mailer->user->email)->send(new MailerNotification($this->post, 'keywords', $keywords, $mailer->user->language)); //send mail notification to user
                 return true;
             }
         }
         return false;
     }
 
-    private function checkAuthors($mailer, $post) {
+    private function checkAuthors($mailer) {
         // Iterate througth each subscribed author in Mailer
-        foreach (explode(" ", $mailer->authors) as $author) {
-            if ($author == $post->user->id ) {
-                Mail::to($mailer->user->email)->send(new MailerNotification($post, 'author', $post->user->name, $mailer->user->language)); //send mail notification to user
+        foreach ($mailer->authors_encoded as $author) {
+            if ($author == $this->post->user->id ) {
+                Mail::to($mailer->user->email)->send(new MailerNotification($this->post, 'author', $this->post->user->name, $mailer->user->language)); //send mail notification to user
                 return true;
             }
         }
         return false;
     }
 
-    private function ckeckTags($mailer, $post) {
+    private function ckeckTags($mailer) {
         // Iterate througth each subscribed tag
-        foreach (explode(" ", $mailer->tags) as $tag) {
+        foreach ($mailer->tags_encoded as $tag) {
             $tagTMP = $tag;
             $tag = str_replace('.', '\.', $tag); // Escape dot in tags for regex
             $regex = "/^$tag(.[0-9]+)*$/"; // Create regex from tag
             // Check is tag of new post is comply with tag in Mailer
-            if ( preg_match($regex, $post->tag) ) {
-                Mail::to($mailer->user->email)->send(new MailerNotification($post, 'tags', $post->tag, $mailer->user->language)); //send mail notification to user
+            if ( preg_match($regex, $this->post->tag_encoded) ) {
+                Mail::to($mailer->user->email)->send(new MailerNotification($this->post, 'tags', $this->post->tag, $mailer->user->language)); //send mail notification to user
                 return true;
             }
         }

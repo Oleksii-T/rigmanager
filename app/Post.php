@@ -15,11 +15,15 @@ class Post extends Model
 {
     use Searchable, Tags;
 
-    protected $appends = ['tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable', 'user_phone_intern', 'region_readable'];
+    protected $appends = ['tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 
+        'user_phone_readable', 'user_phone_intern', 'region_readable', 'role_readable', 
+        'type_readable'
+    ];
 
     protected $fillable = [ //mass assigment
         'title', 'description', 'tag_encoded', 'condition', 'region_encoded', 'town', 'cost', 
-        'currency', 'user_email', 'user_phone_raw', 'viber', 'telegram', 'whatsapp'
+        'currency', 'user_email', 'user_phone_raw', 'viber', 'telegram', 'whatsapp', 'is_active', 
+        'type', 'role'
     ];
 
     /**
@@ -133,6 +137,37 @@ class Post extends Model
                 break;
             case '25':
                 return __('ui.regionChernihiv');
+                break;
+            default:
+                return __('ui.notSpecified');
+        }
+    }
+
+    public function getTypeReadableAttribute()
+    {
+        switch ($this->type) {
+            case '1':
+                return __('ui.postTypeSell');
+                break;
+            case '2':
+                return __('ui.postTypeBuy');
+                break;
+            case '3':
+                return __('ui.postTypeRent');
+                break;
+            default:
+                return __('ui.notSpecified');
+        }
+    }
+
+    public function getRoleReadableAttribute()
+    {
+        switch ($this->role) {
+            case '1':
+                return __('ui.postRolePrivate');
+                break;
+            case '2':
+                return __('ui.postRoleBusiness');
                 break;
             default:
                 return __('ui.notSpecified');

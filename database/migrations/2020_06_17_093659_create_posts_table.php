@@ -16,7 +16,10 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->boolean('is_active')->default(true);
             $table->string('title', 255);
+            $table->string('type', 2); // sell/buy/loan
+            $table->string('role', 2); // private/bussiness
             $table->integer('condition');
             $table->string('tag_encoded', 255);
             $table->text('description', 9000);

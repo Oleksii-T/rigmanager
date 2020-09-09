@@ -69,6 +69,71 @@ label.error, div.error {
     background-color: rgb(149, 149, 149, 0.7); 
 }
 
+/* The container */
+.radio-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin: 0px 0px 12px 10px;
+    cursor: pointer;
+    font-size: 110%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.radio-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radio-container:hover input ~ .radio-checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radio-container input:checked ~ .radio-checkmark {
+    background-color: #FE9042;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radio-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radio-container input:checked ~ .radio-checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radio-container .radio-checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+
 /*==================PAGE_TITLE==================*/
 
 #pageTitle {
@@ -220,7 +285,7 @@ label.error, div.error {
 }
 
 #inputCost { 
-    width: 30%; 
+    width: 25%; 
 }    
 
 #townField {
@@ -239,7 +304,7 @@ label.error, div.error {
 }
 
 #inputEmail { 
-    width: 30%; 
+    width: 35%; 
 }
 
 img.messengers-image { 
@@ -252,7 +317,7 @@ div.phone-wraper {
 }
 
 #inputPhone { 
-    width: 30%;
+    width: 25%;
     padding-left: 72px;
     margin-left: 0px;
 }

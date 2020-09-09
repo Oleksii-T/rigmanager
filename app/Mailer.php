@@ -11,18 +11,19 @@ class Mailer extends Model
     use Tags;
 
     protected $appends = [
-        'authors_readable', 'authors_map', 'authors_string', 'tags_readable', 'tags_map', 'tags_string'
+        'authors_readable', 'authors_map', 'authors_string', 'tags_readable', 'tags_map', 'tags_string', 'types_map'
     ];
 
     protected $fillable = [
-        'tags_encoded', 'keywords', 'authors_encoded', 'is_active'
+        'tags_encoded', 'keywords', 'authors_encoded', 'is_active', 'types'
     ];
 
     public function user() {
         return $this->belongsTo(User::class);
     }
 
-    public function setTagsEncodedAttribute($value) {
+    public function setTagsEncodedAttribute($value) 
+    {
         if (!$value) {
             $this->attributes['tags_encoded'] = null;
         }
@@ -39,7 +40,8 @@ class Mailer extends Model
         return json_decode($value);
     }
 
-    public function setAuthorsEncodedAttribute($value) {
+    public function setAuthorsEncodedAttribute($value) 
+    {
         if (!$value) {
             $this->attributes['authors_encoded'] = null;
         }
@@ -52,6 +54,11 @@ class Mailer extends Model
     }
 
     public function getAuthorsEncodedAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function getTypesAttribute($value)
     {
         return json_decode($value);
     }
@@ -81,7 +88,8 @@ class Mailer extends Model
         return $this->tags_encoded ? implode(' ', $this->tags_encoded) : null;
     }
 
-    public function getAuthorsReadableAttribute() {
+    public function getAuthorsReadableAttribute() 
+    {
         if (!$this->authors_encoded) {
             return null;
         }
@@ -92,7 +100,8 @@ class Mailer extends Model
         return $authors;
     }
 
-    public function getAuthorsMapAttribute() {
+    public function getAuthorsMapAttribute() 
+    {
         if (!$this->authors_encoded) {
             return null;
         }
@@ -100,6 +109,30 @@ class Mailer extends Model
             $authors[$author] = User::findOrfail($author)->name;
         }
         return $authors;
+    }
+
+    public function getTypesMapAttribute() 
+    {
+        if (!$this->types) {
+            return null;
+        }
+        foreach ($this->types as $type) {
+            switch ($type) {
+                case 1:
+                    $types[$type] = __('ui.postTypeSell');
+                    continue;
+                case 2:
+                    $types[$type] = __('ui.postTypeBuy');
+                    continue;
+                case 3:
+                    $types[$type] = __('ui.postTypeRent');
+                    continue;
+                default:
+                    break;
+            }
+            
+        }
+        return $types;
     }
 
     public function getAuthorsStringAttribute() {

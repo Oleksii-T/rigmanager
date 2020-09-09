@@ -13,13 +13,45 @@
     <input class="def-input" id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') }}"/>
 @endsection    
 
+@section('input-type')
+    <label class="radio-container" for="typeSell">{{__('ui.postTypeSell')}}
+        <input id="typeSell" type="radio" name="type" value="1" checked="checked">
+        <span class="radio-checkmark"></span>
+    </label>
+    <label class="radio-container" for="typeBuy">{{__('ui.postTypeBuy')}}
+        <input id="typeBuy" type="radio" name="type" value="2">
+        <span class="radio-checkmark"></span>
+    </label>
+    <label class="radio-container" for="typeRent">{{__('ui.postTypeRent')}}
+        <input id="typeRent" type="radio" name="type" value="3">
+        <span class="radio-checkmark"></span>
+    </label>
+@endsection
+
+@section('input-role')
+    <label class="radio-container" for="rolePrivate">{{__('ui.postRolePrivate')}}
+        <input id="rolePrivate" type="radio" name="role" value="1" checked="checked">
+        <span class="radio-checkmark"></span>
+    </label>
+    <label class="radio-container" for="roleBusiness">{{__('ui.postRoleBusiness')}}
+        <input id="roleBusiness" type="radio" name="role" value="2">
+        <span class="radio-checkmark"></span>
+    </label>
+@endsection
+
 @section('input-condition')
-    <input type="radio" id="conditionNew" name="condition" value="2" checked="checked">
-    <label for="conditionNew">{{__('ui.conditionNew')}}</label><br>
-    <input type="radio" id="conditionSH" name="condition" value="3">
-    <label for="conditionSH">{{__('ui.conditionSH')}}</label><br>
-    <input type="radio" id="conditionForParts" name="condition" value="4">
-    <label for="conditionForParts">{{__('ui.conditionForParts')}}</label><br>
+    <label class="radio-container" for="conditionNew">{{__('ui.conditionNew')}}
+        <input type="radio" id="conditionNew" name="condition" value="2" checked="checked">
+        <span class="radio-checkmark"></span>
+    </label>
+    <label class="radio-container" for="conditionSH">{{__('ui.conditionSH')}}
+        <input type="radio" id="conditionSH" name="condition" value="3">
+        <span class="radio-checkmark"></span>
+    </label>
+    <label class="radio-container" for="conditionForParts">{{__('ui.conditionForParts')}}
+        <input type="radio" id="conditionForParts" name="condition" value="4">
+        <span class="radio-checkmark"></span>
+    </label>
 @endsection
 
 @section('inputs-tag')

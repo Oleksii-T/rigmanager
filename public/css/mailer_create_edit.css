@@ -8,6 +8,8 @@ div.mailerContent {
 
 div.element {
     margin-bottom: 30px;
+    border-bottom: 2px solid #888888;
+    padding-bottom: 20px;
 }
 
 .isActiveBtn {
@@ -38,6 +40,7 @@ label.error, div.error {
     border-left: 2px solid #f44336;
     color: #eb837c;
     white-space: normal;
+    margin-left: 10px;
 }
 
 div.error p { color: #eb837c; }
@@ -46,12 +49,76 @@ div.error p { color: #eb837c; }
     margin-bottom: 20px; 
 }
 
-/*================KEYWORDS================*/
-
-#keywords {
-    padding-bottom: 20px;
-    border-bottom: 2px solid #888888;
+/* The container */
+.cb-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-left: 10px;
 }
+  
+/* Hide the browser's default checkbox */
+.cb-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+  
+/* Create a custom checkbox */
+.cb-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+  
+/* On mouse-over, add a grey background color */
+.cb-container:hover input ~ .cb-checkmark {
+    background-color: #ccc;
+}
+  
+/* When the checkbox is checked, add a blue background */
+.cb-container input:checked ~ .cb-checkmark {
+    background-color: #FE9042;
+}
+  
+/* Create the checkmark/indicator (hidden when not checked) */
+.cb-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+/* Show the checkmark when checked */
+.cb-container input:checked ~ .cb-checkmark:after {
+    display: block;
+}
+  
+/* Style the checkmark/indicator */
+.cb-container .cb-checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/*================KEYWORDS================*/
 
 #keywords textarea {
     padding: 10px;
@@ -60,17 +127,14 @@ div.error p { color: #eb837c; }
     border: none;
     background-color: rgb(149, 149, 149, 0.7);
     border-radius: 10px;
+    margin-left: 10px;
 }
 
 /*================TAGS================*/
 
-#tags {
-    padding-bottom: 20px;
-    border-bottom: 2px solid #888888;
-}
-
 #navTags {
     margin-bottom: 20px;
+    margin-left: 10px;
 }
 
 #navTags ul li{
@@ -94,6 +158,11 @@ div.error p { color: #eb837c; }
 #productionEq,
 #loggingEq {
     display: none;
+    margin-left: 10px;
+}
+
+#dropDown {
+    margin-left: 10px;
 }
 
 #dropDown ul {
@@ -188,6 +257,7 @@ div.error p { color: #eb837c; }
 
 #choosenTags {
     display: none;
+    margin-left: 15px;
 }
 
 #choosenTags p {
@@ -212,6 +282,10 @@ div.error p { color: #eb837c; }
 }
 
 /*================AUTHORS================*/
+
+#authors {
+    border-bottom: none;
+}
 
 #noAuthors {
     margin-left: 1em;

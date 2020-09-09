@@ -21,8 +21,18 @@
                 </div>
             </div>
 
+            <div id="type" class="element">
+                <h3 class="elementHeading">{{__('ui.choosePostType')}}</h3>
+                @yield('input-type')
+            </div>
+
+            <div id="role" class="element">
+                <h3 class="elementHeading">{{__('ui.choosePostRole')}}</h3>
+                @yield('input-role')
+            </div>
+
             <div id="condition" class="element">
-                <h3 class="elementHeading" for="inputCondition">{{__('ui.chooseCondition')}}</h3>
+                <h3 class="elementHeading">{{__('ui.chooseCondition')}}</h3>
                 @yield('input-condition')
             </div>
 

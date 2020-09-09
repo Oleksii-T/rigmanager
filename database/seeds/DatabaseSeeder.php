@@ -49,6 +49,8 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 1,
             'title' => 'Буровая штанга 89х6,5х1000 мм, резьба З-73',
+            'type' => '1',
+            'role' => '2',
             'condition' => 2,
             'tag_encoded' => '2.3.2.1',
             'description' => 'Производитель:	DM Bits
@@ -79,6 +81,8 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 1,
             'title' => 'Вертлюг 6WC',
+            'type' => '1',
+            'role' => '2',
             'condition' => 2,
             'tag_encoded' => '2.12.3',
             'description' => 'Производитель:	Western Rubber
@@ -117,6 +121,8 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 1,
             'title' => 'Трехшарошечное долото 76 мм (3") К-ЦА (IADC 743) Уралбурмаш',
+            'type' => '2',
+            'role' => '1',
             'condition' => 2,
             'tag_encoded' => '2.1.2.6.1.2',
             'description' => 'Страна происхождения:	РОССИЯ
@@ -159,6 +165,8 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 2,
             'title' => 'Роторні клини',
+            'type' => '1',
+            'role' => '2',
             'condition' => 2,
             'tag_encoded' => '2.5.1.3.4',
             'description' => 'ТОВ “Бейкень енергетика Україна” продає  нові роторні клини для обсадної колони, бурильної труби, обваженої бурильної труби, сухарі для роторних клинів.
@@ -181,6 +189,8 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 2,
             'title' => 'Лебідка та запчастини',
+            'type' => '1',
+            'role' => '2',
             'condition' => 2,
             'tag_encoded' => '2.7.6',
             'description' => 'ТОВ “Бейкень енергетика Україна” продає нові пневматичні лебідки 5т та запчастини для бурової лебідки.
@@ -215,6 +225,8 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 3,
             'title' => 'Метчик ловильный B',
+            'type' => '3',
+            'role' => '1',
             'condition' => 4,
             'tag_encoded' => '2.4.2',
             'description' => 'Страна происхождения:	РОССИЯ
@@ -242,6 +254,8 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 3,
             'title' => 'Скважинная камера TEL1, кабель 300 м',
+            'type' => '3',
+            'role' => '2',
             'condition' => 2,
             'tag_encoded' => '5.1',
             'description' => 'Камера TEL 1 предназначена для исследования скважины в процессе бурения. Камера TEL 1 является легким, простым в использовании и очень надежным инструментом для использования в буровых условиях.

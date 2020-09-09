@@ -89,6 +89,11 @@ p, h1 {
     margin-bottom: 20px;
 }
 
+span.post-type {
+    color: #FE9242;
+    font-size: 90%;
+}
+
 #mainInfo p {
     white-space: pre-line;
     line-height: 1.3em;

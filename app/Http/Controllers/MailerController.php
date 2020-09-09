@@ -45,7 +45,13 @@ class MailerController extends Controller
      */
     public function store(CreateMailerRequest $request)
     {
-        $mailer = new Mailer($request->all());
+        $types = [];
+        $request->sell ? $types[]=1 : false;
+        $request->buy ? $types[]=2 : false;
+        $request->rent ? $types[]=3 : false;
+        $input = $request->all();
+        $input['types'] = json_encode($types);
+        $mailer = new Mailer($input);
         if (!auth()->user()->mailer()->save($mailer)) {
             Session::flash('message-error', __('messages.mailerUploadedError'));
             return view('mailer.index', ["mailer"=>null]);
@@ -74,7 +80,13 @@ class MailerController extends Controller
     public function update(CreateMailerRequest $request)
     {
         $mailer = auth()->user()->mailer;
-        if (!$mailer->update($request->all())) {
+        $types = [];
+        $request->sell ? $types[]=1 : false;
+        $request->buy ? $types[]=2 : false;
+        $request->rent ? $types[]=3 : false;
+        $input = $request->all();
+        $input['types'] = json_encode($types);
+        if ( !$mailer->update($input) ) {
             Session::flash('message-error', __('messages.mailerEditedError'));
         } else {
             Session::flash('message-success', __('messages.mailerEdited'));

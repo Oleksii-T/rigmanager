@@ -24,7 +24,7 @@
                     </figure>
                 @endif
                 <section class="element" id="mainInfo">
-                    <h1>{{ $post->title }}</h1>
+                    <h1><span class="post-type">{{$post->type_readable}}: </span>{{ $post->title }}</h1>
                     <div id="item-tag-section">
                         @foreach ($post->tag_map as $tagId => $tagReadable)
                             <a class="item-tag" href="{{route('search.tag', $tagId)}}">{{$tagReadable}}</a>
@@ -87,6 +87,10 @@
                         </button>
                     @endif
                 </section>
+
+                <aside class="element" id="role">
+                    <p>{{__('ui.postRole')}}: {{ $post->role_readable }}</p>
+                </aside>
 
                 <aside class="element" id="status">
                     <p>{{__('ui.condition')}}: {{ $post->condition_readable }}</p>

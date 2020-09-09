@@ -223,14 +223,29 @@
                     </div>
                 </div>
 
-                <div class="filter filter-authorRole">
-                    <span class="filter-name">{{__('ui.authorRole')}}:</span>
+                <div class="filter filter-type">
+                    <span class="filter-name">{{__('ui.postType')}}:</span>
                     <div class="filter-input">
                         <div class="def-select-wraper">
-                            <select class="def-select author-role-select" name="authorRole">
-                                <option value="1">{{__('ui.notSpecified')}}</option>
-                                <option value="2">{{__('ui.private')}}</option>
-                                <option value="3">{{__('ui.business')}}</option>
+                            <select class="def-select type-select" name="role">
+                                <option value="0">{{__('ui.notSpecified')}}</option>
+                                <option value="1">{{__('ui.postTypeSell')}}</option>
+                                <option value="2">{{__('ui.postTypeBuy')}}</option>
+                                <option value="3">{{__('ui.postTypeRent')}}</option>
+                            </select>
+                            <span class="arrow arrowDown"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter filter-role">
+                    <span class="filter-name">{{__('ui.postRole')}}:</span>
+                    <div class="filter-input">
+                        <div class="def-select-wraper">
+                            <select class="def-select role-select" name="role">
+                                <option value="0">{{__('ui.notSpecified')}}</option>
+                                <option value="1">{{__('ui.postRolePrivate')}}</option>
+                                <option value="2">{{__('ui.postRoleBusiness')}}</option>
                             </select>
                             <span class="arrow arrowDown"></span>
                         </div>
@@ -256,14 +271,6 @@
             <div class="user-settings"></div>
         @endif
     </div>
-
-    <!-- DELETE -->
-    <form method="POST" action="{{route('post.filter')}}" hidden>
-        @csrf
-        <input class="def-input" style="width: 30%" type="text" name="filters" value='{"currency":"USD","costFrom":"140000","sort":"2","condition":"1"}'>
-        <input class="def-input" style="width: 30%" type="text" name="postsIds" value="{{$postsIds}}">
-        <button class="def-button">example</button>
-    </form>
 
     <!-- Search result posts -->
     <div id="searched-items">
@@ -301,7 +308,6 @@
                 $('#items').addClass('hidden');
                 $('div.loading-gif').removeClass('hidden');
                 $('.empty-search-wraper').addClass('hidden');
-                console.log( filters );
                 $.ajax({
                     type: "POST",
                     url: "{{route('post.filter')}}",
@@ -377,22 +383,27 @@
                         if (filters[filterName]==1) {
                             continue;
                         }
-                        label = conditionReadable(filters[filterName]);
-                    } else if (filterName=='authorRole') {
-                        if (filters[filterName]==1) {
+                        label = $('.condition-select').children('option:selected').html();
+                    } else if (filterName=='role') {
+                        if (filters[filterName]==0) {
                             continue;
                         }
-                        label = typeReadable(filters[filterName]);
+                        label = $('.role-select').children('option:selected').html();
+                    } else if (filterName=='type') {
+                        if (filters[filterName]==0) {
+                            continue;
+                        }
+                        label = $('.type-select').children('option:selected').html();
                     } else if (filterName=='region') {
                         if (filters[filterName]==0) {
                             continue;
                         }
-                        label = regionReadable(filters[filterName]);
+                        label = $('.region-select').children('option:selected').html();
                     } else if (filterName=='sort') {
                         if (filters[filterName]==1) {
                             continue;
                         }
-                        label = sortReadable(filters[filterName]);
+                        label = $('.sort-select').children('option:selected').html();
                     }
                     $('.user-settings').append('<div class="user-setting"><span class="setting-name">'+label+'</span><button class="'+filterName+' remove-setting" title="{{__("ui.delete")}}"><img src="{{asset("icons/closeWhiteIcon.svg")}}" alt="{{__("alt.keyword")}}"></button></div>');
                 }
@@ -406,87 +417,6 @@
                         return "{{__('ui.conditionSH')}}";
                     case '4':
                         return "{{__('ui.conditionForParts')}}";
-                    default:
-                        break;
-                }
-            }
-
-            function typeReadable(value) {
-                switch (value) {
-                    case '2':
-                        return "{{__('ui.private')}}";
-                    case '3':
-                        return "{{__('ui.business')}}";
-                    default:
-                        break;
-                }
-            }
-
-            function sortReadable(value) {
-                switch (value) {
-                    case '2':
-                        return "{{__('ui.sortNew')}}";
-                    case '3':
-                        return "{{__('ui.sortCheap')}}";
-                    case '4':
-                        return "{{__('ui.sortExpensive')}}";
-                    default:
-                        break;
-                }
-            }
-
-            function regionReadable(value) {
-                switch (value) {
-                    case '1':
-                        return "{{__('ui.regionCrimea')}}";
-                    case '2':
-                        return "{{__('ui.regionVinnytsia')}}";
-                    case '3':
-                        return "{{__('ui.regionVolyn')}}";
-                    case '4':
-                        return "{{__('ui.regionDnipropetrovsk')}}";
-                    case '5':
-                        return "{{__('ui.regionDonetsk')}}";
-                    case '6':
-                        return "{{__('ui.regionZhytomyr')}}";
-                    case '7':
-                        return "{{__('ui.regionCarpathian')}}";
-                    case '8':
-                        return "{{__('ui.regionZaporozhye')}}";
-                    case '9':
-                        return "{{__('ui.regionIvano-Frankivsk')}}";
-                    case '10':
-                        return "{{__('ui.regionKiev')}}";
-                    case '11':
-                        return "{{__('ui.regionKirovograd')}}";
-                    case '12':
-                        return "{{__('ui.regionLuhansk')}}";
-                    case '13':
-                        return "{{__('ui.regionLviv')}}";
-                    case '14':
-                        return "{{__('ui.regionMykolaiv')}}";
-                    case '15':
-                        return "{{__('ui.regionOdessa')}}";
-                    case '16':
-                        return "{{__('ui.regionPoltava')}}";
-                    case '17':
-                        return "{{__('ui.regionRivne')}}";
-                    case '18':
-                        return "{{__('ui.regionSumy')}}";
-                    case '19':
-                        return "{{__('ui.regionTernopil')}}";
-                    case '20':
-                        return "{{__('ui.regionKharkiv')}}";
-                    case '21':
-                        return "{{__('ui.regionKherson')}}";
-                    case '22':
-                        return "{{__('ui.regionKhmelnytsky')}}";
-                    case '23':
-                        return "{{__('ui.regionCherkasy')}}";
-                    case '24':
-                        return "{{__('ui.regionChernivtsi')}}";
-                    case '25':
-                        return "{{__('ui.regionChernihiv')}}";
                     default:
                         break;
                 }
@@ -596,11 +526,19 @@
                 filter();
             });
 
-            // user uses author role filter
-            $('.author-role-select').change(function(){
+            // user uses legal type filter
+            $('.role-select').change(function(){
                 var newVal = $(this).children('option:selected').val();
                 // edit filters array
-                newVal==1 ? delete filters.authorRole : filters.authorRole=newVal;
+                newVal==0 ? delete filters.role : filters.role=newVal;
+                filter();
+            });
+
+            // user uses psot type filter
+            $('.type-select').change(function(){
+                var newVal = $(this).children('option:selected').val();
+                // edit filters array
+                newVal==0 ? delete filters.type : filters.type=newVal;
                 filter();
             });
 

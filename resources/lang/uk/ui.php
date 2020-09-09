@@ -108,6 +108,7 @@ return [
     'mailerNotifDescription' => 'ці ключові слова',
     'mailerNotifAuthors' => 'оголошення від цього автора',
     'mailerNotifSubject' => 'Повідомлення про нове оголошення',
+    'mailerTypesHelp' => 'Мінімум один обов\'язково',
 
     //subscription massages
     'mySubscription' => 'Підписка',
@@ -127,9 +128,9 @@ return [
     'sortNew' => 'Найновіші',
     'sortCheap' => 'Найдешевші',
     'sortExpensive' => 'Найдорожчі',
-    'private' => 'Приватний',
-    'business' => 'Бізнес',
     'searchAmount' => 'Результати Пошуку',
+    'postType' => 'Рід',
+    'postRole' => 'Сектор',
 
    // post edit/create massages
     'addPost' => 'Додати оголошення',
@@ -137,7 +138,14 @@ return [
     'postSettings' => 'Налаштування оголошення',
     'title' => 'Заголовок',
     'titleHelp' => 'Мінімум 10 символів.
-    Максимум 70 символів.',
+        Максимум 70 символів.',
+    'choosePostType' => 'Оберіть рід оголошення',
+    'postTypeSell' => 'Продаж',
+    'postTypeBuy' => 'Купівля',
+    'postTypeRent' => 'Здача в оренду',
+    'choosePostRole' => 'Оберіть сектор роботи',
+    'postRoleBusiness' => 'Бізнес',
+    'postRolePrivate' => 'Приватна особа',
     'chooseCondition' => 'Виберіть стан',
     'conditionNew' => 'Нове',
     'conditionSH' => 'Б/У',
@@ -157,8 +165,8 @@ return [
     'uploadFile' => 'Вибрати файл',
     'preview' => 'Попередній перегляд',
     'cost' => 'Ціна',
-    'locationRegion' => 'Місце знаходження товару (область)',
-    'locationTown' => 'Місце знаходження товару (точніше)',
+    'locationRegion' => 'Розташування товару (область)',
+    'locationTown' => 'Уточніть розташування',
     'location' => 'Місце знаходження товару',
     'region' => 'Область',
     'town' => 'Місто / СМТ / Склад / Майданчик',

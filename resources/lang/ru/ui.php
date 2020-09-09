@@ -108,6 +108,7 @@ return [
     'mailerNotifDescription' => 'эти ключевые слова',
     'mailerNotifAuthors' => 'объявления от этого автора',
     'mailerNotifSubject' => 'Уведомление о новом обьявлении',
+    'mailerTypesHelp' => 'Минимум один обязательно',
 
     //subscription massages
     'mySubscription' => 'Моя подписка',
@@ -127,9 +128,9 @@ return [
     'sortNew' => 'Самые Новые',
     'sortCheap' => 'Самые Дешевые',
     'sortExpensive' => 'Самые Дорогие',
-    'private' => 'Частный',
-    'business' => 'Бизнес',
     'searchAmount' => 'Результаты Поиска',
+    'postType' => 'Род',
+    'postRole' => 'Сектор',
     
     // post edit/create massages
     'addPost' => 'Добавить объявление',
@@ -137,7 +138,14 @@ return [
     'postSettings' => 'Изменение объявления',
     'title' => 'Заголовок',
     'titleHelp' => 'Минимум 10 символов.
-    Максимум 70 символов.',
+        Максимум 70 символов.',
+    'choosePostType' => 'Выберите род объявления',
+    'postTypeSell' => 'Продажа',
+    'postTypeBuy' => 'Покупка',
+    'postTypeRent' => 'Сдача в оренду',
+    'choosePostRole' => 'Выберите сектор работы',
+    'postRoleBusiness' => 'Бизнес',
+    'postRolePrivate' => 'Частное лицо',
     'chooseCondition' => 'Выберите состояние',
     'conditionNew' => 'Новое',
     'conditionSH' => 'Б/У',
@@ -158,7 +166,7 @@ return [
     'preview' => 'Предосмотр',
     'cost' => 'Цена',
     'locationRegion' => 'Местонахождения товара (область)',
-    'locationTown' => 'Местонахождения товара (точнее)',
+    'locationTown' => 'Уточните местоположение',
     'location' => 'Местонахождения товара',
     'region' => 'Область',
     'town' => 'Город / ПГТ / Склад / Площадка',

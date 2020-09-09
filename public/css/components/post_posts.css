@@ -48,6 +48,11 @@
     color: #FE9042;
 }
 
+span.post-type {
+    font-size: 90%;
+    color: #FE9042;
+}
+
 .item .desc {
     height: 3.4em;
     white-space: pre-line;

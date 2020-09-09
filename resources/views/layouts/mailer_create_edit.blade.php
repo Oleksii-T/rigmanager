@@ -21,8 +21,16 @@
                 
                 @yield('form')
 
+                    <div class="element" id="type">
+                        <h3 class="elementHeading">{{__('ui.choosePostType')}}</h3>
+                        @yield('input-type')
+                        <div class="help">
+                            <p><i>{{__('ui.mailerTypesHelp')}}</i></p>
+                        </div>
+                    </div>
+
                     <div class="element" id="keywords">
-                        <h3 class="elementHeading" for="inputKeywords">{{__('ui.mailerChooseDescription')}}</h3>
+                        <h3 class="elementHeading">{{__('ui.mailerChooseDescription')}}</h3>
                         @yield('input-keywords')
                         <x-server-input-error errorName='keywords' inputName='inputKeywords' errorClass='error'/>
                         <div class="help">
@@ -30,7 +38,7 @@
                         </div>
                     </div>
 
-                    <div class="element" id="tags" >
+                    <div class="element" id="tags">
                         <h3 class="elementHeading">{{__('ui.mailerChooseTags')}}</h3>
                         
                         <div id="navTags">
@@ -125,7 +133,7 @@
                         </div>
                     </div>
                     
-                    <div class="element" id="btns">
+                    <div id="btns">
                         <button class="def-button submit-button" type="submit">{{__('ui.save')}}</button>
                         <a class="def-button cancel-button" href="{{ route('mailer.index') }}">{{__('ui.cancel')}}</a>
                     </div>
@@ -161,7 +169,6 @@
             //check for empty
             if ( $('#tagEncodedHidden').attr('value') == "" ) {
                 $('#choosenTags').css('display', 'none');
-                $('#tags div.help').addClass('hidden');
             }
         };
 
@@ -182,7 +189,6 @@
                         clickedTag.addClass('choosen');
                         clickedTag.addClass('isActiveBtn');
                         // Show help text and choosen tag
-                        $('#tags div.help').removeClass('hidden');
                         $('#choosenTags').css('display', 'block');
                         // Write encoded tag to hidden form field
                         var newValue = $('#tagEncodedHidden').attr('value') + tagEncoded + " ";

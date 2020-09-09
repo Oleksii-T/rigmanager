@@ -108,6 +108,7 @@ return [
     'mailerNotifDescription' => 'this keywords',
     'mailerNotifAuthors' => 'posts by this author',
     'mailerNotifSubject' => 'Notification from your Mailer',
+    'mailerTypesHelp' => 'At least one is required',
 
     //subscription massages
     'mySubscription' => 'My subscription',
@@ -127,9 +128,9 @@ return [
     'sortNew' => 'Newest',
     'sortCheap' => 'Cheapest',
     'sortExpensive' => 'Most Expensive',
-    'private' => 'Private',
-    'business' => 'Business',
     'searchAmount' => 'Search Results',
+    'postType' => 'Post type',
+    'postRole' => 'Legal type',
 
     // post edit/create massages
     'addPost' => 'Add post',
@@ -138,6 +139,13 @@ return [
     'title' => 'Title',
     'titleHelp' => 'Minimum 10 symbols.
         Maximum 70 symbols.',
+    'choosePostType' => 'Choose post type',
+    'postTypeSell' => 'Sell',
+    'postTypeBuy' => 'Buy',
+    'postTypeRent' => 'Rental',
+    'choosePostRole' => 'Chose legal type',
+    'postRoleBusiness' => 'Business',
+    'postRolePrivate' => 'Private person',
     'chooseCondition' => 'Сhoose condition',
     'conditionNew' => 'New',
     'conditionSH' => 'Used',
@@ -158,7 +166,7 @@ return [
     'preview' => 'Preview',
     'cost' => 'Cost',
     'locationRegion' => 'Location of product (region)',
-    'locationTown' => 'Location of product (precisely)',
+    'locationTown' => 'Specify location',
     'location' => 'Location of product',
     'region' => 'Region',
     'town' => 'City / Village / Warehouse / Site',
