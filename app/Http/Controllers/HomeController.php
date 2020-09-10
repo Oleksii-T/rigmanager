@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts_list = Post::orderBy('created_at', 'desc')->paginate(env('POSTS_PER_PAGE'));
+        $posts_list = Post::where('is_active', 1)->orderBy('created_at', 'desc')->paginate(env('POSTS_PER_PAGE'));
         return view('home.home', compact('posts_list'));
     }
 

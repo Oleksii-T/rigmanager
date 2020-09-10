@@ -35,6 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete   ('ajax/posts/a/{post}',                 'PostController@destroyAjax')   ->name('posts.destroy.ajax'); //Ajax reqeust
     Route::get      ('ajax/posts/images/{post}',            'PostController@getImages')     ->name('get.images'); //Ajax reqeust
     Route::get      ('posts/store',                         'PostController@storeFake')     ->name('posts.store.fake');
+    Route::post     ('posts/toggle/status/{post}',          'PostController@togglePost')    ->name('post.toggle'); //Ajax reqeust
     Route::resource ('posts',                               'PostController')               ->except(['index']);
     
     // post filters routes

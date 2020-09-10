@@ -15,8 +15,9 @@ class SearchController extends Controller
     public function searchText(Request $request) 
     {
         if ($request->searchStrings) {
-            $posts_list = Post::search($request->searchStrings);
+            $posts_list = Post::search($request->searchStrings)->where("is_active", 1);
             $postsIds = json_encode($posts_list->get()->pluck('id'));
+            dd($posts_list->get());
             $posts_list = $posts_list->paginate(env('POSTS_PER_PAGE'));
             $postsAmount = $posts_list->total();
             $postsAmount == 0 
@@ -34,7 +35,7 @@ class SearchController extends Controller
     {
         $regex = "^$tagId(.[0-9]+)*$"; //make regular expr form tag id to find sub catogories as well
         $regex = str_replace('.', '\.', $regex); //escape regex '.' via '\'
-        $posts_list = Post::whereRaw("tag_encoded REGEXP '$regex'"); //search appropriate for posts using raw where query
+        $posts_list = Post::whereRaw("tag_encoded REGEXP '$regex'")->where("is_active", 1); //search appropriate for posts using raw where query
         $postsIds = json_encode($posts_list->get()->pluck('id'));
         $posts_list = $posts_list->paginate(env('POSTS_PER_PAGE'));
         //add success/fail flash depends on result
@@ -50,7 +51,7 @@ class SearchController extends Controller
     public function searchAuthor($authorId) 
     {
         $user = User::findOrFail($authorId);
-        $posts_list = $user->posts;
+        $posts_list = $user->posts->where("is_active", 1);
         $postsIds = json_encode($posts_list->pluck('id'));
         $posts_list = $posts_list->paginate(env('POSTS_PER_PAGE'));
         $postsAmount = $posts_list->total();

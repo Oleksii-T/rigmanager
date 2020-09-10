@@ -14,28 +14,42 @@
     <input class="def-input" id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') ?? $post->title }}"/>
 @endsection 
 
+@section('input-status')
+    <div id="status" class="element">
+        <h3 class="elementHeading">{{__('ui.choosePostStatus')}}</h3>
+        <label class="radio-container" for="statusInactive">{{__('ui.postActive')}}
+            <input id="statusInactive" type="radio" name="is_active" value="1" {{$post->is_active ? 'checked="checked"' : "" }}>
+            <span class="radio-checkmark"></span>
+        </label>
+        <label class="radio-container" for="statusActive">{{__('ui.postInactive')}}
+            <input id="statusActive" type="radio" name="is_active" value="0" {{$post->is_active ? '' : 'checked="checked"' }}>
+            <span class="radio-checkmark"></span>
+        </label>
+    </div>
+@endsection
+
 @section('input-type')
-    <label class="radio-container" for="conditionSH">{{__('ui.postTypeSell')}}
-        <input type="radio" name="type" value="1" {{$post->type==1 ? 'checked="checked"' : "" }}>
+    <label class="radio-container" for="typeSell">{{__('ui.postTypeSell')}}
+        <input id="typeSell" type="radio" name="type" value="1" {{$post->type==1 ? 'checked="checked"' : "" }}>
         <span class="radio-checkmark"></span>
     </label>
-    <label class="radio-container" for="conditionNew">{{__('ui.postTypeBuy')}}
-        <input type="radio" name="type" value="2" {{$post->type==2 ? 'checked="checked"' : "" }}>
+    <label class="radio-container" for="typeBuy">{{__('ui.postTypeBuy')}}
+        <input id="typeBuy" type="radio" name="type" value="2" {{$post->type==2 ? 'checked="checked"' : "" }}>
         <span class="radio-checkmark"></span>
     </label>
-    <label class="radio-container" for="conditionSH">{{__('ui.postTypeRent')}}
-        <input type="radio" name="type" value="3" {{$post->type==3 ? 'checked="checked"' : "" }}>
+    <label class="radio-container" for="typeRent">{{__('ui.postTypeRent')}}
+        <input id="typeRent" type="radio" name="type" value="3" {{$post->type==3 ? 'checked="checked"' : "" }}>
         <span class="radio-checkmark"></span>
     </label>
 @endsection
 
 @section('input-role')
-    <label class="radio-container" for="conditionSH">{{__('ui.postRolePrivate')}}
-        <input type="radio" name="role" value="1" {{$post->role==1 ? 'checked="checked"' : "" }}>
+    <label class="radio-container" for="rolePrivate">{{__('ui.postRolePrivate')}}
+        <input id="rolePrivate" type="radio" name="role" value="1" {{$post->role==1 ? 'checked="checked"' : "" }}>
         <span class="radio-checkmark"></span>
     </label>
-    <label class="radio-container" for="conditionNew">{{__('ui.postRoleBusiness')}}
-        <input type="radio" name="role" value="2" {{$post->role==2 ? 'checked="checked"' : "" }}>
+    <label class="radio-container" for="roleBusiness">{{__('ui.postRoleBusiness')}}
+        <input id="roleBusiness" type="radio" name="role" value="2" {{$post->role==2 ? 'checked="checked"' : "" }}>
         <span class="radio-checkmark"></span>
     </label>
 @endsection

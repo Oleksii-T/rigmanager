@@ -81,6 +81,9 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
+        if (!$post->is_active && $post->user != auth()->user()) {
+            return view('post.inactive');
+        }
         return view('post.show', compact('post'));
     }
 
@@ -232,6 +235,24 @@ class PostController extends Controller
             }
         }
         return false;
+    }
+
+    public function togglePost($postId) {
+        $post = Post::findOrFail($postId);
+        if ($post->user == auth()->user()) {
+            if ( $post->is_active ) {
+                //disactivate post
+                $post->is_active = false;
+                $post->save();
+                return false;
+            } else {
+                //activate post
+                $post->is_active = true;
+                $post->save();
+                return true;
+            }
+        }
+        abort(500);
     }
 
 }

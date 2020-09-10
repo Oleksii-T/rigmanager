@@ -25,6 +25,7 @@ return [
     'empty' => 'Empty',
     'notSpecified' => 'Not Specified',
     'save' => 'Save',
+    'hide' => 'Hide',
 
     // auth massages
     'signIn' => 'Sign in',
@@ -178,6 +179,13 @@ return [
     'sure?' => 'Are you sure?',
     'grivna' => 'Grivna (UAH)',
     'dollar' => 'Dollar (USD)',
+    'choosePostStatus' => 'Choose post status (visibility)',
+    'postActive' => 'Visible for everyone',
+    'postInactive' => 'Hidden',
+    'postInactiveError' => 'Sorry, but the Post Author 
+        deactivated this post. 
+        You can return here later, 
+        it may be activated again soon!',
     
     //dropzone
     'dropzoneDesc' => 'Drop files or click 

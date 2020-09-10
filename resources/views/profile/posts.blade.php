@@ -16,13 +16,41 @@
             <p>{{__('ui.noMyPosts')}}</p>
         </div>
     @endif
-
-
 @endsection
 
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function(){
+
+            $('button.item-hide-btn').click(function(){
+                id = getIdFromClasses( $(this).attr('class'), 'id_' );
+                button = $(this);
+                button.addClass('loading');
+                ajaxUrl = "{{route('post.toggle', ':postId')}}";
+                ajaxUrl = ajaxUrl.replace(':postId', id);
+                $.ajax({
+                    type: "POST",
+                    url: ajaxUrl,
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                    },
+                    success: function(data) {
+                        if (data) {
+                            showPopUpMassage(true, "{{ __('messages.postActivated') }}");
+                            button.children().attr('src', "{{asset('icons/hideDocIcon.svg')}}")
+                        } else {
+                            showPopUpMassage(true, "{{ __('messages.postDisactivated') }}");
+                            button.children().attr('src', "{{asset('icons/showDocIcon.svg')}}")
+                        }
+                        $('#'+id).toggleClass('inactive');
+                        button.removeClass('loading');
+                    },
+                    error: function() {
+                        button.removeClass('loading');
+                        showPopUpMassage(false, "{{ __('messages.error') }}"); // pop up error message
+                    }
+                });
+            });
 
             //get digit from classes of DOM element (depends on prefix)
             function getIdFromClasses(classes, prefix) {
@@ -43,16 +71,13 @@
             }
 
             //add hover effect on item when hover on addToFav btn
-            $(".modalPostDeleteOn").hover(function(){togglePostHover($(this))}, function(){togglePostHover($(this))});
-
-            //add hover effect on item when hover on addToFav btn
-            $(".editBtn").hover(function(){togglePostHover($(this))}, function(){togglePostHover($(this))});
-
-            // toggle hover effect on hoverIn/Out on exat post
-            function togglePostHover(element) {
-                var postId = getIdFromClasses(element.attr("class"), 'id_');
-                $("#"+postId+" .globalItemButton").toggleClass('hover');
-            }
+            $("div.item-btns").hover(function(){
+                var postId = getIdFromClasses($(this).attr("class"), 'id_');
+                $("#"+postId+" .globalItemButton").addClass('hover');
+            }, function(){
+                var postId = getIdFromClasses($(this).attr("class"), 'id_');
+                $("#"+postId+" .globalItemButton").removeClass('hover');
+            });
 
             //open modal delete confirm when user ask to
             $('.modalPostDeleteOn').click(function() {

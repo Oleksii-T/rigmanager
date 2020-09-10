@@ -22,6 +22,8 @@ return [
     'postImgsDeleted' => 'Изображения были удалены',
     'postImgDeleted' => 'Изображение было удалено',
     'postInputErrors' => 'Некоторые поля заполнены неправильно.',
+    'postActivated' => 'Объявление было опубликовано снова',
+    'postDisactivated' => 'Объявление было скрыто от публики',
 
     'mailerToManyTags' => 'Слишком много категорий',
     'mailerUploaded' => 'Рассылка настроена успешно!',

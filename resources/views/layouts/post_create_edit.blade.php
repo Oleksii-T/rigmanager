@@ -21,6 +21,8 @@
                 </div>
             </div>
 
+            @yield('input-status')
+
             <div id="type" class="element">
                 <h3 class="elementHeading">{{__('ui.choosePostType')}}</h3>
                 @yield('input-type')

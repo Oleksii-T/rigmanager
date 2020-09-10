@@ -22,6 +22,8 @@ return [
     'postImgsDeleted' => 'Зображення були видалені',
     'postImgDeleted' => 'Зображення було видалено',
     'postInputErrors' => 'Деякі поля заповнені неправильно.',
+    'postActivated' => 'Оголошення було опубліковано знову',
+    'postDisactivated' => 'Оголошення було приховано від публіки',
 
     'mailerToManyTags' => 'Занадто багато категорій',
     'mailerUploaded' => 'Росилка налаштована успішно!',

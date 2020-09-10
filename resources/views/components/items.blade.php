@@ -1,6 +1,6 @@
 <section id="items">
     @foreach ($posts as $post)
-        <article class="item" id="{{$post->id}}">
+        <article class="item {{$post->is_active ? '' : 'inactive'}}" id="{{$post->id}}">
             <figure class="imgWraper">
                 @if ( $post->images->isEmpty() )
                     <img src="{{ asset('icons/noImageIcon.svg') }}" alt="{{__('alt.keyword')}}"></li>
@@ -36,13 +36,23 @@
                     <span><i>{{__('ui.removeFromFav')}}</i></span>
                 </button>
             @elseif ($button == 'deleteAndEdit')
-                <button class="modalPostDeleteOn id_{{$post->id}}">
-                    <img class="img-hover-scale" src="{{ asset('icons/deleteIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                </button>
+                <div class="item-btns id_{{$post->id}}">
+                    <button class="item-btn modalPostDeleteOn id_{{$post->id}}">
+                        <img class="img-hover-scale" title="{{__('ui.delete')}}" src="{{ asset('icons/deleteIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                    </button>
 
-                <a class="editBtn id_{{$post->id}}" href="{{ route('posts.edit', $post->id) }}">
-                    <img class="img-hover-scale" title="{{__('ui.edit')}}" src="{{ asset('icons/editIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                </a>
+                    <a class="item-btn editBtn id_{{$post->id}}" href="{{ route('posts.edit', $post->id) }}">
+                        <img class="img-hover-scale" title="{{__('ui.edit')}}" src="{{ asset('icons/editIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                    </a>
+
+                    <button class="item-btn item-hide-btn id_{{$post->id}}">
+                        @if ($post->is_active)
+                            <img class="img-hover-scale" title="{{__('ui.hide')}}" src="{{ asset('icons/hideDocIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        @else    
+                            <img class="img-hover-scale" title="{{__('ui.hide')}}" src="{{ asset('icons/showDocIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        @endif
+                    </button>
+                </div>
             @endif
 
             <a href="{{ route('posts.show', $post->id) }}"><span class="globalItemButton"></span></a>

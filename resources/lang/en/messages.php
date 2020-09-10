@@ -22,6 +22,8 @@ return [
     'postImgsDeleted' => 'Images have been deleted',
     'postImgDeleted' => 'Image have been deleted',
     'postInputErrors' => 'Some fields are incorrect.',
+    'postActivated' => 'Post has been published again',
+    'postDisactivated' => 'Post has been hidden from public',
     
     'mailerToManyTags' => 'Too many categories',
     'mailerUploaded' => 'Mailer has been configured successfully!',
