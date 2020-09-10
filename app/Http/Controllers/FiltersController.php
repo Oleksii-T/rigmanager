@@ -34,7 +34,8 @@ class FiltersController extends Controller
                 return false;
             }
         }
-        return view('components.items', ['posts'=>$posts, 'button'=>'addToFav']);
+        $posts = $posts->paginate(env('POSTS_PER_PAGE'));
+        return view('components.filtered-items', ['posts'=>$posts]);
     }
 
     private function getPostsByIds($postsIds) {

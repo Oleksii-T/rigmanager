@@ -38,7 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource ('posts',                               'PostController')               ->except(['index']);
     
     // post filters routes
-    Route::post('posts/filter', 'FiltersController@filter')->name('post.filter');
+    Route::post('filter', 'FiltersController@filter')->name('post.filter');
 
     // prifile/user routes
     Route::get      ('profile/edit',            'UserController@edit')              ->name('profile.edit');

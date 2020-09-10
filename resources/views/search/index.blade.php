@@ -142,10 +142,13 @@
         </div>
     </div>
 
+    <a id="filter-beacon"></a>
+
     <!-- Search result status show -->
     <div id="search-status">
         @if ( $search['type'] == 'text' )
             <div class="mailer-suggestion">
+                <a href=""></a>
                 <p class="user-text-request" hidden>{{$search['value']}}</p>
                 <button id="addTextToMailer">{{__('ui.mailerSuggestText')}}</button>
                 <a id="whatIsMailerHelp" href="{{route('faq')}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
@@ -284,12 +287,14 @@
             <img class="empty-search-icon fail-icon" src="{{asset('icons/failIcon.svg')}}" alt="{{__('alt.keyword')}}">
             <p class="empty-search-text">{{__('ui.searchFail')}}</p>
         </div>
-        <x-items :posts="$posts_list" button='addToFav' />
-    </div>
-    
-    <!-- Pagination -->
-    <div class="pagination-field">
-        {{ $posts_list->appends(request()->except('page'))->links() }}
+        <div class="filtered-items">
+            <x-items :posts="$posts_list" button='addToFav'/>
+
+            <!-- Pagination -->
+            <div class="pagination-field">
+                {{ $posts_list->appends(request()->except('page'))->links() }}
+            </div>
+        </div>
     </div>
 
 @endsection
@@ -301,13 +306,54 @@
             var filters = new Object();
             filters.currency = 'UAH';
 
+            //handle manual ajax pagination
+            $('body').on('click', 'div.filter-pagination a', function(e){
+                e.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                window.location.href = "#filter-beacon";
+                fetch_data(page);
+            });
+
+            function fetch_data(page)
+            {
+                $('div.filtered-items').addClass('hidden'); //hide old items
+                $('div.loading-gif').removeClass('hidden'); //show loading gif
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('post.filter')}}?page="+page,
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        filters: JSON.stringify(filters),
+                        postsIds: "{{$postsIds}}"
+                    },
+                    success: function(data) {
+                        $('div.filtered-items').empty(); // remove old items 
+                        $('div.loading-gif').addClass('hidden'); //hide loading gif
+                        if (data) {
+                            $('div.filtered-items').removeClass('hidden').append(data); //append+show new items
+                            $('div.posts-amount span').text( $('p.filtered-items-no').text() ); //update items amount
+                            $('.empty-search-wraper').addClass('hidden'); //hide empty items preview (messy)
+                        } else {
+                            $('div.posts-amount span').text( 0 ); // update items amount
+                            $('.empty-search-wraper').removeClass('hidden'); // add empty items preview
+                        }
+                        window.location.hash = "filter-beacon";
+                    },
+                    error: function() {
+                        //print error massage and remove wait cursor
+                        $('div.loading-gif').addClass('hidden'); // hide loading gif
+                        $('div.filtered-items').removeClass('hidden'); // show old items
+                        showPopUpMassage(false, "{{ __('messages.error') }}"); // pop up error message
+                    }
+                });
+            }
+
             function filter() {
-                $('.pagination-field').empty();
                 // make loading gif
                 filterLable();
-                $('#items').addClass('hidden');
-                $('div.loading-gif').removeClass('hidden');
-                $('.empty-search-wraper').addClass('hidden');
+                // show initial pagination if there is no filters, else show only ajax pagination
+                $('div.filtered-items').addClass('hidden'); //hide old items
+                $('div.loading-gif').removeClass('hidden'); //show loading gif
                 $.ajax({
                     type: "POST",
                     url: "{{route('post.filter')}}",
@@ -317,22 +363,22 @@
                         postsIds: "{{$postsIds}}"
                     },
                     success: function(data) {
+                        $('div.filtered-items').empty(); // remove old items 
+                        $('div.loading-gif').addClass('hidden'); //hide loading gif
                         if (data) {
-                            $('#items').remove();
-                            $('#searched-items').append(data);
-                            $('div.posts-amount span').text( $('.item').length );
+                            $('div.filtered-items').removeClass('hidden').append(data); //append+show new items
+                            $('div.posts-amount span').text( $('p.filtered-items-no').text() ); //update items amount
+                            $('.empty-search-wraper').addClass('hidden'); //hide empty items preview (messy)
                         } else {
-                            $('#items').remove();
-                            $('.empty-search-wraper').removeClass('hidden');
-                            $('div.posts-amount span').text( 0 );
+                            $('div.posts-amount span').text( 0 ); // update items amount
+                            $('.empty-search-wraper').removeClass('hidden'); // add empty items preview
                         }
-                        $('div.loading-gif').addClass('hidden');
                     },
                     error: function() {
                         //print error massage and remove wait cursor
-                        $('div.loading-gif').addClass('hidden');
-                        $('#items').removeClass('hidden');
-                        showPopUpMassage(false, "{{ __('messages.error') }}");
+                        $('div.loading-gif').addClass('hidden'); // hide loading gif
+                        $('div.filtered-items').removeClass('hidden'); // show old items
+                        showPopUpMassage(false, "{{ __('messages.error') }}"); // pop up error message
                     }
                 });
             }

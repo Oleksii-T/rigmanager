@@ -118,6 +118,10 @@ div.filter-input {
     width: 120px;
 }
 
+.inivible {
+    display: none !important;
+}
+
 div.user-settings {
     padding-top: 15px;
     border-top: 2px solid #888888;
