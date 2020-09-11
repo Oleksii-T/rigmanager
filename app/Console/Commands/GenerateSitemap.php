@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
+use Illuminate\Support\Facades\Log;
 
 class GenerateSitemap extends Command
 {
@@ -111,12 +112,10 @@ class GenerateSitemap extends Command
                     ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
                     ->setPriority(0.8))
                 ->writeToFile(public_path('sitemap.xml'));
-            $log = '[' . \Carbon\Carbon::now() . '] Site map generated successfully.
-';
-            echo ($log);
+            
+            Log::channel('single')->info('[custom.info][sitemap.generate] Site map generated successfully');
         } catch (\Throwable $th) {
-            $log = '[' . \Carbon\Carbon::now() . '] Site map generation fails. Error message: ';
-            echo($log.$th->getMessage());
+            Log::channel('single')->error('[custom.error][sitemap.generate] Site map generation fails. '.$th->getMessage());
         }
     }
 }

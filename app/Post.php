@@ -15,12 +15,12 @@ class Post extends Model
 {
     use Searchable, Tags;
 
-    protected $appends = ['tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 
-        'user_phone_readable', 'user_phone_intern', 'region_readable', 'role_readable', 
-        'type_readable'
+    protected $appends = [
+        'tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable', 
+        'user_phone_intern', 'region_readable', 'role_readable', 'type_readable'
     ];
 
-    protected $fillable = [ //mass assigment
+    protected $fillable = [
         'title', 'description', 'tag_encoded', 'condition', 'region_encoded', 'town', 'cost', 
         'currency', 'user_email', 'user_phone_raw', 'viber', 'telegram', 'whatsapp', 'is_active', 
         'type', 'role'
@@ -33,7 +33,7 @@ class Post extends Model
      */
     public function toSearchableArray()
     {
-        $array = $this->only('title', 'description', 'town');
+        $array = $this->only('title', 'description', 'town', 'is_active');
         return $array;
     }
 

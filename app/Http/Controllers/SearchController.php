@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use App\Post;
 use App\Http\Controllers\Traits\Tags;
 use App\User;
+use Illuminate\Support\Facades\Log;
 
 class SearchController extends Controller
 {
@@ -16,8 +17,10 @@ class SearchController extends Controller
     {
         if ($request->searchStrings) {
             $posts_list = Post::search($request->searchStrings)->where("is_active", 1);
+            if ( $posts_list->raw()['hits'] && count($posts_list->raw()['hits']) < $posts_list->raw()['nbHits'] ) {
+                Log::channel('single')->error('[custom.error][search.filter] Algolia returns more records['.$posts_list->raw()['nbHits'].'] than can be fetched['.count($posts_list->raw()['hits']).']. Filtering system may ignored part of result. Search query: ["'.$request->searchStrings.'"]');
+            } 
             $postsIds = json_encode($posts_list->get()->pluck('id'));
-            dd($posts_list->get());
             $posts_list = $posts_list->paginate(env('POSTS_PER_PAGE'));
             $postsAmount = $posts_list->total();
             $postsAmount == 0 

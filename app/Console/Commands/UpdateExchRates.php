@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class UpdateExchRates extends Command
 {
@@ -39,12 +40,9 @@ class UpdateExchRates extends Command
     {
         try {
             \App\Http\Controllers\UsdExchangeController::update();
-            $log = '[' . \Carbon\Carbon::now() . '] Rates updated successfully.
-';
-            echo ($log);
+            Log::channel('single')->info('[custom.info][rates.update] Rates updated successfully');
         } catch (\Throwable $th) {
-            $log = '[' . \Carbon\Carbon::now() . '] Rates updating fails. Error message: ';
-            echo($log.$th->getMessage());
+            Log::channel('single')->error('[custom.error][rates.update] Rates updating fails. '.$th->getMessage());
         }
     }
 }
