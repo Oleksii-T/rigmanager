@@ -26,7 +26,8 @@ class CreateMailerRequest extends FormRequest
     public function rules()
     {
         return [
-            'keywords' => 'required_without:tags_encoded|string|nullable|max:255',
+            'types' => 'required',
+            'keywords' => 'required_without:tags_encoded|string|nullable|min:3|max:255',
             'tags_encoded' => 'required_without:keywords|string|nullable'
         ];
     }
@@ -35,7 +36,8 @@ class CreateMailerRequest extends FormRequest
     {
         return [
             'keywords.required_without' => trans('validation.required_without-tags'),
-            'tags_encoded.required_without' => trans('validation.required_without-keywords')
+            'tags_encoded.required_without' => trans('validation.required_without-keywords'),
+            'types.required' => trans('validation.oneFromPostTypes')
         ];
     }
 }

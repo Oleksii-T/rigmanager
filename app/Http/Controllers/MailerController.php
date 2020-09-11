@@ -6,6 +6,7 @@ use App\Mailer;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateMailerRequest;
+use App\Http\Requests\UpdateMailerRequest;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Traits\Tags;
 
@@ -45,12 +46,8 @@ class MailerController extends Controller
      */
     public function store(CreateMailerRequest $request)
     {
-        $types = [];
-        $request->sell ? $types[]=1 : false;
-        $request->buy ? $types[]=2 : false;
-        $request->rent ? $types[]=3 : false;
         $input = $request->all();
-        $input['types'] = json_encode($types);
+        $input['types'] = json_encode($request->types);
         $mailer = new Mailer($input);
         if (!auth()->user()->mailer()->save($mailer)) {
             Session::flash('message-error', __('messages.mailerUploadedError'));
@@ -77,15 +74,11 @@ class MailerController extends Controller
      * @param  App\Http\Requests\CreateMailerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateMailerRequest $request)
+    public function update(UpdateMailerRequest $request)
     {
         $mailer = auth()->user()->mailer;
-        $types = [];
-        $request->sell ? $types[]=1 : false;
-        $request->buy ? $types[]=2 : false;
-        $request->rent ? $types[]=3 : false;
         $input = $request->all();
-        $input['types'] = json_encode($types);
+        $input['types'] = json_encode($request->types);
         if ( !$mailer->update($input) ) {
             Session::flash('message-error', __('messages.mailerEditedError'));
         } else {

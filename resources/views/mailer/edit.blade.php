@@ -12,17 +12,18 @@
 
 @section('input-type')
     <label class="cb-container" for="typeSell">{{__('ui.postTypeSell')}}
-        <input id="typeSell" type="checkbox" name="sell" value="1" {{array_key_exists(1, $mailer->types_map) ? 'checked="checked"' : "" }}>
+        <input id="typeSell" type="checkbox" name="types[]" value="1" {{array_key_exists("1", $mailer->types_map) ? 'checked="checked"' : "" }}>
         <span class="cb-checkmark"></span>
     </label>
     <label class="cb-container" for="typeBuy">{{__('ui.postTypeBuy')}}
-        <input id="typeBuy" type="checkbox" name="buy" value="1" {{array_key_exists(2, $mailer->types_map) ? 'checked="checked"' : "" }}>
+        <input id="typeBuy" type="checkbox" name="types[]" value="2" {{array_key_exists("2", $mailer->types_map) ? 'checked="checked"' : "" }}>
         <span class="cb-checkmark"></span>
     </label>
     <label class="cb-container" for="typeRent">{{__('ui.postTypeRent')}}
-        <input id="typeRent" type="checkbox" name="rent" value="1" {{array_key_exists(3, $mailer->types_map) ? 'checked="checked"' : "" }}>
+        <input id="typeRent" type="checkbox" name="types[]" value="3" {{array_key_exists("3", $mailer->types_map) ? 'checked="checked"' : "" }}>
         <span class="cb-checkmark"></span>
     </label>
+    <x-server-input-error errorName='types' inputName='typeSell' errorClass='error'/>
 @endsection
 
 @section('input-keywords')
@@ -44,7 +45,6 @@
             @endif
         </ol>
     </div>
-    <x-server-input-error errorName='tags' inputName='tagEncodedHidden' errorClass='error'/>
 @endsection
 
 @section('input-authors')  

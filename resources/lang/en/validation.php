@@ -126,6 +126,7 @@ return [
     'required_without-tags' => 'The Description field is required if no categories are chosen.',
     'required_without-keywords' => 'At least one category is required if Description field is empty.',
     'phoneLength' => 'Phone number should be 10 digits long.',
+    'oneFromPostTypes' => 'At least one Post Type is required.',
 
     /*
     |--------------------------------------------------------------------------

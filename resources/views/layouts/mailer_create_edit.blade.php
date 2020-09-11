@@ -120,6 +120,9 @@
                         </div>
         
                         @yield('input-tags')
+
+                        <x-server-input-error errorName='tags_encoded' inputName='tagEncodedHidden' errorClass='error'/>
+
                         <div class="help">
                             <p><i>{{__('ui.mailerTagsHelp')}}</i></p>
                         </div>
@@ -252,11 +255,13 @@
             $('.mailer-form').validate({
                 rules: {
                     keywords: {
+                        minlength: 3,
                         maxlength: 255
                     }
                 },
                 messages: {
                     keywords: {
+                        minlength: '{{ __("validation.min.string", ["min" => 3]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 254]) }}'
                     }
                 }
