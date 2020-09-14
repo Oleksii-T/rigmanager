@@ -8,6 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Post::class, function (Faker $faker) {
     return [
         'user_id' => $faker->randomElement( $array = array(1, 2, 3) ),
+        'thread' => 1,
         'title' => $faker->realText($maxNbChars = 60, $indexSize = 2),
         'type' => $faker->randomElement( $array = array('1', '2', '3') ),
         'role' => $faker->randomElement( $array = array('1', '2') ),

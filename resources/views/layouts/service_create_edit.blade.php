@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/post_create_edit.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/service_create_edit.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/dropzone.css')}}" />
 @endsection
 
@@ -10,6 +10,8 @@
         @yield('page-title')
 
         @yield('form')
+
+            <input type="text" name="thread" value="2" hidden>
 
             <div id="title" class="element">
                 <h3 class="elementHeading" for="inputTitle">{{__('ui.title')}}<span class="required-input">*</span></h3>
@@ -22,21 +24,6 @@
             </div>
 
             @yield('input-status')
-
-            <div id="type" class="element">
-                <h3 class="elementHeading">{{__('ui.choosePostType')}}</h3>
-                @yield('input-type')
-            </div>
-
-            <div id="role" class="element">
-                <h3 class="elementHeading">{{__('ui.choosePostRole')}}</h3>
-                @yield('input-role')
-            </div>
-
-            <div id="condition" class="element">
-                <h3 class="elementHeading">{{__('ui.chooseCondition')}}</h3>
-                @yield('input-condition')
-            </div>
 
             <div id="tag" class="element">
                 <h3 class="elementHeading">{{__('ui.tag')}}</h3>
@@ -134,20 +121,6 @@
                 <div class="description error error-dz hidden"></div>
                 <div class="help">
                     <p><i>{{__('ui.descriptionHelp')}}</i></p>
-                </div>
-            </div>
-
-            <div id="imgs" class="element">
-                <h3 class="elementHeading">{{__('ui.image')}}</h3>
-                
-                <div class="upload-zone">
-                    @yield('dz-message')
-                </div>
-
-                @yield('images-errors')
-
-                <div class="help">
-                    <p><i>{{__('ui.imageHelp')}}</i></p>
                 </div>
             </div>
 

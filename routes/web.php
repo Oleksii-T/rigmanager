@@ -36,6 +36,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get      ('ajax/posts/images/{post}',            'PostController@getImages')     ->name('get.images'); //Ajax reqeust
     Route::get      ('posts/store',                         'PostController@storeFake')     ->name('posts.store.fake');
     Route::post     ('posts/toggle/status/{post}',          'PostController@togglePost')    ->name('post.toggle'); //Ajax reqeust
+    Route::get      ('posts/create/service',                'PostController@serviceCreate') ->name('service.create');
     Route::resource ('posts',                               'PostController')               ->except(['index']);
     
     // post filters routes

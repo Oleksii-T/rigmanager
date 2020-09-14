@@ -32,7 +32,13 @@ class PostController extends Controller
     public function create()
     {
         $user = auth()->user();
-        return view('post.create', compact('user'));
+        return view('post.equipment_create', compact('user'));
+    }
+
+    public function serviceCreate()
+    {
+        $user = auth()->user();
+        return view('post.service_create', compact('user'));
     }
 
     /**
@@ -96,19 +102,23 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        $images = false;
-        if ( $post->images->isNotEmpty() ) {
-            $images = array();
-            foreach ($post->images()->where('version', 'origin')->get() as $image) {
-                $img['name'] = $image->name;
-                $img['size'] = $image->size_b;
-                $img['url'] = $image->url;
-                $img['id'] = $image->serial_no;
-                $images[] = $img;
+        if ($post->thread == 1) {
+            $images = false;
+            if ( $post->images->isNotEmpty() ) {
+                $images = array();
+                foreach ($post->images()->where('version', 'origin')->get() as $image) {
+                    $img['name'] = $image->name;
+                    $img['size'] = $image->size_b;
+                    $img['url'] = $image->url;
+                    $img['id'] = $image->serial_no;
+                    $images[] = $img;
+                }
+                $images = json_encode($images);
             }
-            $images = json_encode($images);
+            return view('post.equipment_edit', compact('post', 'images'));
+        } else {
+            return view('post.service_edit', compact('post', 'images'));
         }
-        return view('post.edit', compact('post', 'images'));
     }
 
     /**
@@ -121,36 +131,41 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, $id)
     {
         $post = Post::findOrFail($id);
-        if ( $request->hasFile('images')) {
-            $imagesAmount = count($request->file('images')) + $post->images->count();
-            if ($imagesAmount > 5) {
-                Session::flash('tooManyImagesError', __('messages.postEditedErrorTooManyImages'));
-                return redirect()->back();
+        if ($post->thread == 1) {
+            if ( $request->hasFile('images')) {
+                $imagesAmount = count($request->file('images')) + $post->images->count();
+                if ($imagesAmount > 5) {
+                    Session::flash('tooManyImagesError', __('messages.postEditedErrorTooManyImages'));
+                    return redirect()->back();
+                }
             }
-        }
-        $input = $request->all();
-        if ( $input['user_phone_raw'] ) {
-            $input['viber'] = $request->viber ? 1 : 0;
-            $input['telegram'] = $request->telegram ? 1 : 0;
-            $input['whatsapp'] = $request->whatsapp ? 1 : 0;
+            $input = $request->all();
+            if ( $input['user_phone_raw'] ) {
+                $input['viber'] = $request->viber ? 1 : 0;
+                $input['telegram'] = $request->telegram ? 1 : 0;
+                $input['whatsapp'] = $request->whatsapp ? 1 : 0;
+            } else {
+                $input['viber'] = 0;
+                $input['telegram'] = 0;
+                $input['whatsapp'] = 0;
+            }
+            if ( !$input['cost'] ) {
+                unset($input['currency']);
+                unset($input['cost']);
+            }
+            if (!$post->update($input)) {
+                Session::flash('message-error', __('messages.postEditedError'));
+                return redirect(route('home'));
+            }
+            if ( $request->hasFile('images')) {
+                $this->postImageUpload($request->file('images'), $post);
+            }
+            Session::flash('message-success', __('messages.postEdited'));
+            return redirect(route('posts.show', $id));
         } else {
-            $input['viber'] = 0;
-            $input['telegram'] = 0;
-            $input['whatsapp'] = 0;
+            Session::flash('message-success', __('messages.postEdited'));
+            return redirect(route('posts.show', $id));
         }
-        if ( !$input['cost'] ) {
-            unset($input['currency']);
-            unset($input['cost']);
-        }
-        if (!$post->update($input)) {
-            Session::flash('message-error', __('messages.postEditedError'));
-            return redirect(route('home'));
-        }
-        if ( $request->hasFile('images')) {
-            $this->postImageUpload($request->file('images'), $post);
-        }
-        Session::flash('message-success', __('messages.postEdited'));
-        return redirect(route('posts.show', $id));
     }
 
     /**

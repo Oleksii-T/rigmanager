@@ -1,4 +1,4 @@
-@extends('layouts.post_create_edit')
+@extends('layouts.equipment_create_edit')
 
 @section('page-title')
     <p id="pageTitle">{{__('ui.postCreate')}}</p>
@@ -7,6 +7,12 @@
 @section('form')
     <form method="POST" class="post-form" id="formCreatePost" action="{{ route('posts.store') }}" enctype="multipart/form-data">
         @csrf
+        <nav class="creation-type">
+            <ul>
+                <li><a id="equipment-create" href="{{route('posts.create')}}">Equipment</a></li>
+                <li><a id="service-create" href="{{route('service.create')}}">Service</a></li>
+            </ul>
+        </nav>
 @endsection
 
 @section('input-title')

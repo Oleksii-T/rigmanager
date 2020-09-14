@@ -21,9 +21,9 @@ class Post extends Model
     ];
 
     protected $fillable = [
-        'title', 'description', 'tag_encoded', 'condition', 'region_encoded', 'town', 'cost', 
-        'currency', 'user_email', 'user_phone_raw', 'viber', 'telegram', 'whatsapp', 'is_active', 
-        'type', 'role'
+        'thread', 'title', 'type', 'role', 'description', 'tag_encoded', 'condition', 'region_encoded', 
+        'town', 'cost', 'currency', 'user_email', 'user_phone_raw', 'viber', 'telegram', 'whatsapp',
+        'is_active', 
     ];
 
     /**

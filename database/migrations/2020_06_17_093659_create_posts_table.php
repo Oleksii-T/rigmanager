@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->boolean('is_active')->default(true);
+            $table->integer('thread');
             $table->string('title', 255);
             $table->string('type', 2); // sell/buy/loan
             $table->string('role', 2); // private/bussiness

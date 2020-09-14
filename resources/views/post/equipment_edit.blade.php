@@ -1,4 +1,4 @@
-@extends('layouts.post_create_edit')
+@extends('layouts.equipment_create_edit')
 
 @section('page-title')
     <p id="pageTitle">{{__('ui.postSettings')}}</p>

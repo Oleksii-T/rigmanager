@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('posts')->insert([
             'user_id' => 1,
+            'thread' => 1,
             'title' => 'Буровая штанга 89х6,5х1000 мм, резьба З-73',
             'type' => '1',
             'role' => '2',
@@ -80,6 +81,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('posts')->insert([
             'user_id' => 1,
+            'thread' => 1,
             'title' => 'Вертлюг 6WC',
             'type' => '1',
             'role' => '2',
@@ -120,6 +122,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('posts')->insert([
             'user_id' => 1,
+            'thread' => 1,
             'title' => 'Трехшарошечное долото 76 мм (3") К-ЦА (IADC 743) Уралбурмаш',
             'type' => '2',
             'role' => '1',
@@ -164,6 +167,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('posts')->insert([
             'user_id' => 2,
+            'thread' => 1,
             'title' => 'Роторні клини',
             'type' => '1',
             'role' => '2',
@@ -188,6 +192,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('posts')->insert([
             'user_id' => 2,
+            'thread' => 1,
             'title' => 'Лебідка та запчастини',
             'type' => '1',
             'role' => '2',
@@ -224,6 +229,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('posts')->insert([
             'user_id' => 3,
+            'thread' => 1,
             'title' => 'Метчик ловильный B',
             'type' => '3',
             'role' => '1',
@@ -253,6 +259,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('posts')->insert([
             'user_id' => 3,
+            'thread' => 1,
             'title' => 'Скважинная камера TEL1, кабель 300 м',
             'type' => '3',
             'role' => '2',
@@ -303,6 +310,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('posts')->insert([
             'user_id' => 4,
+            'thread' => 1,
             'title' => 'Extra long post title tttttttttttttt t t t tttttt t tttttt tttttt tttt',
             'condition' => 'Новое',
             'tag_encoded' => '2.1.2.6.1.3',
