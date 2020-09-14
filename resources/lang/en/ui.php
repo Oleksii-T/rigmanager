@@ -41,6 +41,7 @@ return [
     //home massages
     'home' => 'Home',
     'addToFav' => 'Add to Favourites',
+    'clearText' => 'Clear search bar',
 
     // my posts massages
     'myPosts' => 'My posts',
@@ -71,6 +72,7 @@ return [
     'deleteProfileImg' => 'Delete image',
     'passwordEncrypted' => 'In terms of safety, we store encrypted password. If forget password, you can change it in profile settings.',
     'profileSettings' => 'Profile settings',
+    'changeProfilePic' => 'Change profile picture',
 
     //mailer massages
     'mailer' => 'Mailer',

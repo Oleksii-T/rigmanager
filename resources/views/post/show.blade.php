@@ -42,12 +42,12 @@
                         @if (auth()->user()->favPosts->contains($post))
                             <p>{{__('ui.inFav')}}</p>
                             <button class="addToFavButton id_{{$post->id}}">
-                                <img src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                <img src="{{ asset('icons/heartOrangeIcon.svg') }}" title="{{__('ui.removeFromFav')}}" alt="{{__('alt.keyword')}}">
                             </button> 
                         @else
                             <p>{{__('ui.addToFav')}}</p>
                             <button class="addToFavButton id_{{$post->id}}">
-                                <img src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                <img src="{{ asset('icons/heartWhiteIcon.svg') }}" title="{{__('ui.addToFav')}}" alt="{{__('alt.keyword')}}">
                             </button>  
                         @endif
                     </aside>
@@ -227,11 +227,13 @@
                     if ( target.attr("src") != "{{ asset('icons/heartOrangeIcon.svg') }}" ) {
                         $("#favItemsTab span").html(n+1);
                         target.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
+                        target.attr("title", "{{__('ui.removeFromFav')}}");
                         $('#addToFavBtn p').html('{{__('ui.inFav')}}');
                         showPopUpMassage(true, "{{ __('messages.postAddedFav') }}");
                     }   else {
                         $("#favItemsTab span").html(n-1);
                         target.attr("src", "{{ asset('icons/heartWhiteIcon.svg') }}");
+                        target.attr("title", "{{__('ui.addToFav')}}");
                         $('#addToFavBtn p').html('{{__('ui.addToFav')}}');
                         showPopUpMassage(true, "{{ __('messages.postRemovedFav') }}");
                     }

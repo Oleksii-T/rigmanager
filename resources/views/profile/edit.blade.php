@@ -30,9 +30,9 @@
                                     <label for="inputAva">
                                         <div id="avaPreview">
                                             @if ($user->image)
-                                                <img src="{{ $user->image->url }}" alt="{{__('alt.keyword')}}">
+                                                <img src="{{ $user->image->url }}" title="{{__('ui.changeProfilePic')}}" alt="{{__('alt.keyword')}}">
                                             @else
-                                                <img src="{{ asset('icons/emptyUserIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                                                <img src="{{ asset('icons/emptyUserIcon.svg') }}" title="{{__('ui.changeProfilePic')}}" alt="{{__('alt.keyword')}}">
                                             @endif
                                         </div>
                                     </label>

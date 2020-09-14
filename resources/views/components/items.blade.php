@@ -27,12 +27,12 @@
 
             @if ($button == 'addToFav')
                 <button class="{{ $post->user_id == auth()->user()->id ? 'addToFavButtonBlocked' : 'addToFavButton'}} id_{{$post->id}}">
-                    <img class="{{ auth()->user()->favPosts->contains($post) ? 'active-fav-img' : '' }} addToFavImg id_{{$post->id}} img-hover-scale" src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                    <img class="{{ auth()->user()->favPosts->contains($post) ? 'active-fav-img' : '' }} addToFavImg id_{{$post->id}} img-hover-scale" title="{{__('ui.addToFav')}}" src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
                     <span><i>{{__('ui.addToFav')}}</i></span>
                 </button>
             @elseif ($button == 'removeFromFav')
                 <button class="addToFavButton id_{{$post->id}}">
-                    <img class="addToFavImg img-hover-scale" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                    <img class="addToFavImg img-hover-scale" title="{{__('ui.removeFromFav')}}" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
                     <span><i>{{__('ui.removeFromFav')}}</i></span>
                 </button>
             @elseif ($button == 'deleteAndEdit')

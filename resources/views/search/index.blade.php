@@ -12,7 +12,7 @@
         <form method="GET" action="{{ route('search.text') }}">
             <div id="inputWraper">
                 <img id="searchIcon" src="{{ asset('icons/searchIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                <button id="search-bar-clear-btn" type="button"><img src="{{ asset('icons/clearIcon.svg') }}" alt="{{__('alt.keyword')}}"></button>
+                <button id="search-bar-clear-btn" title="{{__('ui.clearText')}}" type="button"><img src="{{ asset('icons/clearIcon.svg') }}" alt="{{__('alt.keyword')}}"></button>
                 <input id="inputSearch" class="def-input" name="searchStrings" value="{{$search['type']=='text' ? $search['value'] : ''}}" placeholder="{{__('ui.search')}}..." required />
             </div>
             <button class="def-button" type="submit">{{__('ui.search')}}</button>

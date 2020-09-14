@@ -44,7 +44,7 @@
             <header>
                 <!-- Header of all web pages -->
                 <div id="header">
-                    <a href="{{ route('home') }}"><img id="logo" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
+                    <a href="{{ route('home') }}"><img id="logo" title="{{__('ui.home')}}" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
                     <ul>
                         @if (App::isLocale('uk'))
                             <li>UKR</li>
