@@ -49,6 +49,10 @@ div.side-background {
     flex: 1;
 }
 
+.noscroll {
+    overflow: hidden !important;
+}
+
 #noscript {
     position: fixed;
     bottom: 0;

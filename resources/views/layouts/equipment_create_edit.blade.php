@@ -3,6 +3,7 @@
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{asset('css/post_create_edit.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/dropzone.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/components/tags.css')}}" />
 @endsection
 
 @section('content')
@@ -41,86 +42,10 @@
             </div>
 
             <div id="tag" class="element">
-                <h3 class="elementHeading">{{__('ui.tag')}}</h3>
+                <h3 class="elementHeading">{{__('ui.chooseTag')}}</h3>
                 
-                <div id="navTags">
-                    <ul>
-                        <li><button type="button" class="tagsTrigger hseEq">{{__('tags.hseEq')}}<span class="arrow arrowDown"></span></button></li>
-                        <li><button type="button" class="tagsTrigger drillingEq">{{__('tags.drillingEq')}}<span class="arrow arrowDown"></span></button></li>
-                        <li><button type="button" class="tagsTrigger repairEq">{{__('tags.repairEq')}}<span class="arrow arrowDown"></span></button></li>
-                        <li><button type="button" class="tagsTrigger productionEq">{{__('tags.productionEq')}}<span class="arrow arrowDown"></span></button></li>
-                        <li><button type="button" class="tagsTrigger loggingEq">{{__('tags.loggingEq')}}<span class="arrow arrowDown"></span></button></li>
-                    </ul>
-                </div>
-                
-                <div id="dropDown">
-                    <div class="typeOfEq hidden" id="hseEq">
-                        <ul id="mainMenu">
-                            <x-tags.hse.fire-hazard/>
-                            <x-tags.hse.life-support/> 
-                            <x-tags.hse.light/>
-                            <x-tags.hse.misc-eq/> 
-                            <x-tags.hse.ppo/>
-                            <x-tags.hse.signalization/>
-                            <li><a href="#" id="1.0">{{__('tags.other')}}</a></li>
-                        </ul>
-                    </div>
+                <x-tags btnText="{{__('ui.tags')}}"/>
 
-                    <div class="typeOfEq hidden" id="drillingEq">
-                        <ul id="mainMenu">
-                            <x-tags.drilling.substructure/>
-                            <x-tags.drilling.mast/>
-                            <x-tags.drilling.logging/> 
-                            <x-tags.drilling.boe/> 
-                            <x-tags.drilling.emergency/> 
-                            <x-tags.drilling.power/> 
-                            <x-tags.drilling.lifting/> 
-                            <x-tags.drilling.rotory/> 
-                            <x-tags.drilling.drill-string/> 
-                            <x-tags.drilling.bha/> 
-                            <x-tags.drilling.grouning/> 
-                            <x-tags.drilling.mud/>
-                            <li><a href="#" id="2.0">{{__('tags.other')}}</a></li>
-                        </ul>
-                    </div>
-        
-                    <div class="typeOfEq hidden" id="repairEq">
-                        <ul id="mainMenu">
-                            <x-tags.repair.substructure/> 
-                            <x-tags.repair.logging/> 
-                            <x-tags.repair.boe/> 
-                            <x-tags.repair.emergency/> 
-                            <x-tags.repair.well-head/>
-                            <x-tags.repair.power/>
-                            <x-tags.repair.lifting/> 
-                            <x-tags.repair.rotory/> 
-                            <x-tags.repair.drill-string/> 
-                            <x-tags.repair.frac/>
-                            <x-tags.repair.coll-tubing/>
-                            <li><a href="#" id="3.0">{{__('tags.other')}}</a></li> 
-                        </ul>
-                    </div>
-                    
-                    <div class="typeOfEq hidden" id="productionEq">
-                        <ul id="mainMenu">
-                            <x-tags.production.tubing/> 
-                            <x-tags.production.well-head/>
-                            <x-tags.production.x-mass-tree/> 
-                            <li><a href="#" id="4.0">{{__('tags.other')}}</a></li> 
-                        </ul>
-                    </div>
-        
-                    <div class="typeOfEq hidden" id="loggingEq">
-                        <ul id="mainMenu">
-                            <x-tags.logging.sensors/>
-                            <x-tags.logging.eq/>
-                            <li><a href="#" id="5.0">{{__('tags.other')}}</a></li> 
-                        </ul>
-                    </div>
-
-                </div>
-
-                <!--Hidden field for encoded tag for DB-->
                 @yield('inputs-tag')
 
                 <div class="help">
@@ -249,6 +174,46 @@
     <script type="text/javascript">
         $(document).ready(function() {            
 
+            $('button.tags-show').click(function(){
+                $('div.modal-view').removeClass('hidden');
+                $('body').addClass('noscroll');
+            });
+
+            //close modal if clicked beyong the modal
+            window.onclick = function(event) {
+                var modal = document.getElementById("modal");
+                if (event.target == modal) {
+                    $('#modal').addClass('hidden');
+                    $('.emailField').text('');
+                    $('.phoneField span').text('');
+                    $('.phoneField img').remove();
+                    $('body').removeClass('noscroll');
+                }
+            }
+
+            $('p.tag.first').click(function(){
+                $('p.tag').removeClass('isActiveBtn');
+                $('div.tags.second').addClass('hidden');
+                $('div.tags.third').addClass('hidden');
+                $(this).addClass('isActiveBtn')
+                var id = $(this).attr('id');
+                $('div.tags_'+id).removeClass('hidden');
+            });
+
+            $('p.tag.second').click(function(){
+                $('p.tag.second').removeClass('isActiveBtn');
+                $('p.tag.third').removeClass('isActiveBtn');
+                $('div.tags.third').addClass('hidden');
+                $(this).addClass('isActiveBtn');
+                var id = $(this).attr('id');
+                id = id.replace('.', '\\.');
+                $('div.tags_'+id).removeClass('hidden');
+            });
+
+            $('p.tag.third').click(function(){
+                console.log ('you have chosed: ' + $(this).attr('id'));
+            });
+
             // formate phone field
             $('.format-phone').focusin(function(){
                 var newVal = phoneFormater( $(this).val(), false );
@@ -291,21 +256,6 @@
                     $('#inputTown').val('');
                 } else {
                     $('#townField').removeClass('hidden');
-                }
-            });
-
-            // open/close tags when user choosed master tag category
-            $('.tagsTrigger').click(function(){
-                var type = $(this).attr('class').split(' ')[1];
-                _this = $(this);
-                if ( _this.hasClass('isActiveBtn') ) {
-                    _this.removeClass('isActiveBtn');
-                    $('#'+type).addClass('hidden')
-                } else {
-                    $('.typeOfEq').addClass('hidden');
-                    $('.tagsTrigger').removeClass('isActiveBtn');
-                    _this.addClass('isActiveBtn');
-                    $('#'+type).removeClass('hidden')
                 }
             });
 

@@ -136,6 +136,8 @@ return [
     'postRole' => 'Legal type',
 
     // post edit/create massages
+    'equipment' => 'Equipment',
+    'service' => 'Service',
     'addPost' => 'Add post',
     'postCreate' => 'Post creation',
     'postSettings' => 'Post settings',
@@ -153,7 +155,8 @@ return [
     'conditionNew' => 'New',
     'conditionSH' => 'Used',
     'conditionForParts' => 'For Parts',
-    'tag' => 'Choose category',
+    'chooseTag' => 'Choose category',
+    'tags' => 'Categories',
     'tagHelp' => 'Category is important for proper work of search engine.
         Be sure that categoty is chosen correctly, so your post will be easy to find!',
     'chosenTags' => 'Chosen category',

@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class tags extends Component
 {
+    public $btnText;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($btnText)
     {
-        //
+        $this->btnText = $btnText;
     }
 
     /**

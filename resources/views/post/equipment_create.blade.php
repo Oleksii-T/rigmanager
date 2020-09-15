@@ -9,8 +9,8 @@
         @csrf
         <nav class="creation-type">
             <ul>
-                <li><a id="equipment-create" href="{{route('posts.create')}}">Equipment</a></li>
-                <li><a id="service-create" href="{{route('service.create')}}">Service</a></li>
+                <li><a id="equipment-create" href="{{route('posts.create')}}">{{__('ui.equipment')}}</a></li>
+                <li><a id="service-create" href="{{route('service.create')}}">{{__('ui.service')}}</a></li>
             </ul>
         </nav>
 @endsection
