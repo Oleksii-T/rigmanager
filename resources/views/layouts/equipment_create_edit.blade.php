@@ -44,7 +44,7 @@
             <div id="tag" class="element">
                 <h3 class="elementHeading">{{__('ui.chooseTag')}}</h3>
                 
-                <x-tags btnText="{{__('ui.tags')}}"/>
+                <x-equipment-tags btnText="{{__('ui.tags')}}"/>
 
                 @yield('inputs-tag')
 
@@ -170,23 +170,21 @@
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script> 
     <script type="text/javascript" src="{{ asset('js/myValidators.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/dropzone.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/tags.js') }}"></script>
     @yield('post-scripts')
     <script type="text/javascript">
         $(document).ready(function() {            
 
-            $('button.tags-show').click(function(){
+            $('button.equipment-tags-show').click(function(){
                 $('div.modal-view').removeClass('hidden');
                 $('body').addClass('noscroll');
             });
 
             //close modal if clicked beyong the modal
             window.onclick = function(event) {
-                var modal = document.getElementById("modal");
+                var modal = document.getElementById("equipment-tags-modal");
                 if (event.target == modal) {
-                    $('#modal').addClass('hidden');
-                    $('.emailField').text('');
-                    $('.phoneField span').text('');
-                    $('.phoneField img').remove();
+                    $('#equipment-tags-modal').addClass('hidden');
                     $('body').removeClass('noscroll');
                 }
             }

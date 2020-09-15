@@ -1,19 +1,21 @@
 <?php
 
-namespace App\View\Components\tags\logging;
+namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class eq extends Component
+class serviceTags extends Component
 {
+    public $btnText;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($btnText)
     {
-        //
+        $this->btnText = $btnText;
     }
 
     /**
@@ -23,6 +25,6 @@ class eq extends Component
      */
     public function render()
     {
-        return view('components.tags.logging.eq');
+        return view('components.service-tags');
     }
 }

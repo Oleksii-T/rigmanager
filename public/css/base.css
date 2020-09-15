@@ -23,6 +23,20 @@ body {
     overflow-x: hidden;
 }
 
+body::-webkit-scrollbar {
+    width: 11px;
+}
+   
+body::-webkit-scrollbar-track {
+    /*box-shadow: inset 0 0 5px grey; */
+    background-color: #888888;
+}
+   
+body::-webkit-scrollbar-thumb {
+    background-color: #FE9042;
+    border-radius: 5px;
+}
+
 #app {
     overflow: hidden;
     display: flex;

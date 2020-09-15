@@ -172,7 +172,6 @@ trait Tags
                 '38.1' => __('tags.spider'),
                 '38.2' => __('tags.slip'),
             '39' => __('tags.cementing'),
-
         ];
     }
 

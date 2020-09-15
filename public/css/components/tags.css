@@ -2,6 +2,7 @@
     width: 200px;
     margin-bottom: 20px;
     position: relative;
+    cursor: pointer;
 }
 
 .modal-view {

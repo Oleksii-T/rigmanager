@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
             'type' => '1',
             'role' => '2',
             'condition' => 2,
-            'tag_encoded' => '2.3.2.1',
+            'tag_encoded' => '5.1',
             'description' => 'Производитель:	DM Bits
                 Страна происхождения:	РОССИЯ
                 Cрок поставки:	3-4 недели
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
             'type' => '1',
             'role' => '2',
             'condition' => 2,
-            'tag_encoded' => '2.12.3',
+            'tag_encoded' => '8.2',
             'description' => 'Производитель:	Western Rubber
                 Страна происхождения:	СОЕДИНЕННЫЕ ШТАТЫ
                 Cрок поставки:	8-10 недель
@@ -127,7 +127,7 @@ class DatabaseSeeder extends Seeder
             'type' => '2',
             'role' => '1',
             'condition' => 2,
-            'tag_encoded' => '2.1.2.6.1.2',
+            'tag_encoded' => '2.1',
             'description' => 'Страна происхождения:	РОССИЯ
                 Производитель:	УралБурМаш
                 Основные технические параметры
@@ -172,7 +172,7 @@ class DatabaseSeeder extends Seeder
             'type' => '1',
             'role' => '2',
             'condition' => 2,
-            'tag_encoded' => '2.5.1.3.4',
+            'tag_encoded' => '38.2',
             'description' => 'ТОВ “Бейкень енергетика Україна” продає  нові роторні клини для обсадної колони, бурильної труби, обваженої бурильної труби, сухарі для роторних клинів.
 
                 У в наявності на складі нові:
@@ -197,7 +197,7 @@ class DatabaseSeeder extends Seeder
             'type' => '1',
             'role' => '2',
             'condition' => 2,
-            'tag_encoded' => '2.7.6',
+            'tag_encoded' => '22.3',
             'description' => 'ТОВ “Бейкень енергетика Україна” продає нові пневматичні лебідки 5т та запчастини для бурової лебідки.
 
                 У в наявності на складі нові:
@@ -234,7 +234,7 @@ class DatabaseSeeder extends Seeder
             'type' => '3',
             'role' => '1',
             'condition' => 4,
-            'tag_encoded' => '2.4.2',
+            'tag_encoded' => '23.1.1',
             'description' => 'Страна происхождения:	РОССИЯ
                 Cрок поставки:	10 дней
                 Основные технические параметры
@@ -264,7 +264,7 @@ class DatabaseSeeder extends Seeder
             'type' => '3',
             'role' => '2',
             'condition' => 2,
-            'tag_encoded' => '5.1',
+            'tag_encoded' => '19.5',
             'description' => 'Камера TEL 1 предназначена для исследования скважины в процессе бурения. Камера TEL 1 является легким, простым в использовании и очень надежным инструментом для использования в буровых условиях.
                 Полный комплект состоит из: катушки, камеры, монитора с LCD дисплеем, USB выхода и входа для микрофона для записи видео и звука на любой ноутбук.
 
@@ -313,7 +313,7 @@ class DatabaseSeeder extends Seeder
             'thread' => 1,
             'title' => 'Extra long post title tttttttttttttt t t t tttttt t tttttt tttttt tttt',
             'condition' => 'Новое',
-            'tag_encoded' => '2.1.2.6.1.3',
+            'tag_encoded' => '30.1.1',
             'description' => 'Am of mr friendly by strongly peculiar juvenile. Unpleasant it sufficient simplicity am by friendship no inhabiting. Goodness doubtful material has denoting suitable she two. Dear mean she way and poor bred they come. He otherwise me incommode explained so in remaining. Polite barton in it warmly do county length an. 
 
                 Demesne far hearted suppose venture excited see had has. Dependent on so extremely delivered by. Yet ﻿no jokes worse her why. Bed one supposing breakfast day fulfilled off depending questions. Whatever boy her exertion his extended. Ecstatic followed handsome drawings entirely mrs one yet outweigh. Of acceptance insipidity remarkably is invitation. 
