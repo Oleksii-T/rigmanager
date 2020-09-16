@@ -27,7 +27,11 @@ $('p.tag.first').click(function(){
     $('div.tags.third').addClass('hidden');
     $(this).addClass('isActiveBtn')
     var id = $(this).attr('id');
+    $('#modal-hidden-tag').val(id);
     $('div.tags_'+id).removeClass('hidden');
+    $('div.selected-tags span').empty();
+    var tag = $(this).text();
+    $('div.selected-tags span').text(tag);
 });
 
 $('p.tag.second').click(function(){
@@ -36,10 +40,59 @@ $('p.tag.second').click(function(){
     $('div.tags.third').addClass('hidden');
     $(this).addClass('isActiveBtn');
     var id = $(this).attr('id');
-    id = id.replace('.', '\\.');
-    $('div.tags_'+id).removeClass('hidden');
+    $('#modal-hidden-tag').val(id);
+    var parentId = id.match(/^[0-9]*/)[0];
+    $( 'div.tags_'+id.replace('.', '\\.') ).removeClass('hidden');
+    var tag = $(this).text();
+    var parentTag =  $('#'+parentId).text();
+    $('div.selected-tags span').empty();
+    var tags = parentTag + ' > ' + tag;
+    $('div.selected-tags span').text(tags);
 });
 
 $('p.tag.third').click(function(){
-    console.log ('you have chosed: ' + $(this).attr('id'));
+    $('p.tag.third').removeClass('isActiveBtn');
+    $(this).addClass('isActiveBtn');
+    id = $(this).attr('id');
+    $('#modal-hidden-tag').val(id);
+    tag = $(this).text();
+    var parentId = id.match(/^[0-9]*\.[0-9]*/)[0];
+    parentId = parentId.replace('.', '\\.');
+    var parentTag =  $('#'+parentId).text();
+    var grandParentId = id.match(/^[0-9]*/)[0];
+    var grandParentTag =  $('#'+grandParentId).text();
+    $('div.selected-tags span').empty();
+    var tags = grandParentTag + ' > ' +parentTag + ' > ' + tag;
+    $('div.selected-tags span').text(tags);
 });
+
+$('button.close-tags').click(function(){
+    $('div.modal-view').addClass('hidden');
+    $('body').removeClass('noscroll');
+});
+
+$('button.submit-tags').click(function(){
+    $('div.modal-view').addClass('hidden');
+    $('body').removeClass('noscroll');
+    // start searchibg or fill inputs
+    if ( $(this).hasClass('post-search') ) {
+        searchTag();
+    } else {
+        fillInputs();
+    }
+});
+
+function fillInputs() {
+    id = $('#modal-hidden-tag').val();
+    tags = $('div.selected-tags p span').text();
+    $('#tagEncodedHidden').val(id);
+    $('#tagReadbleHidden').val(tags);
+    $('#tagReadbleVisible span').text(tags);
+}
+
+function searchTag() {
+    id = $('#modal-hidden-tag').val();
+    var url = 'http://rigmanager.test/search/category/'+id;
+    //url = url.replace(':id', id);
+    window.location.href=url;
+}

@@ -118,6 +118,8 @@ return [
 
     // search bar and search result massages
     'search' => 'Search',
+    'searchEquipment' => 'Search Equipment by categories',
+    'searchService' => 'Search Services by categories',
     'searchByAuthor' => 'Posts by author',
     'other' => 'Other',
     'searchSuccess' => 'That is what we found',
@@ -157,6 +159,7 @@ return [
     'conditionForParts' => 'For Parts',
     'chooseTag' => 'Choose category',
     'tags' => 'Categories',
+    'tagsModalHelp' => 'Do not forget to Submit chosen tags!',
     'tagHelp' => 'Category is important for proper work of search engine.
         Be sure that categoty is chosen correctly, so your post will be easy to find!',
     'chosenTags' => 'Chosen category',

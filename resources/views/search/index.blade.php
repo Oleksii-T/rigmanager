@@ -21,8 +21,8 @@
     </div>
 
     <div class="tag-search">
-        <x-equipment-tags btnText="Search equipment by categories"/>
-        <x-service-tags btnText="Search services by categories"/>
+        <x-equipment-tags role="2"/>
+        <x-service-tags role="2"/>
     </div>
 
     <a id="filter-beacon"></a>
@@ -132,6 +132,20 @@
                                 <option value="0">{{__('ui.notSpecified')}}</option>
                                 <option value="1">{{__('ui.postRolePrivate')}}</option>
                                 <option value="2">{{__('ui.postRoleBusiness')}}</option>
+                            </select>
+                            <span class="arrow arrowDown"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter filter-thread">
+                    <span class="filter-name">{{__('ui.thread')}}:</span>
+                    <div class="filter-input">
+                        <div class="def-select-wraper">
+                            <select class="def-select thread-select" name="thread">
+                                <option value="0">{{__('ui.notSpecified')}}</option>
+                                <option value="1">{{__('ui.equipment')}}</option>
+                                <option value="2">{{__('ui.service')}}</option>
                             </select>
                             <span class="arrow arrowDown"></span>
                         </div>
@@ -339,19 +353,6 @@
                 }
             }
 
-            function conditionReadable(value) {
-                switch (value) {
-                    case '2':
-                        return "{{__('ui.conditionNew')}}";
-                    case '3':
-                        return "{{__('ui.conditionSH')}}";
-                    case '4':
-                        return "{{__('ui.conditionForParts')}}";
-                    default:
-                        break;
-                }
-            }
-
             // user uses costFrom filter
             $('.cost-from-input').focusout(function(){
                 var newVal = $(this).val();
@@ -480,6 +481,14 @@
                 filter();
             });
 
+            // user uses thread filter
+            $('.thread-select').change(function(){
+                var newVal = $(this).children('option:selected').val();
+                // edit filters array
+                newVal==0 ? delete filters.thread : filters.thread=newVal;
+                filter();
+            });
+
             // user uses sorting filter
             $('.sort-select').change(function(){
                 var newVal = $(this).children('option:selected').val();
@@ -584,33 +593,6 @@
                         button.removeClass('loading'); 
                     }
                 });
-            });
-
-            //search for clicked category 
-            $('#dropDown a').click(function($e){
-                $e.preventDefault();
-                var id = $(this).attr('id');
-                var url = '{{ route("search.tag", ":id") }}';
-                url = url.replace(':id', id);
-                window.location.href=url;
-            });
-
-            //main Equipment types buttons click action
-            $('.tagsTrigger').click(function(){
-                var type = $(this).attr('class').split(' ')[1];
-                var display = $("#"+type).css('display');
-                $('.typeOfEq').css('display', 'none');
-                $('.tagsTrigger').removeClass('isActiveBtn');
-                if (display == 'none')
-                {
-                    $("#"+type).css('display', 'block');
-                    $(this).addClass('isActiveBtn');
-                }
-                else
-                {
-                    $("#"+type).css('display', 'none');
-                    $(this).removeClass('isActiveBtn');
-                }
             });
 
             //if user tries to add his oun item to fav list

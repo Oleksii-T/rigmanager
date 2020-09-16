@@ -4,6 +4,11 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/post_create_edit.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/dropzone.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/tags.css')}}" />
+    <style>
+        #equipment-create {
+            background-color: #FE9042;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -44,7 +49,7 @@
             <div id="tag" class="element">
                 <h3 class="elementHeading">{{__('ui.chooseTag')}}</h3>
                 
-                <x-equipment-tags btnText="{{__('ui.tags')}}"/>
+                <x-equipment-tags role="1"/>
 
                 @yield('inputs-tag')
 
@@ -175,43 +180,6 @@
     <script type="text/javascript">
         $(document).ready(function() {            
 
-            $('button.equipment-tags-show').click(function(){
-                $('div.modal-view').removeClass('hidden');
-                $('body').addClass('noscroll');
-            });
-
-            //close modal if clicked beyong the modal
-            window.onclick = function(event) {
-                var modal = document.getElementById("equipment-tags-modal");
-                if (event.target == modal) {
-                    $('#equipment-tags-modal').addClass('hidden');
-                    $('body').removeClass('noscroll');
-                }
-            }
-
-            $('p.tag.first').click(function(){
-                $('p.tag').removeClass('isActiveBtn');
-                $('div.tags.second').addClass('hidden');
-                $('div.tags.third').addClass('hidden');
-                $(this).addClass('isActiveBtn')
-                var id = $(this).attr('id');
-                $('div.tags_'+id).removeClass('hidden');
-            });
-
-            $('p.tag.second').click(function(){
-                $('p.tag.second').removeClass('isActiveBtn');
-                $('p.tag.third').removeClass('isActiveBtn');
-                $('div.tags.third').addClass('hidden');
-                $(this).addClass('isActiveBtn');
-                var id = $(this).attr('id');
-                id = id.replace('.', '\\.');
-                $('div.tags_'+id).removeClass('hidden');
-            });
-
-            $('p.tag.third').click(function(){
-                console.log ('you have chosed: ' + $(this).attr('id'));
-            });
-
             // formate phone field
             $('.format-phone').focusin(function(){
                 var newVal = phoneFormater( $(this).val(), false );
@@ -286,18 +254,6 @@
                         $('#dropDown a').removeClass('loading'); 
                     }
                 });
-            });
-
-            //clean chosen catorories
-            $('#clearTagsBtn').click(function(){
-                //write encoded tag to hidden input for DB
-                $('#tagEncodedHidden').attr("value",'0');
-                //write readble tag to hidden input for old() feature
-                $('#tagReadbleHidden').attr("value","{{__('tags.other')}}");
-                //write readble tag to visible field for user
-                $('#tagReadbleVisible').text("{{__('tags.other')}}");
-                // hide this btn
-                $(this).addClass('hidden');
             });
 
             //Validate the form

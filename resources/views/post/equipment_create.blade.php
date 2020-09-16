@@ -66,9 +66,7 @@
 
     <!--Hidden and visible fields for readable tag-->
     <input id="tagReadbleHidden" type="text" name="tagReadbleHidden" value="{{ old('tagReadbleHidden') ?? __('tags.other') }}" hidden/>
-    <p id="choosenTags">{{__('ui.chosenTags')}}: <span id="tagReadbleVisible">{{ old('tagReadbleHidden') ?? __('tags.other')}}</span></p>
-
-    <button class="def-button delete-button hidden" id="clearTagsBtn" type="button">{{__('ui.clearTagsFromPost')}}</button>
+    <p id="tagReadbleVisible">{{__('ui.chosenTags')}}: <span>{{ old('tagReadbleHidden') ?? __('tags.other')}}</span></p>
 @endsection
     
 @section('input-description')

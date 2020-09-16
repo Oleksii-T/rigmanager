@@ -19,8 +19,8 @@
     </div>
 
     <div class="tag-search">
-        <x-equipment-tags btnText="Search equipment by categories"/>
-        <x-service-tags btnText="Search services by categories"/>
+        <x-equipment-tags role="2"/>
+        <x-service-tags role="2"/>
     </div>
 
     <x-items :posts="$posts_list" button='addToFav' />
@@ -35,6 +35,8 @@
     <script type="text/javascript" src="{{ asset('js/tags.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+
+            var test = '{{route("search.tag", ":id")}}';
 
             // paint in orange addToFav btn of appropriate items 
             $('.active-fav-img').attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
@@ -60,32 +62,6 @@
                 });
                 return result;
             }
-            //search for clicked category 
-            $('#dropDown a').click(function($e){
-                $e.preventDefault();
-                var id = $(this).attr('id');
-                var url = '{{ route("search.tag", ":id") }}';
-                url = url.replace(':id', id);
-                window.location.href=url;
-            });
-
-            //main Equipment types buttons click action
-            $('.tagsTrigger').click(function(){
-                var type = $(this).attr('class').split(' ')[1];
-                var display = $("#"+type).css('display');
-                $('.typeOfEq').css('display', 'none');
-                $('.tagsTrigger').removeClass('isActiveBtn');
-                if (display == 'none')
-                {
-                    $("#"+type).css('display', 'block');
-                    $(this).addClass('isActiveBtn');
-                }
-                else
-                {
-                    $("#"+type).css('display', 'none');
-                    $(this).removeClass('isActiveBtn');
-                }
-            });
             
             //if user tries to add his oun item to fav list
             $(".addToFavButtonBlocked").click(function(){

@@ -15,7 +15,7 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
     cursor: pointer;
-    z-index: 10;
+    z-index: 11;
     display: table;
 }
 
@@ -38,6 +38,17 @@
     border-bottom: 2px solid #FE9042;
 }
 
+p.modal-help {
+    margin-bottom: 20px;
+}
+
+p.modal-help i {
+    font-size: 100%;
+    color: #888888;
+    border-left: 2px solid #FE9042;
+    padding-left: 10px;
+}
+
 div.columns {
     width: 100%;
     height: 600px;
@@ -46,10 +57,11 @@ div.columns {
     flex-wrap: nowrap;
     justify-content: start;
     flex-grow: 1;
+    margin-bottom: 20px;
 }
 
 div.column {
-    padding: 20px;
+    padding: 0px 20px;
     overflow-x: hidden;
     overflow-y: scroll;
     flex-grow: 1;
@@ -91,4 +103,21 @@ div.column::-webkit-scrollbar-track {
 div.column::-webkit-scrollbar-thumb {
   background-color: #FE9042;
   border-radius: 5px;
+}
+
+div.selected-tags {
+    margin-bottom: 20px;
+}
+
+div.selected-tags p {
+    font-size: 130%;
+}
+
+div.selected-tags span {
+    font-size: inherit;
+    color: #FE9042;
+}
+
+div.submit-btns {
+    margin-left: 20px;
 }

@@ -7,15 +7,28 @@ use Illuminate\View\Component;
 class equipmentTags extends Component
 {
     public $btnText;
+    public $submitBtnText;
+    public $submitBtnClass;
+    public $modalHelp;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($btnText)
+    public function __construct($role)
     {
-        $this->btnText = $btnText;
+        if ( $role == "1" ) {
+            $this->btnText = __('ui.tags');
+            $this->submitBtnText = __('ui.submit');
+            $this->submitBtnClass = 'post-create';
+            $this->modalHelp = __('ui.tagsModalHelp');
+        } else if ( $role == "2" ) {
+            $this->btnText = __('ui.searchEquipment');
+            $this->submitBtnText = __('ui.search');
+            $this->submitBtnClass = 'post-search';
+            $this->modalHelp = null;
+        }
     }
 
     /**

@@ -4,9 +4,13 @@
     <div class="modal-view hidden" id="equipment-tags-modal">
         <div class="tags-modal">
             <h3 class="columns-header">{{__('ui.chooseTag')}}:</h3>
+            @if ($modalHelp)
+                <p class="modal-help"><i>{{$modalHelp}}</i></p>
+            @endif
             <div class="columns">
                 <div class="column">
-                    <div class="tags first tags_0">
+                    <div class="tags first">
+                        <p class="tag first {{$submitBtnClass!='post-search' ? 'isActiveBtn' : ''}}" id="0">{{__('tags.other')}}</p>
                         <p class="tag first" id="1">{{__('tags.hseEq')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                         <p class="tag first" id="2">{{__('tags.bit')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                         <p class="tag first" id="3">{{__('tags.tong')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
@@ -239,6 +243,18 @@
                     </div>
                 </div>
             </div>
+            <div class="selected-tags">
+                @if ($submitBtnClass!='post-search')
+                    <p>{{__('ui.chosenTags')}}: <span>{{__('tags.other')}}</span></p>
+                @else
+                    <p>{{__('ui.chosenTags')}}: <span>{{__('ui.empty')}}</span></p>
+                @endif
+            </div>
+            <div class="submit-btns">
+                <button class="def-button submit-button submit-tags {{$submitBtnClass}}" type="button">{{$submitBtnText}}</button>
+                <button class="def-button cancel-button close-tags" type="button">{{__('ui.cancel')}}</button>
+            </div>
+            <input id="modal-hidden-tag" type="text" value="0" hidden>
         </div>
     </div>
 </div>

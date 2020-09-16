@@ -75,10 +75,8 @@
     
     <!--Hidden and visible fields for readable tag-->
     <input id="tagReadbleHidden" type="text" name="tagReadbleHidden" value="{{ old('tagReadbleHidden') ?? $post->tag_readable }}" hidden/>
-    <p id="choosenTags">{{__('ui.chosenTags')}}: <span id="tagReadbleVisible">{{ old('tagReadbleHidden') ?? $post->tag_readable }}</span></p>
-    
-    <button class="def-button delete-button {{$post->tag_encoded ? '' : 'hidden'}}" id="clearTagsBtn" type="button">{{__('ui.clearTagsFromPost')}}</button>
-@endsection 
+    <p id="tagReadbleVisible">{{__('ui.chosenTags')}}: <span>{{ old('tagReadbleHidden') ?? $post->tag_readable }}</span></p>
+@endsection
 
 @section('input-description')
     <textarea class="def-textarea" id="inputDecs" name="description" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description') ?? $post->description }}</textarea>
@@ -168,6 +166,26 @@
 @section('post-scripts')
     <script type="text/javascript">
         $(document).ready(function() {
+
+            //chose tags that chosen by user
+            tagId = $('#tagEncodedHidden').val();
+            tagName = $('#tagReadbleHidden').val();
+            $('div.selected-tags span').text(tagName);
+            $('#modal-hidden-tag').val(tagId);
+            $('#0').removeClass('isActiveBtn');
+            $( '#'+tagId.replace(/\./g, '\\.') ).addClass('isActiveBtn');
+            index = tagId.lastIndexOf('.');
+            if (index != -1) {
+                parentId = tagId.substr(0, index);
+                $('div.tags_'+parentId.replace(/\./g, '\\.')).removeClass('hidden');
+                $( '#'+parentId.replace(/\./g, '\\.') ).addClass('isActiveBtn');
+                index = parentId.lastIndexOf('.');
+                if ( index != -1 ) {
+                    grandParentId = parentId.substr(0, index);
+                    $('div.tags_'+grandParentId.replace(/\./g, '\\.')).removeClass('hidden');
+                    $( '#'+grandParentId.replace(/\./g, '\\.') ).addClass('isActiveBtn');
+                }
+            }
 
             // add visual effect on header nav button
             $('#myItemsTab').addClass('isActiveBtn');
@@ -289,13 +307,16 @@
 
             //make any click beyong the modal to close modal
             window.onclick = function(event) {
-                var modal = document.getElementById("modalImgsDelete");
-                if (event.target == modal) {
+                var modalImgsD = document.getElementById("modalImgsDelete");
+                var modalPostD = document.getElementById("modalPostDelete");
+                var modalTags = document.getElementById("equipment-tags-modal");
+                if (event.target == modalImgsD) {
                     $('#modalImgsDelete').css("display", "none");
-                }
-                var modal = document.getElementById("modalPostDelete");
-                if (event.target == modal) {
+                } else if (event.target == modalPostD) {
                     $('#modalPostDelete').css("display", "none");
+                } else if (event.target == modalTags) {
+                    $('#equipment-tags-modal').addClass('hidden');
+                    $('body').removeClass('noscroll');
                 }
             }
         });

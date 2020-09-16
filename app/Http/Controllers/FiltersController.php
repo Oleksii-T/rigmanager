@@ -93,6 +93,13 @@ class FiltersController extends Controller
         return $filtered;
     }
 
+    private function thread($posts, $thread) {
+        $filtered = $posts->filter(function($post, $key) use ($thread) {
+            return $post->thread == $thread;
+        });
+        return $filtered;
+    }
+
     private function sort($posts, $value) {
         switch ($value) {
             case '2':

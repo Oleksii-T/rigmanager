@@ -1,9 +1,14 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/service_create_edit.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/post_create_edit.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/dropzone.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/tags.css')}}" />
+    <style>
+        #service-create {
+            background-color: #FE9042;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -11,8 +16,6 @@
         @yield('page-title')
 
         @yield('form')
-
-            <input type="text" name="thread" value="2" hidden>
 
             <div id="title" class="element">
                 <h3 class="elementHeading" for="inputTitle">{{__('ui.title')}}<span class="required-input">*</span></h3>
@@ -29,7 +32,7 @@
             <div id="tag" class="element">
                 <h3 class="elementHeading">{{__('ui.chooseTag')}}</h3>
                 
-                <x-tags btnText="{{__('ui.tags')}}"/>
+                <x-service-tags role="1"/>
 
                 <!--Hidden field for encoded tag for DB-->
                 @yield('inputs-tag')
@@ -142,6 +145,7 @@
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script> 
     <script type="text/javascript" src="{{ asset('js/myValidators.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/dropzone.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/tags.js') }}"></script>
     @yield('post-scripts')
     <script type="text/javascript">
         $(document).ready(function() {            
@@ -189,64 +193,6 @@
                 } else {
                     $('#townField').removeClass('hidden');
                 }
-            });
-
-            // open/close tags when user choosed master tag category
-            $('.tagsTrigger').click(function(){
-                var type = $(this).attr('class').split(' ')[1];
-                _this = $(this);
-                if ( _this.hasClass('isActiveBtn') ) {
-                    _this.removeClass('isActiveBtn');
-                    $('#'+type).addClass('hidden')
-                } else {
-                    $('.typeOfEq').addClass('hidden');
-                    $('.tagsTrigger').removeClass('isActiveBtn');
-                    _this.addClass('isActiveBtn');
-                    $('#'+type).removeClass('hidden')
-                }
-            });
-
-            //action when user chose tag
-            $('#dropDown a').click(function($e){
-                $e.preventDefault();
-                // show delete tags btm
-                $('#clearTagsBtn').removeClass('hidden');
-                //get readable tags path via ajax request
-                var tagId = $(this).attr('id');
-                var tagEncoded = $(this).attr('id');
-                var ajaxUrl = '{{ route("get.readble.tag", ":tagId") }}';
-                ajaxUrl = ajaxUrl.replace(':tagId', tagId);
-                $.ajax({
-                    type: "GET",
-                    url: ajaxUrl,
-                    success: function(data) {
-                        //write encoded tag to hidden input for DB
-                        $('#tagEncodedHidden').attr("value",tagEncoded);
-                        //write readble tag to hidden input for old() feature
-                        $('#tagReadbleHidden').attr("value",data);
-                        //write readble tag to visible field for user
-                        $('#tagReadbleVisible').text(data);
-                        //remove wait cursor
-                        $('#dropDown a').removeClass('loading'); 
-                    },
-                    error: function() {
-                        //print error massage and remove wait cursor
-                        showPopUpMassage(false, "{{ __('messages.error') }}");
-                        $('#dropDown a').removeClass('loading'); 
-                    }
-                });
-            });
-
-            //clean chosen catorories
-            $('#clearTagsBtn').click(function(){
-                //write encoded tag to hidden input for DB
-                $('#tagEncodedHidden').attr("value",'0');
-                //write readble tag to hidden input for old() feature
-                $('#tagReadbleHidden').attr("value","{{__('tags.other')}}");
-                //write readble tag to visible field for user
-                $('#tagReadbleVisible').text("{{__('tags.other')}}");
-                // hide this btn
-                $(this).addClass('hidden');
             });
 
             //Validate the form
