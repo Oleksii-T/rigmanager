@@ -120,13 +120,13 @@ class Mailer extends Model
             switch ($type) {
                 case 1:
                     $types[$type] = __('ui.postTypeSell');
-                    continue;
+                    break;
                 case 2:
                     $types[$type] = __('ui.postTypeBuy');
-                    continue;
+                    break;
                 case 3:
                     $types[$type] = __('ui.postTypeRent');
-                    continue;
+                    break;
                 default:
                     break;
             }
