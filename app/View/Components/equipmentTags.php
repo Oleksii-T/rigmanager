@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class equipmentTags extends Component
+class EquipmentTags extends Component
 {
     public $btnText;
     public $submitBtnText;
