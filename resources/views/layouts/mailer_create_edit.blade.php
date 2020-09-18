@@ -3,6 +3,7 @@
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{asset('css/mailer_create_edit.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/profile_layout.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/components/tags.css')}}" />
 @endsection
 
 @section('content')
@@ -41,87 +42,11 @@
                     <div class="element" id="tags">
                         <h3 class="elementHeading">{{__('ui.mailerChooseTags')}}</h3>
                         
-                        <div id="navTags">
-                            <ul>
-                                <li><button type="button" class="tagsTrigger hseEq">{{__('tags.hseEq')}}<span class="arrow arrowDown"></span></button></li>
-                                <li><button type="button" class="tagsTrigger drillingEq">{{__('tags.drillingEq')}}<span class="arrow arrowDown"></span></button></li>
-                                <li><button type="button" class="tagsTrigger repairEq">{{__('tags.repairEq')}}<span class="arrow arrowDown"></span></button></li>
-                                <li><button type="button" class="tagsTrigger productionEq">{{__('tags.productionEq')}}<span class="arrow arrowDown"></span></button></li>
-                                <li><button type="button" class="tagsTrigger loggingEq">{{__('tags.loggingEq')}}<span class="arrow arrowDown"></span></button></li>
-                            </ul>
-                        </div>
-                        
-                        <div id="dropDown">
-                            
-                            <div class="typeOfEq" id="hseEq">
-                                <ul id="mainMenu">
-                                    <x-tags.hse.fire-hazard/>
-                                    <x-tags.hse.life-support/> 
-                                    <x-tags.hse.light/>
-                                    <x-tags.hse.misc-eq/> 
-                                    <x-tags.hse.ppo/>
-                                    <x-tags.hse.signalization/>
-                                    <li><a href="#" id="1.0">{{__('tags.other')}}</a></li>
-                                </ul>
-                            </div>
-        
-                            <div class="typeOfEq" id="drillingEq">
-                                <ul id="mainMenu">
-                                    <x-tags.drilling.substructure/>
-                                    <x-tags.drilling.mast/>
-                                    <x-tags.drilling.logging/> 
-                                    <x-tags.drilling.boe/> 
-                                    <x-tags.drilling.emergency/> 
-                                    <x-tags.drilling.power/> 
-                                    <x-tags.drilling.lifting/> 
-                                    <x-tags.drilling.rotory/> 
-                                    <x-tags.drilling.drill-string/> 
-                                    <x-tags.drilling.bha/> 
-                                    <x-tags.drilling.grouning/> 
-                                    <x-tags.drilling.mud/>
-                                    <li><a href="#" id="2.0">{{__('tags.other')}}</a></li>
-                                </ul>
-                            </div>
-                
-                            <div class="typeOfEq" id="repairEq">
-                                <ul id="mainMenu">
-                                    <x-tags.repair.substructure/> 
-                                    <x-tags.repair.logging/> 
-                                    <x-tags.repair.boe/> 
-                                    <x-tags.repair.emergency/> 
-                                    <x-tags.repair.well-head/>
-                                    <x-tags.repair.power/>
-                                    <x-tags.repair.lifting/> 
-                                    <x-tags.repair.rotory/> 
-                                    <x-tags.repair.drill-string/> 
-                                    <x-tags.repair.frac/>
-                                    <x-tags.repair.coll-tubing/>
-                                    <li><a href="#" id="3.0">{{__('tags.other')}}</a></li> 
-                                </ul>
-                            </div>
-                            
-                            <div class="typeOfEq" id="productionEq">
-                                <ul id="mainMenu">
-                                    <x-tags.production.tubing/> 
-                                    <x-tags.production.well-head/>
-                                    <x-tags.production.x-mass-tree/> 
-                                    <li><a href="#" id="4.0">{{__('tags.other')}}</a></li> 
-                                </ul>
-                            </div>
-                
-                            <div class="typeOfEq" id="loggingEq">
-                                <ul id="mainMenu">
-                                    <x-tags.logging.sensors/>
-                                    <x-tags.logging.eq/>
-                                    <li><a href="#" id="5.0">{{__('tags.other')}}</a></li> 
-                                </ul>
-                            </div>
-        
-                        </div>
-        
-                        @yield('input-tags')
-
-                        <x-server-input-error errorName='tags_encoded' inputName='tagEncodedHidden' errorClass='error'/>
+                        <x-equipment-tags role="3"/>
+                        @yield('input-equipment-tags')
+                    
+                        <x-service-tags role="3"/>
+                        @yield('input-service-tags')
 
                         <div class="help">
                             <p><i>{{__('ui.mailerTagsHelp')}}</i></p>
@@ -150,32 +75,75 @@
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
     @yield('mailer-scripts')
     <script type="text/javascript">
-
-        // User choosed already choosen tag or removing the tag
-        function removeFromChoosenTags (clickedTag) {
-            if (typeof clickedTag == 'object') {
-                var tagEncoded = clickedTag.attr('id');
-            } else {
-                var tagEncoded = clickedTag;
-                clickedTag = $('#'+tagEncoded.replace(/\./g, '\\.'));
-            }
-            //remove class from tag btn
-            clickedTag.removeClass('choosen');
-            clickedTag.removeClass('isActiveBtn');
-            //remove from array
-            newValue = $('#tagEncodedHidden').attr('value').replace(tagEncoded+" ", "");
-            $('#tagEncodedHidden').attr('value', newValue);
-            //remove from visible
-            var element = $('#encoded_'+tagEncoded.replace(/\./g, '\\.'));
-            element.empty();
-            element.remove();
-            //check for empty
-            if ( $('#tagEncodedHidden').attr('value') == "" ) {
-                $('#choosenTags').css('display', 'none');
-            }
-        };
-
         $(document).ready(function(){
+
+            var eqTags = new Object();
+            var seTags = new Object();
+
+            // show modal equipment tags 
+            $('button.equipment-tags-show').click(function(){
+                $('#equipment-tags-modal').removeClass('hidden');
+                $('body').addClass('noscroll');
+            });
+
+            // show modal service tags 
+            $('button.service-tags-show').click(function(){
+                $('#service-tags-modal').removeClass('hidden');
+                $('body').addClass('noscroll');
+            });
+
+            //close modal if clicked beyong the modal
+            window.onclick = function(event) {
+                var modalEq = document.getElementById("equipment-tags-modal");
+                var modalSe = document.getElementById("service-tags-modal");
+                if (event.target == modalEq) {
+                    $('#equipment-tags-modal').addClass('hidden');
+                    $('body').removeClass('noscroll');
+                } else if (event.target == modalSe) {
+                    $('#service-tags-modal').addClass('hidden');
+                    $('body').removeClass('noscroll');
+                }
+            }
+
+            // close modal tags if clicke on cancel btn
+            $('button.close-tags').click(function(){
+                $('div.modal-view').addClass('hidden');
+                $('body').removeClass('noscroll');
+            });
+            $('#equipment-tags-modal p.tag.first').click(function(){
+                var id = $(this).attr('id'); //get tag code
+                var tag = $(this).text(); // get tag name
+                if ( $(this).hasClass('isActiveBtn') ) {
+                    console.log( 'Old equipment tags object:' );
+                    console.log( eqTags );
+                    var regex = new RegExp ('^'+id+'(\..*)?$', 'g');
+                    console.log( regex );
+                    for (tag in eqTags) {
+                        console.log( 'analizing tag: '+'['+tag+']'+eqTags[tag] );
+                        if ( tag.match(regex) ) {
+                            console.log('match founds: '+'['+tag+']'+eqTags[tag]);
+                            delete eqTags[tag];
+                        }
+                    }
+                    $(this).removeClass('isActiveBtn');
+                    console.log( 'FIRST tag removed. New equipment tags object:' );
+                    console.log( eqTags );
+                } else {
+                    eqTags[id] = tag;
+                    showChosenTags();
+                    $(this).addClass('isActiveBtn'); // add active btn effect
+                    $('#modal-hidden-tag').val(id); //save tag code to hiden input
+                    $('div.tags_'+id).removeClass('hidden'); //show sub tags of chosen tag
+                    $('div.selected-tags span').empty(); // clear preview of chosen tags
+                    $('div.selected-tags span').text(tag); // write tag name to preview
+                    console.log( 'New FIRST tag chosen. Equipment tags object:' );
+                    console.log( eqTags );
+                }
+            });
+
+            function showChosenTags() {
+                console.log( 'showing tags...' );
+            }
 
             // User adding new tag to choosen tags
             function addToChoosenTags (clickedTag) {
@@ -212,44 +180,70 @@
                 });
             };
 
-            //main Eq Types buttons to open tags to choose
-            $('.tagsTrigger').click(function(){
-                var type = $(this).attr('class').split(' ')[1];
-                var display = $("#"+type).css('display');
-                var color = $(this).css('background-color');
-                $('.tagsTrigger').removeClass('isActiveBtn');
-                if ( color == 'rgba(149, 149, 149, 0.8)' ) {
-                    $(this).addClass('isActiveBtn');
+            // User choosed already choosen tag or removing the tag
+            function removeFromChoosenTags (clickedTag) {
+                if (typeof clickedTag == 'object') {
+                    var tagEncoded = clickedTag.attr('id');
                 } else {
-                    $(this).removeClass('isActiveBtn');
+                    var tagEncoded = clickedTag;
+                    clickedTag = $('#'+tagEncoded.replace(/\./g, '\\.'));
                 }
-                
-                $('.typeOfEq').css('display', 'none');
-                if (display == 'none') {
-                    $("#"+type).css('display', 'block');
-                } else {
-                    $("#"+type).css('display', 'none');
+                //remove class from tag btn
+                clickedTag.removeClass('choosen');
+                clickedTag.removeClass('isActiveBtn');
+                //remove from array
+                newValue = $('#tagEncodedHidden').attr('value').replace(tagEncoded+" ", "");
+                $('#tagEncodedHidden').attr('value', newValue);
+                //remove from visible
+                var element = $('#encoded_'+tagEncoded.replace(/\./g, '\\.'));
+                element.empty();
+                element.remove();
+                //check for empty
+                if ( $('#tagEncodedHidden').attr('value') == "" ) {
+                    $('#choosenTags').css('display', 'none');
                 }
-            });
+            };
 
-            // User click tag from drop down menu
-            $('#dropDown a').click(function($e){
-                $e.preventDefault();
-                if ( $(this).hasClass('choosen') ) {
-                    removeFromChoosenTags($(this));
-                    $(this).removeClass('loading');
-                } else {
-                    if ( $('#tagEncodedHidden').attr('value').split(' ').length > 9 ) {
-                        showPopUpMassage(false, "{{ __('messages.mailerToManyTags') }}");
+            /*
+                //main Eq Types buttons to open tags to choose
+                $('.tagsTrigger').click(function(){
+                    var type = $(this).attr('class').split(' ')[1];
+                    var display = $("#"+type).css('display');
+                    var color = $(this).css('background-color');
+                    $('.tagsTrigger').removeClass('isActiveBtn');
+                    if ( color == 'rgba(149, 149, 149, 0.8)' ) {
+                        $(this).addClass('isActiveBtn');
+                    } else {
+                        $(this).removeClass('isActiveBtn');
+                    }
+                    
+                    $('.typeOfEq').css('display', 'none');
+                    if (display == 'none') {
+                        $("#"+type).css('display', 'block');
+                    } else {
+                        $("#"+type).css('display', 'none');
+                    }
+                });
+
+                // User click tag from drop down menu
+                $('#dropDown a').click(function($e){
+                    $e.preventDefault();
+                    if ( $(this).hasClass('choosen') ) {
+                        removeFromChoosenTags($(this));
                         $(this).removeClass('loading');
                     } else {
-                        // Make cursor wait
-                        $(document.body).css('cursor', 'wait');
-                        // Choose the tag
-                        addToChoosenTags($(this));
+                        if ( $('#tagEncodedHidden').attr('value').split(' ').length > 9 ) {
+                            showPopUpMassage(false, "{{ __('messages.mailerToManyTags') }}");
+                            $(this).removeClass('loading');
+                        } else {
+                            // Make cursor wait
+                            $(document.body).css('cursor', 'wait');
+                            // Choose the tag
+                            addToChoosenTags($(this));
+                        }
                     }
-                }
-            });
+                });
+            */
 
             //Validate the form
             $('.mailer-form').validate({

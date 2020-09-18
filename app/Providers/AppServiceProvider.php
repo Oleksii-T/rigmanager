@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Blade::component('equipment-tags', EquipmentTags::class);
         Blade::component('service-tags', ServiceTags::class);
+
         Builder::macro('whereLike', function ($attributes, string $searchStrings) {
             $this->where(function (Builder $query) use ($attributes, $searchStrings) {
                 foreach (Arr::wrap($attributes) as $attribute) {

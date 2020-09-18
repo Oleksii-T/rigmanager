@@ -10,7 +10,7 @@
             <div class="columns">
                 <div class="column">
                     <div class="tags first">
-                        <p class="tag first {{$submitBtnClass!='post-search' ? 'isActiveBtn' : ''}}" id="0">{{__('tags.other')}}</p>
+                        <p class="tag first {{$submitBtnClass=='post-create' ? 'isActiveBtn' : ''}}" id="0">{{__('tags.other')}}</p>
                         <p class="tag first" id="1">{{__('tags.hseEq')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                         <p class="tag first" id="2">{{__('tags.bit')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                         <p class="tag first" id="3">{{__('tags.tong')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
@@ -244,7 +244,7 @@
                 </div>
             </div>
             <div class="selected-tags">
-                @if ($submitBtnClass!='post-search')
+                @if ($submitBtnClass=='post-create')
                     <p>{{__('ui.chosenTags')}}: <span>{{__('tags.other')}}</span></p>
                 @else
                     <p>{{__('ui.chosenTags')}}: <span>{{__('ui.empty')}}</span></p>

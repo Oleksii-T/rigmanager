@@ -28,6 +28,11 @@ class ServiceTags extends Component
             $this->submitBtnText = __('ui.search');
             $this->submitBtnClass = 'post-search';
             $this->modalHelp = null;
+        } else if ( $role == "3" ) {
+            $this->btnText = __('ui.chooseServiceTags');
+            $this->submitBtnText = __('ui.submit');
+            $this->submitBtnClass = 'post-create';
+            $this->modalHelp = __('ui.tagsModalHelp');
         }
     }
 

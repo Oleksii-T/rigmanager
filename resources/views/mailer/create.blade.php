@@ -29,14 +29,30 @@
     <textarea id="inputKeywords" name="keywords" form="formNewMailer" rows="5" maxlength="9000">{{ old('keywords') }}</textarea>
 @endsection
 
-@section('input-tags')
+@section('input-equipment-tags')
     <!--Hidden field for encoded tag for DB-->
-    <input id="tagEncodedHidden" type="text" name="tags_encoded" value="" hidden/>
+    <input id="tagEncodedHidden" type="text" name="tags_eq_encoded" value="" hidden/>
 
     <!--Visible fields for readable tag-->                        
     <div id="choosenTags">
         <p>{{__('ui.chosenTags')}}:</p>
-        <ol class="orderedList"></ol>
+        <ol class="orderedList">
+            <li>some test</li>
+        </ol>
+    </div>
+@endsection
+
+@section('input-service-tags')
+    <!--Hidden field for encoded tag for DB-->
+    <input id="tagEncodedHidden" type="text" name="tags_se_encoded" value="" hidden/>
+
+    <!--Visible fields for readable tag-->                        
+    <div id="choosenTags">
+        <p>{{__('ui.chosenTags')}}:</p>
+        <ol class="orderedList">
+            <li>some tag here</li>
+            <li>Terrific!</li>
+        </ol>
     </div>
 @endsection
 

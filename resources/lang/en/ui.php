@@ -88,7 +88,7 @@ return [
         If You are interested in few independent products, please split the description of them by new line.',
     'mailerTags' => 'Catogiries',
     'mailerChooseTags' => 'Select the categories you are interested in',
-    'mailerTagsHelp' => 'You can choose up to 10 categories.
+    'mailerTagsHelp' => 'You can choose up to 10 categories of each type.
         Click on entry to delete.',
     'mailerAuthors' => 'Authors',
     'mailerAuthorsHelp' => 'You can add an Author to Mailer on the page of any Post, near the \'Show contacts\' button.
@@ -114,6 +114,8 @@ return [
     'mailerNotifAuthors' => 'posts by this author',
     'mailerNotifSubject' => 'Notification from your Mailer',
     'mailerTypesHelp' => 'At least one is required',
+    'chooseEquipmentTags' => 'Equipment categories',
+    'chooseServiceTags' => 'Service categories',
 
     //subscription massages
     'mySubscription' => 'My subscription',

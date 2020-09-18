@@ -28,7 +28,13 @@ class EquipmentTags extends Component
             $this->submitBtnText = __('ui.search');
             $this->submitBtnClass = 'post-search';
             $this->modalHelp = null;
+        } else if ( $role == "3" ) {
+            $this->btnText = __('ui.chooseEquipmentTags');
+            $this->submitBtnText = __('ui.submit');
+            $this->submitBtnClass = 'post-mailer';
+            $this->modalHelp = __('ui.tagsModalHelp');
         }
+
     }
 
     /**
