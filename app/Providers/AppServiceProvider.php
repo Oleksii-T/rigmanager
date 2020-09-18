@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Blade;
 use App\View\Components\EquipmentTags;
+use App\View\Components\ServiceTags;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::component('equipment-tags', EquipmentTags::class);
+        Blade::component('service-tags', ServiceTags::class);
         Builder::macro('whereLike', function ($attributes, string $searchStrings) {
             $this->where(function (Builder $query) use ($attributes, $searchStrings) {
                 foreach (Arr::wrap($attributes) as $attribute) {
