@@ -49,7 +49,6 @@ class PostController extends Controller
      */
     public function store(CreatePostRequest $request)
     {
-        dd($request->all());
         $input = $request->all();
         if ( !$input['cost'] ) {
             unset($input['currency']);

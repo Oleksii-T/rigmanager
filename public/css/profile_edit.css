@@ -47,11 +47,23 @@ label.error, div.error {
     white-space: normal;
 }
 
-div.error p { color: #eb837c; }
+div.error p { 
+    color: #eb837c; 
+}
 
-input.error { border-left: 2px solid #f44336 !important; }
+input.error { 
+    border-left: 2px solid #f44336 !important; 
+}
 
-#avaEdit td{ vertical-align: middle; }
+.invalidInput { 
+    border-left: 2px solid #f44336; 
+}
+
+/*========AVA========*/
+
+#avaEdit td{ 
+    vertical-align: middle; 
+}
 
 #avaPreview {
     height: 80px;
@@ -63,9 +75,13 @@ input.error { border-left: 2px solid #f44336 !important; }
     margin-left: 10px;
 }
 
-#avaEdit div.error { clear: both; }
+#avaEdit div.error { 
+    clear: both; 
+}
 
-#avaPreview:hover { box-shadow: 0px 0px 10px 5px #888888; }
+#avaPreview:hover { 
+    box-shadow: 0px 0px 10px 5px #888888;
+}
 
 #avaPreview img {
     width: 100%;
@@ -75,9 +91,9 @@ input.error { border-left: 2px solid #f44336 !important; }
     border-radius: 50%;
 }
 
-.hideShowPassword-wrapper {
-    width: 100%;
-}
+/*========USER_NAME========*/
+
+/*========PHONE========*/
 
 div.phone-wraper {
     position: relative;
@@ -105,16 +121,22 @@ span.country-code {
     cursor: default;
 }
 
-img.messengers-image { 
-    height: 20px; 
-}
-
 .mediaCheckBoxes {
     margin-left: 10px;
     margin-top: 5px;
 }
 
-.invalidInput { border-left: 2px solid #f44336; }
+img.messengers-image { 
+    height: 20px; 
+}
+
+/*========EMAIL========*/
+
+/*========PASSWORD========*/
+
+.hideShowPassword-wrapper {
+    width: 100%;
+}
 
 button.hideShowPassword-toggle {
     background-color: transparent;
@@ -138,6 +160,8 @@ button.hideShowPassword-toggle>img {
 button.hideShowPassword-toggle:hover {
     background-color: rgb(11, 11, 11, 0.6);
 }
+
+/*========BUTTONS========*/
 
 #userData #sumbitBtn {
     margin-left: 40px;

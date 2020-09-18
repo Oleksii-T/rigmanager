@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -42,6 +43,22 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    protected function validator(array $data)
+    {
+        $messages = [
+            'name.unique' => __("validation.unique-username"),
+            'email.unique' => __("validation.unique-email"),
+            'agreement.required' => __("validation.agreement"),
+        ];
+        return Validator::make($data, 
+        [
+            'name' => ['required', 'string', 'min:3', 'max:40', 'unique:users,name'], //add regex check
+            'phone' => ['string', 'nullable', 'min:8', 'max:20'], //add regex phone check
+            'email' => ['required', 'string', 'email', 'max:254','unique:users,email'],
+            'password' => ['required', 'string', 'min:6', 'max:20'],
+            'agreement' => ['required'],
+        ], $messages);
+    }
 
     /**
      * Create a new user instance after a valid registration.

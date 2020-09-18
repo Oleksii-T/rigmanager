@@ -37,6 +37,8 @@ return [
     'remember me' => 'Запомнить меня',
     'forget password' => 'Забыли пароль?',
     'loggedAs' => 'Вы вошли как',
+    'iAgree' => 'Я соглашаюсь с',
+    'iAgreeLink' => 'Пользовательским соглашением',
     
     //home massages
     'home' => 'Домой',

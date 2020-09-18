@@ -63,7 +63,7 @@
                                             <img class="country-flag" src="{{asset('icons/ukraineIcon.svg')}}" alt="{{__('alt.keyword')}}">
                                             <span class="country-code">+38</span>
                                         </div>
-                                        <input class="def-input format-phone" id="inputPhone" name="phone_raw" type="text" placeholder="0 (00) 000 00 00" value="{{ old('phone') ?? $user->phone_readable}}" autocomplete="phone" autofocus/>
+                                        <input class="def-input format-phone" id="inputPhone" name="phone_raw" type="text" placeholder="0 (00) 000 00 00" value="{{ old('phone_raw') ?? $user->phone_readable}}" autocomplete="phone" autofocus/>
                                     </div>
                                     <x-server-input-error errorName='phone_raw' inputName='inputPhone' errorClass='error'/>
                                     <div class="mediaCheckBoxes">
@@ -130,7 +130,6 @@
 @section('scripts')
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script> 
     <script type="text/javascript" src="{{ asset('js/hideShowPassword.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/myValidators.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
 
@@ -184,7 +183,7 @@
                         }
                         return phone;
                     } else {
-                        return phone.replace(/[^0-9]+/g,"");
+                        return phone.replace(/[^0-9]+/g,"").substring(0,10);
                     }
                 }
             };
@@ -222,6 +221,32 @@
                 }
             });
 
+            // add regex validation of name
+            $.validator.addMethod('validName',
+                function(value, element, param) {
+                    if (value != '') {
+                        if (value.match(/^[а-яёґєіїА-ЯЁҐЄІЇa-zA-Z0-9\s]*$/u) == null) {
+                            return false;
+                        }
+                    }
+                    return true;
+                },
+                '{{__("validation.username")}}'
+            );
+
+            // add regex validation of password
+            $.validator.addMethod('validPassword',
+                function(value, element, param) {
+                    if (value != '') {
+                        if (value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/) == null) {
+                            return false;
+                        }
+                    }
+                    return true;
+                },
+                '{{__("validation.password")}}'
+            );
+
             //Validate the form
             var userId = '{{ $user->id }}';
             $('#formProfile').validate({
@@ -230,12 +255,13 @@
                         required: true,
                         minlength: 3,
                         maxlength: 40,
-                        validName: true
-                    },
-                    phone: {
-                        minlength: 8,
-                        maxlength: 20,
-                        validPhone: true
+                        validName: true,
+                        remote: {
+                            url: '{{ route('username.exist') }}',
+                            data: {
+                                ignoreId: userId
+                            }
+                        },
                     },
                     email: {
                         required: true,
@@ -243,7 +269,7 @@
                         remote: {
                             url: '{{ route('email.exist') }}',
                             data: {
-                                ignoreId: '{{ $user->id }}'
+                                ignoreId: userId
                             }
                         },
                         maxlength: 254
@@ -258,16 +284,12 @@
                     name: { 
                         required: '{{ __("validation.required") }}',
                         minlength: '{{ __("validation.min.string", ["min" => 3]) }}',
-                        maxlength: '{{ __("validation.max.string", ["max" => 40]) }}'
-                    },
-                    phone: {
-                        minlength: '{{ __("validation.min.string", ["min" => 8]) }}',
-                        maxlength: '{{ __("validation.max.string", ["max" => 20]) }}',
-                        validPhone: '{{ __("validation.phone") }}'
+                        maxlength: '{{ __("validation.max.string", ["max" => 40]) }}',
+                        remote: '{{ __("validation.unique-username") }}',
                     },
                     email: {
                         required: '{{ __("validation.required") }}',
-                        remote: '{{ __("validation.unique") }}',
+                        remote: '{{ __("validation.unique-email") }}',
                         email: '{{ __("validation.email") }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 254]) }}'
                     },

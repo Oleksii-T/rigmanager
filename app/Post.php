@@ -37,11 +37,13 @@ class Post extends Model
         return $array;
     }
 
-    public function user() {
+    public function user() 
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function images() {
+    public function images() 
+    {
         return $this->hasMany(PostImage::class);
     }
 
@@ -57,7 +59,7 @@ class Post extends Model
     
     public function setUserPhoneRawAttribute($value)
     {
-        $this->attributes['user_phone_raw'] = preg_replace('/[^0-9]+/', '', $value);
+        $this->attributes['user_phone_raw'] = substr(preg_replace('/[^0-9]+/', '', $value), 0, 10);
     }
 
     public function getRegionReadableAttribute()

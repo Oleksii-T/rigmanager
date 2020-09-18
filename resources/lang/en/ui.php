@@ -7,7 +7,7 @@ return [
     'development' => 
     'The website is on the stage of active development. 
     The functionality for regular users is limited.
-    Release is scheduled for the 01.09.2020.
+    Release is scheduled for the 01.10.2020.
     If you want to find out more or take part in beta-testing,
     contact us by this email',
     
@@ -37,6 +37,8 @@ return [
     'remember me' => 'remember me',
     'forget password' => 'Forget password?',
     'loggedAs' => 'Logged as',
+    'iAgree' => 'I agree with',
+    'iAgreeLink' => 'Term of Service',
 
     //home massages
     'home' => 'Home',

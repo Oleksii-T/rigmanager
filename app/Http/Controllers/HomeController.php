@@ -33,18 +33,6 @@ class HomeController extends Controller
         return view('home.home', compact('posts_list'));
     }
 
-    public function example(Request $request)
-    {
-        $posts = json_decode($request->foo);
-        $condition = $request->condition;
-        var_dump('filtering by condition ['.$condition.']');
-        $posts = collect(collect($posts)['data']);
-        $filtered = $posts->filter(function($post, $key) use ($condition){
-            return $post->condition == $condition;
-        });
-        dd($filtered);
-    }
-
     public function faq()
     {
         return view('home.faq');

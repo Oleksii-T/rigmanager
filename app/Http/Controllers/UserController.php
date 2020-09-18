@@ -121,6 +121,27 @@ class UserController extends Controller
         return json_encode(false);
     }
 
+    /**
+     * Check is userName already taken or not
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return false email not available
+     * @return true email is available
+     */
+    public function userNameExists(Request $request) 
+    {
+        $name = $request->name;
+        $user = User::where('name', $name)->get();
+        if ( $user->isEmpty()) {
+            return json_encode(true);
+        } 
+        // if ignoring id is specified and it is match found user, return true
+        if ( $request->ignoreId && $user[0]->id == $request->ignoreId ) {
+            return json_encode(true);
+        }
+        return json_encode(false);
+    }
+
     public function subscription()
     {
         return view('subscription.show');

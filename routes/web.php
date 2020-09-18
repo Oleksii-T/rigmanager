@@ -23,8 +23,13 @@ Auth::routes(['verify' => true]);
 Route::get('login/{social}',            'Auth\LoginController@redirectToProvider')->name('login.social');
 Route::get('login/{social}/callback',   'Auth\LoginController@handleProviderCallback');
 
+// home routes
 Route::post('contacting',   'HomeController@contactUs')->name('contact.us');
 Route::get('contact-us',      'HomeController@contacts')->name('contacts');
+
+// user routes
+Route::get('emailexists', 'UserController@emailExists')->name('email.exist');
+Route::get('usernameexists', 'UserController@userNameExists')->name('username.exist');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // posts routes
@@ -73,9 +78,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('privacy',   'HomeController@privacy')   ->name('privacy');
     Route::get('sitemap',   'HomeController@sitemap')   ->name('site.map');
 
-    // user routes
-    Route::get('emailexists', 'UserController@emailExists')->name('email.exist');
-
     // post routes
 
     // search routes
@@ -93,7 +95,9 @@ Route::get('set-locale/{locale}', function ($locale) {
     App::setLocale($locale);
     session()->put('locale', $locale);
     $user = auth()->user();
-    $user->language = $locale;
-    $user->save();
+    if ($user) {
+        $user->language = $locale;
+        $user->save();
+    }
     return redirect()->back();
 })->middleware('check.locale')->name('locale.setting');

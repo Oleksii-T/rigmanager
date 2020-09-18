@@ -22,7 +22,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'activation_token', 'phone_raw', 'viber', 'telegram', 'whatsapp', 'language'
+        'name', 'email', 'password', 'activation_token', 'phone_raw', 'viber', 'telegram', 
+        'whatsapp', 'language'
     ];
 
     /**
@@ -66,7 +67,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function setPhoneRawAttribute($value)
     {
-        $this->attributes['phone_raw'] = preg_replace('/[^0-9]+/', '', $value);
+        $this->attributes['phone_raw'] = substr(preg_replace('/[^0-9]+/', '', $value), 0, 10);
     }
 
     public function getPhoneReadableAttribute() {

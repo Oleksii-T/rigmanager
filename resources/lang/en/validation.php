@@ -121,12 +121,15 @@ return [
     'phone' => 'Incorrect phone number.',
     'username' => 'Only letter and digits are allowed.',
     'password' => 'Minimum one digit, upper and lower case letter.',
+    'unique-username' => 'Such username already taken.',
+    'unique-email' => 'Such email address already taken.',
     'required_without-phone' => 'The Email field is required if Phone Number is empty.',
     'required_without-email' => 'The Phone Number field is required if Email is empty.',
     'required_without-tags' => 'The Description field is required if no categories are chosen.',
     'required_without-keywords' => 'At least one category is required if Description field is empty.',
     'phoneLength' => 'Phone number should be 10 digits long.',
     'oneFromPostTypes' => 'At least one Post Type is required.',
+    'agreement' => 'You must confirm your consent',
 
     /*
     |--------------------------------------------------------------------------

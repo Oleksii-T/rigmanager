@@ -172,8 +172,7 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script> 
-    <script type="text/javascript" src="{{ asset('js/myValidators.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/dropzone.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/tags.js') }}"></script>
     @yield('post-scripts')
@@ -209,7 +208,7 @@
                         }
                         return phone;
                     } else {
-                        return phone.replace(/[^0-9]+/g,"");
+                        return phone.replace(/[^0-9]+/g,"").substring(0,10);
                     }
                 }
             };
