@@ -42,11 +42,11 @@
                     <div class="element" id="tags">
                         <h3 class="elementHeading">{{__('ui.mailerChooseTags')}}</h3>
                         
-                        <x-equipment-tags role="3"/>
                         @yield('input-equipment-tags')
+                        <x-equipment-tags role="3"/>
                     
-                        <x-service-tags role="3"/>
                         @yield('input-service-tags')
+                        <x-service-tags role="3"/>
 
                         <div class="help">
                             <p><i>{{__('ui.mailerTagsHelp')}}</i></p>
@@ -80,6 +80,24 @@
             var eqTags = new Object();
             var seTags = new Object();
 
+            //get digit from classes of DOM element (depends on prefix)
+            function getIdFromClasses(classes, prefix) {
+                // regex special chars does not escaped in prefix!!!
+                var reg = new RegExp("^"+prefix+"[0-9]+$", 'g');
+                var result = '';
+                classes.split(' ').every(function(string){
+                    result = reg.exec(string);
+                    if ( result != null ) {
+                        result = result + '';
+                        result = result.split('_')[1];
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+                return result;
+            }
+
             // show modal equipment tags 
             $('button.equipment-tags-show').click(function(){
                 $('#equipment-tags-modal').removeClass('hidden');
@@ -110,75 +128,82 @@
                 $('div.modal-view').addClass('hidden');
                 $('body').removeClass('noscroll');
             });
-            $('#equipment-tags-modal p.tag.first').click(function(){
-                var id = $(this).attr('id'); //get tag code
-                var tag = $(this).text(); // get tag name
-                if ( $(this).hasClass('isActiveBtn') ) {
-                    console.log( 'Old equipment tags object:' );
-                    console.log( eqTags );
-                    var regex = new RegExp ('^'+id+'(\..*)?$', 'g');
-                    console.log( regex );
-                    for (tag in eqTags) {
-                        console.log( 'analizing tag: '+'['+tag+']'+eqTags[tag] );
-                        if ( tag.match(regex) ) {
-                            console.log('match founds: '+'['+tag+']'+eqTags[tag]);
-                            delete eqTags[tag];
-                        }
-                    }
-                    $(this).removeClass('isActiveBtn');
-                    console.log( 'FIRST tag removed. New equipment tags object:' );
-                    console.log( eqTags );
+            
+            // user submits the chosen equipment tag
+            $('button.equipment.submit-tags').click(function(){
+                $('div.modal-view').addClass('hidden');
+                $('body').removeClass('noscroll');
+                id = $('input.hidden-encoded-tag.equipment').val();
+                tags = $('div.selected-tags.equipment span').text();
+                if ( !id ) {
+                    return;
+                } else if ( Object.keys(eqTags) && Object.keys(eqTags).length == 10 ) {
+                    showPopUpMassage(false, "{{ __('messages.mailerToManyTags') }}");
+                } else if ( eqTags[id] != undefined ) {
+                    showPopUpMassage(false, "{{ __('messages.tagAlreadyChosen') }}");
                 } else {
-                    eqTags[id] = tag;
-                    showChosenTags();
-                    $(this).addClass('isActiveBtn'); // add active btn effect
-                    $('#modal-hidden-tag').val(id); //save tag code to hiden input
-                    $('div.tags_'+id).removeClass('hidden'); //show sub tags of chosen tag
-                    $('div.selected-tags span').empty(); // clear preview of chosen tags
-                    $('div.selected-tags span').text(tag); // write tag name to preview
-                    console.log( 'New FIRST tag chosen. Equipment tags object:' );
-                    console.log( eqTags );
+                    eqTags[id] = tags;
+                    $( "div.chosen-tags.equipment ol" ).append( "<li><button id=\"encoded_"+id+"\" type=\"button\" title=\"{{__('ui.delete')}}\">"+tags+"</button></li>" );
+                    // hide all chosen effects
+                    $('p.equipment.tag').removeClass('isActiveBtn');
+                    $('input.hidden-encoded-tag.equipment').val('');
+                    $('div.selected-tags.equipment span').text("{{__('ui.empty')}}");
+                    $('div.equipment.tags.second').addClass('hidden');
+                    $('div.equipment.tags.third').addClass('hidden');
                 }
             });
 
-            function showChosenTags() {
-                console.log( 'showing tags...' );
-            }
+            // user clicks of first tag
+            $('p.equipment.tag.first').click(function(){
+                var id = $(this).attr('id'); //get tag code
+                var tag = $(this).text(); // get tag name
+                $('p.equipment.tag').removeClass('isActiveBtn');
+                $(this).addClass('isActiveBtn')
+                $('div.equipment.tags.second').addClass('hidden');
+                $('div.equipment.tags.third').addClass('hidden');
+                $('input.equipment.hidden-encoded-tag').val(id); // bug
+                $('div.equipment.tags_'+id).removeClass('hidden');
+                $('div.equipment.selected-tags span').empty();
+                $('div.equipment.selected-tags span').text(tag); // bug
+            });
 
-            // User adding new tag to choosen tags
-            function addToChoosenTags (clickedTag) {
-                var tagId = clickedTag.attr('id');
-                var tagEncoded = clickedTag.attr('id');
-                var ajaxUrl = '{{ route("get.readble.tag", ":tagId") }}';
-                ajaxUrl = ajaxUrl.replace(':tagId', tagId);
-                // Get readable tags path via ajax request
-                $.ajax({
-                    type: "GET",
-                    url: ajaxUrl,
-                    success: function(data) {
-                        // Mark drop down button as choosen
-                        clickedTag.addClass('choosen');
-                        clickedTag.addClass('isActiveBtn');
-                        // Show help text and choosen tag
-                        $('#choosenTags').css('display', 'block');
-                        // Write encoded tag to hidden form field
-                        var newValue = $('#tagEncodedHidden').attr('value') + tagEncoded + " ";
-                        $('#tagEncodedHidden').attr('value', newValue);
-                        // Write readble tag to visible form field for user
-                        $( "#choosenTags ol" ).append( "<li id=\"encoded_"+tagEncoded+"\"><button onclick=\"removeFromChoosenTags('"+tagEncoded+"')\" type=\"button\" title=\"{{__('ui.delete')}}\">"+data+"</button></li>" );
-                        // Remove wait cursor
-                        $(document.body).css('cursor', 'default');
-                        $('#dropDown a').removeClass('loading'); 
-                    },
-                    error: function() {
-                        // Print error massage
-                        showPopUpMassage(false, "{{ __('messages.error') }}");
-                        // Remove wait cursor
-                        $(document.body).css('cursor', 'default');
-                        $('#dropDown a').removeClass('loading'); 
-                    }
-                });
-            };
+            // user clicks of second tag
+            $('p.equipment.tag.second').click(function(){
+                var tag = $(this).text(); //get tag code
+                var id = $(this).attr('id'); // get tag name
+                var parentTag =  $('#'+parentId).text();
+                var parentId = id.match(/^[0-9]*/)[0];
+                var tags = parentTag + ' > ' + tag;
+                $('p.equipment.tag.second').removeClass('isActiveBtn');
+                $(this).addClass('isActiveBtn');
+                $('p.equipment.tag.third').removeClass('isActiveBtn');
+                $('div.equipment.tags.third').addClass('hidden');
+                $('input.equipment.hidden-encoded-tag').val(id);
+                $('div.equipment.tags_'+id.replace('.', '\\.') ).removeClass('hidden');
+                $('div.equipment.selected-tags span').empty();
+                $('div.equipment.selected-tags span').text(tags);
+            });
+
+            // user clicks of third tag
+            $('p.tag.third').click(function(){
+                id = $(this).attr('id');
+                tag = $(this).text();
+                var parentId = id.match(/^[0-9]*\.[0-9]*/)[0].replace('.', '\\.');
+                var parentTag =  $('#'+parentId).text();
+                var grandParentId = id.match(/^[0-9]*/)[0];
+                var grandParentTag =  $('#'+grandParentId).text();
+                var tags = grandParentTag + ' > ' +parentTag + ' > ' + tag;
+                $('p.equipment.tag.third').removeClass('isActiveBtn');
+                $(this).addClass('isActiveBtn');
+                $('input.equipment.hidden-encoded-tag').val(id);
+                $('div.equipment.selected-tags span').empty();
+                $('div.equipment.selected-tags span').text(tags);
+            });
+
+            $('div.equipment.chosen-tags').on('click', 'button', function(){
+                id = getIdFromClasses( $(this).attr('class'), 'encoded_' );
+                console.log('deleting...'+id);
+            });
 
             // User choosed already choosen tag or removing the tag
             function removeFromChoosenTags (clickedTag) {
@@ -203,47 +228,6 @@
                     $('#choosenTags').css('display', 'none');
                 }
             };
-
-            /*
-                //main Eq Types buttons to open tags to choose
-                $('.tagsTrigger').click(function(){
-                    var type = $(this).attr('class').split(' ')[1];
-                    var display = $("#"+type).css('display');
-                    var color = $(this).css('background-color');
-                    $('.tagsTrigger').removeClass('isActiveBtn');
-                    if ( color == 'rgba(149, 149, 149, 0.8)' ) {
-                        $(this).addClass('isActiveBtn');
-                    } else {
-                        $(this).removeClass('isActiveBtn');
-                    }
-                    
-                    $('.typeOfEq').css('display', 'none');
-                    if (display == 'none') {
-                        $("#"+type).css('display', 'block');
-                    } else {
-                        $("#"+type).css('display', 'none');
-                    }
-                });
-
-                // User click tag from drop down menu
-                $('#dropDown a').click(function($e){
-                    $e.preventDefault();
-                    if ( $(this).hasClass('choosen') ) {
-                        removeFromChoosenTags($(this));
-                        $(this).removeClass('loading');
-                    } else {
-                        if ( $('#tagEncodedHidden').attr('value').split(' ').length > 9 ) {
-                            showPopUpMassage(false, "{{ __('messages.mailerToManyTags') }}");
-                            $(this).removeClass('loading');
-                        } else {
-                            // Make cursor wait
-                            $(document.body).css('cursor', 'wait');
-                            // Choose the tag
-                            addToChoosenTags($(this));
-                        }
-                    }
-                });
-            */
 
             //Validate the form
             $('.mailer-form').validate({

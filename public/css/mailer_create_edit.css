@@ -133,20 +133,29 @@ div.error p { color: #eb837c; }
 /*================TAGS================*/
 
 button.tags-show {
-    width: 300px;
+    width: auto;
+    padding: 7px 43px 7px 30px;
+    margin-left: 53px;
 }
 
-#choosenTags {
+div.chosen-tags {
     margin: 0px 0px 10px 15px;
 }
 
-#choosenTags p {
-    margin-bottom: 10px;
+div.chosen-tags p {
+    display: inline-block;
+    font-size: 110%;
+    border-bottom: 2px solid #FE9042;
 }
 
 .orderedList {
     list-style-position: outside;
     margin-left: 2em;
+}
+
+.orderedList li {
+    padding-top: 10px;
+    color: #FE9042;
 }
 
 .orderedList button {

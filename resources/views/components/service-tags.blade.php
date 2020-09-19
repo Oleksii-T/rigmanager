@@ -25,12 +25,14 @@
                     </div>
                 </div>
             </div>
-            <div class="selected-tags"><p>{{__('chosenTags')}}: <span>{{__('tags.other')}}</span></p></div>
+            <div class="selected-tags service">
+                <p>{{__('chosenTags')}}: <span>{{__('tags.other')}}</span></p>
+            </div>
             <div class="submit-btns">
                 <button class="def-button submit-button submit-tags {{$submitBtnClass}}" type="button">{{$submitBtnText}}</button>
                 <button class="def-button cancel-button close-tags" type="button">{{__('ui.cancel')}}</button>
             </div>
-            <input id="modal-hidden-tag" type="text" value="0" hidden>
+            <input class="hidden-encoded-tag service" id="modal-hidden-tag" type="text" value="0" hidden>
         </div>
     </div>
 </div>

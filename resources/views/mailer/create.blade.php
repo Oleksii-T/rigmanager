@@ -31,27 +31,24 @@
 
 @section('input-equipment-tags')
     <!--Hidden field for encoded tag for DB-->
-    <input id="tagEncodedHidden" type="text" name="tags_eq_encoded" value="" hidden/>
+    <input id="eqTagEncodedHidden" type="text" name="tags_eq_encoded" value="" hidden/>
 
     <!--Visible fields for readable tag-->                        
-    <div id="choosenTags">
-        <p>{{__('ui.chosenTags')}}:</p>
+    <div class="chosen-tags equipment">
+        <p>{{__('ui.chooseEquipmentTags')}}:</p>
         <ol class="orderedList">
-            <li>some test</li>
         </ol>
     </div>
 @endsection
 
 @section('input-service-tags')
     <!--Hidden field for encoded tag for DB-->
-    <input id="tagEncodedHidden" type="text" name="tags_se_encoded" value="" hidden/>
+    <input id="seTagEncodedHidden" type="text" name="tags_se_encoded" value="" hidden/>
 
     <!--Visible fields for readable tag-->                        
-    <div id="choosenTags">
-        <p>{{__('ui.chosenTags')}}:</p>
+    <div class="chosen-tags service">
+        <p>{{__('ui.chooseServiceTags')}}:</p>
         <ol class="orderedList">
-            <li>some tag here</li>
-            <li>Terrific!</li>
         </ol>
     </div>
 @endsection

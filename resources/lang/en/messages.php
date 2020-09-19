@@ -38,6 +38,7 @@ return [
     'mailerTagExists' => 'Specified categories already in your Mailer',
     'mailerTagAdded' => 'Specified categories added to your Mailer successfully!',
     'mailerTextAdded' => 'Specified keywords added to your Mailer successfully!',
+    'tagAlreadyChosen' => 'You can not choose the same category twice!',
 
     'profileEdited' => 'Profile has been changed successfully!',
     'profileImgDeleted' => 'Profile picture was deleted successfully!',

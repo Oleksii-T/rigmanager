@@ -116,6 +116,7 @@ return [
     'mailerTypesHelp' => 'At least one is required',
     'chooseEquipmentTags' => 'Equipment categories',
     'chooseServiceTags' => 'Service categories',
+    'choose' => 'Choose',
 
     //subscription massages
     'mySubscription' => 'My subscription',

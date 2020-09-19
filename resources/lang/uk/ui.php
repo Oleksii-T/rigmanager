@@ -116,6 +116,7 @@ return [
     'mailerTypesHelp' => 'Мінімум один обов\'язково',
     'chooseEquipmentTags' => 'Категорії Обладнання',
     'chooseServiceTags' => 'Категорії Сервісів',
+    'choose' => 'Обрати',
 
     //subscription massages
     'mySubscription' => 'Підписка',
