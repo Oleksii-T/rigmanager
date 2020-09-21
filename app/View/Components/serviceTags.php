@@ -31,7 +31,7 @@ class ServiceTags extends Component
         } else if ( $role == "3" ) {
             $this->btnText = __('ui.choose');
             $this->submitBtnText = __('ui.submit');
-            $this->submitBtnClass = 'post-create';
+            $this->submitBtnClass = 'post-mailer';
             $this->modalHelp = __('ui.tagsModalHelp');
         }
     }

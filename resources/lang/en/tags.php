@@ -11,7 +11,6 @@ return [
         'light' => 'Light System',
         'ppo' => 'PPO',
         'miscEq' => 'Additional equipment',
-        //'other' => 'Other',
     'bit' => 'Bits',
         'cone' => 'Cone',
         'pdc' => 'PDC',
@@ -197,5 +196,32 @@ return [
     'wellHead' => 'Casing spool',
     'xMassTree' => 'X-mass tree',
     */
-    
+
+
+    /* ========SERVICES ======== */
+
+    'otherService' => 'Other services',
+    'multipleService' => 'Multiple Services',
+    'loggingS' => 'Logging station',
+    'loggingW' => 'Well logging',
+        'core' => 'Coring Operations',
+        'stdWellLog' => 'Well-logging measurement',
+    'dhm' => 'Down hole motor',
+    'lab' => 'Drilling mud laboratory',
+    'guard' => 'Security',
+    'transport' => 'Transporters',
+    'vihacle' => 'Special machinery and vehicle',
+    'ndt' => 'NDT',
+    'controll' => 'Well controll',
+    'training' => 'Hiring and training of personnel',
+    'airWaste' => 'Atmospheric discharge',
+    'recyclingDrill' => 'Disposal of drilling waste',
+    'recyclingDomestic' => 'Disposal of domestic waste',
+    'bitSe' => 'Bits',
+    'bopSe' => 'BOP',
+    'grounding' => 'Grounding',
+    'builders' => 'Builders',
+    'emergencySe' => 'Emergency operations',
+    'casing' => 'Casing running',
+
 ];

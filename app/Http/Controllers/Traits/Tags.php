@@ -172,6 +172,31 @@ trait Tags
                 '38.1' => __('tags.spider'),
                 '38.2' => __('tags.slip'),
             '39' => __('tags.cementing'),
+
+            '50' => __('tags.otherService'),
+            '51' => __('tags.multipleService'),
+            '52' => __('tags.loggingS'),
+            '53' => __('tags.loggingW'),
+                '53.1' => __('tags.core'),
+                '53.2' => __('tags.stdWellLog'),
+            '54' => __('tags.lab'),
+            '55' => __('tags.guard'),
+            '56' => __('tags.transport'),
+            '57' => __('tags.vihacle'),
+            '58' => __('tags.ndt'),
+            '59' => __('tags.control'),
+            '60' => __('tags.training'),
+            '61' => __('tags.airWaste'),
+            '62' => __('tags.recyclingDrill'),
+            '63' => __('tags.recyclingDomestic'),
+            '64' => __('tags.bitSe'),
+            '65' => __('tags.bopSe'),
+            '66' => __('tags.grounding'),
+            '67' => __('tags.builders'),
+            '68' => __('tags.emergencySe'),
+            '69' => __('tags.casing'),
+            '70' => __('tags.dhm')
+
         ];
     }
 
