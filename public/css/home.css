@@ -105,6 +105,10 @@ button.tags-show {
     margin: 0;
 }
 
+button.tags-show span {
+    font-size: inherit;
+}
+
 button.tags-show img {
     display: none;
 }

@@ -164,10 +164,21 @@ div.chosen-tags p {
     transition: 0.2s;
     cursor: pointer;
     text-align: left;
+    position: relative;
+    padding-right: 25px;
 }
 
 .orderedList button:hover {
     color: red;
+}
+
+.orderedList button img {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 0.9em;
+    width: 0.9em;
 }
 
 #tags div.help {

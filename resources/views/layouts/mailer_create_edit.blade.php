@@ -48,6 +48,8 @@
                         @yield('input-service-tags')
                         <x-service-tags role="3"/>
 
+                        <x-server-input-error errorName='eq_tags_encoded' inputName='' errorClass='error'/>
+
                         <div class="help">
                             <p><i>{{__('ui.mailerTagsHelp')}}</i></p>
                         </div>
@@ -73,17 +75,16 @@
 
 @section('scripts')
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <!--Sub scrip-->
     @yield('mailer-scripts')
+    <!--General scrip-->
     <script type="text/javascript">
         $(document).ready(function(){
-
-            var eqTags = new Object();
-            var seTags = new Object();
 
             //get digit from classes of DOM element (depends on prefix)
             function getIdFromClasses(classes, prefix) {
                 // regex special chars does not escaped in prefix!!!
-                var reg = new RegExp("^"+prefix+"[0-9]+$", 'g');
+                var reg = new RegExp("^"+prefix+"[0-9]+\.*$", 'g');
                 var result = '';
                 classes.split(' ').every(function(string){
                     result = reg.exec(string);
@@ -137,13 +138,15 @@
                 tags = $('div.selected-tags.equipment span').text();
                 if ( !id ) {
                     return;
-                } else if ( Object.keys(eqTags) && Object.keys(eqTags).length == 10 ) {
+                } else if ( chosenTags.length >= 10 ) {
                     showPopUpMassage(false, "{{ __('messages.mailerToManyTags') }}");
-                } else if ( eqTags[id] != undefined ) {
+                } else if ( chosenTags.includes(id) ) {
                     showPopUpMassage(false, "{{ __('messages.tagAlreadyChosen') }}");
                 } else {
-                    eqTags[id] = tags;
-                    $( "div.chosen-tags.equipment ol" ).append( "<li><button id=\"encoded_"+id+"\" type=\"button\" title=\"{{__('ui.delete')}}\">"+tags+"</button></li>" );
+                    chosenTags.push(id); //save new tag to js global array
+                    $( "div.chosen-tags.equipment ol" ).append( "<li><button class='chosen_"+id+"' type='button' title='{{__('ui.delete')}}'>"+tags+"<img src='{{asset('icons/closeRedIcon.svg')}}' alt='{{__('alt.keyword')}}'></button></li>" ); //append chosen tag to chosen tags view
+                    $('#tagEqEncodedHidden').val(JSON.stringify(chosenTags)); // save encoded tags to hidden input
+                    $('button.equipment-tags-show span').html('{{__("ui.chooseMore")}}'); // change text of button depends of chosen tags amount
                     // hide all chosen effects
                     $('p.equipment.tag').removeClass('isActiveBtn');
                     $('input.hidden-encoded-tag.equipment').val('');
@@ -171,8 +174,8 @@
             $('p.equipment.tag.second').click(function(){
                 var tag = $(this).text(); //get tag code
                 var id = $(this).attr('id'); // get tag name
-                var parentTag =  $('#'+parentId).text();
                 var parentId = id.match(/^[0-9]*/)[0];
+                var parentTag =  $('#'+parentId).text();
                 var tags = parentTag + ' > ' + tag;
                 $('p.equipment.tag.second').removeClass('isActiveBtn');
                 $(this).addClass('isActiveBtn');
@@ -201,33 +204,17 @@
             });
 
             $('div.equipment.chosen-tags').on('click', 'button', function(){
-                id = getIdFromClasses( $(this).attr('class'), 'encoded_' );
-                console.log('deleting...'+id);
+                id = getIdFromClasses( $(this).attr('class'), 'chosen_' );
+                var index = chosenTags.indexOf(id);
+                chosenTags.splice(index, 1);
+                $(this).parent().remove(); //delete tag from chosen view
+                $('#tagEqEncodedHidden').val(JSON.stringify(chosenTags)); //save new json tags to hidden input
+                // change text of button depends of chosen tags amount
+                if ( chosenTags.length == 0 ) {
+                    $('button.equipment-tags-show span').html('{{__("ui.choose")}}');
+                    $('#tagEqEncodedHidden').val(null);
+                }
             });
-
-            // User choosed already choosen tag or removing the tag
-            function removeFromChoosenTags (clickedTag) {
-                if (typeof clickedTag == 'object') {
-                    var tagEncoded = clickedTag.attr('id');
-                } else {
-                    var tagEncoded = clickedTag;
-                    clickedTag = $('#'+tagEncoded.replace(/\./g, '\\.'));
-                }
-                //remove class from tag btn
-                clickedTag.removeClass('choosen');
-                clickedTag.removeClass('isActiveBtn');
-                //remove from array
-                newValue = $('#tagEncodedHidden').attr('value').replace(tagEncoded+" ", "");
-                $('#tagEncodedHidden').attr('value', newValue);
-                //remove from visible
-                var element = $('#encoded_'+tagEncoded.replace(/\./g, '\\.'));
-                element.empty();
-                element.remove();
-                //check for empty
-                if ( $('#tagEncodedHidden').attr('value') == "" ) {
-                    $('#choosenTags').css('display', 'none');
-                }
-            };
 
             //Validate the form
             $('.mailer-form').validate({

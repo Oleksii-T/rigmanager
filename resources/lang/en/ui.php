@@ -86,9 +86,10 @@ return [
     'mailerChooseDescription' => 'Describe what you are looking for',
     'mailerDescriptionHelp' => 'Here you can briefly describe the product you are interested in.
         If You are interested in few independent products, please split the description of them by new line.',
-    'mailerTags' => 'Catogiries',
+    'mailerEqTags' => 'Equipment catogiries',
+    'mailerSeTags' => 'Services Catogiries',
     'mailerChooseTags' => 'Select the categories you are interested in',
-    'mailerTagsHelp' => 'You can choose up to 10 categories of each type.
+    'mailerTagsHelp' => 'You can choose up to 10 categories total.
         Click on entry to delete.',
     'mailerAuthors' => 'Authors',
     'mailerAuthorsHelp' => 'You can add an Author to Mailer on the page of any Post, near the \'Show contacts\' button.
@@ -114,9 +115,8 @@ return [
     'mailerNotifAuthors' => 'posts by this author',
     'mailerNotifSubject' => 'Notification from your Mailer',
     'mailerTypesHelp' => 'At least one is required',
-    'chooseEquipmentTags' => 'Equipment categories',
-    'chooseServiceTags' => 'Service categories',
     'choose' => 'Choose',
+    'chooseMore' => 'Choose more',
 
     //subscription massages
     'mySubscription' => 'My subscription',
@@ -146,6 +146,8 @@ return [
     'equipment' => 'Equipment',
     'service' => 'Service',
     'addPost' => 'Add post',
+    'addPostEq' => 'Add post (Equipment)',
+    'addPostSe' => 'Add post (Service)',
     'postCreate' => 'Post creation',
     'postSettings' => 'Post settings',
     'title' => 'Title',

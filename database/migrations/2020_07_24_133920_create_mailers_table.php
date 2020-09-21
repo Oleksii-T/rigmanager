@@ -17,7 +17,8 @@ class CreateMailersTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('types', 15); // sell/buy/loan
-            $table->string('tags_encoded', 255)->nullable();
+            $table->string('eq_tags_encoded', 255)->nullable();
+            $table->string('se_tags_encoded', 255)->nullable();
             $table->string('keywords', 255)->nullable();
             $table->string('authors_encoded', 255)->nullable();
             $table->boolean('is_active')->default(true);

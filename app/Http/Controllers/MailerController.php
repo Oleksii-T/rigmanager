@@ -47,6 +47,8 @@ class MailerController extends Controller
     public function store(CreateMailerRequest $request)
     {
         $input = $request->all();
+        $input['eq_tags_encoded'] = json_decode($input['eq_tags_encoded']);
+        $input['se_tags_encoded'] = json_decode($input['se_tags_encoded']);
         $input['types'] = json_encode($request->types);
         $mailer = new Mailer($input);
         if (!auth()->user()->mailer()->save($mailer)) {
@@ -79,6 +81,8 @@ class MailerController extends Controller
         $mailer = auth()->user()->mailer;
         $input = $request->all();
         $input['types'] = json_encode($request->types);
+        $input['eq_tags_encoded'] = json_decode($input['eq_tags_encoded']);
+        $input['se_tags_encoded'] = json_decode($input['se_tags_encoded']);
         if ( !$mailer->update($input) ) {
             Session::flash('message-error', __('messages.mailerEditedError'));
         } else {
@@ -122,7 +126,8 @@ class MailerController extends Controller
             return true;
         }
         if (!$mailer->tags_encoded) {
-            $mailer->tags_encoded = $tagId;
+            $arr[] = $tagId;
+            $mailer->tags_encoded = $arr;
             $mailer->save();
             return true;
         }

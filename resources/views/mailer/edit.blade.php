@@ -30,17 +30,34 @@
     <textarea id="inputKeywords" name="keywords" form="formUpdateMailer" rows="5" maxlength="9000">{{ old('keywords') ?? $mailer->keywords }}</textarea>
 @endsection
 
-@section('input-tags')
+@section('input-equipment-tags')
     <!--Hidden field for encoded tag for DB-->
-    <input id="tagEncodedHidden" type="text" name="tags_encoded" value="{{$mailer->tags_string}} " hidden/>
+    <input id="tagEqEncodedHidden" type="text" name="eq_tags_encoded" value="{{$mailer->eq_tags_encoded ? json_encode($mailer->eq_tags_encoded) : ''}}" hidden/>
 
     <!--Visible fields for readable tag-->                        
-    <div id="choosenTags">
-        <p>{{__('ui.chosenTags')}}:</p>
+    <div class="chosen-tags equipment">
+        <p>{{__('ui.mailerEqTags')}}:</p>
         <ol class="orderedList">
-            @if ($mailer->tags_encoded)
-                @foreach ($mailer->tags_map as $id => $tag)
-                    <li id="encoded_{{$id}}"><button class="removeTag" type="button" onclick="removeFromChoosenTags('{{$id}}')" title="{{__('ui.delete')}}">{{$tag}}</button></li>
+            @if ($mailer->eq_tags_encoded)
+                @foreach ($mailer->eq_tags_map as $id => $tag)
+                    <li><button class="removeTag chosen_{{$id}}" type="button" title="{{__('ui.delete')}}">{{$tag}}<img src="{{asset('icons/closeRedIcon.svg')}}" alt="{{__('alt.keyword')}}"></button></li>
+                @endforeach
+            @endif
+        </ol>
+    </div>
+@endsection
+
+@section('input-service-tags')    
+    <!--Hidden field for encoded tag for DB-->
+    <input id="tagSeEncodedHidden" type="text" name="se_tags_encoded" value="{{$mailer->se_tags_encoded ? json_encode($mailer->se_tags_encoded) : ''}}" hidden/>
+
+    <!--Visible fields for readable tag-->                        
+    <div class="chosen-tags service">
+        <p>{{__('ui.mailerSeTags')}}:</p>
+        <ol class="orderedList">
+            @if ($mailer->se_tags_encoded)
+                @foreach ($mailer->se_tags_map as $id => $tag)
+                    <li><button class="removeTag chosen_{{$id}}" type="button" title="{{__('ui.delete')}}">{{$tag}}<img src="{{asset('icons/closeRedIcon.svg')}}" alt="{{__('alt.keyword')}}"></button></li>
                 @endforeach
             @endif
         </ol>
@@ -52,7 +69,7 @@
     @if ($mailer->authors_encoded)
         <ol class="orderedList">
             @foreach ($mailer->authors_map as $id => $author)
-                <li><button class="remove-author author_{{$id}}" type="button" title="{{__('ui.delete')}}">{{$author}} </button></li>
+                <li><button class="remove-author author_{{$id}}" type="button" title="{{__('ui.delete')}}">{{$author}}<img src="{{asset('icons/closeRedIcon.svg')}}" alt="{{__('alt.keyword')}}"></button></li>
             @endforeach
         </ol>
     @else
@@ -62,10 +79,11 @@
 
 @section('mailer-scripts')
     <script type="text/javascript">
+        var chosenTags = [];
         $(document).ready(function(){
-            
+
             //get digit from classes of DOM element (depends on prefix)
-            function getIdFromClasses(classes, prefix) {
+            function getIdFromClassesE(classes, prefix) {
                 // regex special chars does not escaped in prefix!!!
                 var reg = new RegExp("^"+prefix+"[0-9]+$", 'g');
                 var result = '';
@@ -84,7 +102,7 @@
 
             // Remove author
             $('.remove-author').click(function(){
-                var id = getIdFromClasses($(this).attr('class'), 'author_');
+                var id = getIdFromClassesE($(this).attr('class'), 'author_');
                 //remove from hidden input
                 newValue = $('#inputAuthors').attr('value').replace(id+" ", "");
                 $('#inputAuthors').attr('value', newValue);
@@ -97,15 +115,10 @@
                 }
             });
 
-            // If there is any tags choosen
-            if ("{{$mailer->tags_string}}") {
-                // Show choosen tags
-                $('#choosenTags').css('display', 'block');
-                // Mark choosen tags in drop down menu
-                var choosenTags = "{{$mailer->tags_string}}".split(' ');
-                choosenTags.forEach(tag => {
-                    $('#'+tag.replace(/\./g, '\\.')).addClass('choosen');
-                    $('#'+tag.replace(/\./g, '\\.')).addClass('isActiveBtn');
+            preTags = $('#tagEqEncodedHidden').val();
+            if (preTags) {
+                JSON.parse(preTags).forEach(element => {
+                    chosenTags.push(element);
                 });
             }
         });

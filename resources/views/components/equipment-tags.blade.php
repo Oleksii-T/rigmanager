@@ -1,5 +1,5 @@
 <div class="equipment-tags tags">
-    <button class="equipment-tags-show equipment tags-show def-input" type="button">{{$btnText}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></button>
+    <button class="equipment-tags-show equipment tags-show def-input" type="button"><span>{{$btnText}}</span><img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></button>
 
     <div class="modal-view hidden" id="equipment-tags-modal">
         <div class="tags-modal">

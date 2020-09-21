@@ -40,10 +40,21 @@
                             <p class="empty-value">{{__('ui.empty')}}</p>
                         @endif
 
-                        <h3 class="elementHeader">{{__('ui.mailerTags')}}:</h3>
-                        @if ($mailer->tags_encoded)
+                        <h3 class="elementHeader">{{__('ui.mailerEqTags')}}:</h3>
+                        @if ($mailer->eq_tags_encoded)
                             <ol class="orderedList">
-                                @foreach ($mailer->tags_readable as $tag)
+                                @foreach ($mailer->eq_tags_map as $tag)
+                                    <li>{{$tag}}</li> 
+                                @endforeach
+                            </ol>
+                        @else
+                            <p class="empty-value">{{__('ui.empty')}}</p>
+                        @endif
+
+                        <h3 class="elementHeader">{{__('ui.mailerSeTags')}}:</h3>
+                        @if ($mailer->se_tags_encoded)
+                            <ol class="orderedList">
+                                @foreach ($mailer->se_tags_map as $tag)
                                     <li>{{$tag}}</li> 
                                 @endforeach
                             </ol>
@@ -54,7 +65,7 @@
                         <h3 class="elementHeader">{{__('ui.mailerAuthors')}}:</h3>
                         @if ($mailer->authors_encoded)
                             <ol class="orderedList">
-                                @foreach ($mailer->authors_readable as $author)
+                                @foreach ($mailer->authors_map as $author)
                                     <li>{{$author}}</li>    
                                 @endforeach
                             </ol>

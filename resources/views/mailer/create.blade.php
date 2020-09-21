@@ -30,24 +30,23 @@
 @endsection
 
 @section('input-equipment-tags')
-    <!--Hidden field for encoded tag for DB-->
-    <input id="eqTagEncodedHidden" type="text" name="tags_eq_encoded" value="" hidden/>
+    <!--Hidden field for encoded tag (eq. and se. at ones) for DB-->
+    <input id="tagEqEncodedHidden" type="text" name="eq_tags_encoded" value="" hidden/>
 
     <!--Visible fields for readable tag-->                        
     <div class="chosen-tags equipment">
-        <p>{{__('ui.chooseEquipmentTags')}}:</p>
-        <ol class="orderedList">
-        </ol>
+        <p>{{__('ui.mailerEqTags')}}:</p>
+        <ol class="orderedList"></ol>
     </div>
 @endsection
 
 @section('input-service-tags')
-    <!--Hidden field for encoded tag for DB-->
-    <input id="seTagEncodedHidden" type="text" name="tags_se_encoded" value="" hidden/>
+    <!--Hidden field for encoded tag (eq. and se. at ones) for DB-->
+    <input id="tagSeEncodedHidden" type="text" name="se_tags_encoded" value="" hidden/>
 
     <!--Visible fields for readable tag-->                        
     <div class="chosen-tags service">
-        <p>{{__('ui.chooseServiceTags')}}:</p>
+        <p>{{__('ui.mailerSeTags')}}:</p>
         <ol class="orderedList">
         </ol>
     </div>
@@ -55,4 +54,10 @@
 
 @section('input-authors')
     <p id="noAuthors">{{__('ui.mailerNoAuthors')}}</p>
+@endsection
+
+@section('mailer-scripts')
+    <script type="text/javascript">
+        var chosenTags = [];
+    </script>
 @endsection

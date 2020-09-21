@@ -54,7 +54,8 @@
                 <div class="links post-links">
                     <h3 class="links-title">{{__('ui.stPost')}}</h3>
                     <ul class="links-list">
-                        <li><a class="link" href="{{route('posts.create')}}">{{__('ui.addPost')}}</a></li>
+                        <li><a class="link" href="{{route('posts.create')}}">{{__('ui.addPostEq')}}</a></li>
+                        <li><a class="link" href="{{route('service.create')}}">{{__('ui.addPostSe')}}</a></li>
                     </ul>
                 </div>
                 <div class="links auth-links">

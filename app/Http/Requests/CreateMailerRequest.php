@@ -27,16 +27,18 @@ class CreateMailerRequest extends FormRequest
     {
         return [
             'types' => 'required',
-            'keywords' => 'required_without:tags_encoded|string|nullable|min:3|max:255',
-            'tags_encoded' => 'required_without:keywords|string|nullable'
+            'keywords' => 'required_without_all:eq_tags_encoded,se_tags_encoded|string|nullable|min:3|max:255',
+            'eq_tags_encoded' => 'required_without_all:keywords,se_tags_encoded|string|nullable',
+            'se_tags_encoded' => 'required_without_all:keywords,eq_tags_encoded|string|nullable'
         ];
     }
 
     public function messages()
     {
         return [
-            'keywords.required_without' => trans('validation.required_without-tags'),
-            'tags_encoded.required_without' => trans('validation.required_without-keywords'),
+            'keywords.required_without_all' => trans('validation.required_without-tags'),
+            'eq_tags_encoded.required_without_all' => trans('validation.required_without-keywords'),
+            'se_tags_encoded.required_without_all' => trans('validation.required_without-keywords'),
             'types.required' => trans('validation.oneFromPostTypes')
         ];
     }
