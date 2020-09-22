@@ -16,6 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->boolean('is_banned')->default(false);
             $table->boolean('is_active')->default(true);
             $table->integer('thread');
             $table->string('title', 255);

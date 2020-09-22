@@ -1,0 +1,55 @@
+article.article {
+    padding: 20px 40px;
+    margin-bottom: 20px
+}
+h1.page-header {
+    font-size: 200%;
+    display: inline-block;
+    border-bottom: 2px solid #FE9042;
+    margin: 0;
+}
+div.p {
+    margin: 40px 0px;
+}
+h2.ph {
+    font-size: 150%;
+    margin-bottom: 20px;
+}
+/*
+<span class="key">
+</span>
+*/
+span.key {
+    font-weight: 900;
+    font-size: inherit;
+    color: #dddddd;
+}
+p.pb {
+    font-size: 120%;
+    margin-left: 30px;
+    line-height: 1.4em;
+    margin-bottom: 10px;
+}
+ul.pbl {
+    margin-left: 70px;
+    margin-bottom: 10px;
+}
+ul.psbl {
+    margin-left: 100px;
+}
+p.psb {
+    margin-left: 50px;
+}
+ul.pbl li {
+    font-size: 120%;
+}
+p.psb {
+    font-size: 130%;
+    margin-left: 60px;
+    line-height: 1.4em;
+    margin-bottom: 10px;
+}
+span.pn {
+    color: #FE9042;
+    font-size: inherit;
+}

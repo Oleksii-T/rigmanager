@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id(); // id of user
+            $table->boolean('is_banned')->default(false);
             $table->string('name', 255); //name of user
             $table->string('phone_raw', 11)->nullable(); //phone number of user
             $table->boolean('viber')->default(false);

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\fromUserNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {
@@ -58,7 +59,9 @@ class HomeController extends Controller
 
     public function terms()
     {
-        return view('home.terms');
+        $locale = App::getLocale();
+        $view = 'home.terms.'.$locale;
+        return view($view);
     }
 
     public function privacy()

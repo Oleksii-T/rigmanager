@@ -1,45 +1,11 @@
 @extends('layouts.app')
 
 @section('styles')
-<style>
-    #policyWraper {
-        padding: 20px 40px;
-        margin-bottom: 20px
-    }
-    h1.page-header {
-        font-size: 200%;
-        display: inline-block;
-        border-bottom: 2px solid #FE9042;
-        margin: 0;
-    }
-    div.p {
-        margin: 40px 0px;
-    }
-    h2.ph {
-        font-size: 150%;
-        margin-bottom: 20px;
-    }
-    p.pb {
-        font-size: 120%;
-        margin-left: 30px;
-        line-height: 1.4em;
-        margin-bottom: 10px;
-    }
-    p.psb {
-        font-size: 130%;
-        margin-left: 60px;
-        line-height: 1.4em;
-        margin-bottom: 10px;
-    }
-    span.pn {
-        color: #FE9042;
-        font-size: inherit;
-    }
-</style>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/components/tos_pp.css')}}" />
 @endsection
 
 @section('content')
-    <div id="policyWraper">
+    <article class="article" id="policyWraper">
         <h1 class="page-header">{{__('ui.footerPrivacy')}}</h1>
         <div class="p">
             <h2 class="ph"><span class="pn">1</span> {{__('privacy.P1')}}</h2>
@@ -107,7 +73,7 @@
             <p class="pb"><span class="pn">8.1</span> {{__('privacy.P8.1')}}</p>
             <p class="pb"><span class="pn">8.2</span> {{__('privacy.P8.2')}}</p>
         </div>
-    </div>
+    </article>
 @endsection
 
 @section('scripts')
