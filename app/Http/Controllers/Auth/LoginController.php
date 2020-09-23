@@ -65,20 +65,20 @@ class LoginController extends Controller
     public function handleProviderCallback($social)
     {
         // Alex Puzo id: 113050782962372144121
-        $arr = [
+        $social = [
             'name' => 'Ольга Тарбеева',
             'email' => 'olga.tarbeeva.66@gmail.com',
             'avatar' => 'https://lh5.googleusercontent.com/-O-Byra4GogY/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckBY9lmq5VsE5lv6YKUazxlfFGWPg/photo.jpg',
             'id' => '113804870852012522656'];
         $socialId = $social . '_id';
-        $user = User::where($socialId, $arr['id'])->first();
+        $user = User::where($socialId, $social['id'])->first();
         // check is such social ID was user before
         if ($user) {
             // such social account exist already
             Auth::loginUsingId($user->id);
         } else {
             // no social account found
-            $user = User::where('email', $arr['email'])->first();
+            $user = User::where('email', $social['email'])->first();
             // check is such email alredy user by some user
             if ( $user ) {
                 // such email already exist in db
@@ -91,13 +91,13 @@ class LoginController extends Controller
             } else {
                 // it is new email
                 $user = new User;
-                $user->name = $this->fetchName($arr['name']);;
-                $user->email = $arr['email'];
-                $user->$socialId = $arr['id'];
+                $user->name = $this->fetchName($social['name']);;
+                $user->email = $social['email'];
+                $user->$socialId = $social['id'];
                 $user->email_verified_at = Carbon::now();
                 $user->save();
                 Auth::loginUsingId($user->id);
-                $this->userImageUpload($arr['avatar']);
+                $this->userImageUpload($social['avatar']);
             }
         }
         Session::flash('message-success', __('messages.signedIn'));
@@ -106,16 +106,16 @@ class LoginController extends Controller
     */
     public function handleProviderCallback($social)
     {
-        $user = Socialite::driver($social)->user();
+        $social = Socialite::driver($social)->user();
         $socialId = $social . '_id';
-        $user = User::where($socialId, $user->id)->first();
+        $user = User::where($socialId, $social->id)->first();
         // check is such social ID was user before
         if ($user) {
             // such social account exist already
             Auth::loginUsingId($user->id);
         } else {
             // no social account found
-            $user = User::where('email', $user->email)->first();
+            $user = User::where('email', $social->email)->first();
             // check is such email alredy user by some user
             if ( $user ) {
                 // such email already exist in db
@@ -128,9 +128,9 @@ class LoginController extends Controller
             } else {
                 // it is new email
                 $user = new User;
-                $user->name = $this->fetchName($user->name);;
-                $user->email = $user->email;
-                $user->$socialId = $user->id;
+                $user->name = $this->fetchName($social->name);;
+                $user->email = $social->email;
+                $user->$socialId = $social->id;
                 $user->email_verified_at = Carbon::now();
                 $user->save();
                 Auth::loginUsingId($user->id);
