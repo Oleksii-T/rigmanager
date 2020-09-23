@@ -62,7 +62,7 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     /*
-    public function handleProviderCallback($social)
+    public function handleProviderCallback($driver)
     {
         // Alex Puzo id: 113050782962372144121
         $social = [
@@ -70,7 +70,7 @@ class LoginController extends Controller
             'email' => 'olga.tarbeeva.66@gmail.com',
             'avatar' => 'https://lh5.googleusercontent.com/-O-Byra4GogY/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckBY9lmq5VsE5lv6YKUazxlfFGWPg/photo.jpg',
             'id' => '113804870852012522656'];
-        $socialId = $social . '_id';
+        $socialId = $driver . '_id';
         $user = User::where($socialId, $social['id'])->first();
         // check is such social ID was user before
         if ($user) {
@@ -104,10 +104,10 @@ class LoginController extends Controller
         return redirect(route('home'));
     }
     */
-    public function handleProviderCallback($social)
+    public function handleProviderCallback($driver)
     {
-        $social = Socialite::driver($social)->user();
-        $socialId = $social . '_id';
+        $social = Socialite::driver($driver)->user();
+        $socialId = $driver . '_id';
         $user = User::where($socialId, $social->id)->first();
         // check is such social ID was user before
         if ($user) {
