@@ -134,7 +134,7 @@ class LoginController extends Controller
                 $user->email_verified_at = Carbon::now();
                 $user->save();
                 Auth::loginUsingId($user->id);
-                $this->userImageUpload($user->avatar);
+                $this->userImageUpload($social->avatar);
             }
         }
         Session::flash('message-success', __('messages.signedIn'));
