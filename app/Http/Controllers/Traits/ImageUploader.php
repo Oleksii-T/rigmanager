@@ -10,6 +10,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 //use Spatie\ImageOptimizer\OptimizerChainFactory;
 use App\Jobs\OptimizeImg;
+use Illuminate\Http\UploadedFile;
 
 // It is abstract because this controller is called only 
 //   from other controllers and do not have instanse of itself
@@ -72,6 +73,9 @@ trait ImageUploader
 
     public function userImageUpload($file)
     {
+        if (is_string($file)) {
+            $file = $this->fetchUrl($file);
+        }
         $user = auth()->user();
         $this->resizeImg($file->getPathname(), 300);
         $path = $file->store($user->id); //save to local disk
@@ -112,5 +116,14 @@ trait ImageUploader
             //save resized img to tmp path of image
             $intervention->save($path);
         }
+    }
+
+    private function fetchUrl($url) {
+        $contents = file_get_contents($url);
+        $name = substr($url, strrpos($url, '/') + 1);
+        $file = '/tmp/' . $name;
+        file_put_contents($file, $contents);
+        $uploaded_file = new UploadedFile($file, $name);
+        return $uploaded_file;
     }
 }

@@ -75,6 +75,8 @@ return [
     'passwordEncrypted' => 'In terms of safety, we store encrypted password. If forget password, you can change it in profile settings.',
     'profileSettings' => 'Profile settings',
     'changeProfilePic' => 'Change profile picture',
+    'uHave' => 'You have',
+    'socialAcc' => 'Social Account',
 
     //mailer massages
     'mailer' => 'Mailer',

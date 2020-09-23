@@ -92,22 +92,24 @@
                                     <div class="help"><p><i>{{__('ui.phoneHelp')}}</i></p></div>
                                 </td> 
                             </tr>
-                            <tr id="emailShow">
-                                <td class="nameOfField"><p>{{__('ui.login')}}<span class="required-input">*</span></p></td>
-                                <td class="valueOfField">
-                                    <input class="def-input" id="inputEmail" type="email" name="email" type="email" placeholder="Логин" value="{{ old('email') ?? $user->email}}" required autocomplete="email"/> 
-                                    <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
-                                    <div class="help"><p><i>{{__('ui.loginHelp')}}</i></p></div>
-                                </td>
-                            </tr>
-                            <tr id="passShow">
-                                <td class="nameOfField"><p>{{__('ui.password')}}</p></td>
-                                <td class="valueOfField">
-                                    <input class="def-input" type="password" id="inputPassword" name="password" placeholder="Новый пароль..."/>
-                                    <x-server-input-error errorName='password' inputName='inputPassword' errorClass='error'/>
-                                    <div class="help"><p><i>{{__('ui.passwordEditHelp')}}</i></p></div>
-                                </td>
-                            </tr>
+                            @if ( !$user->is_social )
+                                <tr id="emailShow">
+                                    <td class="nameOfField"><p>{{__('ui.login')}}<span class="required-input">*</span></p></td>
+                                    <td class="valueOfField">
+                                        <input class="def-input" id="inputEmail" type="email" name="email" type="email" placeholder="Логин" value="{{ old('email') ?? $user->email}}" required autocomplete="email"/> 
+                                        <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
+                                        <div class="help"><p><i>{{__('ui.loginHelp')}}</i></p></div>
+                                    </td>
+                                </tr>
+                                <tr id="passShow">
+                                    <td class="nameOfField"><p>{{__('ui.password')}}</p></td>
+                                    <td class="valueOfField">
+                                        <input class="def-input" type="password" id="inputPassword" name="password" placeholder="Новый пароль..."/>
+                                        <x-server-input-error errorName='password' inputName='inputPassword' errorClass='error'/>
+                                        <div class="help"><p><i>{{__('ui.passwordEditHelp')}}</i></p></div>
+                                    </td>
+                                </tr>
+                            @endif
                         </table>
                     </div>
                     <button class="def-button submit-button" id="sumbitBtn" type="submit">{{__('ui.save')}}</button>

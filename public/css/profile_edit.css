@@ -35,8 +35,11 @@ td.valueOfField {
     width: 60%;
 }
 
-#nameShow, #emailShow, #phoneShow, #avaEdit {
-    border-bottom: 2px solid #888888;
+#nameShow, 
+#emailShow, 
+#phoneShow,
+#passShow {
+    border-top: 2px solid #888888;
 }
 
 label.error, div.error {

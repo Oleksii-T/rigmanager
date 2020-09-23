@@ -14,7 +14,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
-    protected $appends = ['phone_readable', 'phone_intern'];
+    protected $appends = ['phone_readable', 'phone_intern', 'is_social'];
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name', 'email', 'password', 'activation_token', 'phone_raw', 'viber', 'telegram', 
-        'whatsapp', 'language'
+        'whatsapp', 'language', 'facebook_id', 'google_id'
     ];
 
     /**
@@ -65,6 +65,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Post::class)->withTimestamps();
     }
 
+    public function getIsSocialAttribute() {
+        if ( $this->google_id || $this->facebook_id ) {
+            return true;
+        }
+        return false;
+    }
+    
     public function setPhoneRawAttribute($value)
     {
         $this->attributes['phone_raw'] = substr(preg_replace('/[^0-9]+/', '', $value), 0, 10);

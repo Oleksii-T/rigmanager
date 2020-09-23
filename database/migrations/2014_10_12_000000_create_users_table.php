@@ -17,13 +17,15 @@ class CreateUsersTable extends Migration
             $table->id(); // id of user
             $table->boolean('is_banned')->default(false);
             $table->string('name', 255); //name of user
+            $table->string('google_id', 255)->unique()->nullable(); //id from google db
+            $table->string('facebook_id', 255)->unique()->nullable(); //id from facebook db
             $table->string('phone_raw', 11)->nullable(); //phone number of user
             $table->boolean('viber')->default(false);
             $table->boolean('telegram')->default(false);
             $table->boolean('whatsapp')->default(false);
             $table->string('email', 255)->unique(); // login email for user
             $table->timestamp('email_verified_at')->nullable(); //date when user confirms his email
-            $table->string('password', 255); // password hash
+            $table->string('password', 255)->nullable(); // password hash
             $table->string('language', 2)->default('uk'); // password hash
             $table->rememberToken(); //Adds a nullable remember_token VARCHAR(100) equivalent column.
             $table->timestamps(); // Adds nullable created_at and updated_at TIMESTAMP equivalent columns with precision (total digits).

@@ -44,6 +44,13 @@ return [
     'aWhatIsMailer2' => 'for Your personal needs. Describe equipment and/or choose category and just wait for someone post what you need.
     Also, via Mailer, You can subscribe to any author (on the page of exact post), so that You will be noticed if chosen author made a post.',
 
+    'qWhatIsSocialAcc' => 'What is Social Account?',
+    'aWhatIsSocialAcc' => 'Social Account almost the same a regular user account, it has absolutely all features offered by our service.
+    There are only a few differences:
+    User Email can not be changed.
+    Social accounts do not have a password.
+    Login into such account only possible via',
+
     'slg1' => 'Sincerely, development team',
     'slg2' => 'If you have any questions or suggestions, 
     please fill-up the',

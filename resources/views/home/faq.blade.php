@@ -35,6 +35,9 @@
 
             <a class="question" id="WhatIsMailer">{{__('faq.qWhatIsMailer')}}</a>
             <p class="answer">{{__('faq.aWhatIsMailer1')}} <a class="link" href="{{route('mailer.index')}}">{{__('faq.aWhatIsMailerLink')}}</a> {{__('faq.aWhatIsMailer2')}}</p>
+
+            <a class="question" id="WhatIsSocialAcc">{{__('faq.qWhatIsSocialAcc')}}</a>
+            <p class="answer">{{__('faq.aWhatIsSocialAcc')}} <a class="link" href="{{route('login.social', 'google')}}">Google</a> / <a class="link" href="{{route('login.social', 'facebook')}}">Facebook</a>.</p>
             
             <div id="contacts">
                 <p id="slgText" id="sig">{{__('faq.slg1')}} <span>rigmanager.com.ua</span>.

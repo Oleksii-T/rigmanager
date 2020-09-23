@@ -62,23 +62,25 @@
                         <p>{{ $user->email }}</p>
                     </td>
                 </tr>
-                <tr id="passwordField">
-                    <td class="fieldName">
-                        <p>{{__('ui.password')}}</p>
-                        <img id="helpImg" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                    </td>
-                    <td class="fieldValue">
-                        <p>&#x02022&#x02022&#x02022&#x02022&#x02022&#x02022&#x02022&#x02022</p>
-                    </td>
-                </tr>
-                <tr id="editBtnField">
-                    <td>
-                        <a class="def-button" id="editBtn" href="{{ route('profile.edit') }}">{{__('ui.edit')}}</a>
-                    </td>
-                </tr>
+                @if (!$user->is_social)
+                    <tr id="passwordField">
+                        <td class="fieldName">
+                            <p>{{__('ui.password')}}</p>
+                            <img id="helpImg" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        </td>
+                        <td class="fieldValue">
+                            <p>&#x02022&#x02022&#x02022&#x02022&#x02022&#x02022&#x02022&#x02022</p>
+                            <p class="helpText hidden"><i>{{__('ui.passwordEncrypted')}}</i></p>
+                        </td>
+                    </tr>
+                @endif
             </table>
-
-            <p class="helpText"><i>{{__('ui.passwordEncrypted')}}</i></p>
+            <div id="editBtnField">
+                <a class="def-button" id="editBtn" href="{{ route('profile.edit') }}">{{__('ui.edit')}}</a>
+                @if ($user->is_social)    
+                    <p class="social-acc-help"><img src="{{asset('icons/alertIcon.svg')}}" alt="{{__('alt.keyword')}}">{{__('ui.uHave')}} <a href="{{route('faq')}}#WhatIsSocialAcc">{{__('ui.socialAcc')}}</a></p>
+                @endif
+            </div>
         </div>
     </div>
 @endsection
@@ -89,9 +91,9 @@
 
             //show help image
             $("#helpImg").hover(function(){
-                $(".helpText").css("opacity", "1");
+                    $(".helpText").removeClass("hidden");
                 }, function(){
-                $(".helpText").css("opacity", "0");
+                    $(".helpText").addClass("hidden");
             });
         });
         
