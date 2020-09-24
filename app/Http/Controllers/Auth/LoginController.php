@@ -61,7 +61,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    /*
+   
     public function handleProviderCallback($driver)
     {
         // Alex Puzo id: 113050782962372144121
@@ -103,7 +103,7 @@ class LoginController extends Controller
         Session::flash('message-success', __('messages.signedIn'));
         return redirect(route('home'));
     }
-    */
+/*
     public function handleProviderCallback($driver)
     {
         $social = Socialite::driver($driver)->user();
@@ -140,7 +140,7 @@ class LoginController extends Controller
         Session::flash('message-success', __('messages.signedIn'));
         return redirect(route('home'));
     }
-
+*/
     private function fetchName($name) {
         if ( User::where('name', $name)->first() ) {
             $fix = rand(10000, 99999);

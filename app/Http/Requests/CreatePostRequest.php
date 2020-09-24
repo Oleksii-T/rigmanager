@@ -32,7 +32,7 @@ class CreatePostRequest extends FormRequest
             'cost' => 'nullable|string|max:50',
             'location' => 'nullable|string|max:100',
             'user_email' => 'nullable|required_without:user_phone|email|max:255',
-            'user_phone' => ['nullable', 'required_without:user_email', 'string', 'min:8', 'max:20', new Phone],
+            'user_phone_raw' => ['nullable', 'required_without:user_email', 'string', 'size:16', new Phone],
             'images.*' => 'nullable|image|mimes:jpeg,jpg,jpe,png|max:5000',
         ];
     }
@@ -41,7 +41,8 @@ class CreatePostRequest extends FormRequest
     {
         return [
             'user_email.required_without' => trans('validation.required_without-phone'),
-            'user_phone.required_without' => trans('validation.required_without-email')
+            'user_phone_raw.size' => trans('validation.phoneLength'),
+            'user_phone_raw.required_without' => trans('validation.required_without-email')
         ];
     }
 }

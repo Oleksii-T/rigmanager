@@ -52,15 +52,17 @@ class UserController extends Controller
         $input['viber'] = $request->viber ? 1 : 0;
         $input['telegram'] = $request->telegram ? 1 : 0;
         $input['whatsapp'] = $request->whatsapp ? 1 : 0;
-        if ($input['password']) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            unset($input['password']);
-        }
         $user = auth()->user();
+        if (!$user->is_social) {
+            if ($input['password']) {
+                $input['password'] = Hash::make($input['password']);
+            } else {
+                unset($input['password']);
+            }
+        }
         $user->update($input);
         Session::flash('message-success', __('messages.profileEdited'));
-        return redirect(route('profile')); // use redirect() to force page refresh
+        return redirect(route('profile'));
     }
 
     /**

@@ -135,6 +135,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
+            // delete priflie pic
             $('#modalSubmit').click(function(){
                 $.ajax({
                     url: "{{route('profile.img.delete')}}",
