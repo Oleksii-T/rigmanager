@@ -53,13 +53,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get      ('profile/favourites',      'UserController@favourites')        ->name('profile.favourites');
     Route::get      ('profile/posts',           'UserController@userPosts')         ->name('profile.posts');
     Route::get      ('ajax/profile/favourite',  'UserController@addToFav')          ->name('toFav'); //Ajax reqeust
-    Route::patch    ('profile/image/delete',    'userController@userImageDelete')   ->name('profile.img.delete');
+    Route::patch    ('profile/image/delete',    'UserController@userImageDelete')   ->name('profile.img.delete'); //Ajax reqeust
     Route::get      ('profile/subscription',    'UserController@subscription')      ->name('profile.subscription');
 
     // mailer routes
-    Route::get      ('profile/mailer/edit',             'MailerController@edit')        ->name('mailer.edit');//remove default parametes
-    Route::patch    ('profile/mailer/update',           'MailerController@update')      ->name('mailer.update');//remove default parametes
-    Route::delete   ('profile/mailer/destroy',          'MailerController@destroy')     ->name('mailer.destroy');//remove default parametes
+    Route::get      ('profile/mailer/edit',             'MailerController@edit')        ->name('mailer.edit');//removed default parametes
+    Route::patch    ('profile/mailer/update',           'MailerController@update')      ->name('mailer.update');//removed default parametes
+    Route::delete   ('profile/mailer/destroy',          'MailerController@destroy')     ->name('mailer.destroy');//removed default parametes
     Route::get      ('ajax/mailer/author/{author}',     'MailerController@toggleAuthor')->name('mailer.toggle.author');// Ajax request
     Route::get      ('ajax/mailer/toggle',              'MailerController@toggle')      ->name('mailer.toggle');// Ajax request
     Route::get      ('ajax/mailer/tag/{tag}',           'MailerController@addTag')      ->name('mailer.add.tag');// Ajax request
