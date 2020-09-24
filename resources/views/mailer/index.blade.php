@@ -18,20 +18,21 @@
             <div class="mailerContent">
                 @if ($mailer)
                     <div class="mailerBody">
-
-                        @if ($mailer->is_active)
-                            <label id="checkboxContainer" class="enable">
-                                <h2 class="mailerHeader">{{__('ui.mailerIsActive')}}</h2>
-                                <input type="checkbox" name="is_active" value="1" checked>
-                                <span class="checkmark"></span>
-                            </label>
-                        @else
-                            <label id="checkboxContainer" class="disable">
-                                <h2 class="mailerHeader">{{__('ui.mailerNotActive')}}</h2>
-                                <input type="checkbox" name="is_active" value="1">
-                                <span class="checkmark"></span>
-                            </label>
-                        @endif
+                        <div>
+                            @if ($mailer->is_active)
+                                <label id="checkboxContainer" class="enable">
+                                    <h2 class="mailerHeader">{{__('ui.mailerIsActive')}}</h2>
+                                    <input type="checkbox" name="is_active" value="1" checked>
+                                    <span class="checkmark"></span>
+                                </label>
+                            @else
+                                <label id="checkboxContainer" class="disable">
+                                    <h2 class="mailerHeader">{{__('ui.mailerNotActive')}}</h2>
+                                    <input type="checkbox" name="is_active" value="1">
+                                    <span class="checkmark"></span>
+                                </label>
+                            @endif
+                        </div>
                             
                         <h3 class="elementHeader">{{__('ui.mailerDescription')}}:</h3>
                         @if ($mailer->keywords)                            
@@ -44,7 +45,7 @@
                         @if ($mailer->eq_tags_encoded)
                             <ol class="orderedList">
                                 @foreach ($mailer->eq_tags_map as $tag)
-                                    <li>{{$tag}}</li> 
+                                    <li><span>{{$tag}}</span></li> 
                                 @endforeach
                             </ol>
                         @else
@@ -55,7 +56,7 @@
                         @if ($mailer->se_tags_encoded)
                             <ol class="orderedList">
                                 @foreach ($mailer->se_tags_map as $tag)
-                                    <li>{{$tag}}</li> 
+                                    <li><span>{{$tag}}</span></li> 
                                 @endforeach
                             </ol>
                         @else
@@ -66,7 +67,7 @@
                         @if ($mailer->authors_encoded)
                             <ol class="orderedList">
                                 @foreach ($mailer->authors_map as $author)
-                                    <li>{{$author}}</li>    
+                                    <li><span>{{$author}}</span></li>    
                                 @endforeach
                             </ol>
                         @else
@@ -77,7 +78,7 @@
                         @if ($mailer->types)
                         <ul class="orderedList">
                             @foreach ($mailer->types_map as $type)
-                                <li>{{$type}}</li>
+                                <li><span>{{$type}}</span></li>
                             @endforeach
                         </ul>
                         @else

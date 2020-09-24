@@ -31,6 +31,8 @@ h2.mailerHeader {
 .elementHeader {
     font-size: 120%;
     margin: 20px 0px 10px 0px;
+    border-bottom: 2px solid #FE9042;
+    display: inline-block;
 }
 
 /* Customize the label (the container) */
@@ -99,6 +101,10 @@ h2.mailerHeader {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+.mailerContent li {
+    color: #FE9042;
 }
 
 .empty-value {

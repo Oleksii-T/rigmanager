@@ -79,7 +79,8 @@
 
 @section('mailer-scripts')
     <script type="text/javascript">
-        var chosenTags = [];
+        var chosenEqTags = [];
+        var chosenSeTags = [];
         $(document).ready(function(){
 
             //get digit from classes of DOM element (depends on prefix)
@@ -118,7 +119,13 @@
             preTags = $('#tagEqEncodedHidden').val();
             if (preTags) {
                 JSON.parse(preTags).forEach(element => {
-                    chosenTags.push(element);
+                    chosenEqTags.push(element);
+                });
+            }
+            preTags = $('#tagSeEncodedHidden').val();
+            if (preTags) {
+                JSON.parse(preTags).forEach(element => {
+                    chosenSeTags.push(element);
                 });
             }
         });

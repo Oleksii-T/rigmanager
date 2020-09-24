@@ -58,6 +58,7 @@
 
 @section('mailer-scripts')
     <script type="text/javascript">
-        var chosenTags = [];
+        var chosenEqTags = [];
+        var chosenSeTags = [];
     </script>
 @endsection
