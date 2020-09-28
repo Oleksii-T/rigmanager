@@ -41,6 +41,13 @@
                 @yield('input-role')
             </div>
 
+            <div id="company" class="element hidden">
+                <h3 class="elementHeading" for="inputCompany">{{__('ui.company')}}</h3>
+                @yield('input-company')
+                <x-server-input-error errorName='company' inputName='inputCompany' errorClass='error'/>
+                <div class="company error error-dz hidden"></div>
+            </div>
+
             <div id="condition" class="element">
                 <h3 class="elementHeading">{{__('ui.chooseCondition')}}</h3>
                 @yield('input-condition')
@@ -180,6 +187,17 @@
     <script type="text/javascript">
         $(document).ready(function() {            
 
+            // if user chooses business post, show fild for company name
+            $('input[name=role]').change(function(){
+                if ( $('input[name=role]:checked').val() == 2 ) {
+                    //show Company fild
+                    $('#company').removeClass('hidden');
+                } else {
+                    //hide Company field
+                    $('#company').addClass('hidden');
+                }
+            });
+
             // disable scrolling on master page when hovering the column
             $(".tags-modal .column").bind('mousewheel', function(e, d) {
                 var t = $(this);
@@ -277,6 +295,10 @@
                         minlength: 10,
                         maxlength: 70
                     },
+                    company: {
+                        minlength: 5,
+                        maxlength: 200
+                    },
                     description: {
                         required: true,
                         minlength: 10,
@@ -302,6 +324,10 @@
                         required: '{{ __("validation.required") }}',
                         minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
+                    },
+                    company: {
+                        minlength: '{{ __("validation.min.string", ["min" => 5]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 200]) }}'
                     },
                     description: {
                         required: '{{ __("validation.required") }}',

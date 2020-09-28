@@ -23,7 +23,7 @@ class Post extends Model
     protected $fillable = [
         'thread', 'title', 'type', 'role', 'description', 'tag_encoded', 'condition', 'region_encoded', 
         'town', 'cost', 'currency', 'user_email', 'user_phone_raw', 'viber', 'telegram', 'whatsapp',
-        'is_active', 
+        'is_active', 'company'
     ];
 
     /**
@@ -33,7 +33,7 @@ class Post extends Model
      */
     public function toSearchableArray()
     {
-        $array = $this->only('title', 'description', 'town', 'is_active');
+        $array = $this->only('title', 'description', 'town', 'is_active', 'company');
         return $array;
     }
 

@@ -10,7 +10,7 @@
             </figure>
             
             <div class="textWraper">
-                <h3 class="heading4"><span class="post-type">{{$post->type_readable}}: </span>{{ $post->title }}</h3>
+                <h3 class="heading4"><span class="post-type">{{$post->type==5 ? '' : $post->type_readable.': '}} </span>{{ $post->title }}</h3>
                 <p class="desc">{{ $post->description }}</p>
                 <ul id="ulMisc">
                     @if ($post->region_encoded)

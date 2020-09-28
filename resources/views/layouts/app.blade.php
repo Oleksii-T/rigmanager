@@ -172,13 +172,6 @@
     <!-- Scripts -->
     <script type="text/javascript" src={{ asset('js/jquery-3.1.1.min.js') }}></script>
     <script type="text/javascript" src={{ asset('js/popUpAndFlash.js') }}></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('a').click(function(){
-                $(this).addClass('loading');
-            });
-        });
-    </script>
     @yield('scripts')
     <noscript>
         <div id="noscript">

@@ -49,6 +49,10 @@
     </label>
 @endsection
 
+@section('input-company')
+    <input class="def-input" id="inputCompany" name="company" type="text" placeholder="{{__('ui.companyP')}}" value="{{ old('company') }}"/>
+@endsection 
+
 @section('input-condition')
     <label class="radio-container" for="conditionNew">{{__('ui.conditionNew')}}
         <input type="radio" id="conditionNew" name="condition" value="2" checked="checked">

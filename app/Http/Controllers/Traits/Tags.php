@@ -11,6 +11,7 @@ trait Tags
     public function constructTagsMap() 
     {
         $this->tagsMap = [
+            '0' => __('tags.other'),
             '1' => __('tags.hseEq'),
                 '1.1' => __('tags.fireHazard'),
                 '1.2' => __('tags.lifeSupport'),

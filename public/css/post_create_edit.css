@@ -178,6 +178,12 @@ label.error, div.error {
     width: 70%; 
 }
 
+/*==================COMPANY==================*/
+
+#inputCompany {
+    width: 50%;
+}
+
 /*==================CONDITION==================*/
 
 #condition input {

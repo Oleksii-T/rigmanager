@@ -18,6 +18,7 @@
         @yield('form')
 
             <input type="text" name="thread" value="2" hidden>
+            <input type="text" name="role" value="2" hidden>
 
             <div id="title" class="element">
                 <h3 class="elementHeading" for="inputTitle">{{__('ui.title')}}<span class="required-input">*</span></h3>
@@ -27,6 +28,13 @@
                 <div class="help">
                     <p><i>{{__('ui.titleHelp')}}</i></p>
                 </div>
+            </div>
+
+            <div id="company" class="element">
+                <h3 class="elementHeading" for="inputCompany">{{__('ui.company')}}</h3>
+                @yield('input-company')
+                <x-server-input-error errorName='company' inputName='inputCompany' errorClass='error'/>
+                <div class="company error error-dz hidden"></div>
             </div>
 
             @yield('input-status')
@@ -66,22 +74,6 @@
                     @yield('input-cost')
                     <x-server-input-error errorName='cost' inputName='inputCost' errorClass='error'/>
                     <div class="cost error error-dz hidden"></div>
-                </div>
-
-                <div id="regionField">
-                    <h3 class="elementHeading">{{__('ui.locationRegion')}}</h3>
-                    <div class="def-select-wraper">
-                        @yield('input-region')
-                        <span class="arrow arrowDown"></span>
-                    </div>
-                    <x-server-input-error errorName='region_encoded' inputName='inputregion' errorClass='error'/>
-                    <div class="region_encoded error error-dz hidden"></div>
-                </div>
-
-                @yield('input-town')
-
-                <div class="help">
-                    <p><i>{{__('ui.costLocationHelp')}}</i></p>
                 </div>
             </div>
             
@@ -223,6 +215,10 @@
                         minlength: 10,
                         maxlength: 70
                     },
+                    company: {
+                        minlength: 5,
+                        maxlength: 200
+                    },
                     description: {
                         required: true,
                         minlength: 10,
@@ -230,9 +226,6 @@
                     },
                     cost: {
                         maxlength: 50
-                    },
-                    town: {
-                        maxlength: 100
                     },
                     user_email: {
                         email: true,
@@ -249,6 +242,10 @@
                         minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
                     },
+                    company: {
+                        minlength: '{{ __("validation.min.string", ["min" => 5]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 200]) }}'
+                    },
                     description: {
                         required: '{{ __("validation.required") }}',
                         minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
@@ -256,9 +253,6 @@
                     },
                     cost: {
                         maxlength: '{{ __("validation.max.string", ["max" => 50]) }}'
-                    },
-                    town: {
-                        maxlength: '{{ __("validation.max.string", ["max" => 100]) }}'
                     },
                     user_email: {
                         email: '{{ __("validation.email") }}',

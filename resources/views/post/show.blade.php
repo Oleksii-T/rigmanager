@@ -92,9 +92,17 @@
                     <p>{{__('ui.postRole')}}: {{ $post->role_readable }}</p>
                 </aside>
 
-                <aside class="element" id="status">
-                    <p>{{__('ui.condition')}}: {{ $post->condition_readable }}</p>
-                </aside>
+                @if ($post->company)
+                    <aside class="element" id="company">
+                        <p>{{__('ui.company')}}: {{ $post->company }}</p>
+                    </aside>
+                @endif
+
+                @if ($post->condition)
+                    <aside class="element" id="status">
+                        <p>{{__('ui.condition')}}: {{ $post->condition_readable }}</p>
+                    </aside>
+                @endif
 
                 @if ($post->region_encoded)
                     <aside class="element" id="region">

@@ -102,19 +102,19 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        if ($post->thread == 1) {
-            $images = false;
-            if ( $post->images->isNotEmpty() ) {
-                $images = array();
-                foreach ($post->images()->where('version', 'origin')->get() as $image) {
-                    $img['name'] = $image->name;
-                    $img['size'] = $image->size_b;
-                    $img['url'] = $image->url;
-                    $img['id'] = $image->serial_no;
-                    $images[] = $img;
-                }
-                $images = json_encode($images);
+        $images = false;
+        if ( $post->images->isNotEmpty() ) {
+            $images = array();
+            foreach ($post->images()->where('version', 'origin')->get() as $image) {
+                $img['name'] = $image->name;
+                $img['size'] = $image->size_b;
+                $img['url'] = $image->url;
+                $img['id'] = $image->serial_no;
+                $images[] = $img;
             }
+            $images = json_encode($images);
+        }
+        if ($post->thread == 1) {
             return view('post.equipment_edit', compact('post', 'images'));
         } else {
             return view('post.service_edit', compact('post', 'images'));

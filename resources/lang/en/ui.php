@@ -165,6 +165,8 @@ return [
     'choosePostRole' => 'Chose legal type',
     'postRoleBusiness' => 'Business',
     'postRolePrivate' => 'Private person',
+    'company' => 'Company name',
+    'companyP' => 'EXAMPLE LLC',
     'chooseCondition' => 'Сhoose condition',
     'conditionNew' => 'New',
     'conditionSH' => 'Used',

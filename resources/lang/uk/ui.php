@@ -165,6 +165,8 @@ return [
     'choosePostRole' => 'Оберіть сектор роботи',
     'postRoleBusiness' => 'Бізнес',
     'postRolePrivate' => 'Приватна особа',
+    'company' => 'Назва компанії',
+    'companyP' => 'ТОВ ПРИКЛАД',
     'chooseCondition' => 'Виберіть стан',
     'conditionNew' => 'Нове',
     'conditionSH' => 'Б/У',

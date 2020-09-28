@@ -17,7 +17,11 @@
 
 @section('input-title')
     <input class="def-input" id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') }}"/>
-@endsection    
+@endsection  
+
+@section('input-company')
+    <input class="def-input" id="inputCompany" name="company" type="text" placeholder="{{__('ui.companyP')}}" value="{{ old('company') }}"/>
+@endsection 
 
 @section('input-type')
     <label class="radio-container" for="typeGive">{{__('ui.postTypeGiveS')}}
@@ -32,11 +36,11 @@
 
 @section('inputs-tag')
     <!--Hidden field for encoded tag for DB-->
-    <input id="tagEncodedHidden" type="text" name="tag_encoded" value="{{ old('tag_encoded') ?? 0 }}" hidden/>
+    <input id="tagEncodedHidden" type="text" name="tag_encoded" value="{{ old('tag_encoded') ?? 50 }}" hidden/>
 
     <!--Hidden and visible fields for readable tag-->
-    <input id="tagReadbleHidden" type="text" name="tagReadbleHidden" value="{{ old('tagReadbleHidden') ?? __('tags.other') }}" hidden/>
-    <p id="tagReadbleVisible">{{__('ui.chosenTags')}}: <span>{{ old('tagReadbleHidden') ?? __('tags.other')}}</span></p>
+    <input id="tagReadbleHidden" type="text" name="tagReadbleHidden" value="{{ old('tagReadbleHidden') ?? __('tags.otherService') }}" hidden/>
+    <p id="tagReadbleVisible">{{__('ui.chosenTags')}}: <span>{{ old('tagReadbleHidden') ?? __('tags.otherService')}}</span></p>
 @endsection
     
 @section('input-description')
@@ -64,18 +68,6 @@
             <option value="USD">{{__('ui.dollar')}}</option>
         </select>
         <span class="arrow arrowDown"></span>
-    </div>
-@endsection
-
-@section('input-region')
-    <x-region-select locale='{{app()->getLocale()}}'/>
-@endsection
-
-@section('input-town')
-    <div class="hidden" id="townField">
-        <h3 class="elementHeading" for="inputTown">{{__('ui.locationTown')}}</h3>
-        <input class="def-input" id="inputTown" name="town" type="text" placeholder="{{__('ui.town')}}" value="{{ old('town') }}">
-        <x-server-input-error errorName='town' inputName='inputTown' errorClass='error'/>
     </div>
 @endsection
 

@@ -20,9 +20,10 @@ class CreatePostsTable extends Migration
             $table->boolean('is_active')->default(true);
             $table->integer('thread');
             $table->string('title', 255);
+            $table->string('company', 255)->nullable(); //company name
             $table->string('type', 2); // sell/buy/loan
             $table->string('role', 2); // private/bussiness
-            $table->integer('condition');
+            $table->integer('condition')->nullable();
             $table->string('tag_encoded', 255);
             $table->text('description', 9000);
             $table->double('cost', 50, 2)->nullable();

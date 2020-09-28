@@ -58,6 +58,10 @@
     </label>
 @endsection
 
+@section('input-company')
+    <input class="def-input" id="inputCompany" name="company" type="text" placeholder="{{__('ui.companyP')}}" value="{{ old('company') ?? $post->company }}"/>
+@endsection
+
 @section('input-condition')
     <label class="radio-container" for="conditionNew">{{__('ui.conditionNew')}}
         <input type="radio" id="conditionNew" name="condition" value="2" {{$post->condition==2 ? 'checked="checked"' : "" }}>
@@ -171,6 +175,11 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
+            // show Company field if Business post is chosen
+            if ( $('input[name=role]:checked').val() == 2 ) {
+                $('#company').removeClass('hidden');
+            }
+
             //chose tags that chosen by user
             tagId = $('#tagEncodedHidden').val();
             tagName = $('#tagReadbleHidden').val();
@@ -178,6 +187,7 @@
             $('#modal-hidden-tag').val(tagId);
             $('#0').removeClass('isActiveBtn');
             $( '#'+tagId.replace(/\./g, '\\.') ).addClass('isActiveBtn');
+            $( 'div.tags_'+tagId.replace(/\./g, '\\.') ).removeClass('hidden');
             index = tagId.lastIndexOf('.');
             if (index != -1) {
                 parentId = tagId.substr(0, index);

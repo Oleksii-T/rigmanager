@@ -28,6 +28,7 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'title' => 'required|string|min:10|max:70',
+            'company' => 'nullable|string|min:5|max:200',
             'description' => 'required|string|min:10|max:9000',
             'cost' => 'nullable|string|max:50',
             'location' => 'nullable|string|max:100',
