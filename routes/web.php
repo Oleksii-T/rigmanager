@@ -28,8 +28,8 @@ Route::post('contacting',   'HomeController@contactUs')->name('contact.us');
 Route::get('contact-us',      'HomeController@contacts')->name('contacts');
 
 // user routes
-Route::get('emailexists', 'UserController@emailExists')->name('email.exist');
-Route::get('usernameexists', 'UserController@userNameExists')->name('username.exist');
+Route::get('emailexists', 'UserController@emailExists')->name('email.exist'); //Ajax reqeust
+Route::get('usernameexists', 'UserController@userNameExists')->name('username.exist'); //Ajax reqeust
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // posts routes
@@ -45,7 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource ('posts',                               'PostController')               ->except(['index']);
     
     // post filters routes
-    Route::post('filter', 'FiltersController@filter')->name('post.filter');
+    Route::post('filter', 'FiltersController@filter')->name('post.filter'); //Ajax reqeust
 
     // prifile/user routes
     Route::get      ('profile/edit',            'UserController@edit')              ->name('profile.edit');

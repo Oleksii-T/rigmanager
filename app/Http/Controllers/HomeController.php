@@ -41,7 +41,6 @@ class HomeController extends Controller
 
     public function plans()
     {
-        abort(404);
         return view('home.plans');
     }
 
