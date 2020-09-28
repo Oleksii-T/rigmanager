@@ -1,11 +1,10 @@
+  
 $('button.equipment-tags-show').click(function(){
     $('#equipment-tags-modal').removeClass('hidden');
-    $('body').addClass('noscroll');
 });
 
 $('button.service-tags-show').click(function(){
     $('#service-tags-modal').removeClass('hidden');
-    $('body').addClass('noscroll');
 });
 
 //close modal if clicked beyong the modal
@@ -14,10 +13,8 @@ window.onclick = function(event) {
     var modalSe = document.getElementById("service-tags-modal");
     if (event.target == modalEq) {
         $('#equipment-tags-modal').addClass('hidden');
-        $('body').removeClass('noscroll');
     } else if (event.target == modalSe) {
         $('#service-tags-modal').addClass('hidden');
-        $('body').removeClass('noscroll');
     }
 }
 
@@ -68,12 +65,10 @@ $('p.tag.third').click(function(){
 
 $('button.close-tags').click(function(){
     $('div.modal-view').addClass('hidden');
-    $('body').removeClass('noscroll');
 });
 
 $('button.submit-tags').click(function(){
     $('div.modal-view').addClass('hidden');
-    $('body').removeClass('noscroll');
     // start searchibg or fill inputs
     if ( $(this).hasClass('post-search') ) {
         searchTag();

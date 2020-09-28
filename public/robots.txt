@@ -1,7 +1,7 @@
 User-agent: *
 
-Allow:
+Disallow: /profile/*
 
-Disallow:
+Allow: /
 
 Sitemap: http://www.rigmanager.com.ua/sitemap.xml

@@ -75,11 +75,25 @@
 
 @section('scripts')
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/mousewheel.min.js') }}"></script>
     <!--Sub scrip-->
     @yield('mailer-scripts')
     <!--General scrip-->
     <script type="text/javascript">
         $(document).ready(function(){
+            
+            // disable scrolling on master page when hovering the column
+            $(".tags-modal .column").bind('mousewheel', function(e, d) {
+                var t = $(this);
+                if (d > 0 && t.scrollTop() === 0) {
+                    e.preventDefault();
+                }
+                else {
+                    if (d < 0 && (t.scrollTop() == t.get(0).scrollHeight - t.innerHeight())) {
+                        e.preventDefault();
+                    }
+                }
+            });
 
             //get digit from classes of DOM element (depends on prefix)
             function getIdFromClasses(classes, prefix) {
@@ -102,13 +116,11 @@
             // show modal equipment tags 
             $('button.equipment-tags-show').click(function(){
                 $('#equipment-tags-modal').removeClass('hidden');
-                $('body').addClass('noscroll');
             });
 
             // show modal service tags 
             $('button.service-tags-show').click(function(){
                 $('#service-tags-modal').removeClass('hidden');
-                $('body').addClass('noscroll');
             });
 
             //close modal if clicked beyong the modal
@@ -117,23 +129,19 @@
                 var modalSe = document.getElementById("service-tags-modal");
                 if (event.target == modalEq) {
                     $('#equipment-tags-modal').addClass('hidden');
-                    $('body').removeClass('noscroll');
                 } else if (event.target == modalSe) {
                     $('#service-tags-modal').addClass('hidden');
-                    $('body').removeClass('noscroll');
                 }
             }
 
             // close modal tags if clicke on cancel btn
             $('button.close-tags').click(function(){
                 $('div.modal-view').addClass('hidden');
-                $('body').removeClass('noscroll');
             });
             
             // user submits the chosen equipment tags
             $('button.equipment.submit-tags').click(function(){
                 $('div.modal-view').addClass('hidden');
-                $('body').removeClass('noscroll');
                 id = $('input.equipment.hidden-encoded-tag').val();
                 tags = $('div.equipment.selected-tags span').text();
                 if ( !id ) {
@@ -159,7 +167,6 @@
             // user submits the chosen service tags
             $('button.service.submit-tags').click(function(){
                 $('div.modal-view').addClass('hidden');
-                $('body').removeClass('noscroll');
                 id = $('input.hidden-encoded-tag.service').val();
                 tags = $('div.selected-tags.service span').text();
                 if ( !id ) {

@@ -19,6 +19,17 @@
     <input class="def-input" id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') }}"/>
 @endsection    
 
+@section('input-type')
+    <label class="radio-container" for="typeGive">{{__('ui.postTypeGiveS')}}
+        <input id="typeGive" type="radio" name="type" value="5" checked="checked">
+        <span class="radio-checkmark"></span>
+    </label>
+    <label class="radio-container" for="typeGet">{{__('ui.postTypeGetS')}}
+        <input id="typeGet" type="radio" name="type" value="6">
+        <span class="radio-checkmark"></span>
+    </label>
+@endsection
+
 @section('inputs-tag')
     <!--Hidden field for encoded tag for DB-->
     <input id="tagEncodedHidden" type="text" name="tag_encoded" value="{{ old('tag_encoded') ?? 0 }}" hidden/>

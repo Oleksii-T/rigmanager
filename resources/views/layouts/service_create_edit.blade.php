@@ -17,6 +17,8 @@
 
         @yield('form')
 
+            <input type="text" name="thread" value="2" hidden>
+
             <div id="title" class="element">
                 <h3 class="elementHeading" for="inputTitle">{{__('ui.title')}}<span class="required-input">*</span></h3>
                 @yield('input-title')
@@ -28,6 +30,11 @@
             </div>
 
             @yield('input-status')
+
+            <div id="type" class="element">
+                <h3 class="elementHeading">{{__('ui.choosePostType')}}</h3>
+                @yield('input-type')
+            </div>
 
             <div id="tag" class="element">
                 <h3 class="elementHeading">{{__('ui.chooseTag')}}</h3>
@@ -145,9 +152,23 @@
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/dropzone.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/tags.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/mousewheel.min.js') }}"></script>
     @yield('post-scripts')
     <script type="text/javascript">
         $(document).ready(function() {            
+
+            // disable scrolling on master page when hovering the column
+            $(".tags-modal .column").bind('mousewheel', function(e, d) {
+                var t = $(this);
+                if (d > 0 && t.scrollTop() === 0) {
+                    e.preventDefault();
+                }
+                else {
+                    if (d < 0 && (t.scrollTop() == t.get(0).scrollHeight - t.innerHeight())) {
+                        e.preventDefault();
+                    }
+                }
+            });
 
             // formate phone field
             $('.format-phone').focusin(function(){

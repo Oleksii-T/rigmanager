@@ -32,6 +32,10 @@
         <input id="typeRent" type="radio" name="type" value="3">
         <span class="radio-checkmark"></span>
     </label>
+    <label class="radio-container" for="typeLeas">{{__('ui.postTypeLeas')}}
+        <input id="typeLeas" type="radio" name="type" value="4">
+        <span class="radio-checkmark"></span>
+    </label>
 @endsection
 
 @section('input-role')
