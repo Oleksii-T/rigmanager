@@ -123,6 +123,24 @@
                     </aside>
                 @endif
 
+                @if ($post->manufacturer)
+                    <aside class="element" id="manufacturer">
+                        <p>{{__('ui.manufacturer')}}: {{ $post->manufacturer }}</p>
+                    </aside>
+                @endif
+
+                @if ($post->manufactured_date)
+                    <aside class="element" id="manufacturedDate">
+                        <p>{{__('ui.manufacturedDate')}}: {{ $post->manufactured_date }}</p>
+                    </aside>
+                @endif
+
+                @if ($post->part_number)
+                    <aside class="element" id="partNumber">
+                        <p>{{__('ui.partNumber')}}: {{ $post->part_number }}</p>
+                    </aside>
+                @endif
+
                 @if ($post->region_encoded)
                     <aside class="element" id="region">
                         <p>{{__('ui.location')}}: {{ $post->region_readable}}{{ $post->town ? ", ".$post->town : "" }}</p>

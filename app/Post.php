@@ -24,9 +24,8 @@ class Post extends Model
         'is_active', 'thread', 'origin_lang', 'user_translations' , 'title', 'title_uk', 'title_ru', 'title_en', 
         'company', 'type', 'role', 'condition', 'tag_encoded', 'description', 'description_uk', 'description_ru', 
         'description_en', 'cost', 'currency', 'region_encoded', 'town', 'user_email', 'user_phone_raw', 'viber', 
-        'telegram', 'whatsapp'
+        'telegram', 'whatsapp', 'manufacturer', 'manufactured_date', 'part_number',
     ];
-
     /**
      * Get the indexable data array for the model.
      *

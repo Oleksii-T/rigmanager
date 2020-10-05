@@ -32,6 +32,9 @@ class CreatePostsTable extends Migration
             $table->string('role', 2); // private/bussiness
             $table->integer('condition')->nullable();
             $table->string('tag_encoded', 255);
+            $table->string('manufacturer', 80)->nullable();
+            $table->string('manufactured_date', 80)->nullable();
+            $table->string('part_number', 80)->nullable();
             $table->text('description', 9000);
             $table->text('description_uk', 9000)->nullable();
             $table->text('description_ru', 9000)->nullable();

@@ -187,6 +187,13 @@ return [
         Be sure that categoty is chosen correctly, so your post will be easy to find!',
     'chosenTags' => 'Chosen category',
     'clearTagsFromPost' => 'Clear сhosen categories',
+    'chooseManufacturer' => 'Manufacturer',
+    'chooseManufacturedDate' => 'Manufacture Date',
+    'choosePartNum' => 'Part Number',
+    'clearTagsFromPost' => 'Clear сhosen categories',
+    'manufacturer' => 'Manufacturer',
+    'manufacturedDate' => 'Manufacture Date',
+    'partNum' => 'Part Number',
     'description' => 'Description',
     'descriptionHelp' => 'Minimum 10 symbols.
         Maximum 9000 symbols.',

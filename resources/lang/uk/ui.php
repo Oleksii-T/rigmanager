@@ -188,6 +188,12 @@ return [
     'chosenTags' => 'Вибрані категорії',
     'clearTagsFromPost' => 'Очистити вибрані категорії',
     'description' => 'Опис',
+    'chooseManufacturer' => 'Виробник',
+    'chooseManufacturedDate' => 'Дата виготовлення',
+    'choosePartNumber' => 'Part Number',
+    'manufacturer' => 'Виробник',
+    'manufacturedDate' => 'Дата виготовлення',
+    'partNumber' => 'Part Number',
     'descriptionHelp' => 'Мінімум 10 символів.
         Максимум 9000 символів.',
     'image' => 'Оберіть забраження',

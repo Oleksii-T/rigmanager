@@ -20,7 +20,7 @@
             <input type="text" name="thread" value="1" hidden>
 
             <div id="title" class="element">
-                <h3 class="elementHeading" for="inputTitle">{{__('ui.title')}}<span class="required-input">*</span></h3>
+                <h3 class="elementHeading">{{__('ui.title')}}<span class="required-input">*</span></h3>
                 @yield('input-title')
                 <x-server-input-error errorName='title' inputName='inputTitle' errorClass='error'/>
                 <div class="title error error-dz hidden"></div>
@@ -95,7 +95,7 @@
             </div>
 
             <div id="company" class="element hidden">
-                <h3 class="elementHeading" for="inputCompany">{{__('ui.company')}}</h3>
+                <h3 class="elementHeading">{{__('ui.company')}}</h3>
                 @yield('input-company')
                 <x-server-input-error errorName='company' inputName='inputCompany' errorClass='error'/>
                 <div class="company error error-dz hidden"></div>
@@ -119,8 +119,29 @@
 
             </div>
 
+            <div id="manufacturer" class="element">
+                <h3 class="elementHeading">{{__('ui.chooseManufacturer')}}</h3>
+                @yield('input-manufacturer')
+                <x-server-input-error errorName='manufacturer' inputName='inputManufacturer' errorClass='error'/>
+                <div class="manufacturer error error-dz hidden"></div>
+            </div>
+
+            <div id="manufactured_date" class="element">
+                <h3 class="elementHeading">{{__('ui.chooseManufacturedDate')}}</h3>
+                @yield('input-manufactured-date')
+                <x-server-input-error errorName='manufactured_date' inputName='inputManufacturedDate' errorClass='error'/>
+                <div class="manufactured_date error error-dz hidden"></div>
+            </div>
+
+            <div id="part_number" class="element">
+                <h3 class="elementHeading">{{__('ui.choosePartNumber')}}</h3>
+                @yield('input-part-number')
+                <x-server-input-error errorName='part_number' inputName='inputPartNumber' errorClass='error'/>
+                <div class="part_number error error-dz hidden"></div>
+            </div>
+
             <div id="desc" class="element">
-                <h3 class="elementHeading" for="inputDecs">{{__('ui.description')}}<span class="required-input">*</span></h3>
+                <h3 class="elementHeading">{{__('ui.description')}}<span class="required-input">*</span></h3>
                 @yield('input-description')
                 <x-server-input-error errorName='description' inputName='inputDesc' errorClass='error'/>
                 <div class="description error error-dz hidden"></div>
@@ -223,14 +244,14 @@
             
             <div id="contact" class="element">
                 <div id="emailField">
-                    <h3 class="elementHeading" for="inputEmail">{{__('ui.email')}}<span class="required-input">*</span></h3>
+                    <h3 class="elementHeading">{{__('ui.email')}}<span class="required-input">*</span></h3>
                     @yield('input-email')
                     <x-server-input-error errorName='user_email' inputName='inputEmail' errorClass='error'/>
                     <div class="user_email error error-dz hidden"></div>
                 </div>
                 
                 <div id="phoneField">
-                    <h3 class="elementHeading" id="phoneHeader" for="inputPhone">{{__('ui.phone')}}<span class="required-input">*</span></h3>
+                    <h3 class="elementHeading" id="phoneHeader">{{__('ui.phone')}}<span class="required-input">*</span></h3>
                     <div class="phone-wraper">
                         <div class="phone-prefix">
                             <img class="country-flag" src="{{asset('icons/ukraineIcon.svg')}}" alt="{{__('alt.keyword')}}">
@@ -453,6 +474,18 @@
                         minlength: 5,
                         maxlength: 200
                     },
+                    manufacturer: {
+                        minlength: 5,
+                        maxlength: 70
+                    },
+                    manufactured_date: {
+                        minlength: 5,
+                        maxlength: 70
+                    },
+                    part_number: {
+                        minlength: 3,
+                        maxlength: 70
+                    },
                     description: {
                         required: true,
                         minlength: 10,
@@ -497,6 +530,18 @@
                     company: {
                         minlength: '{{ __("validation.min.string", ["min" => 5]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 200]) }}'
+                    },
+                    manufacturer: {
+                        minlength: '{{ __("validation.min.string", ["min" => 5]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
+                    },
+                    manufactured_date: {
+                        minlength: '{{ __("validation.min.string", ["min" => 5]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
+                    },
+                    part_number: {
+                        minlength: '{{ __("validation.min.string", ["min" => 3]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
                     },
                     description: {
                         required: '{{ __("validation.required") }}',
@@ -568,6 +613,10 @@
 
             function NumberToCurrency(currency, string) {
                 res = CurrencyToNumber(string);
+                res = res.replace(/^0*/g, '');
+                if (!res) {
+                    return null;
+                }
                 if ( res.includes('.') ) {
                     var firstDot = res.indexOf('.');
                     var dots = (res.match(/\./g) || []).length;

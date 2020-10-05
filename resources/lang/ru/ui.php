@@ -188,6 +188,13 @@ return [
     'chosenTags' => 'Выбранные категории',
     'clearTagsFromPost' => 'Очистить выбранные категории',
     'description' => 'Описание',
+    'chooseManufacturer' => 'Производитель',
+    'chooseManufacturedDate' => 'Дата производства',
+    'choosePartNum' => 'Part Number',
+    'description' => 'Описание',
+    'manufacturer' => 'Производитель',
+    'manufacturedDate' => 'Дата производства',
+    'partNum' => 'Part Number',
     'descriptionHelp' => 'Минимум 10 символов.
         Максимум 9000 символов.',
     'image' => 'Выберите изображения',

@@ -566,6 +566,10 @@
 
             function NumberToCurrency(currency, string) {
                 res = CurrencyToNumber(string);
+                res = res.replace(/^0*/g, '');
+                if (!res) {
+                    return null;
+                }
                 if ( res.includes('.') ) {
                     var firstDot = res.indexOf('.');
                     var dots = (res.match(/\./g) || []).length;

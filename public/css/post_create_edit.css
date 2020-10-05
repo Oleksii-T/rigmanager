@@ -330,6 +330,18 @@ button.tags-show {
     border-bottom: 2px solid #FE9042;
 }
 
+/*==================MANUFECTIRER==================*/
+
+#inputManufacturer,
+#inputManufacturedDate,
+#inputPartNumber {
+    width: 35%;
+}
+
+/*==================MANUFECTIRED_DATE==================*/
+
+/*==================PART_NUMBER==================*/
+
 /*==================DESCRIPTION==================*/
 
 #desc textarea {
