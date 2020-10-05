@@ -23,7 +23,7 @@
         <x-service-tags role="2"/>
     </div>
 
-    <x-items :posts="$posts_list" button='addToFav' />
+    <x-items :posts="$posts_list" button='addToFav' :translated="$translated" />
 
     <div class="pagination-field">
         {{ $posts_list->appends(request()->except('page'))->links() }}

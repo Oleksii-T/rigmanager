@@ -14,6 +14,45 @@
     <input class="def-input" id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') ?? $post->title }}"/>
 @endsection 
 
+@section('checkbox-title-uk')
+    <input id="titleTranslateUk" type="checkbox" name="title_translate[uk]" value="1" {{array_search('uk', $post->user_translations['title']) === false ? 'checked="checked"' : ''}}>
+@endsection
+
+@section('field-title-uk')
+    @if ( old('title_translate') && !array_key_exists('uk', old('title_translate')) )        
+        <div class="translation-input-field field-title-uk">
+    @else
+        <div class="translation-input-field field-title-uk {{array_search('uk', $post->user_translations['title']) === false ? 'hidden' : ''}}">
+    @endif
+    <input class="def-input" id="inputTitleUk" name="title_uk" type="text" placeholder="Заголовок" value="{{ old('title_uk') ?? $post->title_uk }}"/>
+@endsection
+
+@section('checkbox-title-ru')
+    <input id="titleTranslateRu" type="checkbox" name="title_translate[ru]" value="1" {{array_search('ru', $post->user_translations['title']) === false ? 'checked="checked"' : ''}}>
+@endsection
+
+@section('field-title-ru')
+    @if ( old('title_translate') && !array_key_exists('ru', old('title_translate')) )        
+        <div class="translation-input-field field-title-ru">
+    @else
+        <div class="translation-input-field field-title-ru {{array_search('ru', $post->user_translations['title']) === false ? 'hidden' : ''}}">
+    @endif
+    <input class="def-input" id="inputTitleRu" name="title_ru" type="text" placeholder="Заголовок" value="{{ old('title_ru') ?? $post->title_ru }}"/>
+@endsection
+
+@section('checkbox-title-en') 
+    <input id="titleTranslateEn" type="checkbox" name="title_translate[en]" value="1" {{array_search('en', $post->user_translations['title']) === false ? 'checked="checked"' : ''}}>
+@endsection
+
+@section('field-title-en')
+    @if ( old('title_translate') && !array_key_exists('en', old('title_translate')) )        
+        <div class="translation-input-field field-title-en">
+    @else
+        <div class="translation-input-field field-title-en {{array_search('en', $post->user_translations['title']) === false ? 'hidden' : ''}}">
+    @endif
+    <input class="def-input" id="inputTitleEn" name="title_en" type="text" placeholder="Title" value="{{ old('title_en') ?? $post->title_en }}"/> 
+@endsection
+
 @section('input-company')
     <input class="def-input" id="inputCompany" name="company" type="text" placeholder="{{__('ui.companyP')}}" value="{{ old('company') ?? $post->company }}"/>
 @endsection 
@@ -74,6 +113,49 @@
 @section('input-description')
     <textarea class="def-textarea" id="inputDecs" name="description" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description') ?? $post->description }}</textarea>
 @endsection 
+
+@section('input-description')
+    <textarea class="def-textarea" id="inputDecs" name="description" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description') ?? $post->description }}</textarea>
+@endsection 
+
+@section('checkbox-description-uk')
+    <input id="descTranslateUk" type="checkbox" name="desc_translate[uk]" value="1" {{array_search('uk', $post->user_translations['description']) === false ? 'checked="checked"' : ''}}>
+@endsection
+
+@section('field-description-uk')
+    @if ( old('desc_translate') && !array_key_exists('uk', old('desc_translate')) )        
+        <div class="translation-input-field field-description-uk">
+    @else
+        <div class="translation-input-field field-description-uk {{array_search('uk', $post->user_translations['description']) === false ? 'hidden' : ''}}">
+    @endif
+        <textarea class="def-textarea" id="inputDescUk" name="description_uk" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description_uk') ?? $post->description_uk }}</textarea>
+@endsection
+
+@section('checkbox-description-ru')
+    <input id="descTranslateRu" type="checkbox" name="desc_translate[ru]" value="1" {{array_search('ru', $post->user_translations['description']) === false ? 'checked="checked"' : ''}}>
+@endsection
+
+@section('field-description-ru')
+    @if ( old('desc_translate') && !array_key_exists('ru', old('desc_translate')) )        
+        <div class="translation-input-field field-description-ru">
+    @else
+        <div class="translation-input-field field-description-ru {{array_search('ru', $post->user_translations['description']) === false ? 'hidden' : ''}}">
+    @endif
+    <textarea class="def-textarea" id="inputDescRu" name="description_ru" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description_ru') ?? $post->description_ru }}</textarea>
+@endsection
+
+@section('checkbox-description-en')
+    <input id="descTranslateEn" type="checkbox" name="desc_translate[en]" value="1" {{array_search('en', $post->user_translations['description']) === false ? 'checked="checked"' : ''}}>
+@endsection
+
+@section('field-description-en')
+    @if ( old('desc_translate') && !array_key_exists('en', old('desc_translate')) )        
+        <div class="translation-input-field field-description-en">
+    @else
+        <div class="translation-input-field field-description-en {{array_search('en', $post->user_translations['description']) === false ? 'hidden' : ''}}">
+    @endif
+    <textarea class="def-textarea" id="inputDescEn" name="description_en" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description_en') ?? $post->description_en }}</textarea>
+@endsection
 
 @section('dz-message')
     @if ($post->images->isEmpty())
@@ -262,6 +344,8 @@
                             var invalidInputErrors = errorMessage['errors'];
                             $.each(invalidInputErrors, function(key, value) {
                                 $('.'+key+'.error-dz').append("<p>"+value+"</p>");
+                                $('input[name='+key+']').addClass('error');
+                                $('textarea[name='+key+']').addClass('error');
                                 $('.'+key+'.error-dz').removeClass('hidden');
                             });
                             thisDropzone.removeAllFiles();

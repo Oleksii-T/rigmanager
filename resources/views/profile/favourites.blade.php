@@ -7,7 +7,7 @@
 
 @section('content')
     @if ($posts_list->isNotEmpty())
-        <x-items :posts="$posts_list" button='removeFromFav' />
+        <x-items :posts="$posts_list" button='removeFromFav' :translated="$translated"/>
         <div class="pagination-field">
             {{ $posts_list->links() }}
         </div>

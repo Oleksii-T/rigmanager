@@ -14,18 +14,28 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_unicode_ci';
             $table->id();
             $table->foreignId('user_id');
             $table->boolean('is_banned')->default(false);
             $table->boolean('is_active')->default(true);
             $table->integer('thread');
-            $table->string('title', 255);
+            $table->string('origin_lang', 5);
+            $table->string('user_translations', 60)->nullable();
+            $table->string('title', 100);
+            $table->string('title_uk', 100)->nullable();
+            $table->string('title_ru', 100)->nullable();
+            $table->string('title_en', 100)->nullable();
             $table->string('company', 255)->nullable(); //company name
             $table->string('type', 2); // sell/buy/loan
             $table->string('role', 2); // private/bussiness
             $table->integer('condition')->nullable();
             $table->string('tag_encoded', 255);
             $table->text('description', 9000);
+            $table->text('description_uk', 9000)->nullable();
+            $table->text('description_ru', 9000)->nullable();
+            $table->text('description_en', 9000)->nullable();
             $table->double('cost', 50, 2)->nullable();
             $table->string('currency', 4)->nullable();
             $table->string('region_encoded', 10)->nullable();

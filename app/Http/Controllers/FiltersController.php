@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Http\Controllers\UsdExchangeController;
+use Illuminate\Support\Facades\App;
 
 class FiltersController extends Controller
 {
@@ -35,7 +36,9 @@ class FiltersController extends Controller
             }
         }
         $posts = $posts->paginate(env('POSTS_PER_PAGE'));
-        return view('components.filtered-items', ['posts'=>$posts]);
+        $translated['title'] = 'title_'.App::getLocale();
+        $translated['description'] = 'description_'.App::getLocale();
+        return view('components.filtered-items', ['posts'=>$posts, 'translated'=>$translated]);
     }
 
     private function getPostsByIds($postsIds) {

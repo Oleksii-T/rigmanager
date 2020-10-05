@@ -8,6 +8,7 @@ use App\Post;
 use App\Http\Controllers\Traits\Tags;
 use App\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\App;
 
 class SearchController extends Controller
 {
@@ -28,7 +29,9 @@ class SearchController extends Controller
                 : $search['isEmpty'] = false;
             $search['type'] = 'text';
             $search['value'] = $request->searchStrings;
-            return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount'));
+            $translated['title'] = 'title_'.App::getLocale();
+            $translated['description'] = 'description_'.App::getLocale();
+            return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount', 'translated'));
         } else {
             return redirect(route('home'));
         }
@@ -48,7 +51,9 @@ class SearchController extends Controller
             : $search['isEmpty'] = false;
         $search['type'] = 'tags';
         $search['value'] = $this->getTagMap($tagId);
-        return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount'));
+        $translated['title'] = 'title_'.App::getLocale();
+        $translated['description'] = 'description_'.App::getLocale();
+        return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount', 'translated'));
     }
     
     public function searchAuthor($authorId) 
@@ -64,7 +69,9 @@ class SearchController extends Controller
         $search['type'] = 'author';
         $search['value']['name'] = $user->name;
         $search['value']['id'] = $authorId;
-        return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount'));
+        $translated['title'] = 'title_'.App::getLocale();
+        $translated['description'] = 'description_'.App::getLocale();
+        return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount', 'translated'));
     }
     
 }

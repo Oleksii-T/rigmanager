@@ -10,7 +10,10 @@ use App\User;
 use App\Http\Controllers\Traits\ImageUploader;
 use Illuminate\Support\Facades\Session;
 use App\Jobs\MailersAnalizePost;
+use App\Jobs\TranslatePost;
 use App\Http\Controllers\Traits\Tags;
+use Google\Cloud\Translate\TranslateClient;
+use Illuminate\Support\Facades\App;
 
 class PostController extends Controller
 {
@@ -50,15 +53,35 @@ class PostController extends Controller
     public function store(CreatePostRequest $request)
     {
         $input = $request->all();
+
         if ( !$input['cost'] ) {
             unset($input['currency']);
             unset($input['cost']);
         }
+
         if ( !$input['user_phone_raw'] ) {
             $input['viber'] = 0;
             $input['telegram'] = 0;
             $input['whatsapp'] = 0;
         }
+
+        // make user_translation column
+        $appLanguages = ['uk', 'ru', 'en'];
+        $userTitleTranslations = [];
+        $userDescTranslations = [];
+        foreach ($appLanguages as $lang) {
+            if ( array_key_exists($lang, $input['title_translate']) === false ) {
+                $userTitleTranslations[] = $lang;
+            }
+            if ( array_key_exists($lang, $input['desc_translate']) === false ) {
+                $userDescTranslations[] = $lang;
+            }
+        }
+        $input['user_translations'] = ['title' => $userTitleTranslations, 'description' => $userDescTranslations];
+
+        $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
+        $input['origin_lang'] = $translate->detectLanguage( $input['title'] . '. ' . $input['description'] )['languageCode']; // merge title and description and find out the origin language
+        
         $post = new Post($input);
         if (!auth()->user()->posts()->save($post)) {
             Session::flash('message-error', __('messages.postUploadedError'));
@@ -69,6 +92,7 @@ class PostController extends Controller
         }
         Session::flash('message-success', __('messages.postUploaded'));
         MailersAnalizePost::dispatch($post, auth()->user()->id)->onQueue('mailer');
+        TranslatePost::dispatch($post, $input, true)->onQueue('translation');
         return redirect(route('home'));
     }
     
@@ -90,7 +114,12 @@ class PostController extends Controller
         if (!$post->is_active && $post->user != auth()->user()) {
             return view('post.inactive');
         }
-        return view('post.show', compact('post'));
+        $translated = [];
+        if ( App::getLocale() != $post->origin_lang ) {
+            $translated['title'] = 'title_'.App::getLocale();
+            $translated['description'] = 'description_'.App::getLocale();
+        }
+        return view('post.show', compact('post', 'translated'));
     }
 
     /**
@@ -132,6 +161,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         if ($post->thread == 1) {
+            // if there is a file, check for files amount. max 5
             if ( $request->hasFile('images')) {
                 $imagesAmount = count($request->file('images')) + $post->images->count();
                 if ($imagesAmount > 5) {
@@ -140,6 +170,8 @@ class PostController extends Controller
                 }
             }
             $input = $request->all();
+            
+            // parse messangers values. If no phone specified remove messangers
             if ( $input['user_phone_raw'] ) {
                 $input['viber'] = $request->viber ? 1 : 0;
                 $input['telegram'] = $request->telegram ? 1 : 0;
@@ -149,17 +181,52 @@ class PostController extends Controller
                 $input['telegram'] = 0;
                 $input['whatsapp'] = 0;
             }
+
+            // make user_translation column
+            $appLanguages = ['uk', 'ru', 'en'];
+            $userTitleTranslations = [];
+            $userDescTranslations = [];
+            foreach ($appLanguages as $lang) {
+                if ( array_key_exists($lang, $input['title_translate']) === false ) {
+                    $userTitleTranslations[] = $lang;
+                }
+                if ( array_key_exists($lang, $input['desc_translate']) === false ) {
+                    $userDescTranslations[] = $lang;
+                }
+            }
+            $input['user_translations'] = ['title' => $userTitleTranslations, 'description' => $userDescTranslations];
+
+            // if user changes default translations
+            //TODO
+
+            // check origin language
+            $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
+            $input['origin_lang'] = $translate->detectLanguage( $input['title'] . '. ' . $input['description'] )['languageCode']; // merge title and description and find out the origin language
+            
+            // if there is no cost specified, remove currency and cost
             if ( !$input['cost'] ) {
                 unset($input['currency']);
                 unset($input['cost']);
             }
+
+            // save some old parameters of post
+            $input['origin_lang_old'] = $post->origin_lang;
+            $input['title_old'] = $post->title;
+            $input['description_old'] = $post->description;
+            $input['user_translations_old'] = $post->user_translations;
+
+            // if there was an error while updating, return previous page with error
             if (!$post->update($input)) {
                 Session::flash('message-error', __('messages.postEditedError'));
                 return redirect(route('home'));
             }
+
+            // if there is images submited, upload them
             if ( $request->hasFile('images')) {
                 $this->postImageUpload($request->file('images'), $post);
             }
+            
+            TranslatePost::dispatch($post, $input, false)->onQueue('translation');
             Session::flash('message-success', __('messages.postEdited'));
             return redirect(route('posts.show', $id));
         } else {
@@ -167,7 +234,7 @@ class PostController extends Controller
             return redirect(route('posts.show', $id));
         }
     }
-
+//
     /**
      * Remove the specified resource from storage.
      *

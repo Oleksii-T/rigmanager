@@ -39,6 +39,9 @@
             <a class="question" id="WhatIsSocialAcc">{{__('faq.qWhatIsSocialAcc')}}</a>
             <p class="answer">{{__('faq.aWhatIsSocialAcc')}} <a class="link" href="{{route('login.social', 'google')}}">Google</a> / <a class="link" href="{{route('login.social', 'facebook')}}">Facebook</a>.</p>
             
+            <a class="question" id="autoTranslator">{{__('faq.qAutoTranslator')}}</a>
+            <p class="answer">{{__('faq.aAutoTranslator')}}</p>
+            
             <div id="contacts">
                 <p id="slgText" id="sig">{{__('faq.slg1')}} <span>rigmanager.com.ua</span>.
                     {{__('faq.slg2')}} <a class="link" href = "{{route('contacts')}}">{{__('faq.slg3')}}</a>.

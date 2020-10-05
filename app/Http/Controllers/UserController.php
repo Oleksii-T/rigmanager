@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use App\Post;
+use Illuminate\Support\Facades\App;
 
 class UserController extends Controller
 {
@@ -79,14 +80,18 @@ class UserController extends Controller
 
     public function favourites()
     {
+        $translated['title'] = 'title_'.App::getLocale();
+        $translated['description'] = 'description_'.App::getLocale();
         $posts_list = auth()->user()->favPosts->reverse()->paginate(env('POSTS_PER_PAGE'));
-        return view('profile.favourites', compact('posts_list'));
+        return view('profile.favourites', compact('posts_list', 'translated'));
     }
 
     public function userPosts()
     {
+        $translated['title'] = 'title_'.App::getLocale();
+        $translated['description'] = 'description_'.App::getLocale();
         $posts_list = auth()->user()->posts()->orderBy('created_at', 'desc')->paginate(env('POSTS_PER_PAGE'));
-        return view('profile.posts', compact('posts_list'));
+        return view('profile.posts', compact('posts_list', 'translated'));
     }
 
     public function addToFav(Request $request) 

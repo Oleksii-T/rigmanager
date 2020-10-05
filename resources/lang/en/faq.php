@@ -51,6 +51,18 @@ return [
     Social accounts do not have a password.
     Login into such account only possible via',
 
+    'qAutoTranslator' => 'What is Auto-Translator',
+    'aAutoTranslator' => 'Auto-Translator is automatic title and description translation on Ukrainian and Russian languages for Your newly created Posts.
+    It is made up for increasing chanses of finding Your clients.
+    Auto-Translation is active by default but may be deactivated. Then you will be suggested to write your own translation variant for one or all available languages (Russian and Ukrainian).
+    You will be able to see the result of the translation submiting the Post by selecting the interface language you are interested in and going to your Post page or through the Post Edit page.
+    The User who opens the Post will always have the possibility to see the original title and description, if he review the Post not in the original language.
+    We are updating and improving our Auto-Translator to achieve the best translation result.
+    Currently, we are using Phrase-Based Google Cloud Translation Model.',
+
+    'q' => '',
+    'a' => '',
+
     'slg1' => 'Sincerely, development team',
     'slg2' => 'If you have any questions or suggestions, 
     please fill-up the',

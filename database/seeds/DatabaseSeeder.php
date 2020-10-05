@@ -49,7 +49,11 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 1,
             'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
             'title' => 'Буровая штанга 89х6,5х1000 мм, резьба З-73',
+            'title_uk' => 'Бурова штанга 89х6,5х1000 мм, різьба З-73',
+            'title_en' => 'Drilling pipe 89х6,5х1000 mm, thread З-73',
             'type' => '1',
             'role' => '2',
             'condition' => 2,
@@ -68,6 +72,34 @@ class DatabaseSeeder extends Seeder
                 Резьба ГОСТ:	З-73
                 Резьба API 7-1 (ГОСТ):	З-73
                 Резьба API (ГОСТ):	З-73',
+            'description_uk' => 'Виробник: DM Bits
+                Країна походження: РОСІЯ
+                Термін поставки: 3-4 тижні
+                Основні технічні параметри
+            
+                Довжина, мм: 1 000
+                Різьблення: 2 3/8 "IF - З-73
+                Матеріал корпусу труби: сталь 45
+                Товщина стінки, мм: 6,5
+                Спосіб приєднання замків: зварювання напівавтоматом
+                Матеріал замку труби: сталь 30ХГСА з термообробкою до 32 HRC
+                Різьба ГОСТ: З-73
+                Різьба API 7-1 (ГОСТ): З-73
+                Різьба API (ГОСТ): З-73', 
+            'description_en' => 'Manufacturer: DM Bits
+                Country of origin: RUSSIA
+                Delivery time: 3-4 weeks
+                Main technical parameters
+            
+                Length, mm: 1,000
+                Thread: 2 3/8 "IF - З-73
+                Pipe body material: steel 45
+                Wall thickness, mm: 6.5
+                Method of joining locks: welding by semiautomatic device
+                Pipe joint material: steel 30HGSA with heat treatment up to 32 HRC
+                GOST thread: З-73
+                Thread API 7-1 (GOST): З-73
+                API thread (GOST): З-73', 
             'cost' => '5148.00',
             'currency' => 'UAH',
             'user_email' => 'alex.tarbeev@gmail.com',
@@ -82,7 +114,11 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 1,
             'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
             'title' => 'Вертлюг 6WC',
+            'title_uk' => 'Вертлюг 6WC',
+            'title_en' => 'Swivel 6WC',
             'type' => '1',
             'role' => '2',
             'condition' => 2,
@@ -112,6 +148,56 @@ class DatabaseSeeder extends Seeder
                 
                 Вес, кг:	508
                 Отгрузочные размеры, мм:	1800x710x970',
+            'description_uk' => 'Виробник: Western Rubber
+                Країна походження: СПОЛУЧЕНИХ ШТАТІВ
+                Термін поставки: 8-10 тижнів
+                Інформація про товар
+                Бурової вертлгюг 6WC спроектований для буріння водозабірних свердловин великого діаметра і свердловин при веденні будівельних робіт. Даний вертлюг дуже компактний і має внутрішнє прохідний отвір 6 "(152 мм), може використовуватися як для прямої, так і зворотної циркуляції свердловин.
+                
+                Основні переваги:
+                
+                - велике прохідне отвір 6 "(152 мм)
+                - швидка заміна сальників вертлюга
+                - регульовані підшипники і ущільнення
+                - 2 "NPT злився для повітряної трубки
+                Основні технічні параметри
+                
+                Довжина, мм: 1 524
+                Прохідний отвір, мм: 152,4
+                Макс.нагрузка при обертанні, кг: 36
+                Макс.статічесткая навантаження, кг: 78,75
+                Макс.давленіе, кПа: 10 200
+                Вага нетто, кг: 408
+                Тип з\'єднання на виході: 6 "фланець
+                Інформація для відвантаження
+                
+                Вага, кг: 508
+                Відвантажувальні розміри, мм: 1800x710x970',
+            'description_en' => 'Manufacturer: Western Rubber
+                Country of origin: UNITED STATES
+                Delivery time: 8-10 weeks
+                Product information
+                The 6WC drill swivel is designed for drilling large diameter water wells and construction wells. This swivel is very compact and has a 6 "(152mm) internal bore and can be used for both forward and reverse well circulation.
+                
+                Main advantages:
+                
+                - large bore 6 "(152 mm)
+                - quick replacement of swivel seals
+                - adjustable bearings and seals
+                - 2 "NPT air tube connection
+                Main technical parameters
+                
+                Length, mm: 1 524
+                Through hole, mm: 152.4
+                Max. Load during rotation, kg: 36
+                Max static load, kg: 78.75
+                Max pressure, kPa: 10 200
+                Net weight, kg: 408
+                Outlet connection type: 6 "flange
+                Shipping Information
+                
+                Weight, kg: 508
+                Shipping dimensions, mm: 1800x710x970',
             'cost' => '2345808.10',
             'currency' => 'USD',
             'region_encoded' => '9',
@@ -123,7 +209,11 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 1,
             'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
             'title' => 'Трехшарошечное долото 76 мм (3") К-ЦА (IADC 743) Уралбурмаш',
+            'title_uk' => 'Трьохшарошкове долото 76 мм (3") К-ЦА (IADC 743) Уралбурмаш',
+            'title_en' => 'Three cone bit 76 mm (3") К-ЦА (IADC 743) Uralbyrmash',
             'type' => '2',
             'role' => '1',
             'condition' => 2,
@@ -149,6 +239,48 @@ class DatabaseSeeder extends Seeder
                 Информация для отгрузки
                 
                 Вес, кг:	2',
+            'description_uk' => 'Країна походження: РОСІЯ
+                Виробник: Уралбурмаш
+                Основні технічні параметри
+                
+                Маркування виробника: A-C74Z-R1005
+                Діаметр, мм (дюйм): 76 (3)
+                Код IADC: 743
+                Позначення ГОСТ: К-ЦА
+                Тип гірських порід: міцні породи
+                Тип промивання: центральна промивка
+                Тип опорного підшипника: два і більше підшипників ковзання
+                Тип опори: відкрита
+                Тип озброєння: твердосплавне
+                Стан: з зберігання
+                Осьова навантаження, кН: 50-80
+                Частота обертання, об / хв: 100-40
+                Різьба API (ГОСТ): З-42
+                Вага нетто, кг: 1,8
+                Інформація для відвантаження
+                
+                Вага, кг: 2',
+            'description_en' => 'Country of origin: RUSSIA
+                Manufacturer: UralBurMash
+                Main technical parameters
+                
+                Manufacturer part number: A-C74Z-R1005
+                Diameter, mm (inch): 76 (3)
+                IADC code: 743
+                GOST designation: K-CA
+                Rock type: hard rock
+                Flush type: central flush
+                Support bearing type: two or more plain bearings
+                Support type: open
+                Weapon type: carbide
+                Condition: from storage
+                Axial load, kN: 50-80
+                Rotation frequency, rpm: 100-40
+                API thread (GOST): З-42
+                Net weight, kg: 1.8
+                Shipping Information
+                
+                Weight, kg: 2',
             'user_email' => 'alex.tarbeev@gmail.com',
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
@@ -168,7 +300,11 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 2,
             'thread' => 1,
+            'origin_lang' => 'uk',
+            'user_translations' => '{"title":[],"description":[]}',
             'title' => 'Роторні клини',
+            'title_ru' => 'Роторные клинья',
+            'title_en' => 'Slips for rotary table',
             'type' => '1',
             'role' => '2',
             'condition' => 2,
@@ -181,6 +317,22 @@ class DatabaseSeeder extends Seeder
                 Роторні клини ТБТ 9” ~ 8-1/2”;
                 Роторні клини УБТ WT(DCS-S) 3-1/2”, WT (DSC-R) 5-1/2” ~ 7”, Сухарі для роторних клинів УБТ 4 1/2”;
                 Роторні клини БТ W(SDXL) 5”.',
+            'description_ru' => 'ООО "Бейкень энергетика Украины" продает Новые роторные клинья для обсадной колонны, бурильнои трубы, утяжеленный бурильнои трубы, сухари для роторных Клин.
+
+                В в наличии на складе Новые:
+
+                Роторные клинья обсадной колонны WG (CMS-XL) 5 ", WG (CMS-XL) 20";
+                Роторные клинья ТБТ 9 "~ 8-1 / 2";
+                Роторные клинья УБТ WT (DCS-S) 3-1 / 2 ", WT (DSC-R) 5-1 / 2" ~ 7 ", Сухари для роторных Клин УБТ 4 1/2";
+                Роторные клинья БТ W (SDXL) 5 ".',
+            'description_en' => 'Baiken Energetika Ukraine LLC sells New rotary wedges for casing, drill pipe, weighted drill pipe, crackers for rotary wedges.
+
+                In stock New:
+
+                Rotary casing wedges WG (CMS-XL) 5 ", WG (CMS-XL) 20";
+                Rotary wedges of TBT 9 "~ 8-1 / 2";
+                Rotary wedges of UBT WT (DCS-S) 3-1 / 2 ", WT (DSC-R) 5-1 / 2" ~ 7 ", Rusks for rotary wedges of UBT 4 1/2";
+                Rotary wedges BT W (SDXL) 5 ".',
             'user_email' => 'pavlo.tarbeiev@beiken.com',
             'user_phone_raw' => '0671859633',
             'region_encoded' => '16',
@@ -193,7 +345,11 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 2,
             'thread' => 1,
+            'origin_lang' => 'uk',
+            'user_translations' => '{"title":[],"description":[]}',
             'title' => 'Лебідка та запчастини',
+            'title_ru' => 'Лебедка и запчасти',
+            'title_en' => 'Drawwork amd parts',
             'type' => '1',
             'role' => '2',
             'condition' => 2,
@@ -207,7 +363,25 @@ class DatabaseSeeder extends Seeder
                 Цеп бурової лебідки 254 576, цеп бурової лебідки 32S-2, цеп бурової лебідки 33S-4;
                 Супорт в зборі DBS75-3-00.
                 Більш детальну інформацію (сертифікати, паспорти і т. д.) ви можете отримати, надіславши запит за адресою електронної пошти або по телефону нижче.',
-            'user_email' => 'pavlo.tarbeiev@beiken.com',
+            'description_ru' => 'ООО "Бейкень энергетика Украины" продает новые пневматические лебедки 5т и запчасти для буровой лебедки.
+
+                В в наличии на складе новые:
+
+                Пневматическая лебедка 5т;
+                Тормозные колодки для буровой лебедки;
+                Цепь буровой лебедки 254576, цепь буровой лебедки 32S-2, цепь буровой лебедки 33S-4;
+                Суппорт в сборе DBS75-3-00.
+                Более подробную информацию (сертификаты, паспорта и т. Д.) Можно получить, отправив запрос по адресу электронной почты или по телефону ниже.',
+            'description_en' => 'Baiken Energetika Ukraine LLC sells new 5t pneumatic winches and spare parts for drilling winches.
+
+                In stock new:
+
+                Pneumatic winch 5t;
+                Brake pads for drilling winch;
+                Drilling winch chain 254 576, drilling winch chain 32S-2, drilling winch chain 33S-4;
+                Support assembly DBS75-3-00.
+                You can get more detailed information (certificates, passports, etc.) by sending an inquiry by e-mail or by phone below.',
+                'user_email' => 'pavlo.tarbeiev@beiken.com',
             'user_phone_raw' => '0671859633',
             'region_encoded' => '16',
             'town' => 'Полтава',
@@ -230,7 +404,11 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 3,
             'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
             'title' => 'Метчик ловильный B',
+            'title_uk' => 'Метчик ловильный B',
+            'title_en' => 'Fishing pike B',
             'type' => '3',
             'role' => '1',
             'condition' => 4,
@@ -247,6 +425,30 @@ class DatabaseSeeder extends Seeder
                 Резьба ГОСТ:	З-50
                 Резьба API 7-1 (ГОСТ):	З-50
                 Резьба API (ГОСТ):	З-50',
+            'description_uk' => 'Країна походження: РОСІЯ
+                Термін поставки: 10 днів
+                Основні технічні параметри
+            
+                Діаметр захоплюваного інструменту, мм: 20-57
+                Мінімальний діаметр свердловини, мм: 70
+                Різьблення: З-50
+                Напрямок різьблення: праве
+                Промивальне отвір: немає
+                Різьба ГОСТ: З-50
+                Різьба API 7-1 (ГОСТ): З-50
+                Різьба API (ГОСТ): З-50',
+            'description_en' => 'Country of origin: RUSSIA
+                Delivery time: 10 days
+                Main technical parameters
+            
+                Gripped tool diameter, mm: 20-57
+                Minimum hole diameter, mm: 70
+                Thread: З-50
+                Thread direction: right
+                Flushing hole: no
+                GOST thread: З-50
+                Thread API 7-1 (GOST): З-50
+                API thread (GOST): З-50',
             'cost' => '7105.49',
             'currency' => 'UAH',
             'user_email' => 'dmytro.tarbeiev@gmail.com',
@@ -260,7 +462,11 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 3,
             'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
             'title' => 'Скважинная камера TEL1, кабель 300 м',
+            'title_uk' => 'Скважинна камера TEL1, кабель 300 м',
+            'title_en' => 'Well camera TEL1, cabel 300 м',
             'type' => '3',
             'role' => '2',
             'condition' => 2,
@@ -284,6 +490,44 @@ class DatabaseSeeder extends Seeder
                 Информация для отгрузки
 
                 Вес, кг:	20',
+            'description_uk' => 'Камера TEL 1 призначена для дослідження свердловини в процесі буріння. Камера TEL 1 є легким, простим у використанні і дуже надійним інструментом для використання в бурових умовах.
+                Повний комплект складається з: котушки, камери, монітора з LCD дисплеєм, USB виходу і входу для мікрофона для запису відео та звуку на будь-який ноутбук.
+
+                МОБІЛЬНІСТЬ
+                ЛЕГКІСТЬ ВИКОРИСТАННЯ
+                ВИСОКА НАДІЙНІСТЬ
+                ВОДОНЕПРОНИКНІСТЬ ДО 35 АТМ.
+                Найвища якість ЗЙОМКИ
+                Основні технічні параметри
+
+                Глибина використання, м: 350
+                Діаметр камери, мм: 40
+                Довжина камери, мм: 150
+                Довжина кабелю, м: 300
+                Гарантія: 1 рік
+                Вага нетто, кг: 15
+                Інформація для відвантаження
+
+                Вага, кг: 20',
+            'description_en' => 'The TEL 1 camera is designed to survey a well while drilling. The TEL 1 camera is a lightweight, easy-to-use and highly reliable tool for use in drilling environments.
+                The complete set consists of: coil, camera, monitor with LCD display, USB output and microphone input for recording video and sound on any laptop.
+
+                MOBILITY
+                EASY TO USE
+                HIGH RELIABILITY
+                WATER RESISTANCE UP TO 35 ATM.
+                HIGH QUALITY SHOOTING
+                Main technical parameters
+
+                Depth of use, m: 350
+                Chamber diameter, mm: 40
+                Chamber length, mm: 150
+                Cable length, m: 300
+                Warranty: 1 year
+                Net weight, kg: 15
+                Shipping Information
+
+                Weight, kg: 20',
             'cost' => '620153.70',
             'currency' => 'UAH',
             'user_email' => 'dmytro.tarbeiev@gmail.com',
@@ -308,7 +552,11 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 4,
             'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
             'title' => 'Верхний привод FHD 6-23 R 1/4/8',
+            'title_uk' => 'Верхній привід FHD 6-23 R 1/4/8',
+            'title_en' => 'Top Drive System FHD 6-23 R 1/4/8',
             'type' => '1',
             'role' => '1',
             'condition' => 2,
@@ -332,6 +580,44 @@ class DatabaseSeeder extends Seeder
                 Информация для отгрузки
                 
                 Вес, кг:	900',
+            'description_uk' => 'Країна походження: НІМЕЧЧИНА
+                Термін поставки: 20-24 тижнів
+                Інформація про товар
+                
+                Верхній привід FHD 6-23 R 1/4/8 призначений для буріння свердловин великого діаметру як з прямою, так і зворотної циркуляцією бурового розчину. Може монтуватися на вітчизняні роторні бурові установки, тим самим дозволяє значно збільшити продуктивність буріння за рахунок скорочення часу на спуско-підйомні операції, а також збільшення швидкості буріння.
+                
+                Верхній привід підключається до гідросистемі бурової установки, може відхилятися на 90 градусів вперед для зручності підйому бурових і труб і УБТ зі стелажів, а також відкидатися на 180 градусів в сторону, для звільнення гирла свердловина при спуску обсадних труб. Всі маніпуляції здійснюються за допомогою гідравліки з пульта бурильника.
+                Основні технічні параметри
+                
+                Прохідний отвір, мм: 150
+                Макс.нагрузка при обертанні, кг: 50 000
+                Макс.давленіе, кПа: 4 000
+                Максимальний крутний момент, Нм: 26 000
+                Максимальна частота обертання, об / хв: 230
+                Вага нетто, кг: 850
+                Гарантія: 1 рік
+                Інформація для відвантаження
+                
+                Вага, кг: 900',
+            'description_en' => 'Country of origin: GERMANY
+                Delivery time: 20-24 weeks
+                Product information
+                
+                The FHD 6-23 R 1/4/8 top drive is designed for drilling large-diameter wells with both direct and reverse circulation of drilling mud. It can be mounted on domestic rotary drilling rigs, thereby significantly increasing drilling productivity by reducing the time for round-trip operations, as well as increasing the drilling speed.
+                
+                The top drive is connected to the hydraulic system of the drilling rig, can be tilted 90 degrees forward for easy lifting of drill pipes and drill collars from the racks, as well as tilted 180 degrees to the side to free the wellhead when running casing pipes. All manipulations are carried out using hydraulics from the driller\'s console.
+                Main technical parameters
+                
+                Through hole, mm: 150
+                Max. Load during rotation, kg: 50 000
+                Max pressure, kPa: 4000
+                Maximum torque, Nm: 26,000
+                Maximum speed, rpm: 230
+                Net weight, kg: 850
+                Warranty: 1 year
+                Shipping Information
+                
+                Weight, kg: 900',
             'cost' => '2338242.07',
             'currency' => 'UAH',
             'user_email' => 'yarikmoklyak2010@gmail.com',
@@ -344,7 +630,11 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 4,
             'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
             'title' => 'Плунжерный насос Wheatley T365-AM (59T-3M), новый',
+            'title_uk' => 'Плунжерный насос Wheatley T365-AM (59T-3M), новый',
+            'title_ru' => 'Plunger pump Wheatley T365-AM (59T-3M), new',
             'type' => '1',
             'role' => '1',
             'condition' => 1,
@@ -376,6 +666,60 @@ class DatabaseSeeder extends Seeder
                 
                 Вес, кг:	500
                 Отгрузочные размеры, мм:	1200x800x500',
+            'description_uk' => 'Виробник: NOV
+                Країна походження: СПОЛУЧЕНИХ ШТАТІВ
+                Термін поставки: 14-16 тижнів
+                Основні технічні параметри
+                
+                Розрахункова потужність, кВт: 44 кВт при 420 об / хв
+                Максимальна продуктивність, л / хв: 354,6
+                Тип клапанів: Дискові
+                Напрямок обертання: праве
+                Різьба на всмоктуванні: 2 1/2 "NPT
+                Різьба на подачі: 2 "NPT
+                Максимальний розмір плунжера, мм: 63,5
+                Хід плунжера, мм: 88,9
+                Кількість плунжеров: 3
+                Розрахункове навантаження на плунжер, кг: 2159
+                Макс.давленіе, кПа: 15, 825
+                Вихід на привід: шпонковий вал
+                Привід: без приводу
+                Гарантія: 2 роки
+                Розміри без упаковки, мм: 1024х763х454
+                Вага нетто, кг: 445
+                Розмір на всмоктуванні: 2 1/2 "NPT
+                Розмір на подачі: 2 "NPT
+                Інформація для відвантаження
+                
+                Вага, кг: 500
+                Відвантажувальні розміри, мм: 1200x800x500',
+            'description_en' => 'Manufacturer: NOV
+                Country of origin: UNITED STATES
+                Delivery time: 14-16 weeks
+                Main technical parameters
+                
+                Design power, kW: 44 kW at 420 rpm
+                Maximum productivity, l / min: 354.6
+                Valve type: Disc
+                Direction of rotation: right
+                Suction thread: 2 1/2 "NPT
+                Inlet thread: 2 "NPT
+                Maximum plunger size, mm: 63.5
+                Plunger stroke, mm: 88.9
+                Number of plungers: 3
+                Estimated load on the plunger, kg: 2159
+                Max pressure, kPa: 15,825
+                Drive output: key shaft
+                Drive: no drive
+                Warranty: 2 years
+                Dimensions without packaging, mm: 1024х763х454
+                Net weight, kg: 445
+                Suction size: 2 1/2 "NPT
+                Delivery Size: 2 "NPT
+                Shipping Information
+                
+                Weight, kg: 500
+                Shipping dimensions, mm: 1200x800x500',
             'cost' => '1209378.72',
             'currency' => 'UAH',
             'user_email' => 'yarikmoklyak2010@gmail.com',
@@ -403,6 +747,8 @@ class DatabaseSeeder extends Seeder
         DB::table('posts')->insert([
             'user_id' => 4,
             'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
             'title' => 'Extra long post title tttttttttttttt t t t tttttt t tttttt tttttt tttt',
             'condition' => 'Новое',
             'tag_encoded' => '30.1.1',

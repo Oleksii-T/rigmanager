@@ -26,6 +26,9 @@ return [
     'notSpecified' => 'Не Указано',
     'save' => 'Сохранить',
     'hide' => 'Скрыть',
+    'ukLang' => 'украинский',
+    'ruLang' => 'русский',
+    'enLang' => 'английский',
 
     // auth massages
     'signIn' => 'Войти',
@@ -144,7 +147,7 @@ return [
     'postType' => 'Род',
     'postRole' => 'Сектор',
     
-    // post edit/create massages
+    // post edit/create/edit massages
     'equipment' => 'Оборудование',
     'service' => 'Сервис',
     'addPost' => 'Добавить объявление',
@@ -155,6 +158,12 @@ return [
     'title' => 'Заголовок',
     'titleHelp' => 'Минимум 10 символов.
         Максимум 70 символов.',
+    'autoTranslateHeader' => 'Настройки',
+    'autoTranslate' =>  'Авто-Переводчика',
+    'AutoTranslateToUk' => 'Aвто-Перевод на украинский',
+    'AutoTranslateToEn' => 'Авто-Перевод на английский',
+    'translationHelp' => 'Доступные для перевода языки, предлагаются относительно выбраного языка интерфейса.
+        Пожалуйста, Выберете язык интерфейса на котором вы заполняете оригинальную информацию.',
     'choosePostType' => 'Выберите род объявления',
     'postTypeSell' => 'Продажа',
     'postTypeBuy' => 'Покупка',
@@ -207,6 +216,10 @@ return [
     'postInactiveError' => 'Извините, но Автор деактивировал это объявление.
         Вы можете вернуться сюда позже,
         оно может быть снова активировано в ближайшее время!',
+    'translationTitleAlert' => 'Это переведенный заголовок.',
+    'translationDescAlert' => 'Это переведенное описание.',
+    'originLang' => 'Исходный язык - ',
+    'showOrigin' => 'Показать оригинал',
     
     //dropzone
     'dropzoneDesc' => 'test1',

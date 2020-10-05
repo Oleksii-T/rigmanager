@@ -10,8 +10,13 @@
             </figure>
             
             <div class="textWraper">
-                <h3 class="heading4"><span class="post-type">{{$post->type==5 ? '' : $post->type_readable.': '}} </span>{{ $post->title }}</h3>
-                <p class="desc">{{ $post->description }}</p>
+                @if ( App::getLocale() == $post->origin_lang )
+                    <h3 class="heading4"><span class="post-type">{{$post->type==5 ? '' : $post->type_readable.': '}} </span> {{ $post->title }}</h3>
+                    <p class="desc">{{ $post->description }}</p>
+                @else
+                    <h3 class="heading4"><span class="post-type">{{$post->type==5 ? '' : $post->type_readable.': '}} </span> {{ $post->{$translated['title']} ? $post->{$translated['title']} : $post->title }}</h3>
+                    <p class="desc">{{ $post->{$translated['description']} ? $post->{$translated['description']} : $post->description }}</p>
+                @endif
                 <ul id="ulMisc">
                     @if ($post->region_encoded)
                         <li><p class="province misc">{{ $post->region_readable }}</p></li>

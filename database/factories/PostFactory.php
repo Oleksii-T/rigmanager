@@ -9,6 +9,8 @@ $factory->define(Post::class, function (Faker $faker) {
     return [
         'user_id' => $faker->randomElement( $array = array(1, 2, 3, 4) ),
         'thread' => 1,
+        'origin_lang' => 'en',
+        'user_translations' => '{"title":[],"description":[]}',
         'title' => $faker->realText($maxNbChars = 60, $indexSize = 2),
         'type' => $faker->randomElement( $array = array('1', '2', '3', '4') ),
         'role' => $faker->randomElement( $array = array('1', '2') ),

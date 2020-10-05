@@ -185,7 +185,7 @@
             <p class="empty-search-text">{{__('ui.searchFail')}}</p>
         </div>
         <div class="filtered-items">
-            <x-items :posts="$posts_list" button='addToFav'/>
+            <x-items :posts="$posts_list" button='addToFav' :translated="$translated"/>
 
             <!-- Pagination -->
             <div class="pagination-field">

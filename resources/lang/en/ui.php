@@ -26,6 +26,9 @@ return [
     'notSpecified' => 'Not Specified',
     'save' => 'Save',
     'hide' => 'Hide',
+    'ukLang' => 'Ukrainian',
+    'ruLang' => 'Russian',
+    'enLang' => 'English',
 
     // auth massages
     'signIn' => 'Sign in',
@@ -144,7 +147,7 @@ return [
     'postType' => 'Post type',
     'postRole' => 'Legal type',
 
-    // post edit/create massages
+    // post edit/create/show massages
     'equipment' => 'Equipment',
     'service' => 'Service',
     'addPost' => 'Add post',
@@ -155,6 +158,12 @@ return [
     'title' => 'Title',
     'titleHelp' => 'Minimum 10 symbols.
         Maximum 70 symbols.',
+    'autoTranslateHeader' => 'Preferences of',
+    'autoTranslate' =>  'Auto-Translator',
+    'AutoTranslateToUk' => 'Auto-Translate to Ukrainian',
+    'AutoTranslateToRu' => 'Auto-Translate to Russian',
+    'translationHelp' => 'Available languages suggested base on your Interface Language.
+        Please choose the interface language in which you filling the original information.',
     'choosePostType' => 'Choose post type',
     'postTypeSell' => 'Sell',
     'postTypeBuy' => 'Buy',
@@ -208,6 +217,10 @@ return [
         deactivated this post. 
         You can return here later, 
         it may be activated again soon!',
+    'translationTitleAlert' => 'This is the translated title.',
+    'translationDescAlert' => 'This is the translated description.',
+    'originLang' => 'Original language is',
+    'showOrigin' => 'Show origin',
     
     //dropzone
     'dropzoneDesc' => 'Drop files or click 

@@ -19,6 +19,33 @@
     <input class="def-input" id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') }}"/>
 @endsection    
 
+@section('checkbox-title-uk')
+    <input id="titleTranslateUk" type="checkbox" name="title_translate[uk]" value="1" checked="checked"> 
+@endsection
+
+@section('field-title-uk')
+    <div class="translation-input-field field-title-uk {{old('title_translate') && !array_key_exists('uk', old('title_translate')) ? '' : 'hidden'}}">    
+        <input class="def-input" id="inputTitleUk" name="title_uk" type="text" placeholder="Заголовок" value="{{ old('title_uk') }}"/>
+@endsection
+
+@section('checkbox-title-ru')
+    <input id="titleTranslateRu" type="checkbox" name="title_translate[ru]" value="1" checked="checked">
+@endsection
+
+@section('field-title-ru')
+    <div class="translation-input-field field-title-ru {{old('title_translate') && !array_key_exists('ru', old('title_translate')) ? '' : 'hidden'}}">
+        <input class="def-input" id="inputTitleRu" name="title_ru" type="text" placeholder="Заголовок" value="{{ old('title_ru') }}"/>
+@endsection
+
+@section('checkbox-title-en')
+    <input id="titleTranslateEn" type="checkbox" name="title_translate[en]" value="1" checked="checked">
+@endsection
+
+@section('field-title-en')
+    <div class="translation-input-field field-title-en {{old('title_translate') && !array_key_exists('en', old('title_translate')) ? '' : 'hidden'}}">
+        <input class="def-input" id="inputTitleEn" name="title_en" type="text" placeholder="Title" value="{{old('title_en')}}"/>
+@endsection
+
 @section('input-type')
     <label class="radio-container" for="typeSell">{{__('ui.postTypeSell')}}
         <input id="typeSell" type="radio" name="type" value="1" checked="checked">
@@ -78,7 +105,34 @@
 @endsection
     
 @section('input-description')
-    <textarea class="def-textarea" id="inputDecs" name="description" form="formCreatePost" rows="15" maxlength="9000">{{ old('description') }}</textarea>
+    <textarea class="def-textarea" id="inputDesc" name="description" form="formCreatePost" rows="15" maxlength="9000">{{ old('description') }}</textarea>
+@endsection
+
+@section('checkbox-description-uk')
+    <input id="descTranslateUk" type="checkbox" name="desc_translate[uk]" value="1" checked="checked">
+@endsection
+
+@section('field-description-uk')
+    <div class="translation-input-field field-description-uk {{old('desc_translate') && !array_key_exists('uk', old('desc_translate')) ? '' : 'hidden'}}">
+        <textarea class="def-textarea" id="inputDescUk" name="description_uk" form="formCreatePost" rows="15" maxlength="9000">{{ old('description_uk') }}</textarea>
+@endsection
+
+@section('checkbox-description-ru')
+    <input id="descTranslateRu" type="checkbox" name="desc_translate[ru]" value="1" checked="checked">
+@endsection
+
+@section('field-description-ru')
+    <div class="translation-input-field field-description-ru {{old('desc_translate') && !array_key_exists('ru', old('desc_translate')) ? '' : 'hidden'}}">
+        <textarea class="def-textarea" id="inputDescRu" name="description_ru" form="formCreatePost" rows="15" maxlength="9000">{{ old('description_ru') }}</textarea>
+@endsection
+
+@section('checkbox-description-en')
+    <input id="descTranslateEn" type="checkbox" name="desc_translate[en]" value="1" checked="checked">
+@endsection
+
+@section('field-description-en')
+    <div class="translation-input-field field-description-en {{old('desc_translate') && !array_key_exists('en', old('desc_translate')) ? '' : 'hidden'}}">
+        <textarea class="def-textarea" id="inputDescEn" name="description_en" form="formCreatePost" rows="15" maxlength="9000">{{ old('description_en') }}</textarea>
 @endsection
 
 @section('dz-message')
@@ -199,6 +253,8 @@
                             var invalidInputErrors = errorMessage['errors'];
                             $.each(invalidInputErrors, function(key, value) {
                                 $('.'+key+'.error-dz').append("<p>"+value+"</p>");
+                                $('input[name='+key+']').addClass('error');
+                                $('textarea[name='+key+']').addClass('error');
                                 $('.'+key+'.error-dz').removeClass('hidden');
                             });
                             myDropzone.removeAllFiles();

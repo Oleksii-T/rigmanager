@@ -133,8 +133,76 @@ label.error, div.error {
     background: white;
 }
 
+/* The container */
+.cb-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-left: 10px;
+}
+  
+/* Hide the browser's default checkbox */
+.cb-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+  
+/* Create a custom checkbox */
+.cb-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+  
+/* On mouse-over, add a grey background color */
+.cb-container:hover input ~ .cb-checkmark {
+    background-color: #ccc;
+}
+  
+/* When the checkbox is checked, add a blue background */
+.cb-container input:checked ~ .cb-checkmark {
+    background-color: #FE9042;
+}
+  
+/* Create the checkmark/indicator (hidden when not checked) */
+.cb-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+/* Show the checkmark when checked */
+.cb-container input:checked ~ .cb-checkmark:after {
+    display: block;
+}
+  
+/* Style the checkmark/indicator */
+.cb-container .cb-checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
 
-/*==================PAGE_TITLE==================*/
+/*==================MASTER_PAGE_TITLE==================*/
 
 #pageTitle {
     text-align: center;
@@ -174,8 +242,60 @@ label.error, div.error {
     padding-top: 60px;
 }
 
-#title #inputTitle { 
+#title input[type=text] { 
     width: 70%; 
+}
+
+a.auto-translator-link {
+    transition: 0.2s;
+    font-size: inherit;
+}
+
+a.auto-translator-link:hover {
+    color: #FE9042;
+}
+
+div.title-translations,
+div.desc-translations {
+    margin: 10px 0px 0px 20px;
+}
+
+p.translations-header {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 110%;
+}
+
+div.translations-help {
+    display: inline-block;
+    position: relative;
+}
+
+div.translations-help:hover p {
+    display: block;
+}
+
+div.translations-help img {
+    width: 20px;
+    height: 20px;
+}
+
+div.translations-help p {
+    background-color: rgb(11, 11, 11, 0.8);
+    position: absolute;
+    padding: 5px;
+    display: none;
+    z-index: 5;
+    top: 0px;
+    left: 130%;
+    width: 500px;
+    color: #888888;
+    font-style: italic;
+    white-space: pre-line;
+}
+
+div.translation-input-field {
+    margin: 0px 0px 20px 10px;
 }
 
 /*==================COMPANY==================*/
@@ -212,7 +332,7 @@ button.tags-show {
 
 /*==================DESCRIPTION==================*/
 
-#inputDecs {
+#desc textarea {
     width: 70%;
 }
 

@@ -30,8 +30,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $translated['title'] = 'title_'.App::getLocale();
+        $translated['description'] = 'description_'.App::getLocale();
         $posts_list = Post::where('is_active', 1)->orderBy('created_at', 'desc')->paginate(env('POSTS_PER_PAGE'));
-        return view('home.home', compact('posts_list'));
+        return view('home.home', compact('posts_list', 'translated'));
     }
 
     public function faq()

@@ -17,13 +17,14 @@ class Post extends Model
 
     protected $appends = [
         'tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable', 
-        'user_phone_intern', 'region_readable', 'role_readable', 'type_readable'
+        'user_phone_intern', 'region_readable', 'role_readable', 'type_readable', 'origin_lang_readable'
     ];
 
     protected $fillable = [
-        'thread', 'title', 'type', 'role', 'description', 'tag_encoded', 'condition', 'region_encoded', 
-        'town', 'cost', 'currency', 'user_email', 'user_phone_raw', 'viber', 'telegram', 'whatsapp',
-        'is_active', 'company'
+        'is_active', 'thread', 'origin_lang', 'user_translations' , 'title', 'title_uk', 'title_ru', 'title_en', 
+        'company', 'type', 'role', 'condition', 'tag_encoded', 'description', 'description_uk', 'description_ru', 
+        'description_en', 'cost', 'currency', 'region_encoded', 'town', 'user_email', 'user_phone_raw', 'viber', 
+        'telegram', 'whatsapp'
     ];
 
     /**
@@ -33,7 +34,10 @@ class Post extends Model
      */
     public function toSearchableArray()
     {
-        $array = $this->only('title', 'description', 'town', 'is_active', 'company');
+        $array = $this->only(
+            'title', 'title_uk', 'title_ru', 'title_en', 'description', 'description_uk', 'description_ru', 
+            'description_en', 'town', 'is_active', 'company'
+        );
         return $array;
     }
 
@@ -50,6 +54,33 @@ class Post extends Model
     public function favOfUser()
     {
         return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+    public function setUserTranslationsAttribute($value)
+    {
+        $this->attributes['user_translations'] = json_encode($value);
+    }
+
+    public function getUserTranslationsAttribute($value)
+    {
+        return json_decode($value, true);
+    }
+
+    public function getOriginLangReadableAttribute()
+    {
+        switch ($this->origin_lang) {
+            case 'uk':
+                return __('ui.ukLang');
+                break;
+            case 'ru':
+                return __('ui.ruLang');
+                break;
+            case 'en':
+                return __('ui.enLang');
+                break;
+            default:
+                return __('ui.notSpecified');
+        }
     }
 
     public function setCostAttribute($value)

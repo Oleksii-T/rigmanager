@@ -25,6 +25,59 @@
                 @yield('input-title')
                 <x-server-input-error errorName='title' inputName='inputTitle' errorClass='error'/>
                 <div class="title error error-dz hidden"></div>
+                <div class="title-translations">
+                    <p class="translations-header">{{__('ui.autoTranslateHeader')}} <a class="auto-translator-link" href="{{route('faq')}}#autoTranslator">{{__('ui.autoTranslate')}}</a></p>
+                    
+                    <div class="translations-help">
+                        <img id="helpImg" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        <p>{{__('ui.translationHelp')}}</p>
+                    </div>
+            
+                    <div class="{{ App::isLocale('uk') ? 'hidden' : '' }}">
+                        <label class="cb-container" for="titleTranslateUk">{{__('ui.AutoTranslateToUk')}}
+                            @if ( old('title_translate') && !array_key_exists('uk', old('title_translate')) )
+                                <input id="titleTranslateUk" type="checkbox" name="title_translate[uk]" value="1">
+                            @else
+                                @yield('checkbox-title-uk')
+                            @endif   
+                            <span class="cb-checkmark"></span>
+                        </label>
+                        @yield('field-title-uk')
+                            <x-server-input-error errorName='title_uk' inputName='inputTitleUk' errorClass='error'/>
+                            <div class="title_uk error error-dz hidden"></div>
+                        </div>
+                    </div>
+            
+                    <div class="{{ App::isLocale('ru') ? 'hidden' : '' }}">
+                        <label class="cb-container" for="titleTranslateRu">{{__('ui.AutoTranslateToRu')}}
+                            @if ( old('title_translate') && !array_key_exists('ru', old('title_translate')) )
+                                <input id="titleTranslateRu" type="checkbox" name="title_translate[ru]" value="1">
+                            @else
+                                @yield('checkbox-title-ru')
+                            @endif 
+                            <span class="cb-checkmark"></span>
+                        </label>
+                        @yield('field-title-ru')
+                            <x-server-input-error errorName='title_ru' inputName='inputTitleRu' errorClass='error'/>
+                            <div class="title_ru error error-dz hidden"></div>
+                        </div>
+                    </div>
+            
+                    <div class="{{ App::isLocale('en') ? 'hidden' : '' }}">
+                        <label class="cb-container" for="titleTranslateEn">{{__('ui.AutoTranslateToEn')}}
+                            @if ( old('title_translate') && !array_key_exists('en', old('title_translate')) )
+                                <input id="titleTranslateEn" type="checkbox" name="title_translate[en]" value="1">
+                            @else
+                                @yield('checkbox-title-en')
+                            @endif 
+                            <span class="cb-checkmark"></span>
+                        </label>
+                        @yield('field-title-en')
+                            <x-server-input-error errorName='title_en' inputName='inputTitleEn' errorClass='error'/>
+                            <div class="title_en error error-dz hidden"></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="help">
                     <p><i>{{__('ui.titleHelp')}}</i></p>
                 </div>
@@ -63,6 +116,59 @@
                 @yield('input-description')
                 <x-server-input-error errorName='description' inputName='inputDecs' errorClass='error'/>
                 <div class="description error error-dz hidden"></div>
+                <div class="desc-translations">
+                    <p class="translations-header">{{__('ui.autoTranslateHeader')}} <a class="auto-translator-link" href="{{route('faq')}}#autoTranslator">{{__('ui.autoTranslate')}}</a></p>
+                    
+                    <div class="translations-help">
+                        <img id="helpImg" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        <p>{{__('ui.translationHelp')}}</p>
+                    </div>
+
+                    <div class="{{ App::isLocale('uk') ? 'hidden' : '' }}">
+                        <label class="cb-container" for="descTranslateUk">{{__('ui.AutoTranslateToUk')}}
+                            @if ( old('desc_translate') && !array_key_exists('uk', old('desc_translate')) )
+                                <input id="descTranslateUk" type="checkbox" name="desc_translate[uk]" value="1">
+                            @else
+                                @yield('checkbox-description-uk')
+                            @endif
+                            <span class="cb-checkmark"></span>
+                        </label>
+                        @yield('field-description-uk')
+                            <x-server-input-error errorName='description_uk' inputName='inputDescUk' errorClass='error'/>
+                            <div class="description_uk error error-dz hidden"></div>
+                        </div>
+                    </div>
+
+                    <div class="{{ App::isLocale('ru') ? 'hidden' : '' }}">
+                        <label class="cb-container" for="descTranslateRu">{{__('ui.AutoTranslateToRu')}}
+                            @if ( old('desc_translate') && !array_key_exists('ru', old('desc_translate')) )
+                                <input id="descTranslateRu" type="checkbox" name="desc_translate[ru]" value="1">
+                            @else
+                                @yield('checkbox-description-ru')
+                            @endif
+                            <span class="cb-checkmark"></span>
+                        </label>
+                        @yield('field-description-ru')
+                            <x-server-input-error errorName='description_ru' inputName='inputDescRu' errorClass='error'/>
+                            <div class="description_ru error error-dz hidden"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="{{ App::isLocale('en') ? 'hidden' : '' }}">
+                        <label class="cb-container" for="descTranslateEn">{{__('ui.AutoTranslateToEn')}}
+                            @if ( old('desc_translate') && !array_key_exists('en', old('desc_translate')) )
+                                <input id="descTranslateEn" type="checkbox" name="desc_translate[en]" value="1">
+                            @else
+                                @yield('checkbox-description-en')
+                            @endif
+                            <span class="cb-checkmark"></span>
+                        </label>
+                        @yield('field-description-en')
+                            <x-server-input-error errorName='description_en' inputName='inputDescEn' errorClass='error'/>
+                            <div class="description_en error error-dz hidden"></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="help">
                     <p><i>{{__('ui.descriptionHelp')}}</i></p>
                 </div>
@@ -148,6 +254,138 @@
     @yield('post-scripts')
     <script type="text/javascript">
         $(document).ready(function() {            
+
+            var titleValidationRules = {
+                required: true,
+                minlength: 10,
+                maxlength: 70
+            };
+
+            var descValidationRules = {
+                required: true,
+                minlength: 10,
+                maxlength: 9000
+            };
+
+            // show translation input for title Uk
+            $('#titleTranslateUk').change(function(){
+                if ( $(this).is(':checked') ) {
+                    $('div.field-title-uk').addClass('hidden');
+                    $('#inputTitleUk').rules('remove');
+                } else {
+                    $('div.field-title-uk').removeClass('hidden');
+                    $('#inputTitleUk').rules('add', titleValidationRules);
+                }
+            });
+
+            // show translation input for title Ru
+            $('#titleTranslateRu').change(function(){
+                if ( $(this).is(':checked') ) {
+                    $('div.field-title-ru').addClass('hidden')
+                    $('#inputTitleRu').rules('remove');
+                } else {
+                    $('div.field-title-ru').removeClass('hidden')
+                    $('#inputTitleRu').rules('add', titleValidationRules);
+                }
+            });
+
+            // show translation input for title En
+            $('#titleTranslateEn').change(function(){
+                if ( $(this).is(':checked') ) {
+                    $('div.field-title-en').addClass('hidden')
+                    $('#inputTitleEn').rules('remove');
+                } else {
+                    $('div.field-title-en').removeClass('hidden')
+                    $('#inputTitleEn').rules('add', titleValidationRules);
+                }
+            });
+         
+            // show translation input for Desc Uk
+            $('#descTranslateUk').change(function(){
+                if ( $(this).is(':checked') ) {
+                    $('div.field-description-uk').addClass('hidden')
+                    $('#inputDescUk').rules('remove');
+                } else {
+                    $('div.field-description-uk').removeClass('hidden')
+                    $('#inputDescUk').rules('add', descValidationRules);
+                }
+            });
+
+            // show translation input for Desc Ru
+            $('#descTranslateRu').change(function(){
+                if ( $(this).is(':checked') ) {
+                    $('div.field-description-ru').addClass('hidden')
+                    $('#inputDescRu').rules('remove');
+                } else {
+                    $('div.field-description-ru').removeClass('hidden')
+                    $('#inputDescRu').rules('add', descValidationRules);
+                }
+            });
+
+            // show translation input for Desc En
+            $('#descTranslateEn').change(function(){
+                if ( $(this).is(':checked') ) {
+                    $('div.field-description-en').addClass('hidden')
+                    $('#inputDescEn').rules('remove');
+                } else {
+                    $('div.field-description-en').removeClass('hidden')
+                    $('#inputDescEn').rules('add', descValidationRules);
+                }
+            });
+
+            // show translation input for title Uk
+            $('#titleTranslateUk').change(function(){
+                if ( $(this).is(':checked') ) {
+                    $('#inputTitleUk').addClass('hidden')
+                } else {
+                    $('#inputTitleUk').removeClass('hidden')
+                }
+            });
+
+            // show translation input for title Ru
+            $('#titleTranslateRu').change(function(){
+                if ( $(this).is(':checked') ) {
+                    $('#inputTitleRu').addClass('hidden')
+                } else {
+                    $('#inputTitleRu').removeClass('hidden')
+                }
+            });
+
+            // show translation input for title En
+            $('#titleTranslateEn').change(function(){
+                if ( $(this).is(':checked') ) {
+                    $('#inputTitleEn').addClass('hidden')
+                } else {
+                    $('#inputTitleEn').removeClass('hidden')
+                }
+            });
+         
+            // show translation input for Desc Uk
+            $('#descTranslateUk').change(function(){
+                if ( $(this).is(':checked') ) {
+                    $('#inputDescUk').addClass('hidden')
+                } else {
+                    $('#inputDescUk').removeClass('hidden')
+                }
+            });
+
+            // show translation input for Desc Ru
+            $('#descTranslateRu').change(function(){
+                if ( $(this).is(':checked') ) {
+                    $('#inputDescRu').addClass('hidden')
+                } else {
+                    $('#inputDescRu').removeClass('hidden')
+                }
+            });
+
+            // show translation input for Desc En
+            $('#descTranslateEn').change(function(){
+                if ( $(this).is(':checked') ) {
+                    $('#inputDescEn').addClass('hidden')
+                } else {
+                    $('#inputDescEn').removeClass('hidden')
+                }
+            });
 
             // disable scrolling on master page when hovering the column
             $(".tags-modal .column").bind('mousewheel', function(e, d) {
@@ -242,11 +480,41 @@
                         minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
                     },
+                    title_uk: {
+                        required: '{{ __("validation.required") }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
+                    },
+                    title_ru: {
+                        required: '{{ __("validation.required") }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
+                    },
+                    title_en: {
+                        required: '{{ __("validation.required") }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
+                    },
                     company: {
                         minlength: '{{ __("validation.min.string", ["min" => 5]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 200]) }}'
                     },
                     description: {
+                        required: '{{ __("validation.required") }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 9000]) }}'
+                    },
+                    description_uk: {
+                        required: '{{ __("validation.required") }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 9000]) }}'
+                    },
+                    description_ru: {
+                        required: '{{ __("validation.required") }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 9000]) }}'
+                    },
+                    description_en: {
                         required: '{{ __("validation.required") }}',
                         minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 9000]) }}'

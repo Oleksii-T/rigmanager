@@ -24,14 +24,33 @@
                     </figure>
                 @endif
                 <section class="element" id="mainInfo">
-                    <h1><span class="post-type">{{$post->type_readable}}: </span>{{ $post->title }}</h1>
+                    @if ( $translated && $post->{$translated['title']} )
+                        <h1 class="translated-title"><span class="post-type">{{$post->type_readable}}: </span>{{ $post->{$translated['title']} }}</h1>
+                        <h1 class="origin-title hidden"><span class="post-type">{{$post->type_readable}}: </span>{{ $post->title }}</h1>
+                        <div class="translated-alert ta-title">
+                            <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationTitleAlert')}}</p>
+                            <button class="ta-button title-show" title="{{__('ui.showOrigin')}}">{{__('ui.originLang')}} {{$post->origin_lang_readable}}</button>
+                        </div>
+                    @else
+                        <h1><span class="post-type">{{$post->type_readable}}: </span>{{ $post->title }}</h1>
+                    @endif
                     <div id="item-tag-section">
                         @foreach ($post->tag_map as $tagId => $tagReadable)
                             <a class="item-tag" href="{{route('search.tag', $tagId)}}">{{$tagReadable}}</a>
                             <span class="item-tag-delim">></span>
                         @endforeach
                     </div>
-                    <p>{{ $post->description }}</p>
+                    
+                    @if ( $translated && $post->{$translated['description']} )
+                        <p class="translated-desc">{{ $post->{$translated['description']} }}</p>
+                        <p class="origin-desc hidden">{{ $post->description }}</p>
+                        <div class="translated-alert ta-desc">
+                            <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationDescAlert')}}</p>
+                            <button class="ta-button desc-show" title="{{__('ui.showOrigin')}}">{{__('ui.originLang')}} {{$post->origin_lang_readable}}</button>
+                        </div>
+                    @else                    
+                        <p>{{ $post->description }}</p>
+                    @endif
                 </section>
             </div>
         </div>
@@ -148,6 +167,18 @@
     <script type="text/javascript">
 
         $(document).ready(function() {
+
+            $('.title-show').click(function(){
+                $('.origin-title').removeClass('hidden');
+                $('.translated-title').addClass('hidden');
+                $('.translated-alert.ta-title').addClass('hidden');
+            });
+
+            $('.desc-show').click(function(){
+                $('.origin-desc').removeClass('hidden');
+                $('.translated-desc').addClass('hidden');
+                $('.translated-alert.ta-desc').addClass('hidden');
+            });
 
             //get digit from classes of DOM element (depends on prefix)
             function getIdFromClasses(classes, prefix) {

@@ -61,8 +61,44 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   
     public function handleProviderCallback($driver)
+    {
+        $social = Socialite::driver($driver)->user();
+        $socialId = $driver . '_id';
+        $user = User::where($socialId, $social->id)->first();
+        // check is such social ID was user before
+        if ($user) {
+            // such social account exist already
+            Auth::loginUsingId($user->id);
+        } else {
+            // no social account found
+            $user = User::where('email', $social->email)->first();
+            // check is such email alredy user by some user
+            if ( $user ) {
+                // such email already exist in db
+                // verify email if it was unverified
+                if (!$user->email_verified_at) {
+                    $user->email_verified_at = Carbon::now();
+                    $user->save();
+                }
+                Auth::loginUsingId($user->id);
+            } else {
+                // it is new email
+                $user = new User;
+                $user->name = $this->fetchName($social->name);;
+                $user->email = $social->email;
+                $user->$socialId = $social->id;
+                $user->email_verified_at = Carbon::now();
+                $user->save();
+                Auth::loginUsingId($user->id);
+                $this->userImageUpload($social->avatar);
+            }
+        }
+        Session::flash('message-success', __('messages.signedIn'));
+        return redirect(route('home'));
+    }
+
+    public function handleProviderCallbackTest($driver)
     {
         // Alex Puzo id: 113050782962372144121
         $social = [
@@ -103,44 +139,7 @@ class LoginController extends Controller
         Session::flash('message-success', __('messages.signedIn'));
         return redirect(route('home'));
     }
-/*
-    public function handleProviderCallback($driver)
-    {
-        $social = Socialite::driver($driver)->user();
-        $socialId = $driver . '_id';
-        $user = User::where($socialId, $social->id)->first();
-        // check is such social ID was user before
-        if ($user) {
-            // such social account exist already
-            Auth::loginUsingId($user->id);
-        } else {
-            // no social account found
-            $user = User::where('email', $social->email)->first();
-            // check is such email alredy user by some user
-            if ( $user ) {
-                // such email already exist in db
-                // verify email if it was unverified
-                if (!$user->email_verified_at) {
-                    $user->email_verified_at = Carbon::now();
-                    $user->save();
-                }
-                Auth::loginUsingId($user->id);
-            } else {
-                // it is new email
-                $user = new User;
-                $user->name = $this->fetchName($social->name);;
-                $user->email = $social->email;
-                $user->$socialId = $social->id;
-                $user->email_verified_at = Carbon::now();
-                $user->save();
-                Auth::loginUsingId($user->id);
-                $this->userImageUpload($social->avatar);
-            }
-        }
-        Session::flash('message-success', __('messages.signedIn'));
-        return redirect(route('home'));
-    }
-*/
+
     private function fetchName($name) {
         if ( User::where('name', $name)->first() ) {
             $fix = rand(10000, 99999);

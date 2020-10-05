@@ -7,7 +7,7 @@
 
 @section('content')
     @if (!$posts_list->isEmpty())
-        <x-items :posts="$posts_list" button='deleteAndEdit' />
+        <x-items :posts="$posts_list" button='deleteAndEdit' :translated="$translated"/>
         <div class="pagination-field">
             {{ $posts_list->links() }}
         </div>

@@ -118,6 +118,44 @@ a.item-tag:hover {
     background-color: rgb(149, 149, 149, 0.7);
 }
 
+/*-====TRANSLATION_ALERT===-*/
+
+div.translated-alert {
+    background-color: #eb837c;
+    text-align: center;
+    padding: 5px 0px;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 5px 10px;
+}
+
+.ta-header {
+    position: relative;
+    padding-left: 30px;
+    display: inline-block;
+}
+.ta-img {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.ta-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: underline;
+}
+
+div.ta-desc {
+    margin-top: 20px;
+}
+
 /*=V============V======V====RIGHT_CONTENT====V======V============V=*/
 
 #rightContentWraper {

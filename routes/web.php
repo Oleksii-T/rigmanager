@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-    //TESTING PURPOSES ONLY
-    Route::POST('example', 'HomeController@example')->name('example');
-
 // general auth routes
 Auth::routes(['verify' => true]);
 
@@ -24,12 +21,12 @@ Route::get('login/{social}',            'Auth\LoginController@redirectToProvider
 Route::get('login/{social}/callback',   'Auth\LoginController@handleProviderCallback');
 
 // home routes
-Route::post('contacting',   'HomeController@contactUs')->name('contact.us');
-Route::get('contact-us',      'HomeController@contacts')->name('contacts');
+Route::post ('contacting',      'HomeController@contactUs') ->name('contact.us');
+Route::get  ('contact-us',      'HomeController@contacts')  ->name('contacts');
 
 // user routes
-Route::get('emailexists', 'UserController@emailExists')->name('email.exist'); //Ajax reqeust
-Route::get('usernameexists', 'UserController@userNameExists')->name('username.exist'); //Ajax reqeust
+Route::get  ('emailexists',     'UserController@emailExists')   ->name('email.exist'); //Ajax reqeust
+Route::get  ('usernameexists',  'UserController@userNameExists')->name('username.exist'); //Ajax reqeust
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // posts routes
