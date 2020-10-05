@@ -15,7 +15,7 @@
 @endsection 
 
 @section('checkbox-title-uk')
-    <input id="titleTranslateUk" type="checkbox" name="title_translate[uk]" value="1" {{array_search('uk', $post->user_translations['title'])===false) ? 'checked="checked"' : ''}}>
+    <input id="titleTranslateUk" type="checkbox" name="title_translate[uk]" value="1" {{array_search('uk', $post->user_translations['title'])===false ? 'checked="checked"' : ''}}>
 @endsection
 
 @section('field-title-uk')
