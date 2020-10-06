@@ -16,6 +16,13 @@ return [
     'noscript' => 'У вашому браузері відключений Javascript. 
         Це може серйозно вплинути на функціональность нашого сайту',
 
+    //maintenance mode 
+    'maintenanceHeader' => 'Приносимо вибачення за незручності',
+    'maintenanceText' => 'Сайт тимчасово недоступний
+    Відкриття',
+    'maintenanceContact' => 'Зв\'язатися з нами:',
+    'maintenanceSoon' => 'найближчим часом',
+
     // jeneral massages
     'delete' => 'Видалити',
     'no' => 'Ні',

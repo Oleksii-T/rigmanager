@@ -16,6 +16,13 @@ return [
     'noscript' => 'Javascript is disabled in your browser. 
         It may serously reflect the web site functionality.',
 
+    //maintenance mode 
+    'maintenanceHeader' => 'Sorry for the inconvenience',
+    'maintenanceText' => 'The website is temporarily unavailable
+    We will be available',
+    'maintenanceContact' => 'Feel free to contact us:',
+    'maintenanceSoon' => 'soon',
+
     // jeneral massages
     'delete' => 'Delete',
     'no' => 'No',

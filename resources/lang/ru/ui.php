@@ -14,7 +14,14 @@ return [
     
     // no script massage
     'noscript' => 'В вашем браузере отключен Javascript. 
-    Это может серьезно отразиться на функциональности нащего сайта.',
+        Это может серьезно отразиться на функциональности нащего сайта.',
+
+    //maintenance mode 
+    'maintenanceHeader' => 'Приносим извинения за неудобства',
+    'maintenanceText' => 'Сайт временно недоступен
+    Открытие',
+    'maintenanceContact' => 'Cвязаться с нами:',
+    'maintenanceSoon' => 'в ближайшее время',
 
     // jeneral massages
     'delete' => 'Удалить',

@@ -16,6 +16,23 @@ use Illuminate\Support\Facades\Route;
 // general auth routes
 Auth::routes(['verify' => true]);
 
+Route::get('set-locale/{locale}', function ($locale) {
+    App::setLocale($locale);
+    session()->put('locale', $locale);
+    $user = auth()->user();
+    if ($user) {
+        $user->language = $locale;
+        $user->save();
+    }
+    return redirect()->back();
+})->middleware('check.locale')->name('locale.setting');
+
+if (env('MAINTENANCE')) {
+    Route::get('{any}', function() {
+        return view('home.maintenance');
+    })->where('any', '.*');
+}
+
 // Laravel Socialite auth routes
 Route::get('login/{social}',            'Auth\LoginController@redirectToProvider')->name('login.social');
 Route::get('login/{social}/callback',   'Auth\LoginController@handleProviderCallback');
@@ -28,7 +45,11 @@ Route::get  ('contact-us',      'HomeController@contacts')  ->name('contacts');
 Route::get  ('emailexists',     'UserController@emailExists')   ->name('email.exist'); //Ajax reqeust
 Route::get  ('usernameexists',  'UserController@userNameExists')->name('username.exist'); //Ajax reqeust
 
+/*
+Route::group(['middleware'=>'verified', 'prefix' => '{locale}'], function() {
+*/
 Route::middleware(['auth', 'verified'])->group(function () {
+
     // posts routes
     Route::patch    ('posts/images/delete/{post}',          'PostController@imgsDel')       ->name('posts.imgs.delete');
     Route::patch    ('posts/images/delete/{post}/{image}',  'PostController@imgDel')        ->name('posts.img.delete');
@@ -87,14 +108,3 @@ Route::middleware('auth')->group(function () {
     Route::get      ('profile',         'UserController@index')->name('profile');
     Route::delete   ('profile/delete',  'UserController@destroy')->name('profile.delete');
 });
-
-Route::get('set-locale/{locale}', function ($locale) {
-    App::setLocale($locale);
-    session()->put('locale', $locale);
-    $user = auth()->user();
-    if ($user) {
-        $user->language = $locale;
-        $user->save();
-    }
-    return redirect()->back();
-})->middleware('check.locale')->name('locale.setting');
