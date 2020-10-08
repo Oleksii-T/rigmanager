@@ -5,12 +5,12 @@
 @endsection
 
 @section('form')
-    <form method="POST" class="post-form" id="formCreatePost" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+    <form method="POST" class="post-form" id="formCreatePost" action="{{ loc_url(route('posts.store')) }}" enctype="multipart/form-data">
         @csrf
         <nav class="creation-type">
             <ul>
-                <li><a id="equipment-create" href="{{route('posts.create')}}">{{__('ui.equipment')}}</a></li>
-                <li><a id="service-create" href="{{route('service.create')}}">{{__('ui.service')}}</a></li>
+                <li><a id="equipment-create" href="{{loc_url(route('posts.create'))}}">{{__('ui.equipment')}}</a></li>
+                <li><a id="service-create" href="{{loc_url(route('service.create'))}}">{{__('ui.service')}}</a></li>
             </ul>
         </nav>
 @endsection
@@ -250,7 +250,7 @@
                     });
 
                     this.on("successmultiple", function(){
-                        window.location="{{ route('posts.store.fake') }}";
+                        window.location="{{ loc_url(route('posts.store.fake')) }}";
                     });
 
                     this.on("errormultiple", function(file, errorMessage, xhr){

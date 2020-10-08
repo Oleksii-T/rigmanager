@@ -80,6 +80,12 @@ return [
     |
     */
 
+    'locales' => [
+        'uk',
+        'ru',
+        'en'
+    ],
+
     'locate' => 'uk',
     /*
     'locale' => 'en',
@@ -173,6 +179,7 @@ return [
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Sentry\Laravel\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -180,7 +187,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        App\Providers\RouteServiceProvider::class
 
     ],
 
@@ -235,7 +242,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Sentry' => Sentry\Laravel\Facade::class,
     ],
 
 ];

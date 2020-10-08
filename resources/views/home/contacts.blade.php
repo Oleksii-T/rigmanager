@@ -32,7 +32,7 @@
 @section('content')
     <div class="master-wraper">
         <h1 class="page-header">{{__('ui.fromUserTitle')}}</h1>
-        <form class="contants-wraper" id="contact-form" method="POST" action="{{route('contact.us')}}">
+        <form class="contants-wraper" id="contact-form" method="POST" action="{{loc_url(route('contact.us'))}}">
             @csrf
             <div class="field name-field">
                 <p class="field-header">{{__('ui.userName')}}<span class="required-input">*</span></p>
@@ -68,7 +68,7 @@
             </div>
             <div class="field btns-field">
                 <button class="def-button submit-button">{{__('ui.fromUserSubmit')}}</button>
-                <a class="def-button cancel-button" href="{{route('home')}}">{{__('ui.cancel')}}</a>
+                <a class="def-button cancel-button" href="{{loc_url(route('home'))}}">{{__('ui.cancel')}}</a>
             </div>
         </form>
     </div>

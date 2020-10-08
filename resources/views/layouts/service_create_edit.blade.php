@@ -26,7 +26,7 @@
                 <x-server-input-error errorName='title' inputName='inputTitle' errorClass='error'/>
                 <div class="title error error-dz hidden"></div>
                 <div class="title-translations">
-                    <p class="translations-header">{{__('ui.autoTranslateHeader')}} <a class="auto-translator-link" href="{{route('faq')}}#autoTranslator">{{__('ui.autoTranslate')}}</a></p>
+                    <p class="translations-header">{{__('ui.autoTranslateHeader')}} <a class="auto-translator-link" href="{{loc_url(route('faq'))}}#autoTranslator">{{__('ui.autoTranslate')}}</a></p>
                     
                     <div class="translations-help">
                         <img id="helpImg" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}">
@@ -117,7 +117,7 @@
                 <x-server-input-error errorName='description' inputName='inputDecs' errorClass='error'/>
                 <div class="description error error-dz hidden"></div>
                 <div class="desc-translations">
-                    <p class="translations-header">{{__('ui.autoTranslateHeader')}} <a class="auto-translator-link" href="{{route('faq')}}#autoTranslator">{{__('ui.autoTranslate')}}</a></p>
+                    <p class="translations-header">{{__('ui.autoTranslateHeader')}} <a class="auto-translator-link" href="{{loc_url(route('faq'))}}#autoTranslator">{{__('ui.autoTranslate')}}</a></p>
                     
                     <div class="translations-help">
                         <img id="helpImg" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}">
@@ -237,7 +237,7 @@
 
             <div id="btns" class="element">
                 <button class="def-button submit-button" id="form-submit">{{__('ui.save')}}</button>
-                <a class="def-button cancel-button" href="{{ route('home') }}">{{__('ui.cancel')}}</a>
+                <a class="def-button cancel-button" href="{{ loc_url(route('home')) }}">{{__('ui.cancel')}}</a>
                 @yield('buttons')
             </div>
             

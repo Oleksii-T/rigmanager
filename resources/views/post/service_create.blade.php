@@ -5,7 +5,7 @@
 @endsection
 
 @section('form')
-    <form method="POST" class="post-form" id="formCreatePost" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+    <form method="POST" class="post-form" id="formCreatePost" action="{{ loc_url(route('posts.store')) }}" enctype="multipart/form-data">
         @csrf
         <nav class="creation-type">
             <ul>
@@ -192,7 +192,7 @@
                     });
 
                     this.on("successmultiple", function(){
-                        window.location="{{ route('posts.store.fake') }}";
+                        window.location="{{ loc_url(route('posts.store.fake')) }}";
                     });
 
                     this.on("errormultiple", function(file, errorMessage, xhr){

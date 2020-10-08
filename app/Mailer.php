@@ -107,6 +107,11 @@ class Mailer extends Model
         return $this->authors_encoded ? implode(' ', $this->authors_encoded) : null;
     }
 
+    public function setTypesAttribute($value) 
+    {
+        $this->attributes['types'] = $value ? json_encode($value) : null;
+    }
+
     public function getTypesAttribute($value)
     {
         return json_decode($value);

@@ -53,7 +53,7 @@
     <div id="verifyNoticeBody">
         <h1>{{__('ui.verifyNoticeThank')}}</h1>
         <p>{{__('ui.verifyNoticeBody')}}</p>
-        <form method="POST" action="{{ route('verification.resend') }}">
+        <form method="POST" action="{{ loc_url(route('verification.resend')) }}">
             @csrf
             <button type="submit">{{ __('ui.verifyClickToResend') }}</button>.
         </form>

@@ -33,12 +33,13 @@ class SearchController extends Controller
             $translated['description'] = 'description_'.App::getLocale();
             return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount', 'translated'));
         } else {
-            return redirect(route('home'));
+            return redirect(loc_url(route('home')));
         }
     }
     
-    public function searchTag($tagId) 
+    public function searchTag($locale, $tagId=null) 
     {
+        $tagId = $tagId==null ? $locale : $tagId;
         $regex = "^$tagId(.[0-9]+)*$"; //make regular expr form tag id to find sub catogories as well
         $regex = str_replace('.', '\.', $regex); //escape regex '.' via '\'
         $posts_list = Post::whereRaw("tag_encoded REGEXP '$regex'")->where("is_active", 1); //search appropriate for posts using raw where query
@@ -56,8 +57,9 @@ class SearchController extends Controller
         return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount', 'translated'));
     }
     
-    public function searchAuthor($authorId) 
+    public function searchAuthor($locale, $authorId=null) 
     {
+        $authorId = $authorId==null ? $locale : $authorId;
         $user = User::findOrFail($authorId);
         $posts_list = $user->posts->where("is_active", 1);
         $postsIds = json_encode($posts_list->pluck('id'));

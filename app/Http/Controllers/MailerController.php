@@ -49,14 +49,13 @@ class MailerController extends Controller
         $input = $request->all();
         $input['eq_tags_encoded'] = json_decode($input['eq_tags_encoded']);
         $input['se_tags_encoded'] = json_decode($input['se_tags_encoded']);
-        $input['types'] = json_encode($request->types);
         $mailer = new Mailer($input);
         if (!auth()->user()->mailer()->save($mailer)) {
             Session::flash('message-error', __('messages.mailerUploadedError'));
             return view('mailer.index', ["mailer"=>null]);
         }
         Session::flash('message-success', __('messages.mailerUploaded'));
-        return redirect(route('mailer.index'));
+        return redirect(loc_url(route('mailer.index')));
     }
 
     /**
@@ -80,7 +79,6 @@ class MailerController extends Controller
     {
         $mailer = auth()->user()->mailer;
         $input = $request->all();
-        $input['types'] = json_encode($request->types);
         $input['eq_tags_encoded'] = json_decode($input['eq_tags_encoded']);
         $input['se_tags_encoded'] = json_decode($input['se_tags_encoded']);
         if ( !$mailer->update($input) ) {
@@ -88,7 +86,7 @@ class MailerController extends Controller
         } else {
             Session::flash('message-success', __('messages.mailerEdited'));
         }
-        return redirect(route('mailer.index'));
+        return redirect(loc_url(route('mailer.index')));
     }
 
     /**
@@ -101,7 +99,7 @@ class MailerController extends Controller
         $mailer = auth()->user()->mailer;
         $mailer->delete();
         Session::flash('message-success', __('messages.mailerDeleted'));
-        return redirect(route('mailer.index'));
+        return redirect(loc_url(route('mailer.index')));
     }
 
     public function toggle()
@@ -118,23 +116,25 @@ class MailerController extends Controller
 
     public function addTag($tagId) 
     {
+        $tags_encoded = $this->getTagType($tagId) . '_tags_encoded';
         $mailer = auth()->user()->mailer;
         if (!$mailer) {
             $mailer = new Mailer;
-            $mailer->tags_encoded = $tagId;
+            $mailer->types = ["1","2","3"];
+            $mailer->$tags_encoded = array($tagId);
             auth()->user()->mailer()->save($mailer);
             return true;
         }
-        if (!$mailer->tags_encoded) {
-            $arr[] = $tagId;
-            $mailer->tags_encoded = $arr;
+        if (!$mailer->$tags_encoded) {
+            $mailer->$tags_encoded = array($tagId);
             $mailer->save();
             return true;
         }
-        $tagsArr = $mailer->tags_encoded;
-        if ( !array_key_exists($tagId, $mailer->tags_map) ) {
+        $tagsArr = $mailer->$tags_encoded;
+        $tags_map = $this->getTagType($tagId) . '_tags_map';
+        if ( !array_key_exists($tagId, $mailer->$tags_map) ) {
             $tagsArr[] = $tagId;
-            $mailer->tags_encoded = $tagsArr;
+            $mailer->$tags_encoded = $tagsArr;
             $mailer->save();
             return true;
         }

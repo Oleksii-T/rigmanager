@@ -63,7 +63,7 @@ class UserController extends Controller
         }
         $user->update($input);
         Session::flash('message-success', __('messages.profileEdited'));
-        return redirect(route('profile'));
+        return redirect(loc_url(route('profile')));
     }
 
     /**
@@ -74,8 +74,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
-        return view('/');
+        //TODO
+        return redirect(loc_url(route('logout')));
     }
 
     public function favourites()

@@ -11,9 +11,9 @@
         <div id="profileContent">
             <nav class="profileNavBar">
                 <ul>
-                    <li><a id="personlaInfoBtn" href="{{route('profile')}}">{{__('ui.profileInfo')}}</a></li>
-                    <li><a id="mailerBtn" href="{{route('mailer.index')}}">{{__('ui.mailer')}}</a></li>
-                    <li><a id="mySubscriptionBtn" href="{{route('profile.subscription')}}">{{__('ui.mySubscription')}}</a></li>
+                    <li><a id="personlaInfoBtn" href="{{loc_url(route('profile'))}}">{{__('ui.profileInfo')}}</a></li>
+                    <li><a id="mailerBtn" href="{{loc_url(route('mailer.index'))}}">{{__('ui.mailer')}}</a></li>
+                    <li><a id="mySubscriptionBtn" href="{{loc_url(route('profile.subscription'))}}">{{__('ui.mySubscription')}}</a></li>
                 </ul>
             </nav>
 
@@ -65,7 +65,7 @@
                     
                     <div id="btns">
                         <button class="def-button submit-button" type="submit">{{__('ui.save')}}</button>
-                        <a class="def-button cancel-button" href="{{ route('mailer.index') }}">{{__('ui.cancel')}}</a>
+                        <a class="def-button cancel-button" href="{{ loc_url(route('mailer.index')) }}">{{__('ui.cancel')}}</a>
                     </div>
                 </form>
             </div>

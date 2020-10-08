@@ -10,9 +10,9 @@
         <div id="profileContent">
             <nav class="profileNavBar">
                 <ul>
-                    <li><a id="personlaInfoBtn" href="{{route('profile')}}">{{__('ui.profileInfo')}}</a></li>
-                    <li><a id="mailerBtn" href="{{route('mailer.index')}}">{{__('ui.mailer')}}</a></li>
-                    <li><a id="mySubscriptionBtn" href="{{route('profile.subscription')}}">{{__('ui.mySubscription')}}</a></li>
+                    <li><a id="personlaInfoBtn" href="{{loc_url(route('profile'))}}">{{__('ui.profileInfo')}}</a></li>
+                    <li><a id="mailerBtn" href="{{loc_url(route('mailer.index'))}}">{{__('ui.mailer')}}</a></li>
+                    <li><a id="mySubscriptionBtn" href="{{loc_url(route('profile.subscription'))}}">{{__('ui.mySubscription')}}</a></li>
                 </ul>
             </nav>
             <div class="mailerContent">
@@ -87,8 +87,8 @@
                     </div>
 
                     <div class="mailerBtns">
-                        <a class="def-button" id="editBtn" href="{{ route('mailer.edit') }}">{{__('ui.edit')}}</a>
-                        <a id="helpBtn" href="{{route('faq')}}#WhatIsMailer">{{__('ui.whatIsMailer')}}?</a>
+                        <a class="def-button" id="editBtn" href="{{ loc_url(route('mailer.edit')) }}">{{__('ui.edit')}}</a>
+                        <a id="helpBtn" href="{{loc_url(route('faq'))}}#WhatIsMailer">{{__('ui.whatIsMailer')}}?</a>
                         <button class="def-button delete-button" type="button" id="modalMailerDeleteShow">{{__('ui.deleteMailer')}}</button>
                     </div>
                 @else
@@ -97,8 +97,8 @@
                     </div>
 
                     <div class="mailerBtns">
-                        <a class="def-button" id="editBtn" href="{{ route('mailer.create') }}">{{__('ui.setUpMailer')}}</a>
-                        <a id="helpBtn" href="{{route('faq')}}#WhatIsMailer">{{__('ui.whatIsMailer')}}?</a>
+                        <a class="def-button" id="editBtn" href="{{ loc_url(route('mailer.create')) }}">{{__('ui.setUpMailer')}}</a>
+                        <a id="helpBtn" href="{{loc_url(route('faq'))}}#WhatIsMailer">{{__('ui.whatIsMailer')}}?</a>
                     </div>
                 @endif
             </div>
@@ -111,7 +111,7 @@
                 <div>
                     <button class="def-button submit-button" type="button" id="modalMailerDeleteHide">{{__('ui.no')}}</button>
                     
-                    <form method="POST" action="{{ route('mailer.destroy') }}">
+                    <form method="POST" action="{{ loc_url(route('mailer.destroy')) }}">
                         @csrf
                         @method('DELETE')
                         <button class="def-button cancel-button">{{__('ui.delete')}}</button>

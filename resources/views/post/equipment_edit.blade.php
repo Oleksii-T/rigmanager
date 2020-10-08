@@ -5,7 +5,7 @@
 @endsection
 
 @section('form')
-    <form method="POST" class="post-form" id="formUpdatePost" action="{{ route('posts.update', $post->id) }}" enctype="multipart/form-data">
+    <form method="POST" class="post-form" id="formUpdatePost" action="{{ loc_url(route('posts.update', ['post'=>$post->id])) }}" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
 @endsection
@@ -239,7 +239,7 @@
             <p>{{__('ui.sure?')}}</p>
             <div>
                 <button class="def-button submit-button" type="button" id="modalPostDeleteOff">{{__('ui.no')}}</button>
-                <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
+                <form method="POST" action="{{ loc_url(route('posts.destroy', ['post'=>$post->id])) }}">
                     @csrf
                     @method('DELETE')
                     <button class="def-button cancel-button">{{__('ui.delete')}}</button>
@@ -284,7 +284,7 @@
 
             // createa file upload form (dropzone)
             $('.upload-zone').dropzone({
-                url: "{{ route('posts.update', $post->id) }}",
+                url: "{{ route('posts.update', ['post'=>$post->id]) }}",
                 paramName: "images",
                 uploadMultiple: true,
                 parallelUploads: 5,
@@ -315,7 +315,7 @@
 
                     this.on("removedfile", function(file) {
                         if (file.id !== undefined) {
-                            ajaxUrl = "{{route('posts.img.delete', [$post->id, ':imgNo'])}}";
+                            ajaxUrl = "{{route('posts.img.delete', ['post'=>$post->id, 'image'=>':imgNo'])}}";
                             ajaxUrl = ajaxUrl.replace(':imgNo', file.id);
                             $.ajax({
                                 type: "POST",
@@ -357,7 +357,7 @@
                     });
 
                     this.on("successmultiple", function(){
-                        window.location="{{ route('posts.store.fake') }}";
+                        window.location="{{ loc_url(route('posts.store.fake')) }}";
                     });
 
                     this.on("errormultiple", function(file, errorMessage, xhr){

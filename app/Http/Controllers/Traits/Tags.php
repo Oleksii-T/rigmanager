@@ -201,6 +201,19 @@ trait Tags
         ];
     }
 
+    // get the type of tag (equipment or service)
+    public function getTagType($tag) {
+        $dot = strpos($tag, '.');
+        if ($dot) {
+            $tag = substr($tag, 0, $dot);
+        }
+        if ( $tag < '50' ) {
+            return 'eq';
+        } else {
+            return 'se';
+        }
+    }
+
     // transform '2.3.1.4' to 'drillingEq, drillString, upGround, slip'
     public function getTagReadable($id) {
         $this->constructTagsMap();

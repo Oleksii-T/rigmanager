@@ -84,10 +84,3 @@ function fillInputs() {
     $('#tagReadbleHidden').val(tags);
     $('#tagReadbleVisible span').text(tags);
 }
-
-function searchTag() {
-    id = $('#modal-hidden-tag').val();
-    var url = 'http://rigmanager.test/search/category/'+id;
-    //url = url.replace(':id', id);
-    window.location.href=url;
-}

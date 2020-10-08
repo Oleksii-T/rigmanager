@@ -12,6 +12,7 @@ use App\User;
 use Carbon\Carbon;
 use Auth;
 use App\Http\Controllers\Traits\ImageUploader;
+use Illuminate\Support\Facades\App;
 
 class LoginController extends Controller
 {
@@ -159,6 +160,12 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         Session::flash('message-success', __('messages.signedIn'));
+        if (session()->has('locale')) {
+            var_dump('the is locale in sesion ' . session('locale'));
+        } else {
+            var_dump('no locale in sesion');
+        }
+        var_dump('From authenticated(). ' . app()->getLocale());
     }
 
     /**

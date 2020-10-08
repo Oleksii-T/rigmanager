@@ -85,21 +85,21 @@ class PostController extends Controller
         $post = new Post($input);
         if (!auth()->user()->posts()->save($post)) {
             Session::flash('message-error', __('messages.postUploadedError'));
-            return redirect(route('home'));
+            return redirect(loc_url(route('home')));
         }
         if ($request->hasFile('images')) {
             $this->postImageUpload($request->file('images'), $post);
         }
-        Session::flash('message-success', __('messages.postUploaded'));
         MailersAnalizePost::dispatch($post, auth()->user()->id)->onQueue('mailer');
         TranslatePost::dispatch($post, $input, true)->onQueue('translation');
-        return redirect(route('home'));
+        Session::flash('message-success', __('messages.postUploaded'));
+        return redirect(loc_url(route('home')));
     }
     
     public function storeFake()
     {
         Session::flash('message-success', __('messages.postUploaded'));
-        return redirect(route('home'));
+        return redirect(loc_url(route('home')));
     }
 
     /**
@@ -108,8 +108,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($locale, $id=null)
     {
+        $id = $id==null ? $locale : $id;
         $post = Post::findOrFail($id);
         if (!$post->is_active && $post->user != auth()->user()) {
             return view('post.inactive');
@@ -128,8 +129,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($locale, $id=null)
     {
+        $id = $id==null ? $locale : $id;
         $post = Post::findOrFail($id);
         $images = false;
         if ( $post->images->isNotEmpty() ) {
@@ -157,82 +159,76 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, $id)
+    public function update(UpdatePostRequest $request, $locale, $id=null)
     {
+        $id = $id==null ? $locale : $id;
         $post = Post::findOrFail($id);
-        if ($post->thread == 1) {
-            // if there is a file, check for files amount. max 5
-            if ( $request->hasFile('images')) {
-                $imagesAmount = count($request->file('images')) + $post->images->count();
-                if ($imagesAmount > 5) {
-                    Session::flash('tooManyImagesError', __('messages.postEditedErrorTooManyImages'));
-                    return redirect()->back();
-                }
+        
+        // if there is a file, check for files amount. max 5
+        if ( $request->hasFile('images')) {
+            $imagesAmount = count($request->file('images')) + $post->images->count();
+            if ($imagesAmount > 5) {
+                Session::flash('tooManyImagesError', __('messages.postEditedErrorTooManyImages'));
+                return redirect()->back();
             }
-            $input = $request->all();
-            
-            // parse messangers values. If no phone specified remove messangers
-            if ( $input['user_phone_raw'] ) {
-                $input['viber'] = $request->viber ? 1 : 0;
-                $input['telegram'] = $request->telegram ? 1 : 0;
-                $input['whatsapp'] = $request->whatsapp ? 1 : 0;
-            } else {
-                $input['viber'] = 0;
-                $input['telegram'] = 0;
-                $input['whatsapp'] = 0;
-            }
-
-            // make user_translation column
-            $appLanguages = ['uk', 'ru', 'en'];
-            $userTitleTranslations = [];
-            $userDescTranslations = [];
-            foreach ($appLanguages as $lang) {
-                if ( array_key_exists($lang, $input['title_translate']) === false ) {
-                    $userTitleTranslations[] = $lang;
-                }
-                if ( array_key_exists($lang, $input['desc_translate']) === false ) {
-                    $userDescTranslations[] = $lang;
-                }
-            }
-            $input['user_translations'] = ['title' => $userTitleTranslations, 'description' => $userDescTranslations];
-
-            // if user changes default translations
-            //TODO
-
-            // check origin language
-            $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
-            $input['origin_lang'] = $translate->detectLanguage( $input['title'] . '. ' . $input['description'] )['languageCode']; // merge title and description and find out the origin language
-            
-            // if there is no cost specified, remove currency and cost
-            if ( !$input['cost'] ) {
-                unset($input['currency']);
-                unset($input['cost']);
-            }
-
-            // save some old parameters of post
-            $input['origin_lang_old'] = $post->origin_lang;
-            $input['title_old'] = $post->title;
-            $input['description_old'] = $post->description;
-            $input['user_translations_old'] = $post->user_translations;
-
-            // if there was an error while updating, return previous page with error
-            if (!$post->update($input)) {
-                Session::flash('message-error', __('messages.postEditedError'));
-                return redirect(route('home'));
-            }
-
-            // if there is images submited, upload them
-            if ( $request->hasFile('images')) {
-                $this->postImageUpload($request->file('images'), $post);
-            }
-            
-            TranslatePost::dispatch($post, $input, false)->onQueue('translation');
-            Session::flash('message-success', __('messages.postEdited'));
-            return redirect(route('posts.show', $id));
-        } else {
-            Session::flash('message-success', __('messages.postEdited'));
-            return redirect(route('posts.show', $id));
         }
+        $input = $request->all();
+        
+        // parse messangers values. If no phone specified remove messangers
+        if ( $input['user_phone_raw'] ) {
+            $input['viber'] = $request->viber ? 1 : 0;
+            $input['telegram'] = $request->telegram ? 1 : 0;
+            $input['whatsapp'] = $request->whatsapp ? 1 : 0;
+        } else {
+            $input['viber'] = 0;
+            $input['telegram'] = 0;
+            $input['whatsapp'] = 0;
+        }
+
+        // make user_translation column
+        $appLanguages = ['uk', 'ru', 'en'];
+        $userTitleTranslations = [];
+        $userDescTranslations = [];
+        foreach ($appLanguages as $lang) {
+            if ( array_key_exists($lang, $input['title_translate']) === false ) {
+                $userTitleTranslations[] = $lang;
+            }
+            if ( array_key_exists($lang, $input['desc_translate']) === false ) {
+                $userDescTranslations[] = $lang;
+            }
+        }
+        $input['user_translations'] = ['title' => $userTitleTranslations, 'description' => $userDescTranslations];
+
+        // check origin language
+        $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
+        $input['origin_lang'] = $translate->detectLanguage( $input['title'] . '. ' . $input['description'] )['languageCode']; // merge title and description and find out the origin language
+        
+        // if there is no cost specified, remove currency and cost
+        if ( !$input['cost'] ) {
+            unset($input['currency']);
+            unset($input['cost']);
+        }
+
+        // save some old parameters of post
+        $input['origin_lang_old'] = $post->origin_lang;
+        $input['title_old'] = $post->title;
+        $input['description_old'] = $post->description;
+        $input['user_translations_old'] = $post->user_translations;
+
+        // if there was an error while updating, return previous page with error
+        if (!$post->update($input)) {
+            Session::flash('message-error', __('messages.postEditedError'));
+            return redirect(loc_url(route('home')));
+        }
+
+        // if there is images submited, upload them
+        if ( $request->hasFile('images')) {
+            $this->postImageUpload($request->file('images'), $post);
+        }
+        
+        TranslatePost::dispatch($post, $input, false)->onQueue('translation');
+        Session::flash('message-success', __('messages.postEdited'));
+        return redirect(loc_url(route('posts.show', ['post'=>$id])));
     }
 //
     /**
@@ -249,7 +245,7 @@ class PostController extends Controller
             $post->delete();
         }
         Session::flash('message-success', __('messages.postDeleted'));
-        return redirect(route('profile.posts'));
+        return redirect(loc_url(route('profile.posts')));
     }
 
     /**

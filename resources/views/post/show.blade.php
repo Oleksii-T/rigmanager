@@ -36,7 +36,7 @@
                     @endif
                     <div id="item-tag-section">
                         @foreach ($post->tag_map as $tagId => $tagReadable)
-                            <a class="item-tag" href="{{route('search.tag', $tagId)}}">{{$tagReadable}}</a>
+                            <a class="item-tag" href="{{loc_url(route('search.tag', ['category'=>$tagId]))}}">{{$tagReadable}}</a>
                             <span class="item-tag-delim">></span>
                         @endforeach
                     </div>
@@ -73,7 +73,7 @@
                 @else
                     <aside class="element" id="editBtn">
                         <p>{{__('ui.yoursPost')}}</p>
-                        <a class="def-button" href="{{ route('posts.edit', $post->id) }}">{{__('ui.edit')}}</a>
+                        <a class="def-button" href="{{ loc_url(route('posts.edit', ['post'=>$post->id])) }}">{{__('ui.edit')}}</a>
                     </aside>
                 @endif
 
@@ -90,7 +90,7 @@
                         </div>
                         <!-- mb add time how many days registered -->
                     </div>
-                    <a class="def-button" href="{{route('search.author', $post->user->id)}}">{{__('ui.otherAuthorPosts')}}</a>
+                    <a class="def-button" href="{{loc_url(route('search.author', ['author'=>$post->user->id]))}}">{{__('ui.otherAuthorPosts')}}</a>
                     <button class="def-button" id="modalTriger">{{__('ui.showContacts')}}</button>
                     @if ($post->user_id != Auth::id())
                         <button class="def-button" id="mailerAddAuthor">    

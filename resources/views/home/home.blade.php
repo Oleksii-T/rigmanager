@@ -8,7 +8,7 @@
 
 @section('content')
     <div id="searchBar">
-        <form method="GET" action="{{ route('search.text') }}">
+        <form method="GET" action="{{ loc_url(route('search.text')) }}">
             <div id="inputWraper">
                 <img id="searchIcon" src="{{ asset('icons/searchIcon.svg') }}" alt="{{__('alt.keyword')}}">
                 <button id="search-bar-clear-btn" title="{{__('ui.clearText')}}" type="button"><img src="{{ asset('icons/closeBlackIcon.svg') }}" alt="{{__('alt.keyword')}}"></button>
@@ -35,6 +35,14 @@
     <script type="text/javascript" src="{{ asset('js/tags.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mousewheel.min.js') }}"></script>
     <script type="text/javascript">
+
+        function searchTag() {
+            id = $('#modal-hidden-tag').val();
+            var url = "{{loc_url(route('search.tag',['category'=>':id']))}}";
+            url = url.replace(':id', id);
+            window.location.href=url;
+        }
+
         $(document).ready(function(){
 
             // disable scrolling on master page when hovering the column
@@ -85,31 +93,31 @@
                 var postId = getIdFromClasses($(this).attr("class"), 'id_');
                 //make cursor wait
                 var button = $(this);
+                var img = button.children('img');
                 button.addClass('loading');
                 //send Ajax reqeust to add Item to fav list of user
                 $.ajax({
                     type: "GET",
-                    url: '{{ route("toFav") }}',
+                    url: '{{route("toFav")}}',
                     data: { post_id: postId },
                     success: function(data) {
                         //if no server errors, change digit of favItemsAmount in nav bar 
                         //and change color of AddToFav btn img
                         if ( data ) {
-                            var target = $("#"+postId+" img.addToFavImg");
                             var n = $("#favItemsTab span").text();
                             n = parseInt(n,10);
                             //visualize removing from fav list
-                            if ( target.hasClass('active-fav-img') ) {
+                            if ( img.hasClass('active-fav-img') ) {
                                 $("#favItemsTab span").html(n-1);
-                                target.attr("src", "{{ asset('icons/heartWhiteIcon.svg') }}");
+                                img.attr("src", "{{ asset('icons/heartWhiteIcon.svg') }}");
                                 showPopUpMassage(true, "{{ __('messages.postRemovedFav') }}");
                             //visualize adding to fav list
                             } else {
                                 $("#favItemsTab span").html(n+1);
-                                target.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
+                                img.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
                                 showPopUpMassage(true, "{{ __('messages.postAddedFav') }}");
                             }
-                            target.toggleClass('active-fav-img');
+                            img.toggleClass('active-fav-img');
                         //if server errors occures, pop up error massage
                         } else {
                             showPopUpMassage(false, "{{ __('messages.postAddFavError') }}");

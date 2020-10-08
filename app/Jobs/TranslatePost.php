@@ -45,6 +45,7 @@ class TranslatePost implements ShouldQueue
     {
         $this->shouldUpdate = false; // flag signals that some translation was done
         $this->post = $post; //the post
+        unset($input['images']);
         $this->input = $input;
         $this->role = $role;
         $appLanguages = collect(['uk', 'ru', 'en']); //all available languages for this App

@@ -13,98 +13,77 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// general auth routes
-Auth::routes(['verify' => true]);
-
-Route::get('set-locale/{locale}', function ($locale) {
-    App::setLocale($locale);
-    session()->put('locale', $locale);
-    $user = auth()->user();
-    if ($user) {
-        $user->language = $locale;
-        $user->save();
-    }
-    return redirect()->back();
-})->middleware('check.locale')->name('locale.setting');
-
+// maintenance route
 if (env('MAINTENANCE')) {
     Route::get('{any}', function() {
         return view('home.maintenance');
     })->where('any', '.*');
 }
 
-// Laravel Socialite auth routes
-Route::get('login/{social}',            'Auth\LoginController@redirectToProvider')->name('login.social');
-Route::get('login/{social}/callback',   'Auth\LoginController@handleProviderCallback');
+// auth routes
+Route::get          ('emailexists',                         'UserController@emailExists')       ->name('email.exist'); //Ajax reqeust
+Route::get          ('usernameexists',                      'UserController@userNameExists')    ->name('username.exist'); //Ajax reqeust
 
-// home routes
-Route::post ('contacting',      'HomeController@contactUs') ->name('contact.us');
-Route::get  ('contact-us',      'HomeController@contacts')  ->name('contacts');
-
-// user routes
-Route::get  ('emailexists',     'UserController@emailExists')   ->name('email.exist'); //Ajax reqeust
-Route::get  ('usernameexists',  'UserController@userNameExists')->name('username.exist'); //Ajax reqeust
-
-/*
-Route::group(['middleware'=>'verified', 'prefix' => '{locale}'], function() {
-*/
-Route::middleware(['auth', 'verified'])->group(function () {
-
-    // posts routes
-    Route::patch    ('posts/images/delete/{post}',          'PostController@imgsDel')       ->name('posts.imgs.delete');
-    Route::patch    ('posts/images/delete/{post}/{image}',  'PostController@imgDel')        ->name('posts.img.delete');
-    Route::get      ('ajax/category/{tagId}',               'PostController@getTagReadable')->name('get.readble.tag'); //Ajax reqeust
-    Route::get      ('ajax/contacts/{postId}',              'PostController@getContacts')   ->name('get.contacts'); //Ajax reqeust
-    Route::delete   ('ajax/posts/a/{post}',                 'PostController@destroyAjax')   ->name('posts.destroy.ajax'); //Ajax reqeust
-    Route::get      ('ajax/posts/images/{post}',            'PostController@getImages')     ->name('get.images'); //Ajax reqeust
-    Route::get      ('posts/store',                         'PostController@storeFake')     ->name('posts.store.fake');
-    Route::post     ('posts/toggle/status/{post}',          'PostController@togglePost')    ->name('post.toggle'); //Ajax reqeust
-    Route::get      ('posts/create/service',                'PostController@serviceCreate') ->name('service.create');
-    Route::resource ('posts',                               'PostController')               ->except(['index']);
-    
-    // post filters routes
-    Route::post('filter', 'FiltersController@filter')->name('post.filter'); //Ajax reqeust
-
-    // prifile/user routes
-    Route::get      ('profile/edit',            'UserController@edit')              ->name('profile.edit');
-    Route::patch    ('profile/update',          'UserController@update')            ->name('profile.update');
-    Route::get      ('profile/favourites',      'UserController@favourites')        ->name('profile.favourites');
-    Route::get      ('profile/posts',           'UserController@userPosts')         ->name('profile.posts');
-    Route::get      ('ajax/profile/favourite',  'UserController@addToFav')          ->name('toFav'); //Ajax reqeust
-    Route::patch    ('profile/image/delete',    'UserController@userImageDelete')   ->name('profile.img.delete'); //Ajax reqeust
-    Route::get      ('profile/subscription',    'UserController@subscription')      ->name('profile.subscription');
-
-    // mailer routes
-    Route::get      ('profile/mailer/edit',             'MailerController@edit')        ->name('mailer.edit');//removed default parametes
-    Route::patch    ('profile/mailer/update',           'MailerController@update')      ->name('mailer.update');//removed default parametes
-    Route::delete   ('profile/mailer/destroy',          'MailerController@destroy')     ->name('mailer.destroy');//removed default parametes
-    Route::get      ('ajax/mailer/author/{author}',     'MailerController@toggleAuthor')->name('mailer.toggle.author');// Ajax request
-    Route::get      ('ajax/mailer/toggle',              'MailerController@toggle')      ->name('mailer.toggle');// Ajax request
-    Route::get      ('ajax/mailer/tag/{tag}',           'MailerController@addTag')      ->name('mailer.add.tag');// Ajax request
-    Route::get      ('ajax/mailer/text/{text}',         'MailerController@addText')     ->name('mailer.add.text');// Ajax request
-    Route::get      ('ajax/mailer/author/add/{author}', 'MailerController@addAuthor')   ->name('mailer.add.author');// Ajax request
-    Route::resource ('profile/mailer',                  'MailerController')             ->except(['show', 'edit', 'update', 'destroy']); 
-
-
-    /*== Folloing routes shall be for non-registered users on production stage ==*/
-
-    // home routes
-    Route::get('',          'HomeController@index')     ->name('home');
-    Route::get('faq',       'HomeController@faq')       ->name('faq');
-    Route::get('plans',     'HomeController@plans')     ->name('plans');
-    Route::get('terms',     'HomeController@terms')     ->name('terms');
-    Route::get('privacy',   'HomeController@privacy')   ->name('privacy');
-    Route::get('sitemap',   'HomeController@sitemap')   ->name('site.map');
+Route::middleware('verified')->group(function () {
 
     // post routes
+    Route::get      ('ajax/contacts/{postId}',              'PostController@getContacts')       ->name('get.contacts'); //Ajax reqeust
+    Route::get      ('ajax/posts/images/{post}',            'PostController@getImages')         ->name('get.images'); //Ajax reqeust
+    Route::patch    ('posts/images/delete/{post}',          'PostController@imgsDel')           ->name('posts.imgs.delete'); //Ajax reqeust
+    Route::patch    ('posts/images/delete/{post}/{image}',  'PostController@imgDel')            ->name('posts.img.delete'); //Ajax reqeust
+    Route::delete   ('ajax/posts/a//{post}',                'PostController@destroyAjax')       ->name('posts.destroy.ajax'); //Ajax reqeust
+    Route::post     ('ajax/posts/toggle/status/{post}',     'PostController@togglePost')        ->name('post.toggle'); //Ajax reqeust
 
-    // search routes
-    Route::get('search/text',                   'SearchController@searchText')  ->name('search.text');
-    Route::get('search/category/{category}',    'SearchController@searchTag')   ->name('search.tag');
-    Route::get('search/author/{author}',        'SearchController@searchAuthor')->name('search.author');
+    // post filters routes
+    Route::post     ('filter',                              'FiltersController@filter')         ->name('post.filter'); //Ajax reqeust
+
+    // user routes
+    Route::get      ('ajax/profile/favourite',              'UserController@addToFav')          ->name('toFav'); //Ajax reqeust
+    Route::patch    ('profile/image/delete',                'UserController@userImageDelete')   ->name('profile.img.delete'); //Ajax reqeust
+
+    // mailer routes
+    Route::get      ('ajax/mailer/author/{author}',         'MailerController@toggleAuthor')    ->name('mailer.toggle.author');// Ajax request
+    Route::get      ('ajax/mailer/toggle',                  'MailerController@toggle')          ->name('mailer.toggle');// Ajax request
+    Route::get      ('ajax/mailer/tag/{tag}',               'MailerController@addTag')          ->name('mailer.add.tag');// Ajax request
+    Route::get      ('ajax/mailer/text/{text}',             'MailerController@addText')         ->name('mailer.add.text');// Ajax request
+    Route::get      ('ajax/mailer/author/add/{author}',     'MailerController@addAuthor')       ->name('mailer.add.author');// Ajax request
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get      ('profile',         'UserController@index')->name('profile');
-    Route::delete   ('profile/delete',  'UserController@destroy')->name('profile.delete');
+Route::group(['middleware' => 'make.locale'], function() {
+    Route::get('set-locale/{lang}', function ($newLocale) {
+        $user = auth()->user();
+        if ($user) {
+            $user->language = $newLocale;
+            $user->save();
+        }
+        $url = url()->previous();
+        $base = route('home');
+        $url = str_replace($base, "", $url);
+        $url = $base . '/' . $newLocale . $url;
+        return redirect($url);
+    })->name('locale.setting');
+
+    require base_path().'/routes/LocaledWebRoutes.php';
+});
+
+Route::group(['prefix' => '{locale?}', 'middleware' => 'make.locale'], function() {
+    Route::get('set-locale/{lang}', function ($oldLocale, $newLocale) {
+        $user = auth()->user();
+        if ($user) {
+            $user->language = $newLocale;
+            $user->save();
+        }
+        $url = url()->previous();
+        $base = route('home');
+        $url = str_replace($base, "", $url); //remove url base
+        $url = substr($url, 3);// remove locale of url
+        if ($newLocale == 'uk') {
+            $url = $base . $url;
+        } else {
+            $url = $base . '/' . $newLocale . $url;
+        }
+        return redirect($url);
+    })->name('locale.setting');
+
+    require base_path().'/routes/LocaledWebRoutes.php';
 });

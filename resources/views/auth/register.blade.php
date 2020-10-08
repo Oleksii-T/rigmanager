@@ -34,14 +34,14 @@
     </div>
 
     <div id="userData">
-        <!--action="route('register')"-->
+        <!--action="loc_url(route('register'))"-->
         <form id="formSignup" method="POST" action="#" enctype="multipart/form-data">
             @csrf
             <div id="formContent">
                 <nav>
                     <ul>
-                        <li><a id="loginBtn" href="{{route('login')}}">{{__('ui.signIn')}}</a></li>
-                        <li><a id="registerBtn" href="{{route('register')}}">{{__('ui.signUp')}}</a></li>
+                        <li><a id="loginBtn" href="{{loc_url(route('login'))}}">{{__('ui.signIn')}}</a></li>
+                        <li><a id="registerBtn" href="{{loc_url(route('register'))}}">{{__('ui.signUp')}}</a></li>
                     </ul>
                 </nav>
                 <p>{{__('ui.signUp')}}</p>
@@ -128,7 +128,7 @@
 
                     <tr id="agreementShow">
                         <td>
-                            <label class="cb-container" for="inputAgreement">{{__('ui.iAgree')}} <a href="{{route('terms')}}">{{__('ui.iAgreeLink')}}</a>
+                            <label class="cb-container" for="inputAgreement">{{__('ui.iAgree')}} <a href="{{loc_url(route('terms'))}}">{{__('ui.iAgreeLink')}}</a>
                                 <input id="inputAgreement" type="checkbox" name="agreement" value="1">
                                 <span class="cb-checkmark"></span>
                             </label>
@@ -142,13 +142,13 @@
                 <div class="social">
                     <p class="socialText"><span>{{__('ui.or')}}</span>{{__('ui.socialSignIn')}}:</p>
                     <div>
-                        <a class="socialLink" href="{{route('login.social', 'google')}}">
+                        <a class="socialLink" href="{{route('login.social', ['social'=>'google'])}}">
                             <img class="socialLogo" src="{{ asset('icons/googleIcon.svg') }}" alt="{{__('alt.keyword')}}">
                             Google
                         </a>
                     </div>
                     <div>
-                        <a class="socialLink" href="{{route('login.social', 'facebook')}}">
+                        <a class="socialLink" href="{{route('login.social', ['social'=>'facebook'])}}">
                             <img class="socialLogo" src="{{ asset('icons/facebookIcon.svg') }}" alt="{{__('alt.keyword')}}">
                             Facebook
                         </a>
@@ -318,10 +318,6 @@
                     $('label').css('cursor', 'inherit');
                     $('a').css('cursor', 'inherit');
                     $('img').css('cursor', 'inherit');
-                    /*
-                    $(form).ajaxSubmit();
-                    window.location.href='{{ route("verification.notice") }}';
-                    */
                     form.submit(); // submit the form
                 }
             });

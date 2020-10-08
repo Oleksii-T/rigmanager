@@ -10,9 +10,9 @@
         <div id="profileContent">
             <nav class="profileNavBar">
                 <ul>
-                    <li><a id="personlaInfoBtn" href="{{route('profile')}}">{{__('ui.profileInfo')}}</a></li>
-                    <li><a id="mailerBtn" href="{{route('mailer.index')}}">{{__('ui.mailer')}}</a></li>
-                    <li><a id="mySubscriptionBtn" href="{{route('profile.subscription')}}">{{__('ui.mySubscription')}}</a></li>
+                    <li><a id="personlaInfoBtn" href="{{loc_url(route('profile'))}}">{{__('ui.profileInfo')}}</a></li>
+                    <li><a id="mailerBtn" href="{{loc_url(route('mailer.index'))}}">{{__('ui.mailer')}}</a></li>
+                    <li><a id="mySubscriptionBtn" href="{{loc_url(route('profile.subscription'))}}">{{__('ui.mySubscription')}}</a></li>
                 </ul>
             </nav>
 
@@ -76,9 +76,9 @@
                 @endif
             </table>
             <div id="editBtnField">
-                <a class="def-button" id="editBtn" href="{{ route('profile.edit') }}">{{__('ui.edit')}}</a>
+                <a class="def-button" id="editBtn" href="{{ loc_url(route('profile.edit')) }}">{{__('ui.edit')}}</a>
                 @if ($user->is_social)    
-                    <p class="social-acc-help"><img src="{{asset('icons/alertIcon.svg')}}" alt="{{__('alt.keyword')}}">{{__('ui.uHave')}} <a href="{{route('faq')}}#WhatIsSocialAcc">{{__('ui.socialAcc')}}</a></p>
+                    <p class="social-acc-help"><img src="{{asset('icons/alertIcon.svg')}}" alt="{{__('alt.keyword')}}">{{__('ui.uHave')}} <a href="{{loc_url(route('faq'))}}#WhatIsSocialAcc">{{__('ui.socialAcc')}}</a></p>
                 @endif
             </div>
         </div>

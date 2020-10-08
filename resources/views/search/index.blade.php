@@ -10,7 +10,7 @@
 @section('content')
 
     <div id="searchBar">
-        <form method="GET" action="{{ route('search.text') }}">
+        <form method="GET" action="{{ loc_url(route('search.text')) }}">
             <div id="inputWraper">
                 <img id="searchIcon" src="{{ asset('icons/searchIcon.svg') }}" alt="{{__('alt.keyword')}}">
                 <button id="search-bar-clear-btn" title="{{__('ui.clearText')}}" type="button"><img src="{{ asset('icons/closeBlackIcon.svg') }}" alt="{{__('alt.keyword')}}"></button>
@@ -34,7 +34,7 @@
                 <a href=""></a>
                 <p class="user-text-request" hidden>{{$search['value']}}</p>
                 <button id="addTextToMailer">{{__('ui.mailerSuggestText')}}</button>
-                <a id="whatIsMailerHelp" href="{{route('faq')}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
+                <a id="whatIsMailerHelp" href="{{loc_url(route('faq'))}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
                 <div class="algolia-logo">
                     <img src="{{asset('icons/algoliaIcon.svg')}}" alt="{{__('alt.keyword')}}">
                 </div>
@@ -42,13 +42,13 @@
         @elseif ( $search['type'] == 'tags' )
             <div id="searchTags">
                 @foreach ($search['value'] as $id => $tag)
-                    <a class="itemTag" href="{{ route('search.tag', $id) }}">{{$tag}}</a> 
+                    <a class="itemTag" href="{{ loc_url(route('search.tag', ['category'=>$id])) }}">{{$tag}}</a> 
                     <span>></span>
                 @endforeach
             </div>
             <div class="mailer-suggestion mailer-tag-suggestion">
                 <button id="addTagToMailer" class="{{array_key_last($search['value'])}}">{{__('ui.mailerSuggestTag')}}</button>
-                <a id="whatIsMailerHelp" href="{{route('faq')}}#WhatIsMailer">({{__('ui.whatIsMailer')}})</a>
+                <a id="whatIsMailerHelp" href="{{loc_url(route('faq'))}}#WhatIsMailer">({{__('ui.whatIsMailer')}})</a>
             </div>
         @elseif ( $search['type'] == 'author' )
             <div id="searchAuthor">
@@ -56,7 +56,7 @@
             </div>
             <div class="mailer-suggestion">
                 <button id="addAuthorToMailer" class="{{$search['value']['id']}}">{{__('ui.mailerSuggestAuthor')}}</button>
-                <a id="whatIsMailerHelp"href="{{route('faq')}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
+                <a id="whatIsMailerHelp"href="{{loc_url(route('faq'))}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
             </div>   
         @endif
         @if ($search['isEmpty'])
@@ -199,11 +199,19 @@
 @section('scripts')
     <script type="text/javascript" src="{{ asset('js/tags.js') }}"></script>
     <script type="text/javascript">
+
+        function searchTag() {
+            id = $('#modal-hidden-tag').val();
+            var url = "{{loc_url(route('search.tag',['category'=>':id']))}}";
+            url = url.replace(':id', id);
+            window.location.href=url;
+        }
+
         $(document).ready(function(){
 
             var filters = new Object();
             filters.currency = 'UAH';
-
+            
             //handle manual ajax pagination
             $('body').on('click', 'div.filter-pagination a', function(e){
                 e.preventDefault();
@@ -605,30 +613,31 @@
                 var postId = getIdFromClasses($(this).attr("class"), 'id_');
                 //make cursor wait
                 var button = $(this);
+                var img = button.children('img');
                 button.addClass('loading');
                 //send Ajax reqeust to add Item to fav list of user
                 $.ajax({
                     type: "GET",
-                    url: '{{ route('toFav') }}',
+                    url: '{{route("toFav")}}',
                     data: { post_id: postId },
                     success: function(data) {
                         //if no server errors, change digit of favItemsAmount in nav bar 
-                        //and change color of AddToFav btn
+                        //and change color of AddToFav btn img
                         if ( data ) {
-                            var target = $("#"+postId+" img.addToFavImg");
                             var n = $("#favItemsTab span").text();
                             n = parseInt(n,10);
-                            if ( target.attr("src") != "{{ asset('icons/heartOrangeIcon.svg') }}" ) {
-                                //visualize adding to fav list
-                                $("#favItemsTab span").html(n+1);
-                                target.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
-                                showPopUpMassage(true, "{{ __('messages.postAddedFav') }}");
-                            } else {
-                                //visualize removing from fav list
+                            //visualize removing from fav list
+                            if ( img.hasClass('active-fav-img') ) {
                                 $("#favItemsTab span").html(n-1);
-                                target.attr("src", "{{ asset('icons/heartWhiteIcon.svg') }}");
+                                img.attr("src", "{{ asset('icons/heartWhiteIcon.svg') }}");
                                 showPopUpMassage(true, "{{ __('messages.postRemovedFav') }}");
+                            //visualize adding to fav list
+                            } else {
+                                $("#favItemsTab span").html(n+1);
+                                img.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
+                                showPopUpMassage(true, "{{ __('messages.postAddedFav') }}");
                             }
+                            img.toggleClass('active-fav-img');
                         //if server errors occures, pop up error massage
                         } else {
                             showPopUpMassage(false, "{{ __('messages.postAddFavError') }}");

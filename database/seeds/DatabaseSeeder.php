@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         
-        factory(App\Post::class, 500)->create();
+        factory(App\Post::class, 50)->create();
 
         DB::table('usd_exchanges')->insert([
             'id' => 1,

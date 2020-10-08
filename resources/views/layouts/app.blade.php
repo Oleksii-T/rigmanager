@@ -47,12 +47,12 @@
             <header>
                 <!-- Header of all web pages -->
                 <div id="header">
-                    <a href="{{ route('home') }}"><img id="logo" title="{{__('ui.home')}}" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
+                    <a href="{{ loc_url(route('home')) }}"><img id="logo" title="{{__('ui.home')}}" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
                     <ul>
                         @if (App::isLocale('uk'))
                             <li>UKR</li>
                         @else
-                            <li><a href="{{ route('locale.setting', 'uk') }}">UKR</a></li>
+                            <li><a href="{{ loc_url(route('locale.setting', ['lang'=>'uk'])) }}">UKR</a></li>
                         @endif
                         
                         <li> | </li>
@@ -60,7 +60,7 @@
                         @if (App::isLocale('ru'))
                             <li>RU</li>
                         @else
-                            <li><a href="{{ route('locale.setting', 'ru') }}">RU</a></li>
+                            <li><a href="{{ loc_url(route('locale.setting', ['lang'=>'ru'])) }}">RU</a></li>
                         @endif
                         
                         <li> | </li>
@@ -68,7 +68,7 @@
                         @if (App::isLocale('en'))
                             <li>ENG</li>
                         @else
-                            <li><a href="{{ route('locale.setting', 'en') }}">ENG</a></li>
+                            <li><a href="{{ loc_url(route('locale.setting', ['lang'=>'en'])) }}">ENG</a></li>
                         @endif
                     </ul>
 
@@ -81,19 +81,19 @@
 
                 <!-- Navigation bar of all web pages -->
                 <nav class="main-navigation">
-                    <a id="homeTab" href="{{ route('home') }}">
+                    <a id="homeTab" href="{{ loc_url(route('home')) }}">
                         <div class="iconWraper">
                             <img src="{{ asset('icons/homeIcon.svg') }}" alt="{{__('alt.keyword')}}">
                         </div>
                         <p>{{__('ui.home')}}</p>
                     </a>
-                    <a id="myItemsTab" href="{{ route('profile.posts') }}">
+                    <a id="myItemsTab" href="{{ loc_url(route('profile.posts')) }}">
                         <div class="iconWraper">
                             <img src="{{ asset('icons/myItemsIcon.svg') }}" alt="{{__('alt.keyword')}}">
                         </div>
                         <p>{{__('ui.myPosts')}}</p>
                     </a>
-                    <a id="favItemsTab" href="{{ route('profile.favourites') }}">
+                    <a id="favItemsTab" href="{{ loc_url(route('profile.favourites')) }}">
                         <div class="iconWraper">
                             <img src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
                             @if ( auth()->user() )
@@ -102,14 +102,14 @@
                         </div>
                         <p>{{__('ui.favourites')}}</p>
                     </a>
-                    <a id="profileTab" href="{{route('profile')}}">
+                    <a id="profileTab" href="{{loc_url(route('profile'))}}">
                         <div class="iconWraper">
                             <img src="{{ asset('icons/profileIcon.svg') }}" alt="{{__('alt.keyword')}}">
                         </div>
                         <p>{{__('ui.profile')}}</p>
                     </a>
                     @guest
-                        <a id="loginTab" href="{{ route('login') }}">
+                        <a id="loginTab" href="{{ loc_url(route('login')) }}">
                             <div class="iconWraper">
                                 <img src="{{ asset('icons/logInIcon.svg') }}" alt="{{__('alt.keyword')}}">
                             </div>
@@ -122,9 +122,9 @@
                             </div>
                             <p>{{__('ui.signOut')}}</p>
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">@csrf</form>
+                        <form id="logout-form" action="{{ loc_url(route('logout')) }}" method="POST" style="display: none">@csrf</form>
                     @endguest
-                    <a id="addItemTab" href="{{ route('posts.create') }}">
+                    <a id="addItemTab" href="{{ loc_url(route('posts.create')) }}">
                         <div class="iconWraper">
                             <img src="{{ asset('icons/addItemIcon.svg') }}" alt="{{__('alt.keyword')}}">
                         </div>
@@ -143,22 +143,22 @@
             <footer class="footer">
                 <div id="footerWraper">
                     <div id="leftS">
-                        <a href="{{ route('home') }}"><img id="logo" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
-                        <a class="footerLinks" id="footerFAQ" href="{{route('faq')}}">{{__('ui.foterFAQ')}}</a>
+                        <a href="{{ loc_url(route('home')) }}"><img id="logo" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
+                        <a class="footerLinks" id="footerFAQ" href="{{loc_url(route('faq'))}}">{{__('ui.foterFAQ')}}</a>
                     </div>
                     <div id="rightS">
                         <p>&copy; {{env('COPY_RIGHT_YEAR')}} <span>rigmanager.com.ua</span>. {{__('ui.footerCopyright')}}</p>
                         <p>{{__('ui.footerIconsRef')}} <a class="footerLinks" href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> (<a class="footerLinks" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>)</p>
                         <table>
                             <tr>
-                                <td><a class="footerLinks" href="{{route('plans')}}">{{__('ui.footerSubscription')}}</a></td>
-                                <td><a class="footerLinks" href="{{route('contacts')}}">{{__('ui.footerContact')}}</a></td>
-                                <td><a class="footerLinks wrap" href="{{route('terms')}}">{{__('ui.footerTerms')}}</a></td>
+                                <td><a class="footerLinks" href="{{loc_url(route('plans'))}}">{{__('ui.footerSubscription')}}</a></td>
+                                <td><a class="footerLinks" href="{{loc_url(route('contacts'))}}">{{__('ui.footerContact')}}</a></td>
+                                <td><a class="footerLinks wrap" href="{{loc_url(route('terms'))}}">{{__('ui.footerTerms')}}</a></td>
                             </tr>
                             <tr>
                                 <td><a class="footerLinks" href="https://github.com/Oleksii-T/rigmanager">{{__('ui.footerDevelop')}}</a></td>
-                                <td><a class="footerLinks wrap" href="{{route('privacy')}}">{{__('ui.footerPrivacy')}}</a></td>
-                                <td><a class="footerLinks wrap" href="{{route('site.map')}}">{{__('ui.footerSiteMap')}}</a></td>
+                                <td><a class="footerLinks wrap" href="{{loc_url(route('privacy'))}}">{{__('ui.footerPrivacy')}}</a></td>
+                                <td><a class="footerLinks wrap" href="{{loc_url(route('site.map'))}}">{{__('ui.footerSiteMap')}}</a></td>
                             </tr>
                         </table>
                     </div>

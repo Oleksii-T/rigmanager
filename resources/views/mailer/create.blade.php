@@ -5,7 +5,7 @@
 @endsection
 
 @section('form')
-    <form class="mailer-form" id="formNewMailer" method="post" action="{{ route('mailer.store') }}">
+    <form class="mailer-form" id="formNewMailer" method="post" action="{{ loc_url(route('mailer.store')) }}">
         @csrf
 @endsection
 

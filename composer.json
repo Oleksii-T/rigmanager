@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "sentry/sentry-laravel": "^2.1",
         "spatie/image-optimizer": "^1.2",
         "spatie/laravel-sitemap": "^5.7"
     },
@@ -48,6 +49,9 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/helpers.php"
         ]
     },
     "autoload-dev": {

@@ -61,7 +61,7 @@
                     @yield('error')
                 </p>
                 <div class="server-error-links">
-                    <a class="link" href="{{route('contacts')}}">{{__('ui.serverErrorContact')}}</a>
+                    <a class="link" href="{{loc_url(route('contacts'))}}">{{__('ui.serverErrorContact')}}</a>
                     <br>
                     <a class="link" href="{{ url()->previous() }}">{{__('ui.serverErrorGoBack')}}</a>
                 </div>

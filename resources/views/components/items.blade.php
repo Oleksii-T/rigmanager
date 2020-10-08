@@ -31,10 +31,12 @@
             </div>
 
             @if ($button == 'addToFav')
-                <button class="{{ $post->user_id == auth()->user()->id ? 'addToFavButtonBlocked' : 'addToFavButton'}} id_{{$post->id}}">
-                    <img class="{{ auth()->user()->favPosts->contains($post) ? 'active-fav-img' : '' }} addToFavImg id_{{$post->id}} img-hover-scale" title="{{__('ui.addToFav')}}" src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                    <span><i>{{__('ui.addToFav')}}</i></span>
-                </button>
+                @if (auth()->user())
+                    <button class="{{ $post->user_id == auth()->user()->id ? 'addToFavButtonBlocked' : 'addToFavButton'}} id_{{$post->id}}">
+                        <img class="{{ auth()->user()->favPosts->contains($post) ? 'active-fav-img' : '' }} addToFavImg id_{{$post->id}} img-hover-scale" title="{{__('ui.addToFav')}}" src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        <span><i>{{__('ui.addToFav')}}</i></span>
+                    </button>
+                @endif
             @elseif ($button == 'removeFromFav')
                 <button class="addToFavButton id_{{$post->id}}">
                     <img class="addToFavImg img-hover-scale" title="{{__('ui.removeFromFav')}}" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">
@@ -46,7 +48,7 @@
                         <img class="img-hover-scale" title="{{__('ui.delete')}}" src="{{ asset('icons/deleteIcon.svg') }}" alt="{{__('alt.keyword')}}">
                     </button>
 
-                    <a class="item-btn editBtn id_{{$post->id}}" href="{{ route('posts.edit', $post->id) }}">
+                    <a class="item-btn editBtn id_{{$post->id}}" href="{{ loc_url(route('posts.edit', ['post'=>$post->id])) }}">
                         <img class="img-hover-scale" title="{{__('ui.edit')}}" src="{{ asset('icons/editIcon.svg') }}" alt="{{__('alt.keyword')}}">
                     </a>
 
@@ -59,8 +61,7 @@
                     </button>
                 </div>
             @endif
-
-            <a href="{{ route('posts.show', $post->id) }}"><span class="globalItemButton"></span></a>
+            <a href="{{ loc_url(route('posts.show', ['post'=>$post->id])) }}"><span class="globalItemButton"></span></a>
         </article>
     @endforeach
 

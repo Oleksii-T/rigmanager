@@ -95,7 +95,7 @@
             $('.modalSubmitButton').click(function() {
                 var postId = getIdFromClasses($(this).attr('class'), 'id_');
                 $('#modalPostDelete').css("display", "none");
-                var ajaxUrl = '{{route("posts.destroy.ajax", ":postId")}}';
+                var ajaxUrl = "{{route('posts.destroy.ajax', ':postId')}}";
                 ajaxUrl = ajaxUrl.replace(':postId', postId);
                 $('#'+postId+' .globalItemButton').addClass('loading');
                 $('#'+postId+' img').addClass('loading');

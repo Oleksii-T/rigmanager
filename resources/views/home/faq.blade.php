@@ -25,26 +25,26 @@
             <p class="answer">{{__('faq.aForWhat')}}</p>
 
             <a class="question" id="Buy">{{__('faq.qBuy')}}</a>
-            <p class="answer">{{__('faq.aBuy1')}} <a class="link" href="{{ route('home') }}">{{__('faq.aBuyLink')}}</a> {{__('faq.aBuy2')}}</p>
+            <p class="answer">{{__('faq.aBuy1')}} <a class="link" href="{{ loc_url(route('home')) }}">{{__('faq.aBuyLink')}}</a> {{__('faq.aBuy2')}}</p>
             
             <a class="question" id="Sell">{{__('faq.qSell')}}</a>
-            <p class="answer">{{__('faq.aSell1')}} <a class="link" href="{{ route('posts.create') }}">{{__('faq.aSellLink')}}</a>, {{__('faq.aSell2')}}</p>
+            <p class="answer">{{__('faq.aSell1')}} <a class="link" href="{{ loc_url(route('posts.create')) }}">{{__('faq.aSellLink')}}</a>, {{__('faq.aSell2')}}</p>
 
             <a class="question" id="WhyWe">{{__('faq.qWhyWe')}}</a>
             <p class="answer">{{__('faq.aWhyWe')}}</p>
 
             <a class="question" id="WhatIsMailer">{{__('faq.qWhatIsMailer')}}</a>
-            <p class="answer">{{__('faq.aWhatIsMailer1')}} <a class="link" href="{{route('mailer.index')}}">{{__('faq.aWhatIsMailerLink')}}</a> {{__('faq.aWhatIsMailer2')}}</p>
+            <p class="answer">{{__('faq.aWhatIsMailer1')}} <a class="link" href="{{loc_url(route('mailer.index'))}}">{{__('faq.aWhatIsMailerLink')}}</a> {{__('faq.aWhatIsMailer2')}}</p>
 
             <a class="question" id="WhatIsSocialAcc">{{__('faq.qWhatIsSocialAcc')}}</a>
-            <p class="answer">{{__('faq.aWhatIsSocialAcc')}} <a class="link" href="{{route('login.social', 'google')}}">Google</a> / <a class="link" href="{{route('login.social', 'facebook')}}">Facebook</a>.</p>
+            <p class="answer">{{__('faq.aWhatIsSocialAcc')}} <a class="link" href="{{loc_url(route('login.social', ['social'=>'google']))}}">Google</a> / <a class="link" href="{{loc_url(route('login.social', ['social'=>'facebook']))}}">Facebook</a>.</p>
             
             <a class="question" id="autoTranslator">{{__('faq.qAutoTranslator')}}</a>
             <p class="answer">{{__('faq.aAutoTranslator')}}</p>
             
             <div id="contacts">
                 <p id="slgText" id="sig">{{__('faq.slg1')}} <span>rigmanager.com.ua</span>.
-                    {{__('faq.slg2')}} <a class="link" href = "{{route('contacts')}}">{{__('faq.slg3')}}</a>.
+                    {{__('faq.slg2')}} <a class="link" href = "{{loc_url(route('contacts'))}}">{{__('faq.slg3')}}</a>.
                 </p>
             </div>
         </div>
