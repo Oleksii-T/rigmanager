@@ -34,7 +34,7 @@ Route::middleware('verified')->group(function () {
 
     // posts routes
     Route::get      ('posts/create/service',                'PostController@serviceCreate') ->name('service.create');
-    Route::get      ('posts/store',                         'PostController@storeFake')     ->name('posts.store.fake');
+    Route::get      ('fake/store',                         'PostController@storeFake')     ->name('posts.store.fake');
     Route::resource ('posts',                               'PostController')               ->except(['index', 'show']);
     
     // prifile/user routes

@@ -27,11 +27,13 @@
 
 @section('content')
 
+<!--
     <div id="developmentStage">
         <p id="developmentStageText">{{__('ui.development')}}</p>
         <br>
         <a href = "mailto: web.rigmanager@gmail.com">web.rigmanager@gmail.com</a>
     </div>
+-->
 
     <div class="authBody">
         <div>

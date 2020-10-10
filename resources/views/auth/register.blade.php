@@ -27,15 +27,15 @@
 
 @section('content')
 
+<!--
     <div id="developmentStage">
         <p id="developmentStageText">{{__('ui.development')}}</p>
         <br>
         <a href = "mailto: web.rigmanager@gmail.com">web.rigmanager@gmail.com</a>
     </div>
-
+-->
     <div id="userData">
-        <!--action="loc_url(route('register'))"-->
-        <form id="formSignup" method="POST" action="#" enctype="multipart/form-data">
+        <form id="formSignup" method="POST" action="{{loc_url(route('register'))}}" enctype="multipart/form-data">
             @csrf
             <div id="formContent">
                 <nav>

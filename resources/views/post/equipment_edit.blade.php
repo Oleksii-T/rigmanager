@@ -357,6 +357,7 @@
                     });
 
                     this.on("successmultiple", function(){
+                        alert('redirecting to fake store route...');
                         window.location="{{ loc_url(route('posts.store.fake')) }}";
                     });
 

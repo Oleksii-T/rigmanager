@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         
-        factory(App\Post::class, 50)->create();
+        //factory(App\Post::class, 50)->create();
 
         DB::table('usd_exchanges')->insert([
             'id' => 1,
@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Http\Controllers\UsdExchangeController::update();
 
+        // user 1 - Administrator
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'Administrator',
@@ -45,7 +46,8 @@ class DatabaseSeeder extends Seeder
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
-
+        
+        // post dp
         DB::table('posts')->insert([
             'user_id' => 1,
             'thread' => 1,
@@ -100,8 +102,8 @@ class DatabaseSeeder extends Seeder
                 GOST thread: З-73
                 Thread API 7-1 (GOST): З-73
                 API thread (GOST): З-73', 
-            'cost' => '5148.00',
-            'currency' => 'UAH',
+            'cost' => '79.00',
+            'currency' => 'USD',
             'user_email' => 'alex.tarbeev@gmail.com',
             'user_phone_raw' => '0502115147',
             'viber' => '1',
@@ -110,7 +112,32 @@ class DatabaseSeeder extends Seeder
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
+/*
+        // image dp
+        DB::table('post_images')->insert([
+            'id' => 1,
+            'post_id' => 1,
+            'serial_no' => 1,
+            'path' => '1/pipe_optimized.jpeg',
+            'version' => 'optimized',
+            'size' => 84,
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
 
+        // image dp
+        DB::table('post_images')->insert([
+            'id' => 2,
+            'post_id' => 1,
+            'serial_no' => 1,
+            'path' => '1/pipe_origin.jpeg',
+            'version' => 'origin',
+            'size' => 84,
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+*/
+        // post swivel
         DB::table('posts')->insert([
             'user_id' => 1,
             'thread' => 1,
@@ -198,14 +225,39 @@ class DatabaseSeeder extends Seeder
                 
                 Weight, kg: 508
                 Shipping dimensions, mm: 1800x710x970',
-            'cost' => '2345808.10',
+            'cost' => '32512.10',
             'currency' => 'USD',
             'region_encoded' => '9',
             'user_email' => 'alex.tarbeev@gmail.com',
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
+/*
+        // image swivel
+        DB::table('post_images')->insert([
+            'id' => 2,
+            'post_id' => 1,
+            'serial_no' => 1,
+            'path' => '1/pipe_origin.jpeg',
+            'version' => 'origin',
+            'size' => 84,
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
 
+        // image swivel
+        DB::table('post_images')->insert([
+            'id' => 2,
+            'post_id' => 1,
+            'serial_no' => 1,
+            'path' => '1/pipe_origin.jpeg',
+            'version' => 'origin',
+            'size' => 84,
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+*/
+        // post cone bit
         DB::table('posts')->insert([
             'user_id' => 1,
             'thread' => 1,
@@ -286,6 +338,46 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()
         ]);
 
+        // post pdc coring bit
+        DB::table('posts')->insert([
+            'user_id' => 1,
+            'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
+            'title' => 'PDC коронка HQ',
+            'title_uk' => 'PDC коронка HQ',
+            'title_en' => 'PDC Coring bit HQ',
+            'type' => '1',
+            'role' => '1',
+            'condition' => 1,
+            'tag_encoded' => '6.1.5',
+            'description' => 'Страна происхождения:	ЧЕХИЯ
+                Cрок поставки:	2-3 недели
+                Основные технические параметры
+                
+                Диаметр, мм (дюйм):	95,8
+                Внутренний диаметр, мм (дюйм):',
+            'description_uk' => 'Країна походження: ЧЕХІЯ
+                Термін поставки: 2-3 тижні
+                Основні технічні параметри
+                
+                Діаметр, мм (дюйм): 95,8
+                Внутрішній діаметр, мм (дюйм):',
+            'description_en' => 'Country of origin: CZECH REPUBLIC
+            Delivery time: 2-3 weeks
+            Main technical parameters
+            
+            Diameter, mm (inch): 95.8
+            Inner diameter, mm (inch):',
+            'cost' => '1407.00',
+            'currency' => 'USD',
+            'user_email' => 'sample.email@mail.com',
+            'user_phone_raw' => '0123456789',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        // user 2 - Pavel
         DB::table('users')->insert([
             'id' => 2,
             'name' => 'Pavel',
@@ -297,6 +389,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()
         ]);
 
+        // post slips
         DB::table('posts')->insert([
             'user_id' => 2,
             'thread' => 1,
@@ -309,7 +402,7 @@ class DatabaseSeeder extends Seeder
             'role' => '2',
             'condition' => 2,
             'tag_encoded' => '30.1',
-            'description' => 'ТОВ “Бейкень енергетика Україна” продає  нові роторні клини для обсадної колони, бурильної труби, обваженої бурильної труби, сухарі для роторних клинів.
+            'description' => 'ТОВ “Компанія” продає  нові роторні клини для обсадної колони, бурильної труби, обваженої бурильної труби, сухарі для роторних клинів.
 
                 У в наявності на складі нові:
 
@@ -317,7 +410,7 @@ class DatabaseSeeder extends Seeder
                 Роторні клини ТБТ 9” ~ 8-1/2”;
                 Роторні клини УБТ WT(DCS-S) 3-1/2”, WT (DSC-R) 5-1/2” ~ 7”, Сухарі для роторних клинів УБТ 4 1/2”;
                 Роторні клини БТ W(SDXL) 5”.',
-            'description_ru' => 'ООО "Бейкень энергетика Украины" продает Новые роторные клинья для обсадной колонны, бурильнои трубы, утяжеленный бурильнои трубы, сухари для роторных Клин.
+            'description_ru' => 'ООО "Компания" продает Новые роторные клинья для обсадной колонны, бурильнои трубы, утяжеленный бурильнои трубы, сухари для роторных Клин.
 
                 В в наличии на складе Новые:
 
@@ -325,15 +418,15 @@ class DatabaseSeeder extends Seeder
                 Роторные клинья ТБТ 9 "~ 8-1 / 2";
                 Роторные клинья УБТ WT (DCS-S) 3-1 / 2 ", WT (DSC-R) 5-1 / 2" ~ 7 ", Сухари для роторных Клин УБТ 4 1/2";
                 Роторные клинья БТ W (SDXL) 5 ".',
-            'description_en' => 'Baiken Energetika Ukraine LLC sells New rotary wedges for casing, drill pipe, weighted drill pipe, crackers for rotary wedges.
+            'description_en' => 'Company LLC sells New rotary slips for casing, drill pipe, weighted drill pipe, crackers for rotary slips.
 
                 In stock New:
 
-                Rotary casing wedges WG (CMS-XL) 5 ", WG (CMS-XL) 20";
-                Rotary wedges of TBT 9 "~ 8-1 / 2";
-                Rotary wedges of UBT WT (DCS-S) 3-1 / 2 ", WT (DSC-R) 5-1 / 2" ~ 7 ", Rusks for rotary wedges of UBT 4 1/2";
-                Rotary wedges BT W (SDXL) 5 ".',
-            'user_email' => 'pavlo.tarbeiev@beiken.com',
+                Rotary casing slips WG (CMS-XL) 5 ", WG (CMS-XL) 20";
+                Rotary slips of TBT 9 "~ 8-1 / 2";
+                Rotary slips of UBT WT (DCS-S) 3-1 / 2 ", WT (DSC-R) 5-1 / 2" ~ 7 ", Rusks for rotary slips of UBT 4 1/2";
+                Rotary slips BT W (SDXL) 5 ".',
+            'user_email' => 'pavlo.tarbeiev@gmail.com',
             'user_phone_raw' => '0671859633',
             'region_encoded' => '16',
             'viber' => '1',
@@ -342,6 +435,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()
         ]);
 
+        // post drawworks
         DB::table('posts')->insert([
             'user_id' => 2,
             'thread' => 1,
@@ -354,7 +448,7 @@ class DatabaseSeeder extends Seeder
             'role' => '2',
             'condition' => 2,
             'tag_encoded' => '26.4',
-            'description' => 'ТОВ “Бейкень енергетика Україна” продає нові пневматичні лебідки 5т та запчастини для бурової лебідки.
+            'description' => 'ТОВ “Компанія” продає нові пневматичні лебідки 5т та запчастини для бурової лебідки.
 
                 У в наявності на складі нові:
 
@@ -363,7 +457,7 @@ class DatabaseSeeder extends Seeder
                 Цеп бурової лебідки 254 576, цеп бурової лебідки 32S-2, цеп бурової лебідки 33S-4;
                 Супорт в зборі DBS75-3-00.
                 Більш детальну інформацію (сертифікати, паспорти і т. д.) ви можете отримати, надіславши запит за адресою електронної пошти або по телефону нижче.',
-            'description_ru' => 'ООО "Бейкень энергетика Украины" продает новые пневматические лебедки 5т и запчасти для буровой лебедки.
+            'description_ru' => 'ООО "Компания" продает новые пневматические лебедки 5т и запчасти для буровой лебедки.
 
                 В в наличии на складе новые:
 
@@ -372,7 +466,7 @@ class DatabaseSeeder extends Seeder
                 Цепь буровой лебедки 254576, цепь буровой лебедки 32S-2, цепь буровой лебедки 33S-4;
                 Суппорт в сборе DBS75-3-00.
                 Более подробную информацию (сертификаты, паспорта и т. Д.) Можно получить, отправив запрос по адресу электронной почты или по телефону ниже.',
-            'description_en' => 'Baiken Energetika Ukraine LLC sells new 5t pneumatic winches and spare parts for drilling winches.
+            'description_en' => 'Company LLC sells new 5t pneumatic winches and spare parts for drilling winches.
 
                 In stock new:
 
@@ -381,7 +475,7 @@ class DatabaseSeeder extends Seeder
                 Drilling winch chain 254 576, drilling winch chain 32S-2, drilling winch chain 33S-4;
                 Support assembly DBS75-3-00.
                 You can get more detailed information (certificates, passports, etc.) by sending an inquiry by e-mail or by phone below.',
-                'user_email' => 'pavlo.tarbeiev@beiken.com',
+                'user_email' => 'pavlo.tarbeiev@gmail.com',
             'user_phone_raw' => '0671859633',
             'region_encoded' => '16',
             'town' => 'Полтава',
@@ -390,6 +484,64 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()
         ]);
 
+        // post stab
+        DB::table('posts')->insert([
+            'user_id' => 2,
+            'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
+            'title' => 'Калибратор лопастной спиральный 180 мм, длина 1200 мм',
+            'title_uk' => 'Калібратор лопасний спіральний 180 мм, Довжина 1200 мм',
+            'title_en' => 'Stabilizer with spiral blades 180 mm, length 1200mm',
+            'type' => '1',
+            'role' => '1',
+            'condition' => 1,
+            'tag_encoded' => '11.1',
+            'description' => 'Страна происхождения:	РОССИЯ
+                Cрок поставки:	4 недели
+                Основные технические параметры
+                
+                Диаметр, мм (дюйм):	180 (7 3/32)
+                Длина рабочей части, мм:	500
+                Количество лопастей:	3
+                Длина, мм:	1 200
+                Прорези, мм:	130x50
+                Тип лопастей:	спиральный
+                Резьба сверху API (ГОСТ):	4 1/2" Reg pin (НЗ-117)
+                Резьба снизу API (ГОСТ):	4 1/2" Reg box (З-117 муфта)',
+            'description_uk' => 'Країна походження: РОСІЯ
+                Термін поставки: 4 тижні
+                Основні технічні параметри
+                
+                Діаметр, мм (дюйм): 180 (7 3/32)
+                Довжина робочої частини, мм: 500
+                Кількість лопатей: 3
+                Довжина, мм 1 200
+                Прорізи, мм: 130x50
+                Тип лопатей: спіральний
+                Різьба зверху API (ГОСТ): 4 1/2 "Reg pin (НЗ-117)
+                Різьба знизу API (ГОСТ): 4 1/2 "Reg box (З-117 муфта)',
+            'description_en' => 'Country of origin: RUSSIA
+                Delivery time: 4 weeks
+                Main technical parameters
+                
+                Diameter, mm (inch): 180 (7 3/32)
+                Working part length, mm: 500
+                Number of blades: 3
+                Length, mm: 1 200
+                Slot, mm: 130x50
+                Blade type: spiral
+                Top thread API (GOST): 4 1/2 "Reg pin (NZ-117)
+                Bottom thread API (GOST): 4 1/2 "Reg box (Z-117 coupling)',
+            'cost' => '1191.00',
+            'currency' => 'USD',
+            'user_email' => 'sample.email@mail.com',
+            'user_phone_raw' => '0123456789',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        // user 3 - Dmitriy
         DB::table('users')->insert([
             'id' => 3,
             'name' => 'Dmitriy',
@@ -401,6 +553,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()
         ]);
 
+        // post taper tap
         DB::table('posts')->insert([
             'user_id' => 3,
             'thread' => 1,
@@ -449,8 +602,8 @@ class DatabaseSeeder extends Seeder
                 GOST thread: З-50
                 Thread API 7-1 (GOST): З-50
                 API thread (GOST): З-50',
-            'cost' => '7105.49',
-            'currency' => 'UAH',
+            'cost' => '100.49',
+            'currency' => ' USD',
             'user_email' => 'dmytro.tarbeiev@gmail.com',
             'user_phone_raw' => '0521345442',
             'region_encoded' => '10',
@@ -459,6 +612,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()
         ]);
 
+        // post well cam
         DB::table('posts')->insert([
             'user_id' => 3,
             'thread' => 1,
@@ -528,8 +682,8 @@ class DatabaseSeeder extends Seeder
                 Shipping Information
 
                 Weight, kg: 20',
-            'cost' => '620153.70',
-            'currency' => 'UAH',
+            'cost' => '8824.70',
+            'currency' => 'USD',
             'user_email' => 'dmytro.tarbeiev@gmail.com',
             'user_phone_raw' => '0521345442',
             'viber' => '1',
@@ -537,6 +691,64 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()
         ]);
 
+        // post stab
+        DB::table('posts')->insert([
+            'user_id' => 3,
+            'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
+            'title' => 'Калибратор лопастной спиральный 244 мм',
+            'title_uk' => 'Калібратор лопасний спіральний 244 мм',
+            'title_en' => 'Stabilizer with spiral blades 244 mm',
+            'type' => '1',
+            'role' => '1',
+            'condition' => 1,
+            'tag_encoded' => '11.1',
+            'description' => 'Страна происхождения:	РОССИЯ
+                Cрок поставки:	4 недели
+                Основные технические параметры
+                
+                Диаметр, мм (дюйм):	244,5 (9 5/8)
+                Длина рабочей части, мм:	500
+                Количество лопастей:	3
+                Длина, мм:	1 500
+                Прорези, мм:	152х50
+                Тип лопастей:	спиральный
+                Резьба сверху API (ГОСТ):	4 1/2" Reg pin (НЗ-117)
+                Резьба снизу API (ГОСТ):	4 1/2" Reg box (З-117 муфта)',
+            'description_uk' => 'Країна походження: РОСІЯ
+                Термін поставки: 4 тижні
+                Основні технічні параметри
+                
+                Діаметр, мм (дюйм): 244,5 (9 5/8)
+                Довжина робочої частини, мм: 500
+                Кількість лопатей: 3
+                Довжина, мм: 1 500
+                Прорізи, мм: 152х50
+                Тип лопатей: спіральний
+                Різьба зверху API (ГОСТ): 4 1/2 "Reg pin (НЗ-117)
+                Різьба знизу API (ГОСТ): 4 1/2 "Reg box (З-117 муфта)',
+            'description_en' => 'Country of origin: RUSSIA
+                Delivery time: 4 weeks
+                Main technical parameters
+                
+                Diameter, mm (inch): 244.5 (9 5/8)
+                Working part length, mm: 500
+                Number of blades: 3
+                Length, mm: 1 500
+                Slots, mm: 152x50
+                Blade type: spiral
+                Top thread API (GOST): 4 1/2 "Reg pin (NZ-117)
+                Bottom thread API (GOST): 4 1/2 "Reg box (Z-117 coupling)',
+            'cost' => '2383.00',
+            'currency' => 'USD',
+            'user_email' => 'sample.email@mail.com',
+            'user_phone_raw' => '0123456789',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        // user 4 - yaroslav
         DB::table('users')->insert([
             'id' => 4,
             'name' => 'Yaroslav',
@@ -549,6 +761,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()
         ]);
 
+        // post tds
         DB::table('posts')->insert([
             'user_id' => 4,
             'thread' => 1,
@@ -618,8 +831,8 @@ class DatabaseSeeder extends Seeder
                 Shipping Information
                 
                 Weight, kg: 900',
-            'cost' => '2338242.07',
-            'currency' => 'UAH',
+            'cost' => '86439.07',
+            'currency' => 'USD',
             'user_email' => 'yarikmoklyak2010@gmail.com',
             'user_phone_raw' => '1234567890',
             'telegram' => '1',
@@ -627,6 +840,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()
         ]);
 
+        // post plung pump
         DB::table('posts')->insert([
             'user_id' => 4,
             'thread' => 1,
@@ -634,7 +848,7 @@ class DatabaseSeeder extends Seeder
             'user_translations' => '{"title":[],"description":[]}',
             'title' => 'Плунжерный насос Wheatley T365-AM (59T-3M), новый',
             'title_uk' => 'Плунжерный насос Wheatley T365-AM (59T-3M), новый',
-            'title_ru' => 'Plunger pump Wheatley T365-AM (59T-3M), new',
+            'title_en' => 'Plunger pump Wheatley T365-AM (59T-3M), new',
             'type' => '1',
             'role' => '1',
             'condition' => 1,
@@ -720,14 +934,358 @@ class DatabaseSeeder extends Seeder
                 
                 Weight, kg: 500
                 Shipping dimensions, mm: 1200x800x500',
-            'cost' => '1209378.72',
-            'currency' => 'UAH',
+            'cost' => '78900.00',
+            'currency' => 'USD',
             'user_email' => 'yarikmoklyak2010@gmail.com',
             'user_phone_raw' => '1234567890',
             'telegram' => '1',
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
+
+        // post dc
+        DB::table('posts')->insert([
+            'user_id' => 4,
+            'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
+            'title' => 'Утяжеленная буровая труба 168х45х3000 мм',
+            'title_uk' => 'Обважена бурильна труба 168х45х3000 мм',
+            'title_en' => 'Drillic Collar DC 168х45х3000 mm',
+            'type' => '1',
+            'role' => '1',
+            'condition' => 1,
+            'tag_encoded' => '2.9',
+            'description' => 'Страна происхождения:	РОССИЯ
+                Cрок поставки:	10 дней
+                Основные технические параметры
+                
+                Вес нетто, кг:	410
+                Диаметр, мм (дюйм):	168 (6 39/64)
+                Длина, мм:	3 000
+                Прорези, мм:	70х40
+                Резьба API (ГОСТ):	4 1/2" Reg box (МЗ-117)
+                Толщина стенки, мм:	45
+                Карбонитрация:	Нет
+                Резьбовой проектор:	Нет
+                Информация для отгрузки
+                
+                Вес, кг:	430',
+            'description_uk' => 'Країна походження: РОСІЯ
+                Термін поставки: 10 днів
+                Основні технічні параметри
+            
+                Вага нетто, кг: 410
+                Діаметр, мм (дюйм): 168 (6 39/64)
+                Довжина, мм: 3 000
+                Прорізи, мм: 70х40
+                Різьба API (ГОСТ): 4 1/2 "Reg box (МЗ-117)
+                Товщина стінки, мм: 45
+                Карбонітрація: Немає
+                Різьбовій проектор: Немає
+                Інформація для відвантаження
+            
+                Вага, кг: 430',
+            'description_en' => 'Country of origin: RUSSIA
+                Delivery time: 10 days
+                Main technical parameters
+            
+                Net weight, kg: 410
+                Diameter, mm (inch): 168 (6 39/64)
+                Length, mm: 3000
+                Slot, mm: 70x40
+                API thread (GOST): 4 1/2 "Reg box (MZ-117)
+                Wall thickness, mm: 45
+                Carbonitration: No
+                Threaded Projector: No
+                Shipping Information
+            
+                Weight, kg: 430',
+            'cost' => '923.00',
+            'currency' => 'USD',
+            'user_email' => 'sample.email@mail.com',
+            'user_phone_raw' => '0123456789',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        // user 5 - TEST
+        DB::table('users')->insert([
+            'id' => 5,
+            'name' => 'User',
+            'phone_raw' => '0123456789',
+            'telegram' => '1',
+            'email' => 'sample.email@mail.com',
+            'email_verified_at' => Carbon\Carbon::now(),
+            'password' => Hash::make('password'),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        // post dp
+        DB::table('posts')->insert([
+            'user_id' => 5,
+            'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
+            'title' => 'Буровая труба 42х3,5х2000 мм, резьба З-42',
+            'title_uk' => 'Бурова труба 42х3,5х2000 мм, різьба З-42',
+            'title_en' => 'Drilling pipe 42х3,5х2000 mm, thread З-42',
+            'type' => '1',
+            'role' => '1',
+            'condition' => 1,
+            'tag_encoded' => '2.8',
+            'description' => 'Производитель:	DM Bits
+                Страна происхождения:	РОССИЯ
+                Cрок поставки:	3-4 недели
+                Основные технические параметры
+                
+                Длина, мм:	2 000
+                Материал корпуса трубы:	сталь 45
+                Толщина стенки, мм:	3,5
+                Материал замка трубы:	30ХГСА
+                Диаметр, мм (дюйм):	42 (1 21/32)
+                Резьба API (ГОСТ):	З-42',
+            'description_uk' => 'Виробник: DM Bits
+                Країна походження: РОСІЯ
+                Термін поставки: 3-4 тижні
+                Основні технічні параметри
+                
+                Довжина, мм: 2 000
+                Матеріал корпусу труби: сталь 45
+                Товщина стінки, мм: 3,5
+                Матеріал замку труби: 30ХГСА
+                Діаметр, мм (дюйм): 42 (1 21/32)
+                Різьба API (ГОСТ): З-42',
+            'description_en' => 'Manufacturer: DM Bits
+                Country of origin: RUSSIA
+                Delivery time: 3-4 weeks
+                Main technical parameters
+                
+                Length, mm: 2000
+                Pipe body material: steel 45
+                Wall thickness, mm: 3.5
+                Pipe lock material: 30HGSA
+                Diameter, mm (inch): 42 (1 21/32)
+                API thread (GOST): З-42',
+            'cost' => '54.00',
+            'currency' => 'USD',
+            'user_email' => 'sample.email@mail.com',
+            'user_phone_raw' => '0123456789',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        // post dp
+        DB::table('posts')->insert([
+            'user_id' => 5,
+            'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
+            'title' => 'Буровая труба 73х5,5х2000 мм, резьба З-63,5',
+            'title_uk' => 'Бурова труба 73х5,5х2000 мм, різьба З-63,5',
+            'title_en' => 'Drilling pipe 73х5,5х2000 mm, thread З-63,5',
+            'type' => '1',
+            'role' => '1',
+            'condition' => 1,
+            'tag_encoded' => '2.8',
+            'description' => 'Производитель:	DM Bits
+                Страна происхождения:	РОССИЯ
+                Cрок поставки:	2-3 недели
+                Основные технические параметры
+                
+                Длина, мм:	2 000
+                Материал корпуса трубы:	сталь 45
+                Толщина стенки, мм:	4
+                Способ присоединения замков:	сталь 30ХГСА с термообработкой до 32 HRC
+                Карбонитрация:	Нет
+                Резьбовой проектор:	Нет
+                Материал замка трубы:	30ХГСА
+                Прорези, мм:	65х45
+                Вес нетто, кг:	20
+                Диаметр, мм (дюйм):	73
+                Резьба API (ГОСТ):	З-63,5
+                Информация для отгрузки
+                
+                Вес, кг:	21',
+            'description_uk' => 'Виробник: DM Bits
+                Країна походження: РОСІЯ
+                Термін поставки: 2-3 тижні
+                Основні технічні параметри
+                
+                Довжина, мм: 2 000
+                Матеріал корпусу труби: сталь 45
+                Товщина стінки, мм: 4
+                Спосіб приєднання замків: сталь 30ХГСА з термообробкою до 32 HRC
+                Карбонітрація: Немає
+                Різьбовій проектор: Немає
+                Матеріал замку труби: 30ХГСА
+                Прорізи, мм: 65х45
+                Вага нетто, кг: 20
+                Діаметр, мм (дюйм): 73
+                Різьба API (ГОСТ): З-63,5
+                Інформація для відвантаження
+                
+                Вага, кг: 21',
+            'description_en' => 'Manufacturer: DM Bits
+                Country of origin: RUSSIA
+                Delivery time: 2-3 weeks
+                Main technical parameters
+                
+                Length, mm: 2000
+                Pipe body material: steel 45
+                Wall thickness, mm: 4
+                Method of connecting locks: steel 30HGSA with heat treatment up to 32 HRC
+                Carbonitration: No
+                Threaded Projector: No
+                Pipe lock material: 30HGSA
+                Slots, mm: 65x45
+                Net weight, kg: 20
+                Diameter, mm (inch): 73
+                API thread (GOST): З-63.5
+                Shipping Information
+                
+                Weight, kg: 21',
+            'cost' => '82.00',
+            'currency' => 'USD',
+            'user_email' => 'sample.email@mail.com',
+            'user_phone_raw' => '0123456789',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        // post hy tong
+        DB::table('posts')->insert([
+            'user_id' => 5,
+            'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
+            'title' => 'Гидравлический ключ для раскручивания труб Model 41B',
+            'title_uk' => 'Гідравлічний ключ для для розкручування труб Model 41B',
+            'title_en' => 'Hydraulic pipe tong Model 41M',
+            'type' => '1',
+            'role' => '1',
+            'condition' => 1,
+            'tag_encoded' => '29.2',
+            'description' => 'Страна происхождения:	СОЕДИНЕННЫЕ ШТАТЫ
+                Cрок поставки:	4 недели
+                Информация о товаре
+                
+                Гидравлический ключ MODEL 1B предназначен для раскручивания буровых и обсадных труб диаметром от 22 до 114 мм. Позволяет значительно облегчить работу по спуску и подъему буровых труб, обеспечивает безопасность и отличную скорость работы, увеличивая общую эффективность.
+                Основные технические параметры
+                
+                Диаметр раскручиваемого инструмента, мм:	22-114,3
+                Привод:	Требования гидравлики: 95 л/мин@137 бар
+                Максимальный крутящий момент, Нм:	1 355
+                Макс.давление, кПа:	20 684
+                Вес нетто, кг:	140
+                Гарантия:	1 год
+                Максимальная частота вращения, об/мин:	160
+                Информация для отгрузки
+                
+                Вес, кг:	153
+                Отгрузочные размеры, мм:	600x600x600',
+            'description_uk' => 'Країна походження: СПОЛУЧЕНИХ ШТАТІВ
+                Термін поставки: 4 тижні
+                Інформація про товар
+                
+                Гідравлічний ключ MODEL 1B призначений для розкручування бурових і обсадних труб діаметром від 22 до 114 мм. Дозволяє значно полегшити роботу по спуску і підйому бурових труб, забезпечує безпеку і відмінну швидкість роботи, збільшуючи загальну ефективність.
+                Основні технічні параметри
+                
+                Діаметр розкручуваного інструменту, мм: 22-114,3
+                Привід: Вимоги гідравліки: 95 л / хв @ 137 бар
+                Максимальний крутний момент, Нм: 1 355
+                Макс.давленіе, кПа: 20, 684
+                Вага нетто, кг: 140
+                Гарантія: 1 рік
+                Максимальна частота обертання, об / хв: 160
+                Інформація для відвантаження
+                
+                Вага, кг: 153
+                Відвантажувальні розміри, мм: 600x600x600',
+            'description_en' => 'Country of origin: UNITED STATES
+                Delivery time: 4 weeks
+                Product information
+                
+                The MODEL 1B hydraulic tong is designed for untwisting drill and casing pipes with a diameter of 22 to 114 mm. Allows to greatly facilitate the work of running and retrieving drill pipes, provides safety and excellent working speed, increasing overall efficiency.
+                Main technical parameters
+                
+                The diameter of the untwisted tool, mm: 22-114.3
+                Drive: Hydraulic requirement: 95 l / min @ 137 bar
+                Maximum torque, Nm: 1 355
+                Max pressure, kPa: 20 684
+                Net weight, kg: 140
+                Warranty: 1 year
+                Maximum frequency of rotation, rpm: 160
+                Shipping Information
+                
+                Weight, kg: 153
+                Shipping dimensions, mm: 600x600x600',
+            'cost' => '11296.00',
+            'currency' => 'USD',
+            'user_email' => 'sample.email@mail.com',
+            'user_phone_raw' => '0123456789',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        // post casing
+        DB::table('posts')->insert([
+            'user_id' => 5,
+            'thread' => 1,
+            'origin_lang' => 'ru',
+            'user_translations' => '{"title":[],"description":[]}',
+            'title' => 'Обсадная труба 114х10х1000 мм, с приварными замками, многоразовая',
+            'title_uk' => 'Обсадна труба 114х10х1000 мм, з приварними замками, багаторазова',
+            'title_en' => 'Casing pipe 114х10х1000 mm, with welded coupling, reusable',
+            'type' => '1',
+            'role' => '1',
+            'condition' => 1,
+            'tag_encoded' => '13.2',
+            'description' => 'Производитель:	DM Bits
+                Страна происхождения:	РОССИЯ
+                Cрок поставки:	3-4 недели
+                Основные технические параметры
+                
+                Длина, мм:	3 000
+                Толщина стенки, мм:	4
+                Материал замка трубы:	30ХГСА
+                Материал корпуса трубы:	сталь 45
+                Резьба API 7-1 (ГОСТ):	З-73
+                Способ присоединения замков:	сталь 30ХГСА с термообработкой до 32 HRC
+                Резьба API (ГОСТ):	З-73',
+            'description_uk' => 'Виробник: DM Bits
+                Країна походження: РОСІЯ
+                Термін поставки: 3-4 тижні
+                Основні технічні параметри
+                
+                Довжина, мм: 3 000
+                Товщина стінки, мм: 4
+                Матеріал замку труби: 30ХГСА
+                Матеріал корпусу труби: сталь 45
+                Різьба API 7-1 (ГОСТ): З-73
+                Спосіб приєднання замків: сталь 30ХГСА з термообробкою до 32 HRC
+                Різьба API (ГОСТ): З-73',
+            'description_en' => 'Manufacturer: DM Bits
+                Country of origin: RUSSIA
+                Delivery time: 3-4 weeks
+                Main technical parameters
+                
+                Length, mm: 3000
+                Wall thickness, mm: 4
+                Pipe lock material: 30HGSA
+                Pipe body material: steel 45
+                Thread API 7-1 (GOST): З-73
+                Method of connecting locks: steel 30HGSA with heat treatment up to 32 HRC
+                API thread (GOST): З-73',
+            'cost' => '108.00',
+            'currency' => 'USD',
+            'user_email' => 'sample.email@mail.com',
+            'user_phone_raw' => '0123456789',
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
 
         /*
         // Long Data Test
