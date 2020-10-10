@@ -27,14 +27,11 @@ Route::middleware('auth')->group(function () {
     Route::delete   ('profile/delete',  'UserController@destroy')->name('profile.delete');
 });
 
-// posts routes
-Route::get          ('posts/{post}',                        'PostController@show')          ->name('posts.show');
-
 Route::middleware('verified')->group(function () {
 
     // posts routes
-    Route::get      ('posts/create/service',                'PostController@serviceCreate') ->name('service.create');
     Route::get      ('fake/store',                         'PostController@storeFake')     ->name('posts.store.fake');
+    Route::get      ('posts/create/service',                'PostController@serviceCreate') ->name('service.create');
     Route::resource ('posts',                               'PostController')               ->except(['index', 'show']);
     
     // prifile/user routes
@@ -50,3 +47,6 @@ Route::middleware('verified')->group(function () {
     Route::get      ('profile/mailer/edit',             'MailerController@edit')        ->name('mailer.edit');
     Route::resource ('profile/mailer',                  'MailerController')             ->except(['show', 'edit', 'update', 'destroy']); 
 });
+
+// posts routes
+Route::get          ('posts/{post}',                        'PostController@show')          ->name('posts.show');
