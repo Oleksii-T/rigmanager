@@ -546,10 +546,10 @@
                         // Remove wait cursor
                         button.removeClass('loading'); 
                     },
-                    error: function() {
-                        // Print error massage
-                        showPopUpMassage(false, "{{ __('messages.error') }}");
-                        // Remove wait cursor
+                    error: function(xhr, status, error) {
+                        xhr['status'] == 403
+                            ? showPopUpMassage(false, "{{ __('messages.authError') }}")
+                            : showPopUpMassage(false, "{{ __('messages.error') }}");
                         button.removeClass('loading');
                     }
                 });
@@ -571,8 +571,10 @@
                             : showPopUpMassage(false, "{{ __('messages.mailerTagExists') }}") ;
                         button.removeClass('loading'); 
                     },
-                    error: function() {
-                        showPopUpMassage(false, "{{ __('messages.error') }}");
+                    error: function(xhr, status, error) {
+                        xhr['status'] == 403
+                            ? showPopUpMassage(false, "{{ __('messages.authError') }}")
+                            : showPopUpMassage(false, "{{ __('messages.error') }}");
                         button.removeClass('loading'); 
                     }
                 });
@@ -594,10 +596,10 @@
                         // Remove wait cursor
                         button.removeClass('loading'); 
                     },
-                    error: function() {
-                        // Print error massage
-                        showPopUpMassage(false, "{{ __('messages.error') }}");
-                        // Remove wait cursor
+                    error: function(xhr, status, error) {
+                        xhr['status'] == 403
+                            ? showPopUpMassage(false, "{{ __('messages.authError') }}")
+                            : showPopUpMassage(false, "{{ __('messages.error') }}");
                         button.removeClass('loading'); 
                     }
                 });

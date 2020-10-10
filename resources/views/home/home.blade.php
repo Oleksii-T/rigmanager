@@ -88,6 +88,11 @@
                 showPopUpMassage(false, "{{ __('messages.postAddFavPersonal') }}");
             });
 
+            //if guest tries to add item to fav list
+            $(".addToFavButtonAuthBlocked").click(function(){
+                showPopUpMassage(false, "{{ __('messages.authError') }}");
+            });
+
             //action when user clicks on addToFav icon
             $(".addToFavButton").click(function(){
                 var postId = getIdFromClasses($(this).attr("class"), 'id_');

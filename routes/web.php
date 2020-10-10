@@ -24,6 +24,9 @@ if (env('MAINTENANCE')) {
 Route::get          ('emailexists',                         'UserController@emailExists')       ->name('email.exist'); //Ajax reqeust
 Route::get          ('usernameexists',                      'UserController@userNameExists')    ->name('username.exist'); //Ajax reqeust
 
+// post filters routes
+Route::post         ('filter',                              'FiltersController@filter')         ->name('post.filter'); //Ajax reqeust
+
 Route::middleware('verified')->group(function () {
 
     // post routes
@@ -33,9 +36,6 @@ Route::middleware('verified')->group(function () {
     Route::patch    ('posts/images/delete/{post}/{image}',  'PostController@imgDel')            ->name('posts.img.delete'); //Ajax reqeust
     Route::delete   ('ajax/posts/a//{post}',                'PostController@destroyAjax')       ->name('posts.destroy.ajax'); //Ajax reqeust
     Route::post     ('ajax/posts/toggle/status/{post}',     'PostController@togglePost')        ->name('post.toggle'); //Ajax reqeust
-
-    // post filters routes
-    Route::post     ('filter',                              'FiltersController@filter')         ->name('post.filter'); //Ajax reqeust
 
     // user routes
     Route::get      ('ajax/profile/favourite',              'UserController@addToFav')          ->name('toFav'); //Ajax reqeust

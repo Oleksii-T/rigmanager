@@ -31,12 +31,17 @@
             </div>
 
             @if ($button == 'addToFav')
-                @if (auth()->user())
+                @auth
                     <button class="{{ $post->user_id == auth()->user()->id ? 'addToFavButtonBlocked' : 'addToFavButton'}} id_{{$post->id}}">
                         <img class="{{ auth()->user()->favPosts->contains($post) ? 'active-fav-img' : '' }} addToFavImg id_{{$post->id}} img-hover-scale" title="{{__('ui.addToFav')}}" src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
                         <span><i>{{__('ui.addToFav')}}</i></span>
                     </button>
-                @endif
+                @else
+                    <button class="addToFavButtonAuthBlocked">
+                        <img class="addToFavImg img-hover-scale" title="{{__('ui.addToFav')}}" src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        <span><i>{{__('ui.addToFav')}}</i></span>
+                    </button>
+                @endauth
             @elseif ($button == 'removeFromFav')
                 <button class="addToFavButton id_{{$post->id}}">
                     <img class="addToFavImg img-hover-scale" title="{{__('ui.removeFromFav')}}" src="{{ asset('icons/heartOrangeIcon.svg') }}" alt="{{__('alt.keyword')}}">

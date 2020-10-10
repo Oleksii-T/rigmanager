@@ -80,7 +80,8 @@ span.post-type {
 .misc { font-size: 80%; }
 
 .addToFavButton,
-.addToFavButtonBlocked {
+.addToFavButtonBlocked,
+.addToFavButtonAuthBlocked {
     position: absolute;
     top: 0;
     right: 0;

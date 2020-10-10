@@ -56,26 +56,35 @@
         </div>
         <div id="rightContentWraper">
             <div id="rightContent">
-                @if ($post->user_id != Auth::id())
-                    <aside class="element" id="addToFavBtn">
-                        @if (auth()->user()->favPosts->contains($post))
-                            <p>{{__('ui.inFav')}}</p>
-                            <button class="addToFavButton id_{{$post->id}}">
-                                <img src="{{ asset('icons/heartOrangeIcon.svg') }}" title="{{__('ui.removeFromFav')}}" alt="{{__('alt.keyword')}}">
-                            </button> 
-                        @else
-                            <p>{{__('ui.addToFav')}}</p>
-                            <button class="addToFavButton id_{{$post->id}}">
-                                <img src="{{ asset('icons/heartWhiteIcon.svg') }}" title="{{__('ui.addToFav')}}" alt="{{__('alt.keyword')}}">
-                            </button>  
-                        @endif
-                    </aside>
+                @auth
+                    @if ($post->user_id != Auth::id())
+                        <aside class="element" id="addToFavBtn">
+                            @if (auth()->user()->favPosts->contains($post))
+                                <p>{{__('ui.inFav')}}</p>
+                                <button class="addToFavButton id_{{$post->id}}">
+                                    <img src="{{ asset('icons/heartOrangeIcon.svg') }}" title="{{__('ui.removeFromFav')}}" alt="{{__('alt.keyword')}}">
+                                </button> 
+                            @else
+                                <p>{{__('ui.addToFav')}}</p>
+                                <button class="addToFavButton id_{{$post->id}}">
+                                    <img src="{{ asset('icons/heartWhiteIcon.svg') }}" title="{{__('ui.addToFav')}}" alt="{{__('alt.keyword')}}">
+                                </button>  
+                            @endif
+                        </aside>
+                    @else
+                        <aside class="element" id="editBtn">
+                            <p>{{__('ui.yoursPost')}}</p>
+                            <a class="def-button" href="{{ loc_url(route('posts.edit', ['post'=>$post->id])) }}">{{__('ui.edit')}}</a>
+                        </aside>
+                    @endif   
                 @else
-                    <aside class="element" id="editBtn">
-                        <p>{{__('ui.yoursPost')}}</p>
-                        <a class="def-button" href="{{ loc_url(route('posts.edit', ['post'=>$post->id])) }}">{{__('ui.edit')}}</a>
+                    <aside class="element" id="addToFavBtn">
+                        <p>{{__('ui.addToFav')}}</p>
+                        <button class="addToFavButton id_{{$post->id}}">
+                            <img src="{{ asset('icons/heartWhiteIcon.svg') }}" title="{{__('ui.addToFav')}}" alt="{{__('alt.keyword')}}">
+                        </button>
                     </aside>
-                @endif
+                @endauth
 
                 <section class="element" id="authorView">
                     <h4>{{__('ui.postAuthor')}}</h4>
@@ -92,19 +101,21 @@
                     </div>
                     <a class="def-button" href="{{loc_url(route('search.author', ['author'=>$post->user->id]))}}">{{__('ui.otherAuthorPosts')}}</a>
                     <button class="def-button" id="modalTriger">{{__('ui.showContacts')}}</button>
-                    @if ($post->user_id != Auth::id())
-                        <button class="def-button" id="mailerAddAuthor">    
-                            @if (auth()->user()->mailer && auth()->user()->mailer->authors_encoded)
-                                @if ( in_array( $post->user_id, auth()->user()->mailer->authors_encoded ) )
-                                    {{__('ui.mailerRemoveAuthor')}}
+                    @auth
+                        @if ($post->user_id != Auth::id())
+                            <button class="def-button" id="mailerAddAuthor">    
+                                @if (auth()->user()->mailer && auth()->user()->mailer->authors_encoded)
+                                    @if ( in_array( $post->user_id, auth()->user()->mailer->authors_encoded ) )
+                                        {{__('ui.mailerRemoveAuthor')}}
+                                    @else
+                                        {{__('ui.mailerAddAuthor')}}
+                                    @endif
                                 @else
                                     {{__('ui.mailerAddAuthor')}}
                                 @endif
-                            @else
-                                {{__('ui.mailerAddAuthor')}}
-                            @endif
-                        </button>
-                    @endif
+                            </button>
+                        @endif
+                    @endauth
                 </section>
 
                 <aside class="element" id="role">
@@ -267,9 +278,10 @@
                         confirmation(data, postId);
                         button.removeClass('loading');
                     },
-                    error: function() {
-                        // Print error massage
-                        showPopUpMassage(false, "{{ __('messages.error') }}");
+                    error: function(xhr, status, error) {
+                        xhr['status'] == 403
+                            ? showPopUpMassage(false, "{{ __('messages.authError') }}")
+                            : showPopUpMassage(false, "{{ __('messages.error') }}");
                         button.removeClass('loading');
                     }
                 });
@@ -316,9 +328,10 @@
                         }
                         button.removeClass('loading');
                     },
-                    error: function() {
-                        // Print error massage
-                        showPopUpMassage(false, "{{ __('messages.error') }}");
+                    error: function(xhr, status, error) {
+                        xhr['status'] == 403
+                            ? showPopUpMassage(false, "{{ __('messages.authError') }}")
+                            : showPopUpMassage(false, "{{ __('messages.error') }}");
                         button.removeClass('loading');
                     }
                 });

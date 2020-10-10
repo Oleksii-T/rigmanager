@@ -24,6 +24,7 @@ return [
     'postInputErrors' => 'Some fields are incorrect.',
     'postActivated' => 'Post has been published again',
     'postDisactivated' => 'Post has been hidden from public',
+    'authError' => 'You must be logged in to perform this action',
     
     'mailerToManyTags' => 'Too many categories',
     'mailerUploaded' => 'Mailer has been configured successfully!',

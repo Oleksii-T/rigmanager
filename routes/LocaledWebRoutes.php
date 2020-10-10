@@ -27,12 +27,15 @@ Route::middleware('auth')->group(function () {
     Route::delete   ('profile/delete',  'UserController@destroy')->name('profile.delete');
 });
 
+// posts routes
+Route::get          ('posts/{post}',                        'PostController@show')          ->name('posts.show');
+
 Route::middleware('verified')->group(function () {
 
     // posts routes
     Route::get      ('posts/create/service',                'PostController@serviceCreate') ->name('service.create');
     Route::get      ('posts/store',                         'PostController@storeFake')     ->name('posts.store.fake');
-    Route::resource ('posts',                               'PostController')               ->except(['index']);
+    Route::resource ('posts',                               'PostController')               ->except(['index', 'show']);
     
     // prifile/user routes
     Route::get      ('profile/edit',            'UserController@edit')              ->name('profile.edit');
