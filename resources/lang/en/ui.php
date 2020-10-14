@@ -4,12 +4,8 @@ return [
 
     // Dev massages
     'workInProgress' => 'Work In Progress',
-    'development' => 
-    'The website is on the stage of active development. 
-    The functionality for regular users is limited.
-    Release is scheduled for the 01.10.2020.
-    If you want to find out more or take part in beta-testing,
-    contact us by this email',
+    'development' => 'The website is on the stage of active development.
+    The release is scheduled for December 2020.',
     
 
     // no script massage

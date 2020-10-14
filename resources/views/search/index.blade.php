@@ -262,13 +262,14 @@
                 $('div.loading-gif').removeClass('hidden'); //show loading gif
                 $.ajax({
                     type: "POST",
-                    url: "{{route('post.filter')}}",
+                    url: "{{loc_url(route('post.filter'))}}",
                     data: {
                         _token: "{{ csrf_token() }}",
                         filters: JSON.stringify(filters),
                         postsIds: "{{$postsIds}}"
                     },
                     success: function(data) {
+                        console.log(data);
                         $('div.filtered-items').empty(); // remove old items 
                         $('div.loading-gif').addClass('hidden'); //hide loading gif
                         if (data) {
@@ -606,12 +607,12 @@
             });
 
             //if user tries to add his oun item to fav list
-            $(".addToFavButtonBlocked").click(function(){
+            $('body').on("click", ".addToFavButtonBlocked", function(){
                 showPopUpMassage(false, "{{ __('messages.postAddFavPersonal') }}");
             });
 
             //action when user clicks on addToFav icon
-            $(".addToFavButton").click(function(){
+            $('body').on("click", ".addToFavButton", function(){
                 var postId = getIdFromClasses($(this).attr("class"), 'id_');
                 //make cursor wait
                 var button = $(this);
@@ -672,6 +673,8 @@
                 var item_id = $(this).attr("class").split('_')[1];
                 $(".item_id_"+item_id).removeClass('hover');
             });
+
+
 
         });
     </script>

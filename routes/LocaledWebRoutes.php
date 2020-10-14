@@ -17,6 +17,9 @@ Route::get('sitemap',   'HomeController@sitemap')   ->name('site.map');
 Route::get  ('contact-us',      'HomeController@contacts')  ->name('contacts');
 Route::post ('contacting',      'HomeController@contactUs') ->name('contact.us');
 
+// post filters routes
+Route::post         ('filter',                              'FiltersController@filter')         ->name('post.filter'); //Ajax reqeust
+
 // search routes
 Route::get('search/text',                   'SearchController@searchText')  ->name('search.text');
 Route::get('search/category/{category}',    'SearchController@searchTag')   ->name('search.tag');
