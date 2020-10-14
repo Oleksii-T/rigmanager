@@ -73,7 +73,7 @@
 
                     <div id="btns">
                         <button class="def-button submit-button" type="submit">{{__('ui.signIn')}}</button>
-                        <a href="/password/forgot">{{__('ui.forget password')}}</a>
+                        <a href="{{loc_url(route('password.request'))}}">{{__('ui.forget password')}}</a>
                     </div>
             
                 </form>
@@ -87,7 +87,8 @@
                         </a>
                     </div>
                     <div>
-                        <a class="socialLink" href="{{route('login.social', ['social'=>'facebook'])}}">
+                        <!--{{route('login.social', ['social'=>'facebook'])}}-->
+                        <a class="socialLink" href="{{route('in.progress')}}">
                             <img class="socialLogo" src="{{ asset('icons/facebookIcon.svg') }}" alt="{{__('alt.keyword')}}">
                             Facebook
                         </a>

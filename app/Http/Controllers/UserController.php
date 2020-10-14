@@ -151,7 +151,7 @@ class UserController extends Controller
 
     public function subscription()
     {
-        return view('subscription.show');
+        return view('profile.subscription');
     }
     
 }

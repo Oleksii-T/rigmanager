@@ -60,6 +60,11 @@ return [
     We are updating and improving our Auto-Translator to achieve the best translation result.
     Currently, we are using Phrase-Based Google Cloud Translation Model.',
 
+    'qRelease' => 'When website will be released?',
+    'aRelease' => 'There is still a lot of work ahead to make our service reliable, full of content and recognizable by every Ukraine Oil & Gas company.
+    We do our best to get the service running as quickly as possible.
+    We are planning the first release in December 2020.',
+
     'q' => '',
     'a' => '',
 

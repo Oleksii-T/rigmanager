@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <div id="profileContentWraper">
+    <div class="master-wraper">
         <div id="profileContent">
             <nav class="profileNavBar">
                 <ul>
@@ -16,7 +16,7 @@
                 </ul>
             </nav>
             <div>
-                <p id="in-progress" style="margin: 20px; font-size: 150%;">{{__('ui.workInProgress')}}</p>
+                <x-in-progress/>
             </div>
         </div>
     </div>
@@ -30,6 +30,5 @@
             $("div.flash").delay(3000).fadeOut(350);
 
         });
-        
     </script>
 @endsection

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Rules\Phone;
 use App\Rules\UserName;
 use App\Rules\Password;
+use App\Http\Controllers\Traits\ImageUploader;
 
 class RegisterController extends Controller
 {
@@ -27,7 +28,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers, ImageUploader;
 
     /**
      * Where to redirect users after registration.
@@ -75,17 +76,22 @@ class RegisterController extends Controller
         $viber = array_key_exists('viber', $data) ? 1 : 0;
         $telegram = array_key_exists('telegram', $data) ? 1 : 0;
         $whatsapp = array_key_exists('whatsapp', $data) ? 1 : 0;
-        return User::create([
+        $phone = array_key_exists('whatsapp', $data) ? $data['phone'] : null;
+        $user = User::create([
             'name' => $data['name'],
-            'phone' => $data['phone'],
+            'phone' => $phone,
             'viber' => $viber,
             'telegram' => $telegram,
             'whatsapp' => $whatsapp,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        if ( array_key_exists('ava', $data) ) {
+            $this->userImageUpload($data['ava'], $user);
+        }
+        return $user;
     }
-
+//alex.media.t@gmail.com
     /**
      * The user has been registered.
      *
@@ -95,7 +101,6 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        sleep(5);
-        //Session::flash('message-success', __('messages.signedIn'));
+        
     }
 }

@@ -49,6 +49,7 @@ return [
     'loggedAs' => 'Вы вошли как',
     'iAgree' => 'Я соглашаюсь с',
     'iAgreeLink' => 'Пользовательским соглашением',
+    'accountActivated' => 'Ваша учетная запись была подтверждена!',
     
     //home massages
     'home' => 'Домой',

@@ -6,8 +6,7 @@
 
 @section('content')
     <div id="plansWraper">
-        <h1>{{__('ui.footerSubscription')}}</h1>
-        <p>{{__('ui.workInProgress')}}</p>
+        <x-in-progress/>
     </div>
 @endsection
 

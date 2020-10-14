@@ -3,6 +3,10 @@
 // general auth routes
 Auth::routes(['verify' => true]);
 
+Route::get('comming_soon', function() {
+    return view('work_in_progress');
+})->name('in.progress');
+
 // home routes
 Route::get('',          'HomeController@index')     ->name('home');
 Route::get('faq',       'HomeController@faq')       ->name('faq');

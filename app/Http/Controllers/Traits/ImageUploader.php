@@ -71,12 +71,11 @@ trait ImageUploader
         }
     }
 
-    public function userImageUpload($file)
+    public function userImageUpload($file, $user)
     {
         if (is_string($file)) {
             $file = $this->fetchUrl($file);
         }
-        $user = auth()->user();
         $this->resizeImg($file->getPathname(), 300);
         $path = $file->store($user->id); //save to local disk
         $image = new ProfileImage(['size' => $file->getSize(), 'path' => $path]); //create Image object

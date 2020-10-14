@@ -147,18 +147,16 @@
                         <a class="footerLinks" id="footerFAQ" href="{{loc_url(route('faq'))}}">{{__('ui.foterFAQ')}}</a>
                     </div>
                     <div id="rightS">
-                        <p>&copy; {{env('COPY_RIGHT_YEAR')}} <span>rigmanager.com.ua</span>. {{__('ui.footerCopyright')}}</p>
-                        <p>{{__('ui.footerIconsRef')}} <a class="footerLinks" href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> (<a class="footerLinks" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>)</p>
+                        <p>&copy; {{env('COPY_RIGHT_YEAR')}} <span>rigmanager.com.ua</span>. {{__('ui.footerCopyright')}}</p>                        
                         <table>
                             <tr>
                                 <td><a class="footerLinks" href="{{loc_url(route('plans'))}}">{{__('ui.footerSubscription')}}</a></td>
                                 <td><a class="footerLinks" href="{{loc_url(route('contacts'))}}">{{__('ui.footerContact')}}</a></td>
-                                <td><a class="footerLinks wrap" href="{{loc_url(route('terms'))}}">{{__('ui.footerTerms')}}</a></td>
+                                <td><a class="footerLinks wrap" href="{{loc_url(route('site.map'))}}">{{__('ui.footerSiteMap')}}</a></td>
                             </tr>
                             <tr>
-                                <td><a class="footerLinks" href="https://github.com/Oleksii-T/rigmanager">{{__('ui.footerDevelop')}}</a></td>
+                                <td><a class="footerLinks wrap" href="{{loc_url(route('terms'))}}">{{__('ui.footerTerms')}}</a></td>
                                 <td><a class="footerLinks wrap" href="{{loc_url(route('privacy'))}}">{{__('ui.footerPrivacy')}}</a></td>
-                                <td><a class="footerLinks wrap" href="{{loc_url(route('site.map'))}}">{{__('ui.footerSiteMap')}}</a></td>
                             </tr>
                         </table>
                     </div>

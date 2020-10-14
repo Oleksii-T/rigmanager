@@ -49,6 +49,7 @@ return [
     'loggedAs' => 'Logged as',
     'iAgree' => 'I agree with',
     'iAgreeLink' => 'Term of Service',
+    'accountActivated' => 'Your account has been verified!',
 
     //home massages
     'home' => 'Home',
