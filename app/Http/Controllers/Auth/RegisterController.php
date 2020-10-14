@@ -37,6 +37,14 @@ class RegisterController extends Controller
      */
     protected $redirectTo = 'email/verify';
 
+    // redirect user to appropriate language stored in db
+    protected function redirectTo()
+    {
+        if (auth()->user()->language != 'uk') {
+            return loc_url(route('verification.notice'));
+        }
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -91,7 +99,7 @@ class RegisterController extends Controller
         }
         return $user;
     }
-//alex.media.t@gmail.com
+
     /**
      * The user has been registered.
      *
@@ -101,6 +109,6 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        
+
     }
 }

@@ -52,6 +52,7 @@ class SearchController extends Controller
             : $search['isEmpty'] = false;
         $search['type'] = 'tags';
         $search['value'] = $this->getTagMap($tagId);
+        $search['tag_type'] = $this->getTagType($tagId);
         $translated['title'] = 'title_'.App::getLocale();
         $translated['description'] = 'description_'.App::getLocale();
         return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount', 'translated'));

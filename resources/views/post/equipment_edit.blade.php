@@ -186,7 +186,7 @@
 @endsection 
 
 @section('input-cost')
-    <input class="def-input input-cost" id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') ?? $post->cost_readable }}"/>
+    <input class="def-input input-cost" id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') ?? $post->cost ? $post->cost_readable : null }}"/>
     
     <div class="def-select-wraper">
         <select class="def-select" id="inputCurrency" name="currency">

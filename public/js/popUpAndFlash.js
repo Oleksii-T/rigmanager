@@ -1,6 +1,11 @@
 // fade out flash massages after 3 sec
 $("div.flash").delay(4000).fadeOut(350);
 
+//delete flash message if clicked on
+$('body').on("click", ".flash", function(){
+    $(this).remove();
+});
+
 // counter for unique pop-up ids
 var popUpId = 1;
 function getPopUpId() {
@@ -24,3 +29,8 @@ function showPopUpMassage(role, massage) {
         $("#"+id).remove();
     }, 4500);
 }
+
+//delete pop-up message if clicked on
+$('body').on("click", ".pop-up", function(){
+    $(this).remove();
+});

@@ -203,10 +203,10 @@ class PostController extends Controller
         $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
         $input['origin_lang'] = $translate->detectLanguage( $input['title'] . '. ' . $input['description'] )['languageCode']; // merge title and description and find out the origin language
         
-        // if there is no cost specified, remove currency and cost
+        // if there is no cost specified, remove currency
         if ( !$input['cost'] ) {
-            unset($input['currency']);
-            unset($input['cost']);
+            $input['currency'] = null;
+            $input['cost'] = 0;
         }
 
         // save some old parameters of post
@@ -230,7 +230,7 @@ class PostController extends Controller
         Session::flash('message-success', __('messages.postEdited'));
         return redirect(loc_url(route('posts.show', ['post'=>$id])));
     }
-//
+
     /**
      * Remove the specified resource from storage.
      *

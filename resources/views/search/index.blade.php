@@ -83,31 +83,37 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="filter region-filter">
-                    <span class="filter-name">{{__('ui.region')}}:</span>
-                    <div class="filter-input">
-                        <div class="def-select-wraper">
-                            <x-region-select locale='{{app()->getLocale()}}'/>
-                            <span class="arrow arrowDown"></span>
+                
+                @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                @else
+                    <div class="filter region-filter">
+                        <span class="filter-name">{{__('ui.region')}}:</span>
+                        <div class="filter-input">
+                            <div class="def-select-wraper">
+                                <x-region-select locale='{{app()->getLocale()}}'/>
+                                <span class="arrow arrowDown"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="filter filter-condition">
-                    <span class="filter-name">{{__('ui.condition')}}:</span>
-                    <div class="filter-input">
-                        <div class="def-select-wraper">
-                            <select class="def-select condition-select" name="condition">
-                                <option value="1">{{__('ui.notSpecified')}}</option>
-                                <option value="2">{{__('ui.conditionNew')}}</option>
-                                <option value="3">{{__('ui.conditionSH')}}</option>
-                                <option value="4">{{__('ui.conditionForParts')}}</option>
-                            </select>
-                            <span class="arrow arrowDown"></span>
+                @endif
+                
+                @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                @else
+                    <div class="filter filter-condition">
+                        <span class="filter-name">{{__('ui.condition')}}:</span>
+                        <div class="filter-input">
+                            <div class="def-select-wraper">
+                                <select class="def-select condition-select" name="condition">
+                                    <option value="1">{{__('ui.notSpecified')}}</option>
+                                    <option value="2">{{__('ui.conditionNew')}}</option>
+                                    <option value="3">{{__('ui.conditionSH')}}</option>
+                                    <option value="4">{{__('ui.conditionForParts')}}</option>
+                                </select>
+                                <span class="arrow arrowDown"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
 
                 <div class="filter filter-type">
                     <span class="filter-name">{{__('ui.postType')}}:</span>
@@ -115,42 +121,60 @@
                         <div class="def-select-wraper">
                             <select class="def-select type-select" name="role">
                                 <option value="0">{{__('ui.notSpecified')}}</option>
-                                <option value="1">{{__('ui.postTypeSell')}}</option>
-                                <option value="2">{{__('ui.postTypeBuy')}}</option>
-                                <option value="3">{{__('ui.postTypeRent')}}</option>
+                                @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                                    <option value="5">{{__('ui.postTypeGiveS')}}</option>
+                                    <option value="6">{{__('ui.postTypeGetS')}}</option>
+                                @elseif ( $search['type'] == 'tags' && $search['tag_type'] == 'eq' )
+                                    <option value="1">{{__('ui.postTypeSell')}}</option>
+                                    <option value="2">{{__('ui.postTypeBuy')}}</option>
+                                    <option value="3">{{__('ui.postTypeRent')}}</option>
+                                    <option value="4">{{__('ui.postTypeLeas')}}</option>
+                                @else 
+                                    <option value="1">{{__('ui.postTypeSell')}}</option>
+                                    <option value="2">{{__('ui.postTypeBuy')}}</option>
+                                    <option value="3">{{__('ui.postTypeRent')}}</option>
+                                    <option value="4">{{__('ui.postTypeLeas')}}</option>
+                                    <option value="5">{{__('ui.postTypeGiveS')}}</option>
+                                    <option value="6">{{__('ui.postTypeGetS')}}</option>
+                                @endif
                             </select>
                             <span class="arrow arrowDown"></span>
                         </div>
                     </div>
                 </div>
 
-                <div class="filter filter-role">
-                    <span class="filter-name">{{__('ui.postRole')}}:</span>
-                    <div class="filter-input">
-                        <div class="def-select-wraper">
-                            <select class="def-select role-select" name="role">
-                                <option value="0">{{__('ui.notSpecified')}}</option>
-                                <option value="1">{{__('ui.postRolePrivate')}}</option>
-                                <option value="2">{{__('ui.postRoleBusiness')}}</option>
-                            </select>
-                            <span class="arrow arrowDown"></span>
+                @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                @else
+                    <div class="filter filter-role">
+                        <span class="filter-name">{{__('ui.postRole')}}:</span>
+                        <div class="filter-input">
+                            <div class="def-select-wraper">
+                                <select class="def-select role-select" name="role">
+                                    <option value="0">{{__('ui.notSpecified')}}</option>
+                                    <option value="1">{{__('ui.postRolePrivate')}}</option>
+                                    <option value="2">{{__('ui.postRoleBusiness')}}</option>
+                                </select>
+                                <span class="arrow arrowDown"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
 
-                <div class="filter filter-thread">
-                    <span class="filter-name">{{__('ui.thread')}}:</span>
-                    <div class="filter-input">
-                        <div class="def-select-wraper">
-                            <select class="def-select thread-select" name="thread">
-                                <option value="0">{{__('ui.notSpecified')}}</option>
-                                <option value="1">{{__('ui.equipment')}}</option>
-                                <option value="2">{{__('ui.service')}}</option>
-                            </select>
-                            <span class="arrow arrowDown"></span>
+                @if ( $search['type'] != 'tags' )
+                    <div class="filter filter-thread">
+                        <span class="filter-name">{{__('ui.thread')}}:</span>
+                        <div class="filter-input">
+                            <div class="def-select-wraper">
+                                <select class="def-select thread-select" name="thread">
+                                    <option value="0">{{__('ui.notSpecified')}}</option>
+                                    <option value="1">{{__('ui.equipment')}}</option>
+                                    <option value="2">{{__('ui.service')}}</option>
+                                </select>
+                                <span class="arrow arrowDown"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
 
                 <div class="filter filter-sorting">
                     <span class="filter-name">{{__('ui.sort')}}:</span>

@@ -37,6 +37,14 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    // redirect user to appropriate language stored in db
+    protected function redirectTo()
+    {
+        if (auth()->user()->language != 'uk') {
+            return route('home').'/'.auth()->user()->language;
+        }
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -160,12 +168,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         Session::flash('message-success', __('messages.signedIn'));
-        if (session()->has('locale')) {
-            var_dump('the is locale in sesion ' . session('locale'));
-        } else {
-            var_dump('no locale in sesion');
-        }
-        var_dump('From authenticated(). ' . app()->getLocale());
+        $redirectTo = 'test' . '/' . $user->language;
     }
 
     /**

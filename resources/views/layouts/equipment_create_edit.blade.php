@@ -613,7 +613,7 @@
             function NumberToCurrency(currency, string) {
                 res = CurrencyToNumber(string);
                 res = res.replace(/^0*/g, '');
-                if (!res) {
+                if (!res || res[0] == '.') {
                     return null;
                 }
                 if ( res.includes('.') ) {
