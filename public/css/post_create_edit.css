@@ -41,6 +41,43 @@ button.tagsTrigger,
     margin-left: 10px;
 }
 
+div.input-field {
+    position: relative;
+    display: block;
+}
+
+div.input-help {
+    position: absolute;
+    background-color: rgb(11, 11, 11, 0.8);
+    padding: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    right: 0px;
+    top: -10px;
+    z-index: 20;
+    border-left: 1px solid #fe9042;
+    width: auto;
+    display: inline-block;
+}
+
+div.input-help img {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: -18px;
+    top: 18px;
+}
+
+div.input-help p {
+    white-space: pre-line;
+    overflow: hidden;
+    font-size: 90%;
+}
+
+div.input-help i {
+    font-size: inherit;
+}
+
 div.help {
     position: absolute;
     right: 0;
@@ -51,6 +88,7 @@ div.help {
     opacity: 0;
     margin: 0px;
     overflow: hidden;
+    padding-right: 10px;
 }
 
 label.error, div.error {
@@ -67,6 +105,11 @@ label.error, div.error {
 
 #navTags button:active {
     background-color: rgb(149, 149, 149, 0.7); 
+}
+
+h2.sub-header {
+    margin-bottom: 30px;
+    font-size: 130%;
 }
 
 /* The container */
@@ -242,8 +285,13 @@ label.error, div.error {
     padding-top: 60px;
 }
 
+div.title-help {
+    left: 63%;
+    max-width: 360px;
+}
+
 #title input[type=text] { 
-    width: 70%; 
+    width: 60%; 
 }
 
 a.auto-translator-link {
@@ -330,7 +378,14 @@ button.tags-show {
     border-bottom: 2px solid #FE9042;
 }
 
-/*==================MANUFECTIRER==================*/
+/*==================MISC_INFO==================*/
+
+#manufacturer,
+#manufactured_date,
+#part_number,
+#costField {
+    margin: 0px 0px 20px 10px;
+}
 
 #inputManufacturer,
 #inputManufacturedDate,
@@ -338,14 +393,31 @@ button.tags-show {
     width: 35%;
 }
 
-/*==================MANUFECTIRED_DATE==================*/
+div.manuf-help,
+div.manuf-date-help,
+div.part-num-help {
+    left: 38%;
+    max-width: 450px;
+}
 
-/*==================PART_NUMBER==================*/
+#inputCost { 
+    width: 25%; 
+}
+
+div.cost-help {
+    left: 45%;
+    max-width: 450px;
+}
 
 /*==================DESCRIPTION==================*/
 
 #desc textarea {
     width: 70%;
+}
+
+div.desc-help {
+    left: 73%;
+    max-width: 265px;
 }
 
 /*==================IMAGES==================*/
@@ -371,26 +443,25 @@ button.tags-show {
     padding: 7px;
 }
 
-/*==================MISC_INFO==================*/
+/*==================CONTACT_INFO==================*/
 
-#costField {
+#regionField,
+#emailField,
+#phoneField {
+    margin-left: 10px;
+}
+
+#regionField {
     margin-bottom: 20px;
 }
 
-#inputCost { 
-    width: 25%; 
-}    
-
 #townField {
-    margin-left: 10px;
-    margin-top: 20px;
+    margin: 0px 0px 20px 20px;
 }
 
 #inputTown { 
     width: 40%; 
 }
-
-/*==================CONTACT_INFO==================*/
 
 #emailField {
     margin-bottom: 20px;
@@ -400,8 +471,9 @@ button.tags-show {
     width: 35%; 
 }
 
-img.messengers-image { 
-    height: 20px; 
+div.phone-help {
+    left: 27%;
+    max-width: 450px;
 }
 
 div.phone-wraper {
@@ -415,10 +487,15 @@ div.phone-wraper {
     margin-left: 0px;
 }
 
+img.messengers-image { 
+    height: 20px; 
+}
+
 div.phone-prefix {
     position: absolute;
     top: 5px;
     left: 5px;
+    z-index: 2;
 }
 
 img.country-flag {

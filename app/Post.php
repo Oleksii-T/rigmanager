@@ -34,8 +34,8 @@ class Post extends Model
     public function toSearchableArray()
     {
         $array = $this->only(
-            'title', 'title_uk', 'title_ru', 'title_en', 'description', 'description_uk', 'description_ru', 
-            'description_en', 'town', 'is_active', 'company'
+            'title', 'title_uk', 'title_ru', 'title_en', 'manufacturer', 'manufactured_date', 'part_number', 
+            'description', 'description_uk', 'description_ru', 'description_en', 'town', 'is_active', 'company'
         );
         return $array;
     }

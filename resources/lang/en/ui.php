@@ -160,7 +160,19 @@ return [
     'postCreate' => 'Post creation',
     'postSettings' => 'Post settings',
     'title' => 'Title',
-    'titleHelp' => 'Minimum 10 symbols.
+    'titleEqHelp' => 'Enter the equipment/part name.
+        Should not contain words and synonyms:
+        sell, buy, rent, lease, urgently, verified, rigmanager.
+        Should not contain:
+        phone, email, link, uppercase words (except abbreviation).
+        Minimum 10 symbols.
+        Maximum 70 symbols.',
+    'titleSeHelp' => 'Enter the service name.
+        Should not contain words and synonyms:
+        urgently, verified, rigmanager.
+        Should not contain:
+        phone, email, link, uppercase words (except abbreviation).
+        Minimum 10 symbols.
         Maximum 70 symbols.',
     'autoTranslateHeader' => 'Preferences of',
     'autoTranslate' =>  'Auto-Translator',
@@ -175,6 +187,7 @@ return [
     'postTypeLeas' => 'Leasing',
     'postTypeGiveS' => 'Providing of service',
     'postTypeGetS' => 'Request for service',
+    'postTypeHelp' => 'The variant you choose will be appended to your title.',
     'choosePostRole' => 'Chose legal type',
     'postRoleBusiness' => 'Business',
     'postRolePrivate' => 'Private person',
@@ -191,31 +204,57 @@ return [
         Be sure that categoty is chosen correctly, so your post will be easy to find!',
     'chosenTags' => 'Chosen category',
     'clearTagsFromPost' => 'Clear сhosen categories',
+    'miscEqInfo' => 'Additional optional equipment/part information',
     'chooseManufacturer' => 'Manufacturer',
     'chooseManufacturedDate' => 'Manufacture Date',
     'choosePartNum' => 'Part Number',
     'clearTagsFromPost' => 'Clear сhosen categories',
     'manufacturer' => 'Manufacturer',
+    'manufHelp' => 'We advise include Manufacturer detail to simplify search and understanding of Your proposition by viewers.
+        Minimum 5 symbols.
+        Maximum 70 symbols.',
     'manufacturedDate' => 'Manufacture Date',
+    'manufDateHelp' => 'We advise include Manufacture Date to simplify search and understanding of Your proposition by viewers.
+        Minimum 5 symbols.
+        Maximum 70 symbols.',
     'partNum' => 'Part Number',
+    'partNumHelp' => 'We advise include Part Number to simplify search and understanding of Your proposition by viewers.
+        Minimum 3 symbols.
+        Maximum 70 symbols.',
     'description' => 'Description',
-    'descriptionHelp' => 'Minimum 10 symbols.
+    'descriptionEqHelp' => 'Describe your equipment/part as detailed as possible.
+        Should relate to all info supplied on this page.
+        Should not contain:
+        contact information, links, uppercase words (except abbreviation).
+        Minimum 10 symbols.
+        Maximum 9000 symbols.',
+    'descriptionSeHelp' => 'Give some detailes about service.
+        Should relate to all info supplied on this page.
+        Should not contain:
+        contact information, links, uppercase words (except abbreviation).
+        Minimum 10 symbols.
         Maximum 9000 symbols.',
     'image' => 'Choose images',
     'imageHelp' => 'Five images maximum.
         Only images are allowed(.jpeg .jpg .png).
+        We advise including a photo of the Name Plate.
         Maximum image size 5MB.',
     'uploadFile' => 'Choose File',
     'preview' => 'Preview',
     'cost' => 'Cost',
+    'costHelp' => 'If it is not obvious what the price is for, you can specify this information in the description.
+        Enter cost in format: 0000.00.
+        Maximum 100 digits.',
     'locationRegion' => 'Location of product (region)',
     'locationTown' => 'Specify location',
     'location' => 'Location of product',
     'region' => 'Region',
     'town' => 'City / Village / Warehouse / Site',
-    'costLocationHelp' => 'Optional.',
+    'phoneHelp' => 'Only Ukrainian phone numbers are supported.
+        Format: 0123456789.
+        You can choose messengers below, so users will know that You can be contacted via Messengers.',
     'email' => 'Email',
-    'emailPhoneHelp' => 'One of fields is compulsory.
+    'contactHelp' => 'One of fields is compulsory (email or phone).
         You can enter any email and phone number.',
     'deletePost' => 'Delete post',
     'sure?' => 'Are you sure?',

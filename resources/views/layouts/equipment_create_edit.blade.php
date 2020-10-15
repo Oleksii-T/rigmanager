@@ -21,7 +21,13 @@
 
             <div id="title" class="element">
                 <h3 class="elementHeading">{{__('ui.title')}}<span class="required-input">*</span></h3>
-                @yield('input-title')
+                <div class="input-field">
+                    @yield('input-title')
+                    <div class="input-help title-help hidden">
+                        <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                        <p><i>{{__('ui.titleEqHelp')}}</i></p>
+                    </div>
+                </div>
                 <x-server-input-error errorName='title' inputName='inputTitle' errorClass='error'/>
                 <div class="title error error-dz hidden"></div>
                 <div class="title-translations">
@@ -77,9 +83,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="help">
-                    <p><i>{{__('ui.titleHelp')}}</i></p>
-                </div>
             </div>
 
             @yield('input-status')
@@ -87,6 +90,9 @@
             <div id="type" class="element">
                 <h3 class="elementHeading">{{__('ui.choosePostType')}}</h3>
                 @yield('input-type')
+                <div class="help">
+                    <p><i>{{__('ui.postTypeHelp')}}</i></p>
+                </div>
             </div>
 
             <div id="role" class="element">
@@ -119,30 +125,70 @@
 
             </div>
 
-            <div id="manufacturer" class="element">
-                <h3 class="elementHeading">{{__('ui.chooseManufacturer')}}</h3>
-                @yield('input-manufacturer')
-                <x-server-input-error errorName='manufacturer' inputName='inputManufacturer' errorClass='error'/>
-                <div class="manufacturer error error-dz hidden"></div>
-            </div>
-
-            <div id="manufactured_date" class="element">
-                <h3 class="elementHeading">{{__('ui.chooseManufacturedDate')}}</h3>
-                @yield('input-manufactured-date')
-                <x-server-input-error errorName='manufactured_date' inputName='inputManufacturedDate' errorClass='error'/>
-                <div class="manufactured_date error error-dz hidden"></div>
-            </div>
-
-            <div id="part_number" class="element">
-                <h3 class="elementHeading">{{__('ui.choosePartNumber')}}</h3>
-                @yield('input-part-number')
-                <x-server-input-error errorName='part_number' inputName='inputPartNumber' errorClass='error'/>
-                <div class="part_number error error-dz hidden"></div>
+            <div class="element" id="misc-info">
+                <h2 class="sub-header">{{__('ui.miscEqInfo')}}</h2>
+                <div id="manufacturer">
+                    <h3 class="elementHeading">{{__('ui.chooseManufacturer')}}</h3>
+                    <div class="input-field">
+                        @yield('input-manufacturer')
+                        <div class="input-help manuf-help hidden">
+                            <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                            <p><i>{{__('ui.manufHelp')}}</i></p>
+                        </div>
+                    </div>
+                    <x-server-input-error errorName='manufacturer' inputName='inputManufacturer' errorClass='error'/>
+                    <div class="manufacturer error error-dz hidden"></div>
+                </div>
+    
+                <div id="manufactured_date">
+                    <h3 class="elementHeading">{{__('ui.chooseManufacturedDate')}}</h3>
+                    <div class="input-field">
+                        @yield('input-manufactured-date')
+                        <div class="input-help manuf-date-help hidden">
+                            <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                            <p><i>{{__('ui.manufDateHelp')}}</i></p>
+                        </div>
+                    </div>
+                    <x-server-input-error errorName='manufactured_date' inputName='inputManufacturedDate' errorClass='error'/>
+                    <div class="manufactured_date error error-dz hidden"></div>
+                </div>
+    
+                <div id="part_number">
+                    <h3 class="elementHeading">{{__('ui.choosePartNumber')}}</h3>
+                    <div class="input-field">
+                        @yield('input-part-number')
+                        <div class="input-help part-num-help hidden">
+                            <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                            <p><i>{{__('ui.partNumHelp')}}</i></p>
+                        </div>
+                    </div>
+                    <x-server-input-error errorName='part_number' inputName='inputPartNumber' errorClass='error'/>
+                    <div class="part_number error error-dz hidden"></div>
+                </div>
+    
+                <div id="costField">
+                    <h3 class="elementHeading">{{__('ui.cost')}}</h3>
+                    <div class="input-field">
+                        @yield('input-cost')
+                        <div class="input-help cost-help hidden">
+                            <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                            <p><i>{{__('ui.costHelp')}}</i></p>
+                        </div>
+                    </div>
+                    <x-server-input-error errorName='cost' inputName='inputCost' errorClass='error'/>
+                    <div class="cost error error-dz hidden"></div>
+                </div>
             </div>
 
             <div id="desc" class="element">
                 <h3 class="elementHeading">{{__('ui.description')}}<span class="required-input">*</span></h3>
-                @yield('input-description')
+                <div class="input-field">
+                    @yield('input-description')
+                    <div class="input-help desc-help hidden">
+                        <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                        <p><i>{{__('ui.descriptionEqHelp')}}</i></p>
+                    </div>
+                </div>
                 <x-server-input-error errorName='description' inputName='inputDesc' errorClass='error'/>
                 <div class="description error error-dz hidden"></div>
                 <div class="desc-translations">
@@ -198,9 +244,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="help">
-                    <p><i>{{__('ui.descriptionHelp')}}</i></p>
-                </div>
             </div>
 
             <div id="imgs" class="element">
@@ -216,15 +259,9 @@
                     <p><i>{{__('ui.imageHelp')}}</i></p>
                 </div>
             </div>
-
-            <div id="miscInfo" class="element">
-                <div id="costField">
-                    <h3 class="elementHeading">{{__('ui.cost')}}</h3>
-                    @yield('input-cost')
-                    <x-server-input-error errorName='cost' inputName='inputCost' errorClass='error'/>
-                    <div class="cost error error-dz hidden"></div>
-                </div>
-
+            
+            <div id="contact" class="element">
+                <h2 class="sub-header">{{__('ui.contactInfo')}}</h2>
                 <div id="regionField">
                     <h3 class="elementHeading">{{__('ui.locationRegion')}}</h3>
                     <div class="def-select-wraper">
@@ -237,12 +274,6 @@
 
                 @yield('input-town')
 
-                <div class="help">
-                    <p><i>{{__('ui.costLocationHelp')}}</i></p>
-                </div>
-            </div>
-            
-            <div id="contact" class="element">
                 <div id="emailField">
                     <h3 class="elementHeading">{{__('ui.email')}}<span class="required-input">*</span></h3>
                     @yield('input-email')
@@ -257,7 +288,13 @@
                             <img class="country-flag" src="{{asset('icons/ukraineIcon.svg')}}" alt="{{__('alt.keyword')}}">
                             <span class="country-code">+38</span>
                         </div>
-                        @yield('input-phone')
+                        <div class="input-field">
+                            @yield('input-phone')
+                            <div class="input-help phone-help hidden">
+                                <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                                <p><i>{{__('ui.phoneHelp')}}</i></p>
+                            </div>
+                        </div>
                     </div>
                     <x-server-input-error errorName='user_phone_raw' inputName='inputPhone' errorClass='error'/>
                     <div class="user_phone_raw error error-man hidden">
@@ -290,7 +327,7 @@
                 </div>
                 
                 <div class="help">
-                    <p><i>{{__('ui.emailPhoneHelp')}}</i></p>
+                    <p><i>{{__('ui.contactHelp')}}</i></p>
                 </div>
             </div>
 
@@ -324,6 +361,76 @@
                 minlength: 10,
                 maxlength: 9000
             };
+
+            //show phone help when active input
+            $("#inputPhone").focusin(function(){
+                $('div.phone-help').removeClass('hidden');
+            });
+            
+            //hide phone date help when active input
+            $("#inputPhone").focusout(function(){
+                $('div.phone-help').addClass('hidden');
+            });
+
+            //show cost help when active input
+            $("#inputCost").focusin(function(){
+                $('div.cost-help').removeClass('hidden');
+            });
+            
+            //hide cost date help when active input
+            $("#inputCost").focusout(function(){
+                $('div.cost-help').addClass('hidden');
+            });
+
+            //show part number help when active input
+            $("#inputPartNumber").focusin(function(){
+                $('div.part-num-help').removeClass('hidden');
+            });
+            
+            //hide part number date help when active input
+            $("#inputPartNumber").focusout(function(){
+                $('div.part-num-help').addClass('hidden');
+            });
+
+            //show manufacture date help when active input
+            $("#inputManufacturedDate").focusin(function(){
+                $('div.manuf-date-help').removeClass('hidden');
+            });
+            
+            //hide manufacture date help when active input
+            $("#inputManufacturedDate").focusout(function(){
+                $('div.manuf-date-help').addClass('hidden');
+            });
+
+            //show manufacturer help when active input
+            $("#inputManufacturer").focusin(function(){
+                $('div.manuf-help').removeClass('hidden');
+            });
+            
+            //hide manufacturer help when active input
+            $("#inputManufacturer").focusout(function(){
+                $('div.manuf-help').addClass('hidden');
+            });
+
+            //show description help when active input
+            $("#inputDesc, #inputDescUk, #inputDescRu, #inputDescEn").focusin(function(){
+                $('div.desc-help').removeClass('hidden');
+            });
+            
+            //hide description help when active input
+            $("#inputDesc, #inputDescUk, #inputDescRu, #inputDescEn").focusout(function(){
+                $('div.desc-help').addClass('hidden');
+            });
+
+            //show title help when active input
+            $("#inputTitle, #inputTitleUk, #inputTitleRu, #inputTitleEn").focusin(function(){
+                $('div.title-help').removeClass('hidden');
+            });
+            
+            //hide title help when active input
+            $("#inputTitle, #inputTitleUk, #inputTitleRu, #inputTitleEn").focusout(function(){
+                $('div.title-help').addClass('hidden');
+            });
 
             // show translation input for title Uk
             $('#titleTranslateUk').change(function(){

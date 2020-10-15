@@ -111,11 +111,11 @@
 @endsection
 
 @section('input-description')
-    <textarea class="def-textarea" id="inputDecs" name="description" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description') ?? $post->description }}</textarea>
+    <textarea class="def-textarea" id="inputDesc" name="description" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description') ?? $post->description }}</textarea>
 @endsection 
 
 @section('input-description')
-    <textarea class="def-textarea" id="inputDecs" name="description" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description') ?? $post->description }}</textarea>
+    <textarea class="def-textarea" id="inputDesc" name="description" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description') ?? $post->description }}</textarea>
 @endsection 
 
 @section('checkbox-description-uk')

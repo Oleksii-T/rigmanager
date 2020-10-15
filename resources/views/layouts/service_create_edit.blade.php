@@ -22,7 +22,13 @@
 
             <div id="title" class="element">
                 <h3 class="elementHeading" for="inputTitle">{{__('ui.title')}}<span class="required-input">*</span></h3>
-                @yield('input-title')
+                <div class="input-field">
+                    @yield('input-title')
+                    <div class="input-help title-help hidden">
+                        <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                        <p><i>{{__('ui.titleSeHelp')}}</i></p>
+                    </div>
+                </div>
                 <x-server-input-error errorName='title' inputName='inputTitle' errorClass='error'/>
                 <div class="title error error-dz hidden"></div>
                 <div class="title-translations">
@@ -78,9 +84,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="help">
-                    <p><i>{{__('ui.titleHelp')}}</i></p>
-                </div>
             </div>
 
             <div id="company" class="element">
@@ -110,10 +113,31 @@
                 </div>
 
             </div>
+            
+            <div class="element" id="misc-info">
+                <div id="costField">
+                    <h3 class="elementHeading">{{__('ui.cost')}}</h3>
+                    <div class="input-field">
+                        @yield('input-cost')
+                        <div class="input-help cost-help hidden">
+                            <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                            <p><i>{{__('ui.costHelp')}}</i></p>
+                        </div>
+                    </div>
+                    <x-server-input-error errorName='cost' inputName='inputCost' errorClass='error'/>
+                    <div class="cost error error-dz hidden"></div>
+                </div>
+            </div>
 
             <div id="desc" class="element">
                 <h3 class="elementHeading" for="inputDecs">{{__('ui.description')}}<span class="required-input">*</span></h3>
-                @yield('input-description')
+                <div class="input-field">
+                    @yield('input-description')
+                    <div class="input-help desc-help hidden">
+                        <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                        <p><i>{{__('ui.descriptionSeHelp')}}</i></p>
+                    </div>
+                </div>
                 <x-server-input-error errorName='description' inputName='inputDecs' errorClass='error'/>
                 <div class="description error error-dz hidden"></div>
                 <div class="desc-translations">
@@ -169,18 +193,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="help">
-                    <p><i>{{__('ui.descriptionHelp')}}</i></p>
-                </div>
-            </div>
-
-            <div id="miscInfo" class="element">
-                <div id="costField">
-                    <h3 class="elementHeading">{{__('ui.cost')}}</h3>
-                    @yield('input-cost')
-                    <x-server-input-error errorName='cost' inputName='inputCost' errorClass='error'/>
-                    <div class="cost error error-dz hidden"></div>
-                </div>
             </div>
             
             <div id="contact" class="element">
@@ -198,7 +210,13 @@
                             <img class="country-flag" src="{{asset('icons/ukraineIcon.svg')}}" alt="{{__('alt.keyword')}}">
                             <span class="country-code">+38</span>
                         </div>
-                        @yield('input-phone')
+                        <div class="input-field">
+                            @yield('input-phone')
+                            <div class="input-help phone-help hidden">
+                                <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                                <p><i>{{__('ui.phoneHelp')}}</i></p>
+                            </div>
+                        </div>
                     </div>
                     <x-server-input-error errorName='user_phone_raw' inputName='inputPhone' errorClass='error'/>
                     <div class="user_phone_raw error error-man hidden">
@@ -231,7 +249,7 @@
                 </div>
                 
                 <div class="help">
-                    <p><i>{{__('ui.emailPhoneHelp')}}</i></p>
+                    <p><i>{{__('ui.contactHelp')}}</i></p>
                 </div>
             </div>
 
@@ -266,6 +284,46 @@
                 minlength: 10,
                 maxlength: 9000
             };
+
+            //show phone help when active input
+            $("#inputPhone").focusin(function(){
+                $('div.phone-help').removeClass('hidden');
+            });
+            
+            //hide phone date help when active input
+            $("#inputPhone").focusout(function(){
+                $('div.phone-help').addClass('hidden');
+            });
+
+            //show cost help when active input
+            $("#inputCost").focusin(function(){
+                $('div.cost-help').removeClass('hidden');
+            });
+            
+            //hide cost date help when active input
+            $("#inputCost").focusout(function(){
+                $('div.cost-help').addClass('hidden');
+            });
+
+            //show description help when active input
+            $("#inputDesc, #inputDescUk, #inputDescRu, #inputDescEn").focusin(function(){
+                $('div.desc-help').removeClass('hidden');
+            });
+            
+            //hide description help when active input
+            $("#inputDesc, #inputDescUk, #inputDescRu, #inputDescEn").focusout(function(){
+                $('div.desc-help').addClass('hidden');
+            });
+
+            //show title help when active input
+            $("#inputTitle, #inputTitleUk, #inputTitleRu, #inputTitleEn").focusin(function(){
+                $('div.title-help').removeClass('hidden');
+            });
+            
+            //hide title help when active input
+            $("#inputTitle, #inputTitleUk, #inputTitleRu, #inputTitleEn").focusout(function(){
+                $('div.title-help').addClass('hidden');
+            });
 
             // show translation input for title Uk
             $('#titleTranslateUk').change(function(){

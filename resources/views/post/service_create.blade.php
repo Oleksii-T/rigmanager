@@ -9,8 +9,8 @@
         @csrf
         <nav class="creation-type">
             <ul>
-                <li><a id="equipment-create" href="{{route('posts.create')}}">{{__('ui.equipment')}}</a></li>
-                <li><a id="service-create" href="{{route('service.create')}}">{{__('ui.service')}}</a></li>
+                <li><a id="equipment-create" href="{{loc_url(route('posts.create'))}}">{{__('ui.equipment')}}</a></li>
+                <li><a id="service-create" href="{{loc_url(route('service.create'))}}">{{__('ui.service')}}</a></li>
             </ul>
         </nav>
 @endsection
@@ -71,7 +71,7 @@
 @endsection
     
 @section('input-description')
-    <textarea class="def-textarea" id="inputDecs" name="description" form="formCreatePost" rows="15" maxlength="9000">{{ old('description') }}</textarea>
+    <textarea class="def-textarea" id="inputDesc" name="description" form="formCreatePost" rows="15" maxlength="9000">{{ old('description') }}</textarea>
 @endsection
 
 @section('checkbox-description-uk')
