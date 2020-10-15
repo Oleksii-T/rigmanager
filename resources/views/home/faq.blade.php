@@ -13,25 +13,39 @@
             
             <a class="question" id="Purpose">{{__('faq.qPurpose')}}</a>
             <p class="answer">{{__('faq.aPurpose1')}}</p>
-            <ul>
-                <li>{{__('faq.aPurposeListDrilling')}}</li>
-                <li>{{__('faq.aPurposeListRepair')}}</li>
-                <li>{{__('faq.aPurposeListProduction')}}</li>
-                <li>{{__('faq.aPurposeListLogging')}}</li>
-            </ul>
-            <p class="answer">{{__('faq.aPurpose2')}}</p>
 
             <a class="question" id="ForWhat">{{__('faq.qForWhat')}}</a>
-            <p class="answer">{{__('faq.aForWhat')}}</p>
+            <p class="answer">{{__('faq.aForWhat1')}}</p>
+            <ul>
+                <li>{{__('faq.aForWhatCM1')}}</li>
+                <li>{{__('faq.aForWhatCM2')}}</li>
+                <li>{{__('faq.aForWhatCM3')}}</li>
+            </ul>
+            <p class="answer">{{__('faq.aForWhat2')}}</p>
+            <ul>
+                <li>{{__('faq.aForWhatSD1')}}</li>
+                <li>{{__('faq.aForWhatSD2')}}</li>
+                <li>{{__('faq.aForWhatSD3')}}</li>
+                <li>{{__('faq.aForWhatSD4')}}</li>
+                <li>{{__('faq.aForWhatSD5')}}</li>
+                <li>{{__('faq.aForWhatSD6')}}</li>
+            </ul>
+            <p class="answer">{{__('faq.aForWhat3')}}</p>
+            <ul>
+                <li>{{__('faq.aForWhatSaD1')}}</li>
+                <li>{{__('faq.aForWhatSaD2')}}</li>
+                <li>{{__('faq.aForWhatSaD3')}}</li>
+                <li>{{__('faq.aForWhatSaD4')}}</li>
+            </ul>
+
+            <a class="question" id="WhyWe">{{__('faq.qWhyWe')}}</a>
+            <p class="answer">{{__('faq.aWhyWe')}}</p>
 
             <a class="question" id="Buy">{{__('faq.qBuy')}}</a>
             <p class="answer">{{__('faq.aBuy1')}} <a class="link" href="{{ loc_url(route('home')) }}">{{__('faq.aBuyLink')}}</a> {{__('faq.aBuy2')}}</p>
             
             <a class="question" id="Sell">{{__('faq.qSell')}}</a>
             <p class="answer">{{__('faq.aSell1')}} <a class="link" href="{{ loc_url(route('posts.create')) }}">{{__('faq.aSellLink')}}</a>, {{__('faq.aSell2')}}</p>
-
-            <a class="question" id="WhyWe">{{__('faq.qWhyWe')}}</a>
-            <p class="answer">{{__('faq.aWhyWe')}}</p>
 
             <a class="question" id="WhatIsMailer">{{__('faq.qWhatIsMailer')}}</a>
             <p class="answer">{{__('faq.aWhatIsMailer1')}} <a class="link" href="{{loc_url(route('mailer.index'))}}">{{__('faq.aWhatIsMailerLink')}}</a> {{__('faq.aWhatIsMailer2')}}</p>

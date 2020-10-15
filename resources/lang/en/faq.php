@@ -5,44 +5,56 @@ return [
     'intro' => 'Frequently Asked Questions',
     
     'qPurpose' => 'What for this website?',
-    'aPurpose1' => 'We introduce Ukrainian area for publishing sale and buy offers relating to Oil & Gas Equipment, such as equipment for:',
-    'aPurposeListDrilling' => 'Drilling',
-    'aPurposeListRepair' => 'Repair',
-    'aPurposeListProduction' => 'Production',
-    'aPurposeListLogging' => 'Logging',
-    'aPurpose2' => 'The list may increase in future.',
+    'aPurpose1' => 'We introduce Ukrainian The first specialized website for the cooperation of drilling companies.
+    Sale, purchase, rent, services. 
+    On our website, you can find catalog of drilling equipment and services.
+    We are aiming to inform Ukraine drilling market place about all its participants and set up convenient and reliable cooperation between companies.
+    For abroad equipment/service providers we introduce our website as a place where they can find a Ukraine customer easily.',
 
     'qForWhat' => 'Why am I need this?',
-    'aForWhat' => 'The main purpose of our resource is to make selling and buying of Oil & Gas Equipment easier.
-    In other words, here any seller can easily find a buyer and vice versa.',
+    'aForWhat1' => 'If you are company menegment:',
+    'aForWhatCM1' => 'Reducing purchasing costs',
+    'aForWhatCM2' => 'Increase the sales level',
+    'aForWhatCM3' => 'Get a service market analysis tool, detailed to any level including prices',
+    'aForWhat2' => 'If you are supply department:',
+    'aForWhatSD1' => 'Simplify and control the procurement/sales process',
+    'aForWhatSD2' => 'Control of intime supply',
+    'aForWhatSD3' => 'To establish contacts between the services of drilling companies',
+    'aForWhatSD4' => 'Purchase planning',
+    'aForWhatSD5' => 'Control the relevance of procurement',
+    'aForWhatSD6' => 'Tenders by simplified procedure',
+    'aForWhat3' => 'If you are supply department:',
+    'aForWhatSaD1' => 'Publication announcements of sales department',
+    'aForWhatSaD2' => 'Sales planning',
+    'aForWhatSaD3' => 'Simplify and control the purchasing/selling process',
+    'aForWhatSaD4' => 'Publication of anonymous announcements if desired',
+
+    'qWhyWe' => 'Why our resource is better?',
+    'aWhyWe' => 'First of all, we are the first specialized website for cooperation of drilling companies.
+    We provide the strict scope of content, only Oil & Gas Equipment and Services. Nothing extra.
+    Personal data is the main deal for us, in other words - anonymity is the key.
+    For each Post published, You are free to choose a minimum one contact field, Email, or Phone. We do not put bounds to Your choices. Moreover for each Post, You could choose unique contact information.
+    We have developing system of categories thanks to which you can navigate through Oil & Gas equipment or services quickly and easily.
+    You have the possibility to subscribe to Mailer and get notification about Oil & Gas equipment or/end services you looking for.
+    Our website supports three languages, Ukrainian, Russian, and English. And have automatic build in translation, so anyone can get information about your proposition.',
 
     'qBuy' => 'I need to buy equipment',
     'aBuy1' => 'Just use the category system or search bar on the',
     'aBuyLink' => 'Home',
     'aBuy2' => 'page and you find what you looking for!
     You could add a Post to Favourites list so that you won\'t lose it.
-    If you can not find proper equipment then subscribe for Mailer and you will always know when appropriate Post is published. (in progress)',
+    If you can not find proper equipment then subscribe for Mailer and you will always know when appropriate Post is published.',
 
     'qSell' => 'I need to sell equipment',
     'aSell1' => 'All You need to do, is',
     'aSellLink' => 'create and publish your Post',
     'aSell2' => 'by filling input fields and after just wait for your clients!',
 
-    'qWhyWe' => 'Why our resource is better?',
-    'aWhyWe' => 'The personal data is the main deal for us, in other words - anonymity is the key.
-    For each Post published, You are free to choose minimum one contact fields, Email or Phone. We do not put bounds to Your choices. Moreover for each Post, You could choose unique content information.
-    Our category system is developing so searching for Oil & Gas Equipment become even easier! (in progress)
-    You can Sign Up as a private person or as a company. (in progress)
-    The possibility to subscribe to Mailer and get notification about Oil & Gas Equipment you looking for. (in progress)
-    Our website supports three languages, Ukrainian, Russian and English.
-    We provide strict scope of content, only Oil & Gas Equipment. Nothing extra.',
-
     'qWhatIsMailer' => 'What is Mailer?',
     'aWhatIsMailer1' => 'Mailer is smart mailing engine, thanks to which You can be sure that no post You are interested in will pass You.
     You are free to',
     'aWhatIsMailerLink' => 'configure the Mailer',
-    'aWhatIsMailer2' => 'for Your personal needs. Describe equipment and/or choose category and just wait for someone post what you need.
-    Also, via Mailer, You can subscribe to any author (on the page of exact post), so that You will be noticed if chosen author made a post.',
+    'aWhatIsMailer2' => 'for Your personal needs. Describe equipment/service, choose category, subscribe to author, and just wait for someone post what you need.',
 
     'qWhatIsSocialAcc' => 'What is Social Account?',
     'aWhatIsSocialAcc' => 'Social Account almost the same a regular user account, it has absolutely all features offered by our service.
