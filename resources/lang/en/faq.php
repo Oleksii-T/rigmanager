@@ -3,10 +3,10 @@
 return [
 
     'intro' => 'Frequently Asked Questions',
-    
+
     'qPurpose' => 'What for this website?',
     'aPurpose1' => 'We introduce Ukrainian The first specialized website for the cooperation of drilling companies.
-    Sale, purchase, rent, services. 
+    Sale, purchase, rent, services.
     On our website, you can find catalog of drilling equipment and services.
     We are aiming to inform Ukraine drilling market place about all its participants and set up convenient and reliable cooperation between companies.
     For abroad equipment/service providers we introduce our website as a place where they can find a Ukraine customer easily.',
@@ -81,7 +81,7 @@ return [
     'a' => '',
 
     'slg1' => 'Sincerely, development team',
-    'slg2' => 'If you have any questions or suggestions, 
+    'slg2' => 'If you have any questions or suggestions,
     please fill-up the',
     'slg3' => 'Contact Us form',
 ];

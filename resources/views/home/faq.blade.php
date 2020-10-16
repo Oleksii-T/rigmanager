@@ -10,7 +10,7 @@
             <h1>{{__('faq.intro')}}</h1>
         </div>
         <div id="paragraphBody">
-            
+
             <a class="question" id="Purpose">{{__('faq.qPurpose')}}</a>
             <p class="answer">{{__('faq.aPurpose1')}}</p>
 
@@ -43,7 +43,7 @@
 
             <a class="question" id="Buy">{{__('faq.qBuy')}}</a>
             <p class="answer">{{__('faq.aBuy1')}} <a class="link" href="{{ loc_url(route('home')) }}">{{__('faq.aBuyLink')}}</a> {{__('faq.aBuy2')}}</p>
-            
+
             <a class="question" id="Sell">{{__('faq.qSell')}}</a>
             <p class="answer">{{__('faq.aSell1')}} <a class="link" href="{{ loc_url(route('posts.create')) }}">{{__('faq.aSellLink')}}</a>, {{__('faq.aSell2')}}</p>
 
@@ -52,13 +52,13 @@
 
             <a class="question" id="WhatIsSocialAcc">{{__('faq.qWhatIsSocialAcc')}}</a>
             <p class="answer">{{__('faq.aWhatIsSocialAcc')}} <a class="link" href="{{loc_url(route('login.social', ['social'=>'google']))}}">Google</a> / <a class="link" href="{{loc_url(route('in.progress'))}}">Facebook</a>.</p><!--{{loc_url(route('login.social', ['social'=>'facebook']))}}-->
-            
+
             <a class="question" id="autoTranslator">{{__('faq.qAutoTranslator')}}</a>
             <p class="answer">{{__('faq.aAutoTranslator')}}</p>
 
             <a class="question" id="release">{{__('faq.qRelease')}}</a>
             <p class="answer">{{__('faq.aRelease')}}</p>
-            
+
             <div id="contacts">
                 <p id="slgText" id="sig">{{__('faq.slg1')}} <span>rigmanager.com.ua</span>.
                     {{__('faq.slg2')}} <a class="link" href = "{{loc_url(route('contacts'))}}">{{__('faq.slg3')}}</a>.

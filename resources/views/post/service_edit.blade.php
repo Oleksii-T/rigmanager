@@ -12,14 +12,14 @@
 
 @section('input-title')
     <input class="def-input" id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') ?? $post->title }}"/>
-@endsection 
+@endsection
 
 @section('checkbox-title-uk')
     <input id="titleTranslateUk" type="checkbox" name="title_translate[uk]" value="1" {{array_search('uk', $post->user_translations['title']) === false ? 'checked="checked"' : ''}}>
 @endsection
 
 @section('field-title-uk')
-    @if ( old('title_translate') && !array_key_exists('uk', old('title_translate')) )        
+    @if ( old('title_translate') && !array_key_exists('uk', old('title_translate')) )
         <div class="translation-input-field field-title-uk">
     @else
         <div class="translation-input-field field-title-uk {{array_search('uk', $post->user_translations['title']) === false ? 'hidden' : ''}}">
@@ -32,7 +32,7 @@
 @endsection
 
 @section('field-title-ru')
-    @if ( old('title_translate') && !array_key_exists('ru', old('title_translate')) )        
+    @if ( old('title_translate') && !array_key_exists('ru', old('title_translate')) )
         <div class="translation-input-field field-title-ru">
     @else
         <div class="translation-input-field field-title-ru {{array_search('ru', $post->user_translations['title']) === false ? 'hidden' : ''}}">
@@ -40,22 +40,22 @@
     <input class="def-input" id="inputTitleRu" name="title_ru" type="text" placeholder="Заголовок" value="{{ old('title_ru') ?? $post->title_ru }}"/>
 @endsection
 
-@section('checkbox-title-en') 
+@section('checkbox-title-en')
     <input id="titleTranslateEn" type="checkbox" name="title_translate[en]" value="1" {{array_search('en', $post->user_translations['title']) === false ? 'checked="checked"' : ''}}>
 @endsection
 
 @section('field-title-en')
-    @if ( old('title_translate') && !array_key_exists('en', old('title_translate')) )        
+    @if ( old('title_translate') && !array_key_exists('en', old('title_translate')) )
         <div class="translation-input-field field-title-en">
     @else
         <div class="translation-input-field field-title-en {{array_search('en', $post->user_translations['title']) === false ? 'hidden' : ''}}">
     @endif
-    <input class="def-input" id="inputTitleEn" name="title_en" type="text" placeholder="Title" value="{{ old('title_en') ?? $post->title_en }}"/> 
+    <input class="def-input" id="inputTitleEn" name="title_en" type="text" placeholder="Title" value="{{ old('title_en') ?? $post->title_en }}"/>
 @endsection
 
 @section('input-company')
     <input class="def-input" id="inputCompany" name="company" type="text" placeholder="{{__('ui.companyP')}}" value="{{ old('company') ?? $post->company }}"/>
-@endsection 
+@endsection
 
 @section('input-status')
     <div id="status" class="element">
@@ -104,7 +104,7 @@
 @section('inputs-tag')
     <!--Hidden field for encoded tag for DB-->
     <input id="tagEncodedHidden" type="text" name="tag_encoded" value="{{ old('tag_encoded') ?? $post->tag_encoded }}" hidden/>
-    
+
     <!--Hidden and visible fields for readable tag-->
     <input id="tagReadbleHidden" type="text" name="tagReadbleHidden" value="{{ old('tagReadbleHidden') ?? $post->tag_readable }}" hidden/>
     <p id="tagReadbleVisible">{{__('ui.chosenTags')}}: <span>{{ old('tagReadbleHidden') ?? $post->tag_readable }}</span></p>
@@ -112,18 +112,18 @@
 
 @section('input-description')
     <textarea class="def-textarea" id="inputDesc" name="description" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description') ?? $post->description }}</textarea>
-@endsection 
+@endsection
 
 @section('input-description')
     <textarea class="def-textarea" id="inputDesc" name="description" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description') ?? $post->description }}</textarea>
-@endsection 
+@endsection
 
 @section('checkbox-description-uk')
     <input id="descTranslateUk" type="checkbox" name="desc_translate[uk]" value="1" {{array_search('uk', $post->user_translations['description']) === false ? 'checked="checked"' : ''}}>
 @endsection
 
 @section('field-description-uk')
-    @if ( old('desc_translate') && !array_key_exists('uk', old('desc_translate')) )        
+    @if ( old('desc_translate') && !array_key_exists('uk', old('desc_translate')) )
         <div class="translation-input-field field-description-uk">
     @else
         <div class="translation-input-field field-description-uk {{array_search('uk', $post->user_translations['description']) === false ? 'hidden' : ''}}">
@@ -136,7 +136,7 @@
 @endsection
 
 @section('field-description-ru')
-    @if ( old('desc_translate') && !array_key_exists('ru', old('desc_translate')) )        
+    @if ( old('desc_translate') && !array_key_exists('ru', old('desc_translate')) )
         <div class="translation-input-field field-description-ru">
     @else
         <div class="translation-input-field field-description-ru {{array_search('ru', $post->user_translations['description']) === false ? 'hidden' : ''}}">
@@ -149,7 +149,7 @@
 @endsection
 
 @section('field-description-en')
-    @if ( old('desc_translate') && !array_key_exists('en', old('desc_translate')) )        
+    @if ( old('desc_translate') && !array_key_exists('en', old('desc_translate')) )
         <div class="translation-input-field field-description-en">
     @else
         <div class="translation-input-field field-description-en {{array_search('en', $post->user_translations['description']) === false ? 'hidden' : ''}}">
@@ -172,11 +172,11 @@
             @endif
         </div>
     @enderror
-@endsection 
+@endsection
 
 @section('input-cost')
     <input class="def-input input-cost" id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') ?? $post->cost ? $post->cost_readable : null }}"/>
-    
+
     <div class="def-select-wraper">
         <select class="def-select" id="inputCurrency" name="currency">
             <option value="UAH" {{$post->currency=='UAH' ? 'selected' : ''}}>{{__('ui.grivna')}}</option>
@@ -184,27 +184,27 @@
         </select>
         <span class="arrow arrowDown"></span>
     </div>
-@endsection 
-    
+@endsection
+
 @section('input-email')
     <input class="def-input" id="inputEmail" name="user_email" type="email" placeholder="{{__('ui.email')}}" value="{{ old('user_email') ?? $post->user_email }}">
-@endsection 
+@endsection
 
 @section('input-phone')
     <input class="def-input format-phone" id="inputPhone" name="user_phone_raw" maxlength="10" type="text" placeholder="0 (00) 000 00 00" value="{{ old('user_phone_raw') ?? $post->user_phone_readable }}">
-@endsection 
+@endsection
 
 @section('input-viber')
     <input type="checkbox" id="viberInput" name="viber" value="1" {{ $post->viber ? 'checked' : '' }}>
-@endsection 
+@endsection
 
 @section('input-telegram')
     <input type="checkbox" id="telegramInput" name="telegram" value="1" {{ $post->telegram ? 'checked' : '' }}>
-@endsection 
+@endsection
 
 @section('input-whatsapp')
     <input type="checkbox" id="whatsappInput" name="whatsapp" value="1" {{ $post->whatsapp ? 'checked' : '' }}>
-@endsection 
+@endsection
 
 @section('buttons')
     <button class="def-button delete-button" type="button" id="modalPostDeleteOn">{{__('ui.deletePost')}}</button>
@@ -212,7 +212,7 @@
 
 @section('modals')
     <div class="modalView animate" id="modalPostDelete">
-        <div class="modalContent"> 
+        <div class="modalContent">
             <p>{{__('ui.sure?')}}</p>
             <div>
                 <button class="def-button submit-button" type="button" id="modalPostDeleteOff">{{__('ui.no')}}</button>
@@ -231,14 +231,14 @@
         $(document).ready(function() {
 
             //chose tags that chosen by user
-            tagId = $('#tagEncodedHidden').val(); // get encoded chosen tag 
+            tagId = $('#tagEncodedHidden').val(); // get encoded chosen tag
             tagName = $('#tagReadbleHidden').val(); // get name of chosen tag
             $('div.selected-tags span').text(tagName); // add chosen readable tag to modal tags preview
             $('#modal-hidden-tag').val(tagId); // add encoded tag to hidden modal field
             $('#50').removeClass('isActiveBtn'); // remove active effect from default tag
             $( 'div.tags_'+tagId.replace(/\./g, '\\.') ).removeClass('hidden'); // show sub tags of chosen tag
             $( '#'+tagId.replace(/\./g, '\\.') ).addClass('isActiveBtn'); // add active effect on chosen tag
-            index = tagId.lastIndexOf('.'); //find dot on encoded tag 
+            index = tagId.lastIndexOf('.'); //find dot on encoded tag
             if (index != -1) {
                 parentId = tagId.substr(0, index); //get chosen sub tag
                 $('div.tags_'+parentId.replace(/\./g, '\\.')).removeClass('hidden'); // show shosen sub tags column
@@ -275,7 +275,7 @@
                 dictMaxFilesExceeded: "{{__('ui.dzTooFewFiles')}}",
                 init: function () {
                     var thisDropzone = this;
-                    
+
                     if ('{{$images}}') {
                         var images = JSON.parse('{!! $images !!}');
                         $.each(images, function(key,value){
@@ -297,8 +297,8 @@
                                     _token: "{{ csrf_token() }}"
                                 },
                                 success: function(data) {
-                                    data 
-                                        ? showPopUpMassage(true, "{{ __('messages.postImgDeleted') }}") 
+                                    data
+                                        ? showPopUpMassage(true, "{{ __('messages.postImgDeleted') }}")
                                         : showPopUpMassage(false, "{{ __('messages.error') }}");
                                 },
                                 error: function() {
@@ -306,7 +306,7 @@
                                 }
                             });
                         }
-                    }); 
+                    });
 
                     $("#form-submit").click(function (e) {
                         e.preventDefault();

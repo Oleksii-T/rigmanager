@@ -40,6 +40,6 @@ class RegionSelect extends Component
             default:
                 break;
         }
-        
+
     }
 }

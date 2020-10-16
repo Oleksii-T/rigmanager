@@ -47,8 +47,8 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request)
     {
         if ($request->hasFile('ava')) {
-            $this->userImageUpdate($request->file('ava')); 
-        } 
+            $this->userImageUpdate($request->file('ava'));
+        }
         $input = $request->except('ava');
         $input['viber'] = $request->viber ? 1 : 0;
         $input['telegram'] = $request->telegram ? 1 : 0;
@@ -94,7 +94,7 @@ class UserController extends Controller
         return view('profile.posts', compact('posts_list', 'translated'));
     }
 
-    public function addToFav(Request $request) 
+    public function addToFav(Request $request)
     {
         if ( !$post = Post::find($request->post_id)) {
             return false;
@@ -114,13 +114,13 @@ class UserController extends Controller
      * @return false email not available
      * @return true email is available
      */
-    public function emailExists(Request $request) 
+    public function emailExists(Request $request)
     {
         $email = $request->email;
         $user = User::where('email', $email)->get();
         if ( $user->isEmpty()) {
             return json_encode(true);
-        } 
+        }
         // if ignoring id is specified and it is match found user, return true
         if ( $request->ignoreId && $user[0]->id == $request->ignoreId ) {
             return json_encode(true);
@@ -135,13 +135,13 @@ class UserController extends Controller
      * @return false email not available
      * @return true email is available
      */
-    public function userNameExists(Request $request) 
+    public function userNameExists(Request $request)
     {
         $name = $request->name;
         $user = User::where('name', $name)->get();
         if ( $user->isEmpty()) {
             return json_encode(true);
-        } 
+        }
         // if ignoring id is specified and it is match found user, return true
         if ( $request->ignoreId && $user[0]->id == $request->ignoreId ) {
             return json_encode(true);
@@ -153,5 +153,5 @@ class UserController extends Controller
     {
         return view('profile.subscription');
     }
-    
+
 }

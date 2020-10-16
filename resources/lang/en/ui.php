@@ -6,13 +6,13 @@ return [
     'workInProgress' => 'Work In Progress',
     'development' => 'The website is on the stage of active development.
     The release is scheduled for December 2020.',
-    
+
 
     // no script massage
-    'noscript' => 'Javascript is disabled in your browser. 
+    'noscript' => 'Javascript is disabled in your browser.
         It may serously reflect the web site functionality.',
 
-    //maintenance mode 
+    //maintenance mode
     'maintenanceHeader' => 'Sorry for the inconvenience',
     'maintenanceText' => 'The website is temporarily unavailable
     We will be available',
@@ -137,7 +137,7 @@ return [
     'searchByAuthor' => 'Posts by author',
     'other' => 'Other',
     'searchSuccess' => 'That is what we found',
-    'searchFail' => 'Sorry, we can not find 
+    'searchFail' => 'Sorry, we can not find
         posts for your request',
     'filters' => 'Filters',
     'from' => 'From',
@@ -267,17 +267,17 @@ return [
     'choosePostStatus' => 'Choose post status (visibility)',
     'postActive' => 'Visible for everyone',
     'postInactive' => 'Hidden',
-    'postInactiveError' => 'Sorry, but the Post Author 
-        deactivated this post. 
-        You can return here later, 
+    'postInactiveError' => 'Sorry, but the Post Author
+        deactivated this post.
+        You can return here later,
         it may be activated again soon!',
     'translationTitleAlert' => 'This is the translated title.',
     'translationDescAlert' => 'This is the translated description.',
     'originLang' => 'Original language is',
     'showOrigin' => 'Show origin',
-    
+
     //dropzone
-    'dropzoneDesc' => 'Drop files or click 
+    'dropzoneDesc' => 'Drop files or click
     to upload images',
     'dropzoneBigFile' => 'This image is too big',
     'dropzoneInvalidMime' => 'Only .jpeg, .jpg, .png allowed',
@@ -302,7 +302,7 @@ return [
     Please, follow the link in our message.
     If You can not find the message, check Spam folder or we can send',
     'verifyClickToResend' => 'new activation message',
-    'verifyNoticeResend' => 'new account activation message 
+    'verifyNoticeResend' => 'new account activation message
     was sent to Your Email address.',
 
     // footer massages
@@ -312,13 +312,13 @@ return [
     'footerIconsRef' => 'Icons made by',
     'footerSubscription' => 'Our Plans',
     'footerContact' => 'Contact Us',
-    'footerTerms' => 'Terms of 
+    'footerTerms' => 'Terms of
     Service',
-    'footerPrivacy' => 'Privacy 
+    'footerPrivacy' => 'Privacy
     Policy',
     'footerDevelop' => 'Delelopment',
     'footerSiteMap' => 'Site Map',
-    
+
     // sitemap
     'stMain' => 'Main',
     'stPost' => 'Posts',
@@ -355,12 +355,12 @@ return [
     'regionChernivtsi' => 'Chernivtsi region',
 
     // notification from user
-    'fromUserTitle' => 'Got a question?', 
-    'fromUserEmail' => 'Email (for feedback)', 
-    'fromUserSubject' => 'Subject', 
-    'fromUserText' => 'How can we help You?', 
-    'fromUserTextPlaceholder' => 'Describe your problem/offer/suggestion', 
-    'fromUserSubmit' => 'Send message', 
+    'fromUserTitle' => 'Got a question?',
+    'fromUserEmail' => 'Email (for feedback)',
+    'fromUserSubject' => 'Subject',
+    'fromUserText' => 'How can we help You?',
+    'fromUserTextPlaceholder' => 'Describe your problem/offer/suggestion',
+    'fromUserSubmit' => 'Send message',
 
     // server error
     'serverErrorTittle' => 'Oops!',

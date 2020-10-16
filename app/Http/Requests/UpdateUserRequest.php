@@ -35,7 +35,7 @@ class UpdateUserRequest extends FormRequest
                 'phone_raw' => ['nullable', 'string', 'size:16', new Phone],
                 'ava' => 'nullable|mimes:jpeg,jpg,jpe,png|max:5000'
             ];
-        } 
+        }
         return [
             'name' => ['required', 'string', 'min:3', 'max:40', Rule::unique('users')->ignore(auth()->user()), new UserName],
             'phone_raw' => ['nullable', 'string', 'size:16', new Phone],

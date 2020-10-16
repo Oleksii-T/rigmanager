@@ -5,4 +5,4 @@
     <div class="{{ $errorClass }}">
         <p>{{ $message }}</p>
     </div>
-@enderror 
+@enderror

@@ -17,14 +17,14 @@
 
 @section('input-title')
     <input class="def-input" id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') }}"/>
-@endsection    
+@endsection
 
 @section('checkbox-title-uk')
-    <input id="titleTranslateUk" type="checkbox" name="title_translate[uk]" value="1" checked="checked"> 
+    <input id="titleTranslateUk" type="checkbox" name="title_translate[uk]" value="1" checked="checked">
 @endsection
 
 @section('field-title-uk')
-    <div class="translation-input-field field-title-uk {{old('title_translate') && !array_key_exists('uk', old('title_translate')) ? '' : 'hidden'}}">    
+    <div class="translation-input-field field-title-uk {{old('title_translate') && !array_key_exists('uk', old('title_translate')) ? '' : 'hidden'}}">
         <input class="def-input" id="inputTitleUk" name="title_uk" type="text" placeholder="Заголовок" value="{{ old('title_uk') }}"/>
 @endsection
 
@@ -78,7 +78,7 @@
 
 @section('input-company')
     <input class="def-input" id="inputCompany" name="company" type="text" placeholder="{{__('ui.companyP')}}" value="{{ old('company') }}"/>
-@endsection 
+@endsection
 
 @section('input-condition')
     <label class="radio-container" for="conditionNew">{{__('ui.conditionNew')}}
@@ -103,7 +103,7 @@
     <input id="tagReadbleHidden" type="text" name="tagReadbleHidden" value="{{ old('tagReadbleHidden') ?? __('tags.other') }}" hidden/>
     <p id="tagReadbleVisible">{{__('ui.chosenTags')}}: <span>{{ old('tagReadbleHidden') ?? __('tags.other')}}</span></p>
 @endsection
-    
+
 @section('input-manufacturer')
     <input class="def-input" id="inputManufacturer" name="manufacturer" type="text" value="{{ old('manufacturer') }}"/>
 @endsection
@@ -161,7 +161,7 @@
 
 @section('input-cost')
     <input class="def-input input-cost" id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') }}"/>
-    
+
     <div class="def-select-wraper">
         <select class="def-select" id="inputCurrency" name="currency">
             <option value="UAH">{{__('ui.grivna')}}</option>

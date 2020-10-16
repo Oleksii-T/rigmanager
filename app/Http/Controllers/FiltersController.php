@@ -25,7 +25,7 @@ class FiltersController extends Controller
         }
         if (array_key_exists('costFrom',$filters) && $currency!='USD') {
             $filters['costFrom'] = UsdExchangeController::uahToUsd($filters['costFrom']);
-        } 
+        }
         if (array_key_exists('costTo',$filters) && $currency!='USD') {
             $filters['costTo'] = UsdExchangeController::uahToUsd($filters['costTo']);
         }

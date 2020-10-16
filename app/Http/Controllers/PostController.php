@@ -81,7 +81,7 @@ class PostController extends Controller
 
         $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
         $input['origin_lang'] = $translate->detectLanguage( $input['title'] . '. ' . $input['description'] )['languageCode']; // merge title and description and find out the origin language
-        
+
         $post = new Post($input);
         if (!auth()->user()->posts()->save($post)) {
             Session::flash('message-error', __('messages.postUploadedError'));
@@ -96,7 +96,7 @@ class PostController extends Controller
         dd('uploading is done');
         return redirect(loc_url(route('home')));
     }
-    
+
     public function storeFake()
     {
         Session::flash('message-success', __('messages.postUploaded'));
@@ -180,7 +180,7 @@ class PostController extends Controller
             }
         }
         $input = $request->all();
-        
+
         // parse messangers values. If no phone specified remove messangers
         if ( $input['user_phone_raw'] ) {
             $input['viber'] = $request->viber ? 1 : 0;
@@ -209,7 +209,7 @@ class PostController extends Controller
         // check origin language
         $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
         $input['origin_lang'] = $translate->detectLanguage( $input['title'] . '. ' . $input['description'] )['languageCode']; // merge title and description and find out the origin language
-        
+
         // if there is no cost specified, remove currency
         if ( !$input['cost'] ) {
             $input['currency'] = null;
@@ -232,7 +232,7 @@ class PostController extends Controller
         if ( $request->hasFile('images')) {
             $this->postImageUpload($request->file('images'), $post);
         }
-        
+
         TranslatePost::dispatch($post, $input, false)->onQueue('translation');
         Session::flash('message-success', __('messages.postEdited'));
         return redirect(loc_url(route('posts.show', ['post'=>$id])));
@@ -293,7 +293,7 @@ class PostController extends Controller
         return false;
     }
 
-    public function getContacts($postId) 
+    public function getContacts($postId)
     {
         $post = Post::findOrFail($postId);
         //add check for subscription
@@ -305,7 +305,7 @@ class PostController extends Controller
         return json_encode($contacts);
     }
 
-    public function getImages($postId) 
+    public function getImages($postId)
     {
         $post = Post::findOrFail($postId);
         if ($post->user == auth()->user()) {

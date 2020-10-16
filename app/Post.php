@@ -16,14 +16,14 @@ class Post extends Model
     use Searchable, Tags;
 
     protected $appends = [
-        'tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable', 
+        'tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable',
         'user_phone_intern', 'region_readable', 'role_readable', 'type_readable', 'origin_lang_readable'
     ];
 
     protected $fillable = [
-        'is_active', 'thread', 'origin_lang', 'user_translations' , 'title', 'title_uk', 'title_ru', 'title_en', 
-        'company', 'type', 'role', 'condition', 'tag_encoded', 'description', 'description_uk', 'description_ru', 
-        'description_en', 'cost', 'currency', 'region_encoded', 'town', 'user_email', 'user_phone_raw', 'viber', 
+        'is_active', 'thread', 'origin_lang', 'user_translations' , 'title', 'title_uk', 'title_ru', 'title_en',
+        'company', 'type', 'role', 'condition', 'tag_encoded', 'description', 'description_uk', 'description_ru',
+        'description_en', 'cost', 'currency', 'region_encoded', 'town', 'user_email', 'user_phone_raw', 'viber',
         'telegram', 'whatsapp', 'manufacturer', 'manufactured_date', 'part_number',
     ];
     /**
@@ -34,18 +34,18 @@ class Post extends Model
     public function toSearchableArray()
     {
         $array = $this->only(
-            'title', 'title_uk', 'title_ru', 'title_en', 'manufacturer', 'manufactured_date', 'part_number', 
+            'title', 'title_uk', 'title_ru', 'title_en', 'manufacturer', 'manufactured_date', 'part_number',
             'description', 'description_uk', 'description_ru', 'description_en', 'town', 'is_active', 'company'
         );
         return $array;
     }
 
-    public function user() 
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function images() 
+    public function images()
     {
         return $this->hasMany(PostImage::class);
     }
@@ -86,7 +86,7 @@ class Post extends Model
     {
         $this->attributes['cost'] = preg_replace('/[^0-9.]+/', '', $value);
     }
-    
+
     public function setUserPhoneRawAttribute($value)
     {
         $this->attributes['user_phone_raw'] = substr(preg_replace('/[^0-9]+/', '', $value), 0, 10);
@@ -218,7 +218,7 @@ class Post extends Model
         }
         $step = 1;
         $commaIndexes = array();
-        for ($i=strlen($cost)-4; $i > 0 ; $i--) { 
+        for ($i=strlen($cost)-4; $i > 0 ; $i--) {
             if ($step == 3) {
                 $commaIndexes[] = $i;
                 $step = 1;
@@ -249,7 +249,7 @@ class Post extends Model
         }
         return $phone;
     }
-    
+
     public function getUserPhoneInternAttribute() {
         $phone = $this->user_phone_readable;
         return $phone ? '+38'.$phone : $phone;

@@ -6,12 +6,12 @@ return [
     'workInProgress' => 'Работа в процессе',
     'development' => 'Сайт находится в стадии активной разработки.
     Релиз запланирован на декабрь 2020 года.',
-    
+
     // no script massage
-    'noscript' => 'В вашем браузере отключен Javascript. 
+    'noscript' => 'В вашем браузере отключен Javascript.
         Это может серьезно отразиться на функциональности нащего сайта.',
 
-    //maintenance mode 
+    //maintenance mode
     'maintenanceHeader' => 'Приносим извинения за неудобства',
     'maintenanceText' => 'Сайт временно недоступен
     Открытие',
@@ -45,7 +45,7 @@ return [
     'iAgree' => 'Я соглашаюсь с',
     'iAgreeLink' => 'Пользовательским соглашением',
     'accountActivated' => 'Ваша учетная запись была подтверждена!',
-    
+
     //home massages
     'home' => 'Домой',
     'addToFav' => 'Добавить в Избранное',
@@ -136,7 +136,7 @@ return [
     'searchByAuthor' => 'Объявления автора',
     'other' => 'Другое',
     'searchSuccess' => 'Вот что нам удалось найти',
-    'searchFail' => 'К сожалению, нам не удалось найти 
+    'searchFail' => 'К сожалению, нам не удалось найти
         объявление по Вашему запросу',
     'filters' => 'Фильты',
     'from' => 'От',
@@ -149,7 +149,7 @@ return [
     'searchAmount' => 'Результаты Поиска',
     'postType' => 'Род',
     'postRole' => 'Сектор',
-    
+
     // post edit/create/edit massages
     'equipment' => 'Оборудование',
     'service' => 'Сервис',
@@ -273,17 +273,17 @@ return [
     'translationDescAlert' => 'Это переведенное описание.',
     'originLang' => 'Исходный язык - ',
     'showOrigin' => 'Показать оригинал',
-    
+
     //dropzone
     'dropzoneDesc' => 'test1',
-    'dropzoneBigFile' => 'Перетащите файлы или нажмите, 
+    'dropzoneBigFile' => 'Перетащите файлы или нажмите,
     чтобы загрузить изображения',
     'dropzoneInvalidMime' => 'Только .jpeg, .jpg, .png разрешены',
     'dropzoneServerError' => 'Произошла ошибка сервера',
     'dropzoneUploadCanceled' => 'Загрузка была отменена',
     'dropzoneUploadRemoveLink' => 'Удалить',
     'dropzoneTooFewFiles' => 'Слишком много изображений',
-    
+
     // post show masssages
     'yoursPost' => 'Это объявление принадлежит вам',
     'postAuthor' => 'Автор объявления',
@@ -310,7 +310,7 @@ return [
     'footerIconsRef' => 'Все иконки предоставлены',
     'footerSubscription' => 'Подписки',
     'footerContact' => 'Связаться с нами',
-    'footerTerms' => 'Пользовательское 
+    'footerTerms' => 'Пользовательское
     соглашение',
     'footerPrivacy' => 'Политика
     Конфиденциальности',
@@ -353,12 +353,12 @@ return [
     'regionChernivtsi' => 'Черновицкая область',
 
     // notification from user
-    'fromUserTitle' => 'Есть вопрос?', 
-    'fromUserEmail' => 'Электронная почта (для обратной связи)', 
-    'fromUserSubject' => 'Тема', 
-    'fromUserText' => 'Как мы можем Вам помочь?', 
-    'fromUserTextPlaceholder' => 'Опишите Вашу проблему/предложение', 
-    'fromUserSubmit' => 'Отправить сообщение', 
+    'fromUserTitle' => 'Есть вопрос?',
+    'fromUserEmail' => 'Электронная почта (для обратной связи)',
+    'fromUserSubject' => 'Тема',
+    'fromUserText' => 'Как мы можем Вам помочь?',
+    'fromUserTextPlaceholder' => 'Опишите Вашу проблему/предложение',
+    'fromUserSubmit' => 'Отправить сообщение',
 
     // server error
     'serverErrorTittle' => 'Ой!',

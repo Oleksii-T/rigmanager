@@ -40,7 +40,7 @@ Route::middleware('verified')->group(function () {
     Route::get      ('fake/store',                         'PostController@storeFake')     ->name('posts.store.fake');
     Route::get      ('posts/create/service',                'PostController@serviceCreate') ->name('service.create');
     Route::resource ('posts',                               'PostController')               ->except(['index', 'show']);
-    
+
     // prifile/user routes
     Route::get      ('profile/edit',            'UserController@edit')              ->name('profile.edit');
     Route::get      ('profile/favourites',      'UserController@favourites')        ->name('profile.favourites');
@@ -52,7 +52,7 @@ Route::middleware('verified')->group(function () {
     Route::patch    ('profile/mailer/update',           'MailerController@update')      ->name('mailer.update');
     Route::delete   ('profile/mailer/destroy',          'MailerController@destroy')     ->name('mailer.destroy');
     Route::get      ('profile/mailer/edit',             'MailerController@edit')        ->name('mailer.edit');
-    Route::resource ('profile/mailer',                  'MailerController')             ->except(['show', 'edit', 'update', 'destroy']); 
+    Route::resource ('profile/mailer',                  'MailerController')             ->except(['show', 'edit', 'update', 'destroy']);
 });
 
 // posts routes

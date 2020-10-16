@@ -114,7 +114,7 @@ class MailerController extends Controller
         return true;
     }
 
-    public function addTag($tagId) 
+    public function addTag($tagId)
     {
         $tags_encoded = $this->getTagType($tagId) . '_tags_encoded';
         $mailer = auth()->user()->mailer;
@@ -141,7 +141,7 @@ class MailerController extends Controller
         return false;
     }
 
-    public function addText($string) 
+    public function addText($string)
     {
         $mailer = auth()->user()->mailer;
         // check is Mailer exists
@@ -179,7 +179,7 @@ class MailerController extends Controller
         return true;
     }
 
-    public function addAuthor($user_id) 
+    public function addAuthor($user_id)
     {
         $mailer = auth()->user()->mailer;
         if (!$mailer) {
@@ -199,10 +199,10 @@ class MailerController extends Controller
         }
         if ( array_search($user_id, $authorsArr) === false ) {
             $authorsArr[] = $user_id;
-            $mailer->authors_encoded = $authorsArr; 
+            $mailer->authors_encoded = $authorsArr;
             $mailer->save();
             return 1;
         }
         return 0;
-    } 
+    }
 }

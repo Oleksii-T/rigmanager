@@ -1,4 +1,4 @@
-{{ __('ui.mailerNotifGreetings') }}! 
+{{ __('ui.mailerNotifGreetings') }}!
 {{ __('ui.mailerNotifHeader') }}.
 {{ $post->title }}
 {{ $post->description }}

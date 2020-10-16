@@ -49,10 +49,10 @@
                             @if ( $user->whatsapp )
                                 <img src="{{ asset('icons/whatsappIcon.svg') }}" alt="{{__('alt.keyword')}}">
                             @endif
-                        @else 
+                        @else
                             <p>{{__('ui.notSpecified')}}</p>
                         @endif
-                    </td> 
+                    </td>
                 </tr>
                 <tr id="emailField">
                     <td class="fieldName">
@@ -77,7 +77,7 @@
             </table>
             <div id="editBtnField">
                 <a class="def-button" id="editBtn" href="{{ loc_url(route('profile.edit')) }}">{{__('ui.edit')}}</a>
-                @if ($user->is_social)    
+                @if ($user->is_social)
                     <p class="social-acc-help"><img src="{{asset('icons/alertIcon.svg')}}" alt="{{__('alt.keyword')}}">{{__('ui.uHave')}} <a href="{{loc_url(route('faq'))}}#WhatIsSocialAcc">{{__('ui.socialAcc')}}</a></p>
                 @endif
             </div>
@@ -96,6 +96,6 @@
                     $(".helpText").addClass("hidden");
             });
         });
-        
+
     </script>
 @endsection

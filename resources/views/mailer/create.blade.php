@@ -45,7 +45,7 @@
     <!--Hidden field for encoded tag (eq. and se. at ones) for DB-->
     <input id="tagEqEncodedHidden" type="text" name="eq_tags_encoded" value="" hidden/>
 
-    <!--Visible fields for readable tag-->                        
+    <!--Visible fields for readable tag-->
     <div class="chosen-tags equipment">
         <p>{{__('ui.mailerEqTags')}}:</p>
         <ol class="orderedList"></ol>
@@ -56,7 +56,7 @@
     <!--Hidden field for encoded tag (eq. and se. at ones) for DB-->
     <input id="tagSeEncodedHidden" type="text" name="se_tags_encoded" value="" hidden/>
 
-    <!--Visible fields for readable tag-->                        
+    <!--Visible fields for readable tag-->
     <div class="chosen-tags service">
         <p>{{__('ui.mailerSeTags')}}:</p>
         <ol class="orderedList">

@@ -63,10 +63,10 @@ class RegisterController extends Controller
             'email.unique' => __("validation.unique-email"),
             'agreement.required' => __("validation.agreement"),
         ];
-        return Validator::make($data, 
+        return Validator::make($data,
         [
-            'name' => ['required', 'string', 'min:3', 'max:40', 'unique:users,name', new UserName], 
-            'phone_raw' => ['string', 'nullable', 'size:16', new Phone], 
+            'name' => ['required', 'string', 'min:3', 'max:40', 'unique:users,name', new UserName],
+            'phone_raw' => ['string', 'nullable', 'size:16', new Phone],
             'email' => ['required', 'string', 'email', 'max:254','unique:users,email'],
             'password' => ['required', 'string', 'min:6', 'max:20', new Password],
             'agreement' => ['required'],

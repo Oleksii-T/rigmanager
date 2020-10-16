@@ -8,7 +8,7 @@ trait Tags
     protected $tagsMap = [];
 
     //not a  __constructor because those methods is not effacted by app locale
-    public function constructTagsMap() 
+    public function constructTagsMap()
     {
         $this->tagsMap = [
             '0' => __('tags.other'),
@@ -348,7 +348,7 @@ trait Tags
                 '33.1' => __('tags.hyrdoMeck'),
                 '33.2' => __('tags.hydraulic'),
 
-            
+
             // SERVESES
             '50' => __('tags.otherService'),
             '51' => __('tags.multipleService'),
@@ -420,7 +420,7 @@ trait Tags
     }
 
     // recursive helper for getTagMap()
-    private function getTagMapHelper($id, &$idPath) { 
+    private function getTagMapHelper($id, &$idPath) {
         $idPath[$id] = $this->getTagNameById($id);
         if ( strpos($id, '.') !== false ) {
             for ( $i=strlen($id)-1; $i>0 ; $i--) {
@@ -436,5 +436,5 @@ trait Tags
             return;
         }
     }
-    
+
 }

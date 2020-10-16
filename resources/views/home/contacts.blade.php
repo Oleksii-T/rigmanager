@@ -49,9 +49,9 @@
                 <p class="field-header">{{__('ui.fromUserEmail')}}<span class="required-input">*</span></p>
                 <input type="email" class="def-input email-input" id="email-input" name="email"
                 @auth
-                    value="{{old('email') ?? auth()->user()->email}}"   
+                    value="{{old('email') ?? auth()->user()->email}}"
                     @else
-                        value="{{old('email')}}" 
+                        value="{{old('email')}}"
                 @endauth
                 required>
                 <x-server-input-error errorName='email' inputName='email-input' errorClass='error'/>
@@ -75,7 +75,7 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script> 
+    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/myValidators.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -106,17 +106,17 @@
                     }
                 },
                 messages: {
-                    name: { 
+                    name: {
                         required: '{{ __("validation.required") }}',
                         minlength: '{{ __("validation.min.string", ["min" => 3]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 40]) }}'
                     },
-                    email: { 
+                    email: {
                         required: '{{ __("validation.required") }}',
                         email: '{{ __("validation.email") }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 254]) }}'
                     },
-                    subject: { 
+                    subject: {
                         required: '{{ __("validation.required") }}',
                         minlength: '{{ __("validation.min.string", ["min" => 3]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'

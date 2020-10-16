@@ -40,7 +40,7 @@
                             <span class="item-tag-delim">></span>
                         @endforeach
                     </div>
-                    
+
                     @if ( $translated && $post->{$translated['description']} )
                         <p class="translated-desc">{{ $post->{$translated['description']} }}</p>
                         <p class="origin-desc hidden">{{ $post->description }}</p>
@@ -48,7 +48,7 @@
                             <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationDescAlert')}}</p>
                             <button class="ta-button desc-show" title="{{__('ui.showOrigin')}}">{{__('ui.originLang')}} {{$post->origin_lang_readable}}</button>
                         </div>
-                    @else                    
+                    @else
                         <p>{{ $post->description }}</p>
                     @endif
                 </section>
@@ -63,12 +63,12 @@
                                 <p>{{__('ui.inFav')}}</p>
                                 <button class="addToFavButton id_{{$post->id}}">
                                     <img src="{{ asset('icons/heartOrangeIcon.svg') }}" title="{{__('ui.removeFromFav')}}" alt="{{__('alt.keyword')}}">
-                                </button> 
+                                </button>
                             @else
                                 <p>{{__('ui.addToFav')}}</p>
                                 <button class="addToFavButton id_{{$post->id}}">
                                     <img src="{{ asset('icons/heartWhiteIcon.svg') }}" title="{{__('ui.addToFav')}}" alt="{{__('alt.keyword')}}">
-                                </button>  
+                                </button>
                             @endif
                         </aside>
                     @else
@@ -76,7 +76,7 @@
                             <p>{{__('ui.yoursPost')}}</p>
                             <a class="def-button" href="{{ loc_url(route('posts.edit', ['post'=>$post->id])) }}">{{__('ui.edit')}}</a>
                         </aside>
-                    @endif   
+                    @endif
                 @else
                     <aside class="element" id="addToFavBtn">
                         <p>{{__('ui.addToFav')}}</p>
@@ -103,7 +103,7 @@
                     <button class="def-button" id="modalTriger">{{__('ui.showContacts')}}</button>
                     @auth
                         @if ($post->user_id != Auth::id())
-                            <button class="def-button" id="mailerAddAuthor">    
+                            <button class="def-button" id="mailerAddAuthor">
                                 @if (auth()->user()->mailer && auth()->user()->mailer->authors_encoded)
                                     @if ( in_array( $post->user_id, auth()->user()->mailer->authors_encoded ) )
                                         {{__('ui.mailerRemoveAuthor')}}
@@ -173,7 +173,7 @@
         </div>
 
         <div class="modalView" id="modal">
-            <address class="modalContent"> 
+            <address class="modalContent">
                 <h1>{{__('ui.contactInfo')}}:</h1>
 
                 <ul>
@@ -311,7 +311,7 @@
                 }
             }
 
-            //show modal contacts 
+            //show modal contacts
             $('#modalTriger').click(function(){
                 var button = $(this);
                 button.addClass('loading');
@@ -339,8 +339,8 @@
 
             function fillUpContacts (data) {
                 var contacts = JSON.parse(data);
-                contacts['email'] 
-                    ? $('span.emailField').text(contacts['email']) 
+                contacts['email']
+                    ? $('span.emailField').text(contacts['email'])
                     : $('span.emailField').text("{{__('ui.notSpecified')}}");
                 contacts['phone']
                     ? $('li.phoneField span').text(contacts['phone'])
@@ -368,7 +368,7 @@
                 $("#mainImgWraper img").attr("src",url);
                 $("#mainImgWraper a").attr("href",url);
             });
-            
+
             //close modal if clicked beyong the modal
             window.onclick = function(event) {
                 var modal = document.getElementById("modal");
@@ -379,8 +379,8 @@
                     $('.phoneField img').remove();
                 }
             }
-            
+
         });
-        
+
     </script>
 @endsection

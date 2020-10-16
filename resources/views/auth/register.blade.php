@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="help"><p><i>{{__('ui.phoneHelp')}}</i></p></div>
-                        </td> 
+                        </td>
                     </tr>
 
                     <tr id="emailShow">
@@ -132,11 +132,11 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script> 
+    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/hideShowPassword.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            
+
             // formate phone field
             $('.format-phone').focusin(function(){
                 var newVal = phoneFormater( $(this).val(), false );
@@ -197,7 +197,7 @@
             $("#inputAva").change(function() {
                 readURL(this);
             });
-            
+
             // change default error-lable insertion location
             $.validator.setDefaults({
                 errorPlacement: function(error, element) {
@@ -235,7 +235,7 @@
                 '{{__("validation.password")}}'
             );
 
-            //Validate the form          
+            //Validate the form
             $('#formSignup').validate({
                 rules: {
                     name: {
@@ -262,7 +262,7 @@
                     }
                 },
                 messages: {
-                    name: { 
+                    name: {
                         required: '{{ __("validation.required") }}',
                         minlength: '{{ __("validation.min.string", ["min" => 3]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 40]) }}',

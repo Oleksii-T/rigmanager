@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    
+
     <div class="master-wraper">
         <div id="profileContent">
             <nav class="profileNavBar">
@@ -90,13 +90,13 @@
                                         </div>
                                     </div>
                                     <div class="help"><p><i>{{__('ui.phoneHelp')}}</i></p></div>
-                                </td> 
+                                </td>
                             </tr>
                             @if ( !$user->is_social )
                                 <tr id="emailShow">
                                     <td class="nameOfField"><p>{{__('ui.login')}}<span class="required-input">*</span></p></td>
                                     <td class="valueOfField">
-                                        <input class="def-input" id="inputEmail" type="email" name="email" type="email" placeholder="Логин" value="{{ old('email') ?? $user->email}}" required autocomplete="email"/> 
+                                        <input class="def-input" id="inputEmail" type="email" name="email" type="email" placeholder="Логин" value="{{ old('email') ?? $user->email}}" required autocomplete="email"/>
                                         <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
                                         <div class="help"><p><i>{{__('ui.loginHelp')}}</i></p></div>
                                     </td>
@@ -119,7 +119,7 @@
         </div>
     </div>
     <div class="modalView animate" id="modalProfileImgDelete">
-        <div class="modalContent"> 
+        <div class="modalContent">
             <p>{{__('ui.sure?')}}</p>
             <div>
                 <button class="def-button submit-button" type="button" id="modalHide">{{__('ui.no')}}</button>
@@ -130,7 +130,7 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script> 
+    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/hideShowPassword.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -284,7 +284,7 @@
                     }
                 },
                 messages: {
-                    name: { 
+                    name: {
                         required: '{{ __("validation.required") }}',
                         minlength: '{{ __("validation.min.string", ["min" => 3]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 40]) }}',

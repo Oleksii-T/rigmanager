@@ -42,7 +42,7 @@
         @elseif ( $search['type'] == 'tags' )
             <div id="searchTags">
                 @foreach ($search['value'] as $id => $tag)
-                    <a class="itemTag" href="{{ loc_url(route('search.tag', ['category'=>$id])) }}">{{$tag}}</a> 
+                    <a class="itemTag" href="{{ loc_url(route('search.tag', ['category'=>$id])) }}">{{$tag}}</a>
                     <span>></span>
                 @endforeach
             </div>
@@ -57,7 +57,7 @@
             <div class="mailer-suggestion">
                 <button id="addAuthorToMailer" class="{{$search['value']['id']}}">{{__('ui.mailerSuggestAuthor')}}</button>
                 <a id="whatIsMailerHelp"href="{{loc_url(route('faq'))}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
-            </div>   
+            </div>
         @endif
         @if ($search['isEmpty'])
             <div class="empty-search-wraper">
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
                 @else
                     <div class="filter region-filter">
@@ -96,7 +96,7 @@
                         </div>
                     </div>
                 @endif
-                
+
                 @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
                 @else
                     <div class="filter filter-condition">
@@ -129,7 +129,7 @@
                                     <option value="2">{{__('ui.postTypeBuy')}}</option>
                                     <option value="3">{{__('ui.postTypeRent')}}</option>
                                     <option value="4">{{__('ui.postTypeLeas')}}</option>
-                                @else 
+                                @else
                                     <option value="1">{{__('ui.postTypeSell')}}</option>
                                     <option value="2">{{__('ui.postTypeBuy')}}</option>
                                     <option value="3">{{__('ui.postTypeRent')}}</option>
@@ -235,7 +235,7 @@
 
             var filters = new Object();
             filters.currency = 'UAH';
-            
+
             //handle manual ajax pagination
             $('body').on('click', 'div.filter-pagination a', function(e){
                 e.preventDefault();
@@ -257,7 +257,7 @@
                         postsIds: "{{$postsIds}}"
                     },
                     success: function(data) {
-                        $('div.filtered-items').empty(); // remove old items 
+                        $('div.filtered-items').empty(); // remove old items
                         $('div.loading-gif').addClass('hidden'); //hide loading gif
                         if (data) {
                             $('div.filtered-items').removeClass('hidden').append(data); //append+show new items
@@ -294,7 +294,7 @@
                     },
                     success: function(data) {
                         console.log(data);
-                        $('div.filtered-items').empty(); // remove old items 
+                        $('div.filtered-items').empty(); // remove old items
                         $('div.loading-gif').addClass('hidden'); //hide loading gif
                         if (data) {
                             $('div.filtered-items').removeClass('hidden').append(data); //append+show new items
@@ -343,7 +343,7 @@
             function filterLable() {
                 $('.user-settings').empty();
                 var label = '';
-                for (filterName in filters) {   
+                for (filterName in filters) {
                     if ( filterName=='currency' ) {
                         if (!filters.costFrom && !filters.costTo) {
                             continue;
@@ -457,7 +457,7 @@
                         res = res.slice(0, i+1) + ',' + res.slice(i+1);
                         step = 1;
                     }
-                    
+
                 }
                 currency=='UAH' ? res='₴'+res : res='$'+res;
                 return res;
@@ -560,7 +560,7 @@
                 var searchString = $('p.user-text-request').text();
                 // Add wait cursor
                 var button = $(this);
-                button.addClass('loading'); 
+                button.addClass('loading');
                 var ajaxUrl = '{{ route("mailer.add.text", ":string") }}';
                 ajaxUrl = ajaxUrl.replace(':string', searchString);
                 $.ajax({
@@ -569,7 +569,7 @@
                     success: function() {
                         showPopUpMassage(true, "{{ __('messages.mailerTextAdded') }}");
                         // Remove wait cursor
-                        button.removeClass('loading'); 
+                        button.removeClass('loading');
                     },
                     error: function(xhr, status, error) {
                         xhr['status'] == 403
@@ -591,16 +591,16 @@
                     type: "GET",
                     url: ajaxUrl,
                     success: function(data) {
-                        data 
-                            ? showPopUpMassage(true, "{{ __('messages.mailerTagAdded') }}") 
+                        data
+                            ? showPopUpMassage(true, "{{ __('messages.mailerTagAdded') }}")
                             : showPopUpMassage(false, "{{ __('messages.mailerTagExists') }}") ;
-                        button.removeClass('loading'); 
+                        button.removeClass('loading');
                     },
                     error: function(xhr, status, error) {
                         xhr['status'] == 403
                             ? showPopUpMassage(false, "{{ __('messages.authError') }}")
                             : showPopUpMassage(false, "{{ __('messages.error') }}");
-                        button.removeClass('loading'); 
+                        button.removeClass('loading');
                     }
                 });
             });
@@ -619,13 +619,13 @@
                     success: function(data) {
                         data ? showPopUpMassage(true, "{{ __('messages.mailerAddedAuthor') }}") : showPopUpMassage(false, "{{ __('messages.mailerAuthorExists') }}") ;
                         // Remove wait cursor
-                        button.removeClass('loading'); 
+                        button.removeClass('loading');
                     },
                     error: function(xhr, status, error) {
                         xhr['status'] == 403
                             ? showPopUpMassage(false, "{{ __('messages.authError') }}")
                             : showPopUpMassage(false, "{{ __('messages.error') }}");
-                        button.removeClass('loading'); 
+                        button.removeClass('loading');
                     }
                 });
             });
@@ -648,7 +648,7 @@
                     url: '{{route("toFav")}}',
                     data: { post_id: postId },
                     success: function(data) {
-                        //if no server errors, change digit of favItemsAmount in nav bar 
+                        //if no server errors, change digit of favItemsAmount in nav bar
                         //and change color of AddToFav btn img
                         if ( data ) {
                             var n = $("#favItemsTab span").text();

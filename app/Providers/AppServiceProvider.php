@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
                             str_contains($attribute, '.'),
                             function (Builder $query) use ($attribute, $searchString) {
                                 [$relationName, $relationAttribute] = explode('.', $attribute);
-            
+
                                 $query->orWhereHas($relationName, function (Builder $query) use ($relationAttribute, $searchString) {
                                     $query->where($relationAttribute, 'LIKE', "%{$searchString}%");
                                 });
@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
                     }
                 }
             });
-        
+
             return $this;
         });
 

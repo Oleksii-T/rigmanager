@@ -46,7 +46,7 @@
     <!--Hidden field for encoded tag for DB-->
     <input id="tagEqEncodedHidden" type="text" name="eq_tags_encoded" value="{{$mailer->eq_tags_encoded ? json_encode($mailer->eq_tags_encoded) : ''}}" hidden/>
 
-    <!--Visible fields for readable tag-->                        
+    <!--Visible fields for readable tag-->
     <div class="chosen-tags equipment">
         <p>{{__('ui.mailerEqTags')}}:</p>
         <ol class="orderedList">
@@ -59,11 +59,11 @@
     </div>
 @endsection
 
-@section('input-service-tags')    
+@section('input-service-tags')
     <!--Hidden field for encoded tag for DB-->
     <input id="tagSeEncodedHidden" type="text" name="se_tags_encoded" value="{{$mailer->se_tags_encoded ? json_encode($mailer->se_tags_encoded) : ''}}" hidden/>
 
-    <!--Visible fields for readable tag-->                        
+    <!--Visible fields for readable tag-->
     <div class="chosen-tags service">
         <p>{{__('ui.mailerSeTags')}}:</p>
         <ol class="orderedList">
@@ -76,7 +76,7 @@
     </div>
 @endsection
 
-@section('input-authors')  
+@section('input-authors')
     <input id="inputAuthors" name="authors_encoded" value="{{ $mailer->authors_string }} " hidden>
     @if ($mailer->authors_encoded)
         <ol class="orderedList">

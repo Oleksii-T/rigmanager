@@ -52,7 +52,7 @@
                     url: "{{ route('toFav') }}",
                     data: { post_id: item_id },
                     success: function(data) {
-                        //if no server errors, decrement digit of favItemsAmount in nav bar 
+                        //if no server errors, decrement digit of favItemsAmount in nav bar
                         //and hide post from page
                         if ( data ) {
                             var n = $("#favItemsTab span").text();

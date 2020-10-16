@@ -48,7 +48,7 @@ class MailerNotification extends Mailable
                             ->addTextHeader('List-Unsubscribe', "<mailto:unsubscribe.mailer@rigmanager.com.ua?subject=Unsubscibe");
                     });
     }
-    
+
     private function translate() {
         App::setLocale($this->lang);
         switch ($this->reason) {

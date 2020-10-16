@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Traits;
 use App\PostImage;
 use App\ProfileImage;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 //use Spatie\ImageOptimizer\OptimizerChainFactory;
 use App\Jobs\OptimizeImg;
 use Illuminate\Http\UploadedFile;
 
-// It is abstract because this controller is called only 
+// It is abstract because this controller is called only
 //   from other controllers and do not have instanse of itself
 trait ImageUploader
 {
@@ -23,12 +23,12 @@ trait ImageUploader
         //for each submitted file
         foreach ($files as $file) {
             $name = Str::random(30);
-            
+
             // save origin image to storage and DB;
             $path = $file->storeAs(auth()->id(), $name."_origin.".$file->extension());
             $image = new PostImage([
                 'serial_no' => $serialNo,
-                'path' => $path, 
+                'path' => $path,
                 'version' => 'origin',
                 'size' => $file->getSize()
             ]);
@@ -41,7 +41,7 @@ trait ImageUploader
             $path = $file->storeAs(auth()->id(), $name."_optimized.".$file->extension());
             $image = new PostImage([
                 'serial_no' => $serialNo,
-                'path' => $path, 
+                'path' => $path,
                 'version' => 'optimized',
                 'size' => $file->getSize()
             ]);
@@ -51,7 +51,7 @@ trait ImageUploader
         return true;
     }
 
-    public function postImagesDelete($post) 
+    public function postImagesDelete($post)
     {
         if (!$post->images->isEmpty()) {
             foreach ($post->images as $image) {
@@ -59,10 +59,10 @@ trait ImageUploader
                 $image->delete(); //delete alias from DB
             }
         }
-    }   
+    }
 
-    public function postImageDelete($post, $imgNo) 
-    {    
+    public function postImageDelete($post, $imgNo)
+    {
         var_dump('inner delete of image');
         $images = $post->images->where('serial_no', $imgNo);
         foreach ($images as $image) {

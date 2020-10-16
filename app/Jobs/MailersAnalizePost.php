@@ -57,15 +57,15 @@ class MailersAnalizePost implements ShouldQueue
         foreach($mailers as $mailer) {
             // Skip posts if Mailer and post belong to same user or if type of post is inapropriate
             if ( $mailer->user_id != $this->post->user_id && array_key_exists($this->post->type, $mailer->types_map) ) {
-                // If keywords are configured in Mailer 
+                // If keywords are configured in Mailer
                 if ($mailer->keywords && $this->checkKeywords($mailer) ) {
                     continue;
                 }
-                // If authors are configured in Mailer 
+                // If authors are configured in Mailer
                 if ($mailer->authors_encoded && $this->checkAuthors($mailer) ) {
                     continue;
                 }
-                // If tags are configured in Mailer 
+                // If tags are configured in Mailer
                 if ($mailer->tags_encoded && $this->ckeckTags($mailer) ) {
                     continue;
                 }

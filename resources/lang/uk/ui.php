@@ -8,10 +8,10 @@ return [
         Реліз запланований на грудень 2020 року.',
 
     // no script massage
-    'noscript' => 'У вашому браузері відключений Javascript. 
+    'noscript' => 'У вашому браузері відключений Javascript.
         Це може серйозно вплинути на функціональность нашого сайту',
 
-    //maintenance mode 
+    //maintenance mode
     'maintenanceHeader' => 'Приносимо вибачення за незручності',
     'maintenanceText' => 'Сайт тимчасово недоступний
     Відкриття',
@@ -101,7 +101,7 @@ return [
         Натисніть на запис щоб видалити.',
     'mailerAuthors' => 'Автори',
     'mailerAuthorsHelp' => 'Ви можете додати Автора у Розсилку на сторінці будь-якого оголошення, біля кнопки \'Показати контакти\'.
-        Ви можете додати до 10 авторів.    
+        Ви можете додати до 10 авторів.
         Натисніть на запис щоб видалити.',
     'deleteMailer' => 'Видалити Розсилку',
     'mailerIsActive' => 'Розсилка активна',
@@ -136,7 +136,7 @@ return [
     'searchByAuthor' => 'Оголошення автора',
     'other' => 'Інше',
     'searchSuccess' => 'Ось що нам вдалося знайти',
-    'searchFail' => 'На жаль, нам не вдалося знайти 
+    'searchFail' => 'На жаль, нам не вдалося знайти
         оголошення за Вашим запитом',
     'filters' => 'Фільтри',
     'from' => 'Від',
@@ -273,9 +273,9 @@ return [
     'translationDescAlert' => 'Це переведений опис.',
     'originLang' => 'Оригінальна мова -',
     'showOrigin' => 'Показати оригінал',
-    
+
     //dropzone
-    'dzDesc' => 'Перетягніть файли або натисніть, 
+    'dzDesc' => 'Перетягніть файли або натисніть,
     щоб завантажити зображення',
     'dzBigFile' => 'Зображення занадто велике',
     'dzInvalidMime' => 'Дозволено лише .jpeg, .jpg, .png',
@@ -283,7 +283,7 @@ return [
     'dzUploadCanceled' => 'Завантаження скасовано',
     'dzUploadRemoveLink' => 'Видалити',
     'dzTooFewFiles' => 'Забагато зображень',
-   
+
    // post show masssages
    'yoursPost' => 'Це оголошення належить вам',
    'postAuthor' => 'Автор оголошення',
@@ -310,7 +310,7 @@ return [
    'footerIconsRef' => 'Всі іконки надані',
    'footerSubscription' => 'Підписки',
    'footerContact' => 'Зв\'язатися з нами',
-   'footerTerms' => 'Угода 
+   'footerTerms' => 'Угода
    користувача ',
    'footerPrivacy' => 'Політика
    Конфіденційності',
@@ -353,12 +353,12 @@ return [
    'regionChernivtsi' => 'Чернівецька область',
 
    // notification from user
-   'fromUserTitle' => 'Є питання?', 
-   'fromUserEmail' => 'Электронная почта (для обратной связи)', 
-   'fromUserSubject' => 'Тема', 
-   'fromUserText' => 'Як ми можемо Вам допомогти?', 
-   'fromUserTextPlaceholder' => 'Опишіть Вашу проблему/пропозицію', 
-   'fromUserSubmit' => 'Відправити повідомлення', 
+   'fromUserTitle' => 'Є питання?',
+   'fromUserEmail' => 'Электронная почта (для обратной связи)',
+   'fromUserSubject' => 'Тема',
+   'fromUserText' => 'Як ми можемо Вам допомогти?',
+   'fromUserTextPlaceholder' => 'Опишіть Вашу проблему/пропозицію',
+   'fromUserSubmit' => 'Відправити повідомлення',
 
     // server error
     'serverErrorTittle' => 'Ой!',

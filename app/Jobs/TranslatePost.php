@@ -92,7 +92,7 @@ class TranslatePost implements ShouldQueue
             if ( $this->input['origin_lang'] != $this->input['origin_lang_old'] || $this->input['description'] != $this->input['description_old'] || $this->input['user_translations']['description'] != $this->input['user_translations_old']['description'] ) {
                 if ( array_key_exists($lang,  $this->input['desc_translate']) || ( !array_key_exists($lang, $this->input['desc_translate']) && !$this->input['description_'.$lang] ) ) {
                     $this->translate('description_'.$lang, $this->input['description'], $lang);// add new translation record
-                } 
+                }
             }
         }
         if ( $this->shouldUpdate ) {

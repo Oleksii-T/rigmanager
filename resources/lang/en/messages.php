@@ -5,7 +5,7 @@ return [
     'success' => '',
     'error' => 'An error occured.',
     'info' => '',
-    
+
     'postUploaded' => 'Post has been published successfully!',
     'postUploadedError' => 'Error occured while publishing the Post.',
     'postDeleted' => 'Post has been deleted successfully!',
@@ -25,7 +25,7 @@ return [
     'postActivated' => 'Post has been published again',
     'postDisactivated' => 'Post has been hidden from public',
     'authError' => 'You must be logged in to perform this action',
-    
+
     'mailerToManyTags' => 'Too many categories',
     'mailerUploaded' => 'Mailer has been configured successfully!',
     'mailerUploadedError' => 'Error occured while configuring the Mailer.',
@@ -43,7 +43,7 @@ return [
 
     'profileEdited' => 'Profile has been changed successfully!',
     'profileImgDeleted' => 'Profile picture was deleted successfully!',
-    
+
     'signedIn' => 'Welcome!',
     'signedOut' => 'Good bye',
 

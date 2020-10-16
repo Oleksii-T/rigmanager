@@ -11,7 +11,7 @@ class Mailer extends Model
     use Tags;
 
     protected $appends = [
-        'authors_map', 'authors_string', 'eq_tags_map', 'se_tags_map', 'types_map', 
+        'authors_map', 'authors_string', 'eq_tags_map', 'se_tags_map', 'types_map',
         'tags_encoded'
     ];
 
@@ -23,12 +23,12 @@ class Mailer extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function setEqTagsEncodedAttribute($value) 
+    public function setEqTagsEncodedAttribute($value)
     {
         $this->attributes['eq_tags_encoded'] = $value ? json_encode($value) : null;
     }
 
-    public function setSeTagsEncodedAttribute($value) 
+    public function setSeTagsEncodedAttribute($value)
     {
         $this->attributes['se_tags_encoded'] = $value ? json_encode($value) : null;
     }
@@ -60,13 +60,13 @@ class Mailer extends Model
     }
 
     // for index tags showing and edit chosen tags pre-view
-    public function getEqTagsMapAttribute() 
+    public function getEqTagsMapAttribute()
     {
         return $this->getTagsMapHelper($this->eq_tags_encoded);
     }
 
     // for index tags showing and edit chosen tags pre-view
-    public function getSeTagsMapAttribute() 
+    public function getSeTagsMapAttribute()
     {
         return $this->getTagsMapHelper($this->se_tags_encoded);
     }
@@ -81,7 +81,7 @@ class Mailer extends Model
         return $result;
     }
 
-    public function setAuthorsEncodedAttribute($value) 
+    public function setAuthorsEncodedAttribute($value)
     {
         if (!$value) {
             $this->attributes['authors_encoded'] = null;
@@ -99,7 +99,7 @@ class Mailer extends Model
         return json_decode($value);
     }
 
-    public function getAuthorsMapAttribute() 
+    public function getAuthorsMapAttribute()
     {
         if (!$this->authors_encoded) {
             return null;
@@ -110,12 +110,12 @@ class Mailer extends Model
         return $authors;
     }
 
-    public function getAuthorsStringAttribute() 
+    public function getAuthorsStringAttribute()
     {
         return $this->authors_encoded ? implode(' ', $this->authors_encoded) : null;
     }
 
-    public function setTypesAttribute($value) 
+    public function setTypesAttribute($value)
     {
         $this->attributes['types'] = $value ? json_encode($value) : null;
     }
@@ -125,7 +125,7 @@ class Mailer extends Model
         return json_decode($value);
     }
 
-    public function getTypesMapAttribute() 
+    public function getTypesMapAttribute()
     {
         if (!$this->types) {
             return null;
@@ -153,10 +153,10 @@ class Mailer extends Model
                 default:
                     break;
             }
-            
+
         }
         return $types;
     }
 
-    
+
 }

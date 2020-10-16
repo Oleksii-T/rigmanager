@@ -33,9 +33,9 @@
                                 </label>
                             @endif
                         </div>
-                            
+
                         <h3 class="elementHeader">{{__('ui.mailerDescription')}}:</h3>
-                        @if ($mailer->keywords)                            
+                        @if ($mailer->keywords)
                             <p id="description">{{$mailer->keywords}}</p>
                         @else
                             <p class="empty-value">{{__('ui.empty')}}</p>
@@ -45,7 +45,7 @@
                         @if ($mailer->eq_tags_encoded)
                             <ol class="orderedList">
                                 @foreach ($mailer->eq_tags_map as $tag)
-                                    <li><span>{{$tag}}</span></li> 
+                                    <li><span>{{$tag}}</span></li>
                                 @endforeach
                             </ol>
                         @else
@@ -56,7 +56,7 @@
                         @if ($mailer->se_tags_encoded)
                             <ol class="orderedList">
                                 @foreach ($mailer->se_tags_map as $tag)
-                                    <li><span>{{$tag}}</span></li> 
+                                    <li><span>{{$tag}}</span></li>
                                 @endforeach
                             </ol>
                         @else
@@ -67,7 +67,7 @@
                         @if ($mailer->authors_encoded)
                             <ol class="orderedList">
                                 @foreach ($mailer->authors_map as $author)
-                                    <li><span>{{$author}}</span></li>    
+                                    <li><span>{{$author}}</span></li>
                                 @endforeach
                             </ol>
                         @else
@@ -106,11 +106,11 @@
     </div>
     @if ($mailer)
         <div class="modalView" id="modalMailerDelete">
-            <div class="modalContent"> 
+            <div class="modalContent">
                 <p>{{__('ui.sure?')}}</p>
                 <div>
                     <button class="def-button submit-button" type="button" id="modalMailerDeleteHide">{{__('ui.no')}}</button>
-                    
+
                     <form method="POST" action="{{ loc_url(route('mailer.destroy')) }}">
                         @csrf
                         @method('DELETE')
@@ -174,6 +174,6 @@
                 }
             }
         });
-        
+
     </script>
 @endsection

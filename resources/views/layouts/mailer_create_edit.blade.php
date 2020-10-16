@@ -19,7 +19,7 @@
 
             <div class="mailerContent">
                 @yield('page-title')
-                
+
                 @yield('form')
 
                     <div class="element" id="type">
@@ -41,10 +41,10 @@
 
                     <div class="element" id="tags">
                         <h3 class="elementHeading">{{__('ui.mailerChooseTags')}}</h3>
-                        
+
                         @yield('input-equipment-tags')
                         <x-equipment-tags role="3"/>
-                    
+
                         @yield('input-service-tags')
                         <x-service-tags role="3"/>
 
@@ -62,7 +62,7 @@
                             <p><i>{{__('ui.mailerAuthorsHelp')}}</i></p>
                         </div>
                     </div>
-                    
+
                     <div id="btns">
                         <button class="def-button submit-button" type="submit">{{__('ui.save')}}</button>
                         <a class="def-button cancel-button" href="{{ loc_url(route('mailer.index')) }}">{{__('ui.cancel')}}</a>
@@ -81,7 +81,7 @@
     <!--General scrip-->
     <script type="text/javascript">
         $(document).ready(function(){
-            
+
             // disable scrolling on master page when hovering the column
             $(".tags-modal .column").bind('mousewheel', function(e, d) {
                 var t = $(this);
@@ -113,12 +113,12 @@
                 return result;
             }
 
-            // show modal equipment tags 
+            // show modal equipment tags
             $('button.equipment-tags-show').click(function(){
                 $('#equipment-tags-modal').removeClass('hidden');
             });
 
-            // show modal service tags 
+            // show modal service tags
             $('button.service-tags-show').click(function(){
                 $('#service-tags-modal').removeClass('hidden');
             });
@@ -138,7 +138,7 @@
             $('button.close-tags').click(function(){
                 $('div.modal-view').addClass('hidden');
             });
-            
+
             // user submits the chosen equipment tags
             $('button.equipment.submit-tags').click(function(){
                 $('div.modal-view').addClass('hidden');
@@ -328,6 +328,6 @@
             });
 
         });
-        
+
     </script>
 @endsection

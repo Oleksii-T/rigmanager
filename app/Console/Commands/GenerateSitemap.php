@@ -116,7 +116,7 @@ class GenerateSitemap extends Command
                     ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
                     ->setPriority(0.8))
                 ->writeToFile(public_path('sitemap.xml'));
-            
+
             Log::channel('single')->info('[custom.info][sitemap.generate] Site map generated successfully');
         } catch (\Throwable $th) {
             Log::channel('single')->error('[custom.error][sitemap.generate] Site map generation fails. '.$th->getMessage());

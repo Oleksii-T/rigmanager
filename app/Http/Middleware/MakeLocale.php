@@ -26,7 +26,7 @@ class MakeLocale
         if ($request->method() === 'GET') {
             //var_dump('  MakeLocale. GET');
             $segment = $request->segment(1);
-            
+
             if (in_array($segment, config('app.locales'))) {
                 $locale = $segment;
                 //var_dump('  MakeLocale. ocale is in url');

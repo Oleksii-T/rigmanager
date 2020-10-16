@@ -33,19 +33,19 @@
                 <div class="title error error-dz hidden"></div>
                 <div class="title-translations">
                     <p class="translations-header">{{__('ui.autoTranslateHeader')}} <a class="auto-translator-link" href="{{loc_url(route('faq'))}}#autoTranslator">{{__('ui.autoTranslate')}}</a></p>
-                    
+
                     <div class="translations-help">
                         <img id="helpImg" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}">
                         <p>{{__('ui.translationHelp')}}</p>
                     </div>
-            
+
                     <div class="{{ App::isLocale('uk') ? 'hidden' : '' }}">
                         <label class="cb-container" for="titleTranslateUk">{{__('ui.AutoTranslateToUk')}}
                             @if ( old('title_translate') && !array_key_exists('uk', old('title_translate')) )
                                 <input id="titleTranslateUk" type="checkbox" name="title_translate[uk]" value="1">
                             @else
                                 @yield('checkbox-title-uk')
-                            @endif   
+                            @endif
                             <span class="cb-checkmark"></span>
                         </label>
                         @yield('field-title-uk')
@@ -53,14 +53,14 @@
                             <div class="title_uk error error-dz hidden"></div>
                         </div>
                     </div>
-            
+
                     <div class="{{ App::isLocale('ru') ? 'hidden' : '' }}">
                         <label class="cb-container" for="titleTranslateRu">{{__('ui.AutoTranslateToRu')}}
                             @if ( old('title_translate') && !array_key_exists('ru', old('title_translate')) )
                                 <input id="titleTranslateRu" type="checkbox" name="title_translate[ru]" value="1">
                             @else
                                 @yield('checkbox-title-ru')
-                            @endif 
+                            @endif
                             <span class="cb-checkmark"></span>
                         </label>
                         @yield('field-title-ru')
@@ -68,14 +68,14 @@
                             <div class="title_ru error error-dz hidden"></div>
                         </div>
                     </div>
-            
+
                     <div class="{{ App::isLocale('en') ? 'hidden' : '' }}">
                         <label class="cb-container" for="titleTranslateEn">{{__('ui.AutoTranslateToEn')}}
                             @if ( old('title_translate') && !array_key_exists('en', old('title_translate')) )
                                 <input id="titleTranslateEn" type="checkbox" name="title_translate[en]" value="1">
                             @else
                                 @yield('checkbox-title-en')
-                            @endif 
+                            @endif
                             <span class="cb-checkmark"></span>
                         </label>
                         @yield('field-title-en')
@@ -102,7 +102,7 @@
 
             <div id="tag" class="element">
                 <h3 class="elementHeading">{{__('ui.chooseTag')}}</h3>
-                
+
                 <x-service-tags role="1"/>
 
                 <!--Hidden field for encoded tag for DB-->
@@ -113,7 +113,7 @@
                 </div>
 
             </div>
-            
+
             <div class="element" id="misc-info">
                 <div id="costField">
                     <h3 class="elementHeading">{{__('ui.cost')}}</h3>
@@ -142,7 +142,7 @@
                 <div class="description error error-dz hidden"></div>
                 <div class="desc-translations">
                     <p class="translations-header">{{__('ui.autoTranslateHeader')}} <a class="auto-translator-link" href="{{loc_url(route('faq'))}}#autoTranslator">{{__('ui.autoTranslate')}}</a></p>
-                    
+
                     <div class="translations-help">
                         <img id="helpImg" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}">
                         <p>{{__('ui.translationHelp')}}</p>
@@ -177,7 +177,7 @@
                             <div class="description_ru error error-dz hidden"></div>
                         </div>
                     </div>
-                    
+
                     <div class="{{ App::isLocale('en') ? 'hidden' : '' }}">
                         <label class="cb-container" for="descTranslateEn">{{__('ui.AutoTranslateToEn')}}
                             @if ( old('desc_translate') && !array_key_exists('en', old('desc_translate')) )
@@ -194,7 +194,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="contact" class="element">
                 <div id="emailField">
                     <h3 class="elementHeading" for="inputEmail">{{__('ui.email')}}<span class="required-input">*</span></h3>
@@ -202,7 +202,7 @@
                     <x-server-input-error errorName='user_email' inputName='inputEmail' errorClass='error'/>
                     <div class="user_email error error-dz hidden"></div>
                 </div>
-                
+
                 <div id="phoneField">
                     <h3 class="elementHeading" id="phoneHeader" for="inputPhone">{{__('ui.phone')}}<span class="required-input">*</span></h3>
                     <div class="phone-wraper">
@@ -247,7 +247,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="help">
                     <p><i>{{__('ui.contactHelp')}}</i></p>
                 </div>
@@ -258,10 +258,10 @@
                 <a class="def-button cancel-button" href="{{ loc_url(route('home')) }}">{{__('ui.cancel')}}</a>
                 @yield('buttons')
             </div>
-            
+
         </form>
         @yield('modals')
-    </div> 
+    </div>
 @endsection
 
 @section('scripts')
@@ -271,7 +271,7 @@
     <script type="text/javascript" src="{{ asset('js/mousewheel.min.js') }}"></script>
     @yield('post-scripts')
     <script type="text/javascript">
-        $(document).ready(function() {            
+        $(document).ready(function() {
 
             var titleValidationRules = {
                 required: true,
@@ -289,7 +289,7 @@
             $("#inputPhone").focusin(function(){
                 $('div.phone-help').removeClass('hidden');
             });
-            
+
             //hide phone date help when active input
             $("#inputPhone").focusout(function(){
                 $('div.phone-help').addClass('hidden');
@@ -299,7 +299,7 @@
             $("#inputCost").focusin(function(){
                 $('div.cost-help').removeClass('hidden');
             });
-            
+
             //hide cost date help when active input
             $("#inputCost").focusout(function(){
                 $('div.cost-help').addClass('hidden');
@@ -309,7 +309,7 @@
             $("#inputDesc, #inputDescUk, #inputDescRu, #inputDescEn").focusin(function(){
                 $('div.desc-help').removeClass('hidden');
             });
-            
+
             //hide description help when active input
             $("#inputDesc, #inputDescUk, #inputDescRu, #inputDescEn").focusout(function(){
                 $('div.desc-help').addClass('hidden');
@@ -319,7 +319,7 @@
             $("#inputTitle, #inputTitleUk, #inputTitleRu, #inputTitleEn").focusin(function(){
                 $('div.title-help').removeClass('hidden');
             });
-            
+
             //hide title help when active input
             $("#inputTitle, #inputTitleUk, #inputTitleRu, #inputTitleEn").focusout(function(){
                 $('div.title-help').addClass('hidden');
@@ -357,7 +357,7 @@
                     $('#inputTitleEn').rules('add', titleValidationRules);
                 }
             });
-         
+
             // show translation input for Desc Uk
             $('#descTranslateUk').change(function(){
                 if ( $(this).is(':checked') ) {
@@ -417,7 +417,7 @@
                     $('#inputTitleEn').removeClass('hidden')
                 }
             });
-         
+
             // show translation input for Desc Uk
             $('#descTranslateUk').change(function(){
                 if ( $(this).is(':checked') ) {
@@ -655,7 +655,7 @@
                         res = res.slice(0, i+1) + ',' + res.slice(i+1);
                         step = 1;
                     }
-                    
+
                 }
                 currency=='UAH' ? res='₴'+res : res='$'+res;
                 return res;

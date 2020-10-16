@@ -57,8 +57,8 @@
                     }
                 }
             });
-            
-            // paint in orange addToFav btn of appropriate items 
+
+            // paint in orange addToFav btn of appropriate items
             $('.active-fav-img').attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
 
             $('#search-bar-clear-btn').click(function(){
@@ -82,7 +82,7 @@
                 });
                 return result;
             }
-            
+
             //if user tries to add his oun item to fav list
             $(".addToFavButtonBlocked").click(function(){
                 showPopUpMassage(false, "{{ __('messages.postAddFavPersonal') }}");
@@ -106,7 +106,7 @@
                     url: '{{route("toFav")}}',
                     data: { post_id: postId },
                     success: function(data) {
-                        //if no server errors, change digit of favItemsAmount in nav bar 
+                        //if no server errors, change digit of favItemsAmount in nav bar
                         //and change color of AddToFav btn img
                         if ( data ) {
                             var n = $("#favItemsTab span").text();

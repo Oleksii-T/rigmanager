@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
         <title>{{ config('app.name') }}</title>
-    
+
         <style>
             * {
                 margin: 0;
@@ -14,7 +14,7 @@
                 font-size: 19px;
                 font-family: 'Roboto', Arial, Helvetica, sans-serif;
             }
-        </style>    
+        </style>
     </head>
     <body>
         <h1 style="margin-top:20px;text-align:center;"><a style="font-size:125%;" href="{{loc_url(route('home'))}}">{{env('APP_NAME')}}</a></h1>

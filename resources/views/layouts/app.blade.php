@@ -44,7 +44,7 @@
         </div>
 
         <div class="side-background"></div>
-        
+
         <div id="container">
             <header>
                 <!-- Header of all web pages -->
@@ -56,17 +56,17 @@
                         @else
                             <li><a href="{{ loc_url(route('locale.setting', ['lang'=>'uk'])) }}">UKR</a></li>
                         @endif
-                        
+
                         <li> | </li>
-                        
+
                         @if (App::isLocale('ru'))
                             <li>RU</li>
                         @else
                             <li><a href="{{ loc_url(route('locale.setting', ['lang'=>'ru'])) }}">RU</a></li>
                         @endif
-                        
+
                         <li> | </li>
-                        
+
                         @if (App::isLocale('en'))
                             <li>ENG</li>
                         @else
@@ -74,12 +74,12 @@
                         @endif
                     </ul>
 
-                    @auth    
+                    @auth
                         <div class="logged-user-name">
                             <p>{{__('ui.loggedAs')}}: {{auth()->user()->name}}</p>
                         </div>
                     @endauth
-                </div> 
+                </div>
 
                 <!-- Navigation bar of all web pages -->
                 <nav class="main-navigation">
@@ -149,7 +149,7 @@
                         <a class="footerLinks" id="footerFAQ" href="{{loc_url(route('faq'))}}">{{__('ui.foterFAQ')}}</a>
                     </div>
                     <div id="rightS">
-                        <p>&copy; {{env('COPY_RIGHT_YEAR')}} <span>rigmanager.com.ua</span>. {{__('ui.footerCopyright')}}</p>                        
+                        <p>&copy; {{env('COPY_RIGHT_YEAR')}} <span>rigmanager.com.ua</span>. {{__('ui.footerCopyright')}}</p>
                         <table>
                             <tr>
                                 <td><a class="footerLinks" href="{{loc_url(route('plans'))}}">{{__('ui.footerSubscription')}}</a></td>

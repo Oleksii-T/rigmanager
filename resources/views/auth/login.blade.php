@@ -12,7 +12,7 @@
         <br>
         <a href = "mailto: web.rigmanager@gmail.com">web.rigmanager@gmail.com</a>
     </div>
---> 
+-->
 
     <div class="authBody">
         <div>
@@ -44,7 +44,7 @@
                                 </div>
                         @enderror
                     </div>
-                    
+
                     <div id="rememberField">
                         <input type="checkbox" name="remember" id="InputRememberMe" {{ old('remember') ? 'checked' : '' }}>
                         <label for="InputRememberMe">{{__('ui.remember me')}}</label>
@@ -54,7 +54,7 @@
                         <button class="def-button submit-button" type="submit">{{__('ui.signIn')}}</button>
                         <a href="{{loc_url(route('password.request'))}}">{{__('ui.forget password')}}</a>
                     </div>
-            
+
                 </form>
 
                 <div class="social">
@@ -83,7 +83,7 @@
     <script type="text/javascript" src="{{ asset('js/hideShowPassword.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            
+
             // Show password toggle button
             $('#inputPassword').hideShowPassword({
                 show: false,

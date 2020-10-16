@@ -4,11 +4,11 @@
             <figure class="imgWraper">
                 @if ( $post->images->isEmpty() )
                     <img src="{{ asset('icons/noImageIcon.svg') }}" alt="{{__('alt.keyword')}}"></li>
-                @else    
+                @else
                     <img src="{{ $post->images()->where('version', 'optimized')->first()->url }}" alt="{{__('alt.keyword')}}"></li>
                 @endif
             </figure>
-            
+
             <div class="textWraper">
                 @if ( App::getLocale() == $post->origin_lang )
                     <h3 class="heading4"><span class="post-type">{{$post->type==5 ? '' : $post->type_readable.': '}} </span> {{ $post->title }}</h3>
@@ -60,7 +60,7 @@
                     <button class="item-btn item-hide-btn id_{{$post->id}}">
                         @if ($post->is_active)
                             <img class="img-hover-scale" title="{{__('ui.hide')}}" src="{{ asset('icons/hideDocIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                        @else    
+                        @else
                             <img class="img-hover-scale" title="{{__('ui.hide')}}" src="{{ asset('icons/showDocIcon.svg') }}" alt="{{__('alt.keyword')}}">
                         @endif
                     </button>
@@ -72,7 +72,7 @@
 
     @if ($button == 'deleteAndEdit')
         <div class="modalView animate" id="modalPostDelete">
-            <div class="modalContent"> 
+            <div class="modalContent">
                 <p>{{__('ui.sure?')}}</p>
                 <div>
                     <button class="def-button submit-button" type="button" id="modalPostDeleteOff">{{__('ui.no')}}</button>
