@@ -11,7 +11,7 @@
                 <div class="column">
                     <div class="tags first service tags_0">
                         <p class="tag service first {{$submitBtnClass=='post-create' ? 'isActiveBtn' : ''}}" id="50">{{__('tags.otherService')}}</p>
-                        <p class="tag service first" id="51">{{__('tags.multipleService')}}</p>
+                        <p class="tag service first" id="51">{{__('tags.complexService')}}</p>
                         <p class="tag service first" id="52">{{__('tags.emergencySe')}}</p>
                         <p class="tag service first" id="53">{{__('tags.controll')}}</p>
                         <p class="tag service first" id="54">{{__('tags.airWaste')}}</p>

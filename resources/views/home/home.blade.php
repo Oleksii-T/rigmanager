@@ -36,8 +36,7 @@
     <script type="text/javascript" src="{{ asset('js/mousewheel.min.js') }}"></script>
     <script type="text/javascript">
 
-        function searchTag() {
-            id = $('#modal-hidden-tag').val();
+        function searchTag(id) {
             var url = "{{loc_url(route('search.tag',['category'=>':id']))}}";
             url = url.replace(':id', id);
             window.location.href=url;

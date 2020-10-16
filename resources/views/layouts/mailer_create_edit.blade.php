@@ -76,7 +76,8 @@
 @section('scripts')
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mousewheel.min.js') }}"></script>
-    <!--Sub scrip-->
+    <script type="text/javascript" src="{{ asset('js/tags.js') }}"></script>
+    <!--Sub script-->
     @yield('mailer-scripts')
     <!--General scrip-->
     <script type="text/javascript">
@@ -112,32 +113,6 @@
                 });
                 return result;
             }
-
-            // show modal equipment tags
-            $('button.equipment-tags-show').click(function(){
-                $('#equipment-tags-modal').removeClass('hidden');
-            });
-
-            // show modal service tags
-            $('button.service-tags-show').click(function(){
-                $('#service-tags-modal').removeClass('hidden');
-            });
-
-            //close modal if clicked beyong the modal
-            window.onclick = function(event) {
-                var modalEq = document.getElementById("equipment-tags-modal");
-                var modalSe = document.getElementById("service-tags-modal");
-                if (event.target == modalEq) {
-                    $('#equipment-tags-modal').addClass('hidden');
-                } else if (event.target == modalSe) {
-                    $('#service-tags-modal').addClass('hidden');
-                }
-            }
-
-            // close modal tags if clicke on cancel btn
-            $('button.close-tags').click(function(){
-                $('div.modal-view').addClass('hidden');
-            });
 
             // user submits the chosen equipment tags
             $('button.equipment.submit-tags').click(function(){
@@ -187,100 +162,6 @@
                     $('div.service.tags.second').addClass('hidden');
                     $('div.service.tags.third').addClass('hidden');
                 }
-            });
-
-            // user clicks on first equipment tag
-            $('p.equipment.tag.first').click(function(){
-                var id = $(this).attr('id'); //get tag code
-                var tag = $(this).text(); // get tag name
-                $('p.equipment.tag').removeClass('isActiveBtn');
-                $(this).addClass('isActiveBtn')
-                $('div.equipment.tags.second').addClass('hidden');
-                $('div.equipment.tags.third').addClass('hidden');
-                $('input.equipment.hidden-encoded-tag').val(id); // bug
-                $('div.equipment.tags_'+id).removeClass('hidden');
-                $('div.equipment.selected-tags span').empty();
-                $('div.equipment.selected-tags span').text(tag); // bug
-            });
-
-            // user clicks on first service tag
-            $('p.service.tag.first').click(function(){
-                var id = $(this).attr('id'); //get tag code
-                var tag = $(this).text(); // get tag name
-                $('p.service.tag').removeClass('isActiveBtn');
-                $(this).addClass('isActiveBtn')
-                $('div.service.tags.second').addClass('hidden');
-                $('div.service.tags.third').addClass('hidden');
-                $('input.service.hidden-encoded-tag').val(id); // bug
-                $('div.service.tags_'+id).removeClass('hidden');
-                $('div.service.selected-tags span').empty();
-                $('div.service.selected-tags span').text(tag); // bug
-            });
-
-            // user clicks of second equipment tag
-            $('p.equipment.tag.second').click(function(){
-                var tag = $(this).text(); //get tag code
-                var id = $(this).attr('id'); // get tag name
-                var parentId = id.match(/^[0-9]*/)[0];
-                var parentTag =  $('#'+parentId).text();
-                var tags = parentTag + ' > ' + tag;
-                $('p.equipment.tag.second').removeClass('isActiveBtn');
-                $(this).addClass('isActiveBtn');
-                $('p.equipment.tag.third').removeClass('isActiveBtn');
-                $('div.equipment.tags.third').addClass('hidden');
-                $('input.equipment.hidden-encoded-tag').val(id);
-                $('div.equipment.tags_'+id.replace('.', '\\.') ).removeClass('hidden');
-                $('div.equipment.selected-tags span').empty();
-                $('div.equipment.selected-tags span').text(tags);
-            });
-
-            // user clicks of second service tag
-            $('p.service.tag.second').click(function(){
-                var tag = $(this).text(); //get tag code
-                var id = $(this).attr('id'); // get tag name
-                var parentId = id.match(/^[0-9]*/)[0];
-                var parentTag =  $('#'+parentId).text();
-                var tags = parentTag + ' > ' + tag;
-                $('p.service.tag.second').removeClass('isActiveBtn');
-                $(this).addClass('isActiveBtn');
-                $('p.service.tag.third').removeClass('isActiveBtn');
-                $('div.service.tags.third').addClass('hidden');
-                $('input.service.hidden-encoded-tag').val(id);
-                $('div.service.tags_'+id.replace('.', '\\.') ).removeClass('hidden');
-                $('div.service.selected-tags span').empty();
-                $('div.service.selected-tags span').text(tags);
-            });
-
-            // user clicks of third equipment tag
-            $('p.equipment.tag.third').click(function(){
-                id = $(this).attr('id');
-                tag = $(this).text();
-                var parentId = id.match(/^[0-9]*\.[0-9]*/)[0].replace('.', '\\.');
-                var parentTag =  $('#'+parentId).text();
-                var grandParentId = id.match(/^[0-9]*/)[0];
-                var grandParentTag =  $('#'+grandParentId).text();
-                var tags = grandParentTag + ' > ' +parentTag + ' > ' + tag;
-                $('p.equipment.tag.third').removeClass('isActiveBtn');
-                $(this).addClass('isActiveBtn');
-                $('input.equipment.hidden-encoded-tag').val(id);
-                $('div.equipment.selected-tags span').empty();
-                $('div.equipment.selected-tags span').text(tags);
-            });
-
-            // user clicks of third service tag
-            $('p.service.tag.third').click(function(){
-                id = $(this).attr('id');
-                tag = $(this).text();
-                var parentId = id.match(/^[0-9]*\.[0-9]*/)[0].replace('.', '\\.');
-                var parentTag =  $('#'+parentId).text();
-                var grandParentId = id.match(/^[0-9]*/)[0];
-                var grandParentTag =  $('#'+grandParentId).text();
-                var tags = grandParentTag + ' > ' +parentTag + ' > ' + tag;
-                $('p.service.tag.third').removeClass('isActiveBtn');
-                $(this).addClass('isActiveBtn');
-                $('input.service.hidden-encoded-tag').val(id);
-                $('div.service.selected-tags span').empty();
-                $('div.service.selected-tags span').text(tags);
             });
 
             // remove equipment tag
