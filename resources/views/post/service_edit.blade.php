@@ -373,16 +373,9 @@
 
             //make any click beyong the modal to close modal
             window.onclick = function(event) {
-                var modalImgsD = document.getElementById("modalImgsDelete");
                 var modalPostD = document.getElementById("modalPostDelete");
-                var modalTags = document.getElementById("equipment-tags-modal");
-                if (event.target == modalImgsD) {
-                    $('#modalImgsDelete').css("display", "none");
-                } else if (event.target == modalPostD) {
+                if (event.target == modalPostD) {
                     $('#modalPostDelete').css("display", "none");
-                } else if (event.target == modalTags) {
-                    $('#equipment-tags-modal').addClass('hidden');
-                    $('body').removeClass('noscroll');
                 }
             }
         });

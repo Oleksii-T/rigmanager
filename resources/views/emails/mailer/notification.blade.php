@@ -41,7 +41,7 @@
             <p style="white-space:pre-line;margin-bottom:15px;">{{__('ui.mailerNotifBody', ['reason' => $reason])}}:
                 <span style="padding-left: 5px;margin:5px 0px 5px 5px;font-size:105%;white-space:normal;display:inline-block;border-left:2px solid #FE9042;">{{$reasonValue}}.</span>
                 {{__('ui.mailerNotifBody2')}} <a class="mailer-link" href="{{loc_url(route('mailer.index'))}}">{{__('ui.settingUpMailer')}}</a>.
-                {{__('ui.mailerNotifBody3') }}: <a href="{{ route('posts.show', ['post'=>$post->id]) }}">{{ loc_url(route('posts.show', ['post'=>$post->id])) }}</a>.
+                {{__('ui.mailerNotifBody3')}}: <a href="{{ route('posts.show', ['post'=>$post->id]) }}">{{ loc_url(route('posts.show', ['post'=>$post->id])) }}</a>.
             </p>
             <p id="slg">{{__('ui.mailerNotifSlg')}}<br>
             <a class="mailer-link" href="{{loc_url(route('home'))}}">{{ env('APP_NAME') }}</a></p>

@@ -80,5 +80,24 @@
 @endsection
 
 @section('scripts')
-
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //change set locale url to simple one
+            $('#header ul a').each(function(){
+                switch ($(this).html()) {
+                    case 'UKR':
+                        $(this).attr('href', "{{route('home')}}");
+                        break;
+                    case 'RU':
+                        $(this).attr('href', "{{route('home').'/ru'}}");
+                        break;
+                    case 'ENG':
+                        $(this).attr('href', "{{route('home').'/en'}}");
+                        break;
+                    default:
+                        break;
+                }
+            });
+        });
+    </script>
 @endsection

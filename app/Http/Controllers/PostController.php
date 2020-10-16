@@ -93,6 +93,7 @@ class PostController extends Controller
         MailersAnalizePost::dispatch($post, auth()->user()->id)->onQueue('mailer');
         TranslatePost::dispatch($post, $input, true)->onQueue('translation');
         Session::flash('message-success', __('messages.postUploaded'));
+        dd('uploading is done');
         return redirect(loc_url(route('home')));
     }
     
@@ -133,6 +134,9 @@ class PostController extends Controller
     {
         $id = $id==null ? $locale : $id;
         $post = Post::findOrFail($id);
+        if ($post->user != auth()->user()) {
+            abort(403);
+        }
         $images = false;
         if ( $post->images->isNotEmpty() ) {
             $images = array();
@@ -163,7 +167,10 @@ class PostController extends Controller
     {
         $id = $id==null ? $locale : $id;
         $post = Post::findOrFail($id);
-        
+        if ($post->user != auth()->user()) {
+            abort(403);
+        }
+
         // if there is a file, check for files amount. max 5
         if ( $request->hasFile('images')) {
             $imagesAmount = count($request->file('images')) + $post->images->count();
@@ -237,9 +244,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($locale, $id=null)
     {
         $post = Post::findOrFail($id);
+        $id = $id==null ? $locale : $id;
         if ($post->user == auth()->user()) {
             $this->postImagesDelete($post);
             $post->delete();
@@ -288,6 +296,7 @@ class PostController extends Controller
     public function getContacts($postId) 
     {
         $post = Post::findOrFail($postId);
+        //add check for subscription
         $contacts['email'] = $post->user_email;
         $contacts['phone'] = $post->user_phone_intern;
         $contacts['viber'] = $post->viber;
@@ -330,7 +339,7 @@ class PostController extends Controller
                 return true;
             }
         }
-        abort(500);
+        abort(403);
     }
 
 }

@@ -11,16 +11,28 @@
 @endsection
 
 @section('input-type')
-    <label class="cb-container" for="typeSell">{{__('ui.postTypeSell')}}
+    <label class="cb-container" for="typeSell">{{__('ui.postTypeSellFull')}}
         <input id="typeSell" type="checkbox" name="types[]" value="1" {{array_key_exists("1", $mailer->types_map) ? 'checked="checked"' : "" }}>
         <span class="cb-checkmark"></span>
     </label>
-    <label class="cb-container" for="typeBuy">{{__('ui.postTypeBuy')}}
+    <label class="cb-container" for="typeBuy">{{__('ui.postTypeBuyFull')}}
         <input id="typeBuy" type="checkbox" name="types[]" value="2" {{array_key_exists("2", $mailer->types_map) ? 'checked="checked"' : "" }}>
         <span class="cb-checkmark"></span>
     </label>
-    <label class="cb-container" for="typeRent">{{__('ui.postTypeRent')}}
+    <label class="cb-container" for="typeRent">{{__('ui.postTypeRentFull')}}
         <input id="typeRent" type="checkbox" name="types[]" value="3" {{array_key_exists("3", $mailer->types_map) ? 'checked="checked"' : "" }}>
+        <span class="cb-checkmark"></span>
+    </label>
+    <label class="cb-container" for="typeLeas">{{__('ui.postTypeLeasFull')}}
+        <input id="typeLeas" type="checkbox" name="types[]" value="4" {{array_key_exists("4", $mailer->types_map) ? 'checked="checked"' : "" }}>
+        <span class="cb-checkmark"></span>
+    </label>
+    <label class="cb-container" for="typeGiveS">{{__('ui.postTypeGiveS')}}
+        <input id="typeGiveS" type="checkbox" name="types[]" value="5" {{array_key_exists("5", $mailer->types_map) ? 'checked="checked"' : "" }}>
+        <span class="cb-checkmark"></span>
+    </label>
+    <label class="cb-container" for="typeGetS">{{__('ui.postTypeGetS')}}
+        <input id="typeGetS" type="checkbox" name="types[]" value="6" {{array_key_exists("6", $mailer->types_map) ? 'checked="checked"' : "" }}>
         <span class="cb-checkmark"></span>
     </label>
     <x-server-input-error errorName='types' inputName='typeSell' errorClass='error'/>

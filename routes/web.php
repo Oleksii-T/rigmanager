@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 // maintenance route
 if (env('MAINTENANCE')) {
-    Route::get('{any}', function() {
-        return view('home.maintenance');
-    })->where('any', '.*');
+    Route::group(['middleware' => 'make.locale'], function() {
+        Route::get('{any}', function() {
+            return view('home.maintenance');
+        })->where('any', '.*');
+    });
 }
 
 // auth routes

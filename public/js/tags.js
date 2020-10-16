@@ -8,7 +8,7 @@ $('button.service-tags-show').click(function(){
 });
 
 //close modal if clicked beyong the modal
-window.onclick = function(event) {
+window.addEventListener('click', function(event) {
     var modalEq = document.getElementById("equipment-tags-modal");
     var modalSe = document.getElementById("service-tags-modal");
     if (event.target == modalEq) {
@@ -16,7 +16,7 @@ window.onclick = function(event) {
     } else if (event.target == modalSe) {
         $('#service-tags-modal').addClass('hidden');
     }
-}
+});
 
 $('p.tag.first').click(function(){
     $('p.tag').removeClass('isActiveBtn');

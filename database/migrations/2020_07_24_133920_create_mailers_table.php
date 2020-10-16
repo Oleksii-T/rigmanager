@@ -16,7 +16,7 @@ class CreateMailersTable extends Migration
         Schema::create('mailers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('types', 15); // sell/buy/loan
+            $table->string('types', 25); // sell/buy/loan/leas/provide/reqeust
             $table->string('eq_tags_encoded', 255)->nullable();
             $table->string('se_tags_encoded', 255)->nullable();
             $table->string('keywords', 255)->nullable();

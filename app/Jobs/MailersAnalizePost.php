@@ -103,7 +103,7 @@ class MailersAnalizePost implements ShouldQueue
             $regex = "/^$tag(.[0-9]+)*$/"; // Create regex from tag
             // Check is tag of new post is comply with tag in Mailer
             if ( preg_match($regex, $this->post->tag_encoded) ) {
-                Mail::to($mailer->user->email)->send(new MailerNotification($this->post, 'tags', $this->post->tag, $mailer->user->language)); //send mail notification to user
+                Mail::to($mailer->user->email)->send(new MailerNotification($this->post, 'tags', $this->post->tag_encoded, $mailer->user->language)); //send mail notification to user
                 return true;
             }
         }

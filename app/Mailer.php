@@ -48,7 +48,15 @@ class Mailer extends Model
     {
         $eqTags = $this->eq_tags_encoded;
         $seTags = $this->se_tags_encoded;
-        return array_merge($eqTags, $seTags);
+        if (is_array($seTags)) {
+            if (is_array($eqTags)) {
+                return array_merge($eqTags, $seTags);
+            } else {
+                return $seTags;
+            }
+        } else {
+            return $eqTags;
+        }
     }
 
     // for index tags showing and edit chosen tags pre-view
@@ -125,13 +133,22 @@ class Mailer extends Model
         foreach ($this->types as $type) {
             switch ($type) {
                 case 1:
-                    $types[$type] = __('ui.postTypeSell');
+                    $types[$type] = __('ui.postTypeSellFull');
                     break;
                 case 2:
-                    $types[$type] = __('ui.postTypeBuy');
+                    $types[$type] = __('ui.postTypeBuyFull');
                     break;
                 case 3:
-                    $types[$type] = __('ui.postTypeRent');
+                    $types[$type] = __('ui.postTypeRentFull');
+                    break;
+                case 4:
+                    $types[$type] = __('ui.postTypeLeasFull');
+                    break;
+                case 5:
+                    $types[$type] = __('ui.postTypeGiveS');
+                    break;
+                case 6:
+                    $types[$type] = __('ui.postTypeGetS');
                     break;
                 default:
                     break;
