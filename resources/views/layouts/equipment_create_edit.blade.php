@@ -154,7 +154,7 @@
                 </div>
 
                 <div id="part_number">
-                    <h3 class="elementHeading">{{__('ui.choosePartNumber')}}</h3>
+                    <h3 class="elementHeading">{{__('ui.choosePartNum')}}</h3>
                     <div class="input-field">
                         @yield('input-part-number')
                         <div class="input-help part-num-help hidden">

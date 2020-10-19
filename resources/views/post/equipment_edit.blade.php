@@ -125,6 +125,18 @@
     <p id="tagReadbleVisible">{{__('ui.chosenTags')}}: <span>{{ old('tagReadbleHidden') ?? $post->tag_readable }}</span></p>
 @endsection
 
+@section('input-manufacturer')
+    <input class="def-input" id="inputManufacturer" name="manufacturer" type="text" value="{{ old('manufacturer') ?? $post->manufacturer }}"/>
+@endsection
+
+@section('input-manufactured-date')
+    <input class="def-input" id="inputManufacturedDate" name="manufactured_date" type="text" value="{{ old('manufactured_date') ?? $post->manufactured_date }}"/>
+@endsection
+
+@section('input-part-number')
+    <input class="def-input" id="inputPartNumber" name="part_number" type="text" value="{{ old('part_number') ?? $post->part_number }}"/>
+@endsection
+
 @section('input-description')
     <textarea class="def-textarea" id="inputDesc" name="description" form="formUpdatePost" rows="15" maxlength="9000">{{ old('description') ?? $post->description }}</textarea>
 @endsection
