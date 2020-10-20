@@ -19,6 +19,16 @@ h2.ph {
 <span class="key">
 </span>
 */
+
+a.body-link {
+    font-size: inherit;
+    transition: 0.2s;
+}
+
+a.body-link:hover {
+    color: #fe9042;
+}
+
 span.key {
     font-weight: 900;
     font-size: inherit;
