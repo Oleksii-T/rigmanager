@@ -58,17 +58,19 @@
 @endsection
 
 @section('input-status')
-    <div id="status" class="element">
-        <h3 class="elementHeading">{{__('ui.choosePostStatus')}}</h3>
-        <label class="radio-container" for="statusInactive">{{__('ui.postActive')}}
-            <input id="statusInactive" type="radio" name="is_active" value="1" {{$post->is_active ? 'checked="checked"' : "" }}>
-            <span class="radio-checkmark"></span>
-        </label>
-        <label class="radio-container" for="statusActive">{{__('ui.postInactive')}}
-            <input id="statusActive" type="radio" name="is_active" value="0" {{$post->is_active ? '' : 'checked="checked"' }}>
-            <span class="radio-checkmark"></span>
-        </label>
-    </div>
+    @if ($post->active_to >= Carbon\Carbon::now())    
+        <div id="status" class="element">
+            <h3 class="elementHeading">{{__('ui.choosePostStatus')}}</h3>
+            <label class="radio-container" for="statusInactive">{{__('ui.postActive')}}
+                <input id="statusInactive" type="radio" name="is_active" value="1" {{$post->is_active ? 'checked="checked"' : "" }}>
+                <span class="radio-checkmark"></span>
+            </label>
+            <label class="radio-container" for="statusActive">{{__('ui.postInactive')}}
+                <input id="statusActive" type="radio" name="is_active" value="0" {{$post->is_active ? '' : 'checked="checked"' }}>
+                <span class="radio-checkmark"></span>
+            </label>
+        </div>
+    @endif
 @endsection
 
 @section('input-type')

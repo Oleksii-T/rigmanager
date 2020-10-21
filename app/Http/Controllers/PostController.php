@@ -185,7 +185,7 @@ class PostController extends Controller
         if ($post->user != auth()->user()) {
             abort(403);
         }
-
+        
         // if there is a file, check for files amount. max 5
         if ( $request->hasFile('images')) {
             $imagesAmount = count($request->file('images')) + $post->images->count();
@@ -365,7 +365,7 @@ class PostController extends Controller
                 $post->save();
                 return json_encode(0);
             } else {
-                if ($post->active_to < Carbon::now() ) {
+                if ( $post->active_to < Carbon::now() ) {
                     // the post is outdated
                     return json_encode(-1);
                 }
