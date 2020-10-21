@@ -14,12 +14,6 @@
 @section('content')
     <div id="editItemBody">
         @yield('page-title')
-
-        @if ($post->active_to < Carbon\Carbon::now())
-            <div class="outdated-notif">
-                <p>{{__('ui.postIsOutdated')}}</p>
-            </div>
-        @endif
         
         @yield('form')
 

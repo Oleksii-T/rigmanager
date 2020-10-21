@@ -1,0 +1,83 @@
+.plans-wraper {
+    height: 100%;
+    background-color: rgba(149, 149, 149, 0.6);
+    padding: 40px 0px;
+}
+
+.plans-content {
+    width: 85%;
+    background-color: rgba(11, 11, 11, 0.6);
+    margin: 0px auto;
+    padding: 30px 20px;
+    border-radius: 10px;
+}
+
+.invis {
+    visibility: hidden;
+}
+
+.plan-column {
+    width: 200px;
+}
+
+.plans-table {
+    white-space: pre-line;
+}
+
+.plans-table caption {
+    font-size: 200%;
+    padding-bottom: 40px;
+    text-decoration: underline;
+    white-space: pre-line;
+    letter-spacing: 5px;
+    line-height: 1.5em;
+}
+
+.table-header th {
+    padding-bottom: 10px;
+}
+
+.header.plan-name th {
+    font-size: 140%;
+    font-style: italic;
+    color: #fe9042;
+    position: relative;
+}
+
+.plan-sale img {
+    width: 60px;
+    height: 60px;
+}
+
+.header.plan-cost th {
+    color: #888888;
+}
+
+.choose-plan {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.header.plan-help th {
+    color: #888888;
+}
+
+.table-row td {
+    padding-bottom: 10px;
+}
+
+.plan-cost {
+    padding-bottom: 10px;
+}
+
+.table-key span {
+    color: #888888;
+    font-size: 90%;
+}
+
+.table-value {
+    text-align: center;
+}
+.table-key {
+    font-size: 120%;
+}

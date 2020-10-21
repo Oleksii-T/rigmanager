@@ -131,6 +131,7 @@ div.user-setting {
     padding: 5px 5px;
     display: inline-block;
     margin-left: 15px;
+    margin-top: 5px;
     background-color: rgb(149, 149, 149, 0.7);
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;

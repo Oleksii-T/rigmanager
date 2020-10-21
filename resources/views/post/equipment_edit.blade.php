@@ -2,6 +2,12 @@
 
 @section('page-title')
     <p id="pageTitle">{{__('ui.postSettings')}}</p>
+
+    @if ($post->active_to < Carbon\Carbon::now())
+        <div class="outdated-notif">
+            <p>{{__('ui.postIsOutdated')}}</p>
+        </div>
+    @endif
 @endsection
 
 @section('form')
