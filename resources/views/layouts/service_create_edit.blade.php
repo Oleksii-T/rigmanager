@@ -15,6 +15,12 @@
     <div id="editItemBody">
         @yield('page-title')
 
+        @if ($post->active_to < Carbon\Carbon::now())
+            <div class="outdated-notif">
+                <p>{{__('ui.postIsOutdated')}}</p>
+            </div>
+        @endif
+
         @yield('form')
 
             <input type="text" name="thread" value="2" hidden>
@@ -251,6 +257,11 @@
                 <div class="help">
                     <p><i>{{__('ui.contactHelp')}}</i></p>
                 </div>
+            </div>
+
+            <div id="activeTo" class="element">
+                <h3 class="elementHeading">{{__('ui.chooseActiveTo')}}</h3>
+                @yield('input-active-to')
             </div>
 
             <div id="btns" class="element">

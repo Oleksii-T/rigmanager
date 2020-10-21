@@ -8,6 +8,22 @@
     background-color: rgb(11, 11, 11, 0.6);
 }
 
+div.outdated-notif {
+    text-align: center;
+    max-width: 80%;
+    margin: 0 auto 30px auto;
+}
+
+div.outdated-notif p{
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 120%;
+    font-style: italic;
+    background-color: red;
+    position: relative;
+}
+
 .element {
     position: relative;
     padding: 20px;
@@ -37,7 +53,8 @@ button.tagsTrigger,
 #choosenTags,
 #clearTagsBtn,
 #dropDown,
-.region-select {
+.region-select,
+.lifetime-select {
     margin-left: 10px;
 }
 
@@ -84,11 +101,15 @@ div.help {
     top: 50%;
     transform: translateY(-50%);
     transition: 0.2s;
-    width: 28%; 
+    width: 40%; 
     opacity: 0;
     margin: 0px;
     overflow: hidden;
     padding-right: 10px;
+}
+
+#imgs div.help {
+    width: 28%;
 }
 
 label.error, div.error {
@@ -369,7 +390,7 @@ button.tags-show {
 }
 
 #tagReadbleVisible {
-    width: 70%;
+    width: 60%;
     margin-left: 10px;
 }
 
@@ -515,6 +536,29 @@ span.country-code {
 
 #phoneField input[type=checkbox] { 
     margin: 0px; 
+}
+/*==================ACTIVE_TO==================*/
+
+p.active-to-time {
+    margin: 20px 0px 0px 20px;
+}
+
+p.active-to-time span {
+    border-bottom: 2px solid #fe9042;
+}
+
+.lifetime-preview {
+    font-size: 125%;
+}
+
+.lifetime-preview span{
+    font-size: inherit;
+    border-bottom: 2px solid #fe9042;
+}
+
+.lifetime-edit-btn {
+    margin-left: 30px;
+    font-size: 85%;
 }
 
 /*==================BUTTONS==================*/

@@ -45,7 +45,7 @@ class MailerNotification extends Mailable
                     ->text('emails.mailer.notification_plain')
                     ->withSwiftMessage(function ($message) {
                         $message->getHeaders()
-                            ->addTextHeader('List-Unsubscribe', "<mailto:unsubscribe.mailer@rigmanager.com.ua?subject=Unsubscibe");
+                            ->addTextHeader('List-Unsubscribe', "<mailto:unsubscribe@rigmanager.com.ua?subject=Mailer");
                     });
     }
 

@@ -25,6 +25,7 @@ return [
     'postActivated' => 'Post has been published again',
     'postDisactivated' => 'Post has been hidden from public',
     'authError' => 'You must be logged in to perform this action',
+    'postOutdated' => 'This Post is outdated, please update the lifetime in Post settings',
 
     'mailerToManyTags' => 'Too many categories',
     'mailerUploaded' => 'Mailer has been configured successfully!',

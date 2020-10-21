@@ -39,6 +39,7 @@ Route::middleware('verified')->group(function () {
     // user routes
     Route::get      ('ajax/profile/favourite',              'UserController@addToFav')          ->name('toFav'); //Ajax reqeust
     Route::patch    ('profile/image/delete',                'UserController@userImageDelete')   ->name('profile.img.delete'); //Ajax reqeust
+    Route::get      ('user/is_premium',                     'UserController@isPremium')         ->name('user.is.premium'); //Ajax reqeust
 
     // mailer routes
     Route::get      ('ajax/mailer/author/{author}',         'MailerController@toggleAuthor')    ->name('mailer.toggle.author');// Ajax request

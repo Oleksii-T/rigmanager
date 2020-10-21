@@ -14,6 +14,7 @@ use App\Jobs\TranslatePost;
 use App\Http\Controllers\Traits\Tags;
 use Google\Cloud\Translate\TranslateClient;
 use Illuminate\Support\Facades\App;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -65,6 +66,21 @@ class PostController extends Controller
             $input['whatsapp'] = 0;
         }
 
+        //make lifetime and active_to columns
+        switch ($input['lifetime']) {
+            case '1':
+                $input['active_to'] = Carbon::now()->addMonth()->toDateString();
+            break;
+            case '2':
+                $input['active_to'] = Carbon::now()->addMonths(2)->toDateString();
+            break;
+            case '3':
+                $input['active_to'] = null;
+                break;
+            default:
+                break;
+        }
+
         // make user_translation column
         $appLanguages = ['uk', 'ru', 'en'];
         $userTitleTranslations = [];
@@ -93,7 +109,6 @@ class PostController extends Controller
         MailersAnalizePost::dispatch($post, auth()->user()->id)->onQueue('mailer');
         TranslatePost::dispatch($post, $input, true)->onQueue('translation');
         Session::flash('message-success', __('messages.postUploaded'));
-        dd('uploading is done');
         return redirect(loc_url(route('home')));
     }
 
@@ -190,6 +205,23 @@ class PostController extends Controller
             $input['viber'] = 0;
             $input['telegram'] = 0;
             $input['whatsapp'] = 0;
+        }
+
+        //make lifetime and active_to columns
+        if ($input['lifetime_changed']) {
+            switch ($input['lifetime']) {
+                case '1':
+                    $input['active_to'] = Carbon::now()->addMonth()->toDateString();
+                break;
+                case '2':
+                    $input['active_to'] = Carbon::now()->addMonths(2)->toDateString();
+                break;
+                case '3':
+                    $input['active_to'] = null;
+                    break;
+                default:
+                    break;
+            }
         }
 
         // make user_translation column
@@ -331,12 +363,16 @@ class PostController extends Controller
                 //disactivate post
                 $post->is_active = false;
                 $post->save();
-                return false;
+                return json_encode(0);
             } else {
+                if ($post->active_to < Carbon::now() ) {
+                    // the post is outdated
+                    return json_encode(-1);
+                }
                 //activate post
                 $post->is_active = true;
                 $post->save();
-                return true;
+                return json_encode(1);
             }
         }
         abort(403);

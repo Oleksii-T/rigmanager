@@ -267,7 +267,7 @@ input.error, textarea.error {
 
 .def-select {
     background-color: rgb(149, 149, 149, 0.7);
-    padding: 7px 20px 7px 5px;
+    padding: 7px 30px 7px 15px;
     border: none;
     -webkit-appearance: button;
     appearance: button;

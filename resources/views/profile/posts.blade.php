@@ -35,14 +35,23 @@
                         _token: "{{ csrf_token() }}",
                     },
                     success: function(data) {
-                        if (data) {
-                            showPopUpMassage(true, "{{ __('messages.postActivated') }}");
-                            button.children().attr('src', "{{asset('icons/hideDocIcon.svg')}}")
-                        } else {
-                            showPopUpMassage(true, "{{ __('messages.postDisactivated') }}");
-                            button.children().attr('src', "{{asset('icons/showDocIcon.svg')}}")
+                        switch (JSON.parse(data)) {
+                            case -1:
+                                showPopUpMassage(false, "{{ __('messages.postOutdated') }}");
+                                break;
+                            case 0:
+                                showPopUpMassage(true, "{{ __('messages.postDisactivated') }}");
+                                button.children().attr('src', "{{asset('icons/showDocIcon.svg')}}");
+                                $('#'+id).toggleClass('inactive');
+                                break;
+                            case 1:
+                                showPopUpMassage(true, "{{ __('messages.postActivated') }}");
+                                button.children().attr('src', "{{asset('icons/hideDocIcon.svg')}}");
+                                $('#'+id).toggleClass('inactive');
+                                break;
+                            default:
+                                break;
                         }
-                        $('#'+id).toggleClass('inactive');
                         button.removeClass('loading');
                     },
                     error: function() {

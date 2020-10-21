@@ -66,15 +66,7 @@ class TranslatePost implements ShouldQueue
             $this->translateOldPost();
         }
     }
-
-    //And other testing. Now it is English version
-    //Description changed as well!
-
-    //я поміняв заголовок з анлійского на українській
-    //і опис теж тепер українською
-
-    //на українській
-    //на русском
+    
     private function translateOldPost() {
         // if origin language is changed, delete useless translation records,
         if ( $this->input['origin_lang'] != $this->input['origin_lang_old'] ) {

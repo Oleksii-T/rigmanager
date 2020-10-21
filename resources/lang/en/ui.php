@@ -32,6 +32,7 @@ return [
     'ukLang' => 'Ukrainian',
     'ruLang' => 'Russian',
     'enLang' => 'English',
+    'change' => 'Change',
 
     // auth massages
     'signIn' => 'Sign in',
@@ -260,6 +261,14 @@ return [
     'email' => 'Email',
     'contactHelp' => 'One of fields is compulsory (email or phone).
         You can enter any email and phone number.',
+    'chooseActiveTo' => 'Select the live period',
+    'activeOneMonth' => '1 month',
+    'activeTwoMonth' => '2 months',
+    'activeForever' => 'Forever',
+    'hiddenOn' => 'The post will be hidden on',
+    'willNotHide' => 'The post lifetime is unlimited',
+    'activeToHelp' => 'After live period will expire, the post will be hidden from other users (not deleted).
+        You will be notified about post been hidden.',
     'deletePost' => 'Delete post',
     'sure?' => 'Are you sure?',
     'grivna' => 'Grivna (UAH)',
@@ -275,6 +284,16 @@ return [
     'translationDescAlert' => 'This is the translated description.',
     'originLang' => 'Original language is',
     'showOrigin' => 'Show origin',
+    'postIsOutdated' => 'The lifetime of this post is expired',
+    'postIsHidden' => 'Only you(author) can view this Post, because it been hidden.',
+
+    //post deactivated messages
+    'postHiddenNotifSubject' => 'Post has been deactivated',
+    'postHiddenNotifGreetings' => 'Hello',
+    'postHiddenNotifHeader' => 'This post has been deactivated',
+    'postHiddenNotifBody1' => 'Lifetime of the post expired, please update the lifetime in Post settings if you want to make this Post public again',
+    'postHiddenNotifBody2' => 'If you’re having trouble clicking the Post above, copy and paste the URL below into your web browser',
+    'postHiddenNotifSlg' => 'Regards,',
 
     //dropzone
     'dropzoneDesc' => 'Drop files or click

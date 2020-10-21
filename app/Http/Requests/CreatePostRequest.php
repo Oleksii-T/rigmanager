@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\Phone;
+use App\Rules\UnlimitedLifetime;
 
 class CreatePostRequest extends FormRequest
 {
@@ -39,6 +40,7 @@ class CreatePostRequest extends FormRequest
             'location' => 'nullable|string|max:100',
             'user_email' => 'nullable|required_without:user_phone|email|max:255',
             'user_phone_raw' => ['nullable', 'required_without:user_email', 'string', 'size:16', new Phone],
+            'lifetime' => [new UnlimitedLifetime],
             'images.*' => 'nullable|image|mimes:jpeg,jpg,jpe,png|max:5000',
         ];
         if ( !array_key_exists('uk', $this->request->get('title_translate')) ) {

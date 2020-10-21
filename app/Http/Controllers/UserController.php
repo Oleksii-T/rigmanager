@@ -154,4 +154,12 @@ class UserController extends Controller
         return view('profile.subscription');
     }
 
+    public function isPremium() {
+        return json_encode(true);
+        if ($value=='3' && !auth()->user()->is_premium) {
+            return json_encode(false);
+        }
+        return json_encode(true);
+    }
+
 }

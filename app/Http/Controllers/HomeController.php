@@ -43,7 +43,6 @@ class HomeController extends Controller
 
     public function plans()
     {
-        //dd('done');
         return view('home.plans');
     }
 

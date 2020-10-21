@@ -6,6 +6,11 @@
 
 @section('content')
     <article id="itemWraper">
+        @if (!$post->is_active)
+            <div class="outdated-notif">
+                <p>{{__('ui.postIsHidden')}}</p>
+            </div>
+        @endif
         <div id="leftContentWraper">
             <div id="leftContent">
                 @if ( $post->images->isNotEmpty() )

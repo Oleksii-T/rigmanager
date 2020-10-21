@@ -15,6 +15,12 @@
     <div id="editItemBody">
         @yield('page-title')
 
+        @if ($post->active_to < Carbon\Carbon::now())
+            <div class="outdated-notif">
+                <p>{{__('ui.postIsOutdated')}}</p>
+            </div>
+        @endif
+        
         @yield('form')
 
             <input type="text" name="thread" value="1" hidden>
@@ -125,7 +131,7 @@
 
             </div>
 
-            <div class="element" id="misc-info">
+            <div id="misc-info" class="element" >
                 <h2 class="sub-header">{{__('ui.miscEqInfo')}}</h2>
                 <div id="manufacturer">
                     <h3 class="elementHeading">{{__('ui.chooseManufacturer')}}</h3>
@@ -331,6 +337,10 @@
                 </div>
             </div>
 
+            <div id="lifetime" class="element">
+                @yield('input-lifetime')
+            </div>
+
             <div id="btns" class="element">
                 <button class="def-button submit-button" id="form-submit">{{__('ui.save')}}</button>
                 @yield('buttons')
@@ -348,6 +358,10 @@
     <script type="text/javascript" src="{{ asset('js/mousewheel.min.js') }}"></script>
     @yield('post-scripts')
     <script type="text/javascript">
+
+        var oneMPast = "{{\Carbon\Carbon::now()->addMonth()->toDateString()}}";
+        var twoMPast = "{{\Carbon\Carbon::now()->addMonths(2)->toDateString()}}";
+
         $(document).ready(function() {
 
             var titleValidationRules = {
@@ -361,6 +375,27 @@
                 minlength: 10,
                 maxlength: 9000
             };
+
+            // user uses legal type filter
+            $('.lifetime-select').change(function(){
+                var val = $(this).children('option:selected').val();
+                switch (val) {
+                    case '1':
+                        $('p.active-to-time').removeClass('hidden');
+                        $('p.active-to-time span').text(oneMPast);
+                        break;
+                    case '2':
+                        $('p.active-to-time').removeClass('hidden');
+                        $('p.active-to-time span').text(twoMPast);
+                        break;
+                    case '3':
+                        $('p.active-to-time').addClass('hidden');
+                        //check for valid subscription plan
+                        break;
+                    default:
+                        break;
+                }
+            });
 
             //show phone help when active input
             $("#inputPhone").focusin(function(){
@@ -567,6 +602,39 @@
                 }
             });
 
+            // change default error-lable insertion location
+            $.validator.setDefaults({
+                errorPlacement: function(error, element) {
+                    if ($(element).attr('name') === 'lifetime') {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+            });
+
+            // add validator method for checking for possibility to choose unlimited lifetime by user
+            $.validator.addMethod("unlimLifetime", function(value, element){
+                if (value=='3') {
+                    //return false;
+                    var isPremium = false;
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ route('user.is.premium') }}",
+                        async: false,
+                        success: function(data) {
+                            isPremium = JSON.parse(data);
+                        },
+                        error: function() {
+                            showPopUpMassage(false, "{{ __('messages.error') }}");
+                        }
+                    });
+                    return isPremium;
+                } else {
+                    return true;
+                }
+            }, '{{ __("validation.unlimLifetimeError") }}');
+
             //Validate the form
             // add variable for title and description messages
             $('.post-form').validate({
@@ -610,6 +678,9 @@
                     user_phone_raw: {
                         minlength: 16,
                         maxlength: 16
+                    },
+                    lifetime: {
+                        unlimLifetime: true
                     }
                 },
                 messages: {

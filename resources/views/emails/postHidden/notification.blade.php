@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{$lang}}">
+<html lang="{{$post->user->language}}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,8 +19,8 @@
     <body>
         <h1 style="margin-top:20px;text-align:center;"><a style="font-size:125%;" href="{{loc_url(route('home'))}}">{{env('APP_NAME')}}</a></h1>
         <div style="width:550px;height:auto;margin:20px auto;background-color:#efefef;padding:20px;">
-            <h2 style="margin-bottom:20px;font-size:115%;">{{__('ui.mailerNotifGreetings')}}!</h2>
-            <p id="intro">{{__('ui.mailerNotifHeader')}}.</p>
+            <h2 style="margin-bottom:20px;font-size:115%;">{{__('ui.postHiddenNotifGreetings')}}!</h2>
+            <p id="intro">{{__('ui.postHiddenNotifHeader')}}.</p>
             <div style="margin:10px auto 20px auto;padding:10px;display:flex;background-color:#a7a6a6;">
                 <div style="margin-right:10px;width:25%;">
                     <a style="color:initial;text-decoration:none;" href="{{ loc_url(route('posts.show', ['post'=>$post->id])) }}">
@@ -38,14 +38,12 @@
                     </a>
                 </div>
             </div>
-            <p style="white-space:pre-line;margin-bottom:15px;">{{__('ui.mailerNotifBody', ['reason' => $reason])}}:
-                <span style="padding-left: 5px;margin:5px 0px 5px 5px;font-size:105%;white-space:normal;display:inline-block;border-left:2px solid #FE9042;">{{$reasonValue}}.</span>
-                {{__('ui.mailerNotifBody2')}} <a class="mailer-link" href="{{loc_url(route('mailer.index'))}}">{{__('ui.settingUpMailer')}}</a>.
-                {{__('ui.mailerNotifBody3')}}: <a href="{{ loc_url(route('posts.show', ['post'=>$post->id])) }}">{{ loc_url(route('posts.show', ['post'=>$post->id])) }}</a>.
+            <p style="white-space:pre-line;margin-bottom:15px;">{{__('ui.postHiddenNotifBody1')}}
+                {{__('ui.postHiddenNotifBody2')}}: <a href="{{ loc_url(route('posts.show', ['post'=>$post->id])) }}">{{ loc_url(route('posts.show', ['post'=>$post->id])) }}</a>.
             </p>
-            <p id="slg">{{__('ui.mailerNotifSlg')}}<br>
-            <a class="mailer-link" href="{{loc_url(route('home'))}}">{{ env('APP_NAME') }}</a></p>
+            <p id="slg">{{__('ui.postHiddenNotifSlg')}}<br>
+            <a class="postHidden-link" href="{{loc_url(route('home'))}}">{{ env('APP_NAME') }}</a></p>
         </div>
-        <p style="text-align:center;margin-bottom:15px;">&copy; {{ env('COPY_RIGHT_YEAR') }} <a class="mailer-link" href="{{loc_url(route('home'))}}">{{ env('APP_NAME') }}</a>. {{__('ui.footerCopyright')}}</p>
+        <p style="text-align:center;margin-bottom:15px;">&copy; {{ env('COPY_RIGHT_YEAR') }} <a class="postHidden-link" href="{{loc_url(route('home'))}}">{{ env('APP_NAME') }}</a>. {{__('ui.footerCopyright')}}</p>
     </body>
 </html>

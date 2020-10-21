@@ -245,6 +245,32 @@
     <button class="def-button delete-button" type="button" id="modalPostDeleteOn">{{__('ui.deletePost')}}</button>
 @endsection
 
+@section('input-lifetime')
+    <div class="lifetime-edit hidden">
+        <h3 class="elementHeading">{{__('ui.chooseActiveTo')}}</h3>
+        <div class="def-select-wraper">
+            <select class="def-select lifetime-select" id="inputLifetime" name="lifetime">
+                <option value="1" {{$post->lifetime==1 ? 'selected' : ''}}>{{__('ui.activeOneMonth')}}</option>
+                <option value="2" {{$post->lifetime==2 ? 'selected' : ''}}>{{__('ui.activeTwoMonth')}}</option>
+                <option value="3" {{$post->lifetime==3 ? 'selected' : ''}}>{{__('ui.activeForever')}}</option>
+            </select>
+            <span class="arrow arrowDown"></span>
+        </div>
+        <x-server-input-error errorName='lifetime' inputName='inputLifetime' errorClass='error'/>
+        <div class="lifetime error error-dz hidden"></div>
+        <p class="active-to-time">{{__('ui.hiddenOn')}}: <span>{{$post->active_to}}</span></p>
+        <div class="help">
+            <p><i>{{__('ui.activeToHelp')}}</i></p>
+        </div>
+    </div>
+    @if ($post->lifetime==3)    
+        <p class="lifetime-preview">{{__('ui.willNotHide')}}.<button class="lifetime-edit-btn def-button" type="button">{{__('ui.change')}}</button></p>
+    @else
+        <p class="lifetime-preview">{{__('ui.hiddenOn')}}: <span>{{$post->active_to}}</span><button class="lifetime-edit-btn def-button" type="button">{{__('ui.change')}}</button></p>
+    @endif
+    <input type="text" id="lifetimeChanged" name="lifetime_changed" value="0" hidden>
+@endsection
+
 @section('modals')
     <div class="modalView animate" id="modalPostDelete">
         <div class="modalContent">
@@ -269,6 +295,29 @@
             if ( $('input[name=role]:checked').val() == 2 ) {
                 $('#company').removeClass('hidden');
             }
+
+            //show lifetime edit field
+            $('.lifetime-edit-btn').click(function(){
+                $('.lifetime-preview').addClass('hidden');
+                $('.lifetime-edit').removeClass('hidden');
+                $('#lifetimeChanged').val('1');
+                var oldLifetime = $('.lifetime-select').children('option:selected').val();
+                switch (oldLifetime) {
+                    case '1':
+                        $('p.active-to-time').removeClass('hidden');
+                        $('p.active-to-time span').text(oneMPast);
+                        break;
+                    case '2':
+                        $('p.active-to-time').removeClass('hidden');
+                        $('p.active-to-time span').text(twoMPast);
+                        break;
+                    case '3':
+                        $('p.active-to-time').addClass('hidden');
+                        break;
+                    default:
+                        break;
+                }
+            })
 
             //chose tags that chosen by user
             tagId = $('#tagEncodedHidden').val();
