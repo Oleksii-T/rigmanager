@@ -25,7 +25,7 @@
                 <div class="input-field">
                     @yield('input-title')
                     <div class="input-help title-help hidden">
-                        <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                        <img src="{{asset('icons/rightArrowIconIcon.svg')}}" alt="{{__('alt.keyword')}}">
                         <p><i>{{__('ui.titleSeHelp')}}</i></p>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                     <div class="input-field">
                         @yield('input-cost')
                         <div class="input-help cost-help hidden">
-                            <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                            <img src="{{asset('icons/rightArrowIconIcon.svg')}}" alt="{{__('alt.keyword')}}">
                             <p><i>{{__('ui.costHelp')}}</i></p>
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                 <div class="input-field">
                     @yield('input-description')
                     <div class="input-help desc-help hidden">
-                        <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                        <img src="{{asset('icons/rightArrowIconIcon.svg')}}" alt="{{__('alt.keyword')}}">
                         <p><i>{{__('ui.descriptionSeHelp')}}</i></p>
                     </div>
                 </div>
@@ -213,7 +213,7 @@
                         <div class="input-field">
                             @yield('input-phone')
                             <div class="input-help phone-help hidden">
-                                <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                                <img src="{{asset('icons/rightArrowIconIcon.svg')}}" alt="{{__('alt.keyword')}}">
                                 <p><i>{{__('ui.phoneHelp')}}</i></p>
                             </div>
                         </div>

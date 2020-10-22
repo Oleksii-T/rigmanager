@@ -7,21 +7,24 @@
 @section('content')
     <div class="plans-wraper">
         <div class="plans-content">
+            <div class="free-access">
+                <h2>{{__('ui.plansFreeAccessTitle')}}</h2>
+                <p class="p-1">{{__('ui.plansFreeAccessBody1')}}</p>
+                <p class="p-2">{{__('ui.plansFreeAccessBody2')}}</p>
+                <p class="p-3">{{__('ui.plansFreeAccessBody3')}}</p>
+            </div>
+            <div class="deliter-line"></div>
             <table class="plans-table">
-                <caption>Cost and comparison of
-                    rigmanager.com.ua plans
+                <caption>{{__('ui.plansHeader')}}
                 </caption>
                 <thead class="table-header">
                     <tr class="header plan-name">
                         <th></th>
-                        <th>Guest
-                            Account
+                        <th>{{__('ui.plansGuestAcc')}}
                         </th>
-                        <th>Premium
-                            Account
+                        <th>{{__('ui.plansPremiumAcc')}}
                         </th>
-                        <th>Premium+
-                            Account
+                        <th>{{__('ui.plansPremium+Acc')}}
                         </th>
                     </tr>
                     <tr class="plan-sale">
@@ -29,98 +32,98 @@
                         <th></th>
                         <th>
                             <img src="{{asset('icons/saleIcon.svg')}}" alt="">
-                            <span>100% off!</span>
+                            <span>100% {{__('ui.plansOff')}}!</span>
                         </th>
                         <th>
                             <img src="{{asset('icons/saleIcon.svg')}}" alt="">
-                            <span>100% off!</span>
+                            <span>100% {{__('ui.plansOff')}}!</span>
                         </th>
                     </tr>
                     <tr class="header plan-cost">
                         <th></th>
-                        <th>00.00$/month</th>
-                        <th>00.00$/month</th>
-                        <th>00.00$/month</th>
+                        <th>00.00₴ / {{__('ui.plansMonth')}}</th>
+                        <th>00.00₴ / {{__('ui.plansMonth')}}</th>
+                        <th>00.00₴ / {{__('ui.plansMonth')}}</th>
                     </tr>
                     <tr class="header plan-choose">
                         <th></th>
                         <th></th>
-                        <th><button class="def-button choose-plan">Choose</button></th>
-                        <th><button class="def-button choose-plan">Choose</button></th>
+                        <th><button class="def-button">{{__('ui.plansChoose')}}</button></th>
+                        <th><button class="def-button">{{__('ui.plansChoose')}}</button></th>
                     </tr>
                     <tr class="header plan-help">
                         <th></th>
-                        <th class="plan-column">For those who want to get acquainted with our service</th>
-                        <th class="plan-column">Suitable for most</th>
-                        <th class="plan-column">Suitable for those who want to place a lot of Posts and for a long time</th>
+                        <th class="plan-column">{{__('ui.plansGuestAccHelp')}}</th>
+                        <th class="plan-column">{{__('ui.plansPremiumAccHelp')}}</th>
+                        <th class="plan-column">{{__('ui.plansPremium+AccHelp')}}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="table-row">
-                        <td class="table-key">Browse all posts</td>
-                        <td class="table-value">YES</td>
-                        <td class="table-value">YES</td>
-                        <td class="table-value">YES</td>
+                        <td class="table-key">{{__('ui.plansBrowse')}}</td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">Searching
-                            <span>(by author, category, text)</span>
+                        <td class="table-key">{{__('ui.plansSearch')}}
+                            <span>{{__('ui.plansSearchHelp')}}</span>
                         </td>
-                        <td class="table-value">YES</td>
-                        <td class="table-value">YES</td>
-                        <td class="table-value">YES</td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">Filtering</td>
-                        <td class="table-value">YES</td>
-                        <td class="table-value">YES</td>
-                        <td class="table-value">YES</td>
+                        <td class="table-key">{{__('ui.plansFilter')}}</td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">Favourites</td>
-                        <td class="table-value">YES</td>
-                        <td class="table-value">YES</td>
-                        <td class="table-value">YES</td>
+                        <td class="table-key">{{__('ui.plansFav')}}</td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">See contacts</td>
-                        <td class="table-value">NO</td>
-                        <td class="table-value">YES</td>
-                        <td class="table-value">YES</td>
+                        <td class="table-key">{{__('ui.plansContacts')}}</td>
+                        <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">Create Post
-                            <span>(lifetime < 2m, pices < 150)</span>
+                        <td class="table-key">{{__('ui.plansCreate1')}}
+                            <span>{{__('ui.plansCreate1Help')}}</span>
                         </td>
-                        <td class="table-value">NO</td>
-                        <td class="table-value">YES</td>
-                        <td class="table-value">YES</td>
+                        <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">Mailer</td>
-                        <td class="table-value">NO</td>
-                        <td class="table-value">YES</td>
-                        <td class="table-value">YES</td>
+                        <td class="table-key">{{__('ui.plansMailer')}}</td>
+                        <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">Auto-Translator</td>
-                        <td class="table-value">NO</td>
-                        <td class="table-value">YES</td>
-                        <td class="table-value">YES</td>
+                        <td class="table-key">{{__('ui.plansTranslator')}}</td>
+                        <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">Create Post
-                            <span>(unlimited)</span>
+                        <td class="table-key">{{__('ui.plansCreate2')}}
+                            <span>{{__('ui.plansCreate2Help')}}</span>
                         </td>
-                        <td class="table-value">NO</td>
-                        <td class="table-value">NO</td>
-                        <td class="table-value">YES</td>
+                        <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">Premium Posts status</td>
-                        <td class="table-value">NO</td>
-                        <td class="table-value">NO</td>
-                        <td class="table-value">YES</td>
+                        <td class="table-key">{{__('ui.plansTopPost')}}</td>
+                        <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                 </tbody>
             </table>
@@ -129,5 +132,11 @@
 @endsection
 
 @section('scripts')
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.plan-choose button').click(function(){
+                showPopUpMassage(true, "{{ __('messages.planAlreadyPremium+') }}");
+            });
+        });
+    </script>
 @endsection

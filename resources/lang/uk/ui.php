@@ -384,4 +384,39 @@ return [
     'serverErrorDesc' => 'Схоже, на сервері сталася помилка.',
     'serverErrorContact' => 'Повідомити про проблему',
     'serverErrorGoBack' => 'Повернутися на попередню сторінку',
+
+    //plans
+    'plansHeader' => 'Вартість та порівняння 
+    тарифних планів rigmanager.com.ua',
+    'plansGuestAcc' => 'Гостьовий
+    Аккаунт',
+    'plansGuestAccHelp' => 'Для тих, хто хоче ознайомитися з нашим сервісом',
+    'plansPremiumAcc' => 'Преміум
+    Аккаунт',
+    'plansPremiumAccHelp' => 'Підходить для більшості',
+    'plansPremium+Acc' => 'Преміум+
+    Аккаунт',
+    'plansPremium+AccHelp' => 'Підходить для тих, хто хоче розмістити багато оголошень і надовго',
+    'plansOff' => 'знижка',
+    'plansMonth' => 'місяць',
+    'plansChoose' => 'Обрати',
+    'plansBrowse' => 'Переглядати всі оголошення',
+    'plansSearch' => 'Пошук',
+    'plansSearchHelp' => '(за автором, категорією, текстом)',
+    'plansFilter' => 'Фільтрація',
+    'plansFav' => 'Обране',
+    'plansContacts' => 'Отримувати контакти
+    аторів',
+    'plansCreate1' => 'Створювати оголошення',
+    'plansCreate1Help' => '(длительность < 2м, штук < 150)',
+    'plansMailer' => 'Разсилка',
+    'plansTranslate' => 'Авто-Перекладач',
+    'plansCreate2' => 'Створювати оголошення',
+    'plansCreate2Help' => '(необмежено)',
+    'plansTopPost' => 'Преміум статус
+    для оголошень',
+    'plansFreeAccessTitle' => 'Безкоштовний доступ Преміум!',
+    'plansFreeAccessBody1' => 'Ми повідомляємо про безкоштовний доступ до повного переліку функціональних можливостей під час розвидку нашого сервісу.',
+    'plansFreeAccessBody2' => 'Іншими словами',
+    'plansFreeAccessBody3' => 'Преміум + Аккаунт для всіх нових клієнтів!',
 ];

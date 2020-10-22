@@ -386,4 +386,37 @@ return [
     'serverErrorDesc' => 'Seems like you got a server error.',
     'serverErrorContact' => 'Let us know about your issue',
     'serverErrorGoBack' => 'Return to previous page',
+
+    //plans
+    'plansHeader' => 'Cost and comparison of 
+    rigmanager.com.ua plans',
+    'plansGuestAcc' => 'Guest
+    Account',
+    'plansGuestAccHelp' => 'For those who want to get acquainted with our service',
+    'plansPremiumAcc' => 'Premium
+    Account',
+    'plansPremiumAccHelp' => 'Suitable for most',
+    'plansPremium+Acc' => 'Premium+
+    Account',
+    'plansPremium+AccHelp' => 'Suitable for those who want to place a lot of Posts and for a long time',
+    'plansOff' => 'off',
+    'plansMonth' => 'month',
+    'plansChoose' => 'Choose',
+    'plansBrowse' => 'Browse all posts',
+    'plansSearch' => 'Searching',
+    'plansSearchHelp' => '(by author, category, text)',
+    'plansFilter' => 'Filtering',
+    'plansFav' => 'Favourites',
+    'plansContacts' => 'See contacts',
+    'plansCreate1' => 'Create Post',
+    'plansCreate1Help' => '(lifetime < 2m, pices < 150)',
+    'plansMailer' => 'Mailer',
+    'plansTranslate' => 'Auto-Translator',
+    'plansCreate2' => 'Create Post',
+    'plansCreate2Help' => '(unlimited)',
+    'plansTopPost' => 'Premium Posts status',
+    'plansFreeAccessTitle' => 'Free Premium access!',
+    'plansFreeAccessBody1' => 'We are announcing free access to full list of functionalities during the growth of our service.',
+    'plansFreeAccessBody2' => 'In other words',
+    'plansFreeAccessBody3' => 'Premium+ Account for all new clients!',
 ];

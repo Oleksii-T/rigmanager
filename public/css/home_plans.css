@@ -12,6 +12,43 @@
     border-radius: 10px;
 }
 
+.free-access {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.free-access h2{
+    white-space: pre-line;
+    font-size: 230%;
+    color: #fe9042;
+    margin-bottom: 30px;
+}
+
+.free-access p{
+    white-space: pre-line;
+    font-size: 140%;
+}
+
+.p-1{
+    margin-bottom: 10px;
+}
+
+.p-2{
+    margin-bottom: 20px;
+}
+
+.p-3{
+    font-size: 170% !important;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+.deliter-line {
+    width: 40%;
+    border-bottom: 2px solid #888888;
+    margin: 90px auto;
+}
+
 .invis {
     visibility: hidden;
 }
@@ -29,7 +66,7 @@
     padding-bottom: 40px;
     text-decoration: underline;
     white-space: pre-line;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     line-height: 1.5em;
 }
 
@@ -37,7 +74,7 @@
     padding-bottom: 10px;
 }
 
-.header.plan-name th {
+.plan-name th {
     font-size: 140%;
     font-style: italic;
     color: #fe9042;
@@ -49,25 +86,21 @@
     height: 60px;
 }
 
-.header.plan-cost th {
+.plan-cost th {
     color: #888888;
 }
 
-.choose-plan {
+.plan-choose button {
     margin-top: 10px;
     display: inline-block;
 }
 
-.header.plan-help th {
+.plan-help th {
     color: #888888;
 }
 
 .table-row td {
-    padding-bottom: 10px;
-}
-
-.plan-cost {
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 }
 
 .table-key span {
@@ -78,6 +111,12 @@
 .table-value {
     text-align: center;
 }
+
+.table-value img {
+    width: 35px;
+    height: 35px;
+}
+
 .table-key {
     font-size: 120%;
 }

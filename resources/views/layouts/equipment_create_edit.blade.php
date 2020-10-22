@@ -24,7 +24,7 @@
                 <div class="input-field">
                     @yield('input-title')
                     <div class="input-help title-help hidden">
-                        <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                        <img src="{{asset('icons/rightArrowIcon.svg')}}" alt="{{__('alt.keyword')}}">
                         <p><i>{{__('ui.titleEqHelp')}}</i></p>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                     <div class="input-field">
                         @yield('input-manufacturer')
                         <div class="input-help manuf-help hidden">
-                            <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                            <img src="{{asset('icons/rightArrowIcon.svg')}}" alt="{{__('alt.keyword')}}">
                             <p><i>{{__('ui.manufHelp')}}</i></p>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                     <div class="input-field">
                         @yield('input-manufactured-date')
                         <div class="input-help manuf-date-help hidden">
-                            <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                            <img src="{{asset('icons/rightArrowIcon.svg')}}" alt="{{__('alt.keyword')}}">
                             <p><i>{{__('ui.manufDateHelp')}}</i></p>
                         </div>
                     </div>
@@ -158,7 +158,7 @@
                     <div class="input-field">
                         @yield('input-part-number')
                         <div class="input-help part-num-help hidden">
-                            <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                            <img src="{{asset('icons/rightArrowIcon.svg')}}" alt="{{__('alt.keyword')}}">
                             <p><i>{{__('ui.partNumHelp')}}</i></p>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
                     <div class="input-field">
                         @yield('input-cost')
                         <div class="input-help cost-help hidden">
-                            <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                            <img src="{{asset('icons/rightArrowIcon.svg')}}" alt="{{__('alt.keyword')}}">
                             <p><i>{{__('ui.costHelp')}}</i></p>
                         </div>
                     </div>
@@ -185,7 +185,7 @@
                 <div class="input-field">
                     @yield('input-description')
                     <div class="input-help desc-help hidden">
-                        <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                        <img src="{{asset('icons/rightArrowIcon.svg')}}" alt="{{__('alt.keyword')}}">
                         <p><i>{{__('ui.descriptionEqHelp')}}</i></p>
                     </div>
                 </div>
@@ -291,7 +291,7 @@
                         <div class="input-field">
                             @yield('input-phone')
                             <div class="input-help phone-help hidden">
-                                <img src="{{asset('icons/rightArrowOrangeIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                                <img src="{{asset('icons/rightArrowIcon.svg')}}" alt="{{__('alt.keyword')}}">
                                 <p><i>{{__('ui.phoneHelp')}}</i></p>
                             </div>
                         </div>

@@ -22,7 +22,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'region_encoded' => $faker->randomElement( $array = array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25) ),
         'town' => $faker->city,
         'user_email' => $faker->email,
-        'user_phone_raw' => $faker->numerify('##########'),
+        'user_phone_raw' => $faker->numerify('0#########'),
         'viber' => $faker->randomElement( $array = array(1, 0) ),
         'telegram' => $faker->randomElement( $array = array(1, 0) ),
         'whatsapp' => $faker->randomElement( $array = array(1, 0) ),

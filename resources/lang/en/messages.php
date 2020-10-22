@@ -49,4 +49,6 @@ return [
     'signedOut' => 'Good bye',
 
     'messageSent' => 'The message has been sent!',
+    
+    'planAlreadyPremium+' => 'You already have free Premium+ Account!',
 ];
