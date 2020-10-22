@@ -5,6 +5,7 @@ return [
     'success' => '',
     'error' => 'An error occured.',
     'info' => '',
+    'authError' => 'You must be logged in to perform this action',
 
     'postUploaded' => 'Post has been published successfully!',
     'postUploadedError' => 'Error occured while publishing the Post.',
@@ -24,7 +25,6 @@ return [
     'postInputErrors' => 'Some fields are incorrect.',
     'postActivated' => 'Post has been published again',
     'postDisactivated' => 'Post has been hidden from public',
-    'authError' => 'You must be logged in to perform this action',
     'postOutdated' => 'This Post is outdated, please update the lifetime in Post settings',
 
     'mailerToManyTags' => 'Too many categories',

@@ -134,8 +134,13 @@
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function(){
+            isLoggedIn = "{{Auth::check()}}";
             $('.plan-choose button').click(function(){
-                showPopUpMassage(true, "{{ __('messages.planAlreadyPremium+') }}");
+                if (isLoggedIn) {
+                    showPopUpMassage(true, "{{ __('messages.planAlreadyPremium+') }}");
+                } else {
+                    showPopUpMassage(false, "{{ __('messages.authError') }}");
+                }
             });
         });
     </script>
