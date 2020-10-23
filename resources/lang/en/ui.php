@@ -419,4 +419,14 @@ return [
     'plansFreeAccessBody1' => 'We are announcing free access to full list of functionalities during the growth of our service.',
     'plansFreeAccessBody2' => 'In other words',
     'plansFreeAccessBody3' => 'Premium+ Account for all new clients!',
+
+    // user plan 
+    'planStatus' => 'Your Account status',
+    'planGuest' => 'Guest',
+    'planPremium' => 'Premium',
+    'planPremium+' => 'Premium +',
+    'planActiveTo' => 'Active untill',
+    'planDetails' => 'See details, or change subscription plan you can here:',
+    'planDetailsBtn' => 'Paid Plans',
+    'planCancel' => 'Cancel subscription',
 ];

@@ -51,4 +51,5 @@ return [
     'messageSent' => 'The message has been sent!',
     
     'planAlreadyPremium+' => 'You already have free Premium+ Account!',
+    'planCancelPremium+' => 'Sorry, you cannot cancel free Premium+ right now',
 ];

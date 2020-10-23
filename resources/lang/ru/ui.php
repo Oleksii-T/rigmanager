@@ -419,4 +419,14 @@ return [
     'plansFreeAccessBody1' => 'Мы объявляем о бесплатном доступе к полному списку функций на время развития нашего сервиса.',
     'plansFreeAccessBody2' => 'Другими словами',
     'plansFreeAccessBody3' => 'Премиум + Аккаунт для всех новых клиентов!',
+
+    // user plan 
+    'planStatus' => 'Ваша подписка',
+    'planGuest' => 'Гостевая',
+    'planPremium' => 'Премиум',
+    'planPremium+' => 'Премиум +',
+    'planActiveTo' => 'Активно до',
+    'planDetails' => 'Вы можете поменять или узнать детали о подписке здесь:',
+    'planDetailsBtn' => 'Платные подписки',
+    'planCancel' => 'Отменить подписку',
 ];
