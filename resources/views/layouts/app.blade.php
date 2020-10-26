@@ -41,6 +41,12 @@
                     <div class="animated-line"></div>
                 </div>
             @endif
+            @if (session('status'))
+                <div class="flash flash-success">
+                    <p><img src="{{asset('icons/successIcon.svg')}}" alt="{{__('alt.keyword')}}">{{ session('status') }}</p>
+                    <div class="animated-line"></div>
+                </div>
+            @endif
         </div>
 
         <div class="side-background"></div>

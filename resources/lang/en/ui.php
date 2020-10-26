@@ -47,6 +47,7 @@ return [
     'iAgree' => 'I agree with',
     'iAgreeLink' => 'Term of Service',
     'accountActivated' => 'Your account has been verified!',
+    'backToLogin' => 'Back to Login Page',
 
     //home massages
     'home' => 'Home',

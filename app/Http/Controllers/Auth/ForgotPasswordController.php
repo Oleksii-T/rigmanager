@@ -19,4 +19,24 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+
+    /**
+     * Custom validation the email for the given request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    /*
+    protected function validateEmail(Request $request)
+    {
+        $this->validate($request, 
+            [
+                'email' => 'required|email'
+            ],
+            $messages = [
+                'email.required' => Translate::translate('Email_is_required.',session('locale')),
+                'email.email' =>  Translate::translate('Type_valid_email.',session('locale')),
+            ]);
+    }
+    */
 }

@@ -5,15 +5,6 @@
 @endsection
 
 @section('content')
-
-<!--
-    <div id="developmentStage">
-        <p id="developmentStageText">{{__('ui.development')}}</p>
-        <br>
-        <a href = "mailto: web.rigmanager@gmail.com">web.rigmanager@gmail.com</a>
-    </div>
--->
-
     <div class="authBody">
         <div>
             <nav>
@@ -88,15 +79,6 @@
             $('#inputPassword').hideShowPassword({
                 show: false,
                 innerToggle: 'focus'
-            });
-
-            //make cursor wait
-            $('#submitBtn').click(function(){
-                document.body.style.cursor = "wait"
-                $('button').css('cursor', 'inherit');
-                $('input').css('cursor', 'inherit');
-                $('label').css('cursor', 'inherit');
-                $('a').css('cursor', 'inherit');
             });
 
             //add hover effect on item when hover on addToFavBlocked btn

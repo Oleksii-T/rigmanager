@@ -1,35 +1,92 @@
 @extends('layouts.app')
 
 @section('styles')
+    <link rel="stylesheet" type="text/css" href="{{asset('css/password_forget.css')}}" />
 @endsection
 
 @section('content')
-    <div class="in-progress">
-        <h1 style="text-align: center;text-decoration: underline;font-style: italic;">{{__('ui.workInProgress')}}</h1>
-    </div>
-<!--
-<div class="container">
-    <div>{{ __('Reset Password') }}</div>
-    <div>
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
+    <div class="pass-forget-wraper">
+        <div class="pass-forget-content">
+            <div class="pass-forget-header">
+                <p>{{ __('Reset Password') }}</p>
             </div>
-        @endif
-        <form method="POST" action="{{ loc_url(route('password.email')) }}">
-            @csrf
-            <div>
-                <label for="email">{{ __('E-Mail Address') }}</label>
-                <div>
-                    <input id="inputEmail" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                    <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
+            <div class="pass-forget-body">
+                @if (session('status'))
+                    <div class="pass-forget-alert" role="alert">
+                        <p>{{ session('status') }}</p>
+                    </div>
+                @endif
+                <form class="pass-forget-form" id="pass-forget-email-form" method="POST" action="{{ loc_url(route('password.email')) }}">
+                    @csrf
+                    <div>
+                        <label for="inputEmail">{{ __('E-Mail Address') }}</label>
+                        <div class="pass-forget-input-field">
+                            <input class="pass-forget-input" id="inputEmail" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="pass-forget-submit def-button">{{ __('Send Password Reset Link') }}</button>
+                    </div>
+                </form>
+                <div class="pass-forget-misc">
+                    <a class="pass-forget-back" href="{{route('login')}}">{{__('ui.backToLogin')}}</a>
+                </div>
+                <div class="social">
+                    <p class="socialText">{{__('ui.socialSignIn')}}:</p>
+                    <div>
+                        <a class="socialLink" href="{{route('login.social', ['social'=>'google'])}}">
+                            <img class="socialLogo" src="{{ asset('icons/googleIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            Google
+                        </a>
+                    </div>
+                    <div>
+                        <!--{{route('login.social', ['social'=>'facebook'])}}-->
+                        <a class="socialLink" href="{{route('in.progress')}}">
+                            <img class="socialLogo" src="{{ asset('icons/facebookIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            Facebook
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div>
-                <button type="submit" class="btn btn-primary">{{ __('Send Password Reset Link') }}</button>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
--->
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            //add hover effect on item when hover on addToFavBlocked btn
+            $("div.social").hover(function(){
+                $('p.socialText').css('display', 'block');
+                $(this).css('width', '150px');
+                }, function(){
+                $('p.socialText').css('display', 'none');
+                $(this).css('width', '45px');
+            });
+
+            //Validate the form
+            $('#pass-forget-email-form').validate({
+                rules: {
+                    email: {
+                        required: true,
+                        email: true,
+                        //remote: '{{ route('email.exist') }}',
+                        maxlength: 254
+                    }
+                },
+                messages: {
+                    email: {
+                        required: '{{ __("validation.required") }}',
+                        remote: '{{ __("validation.unique-email") }}',
+                        email: '{{ __("validation.email") }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 254]) }}'
+                    }
+                }
+            });
+
+        });
+    </script>
 @endsection
