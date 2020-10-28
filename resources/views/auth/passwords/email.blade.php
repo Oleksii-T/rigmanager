@@ -8,7 +8,7 @@
     <div class="pass-forget-wraper">
         <div class="pass-forget-content">
             <div class="pass-forget-header">
-                <p>{{ __('Reset Password') }}</p>
+                <p>{{ __('ui.passReset') }}</p>
             </div>
             <div class="pass-forget-body">
                 @if (session('status'))
@@ -16,6 +16,12 @@
                         <p>{{ session('status') }}</p>
                     </div>
                 @endif
+                <div class="pass-forget-guide">
+                    <p>{{__('ui.passForgetGuide1')}}</p>
+                    <p>{{__('ui.passForgetGuide2')}}</p>
+                    <p>{{__('ui.passForgetGuide3')}}</p>
+                    <p>{{__('ui.passForgetGuide4')}}</p>
+                </div>
                 <form class="pass-forget-form" id="pass-forget-email-form" method="POST" action="{{ loc_url(route('password.email')) }}">
                     @csrf
                     <div>
@@ -26,27 +32,21 @@
                         </div>
                     </div>
                     <div>
-                        <button type="submit" class="pass-forget-submit def-button">{{ __('Send Password Reset Link') }}</button>
+                        <button type="submit" class="pass-forget-submit def-button">{{ __('ui.submit') }}</button>
                     </div>
                 </form>
+                <div class="social">
+                    <a class="social-link google-link" href="{{route('login.social', ['social'=>'google'])}}">
+                        <img class="social-logo google-logo" src="{{ asset('icons/googleIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        <span class="social-text google-text">{{__('ui.socialSignIn')}} Google</span>
+                    </a>
+                    <a class="social-link fb-link" href="{{route('login.social', ['social'=>'facebook'])}}">
+                        <img class="social-logo fb-logo" src="{{ asset('icons/facebookIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        <span class="social-text fb-text">{{__('ui.socialSignIn')}} Facebook</span>
+                    </a>
+                </div>
                 <div class="pass-forget-misc">
                     <a class="pass-forget-back" href="{{route('login')}}">{{__('ui.backToLogin')}}</a>
-                </div>
-                <div class="social">
-                    <p class="socialText">{{__('ui.socialSignIn')}}:</p>
-                    <div>
-                        <a class="socialLink" href="{{route('login.social', ['social'=>'google'])}}">
-                            <img class="socialLogo" src="{{ asset('icons/googleIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            Google
-                        </a>
-                    </div>
-                    <div>
-                        <!--{{route('login.social', ['social'=>'facebook'])}}-->
-                        <a class="socialLink" href="{{route('in.progress')}}">
-                            <img class="socialLogo" src="{{ asset('icons/facebookIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            Facebook
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -57,15 +57,6 @@
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-
-            //add hover effect on item when hover on addToFavBlocked btn
-            $("div.social").hover(function(){
-                $('p.socialText').css('display', 'block');
-                $(this).css('width', '150px');
-                }, function(){
-                $('p.socialText').css('display', 'none');
-                $(this).css('width', '45px');
-            });
 
             //Validate the form
             $('#pass-forget-email-form').validate({

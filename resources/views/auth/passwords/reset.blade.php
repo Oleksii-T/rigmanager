@@ -8,7 +8,7 @@
     <div class="pass-forget-wraper">
         <div class="pass-forget-content">
             <div class="pass-forget-header">
-                <p>{{ __('Reset Password') }}</p>
+                <p>{{ __('ui.passReset') }}</p>
             </div>
             <div class="pass-forget-body">
                 <form method="POST" id="pass-forget-reset-form" action="{{ loc_url(route('password.update')) }}">

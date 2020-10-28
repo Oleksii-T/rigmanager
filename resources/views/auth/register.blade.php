@@ -111,20 +111,14 @@
             <div>
                 <button class="def-button submit-button" type="submit">{{__('ui.signUp')}}</button>
                 <div class="social">
-                    <p class="socialText"><span>{{__('ui.or')}}</span>{{__('ui.socialSignIn')}}:</p>
-                    <div>
-                        <a class="socialLink" href="{{route('login.social', ['social'=>'google'])}}">
-                            <img class="socialLogo" src="{{ asset('icons/googleIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            Google
-                        </a>
-                    </div>
-                    <div>
-                        <!--{{route('login.social', ['social'=>'facebook'])}}-->
-                        <a class="socialLink" href="{{route('in.progress')}}">
-                            <img class="socialLogo" src="{{ asset('icons/facebookIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            Facebook
-                        </a>
-                    </div>
+                    <a class="social-link google-link" href="{{route('login.social', ['social'=>'google'])}}">
+                        <img class="social-logo google-logo" src="{{ asset('icons/googleIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        <span class="social-text google-text">{{__('ui.socialSignIn')}} Google</span>
+                    </a>
+                    <a class="social-link fb-link" href="{{route('login.social', ['social'=>'facebook'])}}">
+                        <img class="social-logo fb-logo" src="{{ asset('icons/facebookIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                        <span class="social-text fb-text">{{__('ui.socialSignIn')}} Facebook</span>
+                    </a>
                 </div>
             </div>
         </form>

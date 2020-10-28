@@ -41,29 +41,23 @@
                         <label for="InputRememberMe">{{__('ui.remember me')}}</label>
                     </div>
 
+                    <div class="social">
+                        <a class="social-link google-link" href="{{route('login.social', ['social'=>'google'])}}">
+                            <img class="social-logo google-logo" src="{{ asset('icons/googleIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            <span class="social-text google-text">{{__('ui.socialSignIn')}} Google</span>
+                        </a>
+                        <a class="social-link fb-link" href="{{route('login.social', ['social'=>'facebook'])}}">
+                            <img class="social-logo fb-logo" src="{{ asset('icons/facebookIcon.svg') }}" alt="{{__('alt.keyword')}}">
+                            <span class="social-text fb-text">{{__('ui.socialSignIn')}} Facebook</span>
+                        </a>
+                    </div>
+
                     <div id="btns">
                         <button class="def-button submit-button" type="submit">{{__('ui.signIn')}}</button>
                         <a href="{{loc_url(route('password.request'))}}">{{__('ui.forget password')}}</a>
                     </div>
 
                 </form>
-
-                <div class="social">
-                    <p class="socialText">{{__('ui.socialSignIn')}}:</p>
-                    <div>
-                        <a class="socialLink" href="{{route('login.social', ['social'=>'google'])}}">
-                            <img class="socialLogo" src="{{ asset('icons/googleIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            Google
-                        </a>
-                    </div>
-                    <div>
-                        <!--{{route('login.social', ['social'=>'facebook'])}}-->
-                        <a class="socialLink" href="{{route('in.progress')}}">
-                            <img class="socialLogo" src="{{ asset('icons/facebookIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            Facebook
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -79,15 +73,6 @@
             $('#inputPassword').hideShowPassword({
                 show: false,
                 innerToggle: 'focus'
-            });
-
-            //add hover effect on item when hover on addToFavBlocked btn
-            $("div.social").hover(function(){
-                $('p.socialText').css('display', 'block');
-                $(this).css('width', '150px');
-                }, function(){
-                $('p.socialText').css('display', 'none');
-                $(this).css('width', '45px');
             });
 
         });

@@ -261,45 +261,66 @@ div.hideShowPassword-wrapper {
     margin-left: 40px;
 }
 
-div.social {
-    display: inline-block;
-    vertical-align: middle;
+/*======SOCIAL=======*/
+
+.social {
+    float: right;
+    margin-right: 40px;
 }
 
-p.socialText span {
-    margin: 0px 30px;
-}
-
-p.socialText,
-a.socialLink,
-div.social>div {
-    float: left;
-}
-
-div.social>div {
-    position: relative;
-}
-
-a.socialLink {
+.social-link {
+    text-align: center;
     text-decoration: none;
-    white-space: nowrap;
-    margin-left: 20px;
-    padding-left: 35px;
-    transition: 0.2s;
-    z-index: 4;
+    display: inline-block;
+    width: 260px;
+    height: 40px;
+    border-radius: 7px;
+    position: relative;
+    transform: 0.2s;
 }
 
-a.socialLink:hover {
-    color: #FE9042;
-    text-decoration: underline;
+.social-link:hover {
+    -webkit-box-shadow: 0px 0px 13px 1px rgba(136,136,136,0.61);
+    -moz-box-shadow: 0px 0px 13px 1px rgba(136,136,136,0.61);
+    box-shadow: 0px 0px 13px 1px rgba(136,136,136,0.61);
 }
 
-img.socialLogo {
+.google-link {
+    background-color: #ffffff;
+}
+
+.fb-link {
+    margin-left: 7px;
+    background-color: #1877F2;
+}
+
+.social-logo {
+    height: 25px;
+    width: 25px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: 20px;
-    width: 25px;
-    height: 25px;
-    z-index: 0;
+}
+
+.google-logo {
+    left: 24px;
+}
+
+.fb-logo {
+    left: 14px;
+}
+
+.social-text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.google-text {
+    color: #000000;
+    left: 56px;
+}
+
+.fb-text {
+    left: 46px;
 }

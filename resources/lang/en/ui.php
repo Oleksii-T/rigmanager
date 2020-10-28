@@ -48,6 +48,12 @@ return [
     'iAgreeLink' => 'Term of Service',
     'accountActivated' => 'Your account has been verified!',
     'backToLogin' => 'Back to Login Page',
+    'socialError' => 'The error occurred while logging in',
+    'passReset' => 'Password reset',
+    'passForgetGuide1' => 'Here you can reset your password.',
+    'passForgetGuide2' => 'Please enter your login (e-mail) here, and click submit.',
+    'passForgetGuide3' => 'You will receive the mail soon, where You can follow the link to set new account password.',
+    'passForgetGuide4' => 'Please, dont forget to check the spam folder.',
 
     //home massages
     'home' => 'Home',
