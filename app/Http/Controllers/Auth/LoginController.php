@@ -78,7 +78,6 @@ class LoginController extends Controller
             Session::flash('message-error', __('messages.serverError'));
             return loc_url(route('home'));
         }
-        dd($social);
         $socialId = $driver . '_id';
         $user = User::where($socialId, $social->id)->first();
         // check is such social ID was user before

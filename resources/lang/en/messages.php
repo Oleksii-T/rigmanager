@@ -6,6 +6,7 @@ return [
     'error' => 'An error occured.',
     'info' => '',
     'authError' => 'You must be logged in to perform this action',
+    'serverError' => 'Server error occurred',
 
     'postUploaded' => 'Post has been published successfully!',
     'postUploadedError' => 'Error occured while publishing the Post.',
