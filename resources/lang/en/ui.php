@@ -167,6 +167,7 @@ return [
     'addPostSe' => 'Add post (Service)',
     'postCreate' => 'Post creation',
     'postSettings' => 'Post settings',
+    'thread' => 'Equipment/Service',
     'title' => 'Title',
     'titleEqHelp' => 'Enter the equipment/part name.
         Should not contain words and synonyms:
@@ -213,7 +214,7 @@ return [
     'tags' => 'Categories',
     'tagsModalHelp' => 'Do not forget to Submit chosen tags!',
     'tagHelp' => 'Category is important for proper work of search engine.
-        Be sure that categoty is chosen correctly, so your post will be easy to find!',
+        Be sure that category is chosen correctly, so your post will be easy to find!',
     'chosenTags' => 'Chosen category',
     'clearTagsFromPost' => 'Clear сhosen categories',
     'miscEqInfo' => 'Additional optional equipment/part information',

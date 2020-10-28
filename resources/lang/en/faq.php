@@ -33,7 +33,7 @@ return [
     'aWhyWe' => 'First of all, we are the first specialized website for cooperation of drilling companies.
     We provide the strict scope of content, only Oil & Gas Equipment and Services. Nothing extra.
     Personal data is the main deal for us, in other words - anonymity is the key.
-    For each Post published, You are free to choose a minimum one contact field, Email, or Phone. We do not put bounds to Your choices. Moreover for each Post, You could choose unique contact information.
+    For each Post published, You are free to choose a minimum one contact field, Email, or Phone. We do not put bounds on Your choices. Moreover for each Post, You could choose unique contact information.
     We have developing system of categories thanks to which you can navigate through Oil & Gas equipment or services quickly and easily.
     You have the possibility to subscribe to Mailer and get notification about Oil & Gas equipment or/end services you looking for.
     Our website supports three languages, Ukrainian, Russian, and English. And have automatic build in translation, so anyone can get information about your proposition.',
@@ -65,15 +65,15 @@ return [
 
     'qAutoTranslator' => 'What is Auto-Translator',
     'aAutoTranslator' => 'Auto-Translator is automatic title and description translation on Ukrainian and Russian languages for Your newly created Posts.
-    It is made up for increasing chanses of finding Your clients.
+    It is made up for increasing chances of finding Your clients.
     Auto-Translation is active by default but may be deactivated. Then you will be suggested to write your own translation variant for one or all available languages (Russian and Ukrainian).
-    You will be able to see the result of the translation submiting the Post by selecting the interface language you are interested in and going to your Post page or through the Post Edit page.
-    The User who opens the Post will always have the possibility to see the original title and description, if he review the Post not in the original language.
+    You will be able to see the result of the Post translation by selecting the interface language you are interested in and going to your Post page or through the Post Edit page.
+    The User who opens the Post will always have the possibility to see the original title and description if he reviews the Post not in the original language.
     We are updating and improving our Auto-Translator to achieve the best translation result.
     Currently, we are using Phrase-Based Google Cloud Translation Model.',
 
     'qRelease' => 'When website will be released?',
-    'aRelease' => 'There is still a lot of work ahead to make our service reliable, full of content and recognizable by every Ukraine Oil & Gas company.
+    'aRelease' => 'There is still a lot of work ahead to make our service reliable, full of content, and recognizable by every Ukraine Oil & Gas company.
     We do our best to get the service running as quickly as possible.
     We are planning the first release in December 2020.',
 
