@@ -343,6 +343,7 @@ return [
    Конфіденційності',
    'footerDevelop' => 'Розробка',
    'footerSiteMap' => 'Карта Сайту',
+   'contactsFooter' => 'Ви можете зв\'язатися з нами',
 
     // sitemap
     'stMain' => 'Головна',

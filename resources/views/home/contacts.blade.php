@@ -26,6 +26,28 @@
         .master-wraper {
             padding-top: 1px;
         }
+        .contacts-list {
+            margin-top: 110px;
+            text-align: center;
+            margin-bottom: 50px
+        }
+        .list-header {
+            font-size: 260%;
+            font-weight: 100;
+            letter-spacing: 0.5em;
+            margin-bottom: 80px;
+        }
+        .list-body {
+            font-size: 125%;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #fe9042;
+            display: inline-block;
+            font-style: italic;
+        }
+        .list-item {
+            font-size: 120%;
+            margin-bottom: 8px;
+        }
     </style>
 @endsection
 
@@ -70,15 +92,34 @@
                 <button class="def-button submit-button">{{__('ui.fromUserSubmit')}}</button>
                 <a class="def-button cancel-button" href="{{loc_url(route('home'))}}">{{__('ui.cancel')}}</a>
             </div>
+            <div class="contacts-list">
+                <p class="list-header">{{__('ui.or')}}</p>
+                <p class="list-body">{{__('ui.contactsFooter')}}</p>
+                <p class="list-item">{{env('MAIL_TO_ADDRESS')}}</p>
+                <p class="list-item">web.rigmanager@gmail.com</p>
+                <p class="list-item">{{env('CONTACT_PHONE')}}</p>
+            </div>
         </form>
     </div>
 @endsection
 
 @section('scripts')
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/myValidators.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+
+            // add regex validation of name
+            $.validator.addMethod('validName',
+                function(value, element, param) {
+                    if (value != '') {
+                        if (value.match(/^[а-яёґєіїА-ЯЁҐЄІЇa-zA-Z0-9\s]*$/u) == null) {
+                            return false;
+                        }
+                    }
+                    return true;
+                },
+                '{{__("validation.username")}}'
+            );
 
             //Validate the form
             $('#contact-form').validate({

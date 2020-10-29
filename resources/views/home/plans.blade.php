@@ -132,7 +132,42 @@
 @endsection
 
 @section('scripts')
+    <script id="widget-wfp-script" language="javascript" type="text/javascript" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
     <script type="text/javascript">
+
+        var wayforpay = new Wayforpay(); 	
+        var pay = function () { 		
+            wayforpay.run(
+                {			
+                    "requestType": "CREATE",
+                    "merchantAccount": "test_merch_n1",
+                    "merchantPassword": "d485396ae413eb60dc251b0899b261c2",
+                    "regularMode": "monthly",
+                    "amount": "10",
+                    "currency": "UAH",
+                    "dateBegin": "01.11.2020",
+                    "dateEnd": "01.02.2021",
+                    "orderReference": "P21435306374431",
+                    "email": "alex.media.t@gmail.com"
+                }, 			
+                function (response) {
+                    console.log ('approved.');
+                    console.log (response);
+                    // on approved				 			
+                }, 			
+                function (response) {
+                    console.log ('declined');
+                    console.log (response);
+                    // on declined 			
+                }, 			
+                function (response) {
+                    console.log ('pending or in pocessing...');
+                    console.log (response);
+                    // on pending or in processing 			
+                } 		
+            );
+        }
+
         $(document).ready(function(){
             isLoggedIn = "{{Auth::check()}}";
             $('.plan-choose button').click(function(){

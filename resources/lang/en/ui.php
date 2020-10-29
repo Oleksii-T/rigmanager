@@ -345,6 +345,7 @@ return [
     Policy',
     'footerDevelop' => 'Delelopment',
     'footerSiteMap' => 'Site Map',
+    'contactsFooter' => 'You can contact us by yourself',
 
     // sitemap
     'stMain' => 'Main',

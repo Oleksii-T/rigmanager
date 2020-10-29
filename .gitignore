@@ -11,7 +11,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 /storage/app/public
-.developers_notes
+.developers_notes.md
 /public/sitemap.xml
 /etc/queue_worker.log
 Oil&Gas_Categories.txt
