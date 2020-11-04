@@ -8,6 +8,9 @@ class UsdExchangeController extends Controller
 {
     static public function update() {
         $key = env('EXCHANGERATES_APP_ID');
+        if (!$key) {
+            return false;
+        }
         $url = "https://openexchangerates.org/api/latest.json?app_id=".$key;
         $json = file_get_contents($url);
         //dd($json);
@@ -15,6 +18,7 @@ class UsdExchangeController extends Controller
         $eurRate = json_decode($json)->rates->EUR;
         $uah = UsdExchange::where('currency', 'UAH')->update(['sell' => $uahRate]);
         $eur = UsdExchange::where('currency', 'EUR')->update(['sell' => $eurRate]);
+        return true;
     }
 
     static public function uahToUsd($uah) {

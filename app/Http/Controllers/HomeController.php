@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\fromUserNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\PostsImport;
 
 class HomeController extends Controller
 {
@@ -38,6 +40,12 @@ class HomeController extends Controller
 
     public function faq()
     {
+        /*
+        $xls = asset('excel.xls');
+        $xls = 'excel.xls';
+        Excel::import(new PostsImport, $xls);
+        dd('parsing done');
+        */
         return view('home.faq');
     }
 

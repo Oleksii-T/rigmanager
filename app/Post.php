@@ -21,7 +21,7 @@ class Post extends Model
     ];
 
     protected $fillable = [
-        'is_active', 'thread', 'origin_lang', 'user_translations' , 'title', 'title_uk', 'title_ru', 'title_en',
+        'is_active', 'thread', 'user_id', 'origin_lang', 'user_translations' , 'title', 'title_uk', 'title_ru', 'title_en',
         'company', 'type', 'role', 'condition', 'tag_encoded', 'description', 'description_uk', 'description_ru',
         'description_en', 'cost', 'currency', 'region_encoded', 'town', 'user_email', 'user_phone_raw', 'viber',
         'telegram', 'whatsapp', 'manufacturer', 'manufactured_date', 'part_number', 'lifetime', 'active_to'
