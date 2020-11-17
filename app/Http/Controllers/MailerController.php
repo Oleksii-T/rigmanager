@@ -120,7 +120,7 @@ class MailerController extends Controller
         $mailer = auth()->user()->mailer;
         if (!$mailer) {
             $mailer = new Mailer;
-            $mailer->types = ["1","2","3"];
+            $mailer->types = ["1","2","3","4","5","6"];
             $mailer->$tags_encoded = array($tagId);
             auth()->user()->mailer()->save($mailer);
             return true;
@@ -159,6 +159,7 @@ class MailerController extends Controller
         } else {
             // Mailer absent. Create new Mailer
             $mailer = new Mailer;
+            $mailer->types = ["1","2","3","4","5","6"];
             $mailer->keywords = $string;
             auth()->user()->mailer()->save($mailer);
         }
@@ -184,6 +185,7 @@ class MailerController extends Controller
         $mailer = auth()->user()->mailer;
         if (!$mailer) {
             $mailer = new Mailer;
+            $mailer->types = ["1","2","3","4","5","6"];
             $mailer->authors_encoded = $user_id;
             auth()->user()->mailer()->save($mailer);
             return 1;

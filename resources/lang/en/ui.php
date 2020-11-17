@@ -22,6 +22,7 @@ return [
     // jeneral massages
     'delete' => 'Delete',
     'no' => 'No',
+    'yes' => 'Yes',
     'edit' => 'Edit',
     'submit' => 'Submit',
     'cancel' => 'Cancel',
@@ -33,6 +34,10 @@ return [
     'ruLang' => 'Russian',
     'enLang' => 'English',
     'change' => 'Change',
+    'download' => 'Download',
+    'upload' => 'Upload',
+    'chooseFile' => 'Choose File',
+    'post' => 'Post',
 
     // auth massages
     'signIn' => 'Sign in',
@@ -438,4 +443,21 @@ return [
     'planDetails' => 'See details, or change subscription plan you can here:',
     'planDetailsBtn' => 'Paid Plans',
     'planCancel' => 'Cancel subscription',
+    
+    // posts import
+    'postImport' => 'Posts import',
+    'postImportTitle' => 'Here you can import a number of Posts at once',
+    'postImportDownload' => 'Download import file',
+    'postImportUpload' => 'Upload filled import file',
+    'postImportIntro' => 'We understand that if a client have significant amount of posts,
+        it is not convenient to upload them one by one.
+        So, we introduce bulk posts import via our excel import file.',
+    'postImportHow' => 'How it is works:
+        After You download the excel import file and fill it due to the rules, You can upload it above.
+        Then our algorithm analyze the submitted file.
+        If there are no errors, all posts from the file become public on our website.',
+    'postImportRules' => 'Please, read the rules before filling the form.',
+    'postImportWarning' => 'Currently, we are not supporting image uploading via excel import file, so after all posts been published, you may upload photos for each one individually.',
+    'importErrorAfter' => 'None of your Post been published.
+    Please fix the error and submit the import file again.',
 ];

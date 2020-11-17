@@ -31,7 +31,7 @@ class TranslatePost implements ShouldQueue
     protected $shouldUpdate;
     protected $post;
     protected $input;
-    protected $role;
+    protected $mode;
     protected $translateTo;
     protected $translator;
     protected $result;
@@ -41,13 +41,13 @@ class TranslatePost implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(\App\Post $post, $input, $role)
+    public function __construct(\App\Post $post, $input, $mode)
     {
         $this->shouldUpdate = false; // flag signals that some translation was done
         $this->post = $post; //the post
         unset($input['images']);
         $this->input = $input;
-        $this->role = $role;
+        $this->mode = $mode;
         $appLanguages = collect(['uk', 'ru', 'en']); //all available languages for this App
         $this->translateTo = $appLanguages->forget( $appLanguages->search($input['origin_lang']) ); // exclude the origin language from all languages available for App
     }
@@ -60,7 +60,7 @@ class TranslatePost implements ShouldQueue
     public function handle()
     {
         $this->translator = new TranslateClient(['key' => env('GCP_KEY')]); // object of translation provider
-        if ( $this->role ) {
+        if ( $this->mode ) {
             $this->translateNewPost();
         } else {
             $this->translateOldPost();

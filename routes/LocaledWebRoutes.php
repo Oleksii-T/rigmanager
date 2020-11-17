@@ -14,6 +14,7 @@ Route::get('plans',     'HomeController@plans')     ->name('plans');
 Route::get('terms',     'HomeController@terms')     ->name('terms');
 Route::get('privacy',   'HomeController@privacy')   ->name('privacy');
 Route::get('sitemap',   'HomeController@sitemap')   ->name('site.map');
+Route::get('posts/import/rules',   'HomeController@import')   ->name('import.rules');
 Route::get  ('contact-us',      'HomeController@contacts')  ->name('contacts');
 Route::post ('contacting',      'HomeController@contactUs') ->name('contact.us');
 
@@ -37,8 +38,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware('verified')->group(function () {
 
     // posts routes
-    Route::get      ('fake/store',                         'PostController@storeFake')     ->name('posts.store.fake');
+    Route::get      ('fake/store',                          'PostController@storeFake')     ->name('posts.store.fake');
     Route::get      ('posts/create/service',                'PostController@serviceCreate') ->name('service.create');
+    Route::get      ('posts/import',                        'PostController@import')        ->name('post.import');
+    Route::post     ('posts/import',                        'PostController@importStore')   ->name('import.upload');
     Route::resource ('posts',                               'PostController')               ->except(['index', 'show']);
 
     // prifile/user routes

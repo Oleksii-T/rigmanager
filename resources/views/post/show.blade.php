@@ -153,7 +153,7 @@
 
                 @if ($post->part_number)
                     <aside class="element" id="partNumber">
-                        <p>{{__('ui.partNumber')}}: {{ $post->part_number }}</p>
+                        <p>{{__('ui.partNum')}}: {{ $post->part_number }}</p>
                     </aside>
                 @endif
 

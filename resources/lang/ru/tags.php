@@ -197,7 +197,6 @@ return [
         'mill' => 'Фрез',
         'junkBasket' => 'Шламоуловитель',
 
-
     'lubricator' => 'Лубрикант (Смазка)',
         'lubricntDP' => 'Для буровых труб',
         'lubricntTong' => 'Для ключей',

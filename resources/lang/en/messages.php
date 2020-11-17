@@ -53,4 +53,54 @@ return [
     
     'planAlreadyPremium+' => 'You already have free Premium+ Account!',
     'planCancelPremium+' => 'Sorry, you cannot cancel free Premium+ right now',
+    
+    'postImportError' => 'The error occurred while analyzing the import file',
+    'postImportSuccess' => 'The post imported successfully',
+
+    'importExtError' => 'Only xlsx files are allowed.',
+    'importStuctureError' => 'The import file structure is broken.',
+    'importEmptyError' => 'The uploaded file is empty.',
+    'importCompulsoryError' => 'Compulsory fields are not filled.',
+    'importThreadError' => '"Equipment/service" field is filled incorrectly.',
+    'importTypeError' => '"Type" field is filled incorrectly.',
+    'importRoleError' => '"Role" field is filled incorrectly.',
+    'importConditionError' => '"Condition" field is filled incorrectly.',
+    'importTagError' => '"Category" field is filled incorrectly.',
+    'importCurrencyError' => '"Currency" field is filled incorrectly.',
+    'importRegionError' => '"Region" field is filled incorrectly.',
+    'importLifetimeError' => '"Lifetime" field is filled incorrectly.',
+    'importTitleError' => '"Title" field is filled incorrectly.',
+    'importDescriptionError' => '"Description" field is filled incorrectly.',
+    'importCompanyError' => '"Company" field is filled incorrectly.',
+    'importManufError' => '"Manufacturer" field is filled incorrectly.',
+    'importManufDateError' => '"Manufectired" date field is filled incorrectly.',
+    'importPNError' => '"Part" number field is filled incorrectly.',
+    'importCostError' => '"Cost" field is filled incorrectly.',
+    'importCurrencyMError' => '"Currency" field is mandatory if cost is specified.',
+    'importTownError' => '"Town" field is filled incorrectly.',
+    'importEmailError' => '"Email" field is filled incorrectly.',
+    'importPhoneError' => '"Phone" field is filled incorrectly.',
 ];
+
+/*
+return 'phone is incorrect in post #' . ($key+1) . '. Value = ['.$row[9].']';
+return 'email is incorrect';
+return 'town is incorrect';
+return 'currency is mandatory if cost is cpecified is post #' . ($key+1);
+return 'cost is incorrect';
+return 'part number is incorrect. ' . $row[11];
+return 'manufacturer date is incorrect. ' . $row[10];
+return 'manufacturer is incorrect in post #' . ($key+1) . '. Value = ['.$row[9].']';
+return 'company is incorrect. ' . $row[4];
+return 'description is incorrect';
+return 'title is incorrect in post #' . ($key+1) . '. Value = ['.$row[1].']';
+return 'lifetime is incorrect';
+return 'region is incorrect';
+return 'currency is incorrect';
+return 'category is incorrect in post #' . ($key+1) . '. Value = ['.$row[8].']';
+return 'condition is incorrect in post #' . ($key+1) . '. Value = ['.$row[7].']';
+return 'role is incorrect';
+return 'type is incorrect';
+return 'thread is incorrect';
+return ' in post #' . ($key+1);
+*/

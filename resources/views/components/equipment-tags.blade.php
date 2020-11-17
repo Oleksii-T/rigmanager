@@ -87,13 +87,14 @@
                         <p class="tag equipment second" id="3.10">{{__('tags.rigUpDown')}}</p>
                     </div>
                     <div class="hidden tags equipment second tags_4">
-                        <p class="tag equipment second" id="4.1">{{__('tags.pumpiI')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
-                        <p class="tag equipment second" id="4.2">{{__('tags.mudPumps')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
-                        <p class="tag equipment second" id="4.3">{{__('tags.pumpPD')}}</p>
-                        <p class="tag equipment second" id="4.4">{{__('tags.pumpCent')}}</p>
-                        <p class="tag equipment second" id="4.5">{{__('tags.pumpPlunger')}}</p>
-                        <p class="tag equipment second" id="4.6">{{__('tags.pumpSinking')}}</p>
-                        <p class="tag equipment second" id="4.7">{{__('tags.component')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
+                        <p class="tag equipment second" id="4.1">{{__('tags.pumpiI')}}</p>
+                        <p class="tag equipment second" id="4.2">{{__('tags.hydComonents')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
+                        <p class="tag equipment second" id="4.3">{{__('tags.mudPumps')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
+                        <p class="tag equipment second" id="4.4">{{__('tags.pumpPD')}}</p>
+                        <p class="tag equipment second" id="4.5">{{__('tags.pumpCent')}}</p>
+                        <p class="tag equipment second" id="4.6">{{__('tags.pumpPlunger')}}</p>
+                        <p class="tag equipment second" id="4.7">{{__('tags.pumpSinking')}}</p>
+                        <p class="tag equipment second" id="4.8">{{__('tags.component')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                     </div>
                     <div class="hidden tags equipment second tags_5">
                         <p class="tag equipment second" id="5.1">{{__('tags.filter')}}</p>
@@ -214,11 +215,7 @@
                         <p class="tag equipment second" id="21.1">{{__('tags.kelly')}}</p>
                         <p class="tag equipment second" id="21.2">{{__('tags.swivel')}}</p>
                         <p class="tag equipment second" id="21.3">{{__('tags.tdsSystem')}}</p>
-                        <p class="tag equipment second" id="21.4">{{__('tags.rotor')}}</p>
-                        <p class="tag equipment second" id="21.5">{{__('tags.kellyBush')}}</p>
-                        <p class="tag equipment second" id="21.6">{{__('tags.component')}}</p>
-                        <p class="tag equipment second" id="21.7">{{__('tags.rotorDrive')}}</p>
-                        <p class="tag equipment second" id="21.8">{{__('tags.brakes')}}</p>
+                        <p class="tag equipment second" id="21.4">{{__('tags.rotor')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                     </div>
                     <div class="hidden tags equipment second tags_22">
                         <p class="tag equipment second" id="22.1">{{__('tags.distributionUnit')}}</p>
@@ -311,13 +308,12 @@
                         <p class="tag equipment third" id="2.10.1">{{__('tags.dcSlick')}}</p>
                         <p class="tag equipment third" id="2.10.2">{{__('tags.dcSpiral')}}</p>
                     </div>
-                    <div class="hidden tags equipment third tags_4.1">
-                        <p class="tag equipment third" id="4.1.1">{{__('tags.hydComonents')}}</p>
-                        <p class="tag equipment third" id="4.1.2">{{__('tags.hydActuator')}}</p>
-                        <p class="tag equipment third" id="4.1.3">{{__('tags.hydPulser')}}</p>
-                        <p class="tag equipment third" id="4.1.4">{{__('tags.hydController')}}</p>
-                    </div>
                     <div class="hidden tags equipment third tags_4.2">
+                        <p class="tag equipment third" id="4.2.1">{{__('tags.hydActuator')}}</p>
+                        <p class="tag equipment third" id="4.2.1">{{__('tags.hydPulser')}}</p>
+                        <p class="tag equipment third" id="4.2.1">{{__('tags.hydController')}}</p>
+                    </div>
+                    <div class="hidden tags equipment third tags_4.3">
                         <p class="tag equipment third" id="4.2.1">{{__('tags.engine')}}</p>
                         <p class="tag equipment third" id="4.2.2">{{__('tags.floatCollar')}}</p>
                         <p class="tag equipment third" id="4.2.3">{{__('tags.pumpController')}}</p>
@@ -329,7 +325,7 @@
                         <p class="tag equipment third" id="4.2.9">{{__('tags.cooling')}}</p>
                         <p class="tag equipment third" id="4.2.10">{{__('tags.component')}}</p>
                     </div>
-                    <div class="hidden tags equipment third tags_4.7">
+                    <div class="hidden tags equipment third tags_4.8">
                         <p class="tag equipment third" id="4.7.1">{{__('tags.compensator')}}</p>
                         <p class="tag equipment third" id="4.7.2">{{__('tags.floatCollar')}}</p>
                         <p class="tag equipment third" id="4.7.3">{{__('tags.filters')}}</p>
@@ -447,6 +443,12 @@
                         <p class="tag equipment third" id="21.3.12">{{__('tags.ControllUnit')}}</p>
                         <p class="tag equipment third" id="21.3.13">{{__('tags.bail')}}</p>
                         <p class="tag equipment third" id="21.3.14">{{__('tags.electroEngines')}}</p>
+                    </div>
+                    <div class="hidden tags equipment third tags_21.4">
+                        <p class="tag equipment third" id="21.4.1">{{__('tags.kellyBush')}}</p>
+                        <p class="tag equipment third" id="21.4.2">{{__('tags.component')}}</p>
+                        <p class="tag equipment third" id="21.4.3">{{__('tags.rotorDrive')}}</p>
+                        <p class="tag equipment third" id="21.4.4">{{__('tags.brakes')}}</p>
                     </div>
                     <div class="hidden tags equipment third tags_23.2">
                         <p class="tag equipment third" id="23.2.1">{{__('tags.simCasingBS')}}</p>

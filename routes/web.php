@@ -26,6 +26,12 @@ if (env('MAINTENANCE')) {
 Route::get          ('emailexists',                         'UserController@emailExists')       ->name('email.exist'); //Ajax reqeust
 Route::get          ('usernameexists',                      'UserController@userNameExists')    ->name('username.exist'); //Ajax reqeust
 
+//impoer file download
+Route::get('download/posts-import', function() {
+    $file = public_path().'/rigmanager-import.xlsx';
+    return response()->download($file);
+})->name('download.post.import');
+
 Route::middleware('verified')->group(function () {
 
     // post routes
