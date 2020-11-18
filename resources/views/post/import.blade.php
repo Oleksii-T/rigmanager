@@ -42,6 +42,9 @@
                         </form>
                     </div>
                 </div>
+                <div class="import-loading hidden">
+                    <p>{{__('ui.fileImporting')}}</p>
+                </div>
                 <div class="content-text">
                     <p class="body-intro">{{__('ui.postImportIntro')}}</p>
                     <p class="body-text">{{__('ui.postImportHow')}}</p>
@@ -57,6 +60,9 @@
     <script type="text/javascript">
 
         $(document).ready(function() {
+            $('.submit-import').click(function(){
+                $('.import-loading').removeClass('hidden');
+            });
             $('#input-file').change(function(){
                 var file = $(this)[0].files[0];
                 if (file.name) {

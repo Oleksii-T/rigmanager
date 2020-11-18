@@ -460,4 +460,5 @@ return [
     'postImportWarning' => 'Currently, we are not supporting image uploading via excel import file, so after all posts been published, you may upload photos for each one individually.',
     'importErrorAfter' => 'None of your Post been published.
     Please fix the error and submit the import file again.',
+    'fileImporting' => 'Your file is being processed, please wait.',
 ];

@@ -281,8 +281,8 @@ class PostController extends Controller
      */
     public function destroy($locale, $id=null)
     {
-        $post = Post::findOrFail($id);
         $id = $id==null ? $locale : $id;
+        $post = Post::findOrFail($id);
         if ($post->user == auth()->user()) {
             $this->postImagesDelete($post);
             $post->delete();
@@ -386,6 +386,12 @@ class PostController extends Controller
     }
 
     public function importStore(Request $request) {
+        //check for xlsx file
+        if (strtolower($request->file('import-file')->getClientOriginalExtension()) != 'xlsx') {
+            Session::flash('message-error', __('messages.postImportError'));
+            Session::flash('import-error', __('messages.importExtError'));
+            return redirect(loc_url(route('post.import')));
+        }
         $import = Excel::toArray(new PostsImport, $request->file('import-file'));
         //check the structure
         if (count($import[0]) < 502 || count($import[0][0]) < 22) {
@@ -416,7 +422,10 @@ class PostController extends Controller
                 return redirect(loc_url(route('post.import')));
             }
         }
-        $import = array_slice($import, 0, $lastRow); // remove empty rows from import file
+        //there is not 500 rows, delete the empty ones
+        if (isset($lastRow)) {
+            $import = array_slice($import, 0, $lastRow);
+        }
         $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
         $lang = $translate->detectLanguage( $import[0][1] . '. ' . $import[0][2] )['languageCode']; // merge title and description and find out the origin language
         // for each row create the post and save it 
@@ -437,13 +446,13 @@ class PostController extends Controller
             //make lifetime
             switch ($row[21]) {
                 case '1':
-                    $lifetime = Carbon::now()->addMonth()->toDateString();
+                    $activeTo = Carbon::now()->addMonth()->toDateString();
                 break;
                 case '2':
-                    $lifetime = Carbon::now()->addMonths(2)->toDateString();
+                    $activeTo = Carbon::now()->addMonths(2)->toDateString();
                 break;
                 case '3':
-                    $lifetime = null;
+                    $activeTo = null;
                     break;
                 default:
                     break;
@@ -472,7 +481,8 @@ class PostController extends Controller
                 'viber' => $viber,
                 'telegram' => $telegram,
                 'whatsapp' => $whatsapp,
-                'lifetime' => $lifetime,
+                'lifetime' => $row[21],
+                'active_to' => $activeTo,
             ]);
             auth()->user()->posts()->save($post); // save post with respect to user
             TranslatePost::dispatch($post, ['title'=>$row[1], 'description'=>$row[2], 'origin_lang'=>$lang], true)->onQueue('translation'); // dispatch the translation of post
