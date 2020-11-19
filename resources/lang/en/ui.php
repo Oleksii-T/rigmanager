@@ -194,6 +194,10 @@ return [
     'AutoTranslateToRu' => 'Auto-Translate to Russian',
     'translationHelp' => 'Available languages suggested base on your Interface Language.
         Please choose the interface language in which you filling the original information.',
+    'amount' => 'Amount',
+    'chooseAmount' => 'Choose amount',
+    'amountHelp' => 'Here You may specify the number of pieces you have.
+        If it is not obvious what this number stands for, you can specify this information in the description',
     'choosePostType' => 'Choose post type',
     'postTypeSell' => 'Sell',
     'postTypeSellFull' => 'Equipment Sell',

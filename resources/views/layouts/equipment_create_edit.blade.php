@@ -85,6 +85,19 @@
                 </div>
             </div>
 
+            <div id="amount" class="element">
+                <h3 class="elementHeading">{{__('ui.chooseAmount')}}</h3>
+                <div class="input-field">
+                    @yield('input-amount')
+                    <div class="input-help amount-help hidden">
+                        <img src="{{asset('icons/leftArrowIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                        <p><i>{{__('ui.amountHelp')}}</i></p>
+                    </div>
+                </div>
+                <x-server-input-error errorName='amount' inputName='inputAmount' errorClass='error'/>
+                <div class="amount error error-dz hidden"></div>
+            </div>
+
             @yield('input-status')
 
             <div id="type" class="element">
@@ -391,12 +404,22 @@
                 }
             });
 
+            //show amount help when active input
+            $("#inputAmount").focusin(function(){
+                $('div.amount-help').removeClass('hidden');
+            });
+
+            //hide amount help when active input
+            $("#inputAmount").focusout(function(){
+                $('div.amount-help').addClass('hidden');
+            });
+
             //show phone help when active input
             $("#inputPhone").focusin(function(){
                 $('div.phone-help').removeClass('hidden');
             });
 
-            //hide phone date help when active input
+            //hide phone help when active input
             $("#inputPhone").focusout(function(){
                 $('div.phone-help').addClass('hidden');
             });
@@ -630,13 +653,16 @@
             }, '{{ __("validation.unlimLifetimeError") }}');
 
             //Validate the form
-            // add variable for title and description messages
             $('.post-form').validate({
                 rules: {
                     title: {
                         required: true,
                         minlength: 10,
                         maxlength: 70
+                    },
+                    amount: {
+                        digits: true,
+                        maxlength: 9
                     },
                     company: {
                         minlength: 5,
@@ -682,6 +708,10 @@
                         required: '{{ __("validation.required") }}',
                         minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
+                    },
+                    amount: {
+                        digits: '{{ __("validation.integer") }}',
+                        maxlength: '{{ __("validation.max.string", ["max" => 9]) }}'
                     },
                     title_uk: {
                         required: '{{ __("validation.required") }}',

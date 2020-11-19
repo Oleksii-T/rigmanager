@@ -24,6 +24,7 @@ class CreatePostsTable extends Migration
             $table->integer('thread');
             $table->string('origin_lang', 5);
             $table->json('user_translations')->nullable();
+            $table->string('amount', 15)->nullable();
             $table->string('title', 100);
             $table->string('title_uk', 100)->nullable();
             $table->string('title_ru', 100)->nullable();
@@ -51,6 +52,7 @@ class CreatePostsTable extends Migration
             $table->boolean('whatsapp')->default(false);
             $table->string('lifetime')->default(1);
             $table->date('active_to')->default(Carbon::now()->addMonth())->nullable();
+            $table->boolean('is_verified')->default(false);
             $table->timestamps();
             $table->softDeletes('deleted_at', 0); // Adds a nullable deleted_at TIMESTAMP equivalent column for soft deletes with precision (total digits).
         });

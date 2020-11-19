@@ -20,6 +20,10 @@
     <input class="def-input" id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') ?? $post->title }}"/>
 @endsection
 
+@section('input-amount')
+    <input class="def-input" id="inputAmount" name="amount" type="text" value="{{ old('amount') ?? $post->amount }}"/>
+@endsection
+
 @section('checkbox-title-uk')
     <input id="titleTranslateUk" type="checkbox" name="title_translate[uk]" value="1" {{array_search('uk', $post->user_translations['title'])===false ? 'checked="checked"' : ''}}>
 @endsection

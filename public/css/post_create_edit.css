@@ -367,6 +367,17 @@ div.translation-input-field {
     margin: 0px 0px 20px 10px;
 }
 
+/*==================AMOUNT==================*/
+
+#amount input {
+    width: 15%;
+}
+
+div.amount-help {
+    left: 18%;
+    max-width: 500px;
+}
+
 /*==================COMPANY==================*/
 
 #inputCompany {

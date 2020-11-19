@@ -70,6 +70,7 @@ return [
     'importRegionError' => '"Region" field is filled incorrectly.',
     'importLifetimeError' => '"Lifetime" field is filled incorrectly.',
     'importTitleError' => '"Title" field is filled incorrectly.',
+    'importAmountError' => '"Amount" field is filled incorrectly.',
     'importDescriptionError' => '"Description" field is filled incorrectly.',
     'importCompanyError' => '"Company" field is filled incorrectly.',
     'importManufError' => '"Manufacturer" field is filled incorrectly.',

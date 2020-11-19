@@ -133,6 +133,12 @@
                     </aside>
                 @endif
 
+                @if ($post->amount)
+                    <aside class="element" id="amount">
+                        <p>{{__('ui.amount')}}: {{ $post->amount }}</p>
+                    </aside>
+                @endif
+
                 @if ($post->condition)
                     <aside class="element" id="status">
                         <p>{{__('ui.condition')}}: {{ $post->condition_readable }}</p>
