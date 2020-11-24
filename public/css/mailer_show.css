@@ -129,7 +129,8 @@ h2.mailerHeader {
     color: #FE9042;
 }
 
-#editBtn {
+#editBtn,
+#editBtnBlocked {
     margin-right: 10px;
 }
 

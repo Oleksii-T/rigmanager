@@ -72,6 +72,25 @@ return [
     We are updating and improving our Auto-Translator to achieve the best translation result.
     Currently, we are using Phrase-Based Google Cloud Translation Model.',
 
+    'qPremiumPost' => 'What is Premium post status?',
+    'aPremiumPost' => 'The post with Premium status will be visible to the user more often than other posts.
+    E.g. Premium posts will always occur on the first rows of searches.
+    Premium post status is available only for Premium+ users.',
+
+    'qImport' => 'What is bulk posts import?',
+    'aImport' => 'Sometimes users want to publish a lot of posts. We understand, that create them one by one will take some time.
+        To solve such an issue we provide the Bulk posts import system.
+        All you need to do is fill the import file with respect to the rules and submit it. (see details here)
+        The Bulk posts import is available only for Premium+ users.',
+
+    'qPostTracker' => 'What is posts tracker?',
+    'aPostTracker' => 'The posts tracker system is made to track the views of your posts.
+    The tracker can provide such information:
+    Total views.
+    Views of each post.
+    Info who asked the contact of yours.
+    The posts tracker is available only for Premium+ users.',
+
     'qRelease' => 'When website will be released?',
     'aRelease' => 'There is still a lot of work ahead to make our service reliable, full of content, and recognizable by every Ukraine Oil & Gas company.
     We do our best to get the service running as quickly as possible.

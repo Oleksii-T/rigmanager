@@ -250,7 +250,7 @@ div.ta-desc {
     height: 40px;
 }
 
-.def-button {
+#rightContent .def-button {
     margin-top: 10px;
     padding: 7px;
     font-size: 95%;

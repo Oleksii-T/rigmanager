@@ -51,10 +51,19 @@
             <p class="answer">{{__('faq.aWhatIsMailer1')}} <a class="link" href="{{loc_url(route('mailer.index'))}}">{{__('faq.aWhatIsMailerLink')}}</a> {{__('faq.aWhatIsMailer2')}}</p>
 
             <a class="question" id="WhatIsSocialAcc">{{__('faq.qWhatIsSocialAcc')}}</a>
-            <p class="answer">{{__('faq.aWhatIsSocialAcc')}} <a class="link" href="{{loc_url(route('login.social', ['social'=>'google']))}}">Google</a> / <a class="link" href="{{loc_url(route('in.progress'))}}">Facebook</a>.</p><!--{{loc_url(route('login.social', ['social'=>'facebook']))}}-->
+            <p class="answer">{{__('faq.aWhatIsSocialAcc')}} <a class="link" href="{{loc_url(route('login.social', ['social'=>'google']))}}">Google</a> / <a class="link" href="{{route('login.social', ['social'=>'facebook'])}}">Facebook</a>.</p><!--{{loc_url(route('login.social', ['social'=>'facebook']))}}-->
 
             <a class="question" id="autoTranslator">{{__('faq.qAutoTranslator')}}</a>
             <p class="answer">{{__('faq.aAutoTranslator')}}</p>
+
+            <a class="question" id="premiumPost">{{__('faq.qPremiumPost')}}</a>
+            <p class="answer">{{__('faq.aPremiumPost')}}</p>
+
+            <a class="question" id="import">{{__('faq.qImport')}}</a>
+            <p class="answer">{{__('faq.aImport')}}</p>
+
+            <a class="question" id="postTracker">{{__('faq.qPostTracker')}}</a>
+            <p class="answer">{{__('faq.aPostTracker')}}</p>
 
             <a class="question" id="release">{{__('faq.qRelease')}}</a>
             <p class="answer">{{__('faq.aRelease')}}</p>

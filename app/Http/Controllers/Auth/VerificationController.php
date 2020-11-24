@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Traits\Subscription;
 
 class VerificationController extends Controller
 {
@@ -21,7 +22,7 @@ class VerificationController extends Controller
     |
     */
 
-    use VerifiesEmails;
+    use VerifiesEmails, Subscription;
 
     /**
      * Where to redirect users after verification.
@@ -44,6 +45,7 @@ class VerificationController extends Controller
 
     protected function verified(Request $request)
     {
+        $this->freeAccess();
         Session::flash('message-success', __('messages.accountActivated'));
     }
 }

@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        factory(App\Post::class, 500)->create();
+        factory(App\Post::class, 100)->create();
 
         DB::table('usd_exchanges')->insert([
             'id' => 1,
@@ -43,6 +43,17 @@ class DatabaseSeeder extends Seeder
             'email' => 'alex.tarbeev@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
             'password' => Hash::make('Admin1'),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        DB::table('subscriptions')->insert([
+            'id' => 1,
+            'user_id' => 1,
+            'is_active' => true,
+            'role' => 2,
+            'activated_at' => Carbon\Carbon::now(),
+            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
@@ -386,6 +397,17 @@ Inner diameter, mm (inch):',
             'updated_at' => Carbon\Carbon::now()
         ]);
 
+        DB::table('subscriptions')->insert([
+            'id' => 2,
+            'user_id' => 2,
+            'is_active' => true,
+            'role' => 2,
+            'activated_at' => Carbon\Carbon::now(),
+            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
         // post slips
         DB::table('posts')->insert([
             'user_id' => 2,
@@ -543,6 +565,17 @@ Bottom thread API (GOST): 4 1/2 "Reg box (Z-117 coupling)',
             'email' => 'dmytro.tarbeiev@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
             'password' => Hash::make('Dmitriy123'),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+        
+        DB::table('subscriptions')->insert([
+            'id' => 3,
+            'user_id' => 3,
+            'is_active' => true,
+            'role' => 2,
+            'activated_at' => Carbon\Carbon::now(),
+            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
@@ -748,6 +781,17 @@ Bottom thread API (GOST): 4 1/2 "Reg box (Z-117 coupling)',
             'email' => 'yarikmoklyak2010@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
             'password' => Hash::make('Yarik1'),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+        
+        DB::table('subscriptions')->insert([
+            'id' => 4,
+            'user_id' => 4,
+            'is_active' => true,
+            'role' => 2,
+            'activated_at' => Carbon\Carbon::now(),
+            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
@@ -1003,6 +1047,17 @@ Weight, kg: 430',
             'email' => 'sample.email@mail.com',
             'email_verified_at' => Carbon\Carbon::now(),
             'password' => Hash::make('password'),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+        
+        DB::table('subscriptions')->insert([
+            'id' => 5,
+            'user_id' => 5,
+            'is_active' => true,
+            'role' => 2,
+            'activated_at' => Carbon\Carbon::now(),
+            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);

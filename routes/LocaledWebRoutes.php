@@ -3,10 +3,6 @@
 // general auth routes
 Auth::routes(['verify' => true]);
 
-Route::get('comming_soon', function() {
-    return view('work_in_progress');
-})->name('in.progress');
-
 // home routes
 Route::get('',          'HomeController@index')     ->name('home');
 Route::get('faq',       'HomeController@faq')       ->name('faq');
@@ -17,6 +13,11 @@ Route::get('sitemap',   'HomeController@sitemap')   ->name('site.map');
 Route::get('posts/import/rules',   'HomeController@import')   ->name('import.rules');
 Route::get  ('contact-us',      'HomeController@contacts')  ->name('contacts');
 Route::post ('contacting',      'HomeController@contactUs') ->name('contact.us');
+
+//subscription required
+Route::get('plans/error', function() {
+    return view('errors.subscription_required');
+})->name('subscription.required');
 
 // post filters routes
 Route::post         ('filter',                              'FiltersController@filter')         ->name('post.filter'); //Ajax reqeust
@@ -38,11 +39,15 @@ Route::middleware('auth')->group(function () {
 Route::middleware('verified')->group(function () {
 
     // posts routes
-    Route::get      ('fake/store',                          'PostController@storeFake')     ->name('posts.store.fake');
-    Route::get      ('posts/create/service',                'PostController@serviceCreate') ->name('service.create');
-    Route::get      ('posts/import',                        'PostController@import')        ->name('post.import');
-    Route::post     ('posts/import',                        'PostController@importStore')   ->name('import.upload');
-    Route::resource ('posts',                               'PostController')               ->except(['index', 'show']);
+    Route::middleware('premium.plus')->group(function () {
+        Route::get      ('posts/import',         'PostController@import')        ->name('post.import');
+        Route::post     ('posts/import',         'PostController@importStore')   ->name('import.upload');
+    });
+    Route::middleware('premium')->group(function () {
+        Route::get      ('fake/store',          'PostController@storeFake')     ->name('posts.store.fake');
+        Route::get      ('posts/create/service','PostController@serviceCreate') ->name('service.create');
+        Route::resource ('posts',               'PostController')               ->except(['index', 'show']);
+    });
 
     // prifile/user routes
     Route::get      ('profile/edit',            'UserController@edit')              ->name('profile.edit');
@@ -50,12 +55,15 @@ Route::middleware('verified')->group(function () {
     Route::get      ('profile/posts',           'UserController@userPosts')         ->name('profile.posts');
     Route::get      ('profile/subscription',    'UserController@subscription')      ->name('profile.subscription');
     Route::patch    ('profile/update',          'UserController@update')            ->name('profile.update');
-
+    
     // mailer routes
-    Route::patch    ('profile/mailer/update',           'MailerController@update')      ->name('mailer.update');
-    Route::delete   ('profile/mailer/destroy',          'MailerController@destroy')     ->name('mailer.destroy');
-    Route::get      ('profile/mailer/edit',             'MailerController@edit')        ->name('mailer.edit');
-    Route::resource ('profile/mailer',                  'MailerController')             ->except(['show', 'edit', 'update', 'destroy']);
+    Route::delete   ('profile/mailer/destroy',      'MailerController@destroy')     ->name('mailer.destroy');
+    Route::get      ('profile/mailer',              'MailerController@index')       ->name('mailer.index');
+    Route::middleware('premium')->group(function () {
+        Route::patch    ('profile/mailer/update',   'MailerController@update')      ->name('mailer.update');
+        Route::get      ('profile/mailer/edit',     'MailerController@edit')        ->name('mailer.edit');
+        Route::resource ('profile/mailer',          'MailerController')             ->except(['show', 'edit', 'update', 'destroy', 'index']);
+    });
 });
 
 // posts routes

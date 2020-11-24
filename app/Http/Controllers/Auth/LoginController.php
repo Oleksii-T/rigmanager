@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
-use App\User;
-use Carbon\Carbon;
-use Auth;
 use App\Http\Controllers\Traits\ImageUploader;
+use App\Http\Controllers\Traits\Subscription;
+use Laravel\Socialite\Facades\Socialite;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\User;
+use Auth;
 
 class LoginController extends Controller
 {
-    use ImageUploader;
+    use ImageUploader, Subscription;
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -97,7 +98,7 @@ class LoginController extends Controller
                 }
                 Auth::loginUsingId($user->id);
             } else {
-                // it is new email
+                // it is new email and user
                 $user = new User;
                 $user->name = $this->fetchName($social->name);;
                 $user->email = $social->email;
@@ -106,6 +107,7 @@ class LoginController extends Controller
                 $user->save();
                 Auth::loginUsingId($user->id);
                 $this->userImageUpload($social->avatar);
+                $this->freeAccess();
             }
         }
         Session::flash('message-success', __('messages.signedIn'));

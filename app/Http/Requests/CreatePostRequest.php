@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\Phone;
 use App\Rules\UnlimitedLifetime;
+use App\Rules\Phone;
 
 class CreatePostRequest extends FormRequest
 {

@@ -16,14 +16,20 @@
                 </ul>
             </nav>
             <div class="subscription-content">
-                <p class="subscription-header">{{__('ui.planStatus')}}:</p>
-                <h1 class="subscription-plan">{{__('ui.planPremium+')}}</h1>
-                <p class="subscription-active-to">{{__('ui.planActiveTo')}}: 01.02.2021</p>
+                @if ($subscription)
+                    <p class="subscription-header">{{__('ui.planStatus')}}</p>
+                    <h1 class="subscription-plan">{{$subscription->roleReadable}}</h1>
+                    <p class="subscription-active-to">{{__('ui.planActiveTo')}}: {{$subscription->expire_at_readable}}</p>
+                @else
+                    <p class="subscription-header">{{__('ui.planNotActive')}}</p>
+                @endif
                 <div class="deliter-line"></div>
                 <p class="subscription-more">{{__('ui.planDetails')}}</p>
                 <a class="def-button subscription-plans" href="{{loc_url(route('plans'))}}">{{__('ui.planDetailsBtn')}}</a>
                 <br>
-                <button class="def-button delete-button subscription-cancel">{{__('ui.planCancel')}}</button>
+                @if ($subscription)
+                    <button class="def-button delete-button subscription-cancel">{{__('ui.planCancel')}}</button>
+                @endif
             </div>
         </div>
     </div>

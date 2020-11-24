@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\Phone;
 use App\Rules\UnlimitedLifetime;
+use App\Rules\Phone;
 
 class UpdatePostRequest extends FormRequest
 {
@@ -31,6 +31,7 @@ class UpdatePostRequest extends FormRequest
         $descRule = 'required|string|min:10|max:9000';
         $rules = [
             'title' => $titleRule,
+            'amount' => 'nullable|integer|digits_between:1,9',
             'company' => 'nullable|string|min:5|max:200',
             'manufacturer' => 'nullable|string|min:5|max:70',
             'manufactured_date' => 'nullable|string|min:5|max:70',

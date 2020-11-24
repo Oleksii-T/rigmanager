@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/components/post_posts.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/search.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/tags.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/components/subscription_required.css')}}" />
 @endsection
 
 @section('content')
@@ -218,10 +219,13 @@
         </div>
     </div>
 
+    <x-subscription-required role='1'/>
+
 @endsection
 
 @section('scripts')
     <script type="text/javascript" src="{{ asset('js/tags.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/subscription_required.js') }}"></script>
     <script type="text/javascript">
 
         function searchTag(id) {
@@ -565,8 +569,13 @@
                 $.ajax({
                     type: "GET",
                     url: ajaxUrl,
-                    success: function() {
-                        showPopUpMassage(true, "{{ __('messages.mailerTextAdded') }}");
+                    success: function(data) {
+                        if (data) {
+                            showPopUpMassage(true, "{{ __('messages.mailerTextAdded') }}")
+                        } else {
+                            showPopUpMassage(false, "{{ __('messages.requirePremium') }}");
+                            showSubscriptionAlert();
+                        }
                         // Remove wait cursor
                         button.removeClass('loading');
                     },
@@ -590,9 +599,15 @@
                     type: "GET",
                     url: ajaxUrl,
                     success: function(data) {
-                        data
-                            ? showPopUpMassage(true, "{{ __('messages.mailerTagAdded') }}")
-                            : showPopUpMassage(false, "{{ __('messages.mailerTagExists') }}") ;
+                        if (data == 1) {
+                            showPopUpMassage(true, "{{ __('messages.mailerTagAdded') }}");
+                        } else if ( data == -1) {
+                            showPopUpMassage(false, "{{ __('messages.mailerTagExists') }}");
+                        } else if (data == -2) {
+                            // Error, no premium
+                            showPopUpMassage(false, "{{ __('messages.requirePremium') }}");
+                            showSubscriptionAlert();
+                        }
                         button.removeClass('loading');
                     },
                     error: function(xhr, status, error) {
@@ -615,8 +630,21 @@
                 $.ajax({
                     type: "GET",
                     url: ajaxUrl,
-                    success: function(data) {
-                        data ? showPopUpMassage(true, "{{ __('messages.mailerAddedAuthor') }}") : showPopUpMassage(false, "{{ __('messages.mailerAuthorExists') }}") ;
+                    success: function(data) { 
+                        if (data == 1) {
+                            // Author was added to Mailer
+                            showPopUpMassage(true, "{{ __('messages.mailerAddedAuthor') }}");
+                        } else if (data == 0) {
+                            // Author exist in mailer Mailer
+                            showPopUpMassage(false, "{{ __('messages.mailerAuthorExists') }}");
+                        } else if (data == -1) {
+                            // Error, too many authors
+                            showPopUpMassage(false, "{{ __('messages.mailerTooManyAuthors') }}");
+                        } else if (data == -2) {
+                            // Error, no premium
+                            showPopUpMassage(false, "{{ __('messages.requirePremium') }}");
+                            showSubscriptionAlert();
+                        }
                         // Remove wait cursor
                         button.removeClass('loading');
                     },
@@ -696,8 +724,6 @@
                 var item_id = $(this).attr("class").split('_')[1];
                 $(".item_id_"+item_id).removeClass('hover');
             });
-
-
 
         });
     </script>

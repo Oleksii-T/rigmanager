@@ -572,6 +572,10 @@ p.active-to-time span {
     font-size: 85%;
 }
 
+#lifetime .error {
+    max-width: 550px;
+}
+
 /*==================BUTTONS==================*/
 
 #btns { 

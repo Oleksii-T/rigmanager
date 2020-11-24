@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\ImageUploader;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Traits\Subscription;
 use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\App;
+use Illuminate\Http\Request;
 use App\User;
 use App\Post;
-use Illuminate\Support\Facades\App;
 
 class UserController extends Controller
 {
-    use ImageUploader;
+    use ImageUploader, Subscription;
 
     /**
      * Display a listing of the resource.
@@ -151,10 +152,16 @@ class UserController extends Controller
 
     public function subscription()
     {
-        return view('profile.subscription');
+        if ($this->isSubscribed()) {
+            $subscription = auth()->user()->subscription;
+        } else {
+            $subscription = null;
+        }
+        return view('profile.subscription', compact('subscription'));
     }
 
-    public function isPremium() {
+    public function isPremium() 
+    {
         return json_encode(true);
         if ($value=='3' && !auth()->user()->is_premium) {
             return json_encode(false);

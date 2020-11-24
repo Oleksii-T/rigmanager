@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
 use App\Http\Requests\ContactUsRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\App;
 use App\Mail\fromUserNotification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use Carbon\Carbon;
+use App\Post;
 
 class HomeController extends Controller
 {

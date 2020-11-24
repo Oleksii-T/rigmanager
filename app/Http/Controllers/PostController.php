@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Traits\ImageUploader;
+use App\Http\Controllers\Traits\Subscription;
+use Google\Cloud\Translate\TranslateClient;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Traits\Tags;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\App;
+use App\Jobs\MailersAnalizePost;
+use Illuminate\Http\Request;
+use App\Imports\PostsImport;
+use App\Jobs\TranslatePost;
+use Carbon\Carbon;
 use App\Post;
 use App\User;
-use App\Http\Controllers\Traits\ImageUploader;
-use Illuminate\Support\Facades\Session;
-use App\Jobs\MailersAnalizePost;
-use App\Jobs\TranslatePost;
-use App\Http\Controllers\Traits\Tags;
-use Google\Cloud\Translate\TranslateClient;
-use Illuminate\Support\Facades\App;
-use Carbon\Carbon;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\PostsImport;
 
 class PostController extends Controller
 {
-    use ImageUploader, Tags;
+    use ImageUploader, Tags, Subscription;
 
     /**
      * Display a listing of the resource.
@@ -131,7 +132,7 @@ class PostController extends Controller
     {
         $id = $id==null ? $locale : $id;
         $post = Post::findOrFail($id);
-        if (!$post->is_active && $post->user != auth()->user()) {
+        if (!$post->is_active && !$this->isOwner($post->user->id)) {
             return view('post.inactive');
         }
         $translated = [];
@@ -139,7 +140,12 @@ class PostController extends Controller
             $translated['title'] = 'title_'.App::getLocale();
             $translated['description'] = 'description_'.App::getLocale();
         }
-        return view('post.show', compact('post', 'translated'));
+        if (auth()->check()) {
+            $premium = $this->isPremium();
+        } else {
+            $premium = false;
+        }
+        return view('post.show', compact('post', 'translated', 'premium'));
     }
 
     /**
@@ -152,7 +158,7 @@ class PostController extends Controller
     {
         $id = $id==null ? $locale : $id;
         $post = Post::findOrFail($id);
-        if ($post->user != auth()->user()) {
+        if (!$this->isOwner($post->user->id)) {
             abort(403);
         }
         $images = false;
@@ -185,7 +191,7 @@ class PostController extends Controller
     {
         $id = $id==null ? $locale : $id;
         $post = Post::findOrFail($id);
-        if ($post->user != auth()->user()) {
+        if (!$this->isOwner($post->user->id)) {
             abort(403);
         }
         
@@ -286,11 +292,11 @@ class PostController extends Controller
     {
         $id = $id==null ? $locale : $id;
         $post = Post::findOrFail($id);
-        if ($post->user == auth()->user()) {
+        if ($this->isOwner($post->user->id)) {
             $this->postImagesDelete($post);
             $post->delete();
+            Session::flash('message-success', __('messages.postDeleted'));
         }
-        Session::flash('message-success', __('messages.postDeleted'));
         return redirect(loc_url(route('profile.posts')));
     }
 
@@ -303,7 +309,7 @@ class PostController extends Controller
     public function destroyAjax($id)
     {
         $post = Post::findOrFail($id);
-        if ($post->user == auth()->user()) {
+        if ($this->isOwner($post->user->id)) {
             $this->postImagesDelete($post);
             $post->delete();
             return true;
@@ -314,7 +320,7 @@ class PostController extends Controller
     public function imgsDel($id)
     {
         $post = Post::findOrFail($id);
-        if ($post->user == auth()->user()) {
+        if ($this->isOwner($post->user->id)) {
             $this->postImagesDelete($post);
             return true;
         }
@@ -324,7 +330,7 @@ class PostController extends Controller
     public function imgDel($postId, $imgNo)
     {
         $post = Post::findOrFail($postId);
-        if ($post->user == auth()->user()) {
+        if ($this->isOwner($post->user->id)) {
             $this->postImageDelete($post, $imgNo);
             return true;
         }
@@ -334,19 +340,22 @@ class PostController extends Controller
     public function getContacts($postId)
     {
         $post = Post::findOrFail($postId);
-        //add check for subscription
-        $contacts['email'] = $post->user_email;
-        $contacts['phone'] = $post->user_phone_intern;
-        $contacts['viber'] = $post->viber;
-        $contacts['telegram'] = $post->telegram;
-        $contacts['whatsapp'] = $post->whatsapp;
-        return json_encode($contacts);
+        if ($this->isSubscribed()) {
+            $contacts['email'] = $post->user_email;
+            $contacts['phone'] = $post->user_phone_intern;
+            $contacts['viber'] = $post->viber;
+            $contacts['telegram'] = $post->telegram;
+            $contacts['whatsapp'] = $post->whatsapp;
+            return json_encode($contacts);
+        } else {
+            return json_encode(false);
+        }
     }
 
     public function getImages($postId)
     {
         $post = Post::findOrFail($postId);
-        if ($post->user == auth()->user()) {
+        if ($this->isOwner($post->user->id)) {
             if ( $post->images->isNotEmpty() ) {
                 $result = array();
                 foreach ($post->images()->where('version', 'origin')->get() as $image) {
@@ -364,7 +373,7 @@ class PostController extends Controller
 
     public function togglePost($postId) {
         $post = Post::findOrFail($postId);
-        if ($post->user == auth()->user()) {
+        if ($this->isOwner($post->user->id)) {
             if ( $post->is_active ) {
                 //disactivate post
                 $post->is_active = false;
@@ -639,6 +648,13 @@ class PostController extends Controller
         } else {
             return false;
         }
+    }
+
+    private function isOwner($authorId) {
+        if (auth()->user()->id != $authorId) {
+            return false;
+        }
+        return true;
     }
 
 }

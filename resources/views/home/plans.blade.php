@@ -7,6 +7,11 @@
 @section('content')
     <div class="plans-wraper">
         <div class="plans-content">
+            @if (Session::has('subscription-required'))
+                <div class="subscription-required">
+                    <p>{{Session::get('subscription-required')}}</p>
+                </div>
+            @endif
             <div class="free-access">
                 <h2>{{__('ui.plansFreeAccessTitle')}}</h2>
                 <p class="p-1">{{__('ui.plansFreeAccessBody1')}}</p>
@@ -66,9 +71,7 @@
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansSearch')}}
-                            <span>{{__('ui.plansSearchHelp')}}</span>
-                        </td>
+                        <td class="table-key">{{__('ui.plansSearch')}}<img class="help-img" id="search-help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="help hidden" id="search-help">{{__('ui.plansSearchHelp')}}</span></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
@@ -92,35 +95,43 @@
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansCreate1')}}
-                            <span>{{__('ui.plansCreate1Help')}}</span>
-                        </td>
+                        <td class="table-key">{{__('ui.plansCreate1')}}<img class="help-img" id="base-create-help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="help hidden" id="base-create-help">{{__('ui.plansCreate1Help')}}</span></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansMailer')}}</td>
+                        <td class="table-key">{{__('ui.plansMailer')}}<a class="help-link" href="{{loc_url(route('faq'))}}#WhatIsMailer">?</a></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansTranslator')}}</td>
+                        <td class="table-key">{{__('ui.plansTranslate')}}<a class="help-link" href="{{loc_url(route('faq'))}}#autoTranslator">?</a></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansCreate2')}}
-                            <span>{{__('ui.plansCreate2Help')}}</span>
-                        </td>
+                        <td class="table-key">{{__('ui.plansCreate2')}}<img class="help-img" id="prem-create-help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="help hidden" id="prem-create-help">{{__('ui.plansCreate2Help')}}</span></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansTopPost')}}</td>
+                        <td class="table-key">{{__('ui.plansTopPost')}}<a class="help-link" href="{{loc_url(route('faq'))}}#premiumPost">?</a></td>
+                        <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                    </tr>
+                    <tr class="table-row">
+                        <td class="table-key">{{__('ui.plansPostImport')}}<a class="help-link" href="{{loc_url(route('faq'))}}#import">?</a></td>
+                        <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
+                        <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
+                    </tr>
+                    <tr class="table-row">
+                        <td class="table-key">{{__('ui.plansPostTracking')}}<a class="help-link" href="{{loc_url(route('faq'))}}#postTracker">?</a></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
@@ -169,6 +180,31 @@
         }
 
         $(document).ready(function(){
+
+            $('#base-create-help-img').hover(
+                function() {
+                    $('#base-create-help').removeClass('hidden');
+                }, function() {
+                    $('#base-create-help').addClass('hidden');
+                }
+            );
+
+            $('#prem-create-help-img').hover(
+                function() {
+                    $('#prem-create-help').removeClass('hidden');
+                }, function() {
+                    $('#prem-create-help').addClass('hidden');
+                }
+            );
+
+            $('#search-help-img').hover(
+                function() {
+                    $('#search-help').removeClass('hidden');
+                }, function() {
+                    $('#search-help').addClass('hidden');
+                }
+            );
+
             isLoggedIn = "{{Auth::check()}}";
             $('.plan-choose button').click(function(){
                 if (isLoggedIn) {

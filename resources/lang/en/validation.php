@@ -132,7 +132,7 @@ return [
     'phoneLength' => 'Phone number should be 10 digits long.',
     'oneFromPostTypes' => 'At least one Post Type is required.',
     'agreement' => 'You must confirm your consent',
-    'unlimLifetimeError' => 'Unlimited lifetime available only for Premium users',
+    'unlimLifetimeError' => 'Unlimited lifetime available only for Premium+ users',
 
     /*
     |--------------------------------------------------------------------------

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\ProfileImage;
+use App\Subscription;
 use App\Post;
 use App\Favourite;
 use App\Mailer;
@@ -52,6 +53,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function image()
     {
         return $this->hasOne(ProfileImage::class)->latest();
+    }
+
+    public function subscription()
+    {
+        return $this->hasOne(Subscription::class)->latest();
     }
 
     public function mailer()

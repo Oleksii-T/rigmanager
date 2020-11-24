@@ -220,7 +220,11 @@
     </div>
     <x-server-input-error errorName='lifetime' inputName='inputLifetime' errorClass='error'/>
     <div class="lifetime error error-dz hidden"></div>
-    <p class="active-to-time">{{__('ui.hiddenOn')}}: <span>{{\Carbon\Carbon::now()->addMonth()->toDateString()}}</span></p>
+    @if (old('lifetime')==1 || old('lifetime')==null)
+        <p class="active-to-time">{{__('ui.hiddenOn')}}: <span>{{\Carbon\Carbon::now()->addMonth()->toDateString()}}</span></p>
+    @elseif (old('lifetime')==2)
+        <p class="active-to-time">{{__('ui.hiddenOn')}}: <span>{{\Carbon\Carbon::now()->addMonths(2)->toDateString()}}</span></p>
+    @endif
     <div class="help">
         <p><i>{{__('ui.activeToHelp')}}</i></p>
     </div>

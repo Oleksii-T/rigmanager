@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Mailer;
-use App\User;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Traits\Subscription;
 use App\Http\Requests\CreateMailerRequest;
 use App\Http\Requests\UpdateMailerRequest;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Traits\Tags;
+use Illuminate\Http\Request;
+use App\Mailer;
+use App\User;
 
 class MailerController extends Controller
 {
-    use Tags;
+    use Tags, Subscription;
     /**
      * Display a user`s resourse.
      *
@@ -20,11 +21,7 @@ class MailerController extends Controller
      */
     public function index()
     {
-        if ( $mailer = auth()->user()->mailer ) {
-            return view('mailer.index', compact('mailer'));
-        } else {
-            return view('mailer.index', ["mailer"=>null]);
-        }
+        return view('mailer.index', ["mailer"=>auth()->user()->mailer, "subscription"=>$this->isSubscribed()]);
     }
 
     /**
@@ -116,6 +113,9 @@ class MailerController extends Controller
 
     public function addTag($tagId)
     {
+        if (!$this->isSubscribed()) {
+            return -2; // error - premium acc required
+        }
         $tags_encoded = $this->getTagType($tagId) . '_tags_encoded';
         $mailer = auth()->user()->mailer;
         if (!$mailer) {
@@ -123,12 +123,12 @@ class MailerController extends Controller
             $mailer->types = ["1","2","3","4","5","6"];
             $mailer->$tags_encoded = array($tagId);
             auth()->user()->mailer()->save($mailer);
-            return true;
+            return 1;
         }
         if (!$mailer->$tags_encoded) {
             $mailer->$tags_encoded = array($tagId);
             $mailer->save();
-            return true;
+            return 1;
         }
         $tagsArr = $mailer->$tags_encoded;
         $tags_map = $this->getTagType($tagId) . '_tags_map';
@@ -136,13 +136,16 @@ class MailerController extends Controller
             $tagsArr[] = $tagId;
             $mailer->$tags_encoded = $tagsArr;
             $mailer->save();
-            return true;
+            return 1;
         }
-        return false;
+        return -1;
     }
 
     public function addText($string)
-    {
+    {        
+        if (!$this->isSubscribed()) {
+            return false; // error - premium acc required
+        }
         $mailer = auth()->user()->mailer;
         // check is Mailer exists
         if ($mailer) {
@@ -168,43 +171,46 @@ class MailerController extends Controller
 
     public function toggleAuthor($user_id)
     {
-        if (!$this->addAuthor($user_id)) {
+        $res = $this->addAuthor($user_id);
+        if ($res == 0) {
             $mailer = auth()->user()->mailer;
             $authorsArr = $mailer->authors_encoded;
             $pos = array_search($user_id, $authorsArr);
             unset($authorsArr[$pos]);
             $mailer->authors_encoded = $authorsArr;
             $mailer->save();
-            return false;
         }
-        return true;
+        return $res;
     }
 
     public function addAuthor($user_id)
     {
+        if (!$this->isSubscribed()) {
+            return -2; // error - premium acc required
+        }
         $mailer = auth()->user()->mailer;
         if (!$mailer) {
             $mailer = new Mailer;
             $mailer->types = ["1","2","3","4","5","6"];
             $mailer->authors_encoded = $user_id;
             auth()->user()->mailer()->save($mailer);
-            return 1;
+            return 1; //mailer created with new author
         }
         if (!$mailer->authors_encoded) {
             $mailer->authors_encoded = $user_id;
             $mailer->save();
-            return 1;
+            return 1; // added first author to existing mailer
         }
         $authorsArr = $mailer->authors_encoded;
         if ( count($authorsArr) == 10 ) {
-            return -1;
+            return -1; //error - too many authors
         }
         if ( array_search($user_id, $authorsArr) === false ) {
             $authorsArr[] = $user_id;
             $mailer->authors_encoded = $authorsArr;
             $mailer->save();
-            return 1;
+            return 1; // added new author to old authors
         }
-        return 0;
+        return 0; // author already in the mailer
     }
 }

@@ -2,6 +2,7 @@
 
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{asset('css/post_show.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/components/subscription_required.css')}}" />
 @endsection
 
 @section('content')
@@ -30,12 +31,21 @@
                 @endif
                 <section class="element" id="mainInfo">
                     @if ( $translated && $post->{$translated['title']} )
-                        <h1 class="translated-title"><span class="post-type">{{$post->type_readable}}: </span>{{ $post->{$translated['title']} }}</h1>
-                        <h1 class="origin-title hidden"><span class="post-type">{{$post->type_readable}}: </span>{{ $post->title }}</h1>
-                        <div class="translated-alert ta-title">
-                            <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationTitleAlert')}}</p>
-                            <button class="ta-button title-show" title="{{__('ui.showOrigin')}}">{{__('ui.originLang')}} {{$post->origin_lang_readable}}</button>
-                        </div>
+                        @if ($premium)
+                            <h1 class="translated-title"><span class="post-type">{{$post->type_readable}}: </span>{{ $post->{$translated['title']} }}</h1>
+                            <h1 class="origin-title hidden"><span class="post-type">{{$post->type_readable}}: </span>{{ $post->title }}</h1>
+                            <div class="translated-alert ta-title">
+                                <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationTitleAlert')}}</p>
+                                <button class="ta-button title-show" title="{{__('ui.showOrigin')}}">{{__('ui.originLang')}} {{$post->origin_lang_readable}}</button>
+                            </div>
+                        @else
+                            <h1 class="origin-title"><span class="post-type">{{$post->type_readable}}: </span>{{ $post->title }}</h1>
+                            <div class="translated-alert ta-title">
+                                <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationRequirePremium')}}
+                                    <a class="see-plans-btn" href="{{loc_url(route('plans'))}}">{{__('ui.planDetailsBtn')}}</a>
+                                </p>
+                            </div>
+                        @endif
                     @else
                         <h1><span class="post-type">{{$post->type_readable}}: </span>{{ $post->title }}</h1>
                     @endif
@@ -47,12 +57,22 @@
                     </div>
 
                     @if ( $translated && $post->{$translated['description']} )
-                        <p class="translated-desc">{{ $post->{$translated['description']} }}</p>
-                        <p class="origin-desc hidden">{{ $post->description }}</p>
-                        <div class="translated-alert ta-desc">
-                            <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationDescAlert')}}</p>
-                            <button class="ta-button desc-show" title="{{__('ui.showOrigin')}}">{{__('ui.originLang')}} {{$post->origin_lang_readable}}</button>
-                        </div>
+                        @if ($premium)
+                            <p class="translated-desc">{{ $post->{$translated['description']} }}</p>
+                            <p class="origin-desc hidden">{{ $post->description }}</p>
+                            <div class="translated-alert ta-desc">
+                                <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationDescAlert')}}</p>
+                                <button class="ta-button desc-show" title="{{__('ui.showOrigin')}}">{{__('ui.originLang')}} {{$post->origin_lang_readable}}</button>
+                            </div>
+                        @else
+                            <p class="origin-desc">{{ $post->description }}</p>
+                            <div class="translated-alert ta-title">
+                                <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationRequirePremium')}}
+                                    <a class="see-plans-btn" href="{{loc_url(route('plans'))}}">{{__('ui.planDetailsBtn')}}</a>
+                                </p>
+                            </div>
+                        @endif
+
                     @else
                         <p>{{ $post->description }}</p>
                     @endif
@@ -199,11 +219,13 @@
                 </ul>
             </address>
         </div>
+        <x-subscription-required role='1'/>
     </article>
 
 @endsection
 
 @section('scripts')
+    <script type="text/javascript" src="{{ asset('js/subscription_required.js') }}"></script>
     <script type="text/javascript">
 
         $(document).ready(function() {
@@ -262,9 +284,13 @@
                             // Author was removed from Mailer
                             showPopUpMassage(true, "{{ __('messages.mailerRemovedAuthor') }}");
                             $('#mailerAddAuthor').html("{{__('ui.mailerAddAuthor')}}");
-                        } else {
+                        } else if (data == -1) {
                             // Error, too many authors
                             showPopUpMassage(false, "{{ __('messages.mailerTooManyAuthors') }}");
+                        } else if (data == -2) {
+                            // Error, no premium
+                            showPopUpMassage(false, "{{ __('messages.requirePremium') }}");
+                            showSubscriptionAlert();
                         }
                         button.removeClass('loading');
                     },
@@ -330,12 +356,13 @@
                     type: "GET",
                     url: "{{ route('get.contacts', $post->id) }}",
                     success: function(data) {
+                        data = JSON.parse(data);
                         if ( data ) {
                             fillUpContacts(data);
                             $('.modalView').css("display", "block");
                         } else {
-                            showPopUpMassage(false, "{{ __('messages.error') }}");
-                            isSubscribed();
+                            showPopUpMassage(false, "{{ __('messages.requirePremium') }}");
+                            showSubscriptionAlert();
                         }
                         button.removeClass('loading');
                     },
@@ -348,8 +375,7 @@
                 });
             });
 
-            function fillUpContacts (data) {
-                var contacts = JSON.parse(data);
+            function fillUpContacts (contacts) {
                 contacts['email']
                     ? $('span.emailField').text(contacts['email'])
                     : $('span.emailField').text("{{__('ui.notSpecified')}}");
@@ -365,11 +391,6 @@
                 if (contacts['whatsapp']) {
                     $('li.phoneField').append("<img src='{{ asset('icons/whatsappIcon.svg') }}' alt='{{__('alt.keyword')}}'>");
                 }
-            }
-
-            // check is use subscribed to plan, if not sujjest to do so
-            function isSubscribed() {
-                // TO DO
             }
 
             //change main image to clicked image from gallery
