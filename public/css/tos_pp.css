@@ -2,23 +2,22 @@ article.article {
     padding: 20px 40px;
     margin-bottom: 20px
 }
+
 h1.page-header {
     font-size: 200%;
     display: inline-block;
     border-bottom: 2px solid #FE9042;
     margin: 0;
 }
+
 div.p {
     margin: 40px 0px;
 }
+
 h2.ph {
     font-size: 150%;
     margin-bottom: 20px;
 }
-/*
-<span class="key">
-</span>
-*/
 
 a.body-link {
     font-size: inherit;

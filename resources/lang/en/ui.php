@@ -38,6 +38,18 @@ return [
     'upload' => 'Upload',
     'chooseFile' => 'Choose File',
     'post' => 'Post',
+    
+    //intro
+    'introduction' => 'Specialized platform for cooperation
+        of oil and gas companies of Ukraine',
+    'introSellEq' => 'Sell of drilling
+        equipment',
+    'introBuyEq' => 'Buy and loan
+        of drilling equipment',
+    'introSe' => 'Providing and requesting
+        of services',
+    'introTender' => 'Tenders by
+        simplified procedure',
 
     // auth massages
     'signIn' => 'Sign in',
@@ -147,6 +159,7 @@ return [
     'searchEquipment' => 'Search Equipment by categories',
     'searchService' => 'Search Services by categories',
     'searchByAuthor' => 'Posts by author',
+    'searchByType' => 'Posts by type',
     'other' => 'Other',
     'searchSuccess' => 'That is what we found',
     'searchFail' => 'Sorry, we can not find
@@ -354,6 +367,8 @@ return [
     Policy',
     'footerDevelop' => 'Delelopment',
     'footerSiteMap' => 'Site Map',
+    'footerNews' => 'News',
+    'footerAbout' => 'About us',
     'contactsFooter' => 'You can contact us by yourself',
 
     // sitemap

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/components/tos_pp.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/tos_pp.css')}}" />
 @endsection
 
 @section('content')

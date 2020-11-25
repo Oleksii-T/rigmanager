@@ -11,11 +11,11 @@
 @section('content')
 
     <div id="searchBar">
-        <form method="GET" action="{{ loc_url(route('search.text')) }}">
+        <form method="GET" action="{{ loc_url(route('search')) }}">
             <div id="inputWraper">
                 <img id="searchIcon" src="{{ asset('icons/searchIcon.svg') }}" alt="{{__('alt.keyword')}}">
                 <button id="search-bar-clear-btn" title="{{__('ui.clearText')}}" type="button"><img src="{{ asset('icons/closeBlackIcon.svg') }}" alt="{{__('alt.keyword')}}"></button>
-                <input id="inputSearch" class="def-input" name="searchStrings" value="{{$search['type']=='text' ? $search['value'] : ''}}" placeholder="{{__('ui.search')}}..." required />
+                <input id="inputSearch" class="def-input" name="text" value="{{$search['type']=='text' ? $search['value'] : ''}}" placeholder="{{__('ui.search')}}..." required />
             </div>
             <button class="def-button" type="submit">{{__('ui.search')}}</button>
         </form>
@@ -32,7 +32,6 @@
     <div id="search-status">
         @if ( $search['type'] == 'text' )
             <div class="mailer-suggestion">
-                <a href=""></a>
                 <p class="user-text-request" hidden>{{$search['value']}}</p>
                 <button id="addTextToMailer">{{__('ui.mailerSuggestText')}}</button>
                 <a id="whatIsMailerHelp" href="{{loc_url(route('faq'))}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
@@ -53,11 +52,15 @@
             </div>
         @elseif ( $search['type'] == 'author' )
             <div id="searchAuthor">
-                <p>{{__('ui.searchByAuthor')}} <span>{{$search['value']['name']}}</span>:</p>
+                <p>{{__('ui.searchByAuthor')}}: <span>{{$search['value']['name']}}</span></p>
             </div>
             <div class="mailer-suggestion">
                 <button id="addAuthorToMailer" class="{{$search['value']['id']}}">{{__('ui.mailerSuggestAuthor')}}</button>
                 <a id="whatIsMailerHelp"href="{{loc_url(route('faq'))}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
+            </div>
+        @elseif ( $search['type'] == 'type' )
+            <div id="searchType">
+                <p>{{__('ui.searchByType')}}: <span>{{$search['value']}}</span></p>
             </div>
         @endif
         @if ($search['isEmpty'])
@@ -116,33 +119,35 @@
                     </div>
                 @endif
 
-                <div class="filter filter-type">
-                    <span class="filter-name">{{__('ui.postType')}}:</span>
-                    <div class="filter-input">
-                        <div class="def-select-wraper">
-                            <select class="def-select type-select" name="role">
-                                <option value="0">{{__('ui.notSpecified')}}</option>
-                                @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
-                                    <option value="5">{{__('ui.postTypeGiveS')}}</option>
-                                    <option value="6">{{__('ui.postTypeGetS')}}</option>
-                                @elseif ( $search['type'] == 'tags' && $search['tag_type'] == 'eq' )
-                                    <option value="1">{{__('ui.postTypeSell')}}</option>
-                                    <option value="2">{{__('ui.postTypeBuy')}}</option>
-                                    <option value="3">{{__('ui.postTypeRent')}}</option>
-                                    <option value="4">{{__('ui.postTypeLeas')}}</option>
-                                @else
-                                    <option value="1">{{__('ui.postTypeSell')}}</option>
-                                    <option value="2">{{__('ui.postTypeBuy')}}</option>
-                                    <option value="3">{{__('ui.postTypeRent')}}</option>
-                                    <option value="4">{{__('ui.postTypeLeas')}}</option>
-                                    <option value="5">{{__('ui.postTypeGiveS')}}</option>
-                                    <option value="6">{{__('ui.postTypeGetS')}}</option>
-                                @endif
-                            </select>
-                            <span class="arrow arrowDown"></span>
+                @if ( $search['type'] != 'type' )
+                    <div class="filter filter-type">
+                        <span class="filter-name">{{__('ui.postType')}}:</span>
+                        <div class="filter-input">
+                            <div class="def-select-wraper">
+                                <select class="def-select type-select" name="role">
+                                    <option value="0">{{__('ui.notSpecified')}}</option>
+                                    @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                                        <option value="5">{{__('ui.postTypeGiveS')}}</option>
+                                        <option value="6">{{__('ui.postTypeGetS')}}</option>
+                                    @elseif ( $search['type'] == 'tags' && $search['tag_type'] == 'eq' )
+                                        <option value="1">{{__('ui.postTypeSell')}}</option>
+                                        <option value="2">{{__('ui.postTypeBuy')}}</option>
+                                        <option value="3">{{__('ui.postTypeRent')}}</option>
+                                        <option value="4">{{__('ui.postTypeLeas')}}</option>
+                                    @else
+                                        <option value="1">{{__('ui.postTypeSell')}}</option>
+                                        <option value="2">{{__('ui.postTypeBuy')}}</option>
+                                        <option value="3">{{__('ui.postTypeRent')}}</option>
+                                        <option value="4">{{__('ui.postTypeLeas')}}</option>
+                                        <option value="5">{{__('ui.postTypeGiveS')}}</option>
+                                        <option value="6">{{__('ui.postTypeGetS')}}</option>
+                                    @endif
+                                </select>
+                                <span class="arrow arrowDown"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
 
                 @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
                 @else

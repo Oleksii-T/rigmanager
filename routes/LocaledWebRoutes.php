@@ -4,15 +4,17 @@
 Auth::routes(['verify' => true]);
 
 // home routes
-Route::get('',          'HomeController@index')     ->name('home');
-Route::get('faq',       'HomeController@faq')       ->name('faq');
-Route::get('plans',     'HomeController@plans')     ->name('plans');
-Route::get('terms',     'HomeController@terms')     ->name('terms');
-Route::get('privacy',   'HomeController@privacy')   ->name('privacy');
-Route::get('sitemap',   'HomeController@sitemap')   ->name('site.map');
-Route::get('posts/import/rules',   'HomeController@import')   ->name('import.rules');
-Route::get  ('contact-us',      'HomeController@contacts')  ->name('contacts');
-Route::post ('contacting',      'HomeController@contactUs') ->name('contact.us');
+Route::get ('',                     'HomeController@index')     ->name('home');
+Route::get ('faq',                  'HomeController@faq')       ->name('faq');
+Route::get ('plans',                'HomeController@plans')     ->name('plans');
+Route::get ('terms',                'HomeController@terms')     ->name('terms');
+Route::get ('privacy',              'HomeController@privacy')   ->name('privacy');
+Route::get ('sitemap',              'HomeController@sitemap')   ->name('site.map');
+Route::get ('about-us',             'HomeController@news')      ->name('news');
+Route::get ('news',                 'HomeController@aboutUs')   ->name('about.us');
+Route::get ('posts/import/rules',   'HomeController@import')    ->name('import.rules');
+Route::get ('contact-us',           'HomeController@contacts')  ->name('contacts');
+Route::post('contacting',           'HomeController@contactUs') ->name('contact.us');
 
 //subscription required
 Route::get('plans/error', function() {
@@ -23,9 +25,8 @@ Route::get('plans/error', function() {
 Route::post         ('filter',                              'FiltersController@filter')         ->name('post.filter'); //Ajax reqeust
 
 // search routes
-Route::get('search/text',                   'SearchController@searchText')  ->name('search.text');
+Route::get('search/',                       'SearchController@search')      ->name('search');       //search by text/author/type
 Route::get('search/category/{category}',    'SearchController@searchTag')   ->name('search.tag');
-Route::get('search/author/{author}',        'SearchController@searchAuthor')->name('search.author');
 
 // Laravel Socialite auth routes
 Route::get('login/{social}',            'Auth\LoginController@redirectToProvider')->name('login.social');

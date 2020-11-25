@@ -15,7 +15,33 @@
     box-shadow: 0px 0px 10px 5px #888;
 }
 
-/*=V============V======V====SEARCH BAR====V======V============V=*/
+/*=======V====INTRODUCTION====V=======*/
+
+div.introduction {
+    text-align: center;
+}
+
+div.introduction h1{
+    font-size: 220%;
+    margin-bottom: 30px;
+    display: inline-block;
+    text-decoration: underline;
+    padding: 0px 40px;
+}
+
+.intro-list li{
+    display: inline-block;
+    white-space: pre-line;
+    text-align: left;
+    margin: 0px 10px;
+}
+
+.intro-list li a:hover {
+    color: #FE9042;
+}
+
+
+/*=V============V======V====SEARCH_BAR====V======V============V=*/
 
 #searchBar {
     overflow: hidden;

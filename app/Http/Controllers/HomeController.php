@@ -80,4 +80,14 @@ class HomeController extends Controller
     {
         return view('home.import_rules');
     }
+
+    public function news()
+    {
+        return view('home.news');
+    }
+
+    public function aboutUs()
+    {
+        return view('home.about_us');
+    }
 }

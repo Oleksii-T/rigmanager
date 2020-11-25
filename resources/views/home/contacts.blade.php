@@ -96,7 +96,6 @@
                 <p class="list-header">{{__('ui.or')}}</p>
                 <p class="list-body">{{__('ui.contactsFooter')}}</p>
                 <p class="list-item">{{env('MAIL_TO_ADDRESS')}}</p>
-                <p class="list-item">web.rigmanager@gmail.com</p>
                 <p class="list-item">{{env('CONTACT_PHONE')}}</p>
             </div>
         </form>

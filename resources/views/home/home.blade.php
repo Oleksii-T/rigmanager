@@ -7,12 +7,23 @@
 @endsection
 
 @section('content')
+
+    <div class="introduction">
+        <h1>{{__('ui.introduction')}}</h1>
+        <ul class="intro-list">
+            <li><a href="{{loc_url(route('search', ['type'=>'equipment-sell']))}}">{{__('ui.introSellEq')}}</a></li>
+            <li><a href="{{loc_url(route('search', ['type'=>'equipment-buy']))}}">{{__('ui.introBuyEq')}}</a></li>
+            <li><a href="{{loc_url(route('search', ['type'=>'services']))}}">{{__('ui.introSe')}}</a></li>
+            <li><a href="{{loc_url(route('search', ['type'=>'tenders']))}}">{{__('ui.introTender')}}</a></li>
+        </ul>
+    </div>
+
     <div id="searchBar">
-        <form method="GET" action="{{ loc_url(route('search.text')) }}">
+        <form method="GET" action="{{ loc_url(route('search')) }}">
             <div id="inputWraper">
                 <img id="searchIcon" src="{{ asset('icons/searchIcon.svg') }}" alt="{{__('alt.keyword')}}">
                 <button id="search-bar-clear-btn" title="{{__('ui.clearText')}}" type="button"><img src="{{ asset('icons/closeBlackIcon.svg') }}" alt="{{__('alt.keyword')}}"></button>
-                <input id="inputSearch" class="def-input" name="searchStrings" placeholder="{{__('ui.search')}}..." required />
+                <input id="inputSearch" class="def-input" name="text" placeholder="{{__('ui.search')}}..." required />
             </div>
             <button class="def-button" type="submit">{{__('ui.search')}}</button>
         </form>

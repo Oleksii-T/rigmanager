@@ -165,6 +165,10 @@
                             <tr>
                                 <td><a class="footerLinks wrap" href="{{loc_url(route('terms'))}}">{{__('ui.footerTerms')}}</a></td>
                                 <td><a class="footerLinks wrap" href="{{loc_url(route('privacy'))}}">{{__('ui.footerPrivacy')}}</a></td>
+                                <td><a class="footerLinks wrap" href="{{loc_url(route('news'))}}">{{__('ui.footerNews')}}</a></td>
+                            </tr>
+                            <tr>
+                                <td><a class="footerLinks wrap" href="{{loc_url(route('about.us'))}}">{{__('ui.footerAbout')}}</a></td>
                             </tr>
                         </table>
                     </div>
