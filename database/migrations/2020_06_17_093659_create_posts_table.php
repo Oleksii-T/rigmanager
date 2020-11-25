@@ -25,6 +25,7 @@ class CreatePostsTable extends Migration
             $table->string('origin_lang', 5);
             $table->json('user_translations')->nullable();
             $table->string('amount', 15)->nullable();
+            $table->string('url_name', 50)->unique();
             $table->string('title', 100);
             $table->string('title_uk', 100)->nullable();
             $table->string('title_ru', 100)->nullable();

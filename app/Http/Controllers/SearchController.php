@@ -100,9 +100,9 @@ class SearchController extends Controller
         return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount', 'translated'));
     }
 
-    public function searchAuthor($authorId)
+    public function searchAuthor($author)
     {
-        $user = User::findOrFail($authorId);
+        $user = User::where('name', $author)->first();
         $posts_list = $user->posts->where("is_active", 1);
         $postsIds = json_encode($posts_list->pluck('id'));
         $posts_list = $posts_list->paginate(env('POSTS_PER_PAGE'));
@@ -112,7 +112,7 @@ class SearchController extends Controller
             : $search['isEmpty'] = false;
         $search['type'] = 'author';
         $search['value']['name'] = $user->name;
-        $search['value']['id'] = $authorId;
+        $search['value']['id'] = $user->id;
         $translated['title'] = 'title_'.App::getLocale();
         $translated['description'] = 'description_'.App::getLocale();
         return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount', 'translated'));

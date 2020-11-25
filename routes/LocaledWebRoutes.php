@@ -27,6 +27,11 @@ Route::post         ('filter',                              'FiltersController@f
 // search routes
 Route::get('search/',                       'SearchController@search')      ->name('search');       //search by text/author/type
 Route::get('search/category/{category}',    'SearchController@searchTag')   ->name('search.tag');
+Route::get('search/categorry/{tag}/{subTag?}/{endTag?}','SearchController@searchTagTest')->name('search.cat');
+/*
+Route::get('{category}','SearchController@searchTag')   ->name('search.tag');
+Route::get('search/categorry/{tag}/{subTag?}/{endTag?}','SearchController@searchTagTest')->name('search.cat');
+*/
 
 // Laravel Socialite auth routes
 Route::get('login/{social}',            'Auth\LoginController@redirectToProvider')->name('login.social');

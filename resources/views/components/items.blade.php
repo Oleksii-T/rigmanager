@@ -66,7 +66,7 @@
                     </button>
                 </div>
             @endif
-            <a href="{{ loc_url(route('posts.show', ['post'=>$post->id])) }}"><span class="globalItemButton"></span></a>
+            <a href="{{ loc_url(route('posts.show', ['post'=>$post->url_name])) }}"><span class="globalItemButton"></span></a>
         </article>
     @endforeach
 

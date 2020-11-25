@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Post;
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 $factory->define(Post::class, function (Faker $faker) {
@@ -11,6 +12,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'thread' => 1,
         'origin_lang' => 'en',
         'user_translations' => '{"title":[],"description":[]}',
+        'url_name' => Str::random(20),
         'title' => $faker->realText($maxNbChars = 60, $indexSize = 2),
         'type' => $faker->randomElement( $array = array('1', '2', '3', '4') ),
         'role' => $faker->randomElement( $array = array('1', '2') ),
