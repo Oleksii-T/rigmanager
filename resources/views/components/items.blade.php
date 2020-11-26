@@ -53,7 +53,7 @@
                         <img class="img-hover-scale" title="{{__('ui.delete')}}" src="{{ asset('icons/deleteIcon.svg') }}" alt="{{__('alt.keyword')}}">
                     </button>
 
-                    <a class="item-btn editBtn id_{{$post->id}}" href="{{ loc_url(route('posts.edit', ['post'=>$post->id])) }}">
+                    <a class="item-btn editBtn id_{{$post->id}}" href="{{ loc_url(route('posts.edit', ['post'=>$post->url_name])) }}">
                         <img class="img-hover-scale" title="{{__('ui.edit')}}" src="{{ asset('icons/editIcon.svg') }}" alt="{{__('alt.keyword')}}">
                     </a>
 

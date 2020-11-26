@@ -99,7 +99,7 @@
                     @else
                         <aside class="element" id="editBtn">
                             <p>{{__('ui.yoursPost')}}</p>
-                            <a class="def-button" href="{{ loc_url(route('posts.edit', ['post'=>$post->id])) }}">{{__('ui.edit')}}</a>
+                            <a class="def-button" href="{{ loc_url(route('posts.edit', ['post'=>$post->url_name])) }}">{{__('ui.edit')}}</a>
                         </aside>
                     @endif
                 @else

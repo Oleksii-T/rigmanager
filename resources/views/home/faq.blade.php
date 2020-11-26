@@ -51,7 +51,7 @@
             <p class="answer">{{__('faq.aWhatIsMailer1')}} <a class="link" href="{{loc_url(route('mailer.index'))}}">{{__('faq.aWhatIsMailerLink')}}</a> {{__('faq.aWhatIsMailer2')}}</p>
 
             <a class="question" id="WhatIsSocialAcc">{{__('faq.qWhatIsSocialAcc')}}</a>
-            <p class="answer">{{__('faq.aWhatIsSocialAcc')}} <a class="link" href="{{loc_url(route('login.social', ['social'=>'google']))}}">Google</a> / <a class="link" href="{{route('login.social', ['social'=>'facebook'])}}">Facebook</a>.</p><!--{{loc_url(route('login.social', ['social'=>'facebook']))}}-->
+            <p class="answer">{{__('faq.aWhatIsSocialAcc')}} <a class="link" href="{{loc_url(route('login.social', ['social'=>'google']))}}">Google</a> / <a class="link" href="{{route('login.social', ['social'=>'facebook'])}}">Facebook</a>.</p>
 
             <a class="question" id="autoTranslator">{{__('faq.qAutoTranslator')}}</a>
             <p class="answer">{{__('faq.aAutoTranslator')}}</p>

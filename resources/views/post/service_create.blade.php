@@ -146,6 +146,28 @@
     <input type="checkbox" id="whatsappInput" name="whatsapp" value="1" {{ $user->whatsapp ? 'checked' : '' }}>
 @endsection
 
+@section('input-lifetime')
+    <h3 class="elementHeading">{{__('ui.chooseActiveTo')}}</h3>
+    <div class="def-select-wraper">
+        <select class="def-select lifetime-select" id="inputLifetime" name="lifetime">
+            <option value="1" {{old('lifetime')==1 ? 'selected' : ''}}>{{__('ui.activeOneMonth')}}</option>
+            <option value="2" {{old('lifetime')==2 ? 'selected' : ''}}>{{__('ui.activeTwoMonth')}}</option>
+            <option value="3" {{old('lifetime')==3 ? 'selected' : ''}}>{{__('ui.activeForever')}}</option>
+        </select>
+        <span class="arrow arrowDown"></span>
+    </div>
+    <x-server-input-error errorName='lifetime' inputName='inputLifetime' errorClass='error'/>
+    <div class="lifetime error error-dz hidden"></div>
+    @if (old('lifetime')==1 || old('lifetime')==null)
+        <p class="active-to-time">{{__('ui.hiddenOn')}}: <span>{{\Carbon\Carbon::now()->addMonth()->toDateString()}}</span></p>
+    @elseif (old('lifetime')==2)
+        <p class="active-to-time">{{__('ui.hiddenOn')}}: <span>{{\Carbon\Carbon::now()->addMonths(2)->toDateString()}}</span></p>
+    @endif
+    <div class="help">
+        <p><i>{{__('ui.activeToHelp')}}</i></p>
+    </div>
+@endsection
+
 @section('post-scripts')
     <script type="text/javascript">
         $(document).ready(function() {

@@ -253,9 +253,8 @@
                 </div>
             </div>
 
-            <div id="activeTo" class="element">
-                <h3 class="elementHeading">{{__('ui.chooseActiveTo')}}</h3>
-                @yield('input-active-to')
+            <div id="lifetime" class="element">
+                @yield('input-lifetime')
             </div>
 
             <div id="btns" class="element">

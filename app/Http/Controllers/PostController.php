@@ -171,11 +171,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($locale, $id=null)
+    public function show($locale, $urlName=null)
     {
 
-        $id = $id==null ? $locale : $id;
-        $post = Post::where('url_name', $id)->first();
+        $urlName = $urlName==null ? $locale : $urlName;
+        $post = Post::where('url_name', $urlName)->first();
         if (!$post->is_active && !$this->isOwner($post->user->id)) {
             return view('post.inactive');
         }
@@ -198,10 +198,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($locale, $id=null)
+    public function edit($locale, $urlName=null)
     {
-        $id = $id==null ? $locale : $id;
-        $post = Post::findOrFail($id);
+        $urlName = $urlName==null ? $locale : $urlName;
+        $post = Post::where('url_name', $urlName)->first();
         if (!$this->isOwner($post->user->id)) {
             abort(403);
         }

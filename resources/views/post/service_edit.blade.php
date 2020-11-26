@@ -214,6 +214,32 @@
     <input type="checkbox" id="whatsappInput" name="whatsapp" value="1" {{ $post->whatsapp ? 'checked' : '' }}>
 @endsection
 
+@section('input-lifetime')
+    <div class="lifetime-edit hidden">
+        <h3 class="elementHeading">{{__('ui.chooseActiveTo')}}</h3>
+        <div class="def-select-wraper">
+            <select class="def-select lifetime-select" id="inputLifetime" name="lifetime">
+                <option value="1" {{$post->lifetime==1 ? 'selected' : ''}}>{{__('ui.activeOneMonth')}}</option>
+                <option value="2" {{$post->lifetime==2 ? 'selected' : ''}}>{{__('ui.activeTwoMonth')}}</option>
+                <option value="3" {{$post->lifetime==3 ? 'selected' : ''}}>{{__('ui.activeForever')}}</option>
+            </select>
+            <span class="arrow arrowDown"></span>
+        </div>
+        <x-server-input-error errorName='lifetime' inputName='inputLifetime' errorClass='error'/>
+        <div class="lifetime error error-dz hidden"></div>
+        <p class="active-to-time">{{__('ui.hiddenOn')}}: <span>{{$post->active_to}}</span></p>
+        <div class="help">
+            <p><i>{{__('ui.activeToHelp')}}</i></p>
+        </div>
+    </div>
+    @if ($post->lifetime==3)    
+        <p class="lifetime-preview">{{__('ui.willNotHide')}}.<button class="lifetime-edit-btn def-button" type="button">{{__('ui.change')}}</button></p>
+    @else
+        <p class="lifetime-preview">{{__('ui.hiddenOn')}}: <span>{{$post->active_to}}</span><button class="lifetime-edit-btn def-button" type="button">{{__('ui.change')}}</button></p>
+    @endif
+    <input type="text" id="lifetimeChanged" name="lifetime_changed" value="0" hidden>
+@endsection
+
 @section('buttons')
     <button class="def-button delete-button" type="button" id="modalPostDeleteOn">{{__('ui.deletePost')}}</button>
 @endsection
