@@ -18,6 +18,25 @@ return [
     'maintenanceContact' => 'Связаться с нами:',
     'maintenanceSoon' => 'в ближайшее время',
 
+    //home massages
+    'introduction' => 'Специализированная площадка для сотрудничества
+        компаний нефтегазовой сферы Украины',
+    'introSellEq' => 'Продажа
+        оборудования',
+    'introBuyEq' => 'Покупка и аренда
+        оборудования',
+    'introSe' => 'Предоставление и
+        получение услуг',
+    'introTender' => 'Тендеры по упрощенной
+        процедурой',
+    'motePosts' => 'Больше предложений',
+    'otherPartners' => 'Другие
+        партнеры',
+    'newPosts' => 'Новые объявления',
+    'topPosts' => 'Топ объявления',
+    'epilogue1' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised.',
+    'epilogue2' => 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.',
+
     // jeneral massages
     'delete' => 'Удалить',
     'no' => 'Нет',
@@ -37,18 +56,6 @@ return [
     'upload' => 'Отправить',
     'chooseFile' => 'Выбрать файл',
     'post' => 'Объявление',
-    
-    //intro
-    'introduction' => 'Специализированная площадка для сотрудничества
-        компаний нефтегазовой сферы Украины',
-    'introSellEq' => 'Продажа
-        оборудования',
-    'introBuyEq' => 'Покупка и аренда
-        оборудования',
-    'introSe' => 'Предоставление и
-        получение услуг',
-    'introTender' => 'Тендеры по упрощенной
-        процедурой',
 
     // auth massages
     'signIn' => 'Войти',
@@ -210,16 +217,18 @@ return [
     'amountHelp' => 'Здесь Вы можете указать количество единиц товара.
         Если не понятно, количество чего указанно, вы можете указать эту информацию в описании.',
     'choosePostType' => 'Выберите тип объявления',
-    'postTypeSell' => 'Продажа',
-    'postTypeSellFull' => 'Продажа оборудования',
-    'postTypeBuy' => 'Покупка',
-    'postTypeBuyFull' => 'Покупка оборудования',
-    'postTypeRent' => 'Сдача в аренду',
-    'postTypeRentFull' => 'Сдача оборудования в аренду',
-    'postTypeLeas' => 'Предоставление в аренду',
-    'postTypeLeasFull' => 'Предоставление оборудования в аренду',
-    'postTypeGiveS' => 'Предоставление сервиса',
-    'postTypeGetS' => 'Запрос на сервис',
+    'postTypeSell' => 'Продажа', // type = 1
+    'postTypeSellFull' => 'Продажа оборудования', // type = 1
+    'postTypeBuy' => 'Покупка', // type = 2
+    'postTypeBuyFull' => 'Покупка оборудования', // type = 2
+    'postTypeRent' => 'Сдача в аренду', // type = 3
+    'postTypeRentFull' => 'Сдача оборудования в аренду', // type = 3
+    'postTypeRentShort' => 'Аренда', // type = 3
+    'postTypeLeas' => 'Предоставление в аренду', // type = 4
+    'postTypeLeasFull' => 'Предоставление оборудования в аренду', // type = 4
+    'postTypeLeasShort' => 'Аренда', // type = 4
+    'postTypeGiveS' => 'Предоставление сервиса', // type = 5
+    'postTypeGetS' => 'Запрос на сервис', // type = 6
     'postTypeHelp' => 'Выбранный вами вариант будет добавлен к вашему заголовку.',
     'choosePostRole' => 'Выберите сектор работы',
     'postRoleBusiness' => 'Бизнес',

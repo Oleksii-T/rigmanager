@@ -18,6 +18,27 @@ return [
     'maintenanceContact' => 'Зв\'язатися з нами:',
     'maintenanceSoon' => 'найближчим часом',
 
+    //home massages
+    'introduction' => 'Спеціалізований майданчик для співпраці
+        компаній нафтогазової сфери України',
+    'introSellEq' => 'Продаж
+        обладнання',
+    'introBuyEq' => 'Купівля та оренда
+        обладнання',
+    'introSe' => 'Надання та
+        отримання послуг',
+    'introTender' => 'Тендери за спрощеною
+        процедурою',
+    'morePosts' => 'Більше
+        пропозицій',
+    'otherPartners' => 'Інші
+        партнери',
+    'newPosts' => 'Нові оголошення',
+    'topPosts' => 'Топ оголошення',
+    'epilogue1' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised.',
+    'epilogue2' => 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.',
+
+
     // jeneral massages
     'delete' => 'Видалити',
     'no' => 'Ні',
@@ -37,18 +58,6 @@ return [
     'upload' => 'Надіслати',
     'chooseFile' => 'Обрати файл',
     'post' => 'Оголошення',
-    
-    //intro
-    'introduction' => 'Спеціалізований майданчик для співпраці
-        компаній нафтогазової сфери України',
-    'introSellEq' => 'Продаж
-        обладнання',
-    'introBuyEq' => 'Купівля та оренда
-        обладнання',
-    'introSe' => 'Надання та
-        отримання послуг',
-    'introTender' => 'Тендери за спрощеною
-        процедурою',
 
     // auth massages
     'signIn' => 'Увійти',
@@ -210,16 +219,18 @@ return [
     'amountHelp' => 'Тут Ви можете вказати кількість одиниць товару.
         Якщо не зрозуміло, кількість чого вказано, ви можете вказати цю інформацію в описі.',
     'choosePostType' => 'Оберіть тип оголошення',
-    'postTypeSell' => 'Продаж',
-    'postTypeSellFull' => 'Продаж обладнання',
-    'postTypeBuy' => 'Купівля',
-    'postTypeBuyFull' => 'Купівля обладнання',
-    'postTypeRent' => 'Здача в оренду',
-    'postTypeRentFull' => 'Здача в обладнання оренду',
-    'postTypeLeas' => 'Надання в оренду',
-    'postTypeLeasFull' => 'Надання в обладнання оренду',
-    'postTypeGiveS' => 'Надання сервісу',
-    'postTypeGetS' => 'Запит на сервіс',
+    'postTypeSell' => 'Продаж', // type = 1
+    'postTypeSellFull' => 'Продаж обладнання', // type = 1
+    'postTypeBuy' => 'Купівля', // type = 2
+    'postTypeBuyFull' => 'Купівля обладнання', // type = 2
+    'postTypeRent' => 'Здача в оренду', // type = 3
+    'postTypeRentFull' => 'Здача в обладнання оренду', // type = 3
+    'postTypeRentShort' => 'Оренда', // type = 3
+    'postTypeLeas' => 'Надання в оренду', // type = 4
+    'postTypeLeasFull' => 'Надання в обладнання оренду', // type = 4
+    'postTypeLeasShort' => 'Оренда', // type = 4
+    'postTypeGiveS' => 'Надання сервісу', // type = 5
+    'postTypeGetS' => 'Запит на сервіс', // type = 6
     'postTypeHelp' => 'Обраний вами варіант буде додано до вашого заголовку.',
     'choosePostRole' => 'Оберіть сектор роботи',
     'postRoleBusiness' => 'Бізнес',

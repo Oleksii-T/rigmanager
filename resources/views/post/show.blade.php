@@ -50,8 +50,8 @@
                         <h1><span class="post-type">{{$post->type_readable}}: </span>{{ $post->title }}</h1>
                     @endif
                     <div id="item-tag-section">
-                        @foreach ($post->tag_map as $tagId => $tagReadable)
-                            <a class="item-tag" href="{{loc_url(route('search.tag', ['category'=>$tagId]))}}">{{$tagReadable}}</a>
+                        @foreach ($post->tag_url_map as $tagUrl => $tagReadable)
+                            <a class="item-tag" href="{{loc_url(route('search.tag', ['tag'=>$tagUrl]))}}">{{$tagReadable}}</a>
                             <span class="item-tag-delim">></span>
                         @endforeach
                     </div>

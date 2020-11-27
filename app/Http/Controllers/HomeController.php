@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactUsRequest;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\App;
 use App\Mail\fromUserNotification;
@@ -33,8 +34,14 @@ class HomeController extends Controller
     {
         $translated['title'] = 'title_'.App::getLocale();
         $translated['description'] = 'description_'.App::getLocale();
-        $posts_list = Post::where('is_active', 1)->orderBy('created_at', 'desc')->paginate(env('POSTS_PER_PAGE'));
-        return view('home.home', compact('posts_list', 'translated'));
+        $new_posts = Post::where('is_active', 1)->orderBy('created_at', 'desc')->take(7)->get();
+        $top_posts = Post::where(['is_active'=>1, 'is_premium'=>1])->orderBy('created_at', 'desc')->take(4)->get();
+        $top_posts = $top_posts->diff($new_posts);
+        return view('home.home', compact('new_posts', 'translated', 'top_posts'));
+    }
+
+    static public function test() {
+        return 'this is from controller!';
     }
 
     public function faq()

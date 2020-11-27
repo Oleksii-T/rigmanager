@@ -415,6 +415,7 @@ Inner diameter, mm (inch):',
         // post slips
         DB::table('posts')->insert([
             'user_id' => 2,
+            'is_premium' => 1,
             'thread' => 1,
             'origin_lang' => 'uk',
             'user_translations' => '{"title":[],"description":[]}',
@@ -512,6 +513,7 @@ You can get more detailed information (certificates, passports, etc.) by sending
         // post stab
         DB::table('posts')->insert([
             'user_id' => 2,
+            'is_premium' => 1,
             'thread' => 1,
             'origin_lang' => 'ru',
             'user_translations' => '{"title":[],"description":[]}',
@@ -809,6 +811,7 @@ Bottom thread API (GOST): 4 1/2 "Reg box (Z-117 coupling)',
         // post tds
         DB::table('posts')->insert([
             'user_id' => 4,
+            'is_premium' => 1,
             'thread' => 1,
             'origin_lang' => 'ru',
             'user_translations' => '{"title":[],"description":[]}',
@@ -987,6 +990,7 @@ Shipping dimensions, mm: 1200x800x500',
         // post dc
         DB::table('posts')->insert([
             'user_id' => 4,
+            'is_premium' => 1,
             'thread' => 1,
             'origin_lang' => 'ru',
             'user_translations' => '{"title":[],"description":[]}',

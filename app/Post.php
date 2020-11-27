@@ -17,7 +17,8 @@ class Post extends Model
 
     protected $appends = [
         'tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable',
-        'user_phone_intern', 'region_readable', 'role_readable', 'type_readable', 'origin_lang_readable'
+        'user_phone_intern', 'region_readable', 'role_readable', 'type_readable', 'origin_lang_readable',
+        'tag_url_map', 'type_readable_short'
     ];
 
     protected $fillable = [
@@ -188,6 +189,41 @@ class Post extends Model
             case '3':
                 return __('ui.postTypeRent');
                 break;
+            case '4':
+                return __('ui.postTypeLeas');
+                break;
+            case '5':
+                return __('ui.postTypeGiveS');
+                break;
+            case '6':
+                return __('ui.postTypeGetS');
+                break;
+            default:
+                return __('ui.notSpecified');
+        }
+    }
+
+    public function getTypeReadableShortAttribute()
+    {
+        switch ($this->type) {
+            case '1':
+                return __('ui.postTypeSell');
+                break;
+            case '2':
+                return __('ui.postTypeBuy');
+                break;
+            case '3':
+                return __('ui.postTypeRentShort');
+                break;
+            case '4':
+                return __('ui.postTypeLeasShort');
+                break;
+            case '5':
+                return __('ui.service');
+                break;
+            case '6':
+                return __('ui.service');
+                break;
             default:
                 return __('ui.notSpecified');
         }
@@ -266,7 +302,8 @@ class Post extends Model
         return Carbon::parse($value)->diffForHumans();
     }
 
-    public function getConditionReadableAttribute() {
+    public function getConditionReadableAttribute() 
+    {
         switch ($this->condition) {
             case 1:
                 return __('ui.notSpecified');
@@ -291,6 +328,11 @@ class Post extends Model
     public function getTagMapAttribute()
     {
         return $this->getTagMap($this->tag_encoded);
+    }
+
+    public function getTagUrlMapAttribute()
+    {
+        return $this->getTagUrlMap($this->tag_encoded);
     }
 
     public function scopeFilterBy($query, $filters)

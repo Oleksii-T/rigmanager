@@ -19,6 +19,25 @@ return [
     'maintenanceContact' => 'Feel free to contact us:',
     'maintenanceSoon' => 'soon',
 
+    //home massages
+    'introduction' => 'Specialized platform for cooperation
+        of oil and gas companies of Ukraine',
+    'introSellEq' => 'Sell of drilling
+        equipment',
+    'introBuyEq' => 'Buy and loan
+        of drilling equipment',
+    'introSe' => 'Providing and requesting
+        of services',
+    'introTender' => 'Tenders by
+        simplified procedure',
+    'motePosts' => 'More posts',
+    'otherPartners' => 'Other
+        partners',
+    'newPosts' => 'New posts',
+    'topPosts' => 'Top posts',
+    'epilogue1' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised.',
+    'epilogue2' => 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.',
+
     // jeneral massages
     'delete' => 'Delete',
     'no' => 'No',
@@ -39,17 +58,6 @@ return [
     'chooseFile' => 'Choose File',
     'post' => 'Post',
     
-    //intro
-    'introduction' => 'Specialized platform for cooperation
-        of oil and gas companies of Ukraine',
-    'introSellEq' => 'Sell of drilling
-        equipment',
-    'introBuyEq' => 'Buy and loan
-        of drilling equipment',
-    'introSe' => 'Providing and requesting
-        of services',
-    'introTender' => 'Tenders by
-        simplified procedure',
 
     // auth massages
     'signIn' => 'Sign in',
@@ -211,16 +219,18 @@ return [
     'amountHelp' => 'Here You may specify the number of pieces you have.
         If it is not obvious what this number stands for, you can specify this information in the description',
     'choosePostType' => 'Choose post type',
-    'postTypeSell' => 'Sell',
-    'postTypeSellFull' => 'Equipment Sell',
-    'postTypeBuy' => 'Buy',
-    'postTypeBuyFull' => 'Equipment Buy',
-    'postTypeRent' => 'Rental',
-    'postTypeRentFull' => 'Equipment Rental',
-    'postTypeLeas' => 'Leasing',
-    'postTypeLeasFull' => 'Equipment Leasing',
-    'postTypeGiveS' => 'Providing of service',
-    'postTypeGetS' => 'Request for service',
+    'postTypeSell' => 'Sell', // type = 1
+    'postTypeSellFull' => 'Equipment Sell', // type = 1
+    'postTypeBuy' => 'Buy', // type = 2
+    'postTypeBuyFull' => 'Equipment Buy', // type = 2
+    'postTypeRent' => 'Rental', // type = 3
+    'postTypeRentFull' => 'Equipment Rental', // type = 3
+    'postTypeRentShort' => 'Rental', // type = 3
+    'postTypeLeas' => 'Leasing', // type = 4
+    'postTypeLeasFull' => 'Equipment Leasing', // type = 4
+    'postTypeLeasShort' => 'Leasing', // type = 4
+    'postTypeGiveS' => 'Providing of service', // type = 5
+    'postTypeGetS' => 'Request for service', // type = 6
     'postTypeHelp' => 'The variant you choose will be appended to your title.',
     'choosePostRole' => 'Chose legal type',
     'postRoleBusiness' => 'Business',

@@ -2,8 +2,8 @@
 
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/components/post_posts.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/tags.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/components/home_posts.css')}}" />
 @endsection
 
 @section('content')
@@ -30,14 +30,113 @@
     </div>
 
     <div class="tag-search">
-        <x-equipment-tags role="2"/>
-        <x-service-tags role="2"/>
+        <div class="tag-search-column">
+            <ul class="tag-search-list">
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'burovye-dolota']))}}">{{__('tags.bit')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'burovye-truby']))}}">{{__('tags.dp')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'burovye-ustanovki']))}}">{{__('tags.rig')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'nasosy-dlya-burovoj']))}}">{{__('tags.pump')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'burovoj-rastvor-tsirkulyatsiya']))}}">{{__('tags.mud')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'gis']))}}">{{__('tags.boreholeSurvey')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'vspomogatelnoe-oborudovanie']))}}">{{__('tags.miscHelpEq')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'zabojnye-dvigatelya']))}}">{{__('tags.motor')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'zapchasti']))}}">{{__('tags.parts')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'izmeritelnoe-oborudovanie']))}}">{{__('tags.control')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'kalibratory']))}}">{{__('tags.stub')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'kampus']))}}">{{__('tags.camp')}}</a></li>
+            </ul>
+        </div>
+        <div class="tag-search-column">
+            <ul class="tag-search-list">
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'krepleniya-tsementazh']))}}">{{__('tags.casingCementing')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'likvidatsiya-avarij']))}}">{{__('tags.emergency')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'smazka']))}}">{{__('tags.lubricator')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'nkt-i-osnastka']))}}">{{__('tags.tubingEq')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'oborudovanie-ustya']))}}">{{__('tags.wellHeadEq')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'pakery-i-komplektuyushchie']))}}">{{__('tags.packer')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'pnevmosistema']))}}">{{__('tags.airUtility')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'protivofontannoe-oborudovanie']))}}">{{__('tags.boe')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'rotornaya-sistema']))}}">{{__('tags.rotory')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'sistema-pitaniya']))}}">{{__('tags.power')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'odnovremennaya-obsadka']))}}">{{__('tags.simCasing')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'sklad-pmm']))}}">{{__('tags.diselStorage')}}</a></li>
+            </ul>
+        </div>
+        <div class="tag-search-column">
+            <ul class="tag-search-list">
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'specialnaya-tekhnika']))}}">{{__('tags.specMachinery')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'talevaya-sistema']))}}">{{__('tags.lifting')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'spusko-podemnyj-instrument']))}}">{{__('tags.pipeHandling')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'oborudovanie-tb']))}}">{{__('tags.hseEq')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'burovye-klyuchi']))}}">{{__('tags.tong')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'fiksaciya-trub']))}}">{{__('tags.pipeLocking')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'himicheskie-reagenty']))}}">{{__('tags.chemics')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'himicheskaya-laboratoriya']))}}">{{__('tags.chemLab')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'yasy']))}}">{{__('tags.jar')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('search.tag', ['tag'=>'drugoe']))}}">{{__('tags.other')}}</a></li>
+            </ul>
+        </div>
     </div>
 
-    <x-items :posts="$posts_list" button='addToFav' :translated="$translated" />
+    <div class="partners">
+        <div class="partner">
+            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+        </div>
+        <div class="partner">
+            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+        </div>
+        <div class="partner">
+            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+        </div>
+        <div class="partner">
+            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+        </div>
+        <div class="partner">
+            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+        </div>
+        <div class="partner">
+            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+        </div>
+        <div class="partner">
+            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+        </div>
+        <div class="partner partner-more">
+            <a href="#">{{__('ui.otherPartners')}}</a>
+        </div>
+    </div>
 
-    <div class="pagination-field">
-        {{ $posts_list->appends(request()->except('page'))->links() }}
+    <div class="items-block new-items">
+        <h2 class="items-block-title">{{__('ui.newPosts')}}</h2>
+        
+        <section class="items">
+            <x-home-items :posts="$new_posts" :translated="$translated"/>
+            <div class="item more-items">
+                <a href="{{loc_url(route('list'))}}">
+                    <!--  <img class="more-posts-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""> -->
+                    <span class="more-posts-text">{{__('ui.morePosts')}}</span>
+                </a>
+            </div>
+        </section>
+    </div>
+    
+    @if ($top_posts->isNotEmpty())
+        <div class="items-block top-items">
+            <h2 class="items-block-title">{{__('ui.topPosts')}}</h2>
+            <section class="items">
+                <x-home-items :posts="$top_posts" :translated="$translated"/>
+            </section>
+            <div class="more-items-btn">
+                <a href="{{loc_url(route('list'))}}">{{__('ui.morePosts')}}</a>
+            </div>
+        </div>
+    @endif
+
+    <div class="epilogue">
+        <h3 class="epilogue-logo"><span>RIG</span>MANAGER</h3>
+        <div class="epilogue-text">
+            <p class="e-1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised.</p>
+            <p class="e-2">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+        </div>
     </div>
 
 @endsection
@@ -46,13 +145,6 @@
     <script type="text/javascript" src="{{ asset('js/tags.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mousewheel.min.js') }}"></script>
     <script type="text/javascript">
-
-        function searchTag(id) {
-            var url = "{{loc_url(route('search.tag',['category'=>':id']))}}";
-            url = url.replace(':id', id);
-            window.location.href=url;
-        }
-
         $(document).ready(function(){
 
             // disable scrolling on master page when hovering the column
@@ -71,6 +163,7 @@
             // paint in orange addToFav btn of appropriate items
             $('.active-fav-img').attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
 
+            //clear the search bar
             $('#search-bar-clear-btn').click(function(){
                 $('#inputSearch').val("");
             });
@@ -150,11 +243,13 @@
 
             //add hover effect on item when hover on addToFav btn
             $(".addToFavImg").hover(function(){togglePostHover($(this))}, function(){togglePostHover($(this))});
+            $(".globalItemButton").hover(function(){togglePostHover($(this))}, function(){togglePostHover($(this))});
 
             // toggle hover effect on hoverIn/Out on exat post
             function togglePostHover(element) {
                 var postId = getIdFromClasses(element.attr("class"), 'id_');
-                $("#"+postId+" .globalItemButton").toggleClass('hover');
+                $("#"+postId+" .item-title p").toggleClass('item-title-hover');
+                $("#"+postId+" .post-type").toggleClass('post-type-hover');
             }
 
             //add hover effect on item when hover on addToFavBlocked btn

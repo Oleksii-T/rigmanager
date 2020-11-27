@@ -79,9 +79,11 @@ class SearchController extends Controller
         return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount', 'translated'));
     }
 
-    public function searchTag($locale, $tagId=null)
+    public function searchTag($locale, $tagUrl=null)
     {
-        $tagId = $tagId==null ? $locale : $tagId;
+        dd('search tag');
+        $tagUrl = $tagUrl==null ? $locale : $tagUrl;
+        $tagId = $this->getIdByUrl($tagUrl);
         $regex = "^$tagId(.[0-9]+)*$"; //make regular expr form tag id to find sub catogories as well
         $regex = str_replace('.', '\.', $regex); //escape regex '.' via '\'
         $posts_list = Post::whereRaw("tag_encoded REGEXP '$regex'")->where("is_active", 1); //search appropriate for posts using raw where query
@@ -94,6 +96,7 @@ class SearchController extends Controller
             : $search['isEmpty'] = false;
         $search['type'] = 'tags';
         $search['value'] = $this->getTagMap($tagId);
+        $search['url_map'] = $this->getTagUrlMap($tagId);
         $search['tag_type'] = $this->getTagType($tagId);
         $translated['title'] = 'title_'.App::getLocale();
         $translated['description'] = 'description_'.App::getLocale();
@@ -113,6 +116,21 @@ class SearchController extends Controller
         $search['type'] = 'author';
         $search['value']['name'] = $user->name;
         $search['value']['id'] = $user->id;
+        $translated['title'] = 'title_'.App::getLocale();
+        $translated['description'] = 'description_'.App::getLocale();
+        return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount', 'translated'));
+    }
+
+    public function list() 
+    {
+        $posts_list = Post::where('is_active', 1);
+        $postsIds = json_encode($posts_list->pluck('id'));
+        $posts_list = $posts_list->paginate(env('POSTS_PER_PAGE'));
+        $postsAmount = $posts_list->total();
+        $postsAmount == 0
+            ? $search['isEmpty'] = true
+            : $search['isEmpty'] = false;
+        $search['type'] = 'none';
         $translated['title'] = 'title_'.App::getLocale();
         $translated['description'] = 'description_'.App::getLocale();
         return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount', 'translated'));

@@ -16,6 +16,9 @@ Route::get ('posts/import/rules',   'HomeController@import')    ->name('import.r
 Route::get ('contact-us',           'HomeController@contacts')  ->name('contacts');
 Route::post('contacting',           'HomeController@contactUs') ->name('contact.us');
 
+//post route
+Route::get ('list',           'SearchController@list')  ->name('list');
+
 //subscription required
 Route::get('plans/error', function() {
     return view('errors.subscription_required');
@@ -26,12 +29,6 @@ Route::post         ('filter',                              'FiltersController@f
 
 // search routes
 Route::get('search/',                       'SearchController@search')      ->name('search');       //search by text/author/type
-Route::get('search/category/{category}',    'SearchController@searchTag')   ->name('search.tag');
-Route::get('search/categorry/{tag}/{subTag?}/{endTag?}','SearchController@searchTagTest')->name('search.cat');
-/*
-Route::get('{category}','SearchController@searchTag')   ->name('search.tag');
-Route::get('search/categorry/{tag}/{subTag?}/{endTag?}','SearchController@searchTagTest')->name('search.cat');
-*/
 
 // Laravel Socialite auth routes
 Route::get('login/{social}',            'Auth\LoginController@redirectToProvider')->name('login.social');
@@ -74,3 +71,6 @@ Route::middleware('verified')->group(function () {
 
 // posts routes
 Route::get          ('posts/{post}',                        'PostController@show')          ->name('posts.show');
+
+//search of tags
+Route::get('{tag}/{subTag?}/{endTag?}',     'SearchController@searchTag')->name('search.tag');

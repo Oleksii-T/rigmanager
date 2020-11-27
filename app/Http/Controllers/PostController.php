@@ -79,7 +79,7 @@ class PostController extends Controller
         if (in_array($t, $urls)) {
             while(true) {
                 $rand = mb_strtolower(Str::random(3));
-                if (!in_array($t.'-'.$rand, $titles)) {
+                if (!in_array($t.'-'.$rand, $title)) {
                     $t = $t.'-'.$rand;
                     break;
                 }
@@ -173,7 +173,6 @@ class PostController extends Controller
      */
     public function show($locale, $urlName=null)
     {
-
         $urlName = $urlName==null ? $locale : $urlName;
         $post = Post::where('url_name', $urlName)->first();
         if (!$post->is_active && !$this->isOwner($post->user->id)) {
@@ -249,8 +248,11 @@ class PostController extends Controller
         }
         $input = $request->all();
 
-        //craete the url name
-        $input['url_name'] = $this->generatePostUrl($input['title']);
+        //recraete the url name if title was changed
+        $input['url_name'] = $post->url_name;
+        if ($post->title != $input['title']) {
+            $input['url_name'] = $this->generatePostUrl($input['title']);
+        }
 
         // parse messangers values. If no phone specified remove messangers
         if ( $input['user_phone_raw'] ) {
@@ -326,7 +328,7 @@ class PostController extends Controller
 
         TranslatePost::dispatch($post, $input, false)->onQueue('translation');
         Session::flash('message-success', __('messages.postEdited'));
-        return redirect(loc_url(route('posts.show', ['post'=>$id])));
+        return redirect(loc_url(route('posts.show', ['post'=>$input['url_name']])));
     }
 
     /**

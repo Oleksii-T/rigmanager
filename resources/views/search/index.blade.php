@@ -21,11 +21,6 @@
         </form>
     </div>
 
-    <div class="tag-search">
-        <x-equipment-tags role="2"/>
-        <x-service-tags role="2"/>
-    </div>
-
     <a id="filter-beacon"></a>
 
     <!-- Search result status show -->
@@ -41,8 +36,8 @@
             </div>
         @elseif ( $search['type'] == 'tags' )
             <div id="searchTags">
-                @foreach ($search['value'] as $id => $tag)
-                    <a class="itemTag" href="{{ loc_url(route('search.tag', ['category'=>$id])) }}">{{$tag}}</a>
+                @foreach ($search['url_map'] as $tagUrl => $tag)
+                    <a class="itemTag" href="{{ loc_url(route('search.tag', ['tag'=>$tagUrl])) }}">{{$tag}}</a>
                     <span>></span>
                 @endforeach
             </div>
@@ -232,13 +227,6 @@
     <script type="text/javascript" src="{{ asset('js/tags.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/subscription_required.js') }}"></script>
     <script type="text/javascript">
-
-        function searchTag(id) {
-            var url = "{{loc_url(route('search.tag',['category'=>':id']))}}";
-            url = url.replace(':id', id);
-            window.location.href=url;
-        }
-
         $(document).ready(function(){
 
             var filters = new Object();
