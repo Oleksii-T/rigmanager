@@ -79,10 +79,9 @@ class SearchController extends Controller
         return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount', 'translated'));
     }
 
-    public function searchTag($locale, $tagUrl=null)
+    public function searchTag(Request $request)
     {
-        dd('search tag');
-        $tagUrl = $tagUrl==null ? $locale : $tagUrl;
+        $tagUrl = request()->segment(count(request()->segments()));
         $tagId = $this->getIdByUrl($tagUrl);
         $regex = "^$tagId(.[0-9]+)*$"; //make regular expr form tag id to find sub catogories as well
         $regex = str_replace('.', '\.', $regex); //escape regex '.' via '\'
@@ -96,7 +95,6 @@ class SearchController extends Controller
             : $search['isEmpty'] = false;
         $search['type'] = 'tags';
         $search['value'] = $this->getTagMap($tagId);
-        $search['url_map'] = $this->getTagUrlMap($tagId);
         $search['tag_type'] = $this->getTagType($tagId);
         $translated['title'] = 'title_'.App::getLocale();
         $translated['description'] = 'description_'.App::getLocale();

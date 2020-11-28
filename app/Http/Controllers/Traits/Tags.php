@@ -621,7 +621,7 @@ trait Tags
                     '20.8.2' => 'kontrol-avtomatizaciya',
                     '20.8.3' => 'zapalnoe-ustrojstvo',
                     '20.8.4' => 'truboprovody',
-            '21' => 'rotor',
+            '21' => 'vrashchenie',
                 '21.1' => 'vedushchie-truby',
                 '21.2' => 'vertlyugi',
                 '21.3' => 'verhnie-privody',

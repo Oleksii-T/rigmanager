@@ -73,4 +73,4 @@ Route::middleware('verified')->group(function () {
 Route::get          ('posts/{post}',                        'PostController@show')          ->name('posts.show');
 
 //search of tags
-Route::get('{tag}/{subTag?}/{endTag?}',     'SearchController@searchTag')->name('search.tag');
+require base_path().'/routes/TagsWebRoutes.php';

@@ -18,7 +18,7 @@ class Post extends Model
     protected $appends = [
         'tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable',
         'user_phone_intern', 'region_readable', 'role_readable', 'type_readable', 'origin_lang_readable',
-        'tag_url_map', 'type_readable_short'
+        'type_readable_short'
     ];
 
     protected $fillable = [
@@ -328,11 +328,6 @@ class Post extends Model
     public function getTagMapAttribute()
     {
         return $this->getTagMap($this->tag_encoded);
-    }
-
-    public function getTagUrlMapAttribute()
-    {
-        return $this->getTagUrlMap($this->tag_encoded);
     }
 
     public function scopeFilterBy($query, $filters)

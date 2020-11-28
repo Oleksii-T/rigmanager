@@ -36,8 +36,8 @@
             </div>
         @elseif ( $search['type'] == 'tags' )
             <div id="searchTags">
-                @foreach ($search['url_map'] as $tagUrl => $tag)
-                    <a class="itemTag" href="{{ loc_url(route('search.tag', ['tag'=>$tagUrl])) }}">{{$tag}}</a>
+                @foreach ($search['value'] as $id => $tag)
+                    <a class="itemTag" href="{{ loc_url(route($id)) }}">{{$tag}}</a>
                     <span>></span>
                 @endforeach
             </div>
