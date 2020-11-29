@@ -35,8 +35,8 @@ return [
         partners',
     'newPosts' => 'New posts',
     'topPosts' => 'Top posts',
-    'epilogue1' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised.',
-    'epilogue2' => 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.',
+    'epilogue1' => 'Online announcements of any type and complexity in Oil&Gas sphere. Sale, purchase, services. On the rigmanager platform you can quickly and conveniently publish your offers or easily find an announcement you are interested in!',
+    'epilogue2' => 'Market analysis, sales planning, simplification of the process and increase of the level of purchases/sales, control of relevance of purchases and timely supply - all this on the rigmanager platform!',
 
     // jeneral massages
     'delete' => 'Delete',

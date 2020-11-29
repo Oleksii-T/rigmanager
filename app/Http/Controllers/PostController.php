@@ -79,7 +79,7 @@ class PostController extends Controller
         if (in_array($t, $urls)) {
             while(true) {
                 $rand = mb_strtolower(Str::random(3));
-                if (!in_array($t.'-'.$rand, $title)) {
+                if (!in_array($t.'-'.$rand, $urls)) {
                     $t = $t.'-'.$rand;
                     break;
                 }
@@ -474,9 +474,9 @@ class PostController extends Controller
             if ($value[1] == null) {
                 $lastRow = $key;
                 break;
-            } 
+            }
             $importError = $this->vaidateExcelRow($key, $value); // validate the row
-            //if error detected dinish analizing and return an error message
+            //if error detected finish analizing and return an error message
             if ($importError!='') {
                 Session::flash('message-error', __('messages.postImportError'));
                 Session::flash('import-error', $importError);
@@ -491,19 +491,10 @@ class PostController extends Controller
         $lang = $translate->detectLanguage( $import[0][1] . '. ' . $import[0][2] )['languageCode']; // merge title and description and find out the origin language
         // for each row create the post and save it 
         foreach ($import as $key => $row) {
-            $cost = $this->costValidate($row[13]); // transform the cost
-            //unset the currency if cost is omited
-            if (!$cost) {
-                $currency = null;
-            }
-            //unset the company if not a business choosed
-            if ($row[7] != 2) {
-                $row[5] = null;
-            }
-            $translations = ['title' => [], 'description' => []]; // make empty array of user translations
             $viber = $row[19] ? 1 : 0; // fill the viber value
             $telegram = $row[20] ? 1 : 0; // fill the telegram value
             $whatsapp = $row[21] ? 1 : 0; // fill the whatsapp value
+            $translations = ['title' => [], 'description' => []]; // make empty array of user translations
             //make lifetime
             switch ($row[22]) {
                 case '1':
@@ -518,26 +509,19 @@ class PostController extends Controller
                 default:
                     break;
             }
-            // genarate the new Post record
-            $post = new Post([
+            // make url_name
+            $url_name = $this->generatePostUrl($row[1]);
+            $input = [
                 'origin_lang' => $lang,
-                'user_translations' => $translations,
+                'url_name' => $url_name,
                 'title' => $row[1],
                 'description' => $row[2],
-                'amount' => $row[3],
                 'thread' => $row[4],
-                'company' => $row[5],
                 'type' => $row[6],
                 'role' => $row[7],
                 'condition' => $row[8],
                 'tag_encoded' => $row[9],
-                'manufacturer' => $row[10],
-                'manufactured_date' => $row[11],
-                'part_number' => $row[12],
-                'cost' => $row[13],
-                'currency' => $row[14],
                 'region_encoded' => $row[15],
-                'town' => $row[16],
                 'user_email' => $row[17],
                 'user_phone_raw' => $row[18],
                 'viber' => $viber,
@@ -545,7 +529,31 @@ class PostController extends Controller
                 'whatsapp' => $whatsapp,
                 'lifetime' => $row[22],
                 'active_to' => $activeTo,
-            ]);
+                'user_translations' => $translations,
+            ];
+            if ($row[3]) {
+                $input['amount'] = $row[3];
+            }
+            if ($row[7]==2 && $row[5]) {
+                $input['company'] = $row[5];
+            }
+            if ($row[13]) {
+                $input['cost'] = $row[13];
+                $input['currency'] = $row[14];
+            }
+            if ($row[16]) {
+                $input['town'] = $row[16];
+            }
+            if ($row[10]) {
+                $input['manufacturer'] = $row[10];
+            }
+            if ($row[11]) {
+                $input['manufactured_date'] = $row[11];
+            }
+            if ($row[12]) {
+                $input['part_number'] = $row[12];
+            }
+            $post = new Post($input); // genarate the new Post record
             auth()->user()->posts()->save($post); // save post with respect to user
             TranslatePost::dispatch($post, ['title'=>$row[1], 'description'=>$row[2], 'origin_lang'=>$lang], true)->onQueue('translation'); // dispatch the translation of post
         }
@@ -588,10 +596,10 @@ class PostController extends Controller
                                                                 if ($row[11]==null || ( is_string($row[11]) && mb_strlen($row[11])>5 && mb_strlen($row[11])<70 )) {
                                                                     //validate  "part number" field
                                                                     if ($row[12]==null || ( is_string($row[12]) && mb_strlen($row[12])>3 && mb_strlen($row[12])<70 )) {
-                                                                        //validate  "cost" field
+                                                                        //validate "cost" field
                                                                         if ($this->costValidate($row[13])) {
-                                                                            //validate  "Currency" field
-                                                                            if ($row[14]!=null) {
+                                                                            //validate  "Currency" field if "Cost" is not empty
+                                                                            if ( ($row[13]!=null && $row[14]!=null) || $row[13]==null ) {
                                                                                 //validate  "town" field
                                                                                 if ($row[16]==null || ( is_string($row[16]) && mb_strlen($row[16])<100 )) {
                                                                                     //validate  "email" field

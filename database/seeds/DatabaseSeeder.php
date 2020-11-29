@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        factory(App\Post::class, 100)->create();
+        //factory(App\Post::class, 100)->create();
 
         DB::table('usd_exchanges')->insert([
             'id' => 1,
@@ -57,6 +57,103 @@ class DatabaseSeeder extends Seeder
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
+
+        // user 2 - Pavel
+        DB::table('users')->insert([
+            'id' => 2,
+            'name' => 'Beiken LLC',
+            'phone_raw' => '0000000000',
+            'email' => 'pavlo.tarb@gmail.com',
+            'email_verified_at' => Carbon\Carbon::now(),
+            'password' => Hash::make('Pavel123'),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        DB::table('subscriptions')->insert([
+            'id' => 2,
+            'user_id' => 2,
+            'is_active' => true,
+            'role' => 2,
+            'activated_at' => Carbon\Carbon::now(),
+            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        // user 3 - Dmitriy
+        DB::table('users')->insert([
+            'id' => 3,
+            'name' => 'Dmitriy',
+            'phone_raw' => '0000000000',
+            'email' => 'dmytro.tarbeiev@gmail.com',
+            'email_verified_at' => Carbon\Carbon::now(),
+            'password' => Hash::make('Dmitriy123'),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+        
+        DB::table('subscriptions')->insert([
+            'id' => 3,
+            'user_id' => 3,
+            'is_active' => true,
+            'role' => 2,
+            'activated_at' => Carbon\Carbon::now(),
+            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+        // user 5 - TEST
+        DB::table('users')->insert([
+            'id' => 4,
+            'name' => 'User',
+            'phone_raw' => '0123456789',
+            'telegram' => '1',
+            'email' => 'sample.email@mail.com',
+            'email_verified_at' => Carbon\Carbon::now(),
+            'password' => Hash::make('password'),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+        
+        DB::table('subscriptions')->insert([
+            'id' => 4,
+            'user_id' => 4,
+            'is_active' => true,
+            'role' => 2,
+            'activated_at' => Carbon\Carbon::now(),
+            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
+/*
+
+        // user 4 - yaroslav
+        DB::table('users')->insert([
+            'id' => 5,
+            'name' => 'Yaroslav',
+            'phone_raw' => '1234567890',
+            'telegram' => '1',
+            'email' => 'yarikmoklyak2010@gmail.com',
+            'email_verified_at' => Carbon\Carbon::now(),
+            'password' => Hash::make('Yarik1'),
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+        
+        DB::table('subscriptions')->insert([
+            'id' => 5,
+            'user_id' => 5,
+            'is_active' => true,
+            'role' => 2,
+            'activated_at' => Carbon\Carbon::now(),
+            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
+        ]);
+
 
         // post dp
         DB::table('posts')->insert([
@@ -121,31 +218,7 @@ API thread (GOST): З-73',
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
-/*
-        // image dp
-        DB::table('post_images')->insert([
-            'id' => 1,
-            'post_id' => 1,
-            'serial_no' => 1,
-            'path' => '1/pipe_optimized.jpeg',
-            'version' => 'optimized',
-            'size' => 84,
-            'created_at' => Carbon\Carbon::now(),
-            'updated_at' => Carbon\Carbon::now()
-        ]);
 
-        // image dp
-        DB::table('post_images')->insert([
-            'id' => 2,
-            'post_id' => 1,
-            'serial_no' => 1,
-            'path' => '1/pipe_origin.jpeg',
-            'version' => 'origin',
-            'size' => 84,
-            'created_at' => Carbon\Carbon::now(),
-            'updated_at' => Carbon\Carbon::now()
-        ]);
-*/
         // post swivel
         DB::table('posts')->insert([
             'user_id' => 1,
@@ -242,31 +315,7 @@ Shipping dimensions, mm: 1800x710x970',
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
-/*
-        // image swivel
-        DB::table('post_images')->insert([
-            'id' => 2,
-            'post_id' => 1,
-            'serial_no' => 1,
-            'path' => '1/pipe_origin.jpeg',
-            'version' => 'origin',
-            'size' => 84,
-            'created_at' => Carbon\Carbon::now(),
-            'updated_at' => Carbon\Carbon::now()
-        ]);
 
-        // image swivel
-        DB::table('post_images')->insert([
-            'id' => 2,
-            'post_id' => 1,
-            'serial_no' => 1,
-            'path' => '1/pipe_origin.jpeg',
-            'version' => 'origin',
-            'size' => 84,
-            'created_at' => Carbon\Carbon::now(),
-            'updated_at' => Carbon\Carbon::now()
-        ]);
-*/
         // post cone bit
         DB::table('posts')->insert([
             'user_id' => 1,
@@ -389,28 +438,6 @@ Inner diameter, mm (inch):',
             'updated_at' => Carbon\Carbon::now()
         ]);
 
-        // user 2 - Pavel
-        DB::table('users')->insert([
-            'id' => 2,
-            'name' => 'Pavel',
-            'phone_raw' => '0000000000',
-            'email' => 'pavlo.tarb@gmail.com',
-            'email_verified_at' => Carbon\Carbon::now(),
-            'password' => Hash::make('Pavel123'),
-            'created_at' => Carbon\Carbon::now(),
-            'updated_at' => Carbon\Carbon::now()
-        ]);
-
-        DB::table('subscriptions')->insert([
-            'id' => 2,
-            'user_id' => 2,
-            'is_active' => true,
-            'role' => 2,
-            'activated_at' => Carbon\Carbon::now(),
-            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
-            'created_at' => Carbon\Carbon::now(),
-            'updated_at' => Carbon\Carbon::now()
-        ]);
 
         // post slips
         DB::table('posts')->insert([
@@ -566,28 +593,6 @@ Bottom thread API (GOST): 4 1/2 "Reg box (Z-117 coupling)',
             'updated_at' => Carbon\Carbon::now()
         ]);
 
-        // user 3 - Dmitriy
-        DB::table('users')->insert([
-            'id' => 3,
-            'name' => 'Dmitriy',
-            'phone_raw' => '0000000000',
-            'email' => 'dmytro.tarbeiev@gmail.com',
-            'email_verified_at' => Carbon\Carbon::now(),
-            'password' => Hash::make('Dmitriy123'),
-            'created_at' => Carbon\Carbon::now(),
-            'updated_at' => Carbon\Carbon::now()
-        ]);
-        
-        DB::table('subscriptions')->insert([
-            'id' => 3,
-            'user_id' => 3,
-            'is_active' => true,
-            'role' => 2,
-            'activated_at' => Carbon\Carbon::now(),
-            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
-            'created_at' => Carbon\Carbon::now(),
-            'updated_at' => Carbon\Carbon::now()
-        ]);
 
         // post taper tap
         DB::table('posts')->insert([
@@ -784,29 +789,6 @@ Bottom thread API (GOST): 4 1/2 "Reg box (Z-117 coupling)',
             'updated_at' => Carbon\Carbon::now()
         ]);
 
-        // user 4 - yaroslav
-        DB::table('users')->insert([
-            'id' => 4,
-            'name' => 'Yaroslav',
-            'phone_raw' => '1234567890',
-            'telegram' => '1',
-            'email' => 'yarikmoklyak2010@gmail.com',
-            'email_verified_at' => Carbon\Carbon::now(),
-            'password' => Hash::make('Yarik1'),
-            'created_at' => Carbon\Carbon::now(),
-            'updated_at' => Carbon\Carbon::now()
-        ]);
-        
-        DB::table('subscriptions')->insert([
-            'id' => 4,
-            'user_id' => 4,
-            'is_active' => true,
-            'role' => 2,
-            'activated_at' => Carbon\Carbon::now(),
-            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
-            'created_at' => Carbon\Carbon::now(),
-            'updated_at' => Carbon\Carbon::now()
-        ]);
 
         // post tds
         DB::table('posts')->insert([
@@ -1055,29 +1037,6 @@ Weight, kg: 430',
             'updated_at' => Carbon\Carbon::now()
         ]);
 
-        // user 5 - TEST
-        DB::table('users')->insert([
-            'id' => 5,
-            'name' => 'User',
-            'phone_raw' => '0123456789',
-            'telegram' => '1',
-            'email' => 'sample.email@mail.com',
-            'email_verified_at' => Carbon\Carbon::now(),
-            'password' => Hash::make('password'),
-            'created_at' => Carbon\Carbon::now(),
-            'updated_at' => Carbon\Carbon::now()
-        ]);
-        
-        DB::table('subscriptions')->insert([
-            'id' => 5,
-            'user_id' => 5,
-            'is_active' => true,
-            'role' => 2,
-            'activated_at' => Carbon\Carbon::now(),
-            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
-            'created_at' => Carbon\Carbon::now(),
-            'updated_at' => Carbon\Carbon::now()
-        ]);
 
         // post dp
         DB::table('posts')->insert([

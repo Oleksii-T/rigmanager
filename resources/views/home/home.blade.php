@@ -14,7 +14,7 @@
             <li><a href="{{loc_url(route('search', ['type'=>'equipment-sell']))}}">{{__('ui.introSellEq')}}</a></li>
             <li><a href="{{loc_url(route('search', ['type'=>'equipment-buy']))}}">{{__('ui.introBuyEq')}}</a></li>
             <li><a href="{{loc_url(route('search', ['type'=>'services']))}}">{{__('ui.introSe')}}</a></li>
-            <li><a href="{{loc_url(route('search', ['type'=>'tenders']))}}">{{__('ui.introTender')}}</a></li>
+            <li><p class="template-link">{{__('ui.introTender')}}</p></li>
         </ul>
     </div>
 
@@ -69,10 +69,9 @@
                 <li><a class="tag-search-link" href="{{loc_url(route('27'))}}">{{__('tags.pipeHandling')}}</a></li>
                 <li><a class="tag-search-link" href="{{loc_url(route('28'))}}">{{__('tags.hseEq')}}</a></li>
                 <li><a class="tag-search-link" href="{{loc_url(route('29'))}}">{{__('tags.tong')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('30'))}}">{{__('tags.pipeLocking')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('31'))}}">{{__('tags.chemics')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('32'))}}">{{__('tags.chemLab')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('33'))}}">{{__('tags.jar')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('30'))}}">{{__('tags.chemics')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('31'))}}">{{__('tags.chemLab')}}</a></li>
+                <li><a class="tag-search-link" href="{{loc_url(route('32'))}}">{{__('tags.jar')}}</a></li>
                 <li><a class="tag-search-link" href="{{loc_url(route('other.eq'))}}">{{__('tags.other')}}</a></li>
             </ul>
         </div>
@@ -80,28 +79,42 @@
 
     <div class="partners">
         <div class="partner">
-            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+            <div class="partner-img-wraper">
+                <img src="{{asset('icons/beikenLogoIcon.svg')}}" alt="">
+            </div>
         </div>
         <div class="partner">
-            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+            <div class="partner-img-wraper">
+                <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+            </div>
         </div>
         <div class="partner">
-            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+            <div class="partner-img-wraper">
+                <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+            </div>
         </div>
         <div class="partner">
-            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+            <div class="partner-img-wraper">
+                <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+            </div>
         </div>
         <div class="partner">
-            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+            <div class="partner-img-wraper">
+                <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+            </div>
         </div>
         <div class="partner">
-            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+            <div class="partner-img-wraper">
+                <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+            </div>
         </div>
         <div class="partner">
-            <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+            <div class="partner-img-wraper">
+                <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
+            </div>
         </div>
         <div class="partner partner-more">
-            <a href="#">{{__('ui.otherPartners')}}</a>
+            <p class="template-link">{{__('ui.otherPartners')}}</p>
         </div>
     </div>
 
@@ -134,8 +147,8 @@
     <div class="epilogue">
         <h3 class="epilogue-logo"><span>RIG</span>MANAGER</h3>
         <div class="epilogue-text">
-            <p class="e-1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised.</p>
-            <p class="e-2">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+            <p class="e-1">{{__('ui.epilogue1')}}</p>
+            <p class="e-1">{{__('ui.epilogue2')}}</p>
         </div>
     </div>
 

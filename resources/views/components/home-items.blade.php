@@ -22,7 +22,11 @@
                 <p class="post-type">{{$post->type_readable_short}}</p>
             </div>
             <div class="item-title">
-                <p>{{ $post->title }}</p>
+                @if ( App::getLocale() == $post->origin_lang )
+                    <p>{{ $post->title }}</p>
+                @else
+                    <p>{{ $post->{$translated['title']} ? $post->{$translated['title']} : $post->title }}</p>
+                @endif
             </div>
             <div class="item-misc">
                 <p class="post-manuf-loc">{{ $post->manufacturer ? $post->manufacturer.', ' : '' }}{{ $post->region_encoded ? $post->region_readable : '' }}</p>

@@ -40,10 +40,9 @@
                         <p class="tag equipment first" id="27">{{__('tags.pipeHandling')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                         <p class="tag equipment first" id="28">{{__('tags.hseEq')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                         <p class="tag equipment first" id="29">{{__('tags.tong')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
-                        <p class="tag equipment first" id="30">{{__('tags.pipeLocking')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
-                        <p class="tag equipment first" id="31">{{__('tags.chemics')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
-                        <p class="tag equipment first" id="32">{{__('tags.chemLab')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
-                        <p class="tag equipment first" id="33">{{__('tags.jar')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
+                        <p class="tag equipment first" id="30">{{__('tags.chemics')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
+                        <p class="tag equipment first" id="31">{{__('tags.chemLab')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
+                        <p class="tag equipment first" id="32">{{__('tags.jar')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                     </div>
                 </div>
                 <div class="column">
@@ -97,18 +96,19 @@
                         <p class="tag equipment second" id="4.8">{{__('tags.component')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                     </div>
                     <div class="hidden tags equipment second tags_5">
-                        <p class="tag equipment second" id="5.1">{{__('tags.filter')}}</p>
-                        <p class="tag equipment second" id="5.2">{{__('tags.hose')}}</p>
+                        <p class="tag equipment second" id="5.1">{{__('tags.buffer')}}</p>
+                        <p class="tag equipment second" id="5.2">{{__('tags.mudDmpr')}}</p>
                         <p class="tag equipment second" id="5.3">{{__('tags.compressor')}}</p>
                         <p class="tag equipment second" id="5.4">{{__('tags.linesHP')}}</p>
                         <p class="tag equipment second" id="5.5">{{__('tags.manifold')}}</p>
-                        <p class="tag equipment second" id="5.6">{{__('tags.buffer')}}</p>
-                        <p class="tag equipment second" id="5.7">{{__('tags.clear')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
+                        <p class="tag equipment second" id="5.6">{{__('tags.clear')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
+                        <p class="tag equipment second" id="5.7">{{__('tags.recycling')}}</p>
                         <p class="tag equipment second" id="5.8">{{__('tags.prepare')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                         <p class="tag equipment second" id="5.9">{{__('tags.store')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
-                        <p class="tag equipment second" id="5.10">{{__('tags.recycling')}}</p>
-                        <p class="tag equipment second" id="5.11">{{__('tags.standPipe')}}</p>
+                        <p class="tag equipment second" id="5.10">{{__('tags.standPipe')}}</p>
+                        <p class="tag equipment second" id="5.11">{{__('tags.filter')}}</p>
                         <p class="tag equipment second" id="5.12">{{__('tags.trashPump')}}</p>
+                        <p class="tag equipment second" id="5.13">{{__('tags.hose')}}</p>
                     </div>
                     <div class="hidden tags equipment second tags_6">
                         <p class="tag equipment second" id="6.1">{{__('tags.coring')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
@@ -250,11 +250,13 @@
                         <p class="tag equipment second" id="26.7">{{__('tags.travelBlock')}}</p>
                     </div>
                     <div class="hidden tags equipment second tags_27">
-                        <p class="tag equipment second" id="27.1">{{__('tags.heavingPlug')}}</p>
-                        <p class="tag equipment second" id="27.2">{{__('tags.manualClamp')}}</p>
-                        <p class="tag equipment second" id="27.3">{{__('tags.pipeClamp')}}</p>
-                        <p class="tag equipment second" id="27.4">{{__('tags.casingGrip')}}</p>
-                        <p class="tag equipment second" id="27.5">{{__('tags.elevator')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
+                        <p class="tag equipment second" id="37.1">{{__('tags.slip')}}</p>
+                        <p class="tag equipment second" id="27.2">{{__('tags.heavingPlug')}}</p>
+                        <p class="tag equipment second" id="27.3">{{__('tags.manualClamp')}}</p>
+                        <p class="tag equipment second" id="27.4">{{__('tags.spider')}}</p>
+                        <p class="tag equipment second" id="27.5">{{__('tags.pipeClamp')}}</p>
+                        <p class="tag equipment second" id="27.6">{{__('tags.casingGrip')}}</p>
+                        <p class="tag equipment second" id="27.7">{{__('tags.elevator')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                     </div>
                     <div class="hidden tags equipment second tags_28">
                         <p class="tag equipment second" id="28.1">{{__('tags.fireHazard')}}</p>
@@ -276,10 +278,6 @@
                         <p class="tag equipment second" id="29.9">{{__('tags.tongHi')}}</p>
                     </div>
                     <div class="hidden tags equipment second tags_30">
-                        <p class="tag equipment second" id="30.1">{{__('tags.slip')}}</p>
-                        <p class="tag equipment second" id="30.2">{{__('tags.spider')}}</p>
-                    </div>
-                    <div class="hidden tags equipment second tags_31">
                         <p class="tag equipment second" id="31.1">{{__('tags.sequesteringAgentFiltrationControl')}}</p>
                         <p class="tag equipment second" id="31.2">{{__('tags.mudHeaver')}}</p>
                         <p class="tag equipment second" id="31.3">{{__('tags.LCM')}}</p>
@@ -287,7 +285,7 @@
                         <p class="tag equipment second" id="31.5">{{__('tags.nonOrganic')}}</p>
                         <p class="tag equipment second" id="31.6">{{__('tags.lubticants')}}</p>
                     </div>
-                    <div class="hidden tags equipment second tags_32">
+                    <div class="hidden tags equipment second tags_31">
                         <p class="tag equipment second" id="32.1">{{__('tags.densityEq')}}</p>
                         <p class="tag equipment second" id="32.2">{{__('tags.asgEq')}}</p>
                         <p class="tag equipment second" id="32.3">{{__('tags.viscosityEq')}}</p>
@@ -295,7 +293,7 @@
                         <p class="tag equipment second" id="32.5">{{__('tags.pHEq')}}</p>
                         <p class="tag equipment second" id="32.6">{{__('tags.waterLossEq')}}</p>
                     </div>
-                    <div class="hidden tags equipment second tags_33">
+                    <div class="hidden tags equipment second tags_32">
                         <p class="tag equipment second" id="33.1">{{__('tags.hyrdoMeck')}}</p>
                         <p class="tag equipment second" id="33.2">{{__('tags.hydraulic')}}</p>
                     </div>
@@ -331,11 +329,11 @@
                         <p class="tag equipment third" id="4.7.3">{{__('tags.filters')}}</p>
                         <p class="tag equipment third" id="4.7.4">{{__('tags.barrel')}}</p>
                     </div>
-                    <div class="hidden tags equipment third tags_5.7">
-                        <p class="tag equipment third" id="5.7.1">{{__('tags.shaker')}}</p>
-                        <p class="tag equipment third" id="5.7.2">{{__('tags.degasser')}}</p>
-                        <p class="tag equipment third" id="5.7.3">{{__('tags.desilter')}}</p>
-                        <p class="tag equipment third" id="5.7.4">{{__('tags.desender')}}</p>
+                    <div class="hidden tags equipment third tags_5.6">
+                        <p class="tag equipment third" id="5.6.1">{{__('tags.shaker')}}</p>
+                        <p class="tag equipment third" id="5.6.2">{{__('tags.degasser')}}</p>
+                        <p class="tag equipment third" id="5.6.3">{{__('tags.desilter')}}</p>
+                        <p class="tag equipment third" id="5.6.4">{{__('tags.desender')}}</p>
                     </div>
                     <div class="hidden tags equipment third tags_5.8">
                         <p class="tag equipment third" id="5.8.1">{{__('tags.mixer')}}</p>
@@ -462,7 +460,7 @@
                         <p class="tag equipment third" id="26.3.5">{{__('tags.drillLine')}}</p>
                         <p class="tag equipment third" id="26.3.6">{{__('tags.electroEngines')}}</p>
                     </div>
-                    <div class="hidden tags equipment third tags_27.5">
+                    <div class="hidden tags equipment third tags_27.7">
                         <p class="tag equipment third" id="27.5.1">{{__('tags.elevatorS')}}</p>
                         <p class="tag equipment third" id="27.5.2">{{__('tags.elevatorI')}}</p>
                     </div>

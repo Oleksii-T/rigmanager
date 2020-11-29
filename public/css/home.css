@@ -1,21 +1,18 @@
-#homeTab { background-color: #FE9042; }
-
-.searchButton {
-    background-color: #ffffff;
-    padding: 4px 8px;
-    font-size: 110%;
-    cursor: pointer;
-    border: 2px solid #00aee6;
-    border-radius: 5px;
-    transition-duration: 0.2s;
+#homeTab { 
+    background-color: #FE9042; 
 }
 
-.searchButton:hover {
-    background-color: #00aee6;
-    box-shadow: 0px 0px 10px 5px #888;
+.template-link {
+    text-decoration: underline;
+    display: inline;
+    cursor: not-allowed;
 }
 
-/*=======V====INTRODUCTION====V=======*/
+.template-link:hover {
+    color: #FE9042;
+}
+
+/*=========INTRODUCTION=========*/
 
 div.introduction {
     text-align: center;
@@ -41,7 +38,7 @@ div.introduction h1{
 }
 
 
-/*=V============V======V====SEARCH_BAR====V======V============V=*/
+/*=========SEARCH_BAR=========*/
 
 #searchBar {
     overflow: hidden;
@@ -107,7 +104,7 @@ div.introduction h1{
     float: right;
 }
 
-/*============TAG_SEARCH============*/
+/*=========TAG_SEARCH=========*/
 
 .tag-search {
     background-color: rgba(11, 11, 11, 0.8);
@@ -137,7 +134,7 @@ div.introduction h1{
     color: #fe9042;
 }
 
-/*========PARNTERS========*/
+/*=========PARNTERS=========*/
 
 .partners {
     margin: 0px auto 40px auto;
@@ -152,9 +149,17 @@ div.introduction h1{
     border-radius: 5px;
 }
 
-.partners img {
+.partner-img-wraper {
     width: 100px;
+    height: 59px;
     overflow: hidden;
+}
+
+.partner-img-wraper img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 15px;
 }
 
 .partner-more {
@@ -162,7 +167,8 @@ div.introduction h1{
     vertical-align: middle;
 }
 
-.partner-more a {
+.partner-more a,
+.partner-more p {
     white-space: pre-line;
     font-size: 90%;
     padding: 5px 0px 0px 15px;
@@ -173,7 +179,7 @@ div.introduction h1{
     color: #fe9042;
 }
 
-/*========ITEMS========*/
+/*=========ITEMS=========*/
 
 .items-block-title {
     font-size: 200%;
@@ -203,7 +209,7 @@ div.introduction h1{
     color: #fe9042;
 }
 
-/*========EPILOGUE========*/
+/*=========EPILOGUE=========*/
 
 .epilogue {
     text-align: center;
