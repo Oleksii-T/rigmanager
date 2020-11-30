@@ -50,8 +50,8 @@ return [
     'tagRuleEqBtn' => 'See list of equipment category codes',
     'tagRuleSeBtn' => 'See list of service category codes',
     'manufManufDatePN' => 'Manufacturer. Date of manufacture. Part number',
-    'manufManufDatePNRule' => 'We advise adding Manufacturer, Production Date and Factory Item Number to make it easier for customers to find and understand your proposal.
-        Minimum 5 (3 for p / n) characters.
+    'manufManufDatePNRule' => 'We advise adding Manufacturer, Manufacturing Date and Factory Item Number to make it easier for customers to find and understand your proposal.
+        Minimum 5 for manufacturer, 4 for manufacturing date, 3 for p/n characters.
         Maximum 70 characters.',
     'currency' => 'Currency',
     'currencyRule' => 'Only certain values ​​are allowed for input:

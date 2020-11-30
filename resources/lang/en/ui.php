@@ -261,7 +261,7 @@ return [
         Maximum 70 symbols.',
     'manufacturedDate' => 'Manufacture Date',
     'manufDateHelp' => 'We advise include Manufacture Date to simplify search and understanding of Your proposition by viewers.
-        Minimum 5 symbols.
+        Minimum 4 symbols.
         Maximum 70 symbols.',
     'partNum' => 'Part Number',
     'partNumHelp' => 'We advise include Part Number to simplify search and understanding of Your proposition by viewers.

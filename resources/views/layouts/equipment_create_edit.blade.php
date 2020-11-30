@@ -673,7 +673,7 @@
                         maxlength: 70
                     },
                     manufactured_date: {
-                        minlength: 5,
+                        minlength: 4,
                         maxlength: 70
                     },
                     part_number: {
@@ -737,7 +737,7 @@
                         maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
                     },
                     manufactured_date: {
-                        minlength: '{{ __("validation.min.string", ["min" => 5]) }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 4]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
                     },
                     part_number: {

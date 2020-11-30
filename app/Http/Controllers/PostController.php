@@ -593,7 +593,7 @@ class PostController extends Controller
                                                             //validate  "manufacturer" field
                                                             if ($row[10]==null || ( is_string($row[10]) && mb_strlen($row[10])>5 && mb_strlen($row[10])<70) ) {
                                                                 //validate  "manufactured date" field
-                                                                if ($row[11]==null || ( is_string($row[11]) && mb_strlen($row[11])>5 && mb_strlen($row[11])<70 )) {
+                                                                if ($row[11]==null || ( is_string($row[11]) && mb_strlen($row[11])>3 && mb_strlen($row[11])<70 )) {
                                                                     //validate  "part number" field
                                                                     if ($row[12]==null || ( is_string($row[12]) && mb_strlen($row[12])>3 && mb_strlen($row[12])<70 )) {
                                                                         //validate "cost" field
