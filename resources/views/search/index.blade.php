@@ -26,6 +26,12 @@
     <!-- Search result status show -->
     <div id="search-status">
         @if ( $search['type'] == 'text' )
+            <div id="searchText">
+                <p class="search-status-text">{{__('ui.searchByText')}}: <span class="search-status-value" >{{$search['value']}}</span></p>
+                @if (isset($resByTag) && $resByTag['searchedTag'])
+                    <p class="search-status-text status-choosed-tags">{{__('ui.choosedFromTags')}}: <a title="{{__('ui.delete')}}" class="search-status-value status-delete" href="{{loc_url(route('search', ['text'=>$search['value']]))}}">{{$resByTag['searchedTag']}}</a>
+                @endif
+            </div>
             <div class="mailer-suggestion">
                 <p class="user-text-request" hidden>{{$search['value']}}</p>
                 <button id="addTextToMailer">{{__('ui.mailerSuggestText')}}</button>
@@ -37,8 +43,8 @@
         @elseif ( $search['type'] == 'tags' )
             <div id="searchTags">
                 @foreach ($search['value'] as $id => $tag)
-                    <a class="itemTag" href="{{ loc_url(route($id)) }}">{{$tag}}</a>
-                    <span>></span>
+                    <a class="itemTag" href="{{ loc_url(route('tag-'.$id)) }}">{{$tag}}</a>
+                    <span class="item-tag-delim">></span>
                 @endforeach
             </div>
             <div class="mailer-suggestion mailer-tag-suggestion">
@@ -47,7 +53,7 @@
             </div>
         @elseif ( $search['type'] == 'author' )
             <div id="searchAuthor">
-                <p>{{__('ui.searchByAuthor')}}: <span>{{$search['value']['name']}}</span></p>
+                <p class="search-status-text">{{__('ui.searchByAuthor')}}: <a class="search-status-value" href="{{loc_url(route('search', ['author'=>$search['value']['name']]))}}">{{$search['value']['name']}}</a></p>
             </div>
             <div class="mailer-suggestion">
                 <button id="addAuthorToMailer" class="{{$search['value']['id']}}">{{__('ui.mailerSuggestAuthor')}}</button>
@@ -55,9 +61,13 @@
             </div>
         @elseif ( $search['type'] == 'type' )
             <div id="searchType">
-                <p>{{__('ui.searchByType')}}: <span>{{$search['value']}}</span></p>
+                <p class="search-status-text">{{__('ui.searchByType')}}: <span class="search-status-value">{{$search['value']}}</span></p>
+                @if (isset($resByTag) && $resByTag['searchedTag'])
+                    <p class="search-status-text status-choosed-tags">{{__('ui.choosedFromTags')}}: <a title="{{__('ui.delete')}}" class="search-status-value status-delete" href="{{loc_url(route('search', ['type'=>$search['url']]))}}">{{$resByTag['searchedTag']}}</a>
+                @endif
             </div>
         @endif
+
         @if ($search['isEmpty'])
             <div class="empty-search-wraper">
                 <img class="empty-search-icon fail-icon" src="{{asset('icons/failIcon.svg')}}" alt="{{__('alt.keyword')}}">
@@ -193,6 +203,22 @@
                 </div>
             </div>
 
+            @if (isset($resByTag) && $resByTag['map'])
+                <div class="result-by-tag">
+                    @foreach ($resByTag['map'] as $tagId => $tag)
+                        @if ($search['type']=='text')
+                            <a href="{{loc_url(route('search', [$search['type']=>$search['value'], 'tag'=>$tag['url']]))}}">{{$tag['name']}} <span>{{$tag['amount']}}</span></a>
+                        @elseif ($search['type']=='author')
+                            <a href="{{loc_url(route('search', [$search['type']=>$search['value']['name'], 'tag'=>$tag['url']]))}}">{{$tag['name']}} <span>{{$tag['amount']}}</span></a>
+                        @elseif ($search['type']=='type')
+                            <a href="{{loc_url(route('search', ['type'=>$search['url'], 'tag'=>$tag['url']]))}}">{{$tag['name']}} <span>{{$tag['amount']}}</span></a>
+                        @elseif ($search['type']=='tags' || $search['type']=='none')
+                            <a href="{{loc_url(route('tag-'.$tagId))}}">{{$tag['name']}} <span>{{$tag['amount']}}</span></a>
+                        @endif
+                    @endforeach
+                </div>
+            @endif
+
             <div class="user-settings"></div>
         @endif
     </div>
@@ -231,6 +257,10 @@
 
             var filters = new Object();
             filters.currency = 'UAH';
+
+            //remove last '>' symbol from searched tags
+            $('#searchTags span.item-tag-delim').last().remove();
+            $('#searchText span.item-tag-delim').last().remove();
 
             //handle manual ajax pagination
             $('body').on('click', 'div.filter-pagination a', function(e){
@@ -275,7 +305,6 @@
             }
 
             function filter() {
-                // make loading gif
                 filterLable();
                 // show initial pagination if there is no filters, else show only ajax pagination
                 $('div.filtered-items').addClass('hidden'); //hide old items
@@ -289,7 +318,6 @@
                         postsIds: "{{$postsIds}}"
                     },
                     success: function(data) {
-                        console.log(data);
                         $('div.filtered-items').empty(); // remove old items
                         $('div.loading-gif').addClass('hidden'); //hide loading gif
                         if (data) {
@@ -377,6 +405,11 @@
                             continue;
                         }
                         label = $('.sort-select').children('option:selected').html();
+                    } else if (filterName=='thread') {
+                        if (filters[filterName]==0) {
+                            continue;
+                        }
+                        label = $('.thread-select').children('option:selected').html();
                     }
                     $('.user-settings').append('<div class="user-setting"><span class="setting-name">'+label+'</span><button class="'+filterName+' remove-setting" title="{{__("ui.delete")}}"><img src="{{asset("icons/closeWhiteIcon.svg")}}" alt="{{__("alt.keyword")}}"></button></div>');
                 }
@@ -543,9 +576,6 @@
                 });
                 return result;
             }
-
-            //remove last '>' symbol from searched tags
-            $('#searchTags span').last().remove();
 
             $('#search-bar-clear-btn').click(function(){
                 $('#inputSearch').val("");

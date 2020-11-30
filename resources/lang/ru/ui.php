@@ -166,6 +166,8 @@ return [
     'searchService' => 'Поиск Сервисов по категориям',
     'searchByAuthor' => 'Объявления автора',
     'searchByType' => 'Объявления по типу',
+    'searchByText' => 'Объявления по поиску',
+    'choosedFromTags' => 'Выборка из категорий',
     'other' => 'Другое',
     'searchSuccess' => 'Вот что нам удалось найти',
     'searchFail' => 'К сожалению, нам не удалось найти
@@ -181,6 +183,7 @@ return [
     'searchAmount' => 'Результаты Поиска',
     'postType' => 'Тип',
     'postRole' => 'Сектор',
+    'noTag' => 'Без категории',
 
     // post edit/create/edit massages
     'equipment' => 'Оборудование',

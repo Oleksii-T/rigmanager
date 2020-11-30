@@ -58,7 +58,6 @@ return [
     'chooseFile' => 'Choose File',
     'post' => 'Post',
     
-
     // auth massages
     'signIn' => 'Sign in',
     'socialSignIn' => 'Sign in via',
@@ -168,6 +167,8 @@ return [
     'searchService' => 'Search Services by categories',
     'searchByAuthor' => 'Posts by author',
     'searchByType' => 'Posts by type',
+    'searchByText' => 'Posts by keywords',
+    'choosedFromTags' => 'Browsing in categories',
     'other' => 'Other',
     'searchSuccess' => 'That is what we found',
     'searchFail' => 'Sorry, we can not find
@@ -183,6 +184,7 @@ return [
     'searchAmount' => 'Search Results',
     'postType' => 'Post type',
     'postRole' => 'Legal type',
+    'noTag' => 'Without Category',
 
     // post edit/create/show massages
     'equipment' => 'Equipment',

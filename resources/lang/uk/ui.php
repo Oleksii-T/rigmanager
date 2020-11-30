@@ -168,6 +168,8 @@ return [
     'searchService' => 'Шукати Сервіси за категоріями',
     'searchByAuthor' => 'Оголошення автора',
     'searchByType' => 'Оголошення по типу',
+    'searchByText' => 'Оголошення по пошуку',
+    'choosedFromTags' => 'Вибірка з категорій',
     'other' => 'Інше',
     'searchSuccess' => 'Ось що нам вдалося знайти',
     'searchFail' => 'На жаль, нам не вдалося знайти
@@ -183,6 +185,7 @@ return [
     'searchAmount' => 'Результати Пошуку',
     'postType' => 'Тип',
     'postRole' => 'Сектор',
+    'noTag' => 'Без категорії',
 
    // post edit/create massages
     'equipment' => 'Обладнання',

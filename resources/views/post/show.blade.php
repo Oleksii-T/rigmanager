@@ -51,7 +51,7 @@
                     @endif
                     <div id="item-tag-section">
                         @foreach ($post->tag_map as $id => $tag)
-                            <a class="item-tag" href="{{loc_url(route($id))}}">{{$tag}}</a>
+                            <a class="item-tag" href="{{loc_url(route('tag-'.$id))}}">{{$tag}}</a>
                             <span class="item-tag-delim">></span>
                         @endforeach
                     </div>

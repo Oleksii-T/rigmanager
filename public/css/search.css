@@ -3,7 +3,10 @@
     margin-bottom: 10px;
 }
 
-#searchTags, #searchAuthor, #searchType {
+#searchText, 
+#searchTags, 
+#searchAuthor, 
+#searchType {
     padding: 0px 20px;
 }
 
@@ -11,18 +14,33 @@
     display: inline-block;
 }
 
-#searchAuthor p,
-#searchType p {
+.search-status-text {
     font-size: 120%;
 }
 
-#searchAuthor p span,
-#searchType p span {
+.search-status-value {
     font-size: 110%;
     border-bottom: 2px solid #FE9042;
+    text-decoration: none;
+    transition: 0.2s;
 }
 
-#searchTags a {
+.status-choosed-tags {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+a.search-status-value:hover,
+a.search-status-value:hover {
+    color: #FE9042;
+}
+
+a.status-delete:hover {
+    color: red;
+    border-bottom: 2px solid red;
+}
+
+a.itemTag {
     text-decoration: none;
     border: none;
     padding: 7px;
@@ -31,8 +49,7 @@
 }
 
 .mailer-suggestion {
-    margin-top: 20px;
-    margin-left: 30px;
+    margin: 30px 0px 0px 30px
 }
 
 .mailer-suggestion button {
@@ -97,9 +114,10 @@ img.fail-icon {
 }
 
 div.filters {
-    margin-top: 20px;
+    margin: 20px 0px;
     padding: 20px;
     border-top: 2px solid #888888;
+    border-bottom: 2px solid #888888;
 }
 
 h2.filters-heading {
@@ -125,8 +143,7 @@ div.filter-input {
 }
 
 div.user-settings {
-    padding-top: 15px;
-    border-top: 2px solid #888888;
+    margin-top: 15px;
 }
 
 div.user-setting {
@@ -157,6 +174,29 @@ button.remove-setting img {
     vertical-align: middle;
     height: 20px;
     width: 20px;
+}
+
+.result-by-tag {
+    margin: 0px 30px;
+}
+
+.result-by-tag a {
+    font-size: 90%;
+    color: #cacaca;
+    margin-right: 15px;
+    transition: 0.2s;
+    text-decoration: underline;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.result-by-tag a:hover {
+    color: #fe9042;
+}
+
+.result-by-tag a span{
+    font-size: inherit;
+    color: #888888;
 }
 
 .loading-gif {

@@ -760,13 +760,22 @@ trait Tags
         ];
     }
 
-    // get the tag if by url
+    // get the tag_id by url. 'perevodniki' => '2.1'
     public function getIdByUrl($url) 
     {
         $this->constructTagsUrls();
         $res = array_search($url, $this->tagsUrls);
         if ($res !== false) {
             return $res;
+        }
+        abort(404);
+    }
+
+    //get url by tag_id. '2.1' => 'perevodniki'
+    public function getUrlByTag($id) {
+        $this->constructTagsUrls();
+        if ( array_key_exists($id, $this->tagsUrls) ) {
+            return $this->tagsUrls[$id];
         }
         abort(404);
     }
@@ -833,6 +842,9 @@ trait Tags
 
     // transform '2.3' to 'drillString'
     private function getTagNameById($id) {
+        if (!$this->tagsMap) {
+            $this->constructTagsMap();
+        }
         return $this->tagsMap[$id];
     }
 
