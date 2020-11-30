@@ -14,8 +14,4 @@ class Partner extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
-
-    public function getLogoAttribute($value) {
-        return asset(Storage::disk('local')->url($value)); //asset() works thanks to php artisan storage:link
-    }
 }

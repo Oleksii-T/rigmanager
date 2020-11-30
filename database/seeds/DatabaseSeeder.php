@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
             'is_on_home' => true,
             'comment' => 'ТОВ «Бейкень енергетика Україна»',
             'comment' => '',
-            'logo' => 'partners_logos/beiken.svg'
+            'logo' => 'icons/beikenIcon.svg'
         ]);
         
         DB::table('subscriptions')->insert([

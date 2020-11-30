@@ -82,7 +82,7 @@
             <div class="partner">
                 <div class="partner-img-wraper">
                     <a href="{{loc_url(route('search', ['author'=>$partner->user->name]))}}">
-                        <img src="{{$partner->logo}}" alt="">
+                        <img src="{{asset($partner->logo)}}" alt="">
                     </a>
                 </div>
             </div>
