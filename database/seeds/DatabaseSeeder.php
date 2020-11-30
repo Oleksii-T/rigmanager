@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'Administrator',
+            'url_name' => 'administrator',
             'phone_raw' => '0502115147',
             'email' => 'alex.tarbeev@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
@@ -62,6 +63,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 2,
             'name' => 'Beiken LLC',
+            'url_name' => 'beiken-llc',
             'phone_raw' => '0000000000',
             'email' => 'pavlo.tarb@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
@@ -70,6 +72,15 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()
         ]);
 
+        DB::table('partners')->insert([
+            'id' => 1,
+            'user_id' => 2,
+            'is_on_home' => true,
+            'comment' => 'ТОВ «Бейкень енергетика Україна»',
+            'comment' => '',
+            'logo' => 'partners_logos/beiken.svg'
+        ]);
+        
         DB::table('subscriptions')->insert([
             'id' => 2,
             'user_id' => 2,
@@ -85,6 +96,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 3,
             'name' => 'Dmitriy',
+            'url_name' => 'dmitriy',
             'phone_raw' => '0000000000',
             'email' => 'dmytro.tarbeiev@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
@@ -108,6 +120,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 4,
             'name' => 'User',
+            'url_name' => 'user',
             'phone_raw' => '0123456789',
             'telegram' => '1',
             'email' => 'sample.email@mail.com',
@@ -134,6 +147,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 5,
             'name' => 'Yaroslav',
+            'url_name' => 'Yaroslav',
             'phone_raw' => '1234567890',
             'telegram' => '1',
             'email' => 'yarikmoklyak2010@gmail.com',

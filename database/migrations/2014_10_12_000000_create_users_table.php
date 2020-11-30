@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id(); // id of user
             $table->boolean('is_banned')->default(false);
             $table->string('name', 255); //name of user
+            $table->string('url_name', 255); //name of user for url
             $table->string('google_id', 255)->unique()->nullable(); //id from google db
             $table->string('facebook_id', 255)->unique()->nullable(); //id from facebook db
             $table->string('phone_raw', 11)->nullable(); //phone number of user

@@ -2,14 +2,15 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use App\ProfileImage;
 use App\Subscription;
-use App\Post;
 use App\Favourite;
+use App\Partner;
 use App\Mailer;
+use App\Post;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -58,6 +59,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function subscription()
     {
         return $this->hasOne(Subscription::class)->latest();
+    }
+
+    public function partner()
+    {
+        return $this->hasOne(Partner::class)->latest();
     }
 
     public function mailer()

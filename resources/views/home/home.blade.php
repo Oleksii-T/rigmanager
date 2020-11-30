@@ -78,11 +78,15 @@
     </div>
 
     <div class="partners">
-        <div class="partner">
-            <div class="partner-img-wraper">
-                <img src="{{asset('icons/beikenLogoIcon.svg')}}" alt="">
+        @foreach ($partners as $partner)
+            <div class="partner">
+                <div class="partner-img-wraper">
+                    <a href="{{loc_url(route('search', ['author'=>$partner->user->name]))}}">
+                        <img src="{{$partner->logo}}" alt="">
+                    </a>
+                </div>
             </div>
-        </div>
+        @endforeach
         <div class="partner">
             <div class="partner-img-wraper">
                 <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
