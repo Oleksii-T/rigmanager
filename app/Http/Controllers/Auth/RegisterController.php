@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use App\User;
+use App\Http\Controllers\Traits\ImageUploader;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Rules\Phone;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use App\Rules\UserName;
 use App\Rules\Password;
-use App\Http\Controllers\Traits\ImageUploader;
+use App\Rules\Phone;
+use App\User;
 
 class RegisterController extends Controller
 {
@@ -85,7 +85,9 @@ class RegisterController extends Controller
         $telegram = array_key_exists('telegram', $data) ? 1 : 0;
         $whatsapp = array_key_exists('whatsapp', $data) ? 1 : 0;
         $phone = array_key_exists('whatsapp', $data) ? $data['phone'] : null;
+        $url = transliteration($data['name'], User::all()->pluck('url_name')->toArray());
         $user = User::create([
+            'url_name' => $url,
             'name' => $data['name'],
             'phone' => $phone,
             'viber' => $viber,

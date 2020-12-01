@@ -81,7 +81,7 @@
         @foreach ($partners as $partner)
             <div class="partner">
                 <div class="partner-img-wraper">
-                    <a href="{{loc_url(route('search', ['author'=>$partner->user->name]))}}">
+                    <a href="{{loc_url(route('search', ['author'=>$partner->user->url_name]))}}">
                         <img src="{{asset($partner->logo)}}" alt="">
                     </a>
                 </div>

@@ -54,6 +54,7 @@ class UserController extends Controller
         $input['viber'] = $request->viber ? 1 : 0;
         $input['telegram'] = $request->telegram ? 1 : 0;
         $input['whatsapp'] = $request->whatsapp ? 1 : 0;
+        $input['url_name'] = transliteration($input['name'], User::all()->pluck('url_name')->toArray());
         $user = auth()->user();
         if (!$user->is_social) {
             if ($input['password']) {

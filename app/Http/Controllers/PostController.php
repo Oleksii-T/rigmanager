@@ -49,45 +49,6 @@ class PostController extends Controller
         return view('post.service_create', compact('user'));
     }
 
-    private function generatePostUrl($title) 
-    {
-        $converter = array(
-            'а' => 'a',   'б' => 'b',   'в' => 'v',
-            'г' => 'g',   'д' => 'd',   'е' => 'e',
-            'ё' => 'e',   'ж' => 'zh',  'з' => 'z',
-            'и' => 'i',   'й' => 'y',   'к' => 'k',
-            'л' => 'l',   'м' => 'm',   'н' => 'n',
-            'о' => 'o',   'п' => 'p',   'р' => 'r',
-            'с' => 's',   'т' => 't',   'у' => 'u',
-            'ф' => 'f',   'х' => 'h',   'ц' => 'c',
-            'ч' => 'ch',  'ш' => 'sh',  'щ' => 'sch',
-            'ь' => '\'',  'ы' => 'y',   'ъ' => '\'',
-            'э' => 'e',   'ю' => 'yu',  'я' => 'ya',
-
-            'і' => 'i',   'є' => 'ye',   'ї' => 'yi'
-        );
-        $t = mb_strtolower($title); // transform to lower case
-        $t = strtr($t, $converter); // convert to transliteration
-        $t = str_replace(' ', '-', $t); //change all spaces to hyphens
-        $t = preg_replace('~[^a-z0-9-]+~ui', '', $t); //remova all special chars
-        $t = preg_replace('/-+/', '-', $t); // remove all double hyphens
-        $t = trim($t, "-"); //remove hyphens from end and begining
-        $t = mb_substr($t, 0, 40); // cut to 40 length
-        $t = trim($t, "-"); //remove hyphens from end and begining
-        $urls = Post::all()->pluck('url_name')->toArray();
-        // generage random sufix to prevent same urls
-        if (in_array($t, $urls)) {
-            while(true) {
-                $rand = mb_strtolower(Str::random(3));
-                if (!in_array($t.'-'.$rand, $urls)) {
-                    $t = $t.'-'.$rand;
-                    break;
-                }
-            }
-        }
-        return $t;
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -110,7 +71,7 @@ class PostController extends Controller
         }
 
         //craete the url name
-        $input['url_name'] = $this->generatePostUrl($input['title']);
+        $input['url_name'] = transliteration($input['title'], Post::all()->pluck('url_name')->toArray());
 
         //make lifetime and active_to columns
         switch ($input['lifetime']) {
@@ -249,9 +210,8 @@ class PostController extends Controller
         $input = $request->all();
 
         //recraete the url name if title was changed
-        $input['url_name'] = $post->url_name;
         if ($post->title != $input['title']) {
-            $input['url_name'] = $this->generatePostUrl($input['title']);
+            $input['url_name'] = transliteration($input['title'], Post::all()->pluck('url_name')->toArray());
         }
 
         // parse messangers values. If no phone specified remove messangers
@@ -510,7 +470,7 @@ class PostController extends Controller
                     break;
             }
             // make url_name
-            $url_name = $this->generatePostUrl($row[1]);
+            $url_name = transliteration($row[1], Post::all()->pluck('url_name')->toArray());
             $input = [
                 'origin_lang' => $lang,
                 'url_name' => $url_name,

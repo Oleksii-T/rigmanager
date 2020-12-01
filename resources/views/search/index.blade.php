@@ -53,7 +53,7 @@
             </div>
         @elseif ( $search['type'] == 'author' )
             <div id="searchAuthor">
-                <p class="search-status-text">{{__('ui.searchByAuthor')}}: <a class="search-status-value" href="{{loc_url(route('search', ['author'=>$search['value']['name']]))}}">{{$search['value']['name']}}</a></p>
+                <p class="search-status-text">{{__('ui.searchByAuthor')}}: <a class="search-status-value" href="{{loc_url(route('search', ['author'=>$search['value']['url']]))}}">{{$search['value']['name']}}</a></p>
             </div>
             <div class="mailer-suggestion">
                 <button id="addAuthorToMailer" class="{{$search['value']['id']}}">{{__('ui.mailerSuggestAuthor')}}</button>

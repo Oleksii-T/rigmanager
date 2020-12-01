@@ -95,7 +95,10 @@ class SearchController extends Controller
     public function searchAuthor($input)
     {
         $author = $input['author'];
-        $user = User::where('name', $author)->first();
+        $user = User::where('url_name', $author)->first();
+        if (!$user) {
+            abort(404);
+        }
         $posts_list = $user->posts->where("is_active", 1);
         if (isset($input['tag'])) {
             $tag = $this->getIdByUrl($input['tag']);
@@ -104,7 +107,7 @@ class SearchController extends Controller
         } else {
             $resByTag = $this->countResultByTags($posts_list);
         }
-        return $this->serializeSearch($posts_list, $resByTag, 'author', ['name'=>$user->name, 'id'=>$user->id]);
+        return $this->serializeSearch($posts_list, $resByTag, 'author', ['name'=>$user->name, 'id'=>$user->id, 'url'=>$user->url_name]);
     }
 
     public function list() 
@@ -137,6 +140,7 @@ class SearchController extends Controller
                 break;
             case 'author':
                 $search['value']['name'] = $value['name'];
+                $search['value']['url'] = $value['url'];
                 $search['value']['id'] = $value['id'];
                 break;
             default:

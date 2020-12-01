@@ -124,7 +124,7 @@
                         </div>
                         <!-- mb add time how many days registered -->
                     </div>
-                    <a class="def-button" href="{{loc_url(route('search', ['author'=>$post->user->name]))}}">{{__('ui.otherAuthorPosts')}}</a>
+                    <a class="def-button" href="{{loc_url(route('search', ['author'=>$post->user->url_name]))}}">{{__('ui.otherAuthorPosts')}}</a>
                     <button class="def-button" id="modalTriger">{{__('ui.showContacts')}}</button>
                     @auth
                         @if ($post->user_id != Auth::id())
