@@ -10,12 +10,8 @@
     <div class="master-wraper">
         <div id="profileContent">
             <nav class="profileNavBar">
-                <ul>
-                    <li><a id="personlaInfoBtn" href="{{loc_url(route('profile'))}}">{{__('ui.profileInfo')}}</a></li>
-                    <li><a id="mailerBtn" href="{{loc_url(route('mailer.index'))}}">{{__('ui.mailer')}}</a></li>
-                    <li><a id="mySubscriptionBtn" href="{{loc_url(route('profile.subscription'))}}">{{__('ui.mySubscription')}}</a></li>
-                </ul>
-            </nav>
+                <x-profile-nav/>
+            </nav> 
 
             <div class="mailerContent">
                 @yield('page-title')

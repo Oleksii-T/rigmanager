@@ -14,18 +14,16 @@
             <li><a href="{{loc_url(route('search', ['type'=>'equipment-sell']))}}">{{__('ui.introSellEq')}}</a></li>
             <li><a href="{{loc_url(route('search', ['type'=>'equipment-buy']))}}">{{__('ui.introBuyEq')}}</a></li>
             <li><a href="{{loc_url(route('search', ['type'=>'services']))}}">{{__('ui.introSe')}}</a></li>
-            <li><p class="template-link">{{__('ui.introTender')}}</p></li>
+            <li><a class="not-allowed" href="{{loc_url(route('home'))}}">{{__('ui.introTender')}}</a></li>
         </ul>
     </div>
 
     <div id="searchBar">
         <form method="GET" action="{{ loc_url(route('search')) }}">
             <div id="inputWraper">
-                <img id="searchIcon" src="{{ asset('icons/searchIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                <button id="search-bar-clear-btn" title="{{__('ui.clearText')}}" type="button"><img src="{{ asset('icons/closeBlackIcon.svg') }}" alt="{{__('alt.keyword')}}"></button>
-                <input id="inputSearch" class="def-input" name="text" placeholder="{{__('ui.search')}}..." required />
+                <input id="inputSearch" name="text" placeholder="{{__('ui.search')}}" required />
             </div>
-            <button class="def-button" type="submit">{{__('ui.search')}}</button>
+            <button type="submit"><img id="searchIcon" src="{{ asset('icons/searchIcon.svg') }}" alt="{{__('alt.keyword')}}"></button>
         </form>
     </div>
 
@@ -122,49 +120,8 @@
         </div>
     </div>
 
-    <div class="partners">
-        @foreach ($partners as $partner)
-            <div class="partner">
-                <div class="partner-img-wraper">
-                    <a href="{{loc_url(route('search', ['author'=>$partner->user->url_name]))}}">
-                        <img src="{{asset($partner->logo)}}" alt="">
-                    </a>
-                </div>
-            </div>
-        @endforeach
-        <div class="partner">
-            <div class="partner-img-wraper">
-                <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
-            </div>
-        </div>
-        <div class="partner">
-            <div class="partner-img-wraper">
-                <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
-            </div>
-        </div>
-        <div class="partner">
-            <div class="partner-img-wraper">
-                <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
-            </div>
-        </div>
-        <div class="partner">
-            <div class="partner-img-wraper">
-                <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
-            </div>
-        </div>
-        <div class="partner">
-            <div class="partner-img-wraper">
-                <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
-            </div>
-        </div>
-        <div class="partner">
-            <div class="partner-img-wraper">
-                <img src="{{asset('icons/partnerIcon.svg')}}" alt="">
-            </div>
-        </div>
-        <div class="partner partner-more">
-            <p class="template-link">{{__('ui.otherPartners')}}</p>
-        </div>
+    <div class="partners-home">
+        <x-partners/>
     </div>
 
     <div class="items-block new-items">
@@ -194,7 +151,7 @@
     @endif
 
     <div class="epilogue">
-        <h3 class="epilogue-logo"><span>RIG</span>MANAGER</h3>
+        <img class="epilogue-logo" title="{{__('ui.home')}}" src="{{ asset('icons/rigmanagerLogoIcon.svg') }}" alt="{{__('alt.keyword')}}">
         <div class="epilogue-text">
             <p class="e-1">{{__('ui.epilogue1')}}</p>
             <p class="e-1">{{__('ui.epilogue2')}}</p>

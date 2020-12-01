@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/components/post_posts.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/search.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/tags.css')}}" />
@@ -9,17 +8,6 @@
 @endsection
 
 @section('content')
-
-    <div id="searchBar">
-        <form method="GET" action="{{ loc_url(route('search')) }}">
-            <div id="inputWraper">
-                <img id="searchIcon" src="{{ asset('icons/searchIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                <button id="search-bar-clear-btn" title="{{__('ui.clearText')}}" type="button"><img src="{{ asset('icons/closeBlackIcon.svg') }}" alt="{{__('alt.keyword')}}"></button>
-                <input id="inputSearch" class="def-input" name="text" value="{{$search['type']=='text' ? $search['value'] : ''}}" placeholder="{{__('ui.search')}}..." required />
-            </div>
-            <button class="def-button" type="submit">{{__('ui.search')}}</button>
-        </form>
-    </div>
 
     <a id="filter-beacon"></a>
 

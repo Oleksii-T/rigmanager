@@ -9,17 +9,15 @@
 }
 
 .profileNavBar { 
-    overflow: hidden;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
 }
 
-.profileNavBar li { 
-    display: inline; 
-}
-
-.profileNavBar a {
-    float: left;
+.profile-nav-link {
+    display: inline-block;
+    flex-basis: 100%;
     text-align: center;
-    width: 33.333333%;
     padding: 14px;
     text-decoration: none;
     font-size: 100%;

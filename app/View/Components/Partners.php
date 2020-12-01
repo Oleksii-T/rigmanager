@@ -3,9 +3,13 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Partner;
 
-class InProgress extends Component
+class Partners extends Component
 {
+
+    public $partners;
+
     /**
      * Create a new component instance.
      *
@@ -13,7 +17,7 @@ class InProgress extends Component
      */
     public function __construct()
     {
-        //
+        $this->partners = Partner::where('is_on_home', true)->take(7)->get();
     }
 
     /**
@@ -23,6 +27,6 @@ class InProgress extends Component
      */
     public function render()
     {
-        return view('components.in-progress');
+        return view('components.partners');
     }
 }

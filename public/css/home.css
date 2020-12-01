@@ -12,17 +12,21 @@
     color: #FE9042;
 }
 
+header { 
+    background-color: transparent;
+}
+
 /*=========INTRODUCTION=========*/
 
 div.introduction {
     text-align: center;
+    margin: 150px 0px 30px 0px;
 }
 
 div.introduction h1{
     font-size: 220%;
-    margin-bottom: 30px;
+    margin: 0px 0px 30px 0px;
     display: inline-block;
-    text-decoration: underline;
     padding: 0px 40px;
 }
 
@@ -30,87 +34,76 @@ div.introduction h1{
     display: inline-block;
     white-space: pre-line;
     text-align: left;
-    margin: 0px 10px;
+    margin: 0px 20px;
+}
+
+.intro-list li a {
+    border-bottom: 1px solid rgb(240, 146, 58);
+    text-decoration: none;
+    transition: 0.2s;
 }
 
 .intro-list li a:hover {
     color: #FE9042;
 }
 
-
 /*=========SEARCH_BAR=========*/
 
 #searchBar {
-    overflow: hidden;
-    width: 100%;
-    height: 100px;
+    margin-bottom: 180px;
 }
 
 #searchBar form {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 25px; /* (100-50)/2 */
+    margin: 0px auto;
+    display: flex;
+    justify-content: center;
 }
 
 #searchBar #inputWraper {
-    float: left;
-    width: 85%;
+    width: 65%;
     position: relative;
     text-align: left;
 }
 
-#searchIcon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 5px;
-    width: 30px;
-}
-
-#search-bar-clear-btn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 7px;
-    width: 20px;
-    transition: 0.2s;
-}
-
-#search-bar-clear-btn img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-    transition: 0.2s;
-}
-
-#search-bar-clear-btn img:hover {
-    transform: scale(1.2);
-}
-
 #searchBar input {
     font-size: 100%;
-    padding: 10px 35px 10px 45px;
+    padding: 0px 20px;
     height: 50px;
+    background-color: white;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+    color: black;
+    outline: none;
 }
 
 #searchBar button[type="submit"] {
-    width: 14%;
     height: 50px;
-    padding: 0px 6px;
-    float: right;
+    padding: 0px 15px;
+    background-color: rgb(240, 146, 58);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: none;
+    cursor: pointer;
 }
+
+#searchIcon {
+    width: 23px;
+    transition: 0.2s;
+}
+
+#searchBar button[type="submit"]:hover > img {
+    transform: scale(1.2);
+}
+
 
 /*=========TAG_SEARCH=========*/
 
 .tag-search {
     background-color: rgba(11, 11, 11, 0.8);
-    width: 95%;
     border-radius: 15px;
-    margin: 0px auto 40px auto;
+    margin: 0px auto 80px auto;
     padding: 40px 30px;
 }
 
@@ -162,53 +155,18 @@ div.introduction h1{
     margin: 15px 0px;
 }
 
+.tag-search-link {
+    transition: 0.2s;
+}
+
 .tag-search-link:hover {
     color: #fe9042;
 }
 
 /*=========PARNTERS=========*/
 
-.partners {
-    margin: 0px auto 40px auto;
-    width: 95%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-}
-
-.partner {
-    flex-basis: 100%;
-    border-radius: 5px;
-}
-
-.partner-img-wraper {
-    width: 100px;
-    height: 59px;
-    overflow: hidden;
-}
-
-.partner-img-wraper img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-    border-radius: 15px;
-}
-
-.partner-more {
-    border: 1px solid #888888;
-    vertical-align: middle;
-}
-
-.partner-more a,
-.partner-more p {
-    white-space: pre-line;
-    font-size: 90%;
-    padding: 5px 0px 0px 15px;
-    display: block;
-}
-
-.partner-more a:hover {
-    color: #fe9042;
+.partners-home {
+    margin-bottom: 90px;
 }
 
 /*=========ITEMS=========*/
@@ -249,7 +207,7 @@ div.introduction h1{
 }
 
 .epilogue-logo {
-    font-size: 200%;
+    height: 60px;
 }
 
 .epilogue-logo span{

@@ -20,6 +20,7 @@ return [
     'maintenanceSoon' => 'soon',
 
     //home massages
+    'cabinet' => 'Cabinet',
     'introduction' => 'Specialized platform for cooperation
         of oil and gas companies of Ukraine',
     'introSellEq' => 'Sell of drilling
@@ -57,6 +58,7 @@ return [
     'upload' => 'Upload',
     'chooseFile' => 'Choose File',
     'post' => 'Post',
+    'catalog' => 'Catalog',
     
     // auth massages
     'signIn' => 'Sign in',
@@ -382,6 +384,7 @@ return [
     'footerNews' => 'News',
     'footerAbout' => 'About us',
     'contactsFooter' => 'You can contact us by yourself',
+    'ourPartners' => 'Our partners',
 
     // sitemap
     'stMain' => 'Main',

@@ -19,6 +19,7 @@ return [
     'maintenanceSoon' => 'найближчим часом',
 
     //home massages
+    'cabinet' => 'Кабінет',
     'introduction' => 'Спеціалізований майданчик для співпраці
         компаній нафтогазової сфери України',
     'introSellEq' => 'Продаж
@@ -58,6 +59,7 @@ return [
     'upload' => 'Надіслати',
     'chooseFile' => 'Обрати файл',
     'post' => 'Оголошення',
+    'catalog' => 'Каталог',
 
     // auth massages
     'signIn' => 'Увійти',
@@ -382,6 +384,7 @@ return [
    'footerNews' => 'Блог',
    'footerAbout' => 'Про нас',
    'contactsFooter' => 'Ви можете зв\'язатися з нами',
+   'ourPartners' => 'Наші партнери',
 
     // sitemap
     'stMain' => 'Головна',

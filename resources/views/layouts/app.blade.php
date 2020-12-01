@@ -23,9 +23,11 @@
     @yield('styles')
 </head>
 <body>
+    <!--
     <div class="development-notif">
         <p>{{__('ui.development')}}</p>
     </div>
+-->
     <div id="app">
         <div id="pop-up-container">
             <!-- Session flash massages -->
@@ -53,122 +55,61 @@
 
         <div id="container">
             <header>
-                <!-- Header of all web pages -->
-                <div id="header">
-                    <a href="{{ loc_url(route('home')) }}"><img id="logo" title="{{__('ui.home')}}" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
-                    <ul>
-                        @if (App::isLocale('uk'))
-                            <li>UKR</li>
-                        @else
-                            <li><a href="{{ loc_url(route('locale.setting', ['lang'=>'uk'])) }}">UKR</a></li>
-                        @endif
-
-                        <li> | </li>
-
-                        @if (App::isLocale('ru'))
-                            <li>RU</li>
-                        @else
-                            <li><a href="{{ loc_url(route('locale.setting', ['lang'=>'ru'])) }}">RU</a></li>
-                        @endif
-
-                        <li> | </li>
-
-                        @if (App::isLocale('en'))
-                            <li>ENG</li>
-                        @else
-                            <li><a href="{{ loc_url(route('locale.setting', ['lang'=>'en'])) }}">ENG</a></li>
-                        @endif
-                    </ul>
-
-                    @auth
-                        <div class="logged-user-name">
-                            <p>{{__('ui.loggedAs')}}: {{auth()->user()->name}}</p>
-                        </div>
-                    @endauth
+                <div class="header-l">
+                    <a class="header-logo" href="{{ loc_url(route('home')) }}"><img title="{{__('ui.home')}}" src="{{ asset('icons/rigmanagerLogoIcon.svg') }}" alt="{{__('alt.keyword')}}"></a>
+                    <a class="header-catalog header-btn not-allowed" href="{{ loc_url(route('home')) }}"><span><img src="{{asset('icons/catalogIcon.svg')}}" alt=""></span>{{__('ui.catalog')}}</a>
                 </div>
-
-                <!-- Navigation bar of all web pages -->
-                <nav class="main-navigation">
-                    <a id="homeTab" href="{{ loc_url(route('home')) }}">
-                        <div class="iconWraper">
-                            <img src="{{ asset('icons/homeIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                        </div>
-                        <p>{{__('ui.home')}}</p>
-                    </a>
-                    <a id="myItemsTab" href="{{ loc_url(route('profile.posts')) }}">
-                        <div class="iconWraper">
-                            <img src="{{ asset('icons/myItemsIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                        </div>
-                        <p>{{__('ui.myPosts')}}</p>
-                    </a>
-                    <a id="favItemsTab" href="{{ loc_url(route('profile.favourites')) }}">
-                        <div class="iconWraper">
-                            <img src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            @if ( auth()->user() )
-                                <span> {{ auth()->user()->favPosts->count() }}</span>
-                            @endif
-                        </div>
-                        <p>{{__('ui.favourites')}}</p>
-                    </a>
-                    <a id="profileTab" href="{{loc_url(route('profile'))}}">
-                        <div class="iconWraper">
-                            <img src="{{ asset('icons/profileIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                        </div>
-                        <p>{{__('ui.profile')}}</p>
-                    </a>
-                    @guest
-                        <a id="loginTab" href="{{ loc_url(route('login')) }}">
-                            <div class="iconWraper">
-                                <img src="{{ asset('icons/logInIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            </div>
-                            <p>{{__('ui.signIn')}}</p>
-                        </a>
-                    @else
-                        <a href="#" onclick="document.getElementById('logout-form').submit();">
-                            <div class="iconWraper">
-                                <img src="{{ asset('icons/logOutIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                            </div>
-                            <p>{{__('ui.signOut')}}</p>
-                        </a>
-                        <form id="logout-form" action="{{ loc_url(route('logout')) }}" method="POST" style="display: none">@csrf</form>
-                    @endguest
-                    <a id="addItemTab" href="{{ loc_url(route('posts.create')) }}">
-                        <div class="iconWraper">
-                            <img src="{{ asset('icons/addItemIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                        </div>
-                        <p>{{__('ui.addPost')}}</p>
-                    </a>
-                </nav>
+                <div class="header-r">
+                    <a class="header-add-post header-btn" href="{{ loc_url(route('posts.create')) }}">{{__('ui.addPost')}}</a>
+                    <a class="header-profile header-btn" href="{{loc_url(route('profile'))}}">{{__('ui.cabinet')}}</a>
+                    @if (!App::isLocale('uk'))
+                        <a class="header-locale" href="{{ loc_url(route('locale.setting', ['lang'=>'uk'])) }}">UKR</a>
+                    @endif
+                    @if (!App::isLocale('ru'))
+                        <a class="header-locale" href="{{ loc_url(route('locale.setting', ['lang'=>'ru'])) }}">RU</a>
+                    @endif
+                    @if (!App::isLocale('en'))
+                        <a class="header-locale" href="{{ loc_url(route('locale.setting', ['lang'=>'en'])) }}">ENG</a>
+                    @endif
+                </div>
             </header>
 
-            <!-- Main content -->
             <main>
-                <!--Yielding content of each page-->
                 @yield('content')
             </main>
 
-            <!-- Footer -->
             <footer class="footer">
-                <div id="footerWraper">
-                    <div id="leftS">
-                        <a href="{{ loc_url(route('home')) }}"><img id="logo" src="{{ asset('icons/logo3orange.png') }}" alt="{{__('alt.keyword')}}"></a>
-                        <a class="footerLinks" id="footerFAQ" href="{{loc_url(route('faq'))}}">{{__('ui.foterFAQ')}}</a>
+                <!--
+                <div class="footel-layer footer-partners">
+                    <p class="partners-title">{{__('ui.ourPartners')}}</p>
+                    <x-partners/>
+                </div>
+
+                <div class="footer-delim"></div>
+                -->
+
+                <div class="footel-layer footer-slg">
+                    <div class="footer-keywords">
+                        <p>&copy; {{env('COPY_RIGHT_YEAR')}} <span>«Rigmanager»</span> - {{__('ui.introduction')}}.</p>
+                        <p>{{__('ui.footerCopyright')}}</p>
                     </div>
-                    <div id="rightS">
-                        <p>&copy; {{env('COPY_RIGHT_YEAR')}} <span>rigmanager.com.ua</span>. {{__('ui.footerCopyright')}}</p>
+
+                    <div class="footer-links">
                         <table>
                             <tr>
-                                <td><a class="footerLinks" href="{{loc_url(route('plans'))}}">{{__('ui.footerSubscription')}}</a></td>
-                                <td><a class="footerLinks" href="{{loc_url(route('contacts'))}}">{{__('ui.footerContact')}}</a></td>
-                                <td><a class="footerLinks wrap" href="{{loc_url(route('site.map'))}}">{{__('ui.footerSiteMap')}}</a></td>
+                                <td><a class="footer-link not-allowed" href="{{loc_url(route('home'))}}">{{__('ui.footerAbout')}}</a></td>
+                                <td><a class="footer-link" href="{{loc_url(route('plans'))}}">{{__('ui.footerSubscription')}}</a></td>
+                                <td><a class="footer-link" href="{{loc_url(route('terms'))}}">{{__('ui.footerTerms')}}</a></td>
                             </tr>
                             <tr>
-                                <td><a class="footerLinks wrap" href="{{loc_url(route('terms'))}}">{{__('ui.footerTerms')}}</a></td>
-                                <td><a class="footerLinks wrap" href="{{loc_url(route('privacy'))}}">{{__('ui.footerPrivacy')}}</a></td>
-                                <td><a class="footerLinks wrap" href="{{loc_url(route('news'))}}">{{__('ui.footerNews')}}</a></td>
+                                <td><a class="footer-link not-allowed" href="{{loc_url(route('home'))}}">{{__('ui.footerNews')}}</a></td>
+                                <td><a class="footer-link" href="{{loc_url(route('contacts'))}}">{{__('ui.footerContact')}}</a></td>
+                                <td><a class="footer-link" href="{{loc_url(route('privacy'))}}">{{__('ui.footerPrivacy')}}</a></td>
                             </tr>
                             <tr>
-                                <td><a class="footerLinks wrap" href="{{loc_url(route('about.us'))}}">{{__('ui.footerAbout')}}</a></td>
+                                <td><a class="footer-link not-allowed" href="{{loc_url(route('home'))}}">{{__('ui.catalog')}}</a></td>
+                                <td><a class="footer-link" href="{{loc_url(route('faq'))}}">{{__('ui.foterFAQ')}}</a></td>
+                                <td><a class="footer-link" href="{{loc_url(route('site.map'))}}">{{__('ui.footerSiteMap')}}</a></td>
                             </tr>
                         </table>
                     </div>
