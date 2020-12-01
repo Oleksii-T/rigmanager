@@ -112,6 +112,38 @@ div.introduction h1{
     border-radius: 15px;
     margin: 0px auto 40px auto;
     padding: 40px 30px;
+}
+
+.tag-search-select {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tag-search-select li{
+    display: inline;
+    list-style: none;
+}
+
+.active-tag-select {
+    color: #FE9042;
+    text-decoration: underline;
+}
+
+.tag-search-select button{
+    font-size: 120%;
+    background-color: transparent;
+    border: none;
+    margin: 0px 10px;
+    cursor: pointer;
+}
+
+.tag-search-select button:hover {
+    text-decoration: underline;
+}
+
+.tag-search-eq,
+.tag-search-se {
+    width: 100%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;

@@ -30,50 +30,95 @@
     </div>
 
     <div class="tag-search">
-        <div class="tag-search-column">
-            <ul class="tag-search-list">
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-1'))}}">{{__('tags.bit')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-2'))}}">{{__('tags.dp')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-3'))}}">{{__('tags.rig')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-4'))}}">{{__('tags.pump')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-5'))}}">{{__('tags.mud')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-6'))}}">{{__('tags.boreholeSurvey')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-7'))}}">{{__('tags.miscHelpEq')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-8'))}}">{{__('tags.motor')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-9'))}}">{{__('tags.parts')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-10'))}}">{{__('tags.control')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-11'))}}">{{__('tags.stub')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-12'))}}">{{__('tags.camp')}}</a></li>
-            </ul>
+        <ul class="tag-search-select">
+            <li><button class="active-tag-select" id="show-eq-tags">{{__('ui.equipment')}}</button></li>
+            <li><button id="show-se-tags">{{__('ui.service')}}</button></li>
+        </ul>
+        <div class="tag-search-eq">
+            <div class="tag-search-column">
+                <ul class="tag-search-list">
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-1'))}}">{{__('tags.bit')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-2'))}}">{{__('tags.dp')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-3'))}}">{{__('tags.rig')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-4'))}}">{{__('tags.pump')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-5'))}}">{{__('tags.mud')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-6'))}}">{{__('tags.boreholeSurvey')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-7'))}}">{{__('tags.miscHelpEq')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-8'))}}">{{__('tags.motor')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-9'))}}">{{__('tags.parts')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-10'))}}">{{__('tags.control')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-11'))}}">{{__('tags.stub')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-12'))}}">{{__('tags.camp')}}</a></li>
+                </ul>
+            </div>
+            <div class="tag-search-column">
+                <ul class="tag-search-list">
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-13'))}}">{{__('tags.casingCementing')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-14'))}}">{{__('tags.emergency')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-15'))}}">{{__('tags.lubricator')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-16'))}}">{{__('tags.tubingEq')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-17'))}}">{{__('tags.wellHeadEq')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-18'))}}">{{__('tags.packer')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-19'))}}">{{__('tags.airUtility')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-20'))}}">{{__('tags.boe')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-21'))}}">{{__('tags.rotory')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-22'))}}">{{__('tags.power')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-23'))}}">{{__('tags.simCasing')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-24'))}}">{{__('tags.diselStorage')}}</a></li>
+                </ul>
+            </div>
+            <div class="tag-search-column">
+                <ul class="tag-search-list">
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-25'))}}">{{__('tags.specMachinery')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-26'))}}">{{__('tags.lifting')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-27'))}}">{{__('tags.pipeHandling')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-28'))}}">{{__('tags.hseEq')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-29'))}}">{{__('tags.tong')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-30'))}}">{{__('tags.chemics')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-31'))}}">{{__('tags.chemLab')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-32'))}}">{{__('tags.jar')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-0'))}}">{{__('tags.other')}}</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="tag-search-column">
-            <ul class="tag-search-list">
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-13'))}}">{{__('tags.casingCementing')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-14'))}}">{{__('tags.emergency')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-15'))}}">{{__('tags.lubricator')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-16'))}}">{{__('tags.tubingEq')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-17'))}}">{{__('tags.wellHeadEq')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-18'))}}">{{__('tags.packer')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-19'))}}">{{__('tags.airUtility')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-20'))}}">{{__('tags.boe')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-21'))}}">{{__('tags.rotory')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-22'))}}">{{__('tags.power')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-23'))}}">{{__('tags.simCasing')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-24'))}}">{{__('tags.diselStorage')}}</a></li>
-            </ul>
-        </div>
-        <div class="tag-search-column">
-            <ul class="tag-search-list">
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-25'))}}">{{__('tags.specMachinery')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-26'))}}">{{__('tags.lifting')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-27'))}}">{{__('tags.pipeHandling')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-28'))}}">{{__('tags.hseEq')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-29'))}}">{{__('tags.tong')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-30'))}}">{{__('tags.chemics')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-31'))}}">{{__('tags.chemLab')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-32'))}}">{{__('tags.jar')}}</a></li>
-                <li><a class="tag-search-link" href="{{loc_url(route('tag-0'))}}">{{__('tags.other')}}</a></li>
-            </ul>
+        <div class="tag-search-se hidden">
+            <div class="tag-search-column">
+                <ul class="tag-search-list">
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-51'))}}">{{__('tags.complexService')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-52'))}}">{{__('tags.emergencySe')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-53'))}}">{{__('tags.controll')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-54'))}}">{{__('tags.airWaste')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-55'))}}">{{__('tags.loggingSe')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-56'))}}">{{__('tags.ndt')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-57'))}}">{{__('tags.bitSe')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-58'))}}">{{__('tags.dhmSe')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-59'))}}">{{__('tags.grounding')}}</a></li>
+                </ul>
+            </div>
+            <div class="tag-search-column">
+                <ul class="tag-search-list">
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-60'))}}">{{__('tags.sideHole')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-61'))}}">{{__('tags.directionalDrilling')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-62'))}}">{{__('tags.casingSe')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-63'))}}">{{__('tags.guard')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-64'))}}">{{__('tags.bopSe')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-65'))}}">{{__('tags.training')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-66'))}}">{{__('tags.pipeShipment')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-67'))}}">{{__('tags.sellControllFuel')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-68'))}}">{{__('tags.vihacle')}}</a></li>
+                </ul>
+            </div>
+            <div class="tag-search-column">
+                <ul class="tag-search-list">
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-69'))}}">{{__('tags.builders')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-70'))}}">{{__('tags.loggingSt')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-71'))}}">{{__('tags.transport')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-72'))}}">{{__('tags.recyclingSe')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-73'))}}">{{__('tags.lab')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-74'))}}">{{__('tags.cementingSe')}}</a></li>
+                    <li><a class="tag-search-link" href="{{loc_url(route('tag-50'))}}">{{__('tags.otherService')}}</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -163,6 +208,22 @@
     <script type="text/javascript" src="{{ asset('js/mousewheel.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+
+            //show servise aserch tags and hide equipment
+            $('#show-se-tags').click(function(){
+                $('.tag-search-se').removeClass('hidden');
+                $('.tag-search-eq').addClass('hidden');
+                $(this).addClass('active-tag-select');
+                $('#show-eq-tags').removeClass('active-tag-select');
+            });
+
+            //show equipment aserch tags and hide service
+            $('#show-eq-tags').click(function(){
+                $('.tag-search-eq').removeClass('hidden');
+                $('.tag-search-se').addClass('hidden');
+                $(this).addClass('active-tag-select');
+                $('#show-se-tags').removeClass('active-tag-select');
+            });
 
             // disable scrolling on master page when hovering the column
             $(".tags-modal .column").bind('mousewheel', function(e, d) {

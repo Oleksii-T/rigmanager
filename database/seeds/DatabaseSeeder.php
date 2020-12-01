@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()
         ]);
 
-        // user 2 - Pavel
+        // user 2 - Beiken
         DB::table('users')->insert([
             'id' => 2,
             'name' => 'Beiken LLC',
