@@ -369,8 +369,8 @@ return [
    відправлений на Вашу електронну адресу.',
 
    // footer massages
-   'foterAbout' => 'Про нас',
-   'foterFAQ' => 'FAQ',
+   'footerAbout' => 'Про нас',
+   'footerFAQ' => 'FAQ',
    'footerCopyright' => 'Всі права захищені.',
    'footerIconsRef' => 'Всі іконки надані',
    'footerSubscription' => 'Підписки',
@@ -382,7 +382,6 @@ return [
    'footerDevelop' => 'Розробка',
    'footerSiteMap' => 'Карта Сайту',
    'footerNews' => 'Блог',
-   'footerAbout' => 'Про нас',
    'contactsFooter' => 'Ви можете зв\'язатися з нами',
    'ourPartners' => 'Наші партнери',
 

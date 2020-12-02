@@ -369,8 +369,8 @@ return [
     was sent to Your Email address.',
 
     // footer massages
-    'foterAbout' => 'About',
-    'foterFAQ' => 'FAQ',
+    'footerAbout' => 'About',
+    'footerFAQ' => 'FAQ',
     'footerCopyright' => 'All Rights Reserved.',
     'footerIconsRef' => 'Icons made by',
     'footerSubscription' => 'Our Plans',
@@ -382,7 +382,6 @@ return [
     'footerDevelop' => 'Delelopment',
     'footerSiteMap' => 'Site Map',
     'footerNews' => 'News',
-    'footerAbout' => 'About us',
     'contactsFooter' => 'You can contact us by yourself',
     'ourPartners' => 'Our partners',
 

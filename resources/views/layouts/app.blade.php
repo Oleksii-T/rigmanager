@@ -23,11 +23,11 @@
     @yield('styles')
 </head>
 <body>
-    <!--
+
     <div class="development-notif">
         <p>{{__('ui.development')}}</p>
     </div>
--->
+
     <div id="app">
         <div id="pop-up-container">
             <!-- Session flash massages -->
@@ -108,7 +108,7 @@
                             </tr>
                             <tr>
                                 <td><a class="footer-link not-allowed" href="{{loc_url(route('home'))}}">{{__('ui.catalog')}}</a></td>
-                                <td><a class="footer-link" href="{{loc_url(route('faq'))}}">{{__('ui.foterFAQ')}}</a></td>
+                                <td><a class="footer-link" href="{{loc_url(route('faq'))}}">{{__('ui.footerFAQ')}}</a></td>
                                 <td><a class="footer-link" href="{{loc_url(route('site.map'))}}">{{__('ui.footerSiteMap')}}</a></td>
                             </tr>
                         </table>
