@@ -1,216 +1,145 @@
 
-#search-status {
-    margin-bottom: 10px;
-}
-
-#searchText, 
-#searchTags, 
-#searchAuthor, 
-#searchType {
-    padding: 0px 20px;
-}
-
-#searchTags {
-    display: inline-block;
-}
-
-.search-status-text {
-    font-size: 120%;
-}
-
-.search-status-value {
-    font-size: 110%;
-    border-bottom: 2px solid #FE9042;
-    text-decoration: none;
-    transition: 0.2s;
-}
-
-.status-choosed-tags {
-    margin-top: 20px;
-    display: inline-block;
-}
-
-a.search-status-value:hover,
-a.search-status-value:hover {
-    color: #FE9042;
-}
-
-a.status-delete:hover {
-    color: red;
-    border-bottom: 2px solid red;
-}
-
-a.itemTag {
-    text-decoration: none;
-    border: none;
-    padding: 7px;
-    background-color: rgb(149, 149, 149, 0.7);
-    display: inline-block;
-}
-
-.mailer-suggestion {
-    margin: 30px 0px 0px 30px
-}
-
-.mailer-suggestion button {
-    font-size: 120%;
-    background-color: transparent;
-    border: none;
-    text-decoration: underline;
-    transition: 0.2s;
-    cursor: pointer;
-}
-
-div.mailer-suggestion button:hover,
-#whatIsMailerHelp:hover{
-    color: #FE9042;
-}
-
-#whatIsMailerHelp {
-    margin-left: 10px;
-}
-
-div.algolia-logo {
-    float: right;
-    margin-right: 30px;
-}
-
-.search-heading {
-    text-align: center;
-    margin: 20px 0px;
-}
-
-div.posts-amount {
-    text-align: right;
-    padding-right: 40px;
-    margin-bottom: 20px;
-}
-
-.posts-amount-text {
-    font-style: italic;
-}
-
-div.posts-amount span {
-    color: #FE9042;
-}
-
-div.empty-search-wraper {
-    margin: 50px auto 100px auto;
-    height: 100%;
+.search-wraper {
     display: flex;
-    align-items:center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
-p.empty-search-text {
-    white-space: pre-line;
-    font-size: 140%;
+.filters {
+    width: 265px;
+    overflow: hidden;
 }
 
-img.fail-icon {
-    margin-right: 20px;
-    height: 150px;
-    width: 150px;
+.search-result {
+    width: 885px;
+    overflow: hidden;
 }
 
-div.filters {
-    margin: 20px 0px;
-    padding: 20px;
-    border-top: 2px solid #888888;
-    border-bottom: 2px solid #888888;
+/*=====COLUMN_TITLE=====*/
+
+.column-title {
+    font-size: 200%;
+    margin-bottom: 40px;
 }
 
-h2.filters-heading {
-    font-size: 120%;
-    margin-bottom: 10px;
+.column-title h2{
+    font-size: 110%;
 }
 
-div.filter {
-    display: inline-block;
-    margin: 0px 0px 10px 10px;
+/*=====FILTERS=====*/
+
+.filter {
+    margin-bottom: 30px;
 }
 
-div.filter-input {
-    display: inline-block;
+.filter-name {
+    margin-bottom: 15px;
 }
 
 .input-cost {
     width: 120px;
-}
-
-.inivible {
-    display: none !important;
-}
-
-div.user-settings {
-    margin-top: 15px;
-}
-
-div.user-setting {
-    padding: 5px 5px;
-    display: inline-block;
-    margin-left: 15px;
-    margin-top: 5px;
-    background-color: rgb(149, 149, 149, 0.7);
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    vertical-align: middle;
-}
-
-span.setting-name {
-    vertical-align: middle;
-    margin-right: 5px;
-}
-
-button.remove-setting {
-    height: 100%;
+    padding: 10px 15px;
+    border-radius: 7px;
+    border: 2px solid #888888;
     background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
 }
 
-button.remove-setting img {
-    vertical-align: middle;
-    height: 20px;
-    width: 20px;
+.filter-cost .filter-name {
+    display: inline-block;
+    margin-right: 10px;
 }
 
-.result-by-tag {
-    margin: 0px 30px;
+.filter-currency {
+    display: inline-block;
 }
 
-.result-by-tag a {
-    font-size: 90%;
-    color: #cacaca;
-    margin-right: 15px;
-    transition: 0.2s;
-    text-decoration: underline;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.result-by-tag a:hover {
-    color: #fe9042;
-}
-
-.result-by-tag a span{
-    font-size: inherit;
+.currency-lable {
     color: #888888;
 }
 
-.loading-gif {
-    height: 500px;
-    position: relative;
+.active-currency {
+    color: #FE9042 !important;
 }
 
-.loading-gif img {
-    position: absolute;
-    top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
+.region-select {
+    max-width: 265px;
+    overflow: hidden;
+    background-color: transparent;
+    border: 2px solid #888888;
+    border-radius: 7px;
+    padding: 9px 30px 9px 15px;
 }
 
-div.hover-lable {
-    background-color: rgba(248, 52, 52, 0.774);
+.cb-container {
+    color: #888888;
 }
+
+.filter-checked {
+    color: #fe9042 !important;
+}
+
+/*=====ADD_TO_MAILER=====*/
+
+.mailer-suggestion {
+    width: 90%;
+    padding: 40px;
+    background-color: rgb(31, 31, 31);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.mailer-suggestion p {
+    font-size: 120%;
+    margin-bottom: 30px;
+}
+
+.mailer-suggestion img {
+    display: block;
+    width: 80px;
+    margin: 0px auto 40px auto;
+}
+
+.mailer-suggestion button {
+    background-color: #FE9042;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+/*=====RESULT_BY_TAG=====*/
+
+.result-by-tag {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.result-by-tag a {
+    width: 48%;
+    background-color: rgb(31, 31, 31);
+    padding: 10px 15px;
+    margin: 10px 0px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+}
+
+.result-by-tag a:hover .rbt-name{
+    color: #fe9042;
+}
+
+.rbt-name {
+    padding: 5px 0px;
+}
+
+.rbt-amount {
+    float: right;
+    background-color: #FE9042;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+/*=====ITEMS=====*/

@@ -1,0 +1,162 @@
+
+.emptyItems {
+    padding: 20px;
+    text-align: center;
+}
+
+.emptyItems p {
+    font-size: 130%;
+}
+
+.item {
+    display: flex;
+    height: 260px;
+    width: 885px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.post-img {
+    height: 100%;
+    width: 260px;
+}
+
+.post-img img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+}
+
+.post-text {
+    width: 625px;
+    background-color: rgb(31, 31, 31);
+    padding: 30px;
+}
+
+.post-row {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-row-1 {
+}
+
+.post-row-1 .post-title p {
+    font-size: 130%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 530px;
+    transition: 0.2s;
+}
+
+.post-title-hover {
+    color: #FE9042;
+}
+
+.post-row-1 .post-fav {
+    z-index: 2;
+    cursor: pointer;
+}
+
+.post-row-1 .post-fav:hover .post-fav-img {
+    transform: scale(1.2);
+}
+
+.post-row-1 .post-fav-img{
+    height: 20px;
+    transition: 0.2s;
+}
+
+.post-row-2 span {
+    font-size: 80%;
+    color: #888888;
+}
+
+.post-row-2 .post-type {
+    background-color: #616161;
+    padding: 5px 9px;
+    border-radius: 15px;
+    margin-right: 10px;
+    transition: 0.2s;
+}
+
+.post-type-hover {
+    color: white !important;
+}
+
+.post-location {
+    display: inline-block;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.post-row-3 .post-description {
+    max-height: 3.4em;
+    overflow: hidden;
+    white-space: pre-line;
+    color: #888888;
+    transition: 0.2s;
+}
+
+.post-description-hover {
+    color: white !important;
+}
+
+.post-cost {
+    font-size: 130%;
+}
+
+.post-link {    
+    position:absolute; 
+    width:100%;
+    height:100%;
+    top:0;
+    left: 0;
+    z-index: 1;
+    transition: 0.2s;
+}
+
+/*============PAGINATION============*/
+
+.pagination-field {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.pagination {
+    list-style: none;
+    font-size: 0;
+    margin-bottom: 28px;
+}
+.page-item {
+    display: inline-block;
+    margin: 0px 7px;
+}
+
+.active .page-link {
+    color: white;
+    background-color: rgb(254, 144, 66);
+    border-radius: 5px;
+}
+
+span.page-link {
+    cursor: default;
+}
+
+.page-link {
+    color: #888888;
+    font-size: 125%;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.page-item:not(.disabled) .page-link:hover {
+    color: white !important;
+}

@@ -57,7 +57,8 @@ return [
     'upload' => 'Отправить',
     'chooseFile' => 'Выбрать файл',
     'post' => 'Объявление',
-    'catalog' => 'Калог',
+    'catalog' => 'Каталог',
+    'add' => 'Добавить',
 
     // auth massages
     'signIn' => 'Войти',

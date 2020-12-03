@@ -59,6 +59,7 @@ return [
     'chooseFile' => 'Choose File',
     'post' => 'Post',
     'catalog' => 'Catalog',
+    'add' => 'Add',
     
     // auth massages
     'signIn' => 'Sign in',

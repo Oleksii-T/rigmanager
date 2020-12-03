@@ -23,10 +23,11 @@
     @yield('styles')
 </head>
 <body>
-
+<!--
     <div class="development-notif">
         <p>{{__('ui.development')}}</p>
     </div>
+-->
 
     <div id="app">
         <div id="pop-up-container">

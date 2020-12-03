@@ -210,9 +210,10 @@ class PostController extends Controller
         $input = $request->all();
 
         //recraete the url name if title was changed
-        if ($post->title != $input['title']) {
-            $input['url_name'] = transliteration($input['title'], Post::all()->pluck('url_name')->toArray());
-        }
+        $input['url_name'] = 
+            $post->title == $input['title']
+            ? $post->url_name
+            : transliteration($input['title'], Post::all()->pluck('url_name')->toArray());
 
         // parse messangers values. If no phone specified remove messangers
         if ( $input['user_phone_raw'] ) {

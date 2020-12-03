@@ -60,6 +60,7 @@ return [
     'chooseFile' => 'Обрати файл',
     'post' => 'Оголошення',
     'catalog' => 'Каталог',
+    'add' => 'Додати',
 
     // auth massages
     'signIn' => 'Увійти',

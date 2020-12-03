@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/components/post_posts.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/search.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('css/components/tags.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/subscription_required.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/components/special_inputs.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/components/search_posts.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/search.css') }}" />
 @endsection
 
 @section('content')
@@ -45,231 +45,246 @@
                         <li><p class="bc-item bc-delim">&#x02192;</p></li>    
                         <li><a class="bc-item" href="{{loc_url(route('search', ['author'=>$search['value']['url'], 'tag'=>$tagUrl]))}}">{{$tag}}</a></li>
                     @endforeach
-                @endif    
+                @endif   
+            @elseif ( $search['type'] == 'none' ) 
+                <li><p class="bc-item bc-delim">&#x02192;</p></li>
+                <li><a class="bc-item not-allowed" href="{{loc_url(route('home'))}}">{{__('ui.catalog')}}</a></li>
             @endif
         </ul>
     </div>
 
     <a id="filter-beacon"></a>
 
-    <!-- Search result status show -->
-    <div id="search-status">
-        @if ( $search['type'] == 'text' )
-            <div id="searchText">
-                <p class="search-status-text">{{__('ui.searchByText')}}: <span class="search-status-value" >{{$search['value']}}</span></p>
-                @if (isset($resByTag) && $resByTag['searchedTag'])
-                    <p class="search-status-text status-choosed-tags">{{__('ui.choosedFromTags')}}: <a title="{{__('ui.delete')}}" class="search-status-value status-delete" href="{{loc_url(route('search', ['text'=>$search['value']]))}}">{{$resByTag['searchedTag']}}</a>
-                @endif
-            </div>
-            <div class="mailer-suggestion">
-                <p class="user-text-request" hidden>{{$search['value']}}</p>
-                <button id="addTextToMailer">{{__('ui.mailerSuggestText')}}</button>
-                <a id="whatIsMailerHelp" href="{{loc_url(route('faq'))}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
-                <div class="algolia-logo">
-                    <img src="{{asset('icons/algoliaIcon.svg')}}" alt="{{__('alt.keyword')}}">
+    <div class="search-wraper">
+        <div class="filters">
+            @if (!$search['isEmpty'])
+                <div class="column-title">
+                    <h2>{{__('ui.filters')}}</h2>
                 </div>
-            </div>
-        @elseif ( $search['type'] == 'tags' )
-            <div id="searchTags">
-                @foreach ($search['value'] as $id => $tag)
-                    <a class="itemTag" href="{{ loc_url(route('tag-'.$id)) }}">{{$tag}}</a>
-                    <span class="item-tag-delim">></span>
-                @endforeach
-            </div>
-            <div class="mailer-suggestion mailer-tag-suggestion">
-                <button id="addTagToMailer" class="{{array_key_last($search['value'])}}">{{__('ui.mailerSuggestTag')}}</button>
-                <a id="whatIsMailerHelp" href="{{loc_url(route('faq'))}}#WhatIsMailer">({{__('ui.whatIsMailer')}})</a>
-            </div>
-        @elseif ( $search['type'] == 'author' )
-            <div id="searchAuthor">
-                <p class="search-status-text">{{__('ui.searchByAuthor')}}: <a class="search-status-value" href="{{loc_url(route('search', ['author'=>$search['value']['url']]))}}">{{$search['value']['name']}}</a></p>
-            </div>
-            <div class="mailer-suggestion">
-                <button id="addAuthorToMailer" class="{{$search['value']['id']}}">{{__('ui.mailerSuggestAuthor')}}</button>
-                <a id="whatIsMailerHelp"href="{{loc_url(route('faq'))}}#WhatIsMailer">{{__('ui.whatIsMailer')}}</a>
-            </div>
-        @elseif ( $search['type'] == 'type' )
-            <div id="searchType">
-                <p class="search-status-text">{{__('ui.searchByType')}}: <span class="search-status-value">{{$search['value']}}</span></p>
-                @if (isset($resByTag) && $resByTag['searchedTag'])
-                    <p class="search-status-text status-choosed-tags">{{__('ui.choosedFromTags')}}: <a title="{{__('ui.delete')}}" class="search-status-value status-delete" href="{{loc_url(route('search', ['type'=>$search['url']]))}}">{{$resByTag['searchedTag']}}</a>
-                @endif
-            </div>
-        @endif
+                <div class="filters">
+                    <div class="filter filter-cost">
+                        <h5 class="filter-name">{{__('ui.cost')}},</h5>
+                        <div class="filter-currency">
+                            <span class="currency-lable active-currency" id="currency-uah-lable">UAH</span>
 
-        @if ($search['isEmpty'])
-            <div class="empty-search-wraper">
-                <img class="empty-search-icon fail-icon" src="{{asset('icons/failIcon.svg')}}" alt="{{__('alt.keyword')}}">
-                <p class="empty-search-text">{{__('ui.searchFail')}}</p>
-            </div>
-        @else
-            <div class="filters">
-                <h2 class="filters-heading">{{__('ui.filters')}}:</h2>
+                            <label class="switch currency-switch" for="currency-usd">
+                                <input id="currency-usd" name="currency-usd" type="checkbox" value="1">
+                                <span class="slider"></span>
+                            </label>
 
-                <div class="filter filter-cost">
-                    <span class="filter-name">{{__('ui.cost')}}:</span>
-                    <div class="filter-input">
-                        <input class="def-input input-cost cost-from-input" name="costFrom" type="text" placeholder="{{__('ui.from')}}">
-                        <span class="cost-delimeter">-</span>
-                        <input class="def-input input-cost cost-to-input" name="costTo" type="text" placeholder="{{__('ui.to')}}">
-                        <div class="def-select-wraper">
-                            <select class="def-select currency-select" id="inputCurrency" name="currency">
-                                <option value="UAH">{{__('ui.grivna')}}</option>
-                                <option value="USD">{{__('ui.dollar')}}</option>
-                            </select>
-                            <span class="arrow arrowDown"></span>
+                            <span class="currency-lable" id="currency-usd-lable">USD</span>
+                        </div>
+                        <div class="filter-cost-input">
+                            <input class="input-cost cost-from-input" name="costFrom" type="text" placeholder="{{__('ui.from')}}">
+                            <span class="cost-delimeter">-</span>
+                            <input class="input-cost cost-to-input" name="costTo" type="text" placeholder="{{__('ui.to')}}">
                         </div>
                     </div>
-                </div>
 
-                @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
-                @else
-                    <div class="filter region-filter">
-                        <span class="filter-name">{{__('ui.region')}}:</span>
-                        <div class="filter-input">
-                            <div class="def-select-wraper">
-                                <x-region-select locale='{{app()->getLocale()}}'/>
-                                <span class="arrow arrowDown"></span>
+                    @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                    @else
+                        <div class="filter region-filter">
+                            <h5 class="filter-name">{{__('ui.region')}}</h5>
+                            <div class="filter-input">
+                                <div class="def-select-wraper">
+                                    <x-region-select locale='{{app()->getLocale()}}'/>
+                                    <span class="arrow arrowDown"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
 
-                @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
-                @else
-                    <div class="filter filter-condition">
-                        <span class="filter-name">{{__('ui.condition')}}:</span>
-                        <div class="filter-input">
-                            <div class="def-select-wraper">
-                                <select class="def-select condition-select" name="condition">
-                                    <option value="1">{{__('ui.notSpecified')}}</option>
-                                    <option value="2">{{__('ui.conditionNew')}}</option>
-                                    <option value="3">{{__('ui.conditionSH')}}</option>
-                                    <option value="4">{{__('ui.conditionForParts')}}</option>
-                                </select>
-                                <span class="arrow arrowDown"></span>
+                    @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                    @else
+                        <div class="filter filter-condition">
+                            <h5 class="filter-name">{{__('ui.condition')}}</h5>
+                            <div class="filter-input radio">
+                                <label class="cb-container filter-checked" for="condition-new">{{__('ui.conditionNew')}}
+                                    <input id="condition-new" type="checkbox" name="conditions[]" value="2" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="condition-sh">{{__('ui.conditionSH')}}
+                                    <input id="condition-sh" type="checkbox" name="conditions[]" value="3" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="condition-parts">{{__('ui.conditionForParts')}}
+                                    <input id="condition-parts" type="checkbox" name="conditions[]" value="4" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
                             </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
 
-                @if ( $search['type'] != 'type' )
-                    <div class="filter filter-type">
-                        <span class="filter-name">{{__('ui.postType')}}:</span>
-                        <div class="filter-input">
-                            <div class="def-select-wraper">
-                                <select class="def-select type-select" name="role">
-                                    <option value="0">{{__('ui.notSpecified')}}</option>
-                                    @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
-                                        <option value="5">{{__('ui.postTypeGiveS')}}</option>
-                                        <option value="6">{{__('ui.postTypeGetS')}}</option>
-                                    @elseif ( $search['type'] == 'tags' && $search['tag_type'] == 'eq' )
-                                        <option value="1">{{__('ui.postTypeSell')}}</option>
-                                        <option value="2">{{__('ui.postTypeBuy')}}</option>
-                                        <option value="3">{{__('ui.postTypeRent')}}</option>
-                                        <option value="4">{{__('ui.postTypeLeas')}}</option>
-                                    @else
-                                        <option value="1">{{__('ui.postTypeSell')}}</option>
-                                        <option value="2">{{__('ui.postTypeBuy')}}</option>
-                                        <option value="3">{{__('ui.postTypeRent')}}</option>
-                                        <option value="4">{{__('ui.postTypeLeas')}}</option>
-                                        <option value="5">{{__('ui.postTypeGiveS')}}</option>
-                                        <option value="6">{{__('ui.postTypeGetS')}}</option>
-                                    @endif
-                                </select>
-                                <span class="arrow arrowDown"></span>
+                    @if ( $search['type'] != 'type' )
+                        <div class="filter filter-type">
+                            <h5 class="filter-name">{{__('ui.postType')}}</h5>
+                            <div class="filter-input radio">
+                                @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                                    <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
+                                        <input id="type-give-se" type="checkbox" name="types[]" value="5" checked="checked">
+                                        <span class="cb-checkmark"></span>
+                                    </label>
+                                    <label class="cb-container filter-checked" for="type-get-se">{{__('ui.postTypeGetS')}}
+                                        <input id="type-get-se" type="checkbox" name="types[]" value="6" checked="checked">
+                                        <span class="cb-checkmark"></span>
+                                    </label>
+                                @elseif ( $search['type'] == 'tags' && $search['tag_type'] == 'eq' )
+                                    <label class="cb-container filter-checked" for="type-sell">{{__('ui.postTypeSell')}}
+                                        <input id="type-sell" type="checkbox" name="types[]" value="1" checked="checked">
+                                        <span class="cb-checkmark"></span>
+                                    </label>
+                                    <label class="cb-container filter-checked" for="type-buy">{{__('ui.postTypeBuy')}}
+                                        <input id="type-buy" type="checkbox" name="types[]" value="2" checked="checked">
+                                        <span class="cb-checkmark"></span>
+                                    </label>
+                                    <label class="cb-container filter-checked" for="type-rent">{{__('ui.postTypeRent')}}
+                                        <input id="type-rent" type="checkbox" name="types[]" value="3" checked="checked">
+                                        <span class="cb-checkmark"></span>
+                                    </label>
+                                    <label class="cb-container filter-checked" for="type-leas">{{__('ui.postTypeLeas')}}
+                                        <input id="type-leas" type="checkbox" name="types[]" value="4" checked="checked">
+                                        <span class="cb-checkmark"></span>
+                                    </label>
+                                @else
+                                    <label class="cb-container filter-checked" for="type-sell">{{__('ui.postTypeSell')}}
+                                        <input id="type-sell" type="checkbox" name="types[]" value="1" checked="checked">
+                                        <span class="cb-checkmark"></span>
+                                    </label>
+                                    <label class="cb-container filter-checked" for="type-buy">{{__('ui.postTypeBuy')}}
+                                        <input id="type-buy" type="checkbox" name="types[]" value="2" checked="checked">
+                                        <span class="cb-checkmark"></span>
+                                    </label>
+                                    <label class="cb-container filter-checked" for="type-rent">{{__('ui.postTypeRent')}}
+                                        <input id="type-rent" type="checkbox" name="types[]" value="3" checked="checked">
+                                        <span class="cb-checkmark"></span>
+                                    </label>
+                                    <label class="cb-container filter-checked" for="type-leas">{{__('ui.postTypeLeas')}}
+                                        <input id="type-leas" type="checkbox" name="types[]" value="4" checked="checked">
+                                        <span class="cb-checkmark"></span>
+                                    </label>
+                                    <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
+                                        <input id="type-give-se" type="checkbox" name="conditions[]" value="5" checked="checked">
+                                        <span class="cb-checkmark"></span>
+                                    </label>
+                                    <label class="cb-container filter-checked" for="type-get-se">{{__('ui.postTypeGetS')}}
+                                        <input id="type-get-se" type="checkbox" name="conditions[]" value="6" checked="checked">
+                                        <span class="cb-checkmark"></span>
+                                    </label>
+                                @endif
                             </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
 
-                @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
-                @else
-                    <div class="filter filter-role">
-                        <span class="filter-name">{{__('ui.postRole')}}:</span>
-                        <div class="filter-input">
-                            <div class="def-select-wraper">
-                                <select class="def-select role-select" name="role">
-                                    <option value="0">{{__('ui.notSpecified')}}</option>
-                                    <option value="1">{{__('ui.postRolePrivate')}}</option>
-                                    <option value="2">{{__('ui.postRoleBusiness')}}</option>
-                                </select>
-                                <span class="arrow arrowDown"></span>
+                    @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                    @else
+                        <div class="filter filter-role">
+                            <h5 class="filter-name">{{__('ui.postRole')}}</h5>
+                            <div class="filter-input radio">
+                                <label class="cb-container filter-checked" for="role-private">{{__('ui.postRolePrivate')}}
+                                    <input id="role-private" type="checkbox" name="roles[]" value="1" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="role-business">{{__('ui.postRoleBusiness')}}
+                                    <input id="role-business" type="checkbox" name="roles[]" value="2" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
                             </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
 
-                @if ( $search['type'] != 'tags' )
-                    <div class="filter filter-thread">
-                        <span class="filter-name">{{__('ui.thread')}}:</span>
-                        <div class="filter-input">
-                            <div class="def-select-wraper">
-                                <select class="def-select thread-select" name="thread">
-                                    <option value="0">{{__('ui.notSpecified')}}</option>
-                                    <option value="1">{{__('ui.equipment')}}</option>
-                                    <option value="2">{{__('ui.service')}}</option>
-                                </select>
-                                <span class="arrow arrowDown"></span>
+                    @if ( $search['type'] != 'tags' )
+                        <div class="filter filter-thread">
+                            <h5 class="filter-name">{{__('ui.thread')}}</h5>
+                            <div class="filter-input radio">
+                                <label class="cb-container filter-checked" for="thread-eq">{{__('ui.equipment')}}
+                                    <input id="thread-eq" type="checkbox" name="threads[]" value="1" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="thread-se">{{__('ui.service')}}
+                                    <input id="thread-se" type="checkbox" name="threads[]" value="2" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
                             </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
 
-                <div class="filter filter-sorting">
-                    <span class="filter-name">{{__('ui.sort')}}:</span>
-                    <div class="filter-input">
-                        <div class="def-select-wraper">
-                            <select class="def-select sort-select" name="sort">
-                                <option value="1">{{__('ui.notSpecified')}}</option>
-                                <option value="2">{{__('ui.sortNew')}}</option>
-                                <option value="3">{{__('ui.sortCheap')}}</option>
-                                <option value="4">{{__('ui.sortExpensive')}}</option>
-                            </select>
-                            <span class="arrow arrowDown"></span>
+                    <div class="filter filter-sorting">
+                        <h5 class="filter-name">{{__('ui.sort')}}</h5>
+                        <div class="filter-input checkbox">
+                            <label class="radio-container" for="sorting-new">{{__('ui.sortNew')}}
+                                <input id="sorting-new" type="radio" name="type" value="2" checked="checked">
+                                <span class="radio-checkmark"></span>
+                            </label>
+                            <label class="radio-container" for="sorting-cheap">{{__('ui.sortCheap')}}
+                                <input id="sorting-cheap" type="radio" name="type" value="3">
+                                <span class="radio-checkmark"></span>
+                            </label>
+                            <label class="radio-container" for="sorting-expensive">{{__('ui.sortExpensive')}}
+                                <input id="sorting-expensive" type="radio" name="type" value="4">
+                                <span class="radio-checkmark"></span>
+                            </label>
                         </div>
                     </div>
                 </div>
+                <div class="mailer-suggestion">
+                    <p>{{__('ui.mailerSuggestText')}}</p>
+                    <img src="{{asset('icons/addToMailerIcon.svg')}}" alt="">
+                    <button class="not-allowed">{{__('ui.add')}}</button>
+                </div>
+            @endif
+        </div>
+        <div class="search-result">
+            <div class="column-title">
+                @if ( $search['type'] == 'none' )
+                    <h2>{{__('ui.catalog')}}</h2>
+                @elseif ( $search['type'] != 'tags' )
+                    <h2>{{$search['value']}}</h2>
+                @else 
+                    <h2>{{end($search['value'])}}</h2>
+                @endif
             </div>
-
             @if (isset($resByTag) && $resByTag['map'])
                 <div class="result-by-tag">
                     @foreach ($resByTag['map'] as $tagId => $tag)
                         @if ($search['type']=='text')
-                            <a href="{{loc_url(route('search', [$search['type']=>$search['value'], 'tag'=>$tag['url']]))}}">{{$tag['name']}} <span>{{$tag['amount']}}</span></a>
+                            <a href="{{loc_url(route('search', [$search['type']=>$search['value'], 'tag'=>$tag['url']]))}}">
+                                <span class="rbt-name">{{$tag['name']}}</span>
+                                <span class="rbt-amount">{{$tag['amount']}}</span>
+                            </a>
                         @elseif ($search['type']=='author')
-                            <a href="{{loc_url(route('search', [$search['type']=>$search['value']['url'], 'tag'=>$tag['url']]))}}">{{$tag['name']}} <span>{{$tag['amount']}}</span></a>
+                            <a href="{{loc_url(route('search', [$search['type']=>$search['value']['url'], 'tag'=>$tag['url']]))}}">
+                                <span class="rbt-name">{{$tag['name']}}</span>
+                                <span class="rbt-amount">{{$tag['amount']}}</span>
+                            </a>
                         @elseif ($search['type']=='type')
-                            <a href="{{loc_url(route('search', ['type'=>$search['url'], 'tag'=>$tag['url']]))}}">{{$tag['name']}} <span>{{$tag['amount']}}</span></a>
+                            <a href="{{loc_url(route('search', ['type'=>$search['url'], 'tag'=>$tag['url']]))}}">
+                                <span class="rbt-name">{{$tag['name']}} </span>
+                                <span class="rbt-amount">{{$tag['amount']}}</span></a>
                         @elseif ($search['type']=='tags' || $search['type']=='none')
-                            <a href="{{loc_url(route('tag-'.$tagId))}}">{{$tag['name']}} <span>{{$tag['amount']}}</span></a>
+                            <a href="{{loc_url(route('tag-'.$tagId))}}">
+                                <span class="rbt-name">{{$tag['name']}}</span>
+                                <span class="rbt-amount">{{$tag['amount']}}</span>
+                            </a>
                         @endif
                     @endforeach
                 </div>
             @endif
-
-            <div class="user-settings"></div>
-        @endif
-    </div>
-
-    <!-- Search result posts -->
-    <div id="searched-items">
-        <div class="posts-amount">
-            <p class="posts-amount-text">{{__('ui.searchAmount')}}: <span class="posts-amount-text">{{$postsAmount}}</span></p>
-        </div>
-        <div class="loading-gif hidden">
-            <img src="{{asset('icons/loadingIcon.svg')}}" alt="">
-        </div>
-        <div class="empty-search-wraper hidden">
-            <img class="empty-search-icon fail-icon" src="{{asset('icons/failIcon.svg')}}" alt="{{__('alt.keyword')}}">
-            <p class="empty-search-text">{{__('ui.searchFail')}}</p>
-        </div>
-        <div class="filtered-items">
-            <x-items :posts="$posts_list" button='addToFav' :translated="$translated"/>
-
-            <!-- Pagination -->
-            <div class="pagination-field">
-                {{ $posts_list->appends(request()->except('page'))->links() }}
+            <div id="searched-items">
+                <div class="loading-gif hidden">
+                    <img src="{{asset('icons/loadingIcon.svg')}}" alt="">
+                </div>
+                <div class="empty-search-wraper hidden">
+                    <img class="empty-search-icon fail-icon" src="{{asset('icons/failIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                    <p class="empty-search-text">{{__('ui.searchFail')}}</p>
+                </div>
+                <div class="filtered-items">
+                    <x-search-items :p="$posts_list" :t="$translated"/>
+        
+                    <!-- Pagination -->
+                    <div class="pagination-field">
+                        {{ $posts_list->appends(request()->except('page'))->links() }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -281,15 +296,62 @@
 @section('scripts')
     <script type="text/javascript" src="{{ asset('js/tags.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/subscription_required.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/addPostToFav.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
 
+            $('.post-fav').click(function(){
+                if ( $(this).hasClass('blocked') ) {
+                    showPopUpMassage(false, "{{ __('messages.postAddFavPersonal') }}");
+                } else {
+                    var blade = new Object();
+                    blade['url'] = "{{route('toFav')}}";
+                    blade['whiteHeart'] = "{{ asset('icons/heartWhiteIcon.svg') }}";
+                    blade['orangeHeart'] = "{{ asset('icons/heartOrangeIcon.svg') }}";
+                    blade['removedMes'] = "{{ __('messages.postRemovedFav') }}";
+                    blade['addedMes'] = "{{ __('messages.postAddedFav') }}";
+                    blade['addErrorMes'] = "{{ __('messages.postAddFavError') }}";
+                    blade['errorMes'] = "{{ __('messages.error') }}";
+                    addPostToFav($(this), getIdFromClasses($(this).attr("class"), 'id_'), blade);
+                }
+            });
+
+            //add hover effect on item when hover on addToFav btn
+            $(".post-fav").hover(function(){togglePostHover($(this))}, function(){togglePostHover($(this))});
+            $(".post-link").hover(function(){togglePostHover($(this))}, function(){togglePostHover($(this))});
+
+            // toggle hover effect on hoverIn/Out on exat post
+            function togglePostHover(element) {
+                var postId = getIdFromClasses(element.attr("class"), 'id_');
+                $("#"+postId+" .post-title p").toggleClass('post-title-hover');
+                $("#"+postId+" .post-description").toggleClass('post-description-hover');
+                $("#"+postId+" .post-type").toggleClass('post-type-hover');
+            }
+
+            $('.currency-switch').click(function(){
+                var id = $(this).attr('for');
+                var label = $('#'+id).prop('checked');
+                if ( label ) {
+                    $('#currency-usd-lable').addClass('active-currency');
+                    $('#currency-uah-lable').removeClass('active-currency');
+                } else {
+                    $('#currency-usd-lable').removeClass('active-currency');
+                    $('#currency-uah-lable').addClass('active-currency');
+                }
+            });
+
+            $('.cb-container.filter-checked').click(function(){
+                var id = $(this).attr('for');
+                var label = $('#'+id).prop('checked');
+                if ( label ) {
+                    $(this).addClass('filter-checked');
+                } else {
+                    $(this).removeClass('filter-checked');
+                }
+            });
+
             var filters = new Object();
             filters.currency = 'UAH';
-
-            //remove last '>' symbol from searched tags
-            $('#searchTags span.item-tag-delim').last().remove();
-            $('#searchText span.item-tag-delim').last().remove();
 
             //handle manual ajax pagination
             $('body').on('click', 'div.filter-pagination a', function(e){
@@ -299,6 +361,7 @@
                 fetch_data(page);
             });
 
+            //fetch the filtered items
             function fetch_data(page)
             {
                 $('div.filtered-items').addClass('hidden'); //hide old items
@@ -333,8 +396,8 @@
                 });
             }
 
+            //make filter
             function filter() {
-                filterLable();
                 // show initial pagination if there is no filters, else show only ajax pagination
                 $('div.filtered-items').addClass('hidden'); //hide old items
                 $('div.loading-gif').removeClass('hidden'); //show loading gif
@@ -392,57 +455,6 @@
                 filter();
                 $(this).remove();
             });
-
-            function filterLable() {
-                $('.user-settings').empty();
-                var label = '';
-                for (filterName in filters) {
-                    if ( filterName=='currency' ) {
-                        if (!filters.costFrom && !filters.costTo) {
-                            continue;
-                        } else {
-                            label = filters[filterName];
-                        }
-                    } else if (filterName=='costFrom') {
-                        var currency = $('#inputCurrency').children('option:selected').val();
-                        label = "{{__('ui.from')}}" + ' ' + NumberToCurrency( currency, filters[filterName] );
-                    } else if (filterName=='costTo') {
-                        var currency = $('#inputCurrency').children('option:selected').val();
-                        label = "{{__('ui.to')}}" + ' ' + NumberToCurrency( currency, filters[filterName] );
-                    } else if (filterName=='condition') {
-                        if (filters[filterName]==1) {
-                            continue;
-                        }
-                        label = $('.condition-select').children('option:selected').html();
-                    } else if (filterName=='role') {
-                        if (filters[filterName]==0) {
-                            continue;
-                        }
-                        label = $('.role-select').children('option:selected').html();
-                    } else if (filterName=='type') {
-                        if (filters[filterName]==0) {
-                            continue;
-                        }
-                        label = $('.type-select').children('option:selected').html();
-                    } else if (filterName=='region') {
-                        if (filters[filterName]==0) {
-                            continue;
-                        }
-                        label = $('.region-select').children('option:selected').html();
-                    } else if (filterName=='sort') {
-                        if (filters[filterName]==1) {
-                            continue;
-                        }
-                        label = $('.sort-select').children('option:selected').html();
-                    } else if (filterName=='thread') {
-                        if (filters[filterName]==0) {
-                            continue;
-                        }
-                        label = $('.thread-select').children('option:selected').html();
-                    }
-                    $('.user-settings').append('<div class="user-setting"><span class="setting-name">'+label+'</span><button class="'+filterName+' remove-setting" title="{{__("ui.delete")}}"><img src="{{asset("icons/closeWhiteIcon.svg")}}" alt="{{__("alt.keyword")}}"></button></div>');
-                }
-            }
 
             // user uses costFrom filter
             $('.cost-from-input').focusout(function(){
@@ -707,74 +719,6 @@
                         button.removeClass('loading');
                     }
                 });
-            });
-
-            //if user tries to add his oun item to fav list
-            $('body').on("click", ".addToFavButtonBlocked", function(){
-                showPopUpMassage(false, "{{ __('messages.postAddFavPersonal') }}");
-            });
-
-            //action when user clicks on addToFav icon
-            $('body').on("click", ".addToFavButton", function(){
-                var postId = getIdFromClasses($(this).attr("class"), 'id_');
-                //make cursor wait
-                var button = $(this);
-                var img = button.children('img');
-                button.addClass('loading');
-                //send Ajax reqeust to add Item to fav list of user
-                $.ajax({
-                    type: "GET",
-                    url: '{{route("toFav")}}',
-                    data: { post_id: postId },
-                    success: function(data) {
-                        //if no server errors, change digit of favItemsAmount in nav bar
-                        //and change color of AddToFav btn img
-                        if ( data ) {
-                            var n = $("#favItemsTab span").text();
-                            n = parseInt(n,10);
-                            //visualize removing from fav list
-                            if ( img.hasClass('active-fav-img') ) {
-                                $("#favItemsTab span").html(n-1);
-                                img.attr("src", "{{ asset('icons/heartWhiteIcon.svg') }}");
-                                showPopUpMassage(true, "{{ __('messages.postRemovedFav') }}");
-                            //visualize adding to fav list
-                            } else {
-                                $("#favItemsTab span").html(n+1);
-                                img.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
-                                showPopUpMassage(true, "{{ __('messages.postAddedFav') }}");
-                            }
-                            img.toggleClass('active-fav-img');
-                        //if server errors occures, pop up error massage
-                        } else {
-                            showPopUpMassage(false, "{{ __('messages.postAddFavError') }}");
-                        }
-                        //remove cursor wait
-                        button.removeClass('loading');
-                    },
-                    error: function() {
-                        //pop up error massage and remove cursor wait
-                        showPopUpMassage(false, "{{ __('messages.') }}");
-                        button.removeClass('loading');
-                    }
-                });
-            });
-
-            //add hover effect on item when hover on addToFav btn
-            $(".addToFavButton").hover(function(){
-                var item_id = $(this).attr("class").split('_')[1];
-                $(".item_id_"+item_id).addClass('hover');
-                }, function(){
-                var item_id = $(this).attr("class").split('_')[1];
-                $(".item_id_"+item_id).removeClass('hover');
-            });
-
-            //add hover effect on item when hover on addToFavBlocked btn
-            $(".addToFavButtonBlocked").hover(function(){
-                var item_id = $(this).attr("class").split('_')[1];
-                $(".item_id_"+item_id).addClass('hover');
-                }, function(){
-                var item_id = $(this).attr("class").split('_')[1];
-                $(".item_id_"+item_id).removeClass('hover');
             });
 
         });
