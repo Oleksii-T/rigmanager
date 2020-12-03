@@ -92,7 +92,7 @@ return [
         'store' => 'Mud storage',
             'mudTanks' => 'Tanks',
         'standPipe' => 'Standpipe',
-        //'filter' => 'Фильтры',
+        //'filters' => 'Фильтры',
         'trashPump' => 'Trash pumps',
         'hose' => 'Hoses',
 
@@ -198,11 +198,11 @@ return [
         'junkBasket' => 'Junk backets',
 
     'lubricator' => 'Lubricants',
-        'lubricntDP' => 'For DP',
-        'lubricntTong' => 'For tongs',
-        'lubricntPump' => 'For pumps',
-        'lubricntTubing' => 'For tubing',
-        'lubricntCasing' => 'For casing',
+        'lubricatorDP' => 'For DP',
+        'lubricatorTong' => 'For tongs',
+        'lubricatorPump' => 'For pumps',
+        'lubricatorTubing' => 'For tubing',
+        'lubricatorCasing' => 'For casing',
 
     'tubingEq' => 'Tubing equipment',
         'knockOffValve' => 'Knock-off valves',

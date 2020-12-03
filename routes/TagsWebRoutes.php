@@ -127,7 +127,7 @@ Route::get('zabojnye-dvigatelya',     'SearchController@searchTag')->name('tag-8
     Route::get('zabojnye-dvigatelya/vrashchatelnye',     'SearchController@searchTag')->name('tag-8.1');
     Route::get('zabojnye-dvigatelya/udarnye',     'SearchController@searchTag')->name('tag-8.2');
     Route::get('zabojnye-dvigatelya/pnevmaticheskie',     'SearchController@searchTag')->name('tag-8.3');
-    Route::get('zabojnye-dvigatelya/gidravlicheskie',     'SearchController@searchTag')->name('tag-8.4');
+    Route::get('zabojnye-dvigatelya/gidravlicheskie-d',     'SearchController@searchTag')->name('tag-8.4');
     Route::get('zabojnye-dvigatelya/ehlektricheskie',     'SearchController@searchTag')->name('tag-8.5');
 Route::get('zapchasti',     'SearchController@searchTag')->name('tag-9');
 Route::get('izmeritelnoe-oborudovanie',     'SearchController@searchTag')->name('tag-10');
@@ -311,8 +311,8 @@ Route::get('oborudovanie-tb',     'SearchController@searchTag')->name('tag-28');
     Route::get('oborudovanie-tb/dop-oborudovanie',     'SearchController@searchTag')->name('tag-28.6');
 Route::get('burovye-klyuchi',     'SearchController@searchTag')->name('tag-29');
     Route::get('burovye-klyuchi/komponenty',     'SearchController@searchTag')->name('tag-29.1');
-    Route::get('burovye-klyuchi/gidravlicheskie',     'SearchController@searchTag')->name('tag-29.2');
-        Route::get('burovye-klyuchi/gidravlicheskie/dok-stanciya',     'SearchController@searchTag')->name('tag-29.2.1');
+    Route::get('burovye-klyuchi/gidravlicheskie-k',     'SearchController@searchTag')->name('tag-29.2');
+        Route::get('burovye-klyuchi/gidravlicheskie-k/dok-stanciya',     'SearchController@searchTag')->name('tag-29.2.1');
     Route::get('burovye-klyuchi/dlya-nkt',     'SearchController@searchTag')->name('tag-29.3');
     Route::get('burovye-klyuchi/dlya-obsadnoj-kolonny',     'SearchController@searchTag')->name('tag-29.4');
     Route::get('burovye-klyuchi/mekhanicheskie-klyuchi',     'SearchController@searchTag')->name('tag-29.5');
@@ -336,7 +336,7 @@ Route::get('himicheskaya-laboratoriya',     'SearchController@searchTag')->name(
     Route::get('himicheskaya-laboratoriya/izmereniya-vodootdachi',     'SearchController@searchTag')->name('tag-31.6');
 Route::get('yasy',     'SearchController@searchTag')->name('tag-32');
     Route::get('yasy/gidromekhanicheskie',     'SearchController@searchTag')->name('tag-32.1');
-    Route::get('yasy/gidravlicheskie',     'SearchController@searchTag')->name('tag-32.2');
+    Route::get('yasy/gidravlicheskie-y',     'SearchController@searchTag')->name('tag-32.2');
 
 
 // SERVICES

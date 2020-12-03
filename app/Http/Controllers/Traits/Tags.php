@@ -100,7 +100,7 @@ trait Tags
                 '5.9' => __('tags.store'),
                     '5.9.1' => __('tags.mudTanks'),
                 '5.10' => __('tags.standPipe'),
-                '5.11' => __('tags.filter'),
+                '5.11' => __('tags.filters'),
                 '5.12' => __('tags.trashPump'),
                 '5.13' => __('tags.hose'),
             '6' => __('tags.boreholeSurvey'),
@@ -515,7 +515,7 @@ trait Tags
                 '8.1' => 'vrashchatelnye',
                 '8.2' => 'udarnye',
                 '8.3' => 'pnevmaticheskie',
-                '8.4' => 'gidravlicheskie',
+                '8.4' => 'gidravlicheskie-d',
                 '8.5' => 'ehlektricheskie',
             '9' => 'zapchasti',
             '10' => 'izmeritelnoe-oborudovanie',
@@ -699,7 +699,7 @@ trait Tags
                 '28.6' => 'dop-oborudovanie',
             '29' => 'burovye-klyuchi',
                 '29.1' => 'komponenty',
-                '29.2' => 'gidravlicheskie',
+                '29.2' => 'gidravlicheskie-k',
                     '29.2.1' => 'dok-stanciya',
                 '29.3' => 'dlya-nkt',
                 '29.4' => 'dlya-obsadnoj-kolonny',
@@ -724,7 +724,7 @@ trait Tags
                 '31.6' => 'izmereniya-vodootdachi',
             '32' => 'yasy',
                 '32.1' => 'gidromekhanicheskie',
-                '32.2' => 'gidravlicheskie',
+                '32.2' => 'gidravlicheskie-y',
 
 
             // SERVESES
@@ -852,6 +852,10 @@ trait Tags
     public function tagExist ($value) {
         $this->constructTagsMap();
         return array_key_exists($value, $this->tagsMap);
+    }
+
+    public function getTagLevel ($tag) {
+        return substr_count($tag, '.')+1;
     }
 
 }

@@ -93,7 +93,7 @@ return [
         'store' => 'Системы хранения бурового раствора',
             'mudTanks' => 'Емкости',
         'standPipe' => 'Стояк',
-        //'filter' => 'Фильтры',
+        //'filters' => 'Фильтры',
         'trashPump' => 'Шламовые насосы',
         'hose' => 'Шланги',
 
@@ -199,11 +199,11 @@ return [
         'junkBasket' => 'Шламоуловитель',
 
     'lubricator' => 'Лубрикант (Смазка)',
-        'lubricntDP' => 'Для буровых труб',
-        'lubricntTong' => 'Для ключей',
-        'lubricntPump' => 'Для насосов',
-        'lubricntTubing' => 'Для НКТ',
-        'lubricntCasing' => 'Для обсадных труб',
+        'lubricatorDP' => 'Для буровых труб',
+        'lubricatorTong' => 'Для ключей',
+        'lubricatorPump' => 'Для насосов',
+        'lubricatorTubing' => 'Для НКТ',
+        'lubricatorCasing' => 'Для обсадных труб',
 
     'tubingEq' => 'НКТ и оснастка',
         'knockOffValve' => 'Клапан сбивной',

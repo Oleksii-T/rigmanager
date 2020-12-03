@@ -9,6 +9,47 @@
 
 @section('content')
 
+    <div class="bc-nav">
+        <ul>
+            <li><a class="bc-item" href="{{loc_url(route('home'))}}">{{__('ui.home')}}</a></li>
+            @if ( $search['type'] == 'tags' )
+                <li><p class="bc-item bc-delim">&#x02192;</p></li>
+                <li><a class="bc-item not-allowed" href="{{loc_url(route('home'))}}">{{__('ui.catalog')}}</a></li>
+                @foreach ($search['value'] as $key => $name)
+                    <li><p class="bc-item bc-delim">&#x02192;</p></li>
+                    <li><a class="bc-item" href="{{loc_url(route('tag-'.$key))}}">{{$name}}</a></li>
+                @endforeach
+            @elseif ( $search['type'] == 'text' )
+                <li><p class="bc-item bc-delim">&#x02192;</p></li>
+                <li><a class="bc-item" href="{{loc_url(route('search', ['text'=>$search['value']]))}}">"{{$search['value']}}"</a></li>
+                @if (isset($resByTag) && $resByTag['searchedTagMap'])
+                    @foreach ($resByTag['searchedTagMap'] as $tagUrl => $tag)
+                        <li><p class="bc-item bc-delim">&#x02192;</p></li>    
+                        <li><a class="bc-item" href="{{loc_url(route('search', ['text'=>$search['value'], 'tag'=>$tagUrl]))}}">{{$tag}}</a></li>
+                    @endforeach
+                @endif  
+            @elseif ( $search['type'] == 'type' )
+                <li><p class="bc-item bc-delim">&#x02192;</p></li>
+                <li><a class="bc-item" href="{{loc_url(route('search', ['type'=>$search['url']]))}}">{{$search['value']}}</a></li>
+                @if (isset($resByTag) && $resByTag['searchedTagMap'])
+                    @foreach ($resByTag['searchedTagMap'] as $tagUrl => $tag)
+                        <li><p class="bc-item bc-delim">&#x02192;</p></li>    
+                        <li><a class="bc-item" href="{{loc_url(route('search', ['type'=>$search['url'], 'tag'=>$tagUrl]))}}">{{$tag}}</a></li>
+                    @endforeach
+                @endif  
+            @elseif ( $search['type'] == 'author' )
+                <li><p class="bc-item bc-delim">&#x02192;</p></li>
+                <li><a class="bc-item" href="{{loc_url(route('search', ['author'=>$search['value']['url']]))}}">{{$search['value']['name']}}</a></li>
+                @if (isset($resByTag) && $resByTag['searchedTagMap'])
+                    @foreach ($resByTag['searchedTagMap'] as $tagUrl => $tag)
+                        <li><p class="bc-item bc-delim">&#x02192;</p></li>    
+                        <li><a class="bc-item" href="{{loc_url(route('search', ['author'=>$search['value']['url'], 'tag'=>$tagUrl]))}}">{{$tag}}</a></li>
+                    @endforeach
+                @endif    
+            @endif
+        </ul>
+    </div>
+
     <a id="filter-beacon"></a>
 
     <!-- Search result status show -->
@@ -197,7 +238,7 @@
                         @if ($search['type']=='text')
                             <a href="{{loc_url(route('search', [$search['type']=>$search['value'], 'tag'=>$tag['url']]))}}">{{$tag['name']}} <span>{{$tag['amount']}}</span></a>
                         @elseif ($search['type']=='author')
-                            <a href="{{loc_url(route('search', [$search['type']=>$search['value']['name'], 'tag'=>$tag['url']]))}}">{{$tag['name']}} <span>{{$tag['amount']}}</span></a>
+                            <a href="{{loc_url(route('search', [$search['type']=>$search['value']['url'], 'tag'=>$tag['url']]))}}">{{$tag['name']}} <span>{{$tag['amount']}}</span></a>
                         @elseif ($search['type']=='type')
                             <a href="{{loc_url(route('search', ['type'=>$search['url'], 'tag'=>$tag['url']]))}}">{{$tag['name']}} <span>{{$tag['amount']}}</span></a>
                         @elseif ($search['type']=='tags' || $search['type']=='none')

@@ -106,7 +106,7 @@
                         <p class="tag equipment second" id="5.8">{{__('tags.prepare')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                         <p class="tag equipment second" id="5.9">{{__('tags.store')}}<img class="arrow-img" src="{{asset('icons/rightArrowIcon.svg')}}" alt=""></p>
                         <p class="tag equipment second" id="5.10">{{__('tags.standPipe')}}</p>
-                        <p class="tag equipment second" id="5.11">{{__('tags.filter')}}</p>
+                        <p class="tag equipment second" id="5.11">{{__('tags.filters')}}</p>
                         <p class="tag equipment second" id="5.12">{{__('tags.trashPump')}}</p>
                         <p class="tag equipment second" id="5.13">{{__('tags.hose')}}</p>
                     </div>

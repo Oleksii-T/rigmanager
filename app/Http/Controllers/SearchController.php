@@ -87,9 +87,9 @@ class SearchController extends Controller
         $tagUrl = request()->segment(count(request()->segments()));
         $tagId = $this->getIdByUrl($tagUrl);
         $regex = str_replace('.', '\.', "^$tagId(.[0-9]+)*$"); //make regex from tag and escape regex '.' via '\'
-        $posts_list = Post::whereRaw("tag_encoded REGEXP '$regex'")->where("is_active", 1); //search appropriate for posts using raw where query
-        $resByTag = $this->countResultByTags($posts_list->get(), $tagId);
-        return $this->serializeSearch($posts_list->get(), $resByTag, 'tags', ['tagMap'=>$this->getTagMap($tagId), 'tagTypeMap'=>$this->getTagType($tagId)]);
+        $posts_list = Post::whereRaw("tag_encoded REGEXP '$regex'")->where("is_active", 1)->get(); //search appropriate for posts using raw where query
+        $resByTag = $this->countResultByTags($posts_list, $tagId);
+        return $this->serializeSearch($posts_list, $resByTag, 'tags', ['tagMap'=>$this->getTagMap($tagId), 'tagTypeMap'=>$this->getTagType($tagId)]);
     }
 
     public function searchAuthor($input)
@@ -158,24 +158,31 @@ class SearchController extends Controller
         }
         // if there is searched tag display info about sub tags 
         if ($searchedTag) {
+            $trgLevel = $this->getTagLevel($searchedTag); 
             foreach ($posts as $post) {
-                if ($post->tag_encoded == $searchedTag) {
-                }
-                if (isset($resByTag[$post->tag_encoded])) {
-                    $resByTag[$post->tag_encoded]['amount']++;
+                $level = $this->getTagLevel($post->tag_encoded);
+                // transform sub-sub tags to sub tags
+                if ($level > $trgLevel+1) {
+                    $tag = substr($post->tag_encoded, 0, strrpos($post->tag_encoded, '.', -1));
                 } else {
-                    $resByTag[$post->tag_encoded]['amount'] = 1;
-                    $resByTag[$post->tag_encoded]['url'] = $this->getUrlByTag($post->tag_encoded);
-                    $resByTag[$post->tag_encoded]['name'] = 
-                        $post->tag_encoded == $searchedTag
-                        ? __('ui.noTag')
-                        : $this->getTagNameById($post->tag_encoded);
+                    $tag = $post->tag_encoded;
+                }
+                if (isset($resByTag[$tag])) {
+                    $resByTag[$tag]['amount']++;
+                } else {
+                    $resByTag[$tag]['amount'] = 1;
+                    $resByTag[$tag]['url'] = $this->getUrlByTag($tag);
+                    $resByTag[$tag]['name'] = 
+                    $tag == $searchedTag
+                        ? __('ui.other')
+                        : $this->getTagNameById($tag);
                 }
             }
             //remove one tag if it is the same is searched
-            if ( count($resByTag) == 1 && $resByTag[array_key_first($resByTag)]['name'] == __('ui.noTag') )  {
+            if ( count($resByTag) == 1 && array_key_first($resByTag) == $searchedTag ) {
                 $resByTag=null;
             }
+            $searchedTagMap = $this->getTagUrlMap($searchedTag);
             $searchedTag = $this->getTagReadable($searchedTag);
         // if there is none tags searched, display only the highest layer of tags
         } else {
@@ -190,8 +197,9 @@ class SearchController extends Controller
                     $resByTag[$firstPair['tagId']]['name'] = $firstPair['tagName'];
                 }
             }
+            $searchedTagMap = null;
         }
-        $result = ['map'=>$resByTag, 'searchedTag'=>$searchedTag];
+        $result = ['map'=>$resByTag, 'searchedTag'=>$searchedTag, 'searchedTagMap'=>$searchedTagMap];
         return $result;
     }
 
