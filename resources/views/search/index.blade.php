@@ -55,6 +55,7 @@
 
     <a id="filter-beacon"></a>
 
+    @if ($posts_list->isNotEmpty())
     <div class="search-wraper">
         <div class="filters">
             @if (!$search['isEmpty'])
@@ -275,7 +276,7 @@
                 </div>
                 <div class="empty-search-wraper hidden">
                     <img class="empty-search-icon fail-icon" src="{{asset('icons/failIcon.svg')}}" alt="{{__('alt.keyword')}}">
-                    <p class="empty-search-text">{{__('ui.searchFail')}}</p>
+                    <p class="empty-search-text">{{__('ui.searchFail')}}. {{__('ui.tryOtherFilters')}}</p>
                 </div>
                 <div class="filtered-items">
                     <x-search-items :p="$posts_list" :t="$translated"/>
@@ -288,6 +289,14 @@
             </div>
         </div>
     </div>
+    @else
+        <div class="empty-search-wraper">
+            <img class="empty-search-icon fail-icon" src="{{asset('icons/failIcon.svg')}}" alt="{{__('alt.keyword')}}">
+            <p class="empty-search-text">{{__('ui.searchFail')}}.
+                <a href="{{ url()->previous() }}">{{__('ui.serverErrorGoBack')}}</a>
+            </p>
+        </div>
+    @endif
 
     <x-subscription-required role='1'/>
 

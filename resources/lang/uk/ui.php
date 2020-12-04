@@ -175,8 +175,7 @@ return [
     'choosedFromTags' => 'Вибірка з категорій',
     'other' => 'Інше',
     'searchSuccess' => 'Ось що нам вдалося знайти',
-    'searchFail' => 'На жаль, нам не вдалося знайти
-        оголошення за Вашим запитом',
+    'searchFail' => 'На жаль, нам не вдалося знайти оголошення за Вашим запитом',
     'filters' => 'Фільтри',
     'from' => 'Від',
     'to' => 'До',
@@ -188,7 +187,7 @@ return [
     'searchAmount' => 'Результати Пошуку',
     'postType' => 'Тип',
     'postRole' => 'Сектор',
-    'noTag' => 'Без категорії',
+    'tryOtherFilters' => 'Спробуйте інші фільтри.',
 
    // post edit/create massages
     'equipment' => 'Обладнання',

@@ -174,8 +174,7 @@ return [
     'choosedFromTags' => 'Browsing in categories',
     'other' => 'Other',
     'searchSuccess' => 'That is what we found',
-    'searchFail' => 'Sorry, we can not find
-        posts for your request',
+    'searchFail' => 'Sorry, we can not find posts for your request',
     'filters' => 'Filters',
     'from' => 'From',
     'to' => 'To',
@@ -187,7 +186,7 @@ return [
     'searchAmount' => 'Search Results',
     'postType' => 'Post type',
     'postRole' => 'Legal type',
-    'noTag' => 'Without Category',
+    'tryOtherFilters' => 'You may try other filters',
 
     // post edit/create/show massages
     'equipment' => 'Equipment',
