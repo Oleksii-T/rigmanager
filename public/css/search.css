@@ -14,6 +14,10 @@
     overflow: hidden;
 }
 
+.block-click {
+    pointer-events: none;
+}
+
 /*=====COLUMN_TITLE=====*/
 
 .column-title {
@@ -41,6 +45,7 @@
     border-radius: 7px;
     border: 2px solid #888888;
     background-color: transparent;
+    outline: none;
 }
 
 .filter-cost .filter-name {
@@ -112,7 +117,7 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .result-by-tag a {
@@ -143,6 +148,15 @@
 }
 
 /*=====ITEMS=====*/
+
+.posts-amount {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.posts-amount span {
+    color: #fe9042;
+}
 
 .empty-search-wraper {
     text-align: center;

@@ -119,10 +119,10 @@ class SearchController extends Controller
 
     private function serializeSearch($posts_list, $resByTag, $type, $value=null) 
     {
+        $posts_list = $posts_list->sortBy('created_at');
         $postsIds = json_encode($posts_list->pluck('id'));
         $posts_list = $posts_list->paginate(env('POSTS_PER_PAGE'));
-        $postsAmount = $posts_list->total();
-        $postsAmount == 0
+        $posts_list->total() == 0
             ? $search['isEmpty'] = true
             : $search['isEmpty'] = false;
         $search['type'] = $type;
@@ -148,7 +148,7 @@ class SearchController extends Controller
         }
         $translated['title'] = 'title_'.App::getLocale();
         $translated['description'] = 'description_'.App::getLocale();
-        return view('search.index', compact('posts_list', 'search', 'postsIds', 'postsAmount', 'translated', 'resByTag'));
+        return view('search.index', compact('posts_list', 'search', 'postsIds', 'translated', 'resByTag'));
     }
 
     private function countResultByTags($posts, $searchedTag=null) 

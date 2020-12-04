@@ -57,7 +57,7 @@
             <header>
                 <div class="header-l">
                     <a class="header-logo" href="{{ loc_url(route('home')) }}"><img title="{{__('ui.home')}}" src="{{ asset('icons/rigmanagerLogoIcon.svg') }}" alt="{{__('alt.keyword')}}"></a>
-                    <a class="header-catalog header-btn not-allowed" href="{{ loc_url(route('home')) }}"><span><img src="{{asset('icons/catalogIcon.svg')}}" alt=""></span>{{__('ui.catalog')}}</a>
+                    <a class="header-catalog header-btn" href="{{ loc_url(route('list')) }}"><span><img src="{{asset('icons/catalogIcon.svg')}}" alt=""></span>{{__('ui.catalog')}}</a>
                 </div>
                 <div class="header-r">
                     <a class="header-add-post header-btn" href="{{ loc_url(route('posts.create')) }}">{{__('ui.addPost')}}</a>
@@ -107,7 +107,7 @@
                                 <td><a class="footer-link" href="{{loc_url(route('privacy'))}}">{{__('ui.footerPrivacy')}}</a></td>
                             </tr>
                             <tr>
-                                <td><a class="footer-link not-allowed" href="{{loc_url(route('home'))}}">{{__('ui.catalog')}}</a></td>
+                                <td><a class="footer-link" href="{{loc_url(route('list'))}}">{{__('ui.catalog')}}</a></td>
                                 <td><a class="footer-link" href="{{loc_url(route('faq'))}}">{{__('ui.footerFAQ')}}</a></td>
                                 <td><a class="footer-link" href="{{loc_url(route('site.map'))}}">{{__('ui.footerSiteMap')}}</a></td>
                             </tr>

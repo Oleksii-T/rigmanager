@@ -12,9 +12,9 @@
     <div class="bc-nav">
         <ul>
             <li><a class="bc-item" href="{{loc_url(route('home'))}}">{{__('ui.home')}}</a></li>
+            <li><p class="bc-item bc-delim">&#x02192;</p></li>
+            <li><a class="bc-item" href="{{loc_url(route('list'))}}">{{__('ui.catalog')}}</a></li>
             @if ( $search['type'] == 'tags' )
-                <li><p class="bc-item bc-delim">&#x02192;</p></li>
-                <li><a class="bc-item not-allowed" href="{{loc_url(route('home'))}}">{{__('ui.catalog')}}</a></li>
                 @foreach ($search['value'] as $key => $name)
                     <li><p class="bc-item bc-delim">&#x02192;</p></li>
                     <li><a class="bc-item" href="{{loc_url(route('tag-'.$key))}}">{{$name}}</a></li>
@@ -46,9 +46,6 @@
                         <li><a class="bc-item" href="{{loc_url(route('search', ['author'=>$search['value']['url'], 'tag'=>$tagUrl]))}}">{{$tag}}</a></li>
                     @endforeach
                 @endif   
-            @elseif ( $search['type'] == 'none' ) 
-                <li><p class="bc-item bc-delim">&#x02192;</p></li>
-                <li><a class="bc-item not-allowed" href="{{loc_url(route('home'))}}">{{__('ui.catalog')}}</a></li>
             @endif
         </ul>
     </div>
@@ -99,7 +96,7 @@
                     @else
                         <div class="filter filter-condition">
                             <h5 class="filter-name">{{__('ui.condition')}}</h5>
-                            <div class="filter-input radio">
+                            <div class="filter-input radio" id="condition">
                                 <label class="cb-container filter-checked" for="condition-new">{{__('ui.conditionNew')}}
                                     <input id="condition-new" type="checkbox" name="conditions[]" value="2" checked="checked">
                                     <span class="cb-checkmark"></span>
@@ -119,7 +116,7 @@
                     @if ( $search['type'] != 'type' )
                         <div class="filter filter-type">
                             <h5 class="filter-name">{{__('ui.postType')}}</h5>
-                            <div class="filter-input radio">
+                            <div class="filter-input radio" id="type">
                                 @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
                                     <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
                                         <input id="type-give-se" type="checkbox" name="types[]" value="5" checked="checked">
@@ -180,7 +177,7 @@
                     @else
                         <div class="filter filter-role">
                             <h5 class="filter-name">{{__('ui.postRole')}}</h5>
-                            <div class="filter-input radio">
+                            <div class="filter-input radio" id="role">
                                 <label class="cb-container filter-checked" for="role-private">{{__('ui.postRolePrivate')}}
                                     <input id="role-private" type="checkbox" name="roles[]" value="1" checked="checked">
                                     <span class="cb-checkmark"></span>
@@ -196,7 +193,7 @@
                     @if ( $search['type'] != 'tags' )
                         <div class="filter filter-thread">
                             <h5 class="filter-name">{{__('ui.thread')}}</h5>
-                            <div class="filter-input radio">
+                            <div class="filter-input radio" id="thread">
                                 <label class="cb-container filter-checked" for="thread-eq">{{__('ui.equipment')}}
                                     <input id="thread-eq" type="checkbox" name="threads[]" value="1" checked="checked">
                                     <span class="cb-checkmark"></span>
@@ -212,15 +209,15 @@
                     <div class="filter filter-sorting">
                         <h5 class="filter-name">{{__('ui.sort')}}</h5>
                         <div class="filter-input checkbox">
-                            <label class="radio-container" for="sorting-new">{{__('ui.sortNew')}}
+                            <label class="radio-container sort-select" for="sorting-new">{{__('ui.sortNew')}}
                                 <input id="sorting-new" type="radio" name="type" value="2" checked="checked">
                                 <span class="radio-checkmark"></span>
                             </label>
-                            <label class="radio-container" for="sorting-cheap">{{__('ui.sortCheap')}}
+                            <label class="radio-container sort-select" for="sorting-cheap">{{__('ui.sortCheap')}}
                                 <input id="sorting-cheap" type="radio" name="type" value="3">
                                 <span class="radio-checkmark"></span>
                             </label>
-                            <label class="radio-container" for="sorting-expensive">{{__('ui.sortExpensive')}}
+                            <label class="radio-container sort-select" for="sorting-expensive">{{__('ui.sortExpensive')}}
                                 <input id="sorting-expensive" type="radio" name="type" value="4">
                                 <span class="radio-checkmark"></span>
                             </label>
@@ -238,6 +235,8 @@
             <div class="column-title">
                 @if ( $search['type'] == 'none' )
                     <h2>{{__('ui.catalog')}}</h2>
+                @elseif ( $search['type'] == 'author' )
+                    <h2>{{$search['value']['name']}}</h2>
                 @elseif ( $search['type'] != 'tags' )
                     <h2>{{$search['value']}}</h2>
                 @else 
@@ -271,6 +270,9 @@
                 </div>
             @endif
             <div id="searched-items">
+                <div class="posts-amount">
+                    <p>{{__('ui.searchAmount')}}: <span>{{$posts_list->total()}}</span></p>
+                </div>
                 <div class="loading-gif hidden">
                     <img src="{{asset('icons/loadingIcon.svg')}}" alt="">
                 </div>
@@ -309,6 +311,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
 
+            // add psot to fav list
             $('.post-fav').click(function(){
                 if ( $(this).hasClass('blocked') ) {
                     showPopUpMassage(false, "{{ __('messages.postAddFavPersonal') }}");
@@ -337,6 +340,7 @@
                 $("#"+postId+" .post-type").toggleClass('post-type-hover');
             }
 
+            // add visual affect to chosen currency
             $('.currency-switch').click(function(){
                 var id = $(this).attr('for');
                 var label = $('#'+id).prop('checked');
@@ -349,6 +353,7 @@
                 }
             });
 
+            // add visual affect to chosen filters
             $('.cb-container.filter-checked').click(function(){
                 var id = $(this).attr('for');
                 var label = $('#'+id).prop('checked');
@@ -360,7 +365,15 @@
             });
 
             var filters = new Object();
-            filters.currency = 'UAH';
+            filters.currency = "UAH";
+            filters.costFrom = null;
+            filters.costTo = null;
+            filters.region = "0";
+            filters.condition = ["2","3","4"];
+            filters.role = ['1','2'];
+            filters.type = ["1","2","3","4","5","6"];
+            filters.thread = ["1","2"];
+            filters.sorting = "2";
 
             //handle manual ajax pagination
             $('body').on('click', 'div.filter-pagination a', function(e){
@@ -371,8 +384,7 @@
             });
 
             //fetch the filtered items
-            function fetch_data(page)
-            {
+            function fetch_data(page) {
                 $('div.filtered-items').addClass('hidden'); //hide old items
                 $('div.loading-gif').removeClass('hidden'); //show loading gif
                 $.ajax({
@@ -407,6 +419,7 @@
 
             //make filter
             function filter() {
+                toggleFilters();
                 // show initial pagination if there is no filters, else show only ajax pagination
                 $('div.filtered-items').addClass('hidden'); //hide old items
                 $('div.loading-gif').removeClass('hidden'); //show loading gif
@@ -429,53 +442,27 @@
                             $('div.posts-amount span').text( 0 ); // update items amount
                             $('.empty-search-wraper').removeClass('hidden'); // add empty items preview
                         }
+                        toggleFilters();
                     },
                     error: function() {
                         //print error massage and remove wait cursor
                         $('div.loading-gif').addClass('hidden'); // hide loading gif
                         $('div.filtered-items').removeClass('hidden'); // show old items
                         showPopUpMassage(false, "{{ __('messages.error') }}"); // pop up error message
+                        toggleFilters();
                     }
                 });
             }
 
-            $('.user-settings').on("mouseenter", "button.remove-setting", function(){
-                $(this).parent().addClass('hover-lable');
-            });
-
-            $('.user-settings').on("mouseleave", "button.remove-setting", function(){
-                $(this).parent().removeClass('hover-lable');
-            });
-
-            $('.user-settings').on("click", "button.remove-setting", function(){
-                filterName = $(this).attr('class').split(' ')[0];
-                if (filterName=='currency') {
-                    return;
-                }
-                // rechoose def value of select
-                else if (filterName=='costFrom' || filterName=='costTo') {
-                    $('input[name='+filterName+']').val('');
-                }else if (filterName=='condition' || filterName=='authorRole' || filterName=='sort') {
-                    $('select[name='+filterName+']').val('1');
-                }else if (filterName=='region') {
-                    $('select.region-select').val('0');
-                }
-                delete filters[filterName];
-                filter();
-                $(this).remove();
-            });
-
             // user uses costFrom filter
             $('.cost-from-input').focusout(function(){
-                var newVal = $(this).val();
-                // edit filters array
+                var newVal = $(this).val(); //get the user`s value
                 if (newVal){
-                    filters.costFrom = CurrencyToNumber(newVal);
-                    var currency = $('#inputCurrency').children('option:selected').val();
-                    newVal = NumberToCurrency( currency, $(this).val() );
-                    $(this).val(newVal);
+                    filters.costFrom = CurrencyToNumber(newVal); //save value parsed to pure number to filters
+                    newVal = NumberToCurrency( filters.currency, $(this).val() ); //make the readable variant of user`s value
+                    $(this).val(newVal); //display readable variant to user istead of his entered value
                 } else {
-                    delete filters.costFrom;
+                    filters.costFrom = null; //if no value is entered set the filter to null
                 }
                 filter();
             });
@@ -483,14 +470,12 @@
             // user uses costTo filter
             $('.cost-to-input').focusout(function(){
                 var newVal = $(this).val();
-                // edit filters array
                 if (newVal){
                     filters.costTo = CurrencyToNumber(newVal);
-                    var currency = $('#inputCurrency').children('option:selected').val();
-                    newVal = NumberToCurrency( currency, $(this).val() );
+                    newVal = NumberToCurrency( filters.currency, $(this).val() );
                     $(this).val(newVal);
                 } else {
-                    delete filters.costFrom;
+                    filters.costTo = null;
                 }
                 filter();
             });
@@ -503,10 +488,78 @@
                 $(this).val(newVal);
             });
 
+            // user uses currency filter
+            $('.currency-switch').change(function(){
+                if ( $(this).find('input').prop('checked') ) {
+                    var currency = 'USD';
+                } else {
+                    var currency = 'UAH';
+                }
+                filters.currency = currency; // edit filters array
+                //change currencu sign
+                oldFromCost = $(".cost-from-input").val(); //get the cost from
+                oldToCost = $(".cost-to-input").val(); //get the cost to
+                currency = currency=='UAH' ? '₴' : '$'; //replace currency with sign
+                if (oldFromCost) {
+                    $(".cost-from-input").val( oldFromCost.replace(oldFromCost[0], currency) ); //replace sign of costFrom to new sign
+                }
+                if (oldToCost) {
+                    $(".cost-to-input").val( oldToCost.replace(oldToCost[0], currency) ); //replace sign of costTo to new sign
+                }
+                filter();
+            });
+
+            // user uses region filter
+            $('.region-select').change(function(){
+                var region = $(this).children('option:selected').val();
+                // edit filters array
+                region==0 ? filters.region=0 : filters.region=region;
+                filter();
+            });
+
+            // transform filter-checkboxes to filter object and make filtration
+            $('.cb-container').change(function(){
+                parent = $(this).parent();
+                filterName = parent.attr('id');
+                var checked = parent.children().find('input:checked').map(function() {
+                    return $(this).attr('value');
+                }).get();
+                //console.log(Object.values(checked));
+                filters[filterName] = checked;
+                filter();
+            });
+
+            // user uses sorting filter
+            $('.sort-select').change(function(){
+                var sorting = $('.sort-select').find('input:checked').attr('value');
+                filters.sorting = sorting;
+                filter();
+            });
+
+            //get digit from classes of DOM element (depends on prefix)
+            function getIdFromClasses(classes, prefix) {
+                // regex special chars does not escaped in prefix!!!
+                var reg = new RegExp("^"+prefix+"[0-9]+$", 'g');
+                var result = '';
+                classes.split(' ').every(function(string){
+                    result = reg.exec(string);
+                    if ( result != null ) {
+                        result = result + '';
+                        result = result.split('_')[1];
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+                return result;
+            }
+
+            // transform string to pure number
             function CurrencyToNumber(str){
                 return str.replace(/[^0-9.]+/g,"");
             }
 
+            // transform pure number to readable currency
             function NumberToCurrency(currency, string) {
                 res = CurrencyToNumber(string);
                 if ( res.includes('.') ) {
@@ -542,193 +595,14 @@
                 return res;
             }
 
-            // user uses currency filter
-            $('.currency-select').change(function(){
-                var newVal = $(this).children('option:selected').val();
-                // edit filters array
-                filters.currency = newVal;
-                //change currencu sign
-                oldFromCost = $(".cost-from-input").val();
-                oldToCost = $(".cost-to-input").val();
-                newCurrency = $(this).children('option:selected').val();
-                newCurrency = newCurrency=='UAH' ? '₴' : '$';
-                if (oldFromCost) {
-                    $(".cost-from-input").val( oldFromCost.replace(oldFromCost[0], newCurrency) );
-                }
-                if (oldToCost) {
-                    $(".cost-to-input").val( oldToCost.replace(oldToCost[0], newCurrency) );
-                }
-                filter();
-            });
-
-            // user uses condition filter
-            $('.condition-select').change(function(){
-                var newVal = $(this).children('option:selected').val();
-                // edit filters array
-                newVal==1 ? delete filters.condition : filters.condition=newVal;
-                filter();
-            });
-
-            // user uses legal type filter
-            $('.role-select').change(function(){
-                var newVal = $(this).children('option:selected').val();
-                // edit filters array
-                newVal==0 ? delete filters.role : filters.role=newVal;
-                filter();
-            });
-
-            // user uses psot type filter
-            $('.type-select').change(function(){
-                var newVal = $(this).children('option:selected').val();
-                // edit filters array
-                newVal==0 ? delete filters.type : filters.type=newVal;
-                filter();
-            });
-
-            // user uses region filter
-            $('.region-select').change(function(){
-                var newVal = $(this).children('option:selected').val();
-                // edit filters array
-                newVal==0 ? delete filters.region : filters.region=newVal;
-                filter();
-            });
-
-            // user uses thread filter
-            $('.thread-select').change(function(){
-                var newVal = $(this).children('option:selected').val();
-                // edit filters array
-                newVal==0 ? delete filters.thread : filters.thread=newVal;
-                filter();
-            });
-
-            // user uses sorting filter
-            $('.sort-select').change(function(){
-                var newVal = $(this).children('option:selected').val();
-                // edit filters array
-                newVal==1 ? delete filters.sort : filters.sort=newVal;
-                filter();
-            });
-
-            //get digit from classes of DOM element (depends on prefix)
-            function getIdFromClasses(classes, prefix) {
-                // regex special chars does not escaped in prefix!!!
-                var reg = new RegExp("^"+prefix+"[0-9]+$", 'g');
-                var result = '';
-                classes.split(' ').every(function(string){
-                    result = reg.exec(string);
-                    if ( result != null ) {
-                        result = result + '';
-                        result = result.split('_')[1];
-                        return false;
-                    } else {
-                        return true;
-                    }
-                });
-                return result;
+            function toggleFilters() {
+                $('.filters *').toggleClass('loading');
+                $('.filters input[type=text]').toggleClass('block-click'); //block cost-from and const-to
+                $('.currency-switch').toggleClass('block-click'); // block currency switcher
+                $('.region-select').toggleClass('block-click'); //block region select
+                $('.cb-container').toggleClass('block-click'); // block checkbox filters
+                $('.sort-select').toggleClass('block-click'); // block sorting select
             }
-
-            $('#search-bar-clear-btn').click(function(){
-                $('#inputSearch').val("");
-            });
-
-            // user adds text to Mailer
-            $('#addTextToMailer').click(function() {
-                var searchString = $('p.user-text-request').text();
-                // Add wait cursor
-                var button = $(this);
-                button.addClass('loading');
-                var ajaxUrl = '{{ route("mailer.add.text", ":string") }}';
-                ajaxUrl = ajaxUrl.replace(':string', searchString);
-                $.ajax({
-                    type: "GET",
-                    url: ajaxUrl,
-                    success: function(data) {
-                        if (data) {
-                            showPopUpMassage(true, "{{ __('messages.mailerTextAdded') }}")
-                        } else {
-                            showPopUpMassage(false, "{{ __('messages.requirePremium') }}");
-                            showSubscriptionAlert();
-                        }
-                        // Remove wait cursor
-                        button.removeClass('loading');
-                    },
-                    error: function(xhr, status, error) {
-                        xhr['status'] == 403
-                            ? showPopUpMassage(false, "{{ __('messages.authError') }}")
-                            : showPopUpMassage(false, "{{ __('messages.error') }}");
-                        button.removeClass('loading');
-                    }
-                });
-            });
-
-            // user adds tags to Mialer
-            $('#addTagToMailer').click(function() {
-                var tagId = $(this).attr('class');
-                var button = $(this);
-                button.addClass('loading');
-                var ajaxUrl = '{{ route("mailer.add.tag", ":tagId") }}';
-                ajaxUrl = ajaxUrl.replace(':tagId', tagId);
-                $.ajax({
-                    type: "GET",
-                    url: ajaxUrl,
-                    success: function(data) {
-                        if (data == 1) {
-                            showPopUpMassage(true, "{{ __('messages.mailerTagAdded') }}");
-                        } else if ( data == -1) {
-                            showPopUpMassage(false, "{{ __('messages.mailerTagExists') }}");
-                        } else if (data == -2) {
-                            // Error, no premium
-                            showPopUpMassage(false, "{{ __('messages.requirePremium') }}");
-                            showSubscriptionAlert();
-                        }
-                        button.removeClass('loading');
-                    },
-                    error: function(xhr, status, error) {
-                        xhr['status'] == 403
-                            ? showPopUpMassage(false, "{{ __('messages.authError') }}")
-                            : showPopUpMassage(false, "{{ __('messages.error') }}");
-                        button.removeClass('loading');
-                    }
-                });
-            });
-
-            // user add author to mailer
-            $('#addAuthorToMailer').click(function() {
-                var author = $(this).attr('class');
-                // Add wait cursor
-                var button = $(this);
-                button.addClass('loading');
-                var ajaxUrl = '{{ route("mailer.add.author", ":author") }}';
-                ajaxUrl = ajaxUrl.replace(':author', author);
-                $.ajax({
-                    type: "GET",
-                    url: ajaxUrl,
-                    success: function(data) { 
-                        if (data == 1) {
-                            // Author was added to Mailer
-                            showPopUpMassage(true, "{{ __('messages.mailerAddedAuthor') }}");
-                        } else if (data == 0) {
-                            // Author exist in mailer Mailer
-                            showPopUpMassage(false, "{{ __('messages.mailerAuthorExists') }}");
-                        } else if (data == -1) {
-                            // Error, too many authors
-                            showPopUpMassage(false, "{{ __('messages.mailerTooManyAuthors') }}");
-                        } else if (data == -2) {
-                            // Error, no premium
-                            showPopUpMassage(false, "{{ __('messages.requirePremium') }}");
-                            showSubscriptionAlert();
-                        }
-                        // Remove wait cursor
-                        button.removeClass('loading');
-                    },
-                    error: function(xhr, status, error) {
-                        xhr['status'] == 403
-                            ? showPopUpMassage(false, "{{ __('messages.authError') }}")
-                            : showPopUpMassage(false, "{{ __('messages.error') }}");
-                        button.removeClass('loading');
-                    }
-                });
-            });
 
         });
     </script>
