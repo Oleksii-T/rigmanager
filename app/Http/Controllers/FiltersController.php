@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\App;
 
 class FiltersController extends Controller
 {
-    public function filter(Request $request) {
+    public function filter(Request $request) 
+    {
         $posts = $this->getPostsByIds( json_decode($request->postsIds) ); //get array of posts by array of ids
         if ($posts->isEmpty()) {
             return false;

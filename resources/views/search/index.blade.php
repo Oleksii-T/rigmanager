@@ -190,7 +190,7 @@
                         </div>
                     @endif
 
-                    @if ( $search['type'] != 'tags' )
+                    @if ( $search['type'] != 'tags' && $search['type'] != 'type' )
                         <div class="filter filter-thread">
                             <h5 class="filter-name">{{__('ui.thread')}}</h5>
                             <div class="filter-input radio" id="thread">

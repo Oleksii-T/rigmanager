@@ -218,6 +218,8 @@ div.introduction h1{
 .epilogue-text {
     font-size: 150%;
     white-space: pre-line;
+    width: 80%;
+    margin: 0px auto;
 }
 
 .e-2 {
