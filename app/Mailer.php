@@ -16,13 +16,47 @@ class Mailer extends Model
     ];
 
     protected $fillable = [
-        'eq_tags_encoded', 'se_tags_encoded', 'keywords', 'authors_encoded', 'is_active', 'types'
+        'title', 'tag', 'keyword', 'author', 'is_active', 'type', 'currency', 'cost_from', 'cost_to', 'region',
+        'condition', 'thread', 'role'
     ];
 
     public function user() {
         return $this->belongsTo(User::class);
     }
 
+    public function setTypeAttribute($value) {
+        if (!$value) {
+            $this->attributes['type'] = null;
+        } else {
+            $this->attributes['type'] = json_encode($value);
+        }
+    }
+
+    public function setThreadAttribute($value) {
+        if (!$value) {
+            $this->attributes['thread'] = null;
+        } else {
+            $this->attributes['thread'] = json_encode($value);
+        }
+    }
+
+    public function setConditionAttribute($value) {
+        if (!$value) {
+            $this->attributes['condition'] = null;
+        } else {
+            $this->attributes['condition'] = json_encode($value);
+        }
+    }
+
+    public function setRoleAttribute($value) {
+        if (!$value) {
+            $this->attributes['role'] = null;
+        } else {
+            $this->attributes['role'] = json_encode($value);
+        }
+    }
+
+    /*
     public function setEqTagsEncodedAttribute($value)
     {
         $this->attributes['eq_tags_encoded'] = $value ? json_encode($value) : null;
@@ -157,6 +191,7 @@ class Mailer extends Model
         }
         return $types;
     }
+    */
 
 
 }

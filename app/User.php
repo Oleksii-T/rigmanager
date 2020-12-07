@@ -66,9 +66,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Partner::class)->latest();
     }
 
-    public function mailer()
+    public function mailers()
     {
-        return $this->hasOne(Mailer::class);
+        return $this->hasMany(Mailer::class);
     }
 
     public function favPosts()

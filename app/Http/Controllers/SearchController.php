@@ -30,7 +30,7 @@ class SearchController extends Controller
         $type = $input['type'];
         switch ($type) {
             case 'equipment-buy':
-                $query = Post::where(["is_active"=>1, 'type'=>[2,3,4]]);
+                $query = Post::where(["is_active"=>1, 'type'=>[2,4]]);
                 $value['name'] = __('ui.introBuyEq');
                 break;
             case 'services':
@@ -42,7 +42,7 @@ class SearchController extends Controller
                 $value['name'] = __('ui.introTender');
                 break;
             default: //for equipment sell and not incorrect searches
-                $query = Post::where(["is_active"=>1, 'type'=>1]);
+                $query = Post::where(["is_active"=>1, 'type'=>[1,3]]);
                 $value['name'] = __('ui.introSellEq');
                 break;
         }

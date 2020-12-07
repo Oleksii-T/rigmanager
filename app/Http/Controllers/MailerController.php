@@ -29,7 +29,7 @@ class MailerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $user_email = auth()->user()->email;
         return view('mailer.create', compact('user_email'));
@@ -111,64 +111,6 @@ class MailerController extends Controller
         return true;
     }
 
-    public function addTag($tagId)
-    {
-        if (!$this->isSubscribed()) {
-            return -2; // error - premium acc required
-        }
-        $tags_encoded = $this->getTagType($tagId) . '_tags_encoded';
-        $mailer = auth()->user()->mailer;
-        if (!$mailer) {
-            $mailer = new Mailer;
-            $mailer->types = ["1","2","3","4","5","6"];
-            $mailer->$tags_encoded = array($tagId);
-            auth()->user()->mailer()->save($mailer);
-            return 1;
-        }
-        if (!$mailer->$tags_encoded) {
-            $mailer->$tags_encoded = array($tagId);
-            $mailer->save();
-            return 1;
-        }
-        $tagsArr = $mailer->$tags_encoded;
-        $tags_map = $this->getTagType($tagId) . '_tags_map';
-        if ( !array_key_exists($tagId, $mailer->$tags_map) ) {
-            $tagsArr[] = $tagId;
-            $mailer->$tags_encoded = $tagsArr;
-            $mailer->save();
-            return 1;
-        }
-        return -1;
-    }
-
-    public function addText($string)
-    {        
-        if (!$this->isSubscribed()) {
-            return false; // error - premium acc required
-        }
-        $mailer = auth()->user()->mailer;
-        // check is Mailer exists
-        if ($mailer) {
-            // Mailer exists
-            if ($mailer->keywords) {
-                // Append text to mailer
-                $mailer->keywords = $mailer->keywords."\n".$string;
-                $mailer->save();
-            } else {
-                // Mailer have no text
-                $mailer->keywords = $string;
-                $mailer->save();
-            }
-        } else {
-            // Mailer absent. Create new Mailer
-            $mailer = new Mailer;
-            $mailer->types = ["1","2","3","4","5","6"];
-            $mailer->keywords = $string;
-            auth()->user()->mailer()->save($mailer);
-        }
-        return true;
-    }
-
     public function toggleAuthor($user_id)
     {
         $res = $this->addAuthor($user_id);
@@ -212,5 +154,77 @@ class MailerController extends Controller
             return 1; // added new author to old authors
         }
         return 0; // author already in the mailer
+    }
+
+    public function createBySearchRequest(Request $request) {
+        if ( auth()->user()->mailers->count() > 10 ) {
+            return json_encode(['message'=>__('messages.mailerTooManyMailers'), 'code'=>404]);
+        }
+        $input = json_decode($request->filters, true);
+        $input['cost_from'] = $input['costFrom'];
+        $input['cost_to'] = $input['costTo'];
+        $search = json_decode($request->search, true);
+        $resByTag = json_decode($request->resByTag, true);
+        if ( isset($resByTag['searchedTagMap']) ) {
+            $tagUrl = array_key_last( $resByTag['searchedTagMap'] );
+            $input['tag'] = $this->getIdByUrl($tagUrl);
+        }
+        switch ($search['type']) {
+            case 'type':
+                $mailerByType = $this->createFromType($search['url']); // type_name and type_codes
+                $input['type'] = array_intersect($input['type'], $mailerByType['type']); // make sure that type from chosen type-group respects the "type" filter
+                $input['title'] = trim(preg_replace('/\s+/', ' ', $mailerByType['title'])); //save title of future mail message to array
+                break;
+            case 'tags':
+                $input['tag'] = array_key_last($search['value']);
+                $input['title'] = $search['value'][array_key_last($search['value'])];
+                break;
+            case 'author':
+                $input['author'] = $search['value']['id'];
+                $input['title'] = $search['value']['name'];
+                break;
+            case 'text':
+                $input['keyword'] = $search['value'];
+                $input['title'] = $search['value'];
+                break;
+            case 'none':
+                $input['title'] = __('ui.mailerAllPosts');
+                break;
+            default:
+                return false;
+                break;
+        }
+        $mailer = new Mailer($input);
+        if (!auth()->user()->mailers()->save($mailer)) {
+            Session::flash('message-error', __('messages.mailerUploadedError'));
+            return json_encode(['message'=>__('messages.error'), 'code'=>404]);
+        }
+        return json_encode(['message'=>__('messages.mailerRequestAdded'), 'code'=>500]);
+    }
+
+    private function createFromType($typeUrl) {
+        switch ($typeUrl) {
+            case 'equipment-sell': 
+                $types = array(1,3);
+                $name = __('ui.introSellEq');
+                break;
+            case 'equipment-buy':
+                $types = [2,4];
+                $name = __('ui.introBuyEq');
+                break;
+            case 'services':
+                $types = [5,6];
+                $name = __('ui.introSe');
+                break;
+            case 'tenders':
+                $types = array(7);
+                $name = __('ui.introTender');
+                break;
+            default: 
+                abort(404);
+        }
+        $r['type'] = $types;
+        $r['title'] = $name;
+        return $r;
     }
 }

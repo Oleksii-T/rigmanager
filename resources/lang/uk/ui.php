@@ -161,6 +161,7 @@ return [
     'mailerTypesHelp' => 'Мінімум один обов\'язково',
     'choose' => 'Обрати',
     'chooseMore' => 'Обрати більше',
+    'mailerAllPosts' => 'Всі нові оголошення',
 
     //subscription massages
     'mySubscription' => 'Підписка',

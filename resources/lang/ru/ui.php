@@ -159,6 +159,7 @@ return [
     'mailerTypesHelp' => 'Минимум один обязательно',
     'choose' => 'Выбрать',
     'chooseMore' => 'Выбрать больше',
+    'mailerAllPosts' => 'Все новые объявления',
 
     //subscription massages
     'mySubscription' => 'Моя подписка',

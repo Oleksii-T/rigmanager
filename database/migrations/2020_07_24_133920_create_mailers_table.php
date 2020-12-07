@@ -16,11 +16,18 @@ class CreateMailersTable extends Migration
         Schema::create('mailers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('types', 25); // sell/buy/loan/leas/provide/reqeust
-            $table->string('eq_tags_encoded', 255)->nullable();
-            $table->string('se_tags_encoded', 255)->nullable();
-            $table->string('keywords', 255)->nullable();
-            $table->string('authors_encoded', 255)->nullable();
+            $table->string('title', 255);
+            $table->string('tag', 255)->nullable();
+            $table->string('author', 100)->nullable(); 
+            $table->string('keyword', 255)->nullable();
+            $table->string('currency', 25)->nullable(); // UAH/USD
+            $table->string('cost_from', 25)->nullable();
+            $table->string('cost_to', 25)->nullable();
+            $table->string('region', 255)->nullable();
+            $table->string('condition', 25)->nullable(); // new/sh/parts
+            $table->string('type', 25)->nullable(); // sell/buy/loan/leas/provide/reqeust/tender
+            $table->string('role', 25)->nullable(); // business/private
+            $table->string('thread', 25)->nullable(); // eq/se
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

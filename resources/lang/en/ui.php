@@ -160,6 +160,7 @@ return [
     'mailerTypesHelp' => 'At least one is required',
     'choose' => 'Choose',
     'chooseMore' => 'Choose more',
+    'mailerAllPosts' => 'All new posts',
 
     //subscription massages
     'mySubscription' => 'My subscription',

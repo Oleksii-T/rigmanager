@@ -113,65 +113,92 @@
                         </div>
                     @endif
 
-                    @if ( $search['type'] != 'type' )
-                        <div class="filter filter-type">
-                            <h5 class="filter-name">{{__('ui.postType')}}</h5>
-                            <div class="filter-input radio" id="type">
-                                @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
-                                    <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
-                                        <input id="type-give-se" type="checkbox" name="types[]" value="5" checked="checked">
-                                        <span class="cb-checkmark"></span>
-                                    </label>
-                                    <label class="cb-container filter-checked" for="type-get-se">{{__('ui.postTypeGetS')}}
-                                        <input id="type-get-se" type="checkbox" name="types[]" value="6" checked="checked">
-                                        <span class="cb-checkmark"></span>
-                                    </label>
-                                @elseif ( $search['type'] == 'tags' && $search['tag_type'] == 'eq' )
-                                    <label class="cb-container filter-checked" for="type-sell">{{__('ui.postTypeSell')}}
-                                        <input id="type-sell" type="checkbox" name="types[]" value="1" checked="checked">
-                                        <span class="cb-checkmark"></span>
-                                    </label>
-                                    <label class="cb-container filter-checked" for="type-buy">{{__('ui.postTypeBuy')}}
-                                        <input id="type-buy" type="checkbox" name="types[]" value="2" checked="checked">
-                                        <span class="cb-checkmark"></span>
-                                    </label>
-                                    <label class="cb-container filter-checked" for="type-rent">{{__('ui.postTypeRent')}}
-                                        <input id="type-rent" type="checkbox" name="types[]" value="3" checked="checked">
-                                        <span class="cb-checkmark"></span>
-                                    </label>
-                                    <label class="cb-container filter-checked" for="type-leas">{{__('ui.postTypeLeas')}}
-                                        <input id="type-leas" type="checkbox" name="types[]" value="4" checked="checked">
-                                        <span class="cb-checkmark"></span>
-                                    </label>
-                                @else
-                                    <label class="cb-container filter-checked" for="type-sell">{{__('ui.postTypeSell')}}
-                                        <input id="type-sell" type="checkbox" name="types[]" value="1" checked="checked">
-                                        <span class="cb-checkmark"></span>
-                                    </label>
-                                    <label class="cb-container filter-checked" for="type-buy">{{__('ui.postTypeBuy')}}
-                                        <input id="type-buy" type="checkbox" name="types[]" value="2" checked="checked">
-                                        <span class="cb-checkmark"></span>
-                                    </label>
-                                    <label class="cb-container filter-checked" for="type-rent">{{__('ui.postTypeRent')}}
-                                        <input id="type-rent" type="checkbox" name="types[]" value="3" checked="checked">
-                                        <span class="cb-checkmark"></span>
-                                    </label>
-                                    <label class="cb-container filter-checked" for="type-leas">{{__('ui.postTypeLeas')}}
-                                        <input id="type-leas" type="checkbox" name="types[]" value="4" checked="checked">
-                                        <span class="cb-checkmark"></span>
-                                    </label>
-                                    <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
-                                        <input id="type-give-se" type="checkbox" name="conditions[]" value="5" checked="checked">
-                                        <span class="cb-checkmark"></span>
-                                    </label>
-                                    <label class="cb-container filter-checked" for="type-get-se">{{__('ui.postTypeGetS')}}
-                                        <input id="type-get-se" type="checkbox" name="conditions[]" value="6" checked="checked">
-                                        <span class="cb-checkmark"></span>
-                                    </label>
-                                @endif
-                            </div>
+                    <div class="filter filter-type">
+                        <h5 class="filter-name">{{__('ui.postType')}}</h5>
+                        <div class="filter-input radio" id="type">
+                            @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                                <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
+                                    <input id="type-give-se" type="checkbox" name="types[]" value="5" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="type-get-se">{{__('ui.postTypeGetS')}}
+                                    <input id="type-get-se" type="checkbox" name="types[]" value="6" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                            @elseif ( $search['type'] == 'tags' && $search['tag_type'] == 'eq' )
+                                <label class="cb-container filter-checked" for="type-sell">{{__('ui.postTypeSell')}}
+                                    <input id="type-sell" type="checkbox" name="types[]" value="1" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="type-buy">{{__('ui.postTypeBuy')}}
+                                    <input id="type-buy" type="checkbox" name="types[]" value="2" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="type-rent">{{__('ui.postTypeRent')}}
+                                    <input id="type-rent" type="checkbox" name="types[]" value="3" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="type-leas">{{__('ui.postTypeLeas')}}
+                                    <input id="type-leas" type="checkbox" name="types[]" value="4" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                            @elseif ( $search['type'] == 'type' && $search['url'] == 'equipment-sell' )
+                                <label class="cb-container filter-checked" for="type-sell">{{__('ui.postTypeSell')}}
+                                    <input id="type-sell" type="checkbox" name="types[]" value="1" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="type-rent">{{__('ui.postTypeRent')}}
+                                    <input id="type-rent" type="checkbox" name="types[]" value="3" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                            @elseif ( $search['type'] == 'type' && $search['url'] == 'equipment-buy' )
+                                <label class="cb-container filter-checked" for="type-buy">{{__('ui.postTypeBuy')}}
+                                    <input id="type-buy" type="checkbox" name="types[]" value="2" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="type-leas">{{__('ui.postTypeLeas')}}
+                                    <input id="type-leas" type="checkbox" name="types[]" value="4" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                            @elseif ( $search['type'] == 'type' && $search['url'] == 'services' )
+                                <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
+                                    <input id="type-give-se" type="checkbox" name="conditions[]" value="5" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="type-get-se">{{__('ui.postTypeGetS')}}
+                                    <input id="type-get-se" type="checkbox" name="conditions[]" value="6" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                            @elseif ( $search['type'] == 'type' && $search['url'] == 'tenders' )
+                                <!--empty-->
+                            @else
+                                <label class="cb-container filter-checked" for="type-sell">{{__('ui.postTypeSell')}}
+                                    <input id="type-sell" type="checkbox" name="types[]" value="1" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="type-buy">{{__('ui.postTypeBuy')}}
+                                    <input id="type-buy" type="checkbox" name="types[]" value="2" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="type-rent">{{__('ui.postTypeRent')}}
+                                    <input id="type-rent" type="checkbox" name="types[]" value="3" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="type-leas">{{__('ui.postTypeLeas')}}
+                                    <input id="type-leas" type="checkbox" name="types[]" value="4" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
+                                    <input id="type-give-se" type="checkbox" name="conditions[]" value="5" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                                <label class="cb-container filter-checked" for="type-get-se">{{__('ui.postTypeGetS')}}
+                                    <input id="type-get-se" type="checkbox" name="conditions[]" value="6" checked="checked">
+                                    <span class="cb-checkmark"></span>
+                                </label>
+                            @endif
                         </div>
-                    @endif
+                    </div>
 
                     @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
                     @else
@@ -227,7 +254,7 @@
                 <div class="mailer-suggestion">
                     <p>{{__('ui.mailerSuggestText')}}</p>
                     <img src="{{asset('icons/addToMailerIcon.svg')}}" alt="">
-                    <button class="not-allowed">{{__('ui.add')}}</button>
+                    <button>{{__('ui.add')}}</button>
                 </div>
             @endif
         </div>
@@ -311,6 +338,49 @@
     <script type="text/javascript">
         $(document).ready(function(){
 
+            var filters = new Object();
+            filters.currency = "UAH";
+            filters.costFrom = null;
+            filters.costTo = null;
+            filters.region = "0";
+            filters.condition = ["2","3","4"];
+            filters.role = ['1','2'];
+            filters.type = ["1","2","3","4","5","6"];
+            filters.thread = ["1","2"];
+            filters.sorting = "2";
+
+            $('.mailer-suggestion button').click(function(){
+                var search = '{!! json_encode($search) !!}';
+                var resByTag = JSON.stringify(null);
+                if ("{{isset($resByTag)}}") {
+                    var resByTag = '{!! json_encode($resByTag) !!}';
+                }
+                var filtersJson = JSON.stringify(filters);
+                var ajaxUrl = "{!! route('mailer.create.by.search', ['search'=>'search-r', 'resByTag'=>'resByTag-r', 'filters'=>'filters-r']) !!}";
+                ajaxUrl = ajaxUrl.replace('search-r', search);
+                ajaxUrl = ajaxUrl.replace('resByTag-r', resByTag);
+                ajaxUrl = ajaxUrl.replace('filters-r', filtersJson);
+                $.ajax({
+                    url: ajaxUrl,
+                    type: 'POST',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                    },
+                    success: function(data) {
+                        console.log(data); //REMOVE
+                        data = JSON.parse(data);
+                        if ( data.code == 500 ) {
+                            showPopUpMassage(true, data.message);
+                        } else {
+                            showPopUpMassage(false, data.message);
+                        }
+                    },
+                    error: function() {
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
+                    }
+                });
+            });
+
             // add psot to fav list
             $('.post-fav').click(function(){
                 if ( $(this).hasClass('blocked') ) {
@@ -363,17 +433,6 @@
                     $(this).removeClass('filter-checked');
                 }
             });
-
-            var filters = new Object();
-            filters.currency = "UAH";
-            filters.costFrom = null;
-            filters.costTo = null;
-            filters.region = "0";
-            filters.condition = ["2","3","4"];
-            filters.role = ['1','2'];
-            filters.type = ["1","2","3","4","5","6"];
-            filters.thread = ["1","2"];
-            filters.sorting = "2";
 
             //handle manual ajax pagination
             $('body').on('click', 'div.filter-pagination a', function(e){
