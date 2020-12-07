@@ -39,7 +39,7 @@
                         @endif
                     </div>
                     <div class="right-labels">
-                        <span class="post-date">{{ $post->created_at }}</span>
+                        <span class="post-date">{{ $post->created_at_readable }}</span>
                     </div>
                 </div>
                 <div class="post-row post-row-3">

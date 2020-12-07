@@ -30,22 +30,23 @@ class SearchController extends Controller
         $type = $input['type'];
         switch ($type) {
             case 'equipment-buy':
-                $posts_list = Post::where(["is_active"=>1, 'type'=>[2,3,4]])->get();
+                $query = Post::where(["is_active"=>1, 'type'=>[2,3,4]]);
                 $value['name'] = __('ui.introBuyEq');
                 break;
             case 'services':
-                $posts_list = Post::where(["is_active"=>1, 'type'=>[5,6]])->get();
+                $query = Post::where(["is_active"=>1, 'type'=>[5,6]]);
                 $value['name'] = __('ui.introSe');
                 break;
             case 'tenders':
-                $posts_list = Post::where(["is_active"=>1, 'type'=>7])->get();
+                $query = Post::where(["is_active"=>1, 'type'=>7]);
                 $value['name'] = __('ui.introTender');
                 break;
             default: //for equipment sell and not incorrect searches
-                $posts_list = Post::where(["is_active"=>1, 'type'=>1])->get();
+                $query = Post::where(["is_active"=>1, 'type'=>1]);
                 $value['name'] = __('ui.introSellEq');
                 break;
         }
+        $posts_list = $query->orderBy('created_at', 'DESC')->get();
         $value['url'] = $type;
         if (isset($input['tag'])) {
             $tag = $this->getIdByUrl($input['tag']);
@@ -60,11 +61,11 @@ class SearchController extends Controller
     public function searchText($input)
     {
         $searchStrings = $input['text'];
-        $posts_list = Post::search($searchStrings)->where("is_active", 1);
-        if ( $posts_list->raw()['hits'] && count($posts_list->raw()['hits']) < $posts_list->raw()['nbHits'] ) {
-            Log::channel('single')->error('[custom.error][search.filter] Algolia returns more records['.$posts_list->raw()['nbHits'].'] than can be fetched['.count($posts_list->raw()['hits']).']. Filtering system may ignored part of result. Search query: ["'.$searchStrings.'"]');
+        $query = Post::search($searchStrings)->where("is_active", 1);
+        if ( $query->raw()['hits'] && count($query->raw()['hits']) < $query->raw()['nbHits'] ) {
+            Log::channel('single')->error('[custom.error][search.filter] Algolia returns more records['.$query->raw()['nbHits'].'] than can be fetched['.count($query->raw()['hits']).']. Filtering system may ignored part of result. Search query: ["'.$searchStrings.'"]');
         }
-        $posts_list = $posts_list->get();
+        $posts_list = $query->orderBy('created_at', 'DESC')->get();
         if (isset($input['tag'])) {
             $tag = $this->getIdByUrl($input['tag']);
             $posts_list = $this->filterByTag($posts_list->pluck('id'), $tag);
@@ -78,8 +79,8 @@ class SearchController extends Controller
     private function filterByTag($matchings, $tag) 
     {
         $regex = str_replace('.', '\.', "^$tag(.[0-9]+)*$"); //make regex from tag and escape regex '.' via '\'
-        $posts = Post::whereRaw("tag_encoded REGEXP '$regex'")->whereIn('id', $matchings);
-        return $posts->get();
+        $posts = Post::whereRaw("tag_encoded REGEXP '$regex'")->whereIn('id', $matchings)->orderBy('created_at', 'DESC')->get();
+        return $posts;
     }
 
     public function searchTag(Request $request)
@@ -87,7 +88,7 @@ class SearchController extends Controller
         $tagUrl = request()->segment(count(request()->segments()));
         $tagId = $this->getIdByUrl($tagUrl);
         $regex = str_replace('.', '\.', "^$tagId(.[0-9]+)*$"); //make regex from tag and escape regex '.' via '\'
-        $posts_list = Post::whereRaw("tag_encoded REGEXP '$regex'")->where("is_active", 1)->get(); //search appropriate for posts using raw where query
+        $posts_list = Post::whereRaw("tag_encoded REGEXP '$regex'")->where("is_active", 1)->orderBy('created_at', 'DESC')->get(); //search appropriate for posts using raw where query
         $resByTag = $this->countResultByTags($posts_list, $tagId);
         return $this->serializeSearch($posts_list, $resByTag, 'tags', ['tagMap'=>$this->getTagMap($tagId), 'tagTypeMap'=>$this->getTagType($tagId)]);
     }
@@ -99,7 +100,7 @@ class SearchController extends Controller
         if (!$user) {
             abort(404);
         }
-        $posts_list = $user->posts->where("is_active", 1);
+        $posts_list = $user->posts->where("is_active", 1)->sortByDesc('created_at');
         if (isset($input['tag'])) {
             $tag = $this->getIdByUrl($input['tag']);
             $posts_list = $this->filterByTag($posts_list->pluck('id'), $tag);
@@ -112,14 +113,13 @@ class SearchController extends Controller
 
     public function list() 
     {
-        $posts_list = Post::where('is_active', 1)->get();
+        $posts_list = Post::where('is_active', 1)->orderBy('created_at', 'DESC')->get();
         $resByTag = $this->countResultByTags($posts_list);
         return $this->serializeSearch($posts_list, $resByTag, 'none');
     }
 
     private function serializeSearch($posts_list, $resByTag, $type, $value=null) 
     {
-        $posts_list = $posts_list->sortBy('created_at');
         $postsIds = json_encode($posts_list->pluck('id'));
         $posts_list = $posts_list->paginate(env('POSTS_PER_PAGE'));
         $posts_list->total() == 0

@@ -18,7 +18,7 @@ class Post extends Model
     protected $appends = [
         'tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable',
         'user_phone_intern', 'region_readable', 'role_readable', 'type_readable', 'origin_lang_readable',
-        'type_readable_short'
+        'type_readable_short', 'created_at_readable'
     ];
 
     protected $fillable = [
@@ -292,9 +292,9 @@ class Post extends Model
         return $phone ? '+38'.$phone : $phone;
     }
 
-    public function getCreatedAtAttribute($value)
+    public function getCreatedAtReadableAttribute()
     {
-        return Carbon::parse($value)->diffForHumans();
+        return Carbon::parse($this->created_at)->diffForHumans();
     }
 
     public function getUpdatedAtAttribute($value)
