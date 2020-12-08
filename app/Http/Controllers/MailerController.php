@@ -21,7 +21,7 @@ class MailerController extends Controller
      */
     public function index()
     {
-        return view('mailer.index', ["mailer"=>auth()->user()->mailer, "subscription"=>$this->isSubscribed()]);
+        return view('mailer.index', ["mailers"=>auth()->user()->mailers, "subscription"=>$this->isSubscribed()]);
     }
 
     /**

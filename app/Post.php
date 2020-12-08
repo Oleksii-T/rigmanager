@@ -3,13 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\PostImage;
-use App\User;
-use Carbon\Carbon;
-use Laravel\Scout\Searchable;
-use App\Favourite;
 use App\Http\Controllers\Traits\Tags;
 use App\Utilities\FilterBuilder;
+use Laravel\Scout\Searchable;
+use App\Favourite;
+use App\PostImage;
+use Carbon\Carbon;
+use App\User;
 
 class Post extends Model
 {
@@ -223,6 +223,9 @@ class Post extends Model
                 break;
             case '6':
                 return __('ui.service');
+                break;
+            case '7':
+                return __('ui.tender');
                 break;
             default:
                 return __('ui.notSpecified');

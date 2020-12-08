@@ -139,8 +139,9 @@ return [
         You can add up to 10 authors.
         Click on entry to delete.',
     'deleteMailer' => 'Delete Mailer',
-    'mailerIsActive' => 'Mailer is enabled',
-    'mailerNotActive' => 'Mailer is disabled',
+    'deleteMailers' => 'Delete all Mailers',
+    'active' => 'enabled',
+    'notActive' => 'disabled',
     'mailerAddAuthor' => 'Add Author to Mailer',
     'mailerRemoveAuthor' => 'Remove Author from Mailer',
     'mailerNoAuthors' => 'You have not subscribed to any Author',
@@ -161,6 +162,9 @@ return [
     'choose' => 'Choose',
     'chooseMore' => 'Choose more',
     'mailerAllPosts' => 'All new posts',
+    'addNewMailer' => 'Set up new Mailer',
+    'editMailers' => 'Edit Mailers',
+    
 
     //subscription massages
     'mySubscription' => 'My subscription',

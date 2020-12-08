@@ -1,18 +1,17 @@
 <?php
 
 namespace App;
-use Illuminate\Database\Eloquent\Model;
-use App\User;
 use App\Http\Controllers\MailerController;
+use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\Traits\Tags;
+use App\User;
 
 class Mailer extends Model
 {
     use Tags;
 
     protected $appends = [
-        'authors_map', 'authors_string', 'eq_tags_map', 'se_tags_map', 'types_map',
-        'tags_encoded'
+        'author_name', 'types_map', 'tags_map', 'conditions_map', 'roles_map', 'threads_map'
     ];
 
     protected $fillable = [
@@ -54,6 +53,180 @@ class Mailer extends Model
         } else {
             $this->attributes['role'] = json_encode($value);
         }
+    }
+
+    public function getRegionNameAttribute() {
+        switch ($this->region) {
+            case '1':
+                return __('ui.regionCrimea');
+                break;
+            case '2':
+                return __('ui.regionVinnytsia');
+                break;
+            case '3':
+                return __('ui.regionVolyn');
+                break;
+            case '4':
+                return __('ui.regionDnipropetrovsk');
+                break;
+            case '5':
+                return __('ui.regionDonetsk');
+                break;
+            case '6':
+                return __('ui.regionZhytomyr');
+                break;
+            case '7':
+                return __('ui.regionCarpathian');
+                break;
+            case '8':
+                return __('ui.regionZaporozhye');
+                break;
+            case '9':
+                return __('ui.regionIvano-Frankivsk');
+                break;
+            case '10':
+                return __('ui.regionKiev');
+                break;
+            case '11':
+                return __('ui.regionKirovograd');
+                break;
+            case '12':
+                return __('ui.regionLuhansk');
+                break;
+            case '13':
+                return __('ui.regionLviv');
+                break;
+            case '14':
+                return __('ui.regionMykolaiv');
+                break;
+            case '15':
+                return __('ui.regionOdessa');
+                break;
+            case '16':
+                return __('ui.regionPoltava');
+                break;
+            case '17':
+                return __('ui.regionRivne');
+                break;
+            case '18':
+                return __('ui.regionSumy');
+                break;
+            case '19':
+                return __('ui.regionTernopil');
+                break;
+            case '20':
+                return __('ui.regionKharkiv');
+                break;
+            case '21':
+                return __('ui.regionKherson');
+                break;
+            case '22':
+                return __('ui.regionKhmelnytsky');
+                break;
+            case '23':
+                return __('ui.regionCherkasy');
+                break;
+            case '24':
+                return __('ui.regionChernivtsi');
+                break;
+            case '25':
+                return __('ui.regionChernihiv');
+                break;
+            default:
+                return __('ui.notSpecified');
+        }
+    }
+
+    public function getAuthorNameAttribute() {
+        return User::find( (int) $this->author)->name;
+    }
+
+    public function getConditionsMapAttribute() {
+        $cond = json_decode($this->condition);
+        foreach ($cond as $value) {
+            switch ($value) {
+                case 1:
+                    $conditionsMap[$value] = __('ui.notSpecified');
+                break;
+                case 2:
+                    $conditionsMap[$value] = __('ui.conditionNew');
+                break;
+                case 3:
+                    $conditionsMap[$value] = __('ui.conditionSH');
+                break;
+                case 4:
+                    $conditionsMap[$value] = __('ui.conditionForParts');
+                    break;
+            }
+        }
+        return $conditionsMap;
+    }
+
+    public function getTypesMapAttribute() {
+        $types = json_decode($this->type);
+        foreach ($types as $type) {
+            switch ($type) {
+                case 1:
+                    $typesMap[$type] = __('ui.postTypeSell');
+                break;
+                case 2:
+                    $typesMap[$type] = __('ui.postTypeBuy');
+                break;
+                case 3:
+                    $typesMap[$type] = __('ui.postTypeRentFull');
+                break;
+                case 4:
+                    $typesMap[$type] = __('ui.postTypeLeasFull');
+                    break;
+                case 5:
+                    $typesMap[$type] = __('ui.postTypeGiveS');
+                    break;
+                case 6:
+                    $typesMap[$type] = __('ui.postTypeGetS');
+                    break;
+                case 7:
+                    $typesMap[$type] = __('ui.tender');
+                    break;
+                default:
+                    $typesMap[$type] = __('ui.notSpecified');
+                    break;
+            }
+        }
+        return $typesMap;
+    }
+
+    public function getRolesMapAttribute() {
+        $roles = json_decode($this->role);
+        foreach ($roles as $role) {
+            switch ($role) {
+                case 1:
+                    $rolesMap[$role] = __('ui.postRolePrivate');
+                    break;
+                case 2:
+                    $rolesMap[$role] = __('ui.postRoleBusiness');
+                    break;
+            }
+        }
+        return $rolesMap;
+    }
+
+    public function getThreadsMapAttribute() {
+        $threads = json_decode($this->thread);
+        foreach ($threads as $thread) {
+            switch ($thread) {
+                case 1:
+                    $threadsMap[$thread] = __('ui.equipment');
+                    break;
+                case 2:
+                    $threadsMap[$thread] = __('ui.service');
+                    break;
+            }
+        }
+        return $threadsMap;
+    }
+
+    public function getTagsMapAttribute() {
+        return $this->getTagMap($this->tag);
     }
 
     /*

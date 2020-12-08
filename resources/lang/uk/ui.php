@@ -140,8 +140,9 @@ return [
         Ви можете додати до 10 авторів.
         Натисніть на запис, щоб видалити.',
     'deleteMailer' => 'Видалити Розсилку',
-    'mailerIsActive' => 'Розсилка активна',
-    'mailerNotActive' => 'Розсилка не активна',
+    'deleteMailers' => 'Видалити всі Розсилки',
+    'active' => 'активна',
+    'notActive' => 'не активна',
     'mailerAddAuthor' => 'Додати Автора в Розсилку',
     'mailerRemoveAuthor' => 'Видалити Автора з Розсилки',
     'mailerNoAuthors' => 'Ви не підписалися на жодного автора',
@@ -162,6 +163,8 @@ return [
     'choose' => 'Обрати',
     'chooseMore' => 'Обрати більше',
     'mailerAllPosts' => 'Всі нові оголошення',
+    'addNewMailer' => 'Налаштувати нову Розсилку',
+    'editMailers' => 'Правити Розсилки',
 
     //subscription massages
     'mySubscription' => 'Підписка',

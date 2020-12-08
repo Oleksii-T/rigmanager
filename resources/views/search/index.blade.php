@@ -349,6 +349,7 @@
             filters.thread = ["1","2"];
             filters.sorting = "2";
 
+            // add search request to mailer
             $('.mailer-suggestion button').click(function(){
                 var search = '{!! json_encode($search) !!}';
                 var resByTag = JSON.stringify(null);
@@ -367,7 +368,6 @@
                         _token: "{{ csrf_token() }}",
                     },
                     success: function(data) {
-                        console.log(data); //REMOVE
                         data = JSON.parse(data);
                         if ( data.code == 500 ) {
                             showPopUpMassage(true, data.message);

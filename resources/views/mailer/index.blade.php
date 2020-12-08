@@ -12,80 +12,86 @@
                 <x-profile-nav/>
             </nav> 
             <div class="mailerContent">
-                @if ($mailer)
+                @if ($mailers)
                     <div class="mailerBody">
-                        <div>
-                            @if ($mailer->is_active)
-                                <label id="checkboxContainer" class="enable">
-                                    <h2 class="mailerHeader">{{__('ui.mailerIsActive')}}</h2>
-                                    <input type="checkbox" name="is_active" value="1" checked>
-                                    <span class="checkmark"></span>
-                                </label>
-                            @else
-                                <label id="checkboxContainer" class="disable">
-                                    <h2 class="mailerHeader">{{__('ui.mailerNotActive')}}</h2>
-                                    <input type="checkbox" name="is_active" value="1">
-                                    <span class="checkmark"></span>
-                                </label>
-                            @endif
-                        </div>
+                        <div class="mailers">
+                            @foreach ($mailers as $mailer)
+                                <div class="mailer">
+                                    <h2 class="title">{{$mailer->title}} 
+                                        @if ($mailer->is_active)
+                                            <span class="not-allowed" style="color: #888888">{{__('ui.active')}}</span>
+                                        @else
+                                            <span class="not-allowed" style="color: #888888">{{__('ui.notActive')}}</span>
+                                        @endif
+                                        <span class="not-allowed" style="color: #888888">{{__('ui.deleteMailer')}}</span>
+                                    </h2>
 
-                        <h3 class="elementHeader">{{__('ui.mailerDescription')}}:</h3>
-                        @if ($mailer->keywords)
-                            <p id="description">{{$mailer->keywords}}</p>
-                        @else
-                            <p class="empty-value">{{__('ui.empty')}}</p>
-                        @endif
+                                    <div class="mailer-detailes">
+                                        @if ($mailer->keyword)
+                                            <p class="keyword">{{__('ui.text')}}: {{$mailer->keyword}}</p>
+                                        @endif
+                                        
+                                        @if ($mailer->author)
+                                            <p class="author">{{__('ui.author')}}: {{$mailer->author_name}}</p>
+                                        @endif
+                                        
+                                        @if ($mailer->tag)
+                                            <p class="tag">{{__('ui.tag')}}:
+                                                @foreach ($mailer->tags_map as $tag)
+                                                    <span>{{$tag}} -> </span>
+                                                @endforeach
+                                            </p>
+                                        @endif
+                                        
+                                        @if ($mailer->cost_from || $mailer->cost_to)
+                                            <p class="cost">
+                                                <span>{{$mailer->currency}}</span>
+                                                @if ($mailer->cost_from)
+                                                    <span>{{$mailer->cost_from}}</span>
+                                                @endif
+                                                -
+                                                @if ($mailer->cost_to)
+                                                    <span>{{$mailer->cost_to}}</span>
+                                                @endif
+                                            </p>
+                                        @endif
 
-                        <h3 class="elementHeader">{{__('ui.mailerEqTags')}}:</h3>
-                        @if ($mailer->eq_tags_encoded)
-                            <ol class="orderedList">
-                                @foreach ($mailer->eq_tags_map as $tag)
-                                    <li><span>{{$tag}}</span></li>
-                                @endforeach
-                            </ol>
-                        @else
-                            <p class="empty-value">{{__('ui.empty')}}</p>
-                        @endif
+                                        <p class="region">{{__('ui.region')}}: {{$mailer->region_name}}</p>
 
-                        <h3 class="elementHeader">{{__('ui.mailerSeTags')}}:</h3>
-                        @if ($mailer->se_tags_encoded)
-                            <ol class="orderedList">
-                                @foreach ($mailer->se_tags_map as $tag)
-                                    <li><span>{{$tag}}</span></li>
-                                @endforeach
-                            </ol>
-                        @else
-                            <p class="empty-value">{{__('ui.empty')}}</p>
-                        @endif
+                                        <p class="condition">{{__('ui.condition')}}:
+                                            @foreach ($mailer->conditions_map as $condition)
+                                                <span>{{$condition}}, </span>
+                                            @endforeach
+                                        </p>
 
-                        <h3 class="elementHeader">{{__('ui.mailerAuthors')}}:</h3>
-                        @if ($mailer->authors_encoded)
-                            <ol class="orderedList">
-                                @foreach ($mailer->authors_map as $author)
-                                    <li><span>{{$author}}</span></li>
-                                @endforeach
-                            </ol>
-                        @else
-                            <p class="empty-value">{{__('ui.empty')}}</p>
-                        @endif
+                                        <p class="condition">{{__('ui.type')}}:
+                                            @foreach ($mailer->types_map as $type)
+                                                <span>{{$type}}, </span>
+                                            @endforeach
+                                        </p>
 
-                        <h3 class="elementHeader">{{__('ui.postType')}}:</h3>
-                        @if ($mailer->types)
-                        <ul class="orderedList">
-                            @foreach ($mailer->types_map as $type)
-                                <li><span>{{$type}}</span></li>
+                                        <p class="condition">{{__('ui.role')}}:
+                                            @foreach ($mailer->roles_map as $role)
+                                                <span>{{$role}}, </span>
+                                            @endforeach
+                                        </p>
+
+                                        <p class="condition">{{__('ui.thread')}}:
+                                            @foreach ($mailer->threads_map as $thread)
+                                                <span>{{$thread}}, </span>
+                                            @endforeach
+                                        </p>
+                                    </div>
+                                </div>
                             @endforeach
-                        </ul>
-                        @else
-                            <p class="empty-value">{{__('ui.empty')}}</p>
-                        @endif
-                    </div>
-
-                    <div class="mailerBtns">
-                        <a class="def-button" id="editBtn" href="{{ loc_url(route('mailer.edit')) }}">{{__('ui.edit')}}</a>
-                        <a id="helpBtn" href="{{loc_url(route('faq'))}}#WhatIsMailer">{{__('ui.whatIsMailer')}}?</a>
-                        <button class="def-button delete-button" type="button" id="modalMailerDeleteShow">{{__('ui.deleteMailer')}}</button>
+                            <div class="mailer">
+                                <h2 class="not-allowed">{{__('ui.addNewMailer')}}</h2>
+                            </div>
+                        </div>
+                        <div class="mailer-buttons">
+                            <button class="def-button not-allowed">{{__('ui.editMailers')}}</button>
+                            <button class="def-button not-allowed">{{__('ui.deleteMailers')}}</button>
+                        </div>
                     </div>
                 @else
                     <div class="mailerBody">
@@ -100,75 +106,12 @@
             </div>
         </div>
     </div>
-    @if ($mailer)
-        <div class="modalView" id="modalMailerDelete">
-            <div class="modalContent">
-                <p>{{__('ui.sure?')}}</p>
-                <div>
-                    <button class="def-button submit-button" type="button" id="modalMailerDeleteHide">{{__('ui.no')}}</button>
-
-                    <form method="POST" action="{{ loc_url(route('mailer.destroy')) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button class="def-button cancel-button">{{__('ui.delete')}}</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    @endif
 @endsection
 
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function(){
-
-            // user clicks on is_active checkbox
-            $('#checkboxContainer input').click(function() {
-                $element = $('#checkboxContainer');
-                if ( $element.attr('class') == "enable" ) {
-                    // disable mailer
-                    $element.removeClass('enable');
-                    $element.addClass('disable');
-                    $('#checkboxContainer h2').text("{{__('ui.mailerNotActive')}}");
-                }else {
-                    // anable mailer
-                    $element.removeClass('disable');
-                    $element.addClass('enable');
-                    $('#checkboxContainer h2').text("{{__('ui.mailerIsActive')}}");
-                }
-                $.ajax({
-                    type: "GET",
-                    url: "{{ route('mailer.toggle') }}",
-                    success: function(data) {
-                        showPopUpMassage(true, "{{ __('messages.mailerUploaded') }}");
-                    },
-                    error: function() {
-                        showPopUpMassage(false, "{{ __('messages.error') }}");
-                    }
-                });
-            });
-
-            //open modal delete confirm when user ask to
-            $('#modalMailerDeleteShow').click(function(){
-                $('#modalMailerDelete').css("display", "block");
-            });
-
-            //close delete confirmation
-            $('#modalMailerDeleteHide').click(function(){
-                $('#modalMailerDelete').css("display", "none");
-            });
-
-            //make any click beyong the modal to close modal
-            window.onclick = function(event) {
-                var modal = document.getElementById("modalImgsDelete");
-                if (event.target == modal) {
-                    $('#modalImgsDelete').css("display", "none");
-                }
-                var modal = document.getElementById("modalMailerDelete");
-                if (event.target == modal) {
-                    $('#modalMailerDelete').css("display", "none");
-                }
-            }
+            
         });
 
     </script>
