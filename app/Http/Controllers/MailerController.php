@@ -161,6 +161,19 @@ class MailerController extends Controller
             return json_encode(['message'=>__('messages.mailerTooManyMailers'), 'code'=>404]);
         }
         $input = json_decode($request->filters, true);
+        //check for empty field 
+        if (count($input['condition']) == 0) {
+            return json_encode(['message'=>__('messages.mailerEmptyConditionsError'), 'code'=>404]);
+        } 
+        if (count($input['type']) == 0) {
+            return json_encode(['message'=>__('messages.mailerEmptyTypesError'), 'code'=>404]);
+        } 
+        if (count($input['role']) == 0) {
+            return json_encode(['message'=>__('messages.mailerEmptyRolesError'), 'code'=>404]);
+        } 
+        if (count($input['thread']) == 0) {
+            return json_encode(['message'=>__('messages.mailerEmptyThreadsError'), 'code'=>404]);
+        } 
         $input['cost_from'] = $input['costFrom'];
         $input['cost_to'] = $input['costTo'];
         $search = json_decode($request->search, true);

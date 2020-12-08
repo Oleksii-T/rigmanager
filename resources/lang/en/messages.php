@@ -48,6 +48,10 @@ return [
     'tagAlreadyChosen' => 'You can not choose the same category twice!',
     'mailerRequestAdded' => 'The request has been added to Mailer successfully!',
     'mailerTooManyMailers' => 'Too many Mailers! (max. 10)',
+    'mailerEmptyConditionsError' => 'At least one Condition required!',
+    'mailerEmptyTypesError' => 'At least one Type required!',
+    'mailerEmptyRolesError' => 'At least one Legal Type required!',
+    'mailerEmptyThreadsError' => 'Please choose Equipment or Service',
 
     'profileEdited' => 'Profile has been changed successfully!',
     'profileImgDeleted' => 'Profile picture was deleted successfully!',

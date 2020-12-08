@@ -482,6 +482,7 @@
                 // show initial pagination if there is no filters, else show only ajax pagination
                 $('div.filtered-items').addClass('hidden'); //hide old items
                 $('div.loading-gif').removeClass('hidden'); //show loading gif
+                $('.empty-search-wraper').addClass('hidden'); // ршву items preview
                 $.ajax({
                     type: "POST",
                     url: "{{loc_url(route('post.filter'))}}",
