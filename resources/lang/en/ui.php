@@ -157,7 +157,7 @@ return [
     'mailerNotifTags' => 'this categories',
     'mailerNotifDescription' => 'this keywords',
     'mailerNotifAuthors' => 'posts by this author',
-    'mailerNotifSubject' => 'Notification from your Mailer',
+    'mailerNotifSubject' => 'Mailer:',
     'mailerTypesHelp' => 'At least one is required',
     'choose' => 'Choose',
     'chooseMore' => 'Choose more',

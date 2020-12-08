@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Post;
 use App\Http\Controllers\UsdExchangeController;
 use Illuminate\Support\Facades\App;
+use Illuminate\Http\Request;
+use App\Post;
 
 class FiltersController extends Controller
 {

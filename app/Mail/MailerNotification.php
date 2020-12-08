@@ -24,12 +24,10 @@ class MailerNotification extends Mailable
      *
      * @return void
      */
-    public function __construct(Post $post, $reason, $reasonValue, $lang)
+    public function __construct(Post $post, $title)
     {
         $this->post = $post;
-        $this->reason = $reason;
-        $this->reasonValue = $reasonValue;
-        $this->lang = $lang;
+        $this->title = $title;
     }
 
     /**
@@ -39,29 +37,12 @@ class MailerNotification extends Mailable
      */
     public function build()
     {
-        $this->translate();
-        return $this->subject(__('ui.mailerNotifSubject'))
+        return $this->subject(__('ui.mailerNotifSubject') . ' ' . $this->title)
                     ->view('emails.mailer.notification')
                     ->text('emails.mailer.notification_plain')
                     ->withSwiftMessage(function ($message) {
                         $message->getHeaders()
                             ->addTextHeader('List-Unsubscribe', "<mailto:unsubscribe@rigmanager.com.ua?subject=Mailer");
                     });
-    }
-
-    private function translate() {
-        App::setLocale($this->lang);
-        switch ($this->reason) {
-            case 'tags':
-                $this->reason = __('ui.mailerNotifTags');
-                $this->reasonValue = $this->getTagReadable($this->reasonValue);
-                break;
-            case 'author':
-                $this->reason = __('ui.mailerNotifAuthors');
-                break;
-            case 'keywords':
-                $this->reason =  __('mailerNotifDescription');
-                break;
-        }
     }
 }

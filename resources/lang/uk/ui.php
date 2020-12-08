@@ -158,7 +158,7 @@ return [
     'mailerNotifTags' => 'ці категорії',
     'mailerNotifDescription' => 'ці ключові слова',
     'mailerNotifAuthors' => 'оголошення від цього автора',
-    'mailerNotifSubject' => 'Повідомлення про нове оголошення',
+    'mailerNotifSubject' => 'Розсилка:',
     'mailerTypesHelp' => 'Мінімум один обов\'язково',
     'choose' => 'Обрати',
     'chooseMore' => 'Обрати більше',

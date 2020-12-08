@@ -156,7 +156,7 @@ return [
     'mailerNotifTags' => 'эти категории',
     'mailerNotifDescription' => 'эти ключевые слова',
     'mailerNotifAuthors' => 'объявления от этого автора',
-    'mailerNotifSubject' => 'Уведомление о новом объявлении',
+    'mailerNotifSubject' => 'Рассылка:',
     'mailerTypesHelp' => 'Минимум один обязательно',
     'choose' => 'Выбрать',
     'chooseMore' => 'Выбрать больше',

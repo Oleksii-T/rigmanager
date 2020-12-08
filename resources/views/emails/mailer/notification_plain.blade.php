@@ -3,8 +3,6 @@
 {{ $post->title }}
 {{ $post->description }}
 
-{{__('ui.mailerNotifBody', ['reason' => $reason])}}:
-{{$reasonValue}}.
 {{__('ui.mailerNotifBody2')}} {{__('ui.settingUpMailer')}} ({{loc_url(route('mailer.index'))}}).
 {{__('ui.mailerNotifBody3') }}: {{ loc_url(route('posts.show', ['post'=>$post->id])) }}.
 

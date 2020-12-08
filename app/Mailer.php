@@ -31,12 +31,20 @@ class Mailer extends Model
         }
     }
 
+    public function getTypeAttribute($value) {
+        return json_decode($value);
+    }
+
     public function setThreadAttribute($value) {
         if (!$value) {
             $this->attributes['thread'] = null;
         } else {
             $this->attributes['thread'] = json_encode($value);
         }
+    }
+
+    public function getThreadAttribute($value) {
+        return json_decode($value);
     }
 
     public function setConditionAttribute($value) {
@@ -47,12 +55,20 @@ class Mailer extends Model
         }
     }
 
+    public function getConditionAttribute($value) {
+        return json_decode($value);
+    }
+
     public function setRoleAttribute($value) {
         if (!$value) {
             $this->attributes['role'] = null;
         } else {
             $this->attributes['role'] = json_encode($value);
         }
+    }
+
+    public function getRoleAttribute($value) {
+        return json_decode($value);
     }
 
     public function getRegionNameAttribute() {
@@ -142,8 +158,7 @@ class Mailer extends Model
     }
 
     public function getConditionsMapAttribute() {
-        $cond = json_decode($this->condition);
-        foreach ($cond as $value) {
+        foreach ($this->condition as $value) {
             switch ($value) {
                 case 1:
                     $conditionsMap[$value] = __('ui.notSpecified');
@@ -163,8 +178,7 @@ class Mailer extends Model
     }
 
     public function getTypesMapAttribute() {
-        $types = json_decode($this->type);
-        foreach ($types as $type) {
+        foreach ($this->type as $type) {
             switch ($type) {
                 case 1:
                     $typesMap[$type] = __('ui.postTypeSell');
@@ -196,8 +210,7 @@ class Mailer extends Model
     }
 
     public function getRolesMapAttribute() {
-        $roles = json_decode($this->role);
-        foreach ($roles as $role) {
+        foreach ($this->role as $role) {
             switch ($role) {
                 case 1:
                     $rolesMap[$role] = __('ui.postRolePrivate');
@@ -211,8 +224,7 @@ class Mailer extends Model
     }
 
     public function getThreadsMapAttribute() {
-        $threads = json_decode($this->thread);
-        foreach ($threads as $thread) {
+        foreach ($this->thread as $thread) {
             switch ($thread) {
                 case 1:
                     $threadsMap[$thread] = __('ui.equipment');
@@ -228,143 +240,4 @@ class Mailer extends Model
     public function getTagsMapAttribute() {
         return $this->getTagMap($this->tag);
     }
-
-    /*
-    public function setEqTagsEncodedAttribute($value)
-    {
-        $this->attributes['eq_tags_encoded'] = $value ? json_encode($value) : null;
-    }
-
-    public function setSeTagsEncodedAttribute($value)
-    {
-        $this->attributes['se_tags_encoded'] = $value ? json_encode($value) : null;
-    }
-
-    public function getEqTagsEncodedAttribute($value)
-    {
-        return json_decode($value);
-    }
-
-    public function getSeTagsEncodedAttribute($value)
-    {
-        return json_decode($value);
-    }
-
-    // for mailer analizing
-    public function getTagsEncodedAttribute()
-    {
-        $eqTags = $this->eq_tags_encoded;
-        $seTags = $this->se_tags_encoded;
-        if (is_array($seTags)) {
-            if (is_array($eqTags)) {
-                return array_merge($eqTags, $seTags);
-            } else {
-                return $seTags;
-            }
-        } else {
-            return $eqTags;
-        }
-    }
-
-    // for index tags showing and edit chosen tags pre-view
-    public function getEqTagsMapAttribute()
-    {
-        return $this->getTagsMapHelper($this->eq_tags_encoded);
-    }
-
-    // for index tags showing and edit chosen tags pre-view
-    public function getSeTagsMapAttribute()
-    {
-        return $this->getTagsMapHelper($this->se_tags_encoded);
-    }
-
-    private function getTagsMapHelper($tags) {
-        if (!$tags) {
-            return null;
-        }
-        foreach ($tags as $tag) {
-            $result[$tag] = $this->getTagReadable($tag);
-        }
-        return $result;
-    }
-
-    public function setAuthorsEncodedAttribute($value)
-    {
-        if (!$value) {
-            $this->attributes['authors_encoded'] = null;
-        }
-        else if (!is_array($value)) {
-            $arrTags = explode(' ', $value);
-            $this->attributes['authors_encoded'] = json_encode($arrTags);
-        } else {
-            $this->attributes['authors_encoded'] = json_encode($value);
-        }
-    }
-
-    public function getAuthorsEncodedAttribute($value)
-    {
-        return json_decode($value);
-    }
-
-    public function getAuthorsMapAttribute()
-    {
-        if (!$this->authors_encoded) {
-            return null;
-        }
-        foreach ($this->authors_encoded as $author) {
-            $authors[$author] = User::findOrfail($author)->name;
-        }
-        return $authors;
-    }
-
-    public function getAuthorsStringAttribute()
-    {
-        return $this->authors_encoded ? implode(' ', $this->authors_encoded) : null;
-    }
-
-    public function setTypesAttribute($value)
-    {
-        $this->attributes['types'] = $value ? json_encode($value) : null;
-    }
-
-    public function getTypesAttribute($value)
-    {
-        return json_decode($value);
-    }
-
-    public function getTypesMapAttribute()
-    {
-        if (!$this->types) {
-            return null;
-        }
-        foreach ($this->types as $type) {
-            switch ($type) {
-                case 1:
-                    $types[$type] = __('ui.postTypeSellFull');
-                    break;
-                case 2:
-                    $types[$type] = __('ui.postTypeBuyFull');
-                    break;
-                case 3:
-                    $types[$type] = __('ui.postTypeRentFull');
-                    break;
-                case 4:
-                    $types[$type] = __('ui.postTypeLeasFull');
-                    break;
-                case 5:
-                    $types[$type] = __('ui.postTypeGiveS');
-                    break;
-                case 6:
-                    $types[$type] = __('ui.postTypeGetS');
-                    break;
-                default:
-                    break;
-            }
-
-        }
-        return $types;
-    }
-    */
-
-
 }
