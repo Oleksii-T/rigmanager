@@ -38,7 +38,7 @@ class CreatePostRequest extends FormRequest
             'part_number' => 'nullable|string|min:3|max:70',
             'description' => $descRule,
             'cost' => 'nullable|string|max:50',
-            'location' => 'nullable|string|max:100',
+            'town' => 'nullable|string|max:100',
             'user_email' => 'nullable|required_without:user_phone|email|max:255',
             'user_phone_raw' => ['nullable', 'required_without:user_email', 'string', 'size:16', new Phone],
             'lifetime' => [new UnlimitedLifetime],

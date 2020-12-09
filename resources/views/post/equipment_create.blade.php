@@ -183,8 +183,15 @@
 @section('input-town')
     <div class="hidden" id="townField">
         <h3 class="elementHeading" for="inputTown">{{__('ui.locationTown')}}</h3>
-        <input class="def-input" id="inputTown" name="town" type="text" placeholder="{{__('ui.town')}}" value="{{ old('town') }}">
+        <div class="input-field">
+            <input class="def-input" id="inputTown" name="town" type="text" placeholder="{{__('ui.town')}}" value="{{ old('town') }}">
+            <div class="input-help town-help hidden">
+                <img src="{{asset('icons/leftArrowIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                <p><i>{{__('ui.townHelp')}}</i></p>
+            </div>
+        </div>
         <x-server-input-error errorName='town' inputName='inputTown' errorClass='error'/>
+        <div class="town error error-dz hidden"></div>
     </div>
 @endsection
 

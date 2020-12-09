@@ -91,7 +91,7 @@
                 <div class="field-rule">
                     <h3 class="field-name">{{__('ui.locationTown')}}</h3>
                     <p class="field-rule-text">{{__('postImportRules.required')}}: {{__('ui.no')}}</p>
-                    <p class="field-rule-text">{{__('ui.town')}}</p>
+                    <p class="field-rule-text">{{__('ui.townHelp')}}</p>
                 </div>
                 <div class="field-rule">
                     <h3 class="field-name">{{__('ui.email')}}</h3>

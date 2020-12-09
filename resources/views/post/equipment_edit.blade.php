@@ -430,7 +430,7 @@
                     });
 
                     this.on("successmultiple", function(){
-                        window.location="{{ loc_url(route('posts.store.fake')) }}";
+                        window.location="{{ loc_url(route('posts.update.fake')) }}";
                     });
 
                     this.on("errormultiple", function(file, errorMessage, xhr){

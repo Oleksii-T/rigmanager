@@ -61,7 +61,11 @@
                 </div>
                 <div class="header-r">
                     <a class="header-add-post header-btn" href="{{ loc_url(route('posts.create')) }}">{{__('ui.addPost')}}</a>
-                    <a class="header-profile header-btn" href="{{loc_url(route('profile'))}}">{{__('ui.cabinet')}}</a>
+                    @guest
+                        <a class="header-profile header-btn" href="{{loc_url(route('login'))}}">{{__('ui.signIn')}}</a>
+                    @else
+                        <a class="header-profile header-btn" href="{{loc_url(route('profile'))}}">{{__('ui.cabinet')}}</a>
+                    @endguest
                     @if (!App::isLocale('uk'))
                         <a class="header-locale" href="{{ loc_url(route('locale.setting', ['lang'=>'uk'])) }}">UKR</a>
                     @endif

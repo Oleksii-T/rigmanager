@@ -310,9 +310,6 @@
                         </div>
                     </div>
                     <x-server-input-error errorName='user_phone_raw' inputName='inputPhone' errorClass='error'/>
-                    <div class="user_phone_raw error error-man hidden">
-                        <p>{{__('validation.phoneLength')}}</p>
-                    </div>
                     <div class="user_phone_raw error error-dz hidden"></div>
                     <div class="mediaCheckBoxes">
                         <div>
@@ -402,6 +399,16 @@
                     default:
                         break;
                 }
+            });
+
+            //show amount help when active input
+            $("#inputTown").focusin(function(){
+                $('div.town-help').removeClass('hidden');
+            });
+
+            //hide amount help when active input
+            $("#inputTown").focusout(function(){
+                $('div.town-help').addClass('hidden');
             });
 
             //show amount help when active input
@@ -686,7 +693,7 @@
                         maxlength: 9000
                     },
                     cost: {
-                        maxlength: 50
+                        maxlength: 51
                     },
                     town: {
                         maxlength: 100

@@ -18,7 +18,7 @@
         </figure>
         <div class="item-text">
             <div class="item-lables">
-                <p class="created-at">{{ $post->created_at }}</p>
+                <p class="created-at">{{ $post->created_at_readable }}</p>
                 <p class="post-type">{{$post->type_readable_short}}</p>
             </div>
             <div class="item-title">

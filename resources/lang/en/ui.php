@@ -297,12 +297,14 @@ return [
     'cost' => 'Cost',
     'costHelp' => 'If it is not obvious what the price is for, you can specify this information in the description.
         Enter cost in format: 0000.00.
-        Maximum 100 digits.',
+        Maximum 50 digits.',
     'locationRegion' => 'Location of product (region)',
     'locationTown' => 'Specify location',
     'location' => 'Location of product',
     'region' => 'Region',
     'town' => 'City / Village / Warehouse / Site',
+    'townHelp' => 'Here you can specify the location of product.
+        Maximum 100 symbols.',
     'phoneHelp' => 'Only Ukrainian phone numbers are supported.
         Format: 0123456789.
         You can choose messengers below, so users will know that You can be contacted via Messengers.',

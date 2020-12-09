@@ -491,6 +491,11 @@ div.desc-help {
     margin: 0px 0px 20px 20px;
 }
 
+.town-help {
+    left: 43%;
+    max-width: 450px;
+}
+
 #inputTown { 
     width: 40%; 
 }

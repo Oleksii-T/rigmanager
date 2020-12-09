@@ -207,6 +207,10 @@ class MailerController extends Controller
                 return false;
                 break;
         }
+        // cut the title to insure maximum 25 chars;
+        if (mb_strlen($input['title']) > 25) {
+            $input['title'] = mb_substr($input['title'], 0, 22) . '...';
+        }
         $mailer = new Mailer($input);
         if (!auth()->user()->mailers()->save($mailer)) {
             Session::flash('message-error', __('messages.mailerUploadedError'));

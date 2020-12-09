@@ -105,6 +105,9 @@ class PostController extends Controller
 
         $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
         $input['origin_lang'] = $translate->detectLanguage( $input['title'] . '. ' . $input['description'] )['languageCode']; // merge title and description and find out the origin language
+        if ($input['origin_lang'] != 'ru' && $input['origin_lang'] != 'en' && $input['origin_lang'] != 'uk') {
+            $input['origin_lang'] = 'ru';
+        }
 
         $post = new Post($input);
         if (!auth()->user()->posts()->save($post)) {
@@ -117,13 +120,13 @@ class PostController extends Controller
         MailersAnalizePost::dispatch($post, auth()->user()->id)->onQueue('mailer');
         TranslatePost::dispatch($post, $input, true)->onQueue('translation');
         Session::flash('message-success', __('messages.postUploaded'));
-        return redirect(loc_url(route('home')));
+        return redirect(loc_url(route('profile.posts')));
     }
 
     public function storeFake()
     {
         Session::flash('message-success', __('messages.postUploaded'));
-        return redirect(loc_url(route('home')));
+        return redirect(loc_url(route('profile.posts')));
     }
 
     /**
@@ -260,6 +263,9 @@ class PostController extends Controller
         // check origin language
         $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
         $input['origin_lang'] = $translate->detectLanguage( $input['title'] . '. ' . $input['description'] )['languageCode']; // merge title and description and find out the origin language
+        if ($input['origin_lang'] != 'ru' && $input['origin_lang'] != 'en' && $input['origin_lang'] != 'uk') {
+            $input['origin_lang'] = 'ru';
+        }
 
         // if there is no cost specified, remove currency
         if ( !$input['cost'] ) {
@@ -289,7 +295,13 @@ class PostController extends Controller
 
         TranslatePost::dispatch($post, $input, false)->onQueue('translation');
         Session::flash('message-success', __('messages.postEdited'));
-        return redirect(loc_url(route('posts.show', ['post'=>$input['url_name']])));
+        return redirect(loc_url(route('profile.posts')));
+    }
+
+    public function updateFake()
+    {
+        Session::flash('message-success', __('messages.postEdited'));
+        return redirect(loc_url(route('profile.posts')));
     }
 
     /**
@@ -450,6 +462,9 @@ class PostController extends Controller
         }
         $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
         $lang = $translate->detectLanguage( $import[0][1] . '. ' . $import[0][2] )['languageCode']; // merge title and description and find out the origin language
+        if ($lang != 'ru' && $lang != 'en' && $lang != 'uk') {
+            $lang = 'ru';
+        }
         // for each row create the post and save it 
         foreach ($import as $key => $row) {
             $viber = $row[19] ? 1 : 0; // fill the viber value
@@ -562,7 +577,7 @@ class PostController extends Controller
                                                                             //validate  "Currency" field if "Cost" is not empty
                                                                             if ( ($row[13]!=null && $row[14]!=null) || $row[13]==null ) {
                                                                                 //validate  "town" field
-                                                                                if ($row[16]==null || ( is_string($row[16]) && mb_strlen($row[16])<100 )) {
+                                                                                if ($row[16]==null || ( is_string($row[16]) && mb_strlen($row[16])<=100 )) {
                                                                                     //validate  "email" field
                                                                                     if (is_string($row[17]) && mb_strlen($row[17])<254 && filter_var($row[17], FILTER_VALIDATE_EMAIL)) {
                                                                                         //validate  "phone" field
