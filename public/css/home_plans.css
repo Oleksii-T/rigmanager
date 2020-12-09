@@ -53,21 +53,22 @@
     visibility: hidden;
 }
 
-.plan-column {
-    width: 200px;
-}
-
-.plans-table {
-    white-space: pre-line;
-}
-
-.plans-table caption {
+.plans-caption {
     font-size: 200%;
     padding-bottom: 40px;
     text-decoration: underline;
     white-space: pre-line;
     letter-spacing: 4px;
     line-height: 1.5em;
+    text-align: center;
+}
+
+.plans-table {
+    white-space: pre-line;
+}
+
+.plan-column {
+    width: 200px;
 }
 
 .table-header th {
@@ -103,7 +104,9 @@
     padding: 7px 0px;
 }
 
-.table-key {
+.table-key p{
+    font-size: 120%;
+    display: inline-block;
     position: relative;
 }
 
@@ -121,27 +124,24 @@
     height: 35px;
 }
 
-.table-key {
-    font-size: 120%;
-}
-
 .help-img {
     position: absolute;
     width: 25px;
     height: 25px;
-    left: 140px;
+    right: -30px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
 }
 
-.help {
+.plan-help {
     position: absolute;
     background-color: rgb(11, 11, 11, 0.8);
     padding: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    left: 170px;
+    right: -40px;
+    transform: translateX(100%);
     top: -10px;
     z-index: 20;
     border-left: 1px solid #fe9042;

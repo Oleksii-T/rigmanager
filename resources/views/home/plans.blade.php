@@ -19,9 +19,8 @@
                 <p class="p-3">{{__('ui.plansFreeAccessBody3')}}</p>
             </div>
             <div class="deliter-line"></div>
+            <h1 class="plans-caption">{{__('ui.plansHeader')}}</h1>
             <table class="plans-table">
-                <caption>{{__('ui.plansHeader')}}
-                </caption>
                 <thead class="table-header">
                     <tr class="header plan-name">
                         <th></th>
@@ -65,73 +64,97 @@
                 </thead>
                 <tbody>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansBrowse')}}</td>
+                        <td class="table-key">
+                            <p>{{__('ui.plansBrowse')}}</p>
+                        </td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansSearch')}}<img class="help-img" id="search-help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="help hidden" id="search-help">{{__('ui.plansSearchHelp')}}</span></td>
+                        <td class="table-key">
+                            <p>{{__('ui.plansSearch')}}<img class="help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="plan-help hidden">{{__('ui.plansSearchHelp')}}</span></p>
+                        </td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansFilter')}}</td>
+                        <td class="table-key">
+                            <p>{{__('ui.plansFilter')}}</p>
+                        </td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansFav')}}</td>
+                        <td class="table-key">
+                            <p>{{__('ui.plansFav')}}</p>
+                        </td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansContacts')}}</td>
+                        <td class="table-key">
+                            <p>{{__('ui.plansContacts')}}</p>
+                        </td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansCreate1')}}<img class="help-img" id="base-create-help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="help hidden" id="base-create-help">{{__('ui.plansCreate1Help')}}</span></td>
+                        <td class="table-key">
+                            <p>{{__('ui.plansCreate1')}}<img class="help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="plan-help hidden">{{__('ui.plansCreate1Help')}}</span></p>
+                        </td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansMailer')}}<a class="help-link" href="{{loc_url(route('faq'))}}#WhatIsMailer">?</a></td>
+                        <td class="table-key">
+                            <p>{{__('ui.plansMailer')}}<a class="help-link" href="{{loc_url(route('faq'))}}#WhatIsMailer">?</a></p>
+                        </td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansTranslate')}}<a class="help-link" href="{{loc_url(route('faq'))}}#autoTranslator">?</a></td>
+                        <td class="table-key">
+                            <p>{{__('ui.plansTranslate')}}<a class="help-link" href="{{loc_url(route('faq'))}}#autoTranslator">?</a></p>
+                        </td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansCreate2')}}<img class="help-img" id="prem-create-help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="help hidden" id="prem-create-help">{{__('ui.plansCreate2Help')}}</span></td>
+                        <td class="table-key">
+                            <p>{{__('ui.plansCreate2')}}<img class="help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="plan-help hidden">{{__('ui.plansCreate2Help')}}</span></p>
+                        </td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansTopPost')}}<a class="help-link" href="{{loc_url(route('faq'))}}#premiumPost">?</a></td>
+                        <td class="table-key">
+                            <p>{{__('ui.plansTopPost')}}<a class="help-link" href="{{loc_url(route('faq'))}}#premiumPost">?</a></p>
+                        </td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansPostImport')}}<a class="help-link" href="{{loc_url(route('faq'))}}#import">?</a></td>
+                        <td class="table-key">
+                            <p>{{__('ui.plansPostImport')}}<a class="help-link" href="{{loc_url(route('faq'))}}#import">?</a></p>
+                        </td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                     </tr>
                     <tr class="table-row">
-                        <td class="table-key">{{__('ui.plansPostTracking')}}<a class="help-link" href="{{loc_url(route('faq'))}}#postTracker">?</a></td>
+                        <td class="table-key">
+                            <p>{{__('ui.plansPostTracking')}}<a class="help-link" href="{{loc_url(route('faq'))}}#postTracker">?</a></p>
+                        </td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
@@ -181,27 +204,11 @@
 
         $(document).ready(function(){
 
-            $('#base-create-help-img').hover(
+            $('.help-img').hover(
                 function() {
-                    $('#base-create-help').removeClass('hidden');
+                    $(this).parent().find('span').removeClass('hidden');
                 }, function() {
-                    $('#base-create-help').addClass('hidden');
-                }
-            );
-
-            $('#prem-create-help-img').hover(
-                function() {
-                    $('#prem-create-help').removeClass('hidden');
-                }, function() {
-                    $('#prem-create-help').addClass('hidden');
-                }
-            );
-
-            $('#search-help-img').hover(
-                function() {
-                    $('#search-help').removeClass('hidden');
-                }, function() {
-                    $('#search-help').addClass('hidden');
+                    $(this).parent().find('span').addClass('hidden');
                 }
             );
 

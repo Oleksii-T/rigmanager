@@ -455,7 +455,7 @@ return [
     'plansChoose' => 'Выбрать',
     'plansBrowse' => 'Просматривать все объявления',
     'plansSearch' => 'Поиск',
-    'plansSearchHelp' => 'За автором, категорией или текстом',
+    'plansSearchHelp' => 'За автором, категорией, типом или текстом',
     'plansFilter' => 'Фильтрация',
     'plansFav' => 'Избранное',
     'plansContacts' => 'Получать контакты
@@ -466,7 +466,8 @@ return [
     'plansMailer' => 'Рассылка',
     'plansTranslate' => 'Авто-Переводчик',
     'plansCreate2' => 'Создавать объявление',
-    'plansCreate2Help' => 'Неограниченно',
+    'plansCreate2Help' => 'Максимум 600 публикаций.
+        Максимальная длительность объявления: не ограничено.',
     'plansTopPost' => 'Премиум статус
         для объявлений',
     'plansFreeAccessTitle' => 'Бесплатный Премиум доступ!',
