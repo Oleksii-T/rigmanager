@@ -92,27 +92,6 @@ return [
     'importTownError' => '"Town" field is filled incorrectly.',
     'importEmailError' => '"Email" field is filled incorrectly.',
     'importPhoneError' => '"Phone" field is filled incorrectly.',
+    'importTagEqualThredError' => '"Tag" field must comply with "Equipment/Service" field',
+    'importTooManyPostsError' => 'You are trying to import :amount Posts, but there are only :diff to maximum.',
 ];
-
-/*
-return 'phone is incorrect in post #' . ($key+1) . '. Value = ['.$row[9].']';
-return 'email is incorrect';
-return 'town is incorrect';
-return 'currency is mandatory if cost is cpecified is post #' . ($key+1);
-return 'cost is incorrect';
-return 'part number is incorrect. ' . $row[11];
-return 'manufacturer date is incorrect. ' . $row[10];
-return 'manufacturer is incorrect in post #' . ($key+1) . '. Value = ['.$row[9].']';
-return 'company is incorrect. ' . $row[4];
-return 'description is incorrect';
-return 'title is incorrect in post #' . ($key+1) . '. Value = ['.$row[1].']';
-return 'lifetime is incorrect';
-return 'region is incorrect';
-return 'currency is incorrect';
-return 'category is incorrect in post #' . ($key+1) . '. Value = ['.$row[8].']';
-return 'condition is incorrect in post #' . ($key+1) . '. Value = ['.$row[7].']';
-return 'role is incorrect';
-return 'type is incorrect';
-return 'thread is incorrect';
-return ' in post #' . ($key+1);
-*/

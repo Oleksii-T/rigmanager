@@ -92,7 +92,6 @@ class PostController extends Controller
                 $input['active_to'] = Carbon::now()->addMonths(2)->toDateString();
             break;
             case '3':
-                //add check for premium user status
                 $input['active_to'] = null;
                 break;
             default:
@@ -468,6 +467,14 @@ class PostController extends Controller
         if (isset($lastRow)) {
             $import = array_slice($import, 0, $lastRow);
         }
+        //check for maximum posts
+        $max = $this->isPremiumPlus() ? 500 : 200;
+        if (auth()->user()->posts->count()+$lastRow > $max) {
+            $diff = $max - auth()->user()->posts->count();
+            Session::flash('message-error', __('messages.postImportError'));
+            Session::flash('import-error', __('messages.tooManyPostsError'). '. ' . __('messages.importTooManyPostsError', ['amount'=>$lastRow, 'diff'=>$diff]));
+            return redirect(loc_url(route('post.import')));
+        }
         $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
         $lang = $translate->detectLanguage( $import[0][1] . '. ' . $import[0][2] )['languageCode']; // merge title and description and find out the origin language
         if ($lang != 'ru' && $lang != 'en' && $lang != 'uk') {
@@ -559,101 +566,60 @@ class PostController extends Controller
                             //validate  "Tag" field
                             if ($this->tagExist($row[9])) {
                                 // validate is tag is respect the "equipment/service" field
-                                //validate  "Currency" field
-                                if ($row[14]=='UAH' || $row[14]=='USD' || $row[14]==null) {
-                                    //validate  "region" field
-                                    if ($row[15]==0 || $row[15]==1 || $row[15]==2 || $row[15]==3 || $row[15]==4 || $row[15]==5 || $row[15]==6 || $row[15]==7 || $row[15]==8 || $row[15]==9 || $row[15]==10 || $row[15]==11 || $row[15]==12 || $row[15]==13 || $row[15]==14 || $row[15]==15 || $row[15]==16 || $row[15]==17 || $row[15]==18 || $row[15]==19 || $row[15]==20 || $row[15]==21 || $row[15]==22 || $row[15]==23 || $row[15]==24) {
-                                        //validate  "lifetime" field
-                                        if ($row[22]==1 || $row[22]==2 || $row[22]==3) {
-                                            //add check for premium user status
-                                            //validate  "title" field
-                                            if (is_string($row[1]) && mb_strlen($row[1])>10 && mb_strlen($row[1])<70) {
-                                                //validate  "description" field
-                                                if (is_string($row[2]) && mb_strlen($row[2])>10 && mb_strlen($row[2])<9000) {
-                                                    //validate "amount" field (time consuming method)
-                                                    if ($row[3]==null || ( strlen($row[3]) < 10 && filter_var($row[3], FILTER_VALIDATE_INT) !== false )) {
-                                                        //validate  "company" field
-                                                        if ($row[5]==null || ( is_string($row[5]) && mb_strlen($row[5])>5 && mb_strlen($row[5])<200 )) {
-                                                            //validate  "manufacturer" field
-                                                            if ($row[10]==null || ( is_string($row[10]) && mb_strlen($row[10])>5 && mb_strlen($row[10])<70) ) {
-                                                                //validate  "manufactured date" field
-                                                                if ($row[11]==null || ( is_string($row[11]) && mb_strlen($row[11])>3 && mb_strlen($row[11])<70 )) {
-                                                                    //validate  "part number" field
-                                                                    if ($row[12]==null || ( is_string($row[12]) && mb_strlen($row[12])>3 && mb_strlen($row[12])<70 )) {
-                                                                        //validate "cost" field
-                                                                        if ($this->costValidate($row[13])) {
-                                                                            //validate  "Currency" field if "Cost" is not empty
-                                                                            if ( ($row[13]!=null && $row[14]!=null) || $row[13]==null ) {
-                                                                                //validate  "town" field
-                                                                                if ($row[16]==null || ( is_string($row[16]) && mb_strlen($row[16])<=100 )) {
-                                                                                    //validate  "email" field
-                                                                                    if (is_string($row[17]) && mb_strlen($row[17])<254 && filter_var($row[17], FILTER_VALIDATE_EMAIL)) {
-                                                                                        //validate  "phone" field
-                                                                                        if ($row[18]==null || preg_match('/^0 \([0-9]{2}\) [0-9]{3} [0-9]{2} [0-9]{2}$/', $row[18])) {
-                                                                                            return '';
-                                                                                        } else {
-                                                                                            return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importPhoneError');
-                                                                                        }
-                                                                                    } else {
-                                                                                        return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importEmailError');
-                                                                                    }
-                                                                                } else {
-                                                                                    return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importTownError');
-                                                                                }
-                                                                            } else {
-                                                                                return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importCurrencyMError');
-                                                                            }
-                                                                        } else {
-                                                                            return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importCostError');
-                                                                        }
-                                                                    } else {
-                                                                        return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importPNError');
-                                                                    }
-                                                                } else {
-                                                                    return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importManufDateError');
-                                                                }
-                                                            } else {
-                                                                return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importManufError');
-                                                            }
-                                                        } else {
-                                                            return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importCompanyError');
-                                                        }
-                                                    } else {
-                                                        return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importAmountError');
-                                                    }
-                                                } else {
-                                                    return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importDescriptionError');
-                                                }
-                                            } else {
-                                                return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importTitleError');
-                                            }
-                                        } else {
-                                            return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importLifetimeError');
-                                        }
-                                    } else {
-                                        return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importRegionError');
-                                    }
-                                } else {
-                                    return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importCurrencyError');
-                                }
-                            } else {
-                                return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importTagError');
-                            }
-                        } else {
-                            return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importConditionError');
-                        }
-                    } else {
-                        return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importRoleError');
-                    }
-                } else {
-                    return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importTypeError');
-                }
-            } else {
-                return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importThreadError');
-            }
-        } else {
-            return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importCompulsoryError');
-        }
+                                if (($row[4]==1 && $this->isEquipment($row[4])) || ($row[4]==2 && $this->isService($row[4]))) {
+                                    //validate  "Currency" field
+                                    if ($row[14]=='UAH' || $row[14]=='USD' || $row[14]==null) {
+                                        //validate  "region" field
+                                        if ($row[15]==0 || $row[15]==1 || $row[15]==2 || $row[15]==3 || $row[15]==4 || $row[15]==5 || $row[15]==6 || $row[15]==7 || $row[15]==8 || $row[15]==9 || $row[15]==10 || $row[15]==11 || $row[15]==12 || $row[15]==13 || $row[15]==14 || $row[15]==15 || $row[15]==16 || $row[15]==17 || $row[15]==18 || $row[15]==19 || $row[15]==20 || $row[15]==21 || $row[15]==22 || $row[15]==23 || $row[15]==24) {
+                                            //validate  "lifetime" field (import is available only for Premium+ so no need to check for unlim lifetime)
+                                            if ($row[22]==1 || $row[22]==2 || $row[22]==3) {
+                                                //validate  "title" field
+                                                if (is_string($row[1]) && mb_strlen($row[1])>10 && mb_strlen($row[1])<70) {
+                                                    //validate  "description" field
+                                                    if (is_string($row[2]) && mb_strlen($row[2])>10 && mb_strlen($row[2])<9000) {
+                                                        //validate "amount" field (time consuming solution)
+                                                        if ($row[3]==null || ( strlen($row[3]) < 10 && filter_var($row[3], FILTER_VALIDATE_INT) !== false )) {
+                                                            //validate  "company" field
+                                                            if ($row[5]==null || ( is_string($row[5]) && mb_strlen($row[5])>5 && mb_strlen($row[5])<200 )) {
+                                                                //validate  "manufacturer" field
+                                                                if ($row[10]==null || ( is_string($row[10]) && mb_strlen($row[10])>5 && mb_strlen($row[10])<70) ) {
+                                                                    //validate  "manufactured date" field
+                                                                    if ($row[11]==null || ( is_string($row[11]) && mb_strlen($row[11])>3 && mb_strlen($row[11])<70 )) {
+                                                                        //validate  "part number" field
+                                                                        if ($row[12]==null || ( is_string($row[12]) && mb_strlen($row[12])>3 && mb_strlen($row[12])<70 )) {
+                                                                            //validate "cost" field
+                                                                            if ($this->costValidate($row[13])) {
+                                                                                //validate  "Currency" field if "Cost" is not empty
+                                                                                if ( ($row[13]!=null && $row[14]!=null) || $row[13]==null ) {
+                                                                                    //validate  "town" field
+                                                                                    if ($row[16]==null || ( is_string($row[16]) && mb_strlen($row[16])<=100 )) {
+                                                                                        //validate  "email" field
+                                                                                        if (is_string($row[17]) && mb_strlen($row[17])<254 && filter_var($row[17], FILTER_VALIDATE_EMAIL)) {
+                                                                                            //validate  "phone" field
+                                                                                            if ($row[18]==null || preg_match('/^0 \([0-9]{2}\) [0-9]{3} [0-9]{2} [0-9]{2}$/', $row[18])) {
+                                                                                                return '';
+                                                                                            } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importPhoneError'); }
+                                                                                        } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importEmailError'); }
+                                                                                    } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importTownError'); }
+                                                                                } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importCurrencyMError'); }
+                                                                            } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importCostError'); }
+                                                                        } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importPNError'); }
+                                                                    } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importManufDateError'); }
+                                                                } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importManufError'); }
+                                                            } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importCompanyError'); }
+                                                        } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importAmountError'); }
+                                                    } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importDescriptionError'); }
+                                                } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importTitleError'); }
+                                            } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importLifetimeError'); }
+                                        } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importRegionError'); }
+                                    } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importCurrencyError');  }
+                                } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importTagEqualThredError'); }
+                            } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importTagError'); }
+                        } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importConditionError'); }
+                    } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importRoleError'); }
+                } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importTypeError'); }
+            } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importThreadError'); }
+        } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importCompulsoryError'); }
     }
 
     private function costValidate ($cost) {

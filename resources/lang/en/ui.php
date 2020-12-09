@@ -468,9 +468,9 @@ return [
     'plansMailer' => 'Mailer',
     'plansTranslate' => 'Auto-Translator',
     'plansCreate2' => 'Create Post',
-    'plansCreate2Help' => 'Maximum',
-    'plansTopPost' => 'Max posts to be publiched: 600.
+    'plansCreate2Help' => 'Max posts to be publiched: 500.
         Max lifetime for each post: unlimited.',
+    'plansTopPost' => 'Premium status for posts',
     'plansFreeAccessTitle' => 'Free Premium access!',
     'plansFreeAccessBody1' => 'We are announcing free access to full list of functionalities during the growth of our service.',
     'plansFreeAccessBody2' => 'In other words',

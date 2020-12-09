@@ -858,4 +858,18 @@ trait Tags
         return substr_count($tag, '.')+1;
     }
 
+    public function isEquipment($tag) {
+        if ($tag < '50') {
+            return true;
+        }
+        return false;
+    }
+
+    public function isService($tag) {
+        if ($tag >= '50') {
+            return true;
+        }
+        return false;
+    }
+
 }
