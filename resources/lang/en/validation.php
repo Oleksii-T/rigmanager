@@ -133,6 +133,7 @@ return [
     'oneFromPostTypes' => 'At least one Post Type is required.',
     'agreement' => 'You must confirm your consent',
     'unlimLifetimeError' => 'Unlimited lifetime available only for Premium+ users',
+    'maxfiles' => 'Maximum :max files allowed',
 
     /*
     |--------------------------------------------------------------------------

@@ -347,14 +347,14 @@ return [
     'postHiddenNotifSlg' => 'Regards,',
 
     //dropzone
-    'dropzoneDesc' => 'Drop files or click
+    'dzDesc' => 'Drop files or click
     to upload images',
-    'dropzoneBigFile' => 'This image is too big',
-    'dropzoneInvalidMime' => 'Only .jpeg, .jpg, .png allowed',
-    'dropzoneServerError' => 'Server error occurred',
-    'dropzoneUploadCanceled' => 'Uploading was canceled',
-    'dropzoneUploadRemoveLink' => 'Remove',
-    'dropzoneTooFewFiles' => 'Too many images',
+    'dzBigFile' => 'This image is too big',
+    'dzInvalidMime' => 'Only .jpeg, .jpg, .png allowed',
+    'dzServerError' => 'Server error occurred',
+    'dzUploadCanceled' => 'Uploading was canceled',
+    'dzUploadRemoveLink' => 'Remove',
+    'dzTooFewFiles' => 'Too many images',
 
     // post show masssages
     'yoursPost' => 'This post is yours',

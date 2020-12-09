@@ -266,7 +266,7 @@
                     @yield('dz-message')
                 </div>
 
-                @yield('images-errors')
+                <div class="images error error-dz hidden"></div>
 
                 <div class="help">
                     <p><i>{{__('ui.imageHelp')}}</i></p>
@@ -365,6 +365,32 @@
 
         var oneMPast = "{{\Carbon\Carbon::now()->addMonth()->toDateString()}}";
         var twoMPast = "{{\Carbon\Carbon::now()->addMonths(2)->toDateString()}}";
+
+        // show error from submit post with dropzone 
+        function showErrorsFromDropzone(dz, error) {
+            $("#form-submit").removeClass('loading');
+            // parse error messages
+            if (typeof error['message'] == 'undefined') {
+                showPopUpMassage(false, error);
+            } else {
+                if ( error['message'] == "Server Error" ) {
+                    showPopUpMassage(false, "{{__('messages.error')}}");
+                    dz.removeAllFiles();
+                } else if ( error['message'] == "The given data was invalid." ) {
+                    showPopUpMassage(false, "{{ __('messages.postInputErrors') }}");
+                    var invalidInputErrors = error['errors'];
+                    $.each(invalidInputErrors, function(key, value) {
+                        $('.'+key+'.error-dz').append("<p>"+value+"</p>");
+                        $('input[name='+key+']').addClass('error');
+                        $('textarea[name='+key+']').addClass('error');
+                        $('.'+key+'.error-dz').removeClass('hidden');
+                    });
+                    dz.removeAllFiles();
+                } else {
+                    showPopUpMassage(false, error['message']);
+                }
+            }
+        }
 
         $(document).ready(function() {
 

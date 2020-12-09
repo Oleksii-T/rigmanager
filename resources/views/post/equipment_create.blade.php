@@ -156,14 +156,6 @@
     <div class="dz-message"><span>{{__('ui.dzDesc')}}</span></div>
 @endsection
 
-@section('images-errors')
-    @error('images.*')
-        <div class="error">
-            <p>{{ $message }}</p>
-        </div>
-    @enderror
-@endsection
-
 @section('input-cost')
     <input class="def-input input-cost" id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') }}"/>
 
@@ -288,25 +280,7 @@
                     });
 
                     this.on("errormultiple", function(file, errorMessage, xhr){
-                        $("#form-submit").removeClass('loading');
-                        // parse error messages
-                        if ( errorMessage['message'] == "Server Error" ) {
-                            showPopUpMassage(false, "{{__('messages.error')}}");
-                            myDropzone.removeAllFiles();
-                        }
-                        else if ( errorMessage['message'] == "The given data was invalid." ) {
-                            showPopUpMassage(false, "{{ __('messages.postInputErrors') }}");
-                            var invalidInputErrors = errorMessage['errors'];
-                            $.each(invalidInputErrors, function(key, value) {
-                                $('.'+key+'.error-dz').append("<p>"+value+"</p>");
-                                $('input[name='+key+']').addClass('error');
-                                $('textarea[name='+key+']').addClass('error');
-                                $('.'+key+'.error-dz').removeClass('hidden');
-                            });
-                            myDropzone.removeAllFiles();
-                        } else {
-                            showPopUpMassage(false, errorMessage);
-                        }
+                        showErrorsFromDropzone(myDropzone, errorMessage);
                     });
                 },
             });

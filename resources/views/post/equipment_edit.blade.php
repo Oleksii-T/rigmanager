@@ -198,17 +198,6 @@
     @endif
 @endsection
 
-@section('images-errors')
-    @error('images.*')
-        <div class="error">
-            <p>{{ $message }}</p>
-            @if (Session::has('tooManyImagesError'))
-                <p>{{ Session::get('tooManyImagesError') }}</p>
-            @endif
-        </div>
-    @enderror
-@endsection
-
 @section('input-cost')
     <input class="def-input input-cost" id="inputCost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{ old('cost') ?? $post->cost ? $post->cost_readable : null }}"/>
 
@@ -434,25 +423,7 @@
                     });
 
                     this.on("errormultiple", function(file, errorMessage, xhr){
-                        $("#form-submit").removeClass('loading');
-                        // parse error messages
-                        if ( errorMessage['message'] == "Server Error" ) {
-                            showPopUpMassage(false, "{{__('messages.error')}}");
-                            thisDropzone.removeAllFiles();
-                        }
-                        else if ( errorMessage['message'] == "The given data was invalid." ) {
-                            showPopUpMassage(false, "{{ __('messages.postInputErrors') }}");
-                            var invalidInputErrors = errorMessage['errors'];
-                            $.each(invalidInputErrors, function(key, value) {
-                                $('.'+key+'.error-dz').append("<p>"+value+"</p>");
-                                $('input[name='+key+']').addClass('error');
-                                $('textarea[name='+key+']').addClass('error');
-                                $('.'+key+'.error-dz').removeClass('hidden');
-                            });
-                            thisDropzone.removeAllFiles();
-                        } else {
-                            showPopUpMassage(false, errorMessage);
-                        }
+                        showErrorsFromDropzone(thisDropzone, errorMessage);
                     });
                 },
             });

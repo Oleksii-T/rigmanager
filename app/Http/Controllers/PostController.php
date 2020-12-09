@@ -57,6 +57,16 @@ class PostController extends Controller
      */
     public function store(CreatePostRequest $request)
     {
+        //check for maximum posts
+        $max = $this->isPremiumPlus() ? 500 : 200;
+        if (auth()->user()->posts->count() >= $max) {
+            if ($request->wantsJson()) {
+                return abort(404, __('messages.tooManyPostsError'));
+            }
+            Session::flash('message-error', __('messages.tooManyPostsError'));
+            return redirect(loc_url(route('profile.posts')));
+        }
+
         $input = $request->all();
 
         if ( !$input['cost'] ) {
@@ -111,6 +121,9 @@ class PostController extends Controller
 
         $post = new Post($input);
         if (!auth()->user()->posts()->save($post)) {
+            if ($request->wantsJson()) {
+                return abort(404, __('messages.postUploadedError'));
+            }
             Session::flash('message-error', __('messages.postUploadedError'));
             return redirect(loc_url(route('home')));
         }
@@ -199,17 +212,9 @@ class PostController extends Controller
         $id = $id==null ? $locale : $id;
         $post = Post::findOrFail($id);
         if (!$this->isOwner($post->user->id)) {
-            abort(403);
+            abort(403, 'Restricted');
         }
         
-        // if there is a file, check for files amount. max 5
-        if ( $request->hasFile('images')) {
-            $imagesAmount = count($request->file('images')) + $post->images->count();
-            if ($imagesAmount > 5) {
-                Session::flash('tooManyImagesError', __('messages.postEditedErrorTooManyImages'));
-                return redirect()->back();
-            }
-        }
         $input = $request->all();
 
         //recraete the url name if title was changed
@@ -284,6 +289,9 @@ class PostController extends Controller
 
         // if there was an error while updating, return previous page with error
         if (!$post->update($input)) {
+            if ($request->wantsJson()) {
+                return abort(404, __('messages.postUploadedError'));
+            }
             Session::flash('message-error', __('messages.postEditedError'));
             return redirect(loc_url(route('home')));
         }

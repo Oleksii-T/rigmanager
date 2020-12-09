@@ -342,16 +342,16 @@ return [
     'postHiddenNotifBody1' => 'Срок действия публикации закончился. Пожалуйста, обновите срок действия в настройках объявления, если вы хотите снова сделать это объявление публичным',
     'postHiddenNotifBody2' => 'Если у Вас возникли проблемы с кликом по объявлению выше, скопируйте и вставьте адрес в адресную строку браузера',
     'postHiddenNotifSlg' => 'С уважением,',
-
+    
     //dropzone
-    'dropzoneDesc' => 'test1',
-    'dropzoneBigFile' => 'Перетащите файлы или нажмите,
+    'dzDesc' => 'Перетащите файлы или нажмите,
     чтобы загрузить изображения',
-    'dropzoneInvalidMime' => 'Только .jpeg, .jpg, .png разрешены',
-    'dropzoneServerError' => 'Произошла ошибка сервера',
-    'dropzoneUploadCanceled' => 'Загрузка была отменена',
-    'dropzoneUploadRemoveLink' => 'Удалить',
-    'dropzoneTooFewFiles' => 'Слишком много изображений',
+    'dzBigFile' => 'Изображение слошком велико',
+    'dzInvalidMime' => 'Только .jpeg, .jpg, .png разрешены',
+    'dzServerError' => 'Произошла ошибка сервера',
+    'dzUploadCanceled' => 'Загрузка была отменена',
+    'dzUploadRemoveLink' => 'Удалить',
+    'dzTooFewFiles' => 'Слишком много изображений',
 
     // post show masssages
     'yoursPost' => 'Это объявление принадлежит вам',

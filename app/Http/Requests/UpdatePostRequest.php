@@ -43,6 +43,7 @@ class UpdatePostRequest extends FormRequest
             'user_phone_raw' => ['nullable', 'required_without:user_email', 'string', 'size:16', new Phone],
             'lifetime' => [new UnlimitedLifetime],
             'images.*' => 'nullable|image|mimes:jpeg,jpg,jpe,png|max:5000',
+            'images' => 'max:2',
         ];
         if ( !array_key_exists('uk', $this->request->get('title_translate')) ) {
             $rules['title_uk'] = $titleRule;
@@ -70,7 +71,8 @@ class UpdatePostRequest extends FormRequest
         return [
             'user_email.required_without' => trans('validation.required_without-phone'),
             'user_phone_raw.size' => trans('validation.phoneLength'),
-            'user_phone_raw.required_without' => trans('validation.required_without-email')
+            'user_phone_raw.required_without' => trans('validation.required_without-email'),
+            'images.max' => trans('validation.maxfiles', ['max'=>5])
         ];
     }
 }
