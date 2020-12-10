@@ -18,7 +18,7 @@ class Post extends Model
     protected $appends = [
         'tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable',
         'user_phone_intern', 'region_readable', 'role_readable', 'type_readable', 'origin_lang_readable',
-        'type_readable_short', 'created_at_readable'
+        'type_readable_short', 'created_at_readable', 'preview_image'
     ];
 
     protected $fillable = [
@@ -55,6 +55,22 @@ class Post extends Model
     public function favOfUser()
     {
         return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+    public function getPreviewImageAttribute() {
+        if ( $this->images->isEmpty() ) {
+            $tag = $this->tag_encoded;
+            preg_match_all('/^[0-9]+/', $tag, $m);
+            $tag = $m[0][0];
+            $image = 'icons/tags/' . $tag . '.png';
+            if ( file_exists($image) ) {
+                return (asset($image));
+            } else {
+                return (asset('icons/noImageIcon.svg'));
+            }
+        } else {
+            return $this->images()->where('version', 'optimized')->first()->url;
+        }
     }
 
     public function setUserTranslationsAttribute($value)

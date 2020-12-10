@@ -22,6 +22,7 @@
 .post-img {
     height: 100%;
     width: 260px;
+    background-color: #3f3f3f;
 }
 
 .post-img img {

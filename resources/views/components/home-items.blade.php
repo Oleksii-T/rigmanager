@@ -10,11 +10,7 @@
                     <img class="addToFavImg img-hover-scale" title="{{__('ui.addToFav')}}" src="{{ asset('icons/heartWhiteIcon.svg') }}" alt="{{__('alt.keyword')}}">
                 </button>
             @endauth
-            @if ( $post->images->isEmpty() )
-                <img src="{{ asset('icons/noImageIcon.svg') }}" alt="{{__('alt.keyword')}}"></li>
-            @else
-                <img src="{{ $post->images()->where('version', 'optimized')->first()->url }}" alt="{{__('alt.keyword')}}"></li>
-            @endif
+            <img src="{{ $post->preview_image }}" alt="{{__('alt.keyword')}}">
         </figure>
         <div class="item-text">
             <div class="item-lables">

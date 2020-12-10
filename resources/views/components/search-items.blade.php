@@ -2,11 +2,7 @@
     @foreach ($posts as $post)
         <article class="item {{$post->is_active ? '' : 'inactive'}}" id="{{$post->id}}">
             <figure class="post-img">
-                @if ( $post->images->isEmpty() )
-                    <img src="{{ asset('icons/noImageIcon.svg') }}" alt="{{__('alt.keyword')}}"></li>
-                @else
-                    <img src="{{ $post->images()->where('version', 'optimized')->first()->url }}" alt="{{__('alt.keyword')}}"></li>
-                @endif
+                <img src="{{ $post->preview_image }}" alt="{{__('alt.keyword')}}">
             </figure>
             <div class="post-text">
                 <div class="post-row post-row-1">
