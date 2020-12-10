@@ -16,7 +16,6 @@ use Illuminate\Http\UploadedFile;
 //   from other controllers and do not have instanse of itself
 trait ImageUploader
 {
-
     public function postImageUpload($files, $post)
     {
         $serialNo = $post->images->count() === 0 ? 1 : $post->images->where('version', 'origin')->count()+1;

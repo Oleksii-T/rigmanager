@@ -360,7 +360,6 @@
     <script type="text/javascript" src="{{ asset('js/dropzone.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/tags.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mousewheel.min.js') }}"></script>
-    @yield('post-scripts')
     <script type="text/javascript">
 
         var oneMPast = "{{\Carbon\Carbon::now()->addMonth()->toDateString()}}";
@@ -370,26 +369,23 @@
         function showErrorsFromDropzone(dz, error) {
             $("#form-submit").removeClass('loading');
             // parse error messages
-            if (typeof error['message'] == 'undefined') {
-                showPopUpMassage(false, error);
+            if (typeof error['message'] != 'undefined' && error['message'] == "The given data was invalid.") { // if it is error from input fields
+                showPopUpMassage(false, "{{ __('messages.postInputErrors') }}");
+                var invalidInputErrors = error['errors'];
+                $.each(invalidInputErrors, function(key, value) {
+                    $('.'+key+'.error-dz').append("<p>"+value+"</p>");
+                    $('input[name='+key+']').addClass('error');
+                    $('textarea[name='+key+']').addClass('error');
+                    $('.'+key+'.error-dz').removeClass('hidden');
+                });
+            } else if (error['code'] == 111 && typeof error['message'] != 'undefined') {// if it is custom error from post upload 
+                showPopUpMassage(false, error['message']);
+            } else if (typeof error['code'] != 'undefined') { // if it is any error with error code
+                showPopUpMassage(false, error['code'] + ". " + "{{__('messages.error')}}");
             } else {
-                if ( error['message'] == "Server Error" ) {
-                    showPopUpMassage(false, "{{__('messages.error')}}");
-                    dz.removeAllFiles();
-                } else if ( error['message'] == "The given data was invalid." ) {
-                    showPopUpMassage(false, "{{ __('messages.postInputErrors') }}");
-                    var invalidInputErrors = error['errors'];
-                    $.each(invalidInputErrors, function(key, value) {
-                        $('.'+key+'.error-dz').append("<p>"+value+"</p>");
-                        $('input[name='+key+']').addClass('error');
-                        $('textarea[name='+key+']').addClass('error');
-                        $('.'+key+'.error-dz').removeClass('hidden');
-                    });
-                    dz.removeAllFiles();
-                } else {
-                    showPopUpMassage(false, error['message']);
-                }
+                showPopUpMassage(false, "{{__('messages.error')}}");
             }
+            dz.removeAllFiles();
         }
 
         $(document).ready(function() {
@@ -886,5 +882,6 @@
 
         });
     </script>
+    @yield('post-scripts')
 
 @endsection

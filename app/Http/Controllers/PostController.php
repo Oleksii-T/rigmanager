@@ -61,7 +61,7 @@ class PostController extends Controller
         $max = $this->isPremiumPlus() ? 500 : 200;
         if (auth()->user()->posts->count() >= $max) {
             if ($request->wantsJson()) {
-                return abort(404, __('messages.tooManyPostsError'));
+                return abort(111, __('messages.tooManyPostsError'));
             }
             Session::flash('message-error', __('messages.tooManyPostsError'));
             return redirect(loc_url(route('profile.posts')));
@@ -121,7 +121,7 @@ class PostController extends Controller
         $post = new Post($input);
         if (!auth()->user()->posts()->save($post)) {
             if ($request->wantsJson()) {
-                return abort(404, __('messages.postUploadedError'));
+                return abort(111, __('messages.postUploadedError'));
             }
             Session::flash('message-error', __('messages.postUploadedError'));
             return redirect(loc_url(route('home')));
@@ -211,7 +211,7 @@ class PostController extends Controller
         $id = $id==null ? $locale : $id;
         $post = Post::findOrFail($id);
         if (!$this->isOwner($post->user->id)) {
-            abort(403, 'Restricted');
+            abort(403);
         }
         
         $input = $request->all();
@@ -289,7 +289,7 @@ class PostController extends Controller
         // if there was an error while updating, return previous page with error
         if (!$post->update($input)) {
             if ($request->wantsJson()) {
-                return abort(404, __('messages.postUploadedError'));
+                return abort(111, __('messages.postUploadedError'));
             }
             Session::flash('message-error', __('messages.postEditedError'));
             return redirect(loc_url(route('home')));
