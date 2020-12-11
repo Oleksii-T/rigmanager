@@ -7,6 +7,7 @@
 
 @section('content')
     @if ($posts_list->isNotEmpty())
+        <button id="modalAllPostDeleteOn">{{__('ui.deleteAllPosts')}}</button>
         <x-items :posts="$posts_list" button='deleteAndEdit' :translated="$translated"/>
         <div class="pagination-field">
             {{ $posts_list->links() }}
@@ -22,6 +23,43 @@
     <script type="text/javascript">
         $(document).ready(function(){
 
+            // delete all user`s posts
+            $('.delete-all-posts').click(function(){
+                $('#modalAllPostDelete').addClass('hidden');
+                $('#items').addClass('hidden');
+                $('.pagination-field').addClass('hidden');
+                $('#modalAllPostDeleteOn').after('<div class="emptyItems"><p>{{__("ui.noMyPosts")}}</p></div>');
+                $('#modalAllPostDeleteOn').addClass('hidden');
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('posts.delete')}}",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                    },
+                    success: function(data) {
+                        showPopUpMassage(true, "{{ __('messages.allPostsDeleted') }}");
+                    },
+                    error: function() {
+                        $('#items').removeClass('hidden');
+                        $('.pagination-field').removeClass('hidden');
+                        $('.emptyItems').addClass('hidden');
+                        $('#modalAllPostDeleteOn').removeClass('hidden');
+                        showPopUpMassage(false, "{{ __('messages.error') }}"); // pop up error message
+                    }
+                });
+            });
+
+            // show submit form for delete ALL posts
+            $('#modalAllPostDeleteOn').click(function(){
+                $('#modalAllPostDelete').removeClass('hidden');
+            });
+
+            //hide the modal delet all posts 
+            $('#modalAllPostDeleteOff').click(function(){
+                $('#modalAllPostDelete').addClass('hidden');
+            });
+
+            // hide or show the post
             $('button.item-hide-btn').click(function(){
                 id = getIdFromClasses( $(this).attr('class'), 'id_' );
                 button = $(this);
@@ -93,12 +131,12 @@
                 var id = getIdFromClasses($(this).attr('class'), 'id_');
                 var oldClasses = $('#modalPostDelete .modalSubmitButton').attr('class');
                 $('#modalPostDelete .modalSubmitButton').attr('class', 'id_'+id+' '+oldClasses);
-                $('#modalPostDelete').css("display", "block");
+                $('#modalPostDelete').removeClass('hidden');
             });
 
             //close delete confirmation
             $('#modalPostDeleteOff').click(function(){
-                $('#modalPostDelete').css("display", "none");
+                $('#modalPostDelete').addClass('hidden');
             });
 
             $('.modalSubmitButton').click(function() {
@@ -135,9 +173,12 @@
 
             //make any click beyong the modal to close modal
             window.onclick = function(event) {
-                var modal = document.getElementById("modalPostDelete");
-                if (event.target == modal) {
-                    $('#modalPostDelete').css("display", "none");
+                var delPost = document.getElementById("modalPostDelete");
+                var delAllPost = document.getElementById("modalAllPostDelete");
+                if (event.target == delPost) {
+                    $('#modalPostDelete').addClass('hidden');
+                } else if (event.target == delAllPost) {
+                    $('#modalAllPostDelete').addClass('hidden');
                 }
             }
 

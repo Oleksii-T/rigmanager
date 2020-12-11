@@ -336,6 +336,7 @@ return [
     'postIsOutdated' => 'Період життя цього оголошення завершився',
     'postIsHidden' => 'Тільки ви (автор) можете переглядати це оголошення, оскільки воно приховане.',
     'translationRequirePremium' => 'Щоб переглянути перекладену версію, потрібен Преміум аккаунт.',
+    'deleteAllPosts' => 'Видалити всі публікації',
 
     //post deactivated messages
     'postHiddenNotifSubject' => 'Оголошення було деактивовано',

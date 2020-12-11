@@ -664,6 +664,15 @@ class PostController extends Controller
         return true;
     }
 
+    public function deleteAll() {
+        $posts = auth()->user()->posts;
+        foreach ($posts as $post) {
+            $this->postImagesDelete($post);
+            $post->delete();
+        }
+        return true;
+    }
+
 }
 
 

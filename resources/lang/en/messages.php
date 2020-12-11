@@ -32,6 +32,7 @@ return [
     'postDisactivated' => 'Post has been hidden from public',
     'postOutdated' => 'This Post is outdated, please update the lifetime in Post settings',
     'tooManyPostsError' => 'You have reached the maximum amount of posts. (200 for premium, 500 for Premium+)',
+    'allPostsDeleted' => 'All posts has been deleted!',
 
     'mailerToManyTags' => 'Too many categories',
     'mailerUploaded' => 'Mailer has been configured successfully!',

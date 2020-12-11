@@ -334,6 +334,7 @@ return [
     'postIsOutdated' => 'Период жизни этого объявления истек',
     'postIsHidden' => 'Только вы(автор) можете просматривать это объявление, поскольку оно скрыто.',
     'translationRequirePremium' => 'Для просмотра переведенной версии требуется Премиум-аккаунт.',
+    'deleteAllPosts' => 'Удалить все публикации',
 
     //post deactivated messages
     'postHiddenNotifSubject' => 'Объявление было деактивировано',

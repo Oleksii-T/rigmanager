@@ -337,6 +337,7 @@ return [
     'postIsOutdated' => 'The lifetime of this post is expired',
     'postIsHidden' => 'Only you(author) can view this Post, because it been hidden.',
     'translationRequirePremium' => 'To see the translated version, the Premium account is required.',
+    'deleteAllPosts' => 'Delete all posts',
 
     //post deactivated messages
     'postHiddenNotifSubject' => 'Post has been deactivated',

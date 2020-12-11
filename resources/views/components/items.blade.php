@@ -67,12 +67,21 @@
     @endforeach
 
     @if ($button == 'deleteAndEdit')
-        <div class="modalView animate" id="modalPostDelete">
+        <div class="modalView animate hidden" id="modalPostDelete">
             <div class="modalContent">
                 <p>{{__('ui.sure?')}}</p>
                 <div>
                     <button class="def-button submit-button" type="button" id="modalPostDeleteOff">{{__('ui.no')}}</button>
                     <button class="def-button cancel-button modalSubmitButton">{{__('ui.delete')}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="modalView animate hidden" id="modalAllPostDelete">
+            <div class="modalContent">
+                <p>{{__('ui.sure?')}}</p>
+                <div>
+                    <button class="def-button submit-button" type="button" id="modalAllPostDeleteOff">{{__('ui.no')}}</button>
+                    <button class="def-button cancel-button delete-all-posts">{{__('ui.deleteAllPosts')}}</button>
                 </div>
             </div>
         </div>

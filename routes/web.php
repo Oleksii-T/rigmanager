@@ -41,6 +41,7 @@ Route::middleware('verified')->group(function () {
     Route::patch    ('posts/images/delete/{post}/{image}',  'PostController@imgDel')            ->name('posts.img.delete'); //Ajax reqeust
     Route::delete   ('ajax/posts/a//{post}',                'PostController@destroyAjax')       ->name('posts.destroy.ajax'); //Ajax reqeust
     Route::post     ('ajax/posts/toggle/status/{post}',     'PostController@togglePost')        ->name('post.toggle'); //Ajax reqeust
+    Route::post     ('ajax/delete/posts',                   'PostController@deleteAll')         ->name('posts.delete'); //Ajax reqeust
 
     // user routes
     Route::get      ('ajax/profile/favourite',              'UserController@addToFav')          ->name('toFav'); //Ajax reqeust
