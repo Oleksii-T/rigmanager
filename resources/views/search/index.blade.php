@@ -52,211 +52,208 @@
 
     <a id="filter-beacon"></a>
 
-    @if ($posts_list->isNotEmpty())
     <div class="search-wraper">
         <div class="filters">
-            @if (!$search['isEmpty'])
-                <div class="column-title">
-                    <h2>{{__('ui.filters')}}</h2>
+            <div class="column-title">
+                <h2>{{__('ui.filters')}}</h2>
+            </div>
+            <div class="filters">
+                <div class="filter filter-cost">
+                    <h5 class="filter-name">{{__('ui.cost')}},</h5>
+                    <div class="filter-currency">
+                        <span class="currency-lable active-currency" id="currency-uah-lable">UAH</span>
+
+                        <label class="switch currency-switch" for="currency-usd">
+                            <input id="currency-usd" name="currency-usd" type="checkbox" value="1">
+                            <span class="slider"></span>
+                        </label>
+
+                        <span class="currency-lable" id="currency-usd-lable">USD</span>
+                    </div>
+                    <div class="filter-cost-input">
+                        <input class="input-cost cost-from-input" name="costFrom" type="text" placeholder="{{__('ui.from')}}">
+                        <span class="cost-delimeter">-</span>
+                        <input class="input-cost cost-to-input" name="costTo" type="text" placeholder="{{__('ui.to')}}">
+                    </div>
                 </div>
-                <div class="filters">
-                    <div class="filter filter-cost">
-                        <h5 class="filter-name">{{__('ui.cost')}},</h5>
-                        <div class="filter-currency">
-                            <span class="currency-lable active-currency" id="currency-uah-lable">UAH</span>
 
-                            <label class="switch currency-switch" for="currency-usd">
-                                <input id="currency-usd" name="currency-usd" type="checkbox" value="1">
-                                <span class="slider"></span>
-                            </label>
-
-                            <span class="currency-lable" id="currency-usd-lable">USD</span>
-                        </div>
-                        <div class="filter-cost-input">
-                            <input class="input-cost cost-from-input" name="costFrom" type="text" placeholder="{{__('ui.from')}}">
-                            <span class="cost-delimeter">-</span>
-                            <input class="input-cost cost-to-input" name="costTo" type="text" placeholder="{{__('ui.to')}}">
+                @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                @else
+                    <div class="filter region-filter">
+                        <h5 class="filter-name">{{__('ui.region')}}</h5>
+                        <div class="filter-input">
+                            <div class="def-select-wraper">
+                                <x-region-select locale='{{app()->getLocale()}}'/>
+                                <span class="arrow arrowDown"></span>
+                            </div>
                         </div>
                     </div>
+                @endif
 
-                    @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
-                    @else
-                        <div class="filter region-filter">
-                            <h5 class="filter-name">{{__('ui.region')}}</h5>
-                            <div class="filter-input">
-                                <div class="def-select-wraper">
-                                    <x-region-select locale='{{app()->getLocale()}}'/>
-                                    <span class="arrow arrowDown"></span>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-
-                    @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
-                    @else
-                        <div class="filter filter-condition">
-                            <h5 class="filter-name">{{__('ui.condition')}}</h5>
-                            <div class="filter-input radio" id="condition">
-                                <label class="cb-container filter-checked" for="condition-new">{{__('ui.conditionNew')}}
-                                    <input id="condition-new" type="checkbox" name="conditions[]" value="2" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="condition-sh">{{__('ui.conditionSH')}}
-                                    <input id="condition-sh" type="checkbox" name="conditions[]" value="3" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="condition-parts">{{__('ui.conditionForParts')}}
-                                    <input id="condition-parts" type="checkbox" name="conditions[]" value="4" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    @endif
-
-                    <div class="filter filter-type">
-                        <h5 class="filter-name">{{__('ui.postType')}}</h5>
-                        <div class="filter-input radio" id="type">
-                            @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
-                                <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
-                                    <input id="type-give-se" type="checkbox" name="types[]" value="5" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="type-get-se">{{__('ui.postTypeGetS')}}
-                                    <input id="type-get-se" type="checkbox" name="types[]" value="6" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                            @elseif ( $search['type'] == 'tags' && $search['tag_type'] == 'eq' )
-                                <label class="cb-container filter-checked" for="type-sell">{{__('ui.postTypeSell')}}
-                                    <input id="type-sell" type="checkbox" name="types[]" value="1" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="type-buy">{{__('ui.postTypeBuy')}}
-                                    <input id="type-buy" type="checkbox" name="types[]" value="2" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="type-rent">{{__('ui.postTypeRent')}}
-                                    <input id="type-rent" type="checkbox" name="types[]" value="3" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="type-leas">{{__('ui.postTypeLeas')}}
-                                    <input id="type-leas" type="checkbox" name="types[]" value="4" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                            @elseif ( $search['type'] == 'type' && $search['url'] == 'equipment-sell' )
-                                <label class="cb-container filter-checked" for="type-sell">{{__('ui.postTypeSell')}}
-                                    <input id="type-sell" type="checkbox" name="types[]" value="1" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="type-rent">{{__('ui.postTypeRent')}}
-                                    <input id="type-rent" type="checkbox" name="types[]" value="3" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                            @elseif ( $search['type'] == 'type' && $search['url'] == 'equipment-buy' )
-                                <label class="cb-container filter-checked" for="type-buy">{{__('ui.postTypeBuy')}}
-                                    <input id="type-buy" type="checkbox" name="types[]" value="2" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="type-leas">{{__('ui.postTypeLeas')}}
-                                    <input id="type-leas" type="checkbox" name="types[]" value="4" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                            @elseif ( $search['type'] == 'type' && $search['url'] == 'services' )
-                                <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
-                                    <input id="type-give-se" type="checkbox" name="conditions[]" value="5" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="type-get-se">{{__('ui.postTypeGetS')}}
-                                    <input id="type-get-se" type="checkbox" name="conditions[]" value="6" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                            @elseif ( $search['type'] == 'type' && $search['url'] == 'tenders' )
-                                <!--empty-->
-                            @else
-                                <label class="cb-container filter-checked" for="type-sell">{{__('ui.postTypeSell')}}
-                                    <input id="type-sell" type="checkbox" name="types[]" value="1" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="type-buy">{{__('ui.postTypeBuy')}}
-                                    <input id="type-buy" type="checkbox" name="types[]" value="2" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="type-rent">{{__('ui.postTypeRent')}}
-                                    <input id="type-rent" type="checkbox" name="types[]" value="3" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="type-leas">{{__('ui.postTypeLeas')}}
-                                    <input id="type-leas" type="checkbox" name="types[]" value="4" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
-                                    <input id="type-give-se" type="checkbox" name="conditions[]" value="5" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="type-get-se">{{__('ui.postTypeGetS')}}
-                                    <input id="type-get-se" type="checkbox" name="conditions[]" value="6" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                            @endif
-                        </div>
-                    </div>
-
-                    @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
-                    @else
-                        <div class="filter filter-role">
-                            <h5 class="filter-name">{{__('ui.postRole')}}</h5>
-                            <div class="filter-input radio" id="role">
-                                <label class="cb-container filter-checked" for="role-private">{{__('ui.postRolePrivate')}}
-                                    <input id="role-private" type="checkbox" name="roles[]" value="1" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="role-business">{{__('ui.postRoleBusiness')}}
-                                    <input id="role-business" type="checkbox" name="roles[]" value="2" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    @endif
-
-                    @if ( $search['type'] != 'tags' && $search['type'] != 'type' )
-                        <div class="filter filter-thread">
-                            <h5 class="filter-name">{{__('ui.thread')}}</h5>
-                            <div class="filter-input radio" id="thread">
-                                <label class="cb-container filter-checked" for="thread-eq">{{__('ui.equipment')}}
-                                    <input id="thread-eq" type="checkbox" name="threads[]" value="1" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                                <label class="cb-container filter-checked" for="thread-se">{{__('ui.service')}}
-                                    <input id="thread-se" type="checkbox" name="threads[]" value="2" checked="checked">
-                                    <span class="cb-checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    @endif
-
-                    <div class="filter filter-sorting">
-                        <h5 class="filter-name">{{__('ui.sort')}}</h5>
-                        <div class="filter-input checkbox">
-                            <label class="radio-container sort-select" for="sorting-new">{{__('ui.sortNew')}}
-                                <input id="sorting-new" type="radio" name="type" value="2" checked="checked">
-                                <span class="radio-checkmark"></span>
+                @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                @else
+                    <div class="filter filter-condition">
+                        <h5 class="filter-name">{{__('ui.condition')}}</h5>
+                        <div class="filter-input radio" id="condition">
+                            <label class="cb-container filter-checked" for="condition-new">{{__('ui.conditionNew')}}
+                                <input id="condition-new" type="checkbox" name="conditions[]" value="2" checked="checked">
+                                <span class="cb-checkmark"></span>
                             </label>
-                            <label class="radio-container sort-select" for="sorting-cheap">{{__('ui.sortCheap')}}
-                                <input id="sorting-cheap" type="radio" name="type" value="3">
-                                <span class="radio-checkmark"></span>
+                            <label class="cb-container filter-checked" for="condition-sh">{{__('ui.conditionSH')}}
+                                <input id="condition-sh" type="checkbox" name="conditions[]" value="3" checked="checked">
+                                <span class="cb-checkmark"></span>
                             </label>
-                            <label class="radio-container sort-select" for="sorting-expensive">{{__('ui.sortExpensive')}}
-                                <input id="sorting-expensive" type="radio" name="type" value="4">
-                                <span class="radio-checkmark"></span>
+                            <label class="cb-container filter-checked" for="condition-parts">{{__('ui.conditionForParts')}}
+                                <input id="condition-parts" type="checkbox" name="conditions[]" value="4" checked="checked">
+                                <span class="cb-checkmark"></span>
                             </label>
                         </div>
                     </div>
+                @endif
+
+                <div class="filter filter-type">
+                    <h5 class="filter-name">{{__('ui.postType')}}</h5>
+                    <div class="filter-input radio" id="type">
+                        @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                            <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
+                                <input id="type-give-se" type="checkbox" name="types[]" value="5" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="type-get-se">{{__('ui.postTypeGetS')}}
+                                <input id="type-get-se" type="checkbox" name="types[]" value="6" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                        @elseif ( $search['type'] == 'tags' && $search['tag_type'] == 'eq' )
+                            <label class="cb-container filter-checked" for="type-sell">{{__('ui.postTypeSell')}}
+                                <input id="type-sell" type="checkbox" name="types[]" value="1" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="type-buy">{{__('ui.postTypeBuy')}}
+                                <input id="type-buy" type="checkbox" name="types[]" value="2" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="type-rent">{{__('ui.postTypeRent')}}
+                                <input id="type-rent" type="checkbox" name="types[]" value="3" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="type-leas">{{__('ui.postTypeLeas')}}
+                                <input id="type-leas" type="checkbox" name="types[]" value="4" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                        @elseif ( $search['type'] == 'type' && $search['url'] == 'equipment-sell' )
+                            <label class="cb-container filter-checked" for="type-sell">{{__('ui.postTypeSell')}}
+                                <input id="type-sell" type="checkbox" name="types[]" value="1" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="type-rent">{{__('ui.postTypeRent')}}
+                                <input id="type-rent" type="checkbox" name="types[]" value="3" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                        @elseif ( $search['type'] == 'type' && $search['url'] == 'equipment-buy' )
+                            <label class="cb-container filter-checked" for="type-buy">{{__('ui.postTypeBuy')}}
+                                <input id="type-buy" type="checkbox" name="types[]" value="2" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="type-leas">{{__('ui.postTypeLeas')}}
+                                <input id="type-leas" type="checkbox" name="types[]" value="4" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                        @elseif ( $search['type'] == 'type' && $search['url'] == 'services' )
+                            <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
+                                <input id="type-give-se" type="checkbox" name="conditions[]" value="5" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="type-get-se">{{__('ui.postTypeGetS')}}
+                                <input id="type-get-se" type="checkbox" name="conditions[]" value="6" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                        @elseif ( $search['type'] == 'type' && $search['url'] == 'tenders' )
+                            <!--empty-->
+                        @else
+                            <label class="cb-container filter-checked" for="type-sell">{{__('ui.postTypeSell')}}
+                                <input id="type-sell" type="checkbox" name="types[]" value="1" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="type-buy">{{__('ui.postTypeBuy')}}
+                                <input id="type-buy" type="checkbox" name="types[]" value="2" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="type-rent">{{__('ui.postTypeRent')}}
+                                <input id="type-rent" type="checkbox" name="types[]" value="3" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="type-leas">{{__('ui.postTypeLeas')}}
+                                <input id="type-leas" type="checkbox" name="types[]" value="4" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="type-give-se">{{__('ui.postTypeGiveS')}}
+                                <input id="type-give-se" type="checkbox" name="conditions[]" value="5" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="type-get-se">{{__('ui.postTypeGetS')}}
+                                <input id="type-get-se" type="checkbox" name="conditions[]" value="6" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                        @endif
+                    </div>
                 </div>
-                <div class="mailer-suggestion">
-                    <p>{{__('ui.mailerSuggestText')}}</p>
-                    <img src="{{asset('icons/addToMailerIcon.svg')}}" alt="">
-                    <button>{{__('ui.add')}}</button>
+
+                @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
+                @else
+                    <div class="filter filter-role">
+                        <h5 class="filter-name">{{__('ui.postRole')}}</h5>
+                        <div class="filter-input radio" id="role">
+                            <label class="cb-container filter-checked" for="role-private">{{__('ui.postRolePrivate')}}
+                                <input id="role-private" type="checkbox" name="roles[]" value="1" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="role-business">{{__('ui.postRoleBusiness')}}
+                                <input id="role-business" type="checkbox" name="roles[]" value="2" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                @endif
+
+                @if ( $search['type'] != 'tags' && $search['type'] != 'type' )
+                    <div class="filter filter-thread">
+                        <h5 class="filter-name">{{__('ui.thread')}}</h5>
+                        <div class="filter-input radio" id="thread">
+                            <label class="cb-container filter-checked" for="thread-eq">{{__('ui.equipment')}}
+                                <input id="thread-eq" type="checkbox" name="threads[]" value="1" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                            <label class="cb-container filter-checked" for="thread-se">{{__('ui.service')}}
+                                <input id="thread-se" type="checkbox" name="threads[]" value="2" checked="checked">
+                                <span class="cb-checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                @endif
+
+                <div class="filter filter-sorting">
+                    <h5 class="filter-name">{{__('ui.sort')}}</h5>
+                    <div class="filter-input checkbox">
+                        <label class="radio-container sort-select" for="sorting-new">{{__('ui.sortNew')}}
+                            <input id="sorting-new" type="radio" name="type" value="2" checked="checked">
+                            <span class="radio-checkmark"></span>
+                        </label>
+                        <label class="radio-container sort-select" for="sorting-cheap">{{__('ui.sortCheap')}}
+                            <input id="sorting-cheap" type="radio" name="type" value="3">
+                            <span class="radio-checkmark"></span>
+                        </label>
+                        <label class="radio-container sort-select" for="sorting-expensive">{{__('ui.sortExpensive')}}
+                            <input id="sorting-expensive" type="radio" name="type" value="4">
+                            <span class="radio-checkmark"></span>
+                        </label>
+                    </div>
                 </div>
-            @endif
+            </div>
+            <div class="mailer-suggestion">
+                <p>{{__('ui.mailerSuggestText')}}</p>
+                <img src="{{asset('icons/addToMailerIcon.svg')}}" alt="">
+                <button>{{__('ui.add')}}</button>
+            </div>
         </div>
         <div class="search-result">
             <div class="column-title">
@@ -270,62 +267,68 @@
                     <h2>{{end($search['value'])}}</h2>
                 @endif
             </div>
-            @if (isset($resByTag) && $resByTag['map'])
-                <div class="result-by-tag">
-                    @foreach ($resByTag['map'] as $tagId => $tag)
-                        @if ($search['type']=='text')
-                            <a href="{{loc_url(route('search', [$search['type']=>$search['value'], 'tag'=>$tag['url']]))}}">
-                                <span class="rbt-name">{{$tag['name']}}</span>
-                                <span class="rbt-amount">{{$tag['amount']}}</span>
-                            </a>
-                        @elseif ($search['type']=='author')
-                            <a href="{{loc_url(route('search', [$search['type']=>$search['value']['url'], 'tag'=>$tag['url']]))}}">
-                                <span class="rbt-name">{{$tag['name']}}</span>
-                                <span class="rbt-amount">{{$tag['amount']}}</span>
-                            </a>
-                        @elseif ($search['type']=='type')
-                            <a href="{{loc_url(route('search', ['type'=>$search['url'], 'tag'=>$tag['url']]))}}">
-                                <span class="rbt-name">{{$tag['name']}} </span>
-                                <span class="rbt-amount">{{$tag['amount']}}</span></a>
-                        @elseif ($search['type']=='tags' || $search['type']=='none')
-                            <a href="{{loc_url(route('tag-'.$tagId))}}">
-                                <span class="rbt-name">{{$tag['name']}}</span>
-                                <span class="rbt-amount">{{$tag['amount']}}</span>
-                            </a>
-                        @endif
-                    @endforeach
-                </div>
-            @endif
-            <div id="searched-items">
-                <div class="posts-amount">
-                    <p>{{__('ui.searchAmount')}}: <span>{{$posts_list->total()}}</span></p>
+            @if ($search['isEmpty'])
+                <div class="empty-search-wraper">
+                    <img class="empty-search-icon fail-icon" src="{{asset('icons/failIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                    <p class="empty-search-text">{{__('ui.searchFail')}}.
+                        <a href="{{ url()->previous() }}">{{__('ui.serverErrorGoBack')}}</a>
+                    </p>
                 </div>
                 <div class="loading-gif hidden">
                     <img src="{{asset('icons/loadingIcon.svg')}}" alt="">
                 </div>
-                <div class="empty-search-wraper hidden">
-                    <img class="empty-search-icon fail-icon" src="{{asset('icons/failIcon.svg')}}" alt="{{__('alt.keyword')}}">
-                    <p class="empty-search-text">{{__('ui.searchFail')}}. {{__('ui.tryOtherFilters')}}</p>
-                </div>
-                <div class="filtered-items">
-                    <x-search-items :p="$posts_list" :t="$translated"/>
-        
-                    <!-- Pagination -->
-                    <div class="pagination-field">
-                        {{ $posts_list->appends(request()->except('page'))->links() }}
+            @else
+                @if (isset($resByTag) && $resByTag['map'])
+                    <div class="result-by-tag">
+                        @foreach ($resByTag['map'] as $tagId => $tag)
+                            @if ($search['type']=='text')
+                                <a href="{{loc_url(route('search', [$search['type']=>$search['value'], 'tag'=>$tag['url']]))}}">
+                                    <span class="rbt-name">{{$tag['name']}}</span>
+                                    <span class="rbt-amount">{{$tag['amount']}}</span>
+                                </a>
+                            @elseif ($search['type']=='author')
+                                <a href="{{loc_url(route('search', [$search['type']=>$search['value']['url'], 'tag'=>$tag['url']]))}}">
+                                    <span class="rbt-name">{{$tag['name']}}</span>
+                                    <span class="rbt-amount">{{$tag['amount']}}</span>
+                                </a>
+                            @elseif ($search['type']=='type')
+                                <a href="{{loc_url(route('search', ['type'=>$search['url'], 'tag'=>$tag['url']]))}}">
+                                    <span class="rbt-name">{{$tag['name']}} </span>
+                                    <span class="rbt-amount">{{$tag['amount']}}</span></a>
+                            @elseif ($search['type']=='tags' || $search['type']=='none')
+                                <a href="{{loc_url(route('tag-'.$tagId))}}">
+                                    <span class="rbt-name">{{$tag['name']}}</span>
+                                    <span class="rbt-amount">{{$tag['amount']}}</span>
+                                </a>
+                            @endif
+                        @endforeach
+                    </div>
+                @endif
+
+                <div id="searched-items">
+                    <div class="posts-amount">
+                        <p>{{__('ui.searchAmount')}}: <span>{{$posts_list->total()}}</span></p>
+                    </div>
+                    <div class="loading-gif hidden">
+                        <img src="{{asset('icons/loadingIcon.svg')}}" alt="">
+                    </div>
+                    <div class="empty-search-wraper hidden">
+                        <img class="empty-search-icon fail-icon" src="{{asset('icons/failIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                        <p class="empty-search-text">{{__('ui.searchFail')}}. {{__('ui.tryOtherFilters')}}</p>
+                    </div>
+                    <div class="filtered-items">
+                        <x-search-items :p="$posts_list" :t="$translated"/>
+            
+                        <!-- Pagination -->
+                        <div class="pagination-field">
+                            {{ $posts_list->appends(request()->except('page'))->links() }}
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
-    @else
-        <div class="empty-search-wraper">
-            <img class="empty-search-icon fail-icon" src="{{asset('icons/failIcon.svg')}}" alt="{{__('alt.keyword')}}">
-            <p class="empty-search-text">{{__('ui.searchFail')}}.
-                <a href="{{ url()->previous() }}">{{__('ui.serverErrorGoBack')}}</a>
-            </p>
-        </div>
-    @endif
+
 
     <x-subscription-required role='1'/>
 
