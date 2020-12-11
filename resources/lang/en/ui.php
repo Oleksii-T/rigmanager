@@ -118,6 +118,12 @@ return [
     'changeProfilePic' => 'Change profile picture',
     'uHave' => 'You have',
     'socialAcc' => 'Social Account',
+    'deleteProfile' => 'Delete profile',
+    'deleteProfileHelp' => 'All your information will be deleted. 
+        This action can not be undone.
+        All your post will be deleted.
+        All your mailers will be deleted.
+        You subscription will be canceled.',
 
     //mailer massages
     'mailer' => 'Mailer',

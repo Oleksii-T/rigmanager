@@ -34,6 +34,7 @@
                     type: "POST",
                     url: "{{route('posts.delete')}}",
                     data: {
+                        _method: 'DELETE',
                         _token: "{{ csrf_token() }}",
                     },
                     success: function(data) {

@@ -74,10 +74,28 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //TODO
-        return redirect(loc_url(route('logout')));
+        $user = auth()->user(); //remember user to be removed
+        //remove all posts
+        foreach ($user->posts as $post) {
+            $this->postImagesDelete($post);
+            $post->delete();
+        }
+        $this->userImageDelete(); //remove profile image
+        //remove partner reference
+        if ($user->partner) {
+            $user->partner->delete();
+        }
+        //remove mailers of user
+        foreach ($user->mailers as $mailer) {
+            $mailer->delete();
+        }
+        // PARSE SUBSCRIPTION!
+        auth()->logout(); //logout user
+        $user->delete();
+        Session::flash('message-success', __('messages.profileDeleted'));
+        return redirect(loc_url(route('home')));
     }
 
     public function favourites()

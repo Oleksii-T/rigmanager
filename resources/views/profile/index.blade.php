@@ -3,6 +3,7 @@
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{asset('css/profile_show.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/profile_layout.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/components/modal_confirm.css')}}" />
 @endsection
 
 @section('content')
@@ -76,6 +77,21 @@
                 @if ($user->is_social)
                     <p class="social-acc-help"><img src="{{asset('icons/alertIcon.svg')}}" alt="{{__('alt.keyword')}}">{{__('ui.uHave')}} <a href="{{loc_url(route('faq'))}}#WhatIsSocialAcc">{{__('ui.socialAcc')}}</a></p>
                 @endif
+                <button id="modalProfileDeleteOn">{{__('ui.deleteProfile')}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="modalView animate hidden" id="modalProfileDelete">
+        <div class="modalContent">
+            <p class="modal-header">{{__('ui.sure?')}}</p>
+            <p class="modal-misc-info">{{__('ui.deleteProfileHelp')}}</p>
+            <div class="modal-btns">
+                <button class="def-button submit-button close-modal" type="button" id="modalProfileDeleteOff">{{__('ui.no')}}</button>
+                <form id="delete-profile" action="{{loc_url(route('profile.delete'))}}" method="post">
+                    @csrf
+                    <input type="hidden" name="_method" value="delete" />
+                    <button class="def-button cancel-button delete-profile">{{__('ui.deleteProfile')}}</button>
+                </form>
             </div>
         </div>
     </div>
@@ -84,6 +100,22 @@
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function(){
+
+            $('#modalProfileDeleteOn').click(function(){
+                $('#modalProfileDelete').removeClass('hidden');
+            });
+
+            $('#modalProfileDeleteOff').click(function(){
+                $('#modalProfileDelete').addClass('hidden');
+            });
+
+            //make any click beyong the modal to close modal
+            window.onclick = function(event) {
+                var modal = document.getElementById("modalProfileDelete");
+                if (event.target == modal) {
+                    $('#modalProfileDelete').addClass('hidden');
+                } 
+            }
 
             //show help image
             $("#helpImg").hover(function(){

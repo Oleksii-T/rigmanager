@@ -57,6 +57,7 @@ return [
 
     'profileEdited' => 'Profile has been changed successfully!',
     'profileImgDeleted' => 'Profile picture was deleted successfully!',
+    'profileDeleted' => 'Profile was deleted successfully!',
 
     'signedIn' => 'Welcome!',
     'signedOut' => 'Good bye',
