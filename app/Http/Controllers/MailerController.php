@@ -111,52 +111,46 @@ class MailerController extends Controller
         return true;
     }
 
-    public function toggleAuthor($user_id)
-    {
-        $res = $this->addAuthor($user_id);
-        if ($res == 0) {
-            $mailer = auth()->user()->mailer;
-            $authorsArr = $mailer->authors_encoded;
-            $pos = array_search($user_id, $authorsArr);
-            unset($authorsArr[$pos]);
-            $mailer->authors_encoded = $authorsArr;
-            $mailer->save();
-        }
-        return $res;
-    }
-
     public function addAuthor($user_id)
     {
         if (!$this->isSubscribed()) {
-            return -2; // error - premium acc required
+            return json_encode(['message'=>__('messages.requirePremium'), 'code'=>404]);
         }
-        $mailer = auth()->user()->mailer;
-        if (!$mailer) {
-            $mailer = new Mailer;
-            $mailer->types = ["1","2","3","4","5","6"];
-            $mailer->authors_encoded = $user_id;
-            auth()->user()->mailer()->save($mailer);
-            return 1; //mailer created with new author
+        if ( auth()->user()->mailers->count() > 10 ) {
+            return json_encode(['message'=>__('messages.mailerTooManyMailers'), 'code'=>404]);
         }
-        if (!$mailer->authors_encoded) {
-            $mailer->authors_encoded = $user_id;
-            $mailer->save();
-            return 1; // added first author to existing mailer
+        $mailers = auth()->user()->mailers;
+        foreach ($mailers as $mailer) {
+            if ($mailer->author == $user_id) {
+                return json_encode(['message'=>__('messages.mailerAuthorExists'), 'code'=>404]);
+            }
         }
-        $authorsArr = $mailer->authors_encoded;
-        if ( count($authorsArr) == 10 ) {
-            return -1; //error - too many authors
+        $input['title'] = User::find($user_id)->name;
+        if (mb_strlen($input['title']) > 25) {
+            $input['title'] = mb_substr($input['title'], 0, 22) . '...';
         }
-        if ( array_search($user_id, $authorsArr) === false ) {
-            $authorsArr[] = $user_id;
-            $mailer->authors_encoded = $authorsArr;
-            $mailer->save();
-            return 1; // added new author to old authors
+        $input['author'] = $user_id;
+        $input['condition'] = [1,2,3,4];
+        $input['type'] = [1,2,3,4,5,6,7];
+        $input['thread'] = [1,2];
+        $input['role'] = [1,2];
+        $mailer = new Mailer($input);
+        if (!auth()->user()->mailers()->save($mailer)) {
+            return json_encode(['message'=>__('messages.mailerUploadedError'), 'code'=>404]);
         }
-        return 0; // author already in the mailer
+        return json_encode(['message'=>__('messages.mailerAddedAuthor'), 'code'=>500]);
+        /*
+        showPopUpMassage(true, "{{ __('messages.mailerAddedAuthor') }}");
+        $('#mailerAddAuthor').html("{{__('ui.mailerRemoveAuthor')}}");
+        showPopUpMassage(true, "{{ __('messages.mailerRemovedAuthor') }}");
+        $('#mailerAddAuthor').html("{{__('ui.mailerAddAuthor')}}");
+        */
     }
 
     public function createBySearchRequest(Request $request) {
+        if (!$this->isSubscribed()) {
+            return json_encode(['message'=>__('messages.requirePremium'), 'code'=>404]);
+        }
         if ( auth()->user()->mailers->count() > 10 ) {
             return json_encode(['message'=>__('messages.mailerTooManyMailers'), 'code'=>404]);
         }
@@ -204,8 +198,7 @@ class MailerController extends Controller
                 $input['title'] = __('ui.mailerAllPosts');
                 break;
             default:
-                return false;
-                break;
+                return json_encode(['message'=>__('messages.error'), 'code'=>404]);
         }
         // cut the title to insure maximum 25 chars;
         if (mb_strlen($input['title']) > 25) {
@@ -213,8 +206,7 @@ class MailerController extends Controller
         }
         $mailer = new Mailer($input);
         if (!auth()->user()->mailers()->save($mailer)) {
-            Session::flash('message-error', __('messages.mailerUploadedError'));
-            return json_encode(['message'=>__('messages.error'), 'code'=>404]);
+            return json_encode(['message'=>__('messages.mailerUploadedError'), 'code'=>404]);
         }
         return json_encode(['message'=>__('messages.mailerRequestAdded'), 'code'=>500]);
     }

@@ -104,16 +104,19 @@
                                 <td><a class="footer-link not-allowed" href="{{loc_url(route('home'))}}">{{__('ui.footerAbout')}}</a></td>
                                 <td><a class="footer-link" href="{{loc_url(route('plans'))}}">{{__('ui.footerSubscription')}}</a></td>
                                 <td><a class="footer-link" href="{{loc_url(route('terms'))}}">{{__('ui.footerTerms')}}</a></td>
+                                <td><a class="footer-link" href="{{ loc_url(route('locale.setting', ['lang'=>'uk'])) }}">Ukr</a></td>
                             </tr>
                             <tr>
                                 <td><a class="footer-link not-allowed" href="{{loc_url(route('home'))}}">{{__('ui.footerNews')}}</a></td>
                                 <td><a class="footer-link" href="{{loc_url(route('contacts'))}}">{{__('ui.footerContact')}}</a></td>
                                 <td><a class="footer-link" href="{{loc_url(route('privacy'))}}">{{__('ui.footerPrivacy')}}</a></td>
+                                <td><a class="footer-link" href="{{ loc_url(route('locale.setting', ['lang'=>'ru'])) }}">Rus</a></td>
                             </tr>
                             <tr>
                                 <td><a class="footer-link" href="{{loc_url(route('list'))}}">{{__('ui.catalog')}}</a></td>
                                 <td><a class="footer-link" href="{{loc_url(route('faq'))}}">{{__('ui.footerFAQ')}}</a></td>
                                 <td><a class="footer-link" href="{{loc_url(route('site.map'))}}">{{__('ui.footerSiteMap')}}</a></td>
+                                <td><a class="footer-link" href="{{ loc_url(route('locale.setting', ['lang'=>'en'])) }}">Eng</a></td>
                             </tr>
                         </table>
                     </div>

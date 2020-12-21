@@ -151,6 +151,7 @@ return [
     'notActive' => 'не активна',
     'mailerAddAuthor' => 'Додати Автора в Розсилку',
     'mailerRemoveAuthor' => 'Видалити Автора з Розсилки',
+    'mailerAuthorAlreadyAdded' => 'Автор вже в Розсилці',
     'mailerNoAuthors' => 'Ви не підписалися на жодного автора',
     'mailerSuggestText' => 'Додати цей запит в Розсилку?',
     'mailerSuggestTag' => 'Додати ці категорії в Розсилку?',

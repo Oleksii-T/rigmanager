@@ -150,6 +150,7 @@ return [
     'notActive' => 'disabled',
     'mailerAddAuthor' => 'Add Author to Mailer',
     'mailerRemoveAuthor' => 'Remove Author from Mailer',
+    'mailerAuthorAlreadyAdded' => 'Author already in Mailer',
     'mailerNoAuthors' => 'You have not subscribed to any Author',
     'mailerSuggestText' => 'Add this request to Mailer?',
     'mailerSuggestTag' => 'Add this catogories to Mailer?',

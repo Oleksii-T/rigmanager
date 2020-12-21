@@ -49,7 +49,7 @@ Route::middleware('verified')->group(function () {
     Route::get      ('user/is_premium',                     'UserController@isPremium')         ->name('user.is.premium'); //Ajax reqeust
 
     // mailer routes
-    Route::get      ('ajax/mailer/author/{author}',         'MailerController@toggleAuthor')    ->name('mailer.toggle.author');// Ajax request
+    Route::get      ('ajax/mailer/author/{author}',         'MailerController@addAuthor')    ->name('mailer.add.author');// Ajax request
     Route::get      ('ajax/mailer/toggle',                  'MailerController@toggle')          ->name('mailer.toggle');// Ajax request
     Route::post     ('ajax/mailer/create',                  'MailerController@createBySearchRequest')->name('mailer.create.by.search');// Ajax request
 });

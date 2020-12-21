@@ -149,6 +149,7 @@ return [
     'notActive' => 'не активна',
     'mailerAddAuthor' => 'Добавить Автора в Рассылку',
     'mailerRemoveAuthor' => 'Удалить Автора из Рассылки',
+    'mailerAuthorAlreadyAdded' => 'Автор уже в Рассылке',
     'mailerNoAuthors' => 'Вы не подписаны ни на одного автора',
     'mailerSuggestText' => 'Добавить этот запрос в Рассылку?',
     'mailerSuggestTag' => 'Добавить эти категории в Рассылку?',

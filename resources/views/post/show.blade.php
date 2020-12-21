@@ -128,17 +128,11 @@
                     <button class="def-button" id="modalTriger">{{__('ui.showContacts')}}</button>
                     @auth
                         @if ($post->user_id != Auth::id())
-                            <button class="def-button" id="mailerAddAuthor">
-                                @if (auth()->user()->mailer && auth()->user()->mailer->authors_encoded)
-                                    @if ( in_array( $post->user_id, auth()->user()->mailer->authors_encoded ) )
-                                        {{__('ui.mailerRemoveAuthor')}}
-                                    @else
-                                        {{__('ui.mailerAddAuthor')}}
-                                    @endif
-                                @else
-                                    {{__('ui.mailerAddAuthor')}}
-                                @endif
-                            </button>
+                            @if (auth()->user()->mailers && auth()->user()->mailers->pluck('author')->contains($post->user_id))
+                                <button class="def-button">{{__('ui.mailerAuthorAlreadyAdded')}}</button>
+                            @else
+                                <button class="def-button" id="mailerAddAuthor">{{__('ui.mailerAddAuthor')}}</button>
+                            @endif
                         @endif
                     @endauth
                 </section>
@@ -198,7 +192,7 @@
                 @endif
 
                 <aside class="element" id="createdOn">
-                    <time>{{__('ui.postCreated')}}: {{ $post->created_at }} </time>
+                    <time>{{__('ui.postCreated')}}: {{ $post->created_at_readable }} </time>
                 </aside>
             </div>
         </div>
@@ -260,11 +254,6 @@
                 return result;
             }
 
-            //add active effect in nav bar
-            if ( '{{Auth::id()}}' == '{{$post->user_id}}' ) {
-                $('#myItemsTab').addClass('isActiveBtn');
-            }
-
             //remove last '>' symbol from searched tags
             $('#item-tag-section span').last().remove();
 
@@ -274,30 +263,19 @@
                 button.addClass('loading');
                 $.ajax({
                     type: "GET",
-                    url: "{{ route('mailer.toggle.author', $post->user_id) }}",
+                    url: "{{ route('mailer.add.author', $post->user_id) }}",
                     success: function(data) {
-                        if (data == 1) {
-                            // Author was added to Mailer
-                            showPopUpMassage(true, "{{ __('messages.mailerAddedAuthor') }}");
-                            $('#mailerAddAuthor').html("{{__('ui.mailerRemoveAuthor')}}");
-                        } else if (data == 0) {
-                            // Author was removed from Mailer
-                            showPopUpMassage(true, "{{ __('messages.mailerRemovedAuthor') }}");
-                            $('#mailerAddAuthor').html("{{__('ui.mailerAddAuthor')}}");
-                        } else if (data == -1) {
-                            // Error, too many authors
-                            showPopUpMassage(false, "{{ __('messages.mailerTooManyAuthors') }}");
-                        } else if (data == -2) {
-                            // Error, no premium
-                            showPopUpMassage(false, "{{ __('messages.requirePremium') }}");
-                            showSubscriptionAlert();
+                        data = JSON.parse(data);
+                        if ( data.code == 500 ) {
+                            showPopUpMassage(true, data.message);
+                        } else {
+                            showPopUpMassage(false, data.message);
                         }
                         button.removeClass('loading');
                     },
                     error: function() {
-                        // Print error massage
-                        button.removeClass('loading');
                         showPopUpMassage(false, "{{ __('messages.error') }}");
+                        button.removeClass('loading');
                     }
                 });
             });
