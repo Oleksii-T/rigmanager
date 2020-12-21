@@ -29,6 +29,10 @@ class SearchController extends Controller
     {
         $type = $input['type'];
         switch ($type) {
+            case 'equipment-sell':
+                $query = Post::where(["is_active"=>1, 'type'=>[1,3]]);
+                $value['name'] = __('ui.introSellEq');
+                break;
             case 'equipment-buy':
                 $query = Post::where(["is_active"=>1, 'type'=>[2,4]]);
                 $value['name'] = __('ui.introBuyEq');
@@ -41,10 +45,8 @@ class SearchController extends Controller
                 $query = Post::where(["is_active"=>1, 'type'=>7]);
                 $value['name'] = __('ui.introTender');
                 break;
-            default: //for equipment sell and not incorrect searches
-                $query = Post::where(["is_active"=>1, 'type'=>[1,3]]);
-                $value['name'] = __('ui.introSellEq');
-                break;
+            default:
+                abort(404);
         }
         $posts_list = $query->orderBy('created_at', 'DESC')->get();
         $value['url'] = $type;
@@ -143,8 +145,10 @@ class SearchController extends Controller
                 $search['value']['url'] = $value['url'];
                 $search['value']['id'] = $value['id'];
                 break;
-            default:
+            case 'none':
                 break;
+            default:
+                abort(404);
         }
         $translated['title'] = 'title_'.App::getLocale();
         $translated['description'] = 'description_'.App::getLocale();

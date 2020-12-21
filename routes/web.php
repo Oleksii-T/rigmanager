@@ -71,7 +71,7 @@ Route::group(['middleware' => 'make.locale'], function() {
     require base_path().'/routes/LocaledWebRoutes.php';
 });
 
-Route::group(['prefix' => '{locale?}', 'middleware' => 'make.locale'], function() {
+Route::group(['prefix' => '{locale?}', 'middleware' => ['make.locale', 'check.locale']], function() {
     Route::get('set-locale/{lang}', function ($oldLocale, $newLocale) {
         $user = auth()->user();
         if ($user) {

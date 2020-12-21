@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class MakeLocale
+class CheckLocale
 {
     /**
      * Handle an incoming request.
@@ -15,19 +15,12 @@ class MakeLocale
      */
     public function handle($request, Closure $next)
     {
-        $locale = 'uk';
         if ($request->method() === 'GET') {
-            $segment = $request->segment(1);
-            if (in_array($segment, config('app.locales'))) {
-                $locale = $segment;
-            }
-        } else {
-            if ( session()->has('locale') ) {
-                $locale = session('locale');
+            $locale = $request->segment(1);
+            if (!in_array($locale, config('app.locales'))) {
+                abort(404);
             }
         }
-        session(['locale' => $locale]);
-        app()->setLocale($locale);
         return $next($request);
     }
 }

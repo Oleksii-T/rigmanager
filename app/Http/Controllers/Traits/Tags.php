@@ -738,7 +738,7 @@ trait Tags
                 '55.2' => 'karotazh',
             '56' => 'defektoskopiya-i-sertifikaciya',
             '57' => 'dolotnyj-servis',
-            '58' => 'zabojnye-dvigatelya',
+            '58' => 'servis-zabojnye-dvigatelya',
             '59' => 'zazemlenie',
             '60' => 'zarezka-bokovogo-stvola',
             '61' => 'naklonno-napravlennoe-burenie',

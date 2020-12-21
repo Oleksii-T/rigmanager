@@ -151,6 +151,9 @@ class PostController extends Controller
     {
         $urlName = $urlName==null ? $locale : $urlName;
         $post = Post::where('url_name', $urlName)->first();
+        if (!$post) {
+            abort(404);
+        }
         if (!$post->is_active && !$this->isOwner($post->user->id)) {
             return view('post.inactive');
         }
@@ -177,6 +180,9 @@ class PostController extends Controller
     {
         $urlName = $urlName==null ? $locale : $urlName;
         $post = Post::where('url_name', $urlName)->first();
+        if (!$post) {
+            abort(404);
+        }
         if (!$this->isOwner($post->user->id)) {
             abort(403);
         }
@@ -400,7 +406,8 @@ class PostController extends Controller
         return false;
     }
 
-    public function togglePost($postId) {
+    public function togglePost($postId) 
+    {
         $post = Post::findOrFail($postId);
         if ($this->isOwner($post->user->id)) {
             if ( $post->is_active ) {
@@ -422,11 +429,13 @@ class PostController extends Controller
         abort(403);
     }
 
-    public function import() {
+    public function import() 
+    {
         return view('post.import');
     }
 
-    public function importStore(Request $request) {
+    public function importStore(Request $request) 
+    {
         //check for xlsx file
         if (strtolower($request->file('import-file')->getClientOriginalExtension()) != 'xlsx') {
             Session::flash('message-error', __('messages.postImportError'));
@@ -552,7 +561,8 @@ class PostController extends Controller
         return redirect(loc_url(route('home')));
     }
 
-    private function vaidateExcelRow ($key, $row) {
+    private function vaidateExcelRow ($key, $row) 
+    {
         //check for requiered field
         if ($row[1]!==null && $row[2]!==null && $row[4]!==null && $row[6]!==null && $row[7]!==null && $row[8]!==null && $row[9]!==null && ( $row[17]!==null || $row[18]!==null) && $row[22]!==null ) {
             //validate "Equipment/service" field
@@ -622,7 +632,8 @@ class PostController extends Controller
         } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importCompulsoryError'); }
     }
 
-    private function costValidate ($cost) {
+    private function costValidate ($cost) 
+    {
         if (!$cost) {
             return true;
         }
@@ -657,14 +668,16 @@ class PostController extends Controller
         }
     }
 
-    private function isOwner($authorId) {
+    private function isOwner($authorId) 
+    {
         if (auth()->user()->id != $authorId) {
             return false;
         }
         return true;
     }
 
-    public function deleteAll() {
+    public function deleteAll() 
+    {
         $posts = auth()->user()->posts;
         foreach ($posts as $post) {
             $this->postImagesDelete($post);

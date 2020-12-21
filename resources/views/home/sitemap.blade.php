@@ -62,8 +62,8 @@
                     <h3 class="links-title">{{__('ui.stAuth')}}</h3>
                     <ul class="links-list">
                         <li><a class="link" href="{{loc_url(route('login'))}}">{{__('ui.signIn')}}</a></li>
-                        <li><a class="link" href="{{loc_url(route('in.progress'))}}">{{__('ui.socialSignIn')}} Facebook</a></li> <!--{{loc_url(route('login.social', ['social'=>'facebook']))}}-->
-                        <li><a class="link" href="{{loc_url(route('login.social', ['social'=>'google']))}}">{{__('ui.socialSignIn')}} Google</a></li>
+                        <li><a class="link" href="{{route('login.social', ['social'=>'facebook'])}}">{{__('ui.socialSignIn')}} Facebook</a></li>
+                        <li><a class="link" href="{{route('login.social', ['social'=>'google'])}}">{{__('ui.socialSignIn')}} Google</a></li>
                         <li><a class="link" href="{{loc_url(route('register'))}}">{{__('ui.signUp')}}</a></li>
                     </ul>
                 </div>
