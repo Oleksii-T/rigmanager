@@ -380,8 +380,8 @@
                 });
             } else if (error['code'] == 111 && typeof error['message'] != 'undefined') {// if it is custom error from post upload 
                 showPopUpMassage(false, error['message']);
-            } else if (typeof error['code'] != 'undefined') { // if it is any error with error code
-                showPopUpMassage(false, error['code'] + ". " + "{{__('messages.error')}}");
+            //} else if (typeof error['code'] != 'undefined') { // if it is any error with error code
+                //showPopUpMassage(false, error['code'] + ". " + "{{__('messages.error')}}");
             } else {
                 showPopUpMassage(false, "{{__('messages.error')}}");
             }

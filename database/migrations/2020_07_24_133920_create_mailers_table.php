@@ -24,10 +24,10 @@ class CreateMailersTable extends Migration
             $table->string('cost_from', 25)->nullable();
             $table->string('cost_to', 25)->nullable();
             $table->string('region', 255)->nullable();
-            $table->string('condition', 25)->nullable(); // new/sh/parts
-            $table->string('type', 25)->nullable(); // sell/buy/loan/leas/provide/reqeust/tender
-            $table->string('role', 25)->nullable(); // business/private
-            $table->string('thread', 25)->nullable(); // eq/se
+            $table->string('condition', 25); // new/sh/parts
+            $table->string('type', 25); // sell/buy/loan/leas/provide/reqeust/tender
+            $table->string('role', 25); // business/private
+            $table->string('thread', 25); // eq/se
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

@@ -70,6 +70,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:254','unique:users,email'],
             'password' => ['required', 'string', 'min:6', 'max:20', new Password],
             'agreement' => ['required'],
+            'ava' => 'nullable|mimes:jpeg,jpg,jpe,png|max:5000',
         ], $messages);
     }
 

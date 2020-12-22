@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\UnlimitedLifetime;
 use App\Rules\Phone;
 
-class UpdatePostRequest extends FormRequest
+class PostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -43,7 +43,7 @@ class UpdatePostRequest extends FormRequest
             'user_phone_raw' => ['nullable', 'required_without:user_email', 'string', 'size:16', new Phone],
             'lifetime' => [new UnlimitedLifetime],
             'images.*' => 'nullable|image|mimes:jpeg,jpg,jpe,png|max:5000',
-            'images' => 'max:2',
+            'images' => 'max:5',
         ];
         if ( !array_key_exists('uk', $this->request->get('title_translate')) ) {
             $rules['title_uk'] = $titleRule;

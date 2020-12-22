@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Traits\ImageUploader;
 use App\Http\Controllers\Traits\Subscription;
 use Google\Cloud\Translate\TranslateClient;
-use App\Http\Requests\CreatePostRequest;
-use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Traits\Tags;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\App;
+use App\Http\Requests\PostRequest;
 use App\Jobs\MailersAnalizePost;
 use Illuminate\Http\Request;
 use App\Imports\PostsImport;
@@ -52,10 +51,10 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\CreatePostRequest  $request
+     * @param  App\Http\Requests\PostRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreatePostRequest $request)
+    public function store(PostRequest $request)
     {
         //check for maximum posts
         $max = $this->isPremiumPlus() ? 500 : 200;
@@ -212,7 +211,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, $locale, $id=null)
+    public function update(PostRequest $request, $locale, $id=null)
     {
         $id = $id==null ? $locale : $id;
         $post = Post::findOrFail($id);

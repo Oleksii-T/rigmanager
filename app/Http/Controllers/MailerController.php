@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Traits\Subscription;
-use App\Http\Requests\CreateMailerRequest;
-use App\Http\Requests\UpdateMailerRequest;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Traits\Tags;
+use App\Http\Requests\MailerRequest;
 use Illuminate\Http\Request;
 use App\Mailer;
 use App\User;
@@ -38,10 +37,10 @@ class MailerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\CreateMailerRequest  $request
+     * @param  App\Http\Requests\MailerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateMailerRequest $request)
+    public function store(MailerRequest $request)
     {
         $input = $request->all();
         $input['eq_tags_encoded'] = json_decode($input['eq_tags_encoded']);
@@ -69,10 +68,10 @@ class MailerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests\CreateMailerRequest  $request
+     * @param  App\Http\Requests\MailerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMailerRequest $request)
+    public function update(MailerRequest $request)
     {
         $mailer = auth()->user()->mailer;
         $input = $request->all();
