@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\App;
 use App\Mail\fromUserNotification;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use App\Post;
 
 class HomeController extends Controller

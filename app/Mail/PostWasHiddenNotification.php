@@ -4,6 +4,7 @@ namespace App\Mail;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\App;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use App\Post;
@@ -31,6 +32,7 @@ class PostWasHiddenNotification extends Mailable
      */
     public function build()
     {
+        App::setLocale($this->post->user->language);
         return $this->subject(__('ui.postHiddenNotifSubject'))
                     ->view('emails.postHidden.notification')
                     ->text('emails.postHidden.notification_plain')
