@@ -206,6 +206,9 @@ return [
     'tryOtherFilters' => 'Спробуйте інші фільтри.',
 
    // post edit/create massages
+    'tender' => 'Тендер',
+    'tenders' => 'Тендери',
+    'tendersHelp' => 'Публікувати тендери за спрощеною неофіційною процедурою. Максимум: 100',
     'equipment' => 'Обладнання',
     'service' => 'Сервіс',
     'addPost' => 'Додати оголошення',
@@ -465,13 +468,13 @@ return [
     тарифних планів rigmanager.com.ua',
     'plansGuestAcc' => 'Гостьовий
     Аккаунт',
-    'plansGuestAccHelp' => 'Для тих, хто хоче ознайомитися з нашим сервісом',
+    'plansGuestAccHelp' => 'Для ознайомлення з нашим сервісом',
     'plansPremiumAcc' => 'Преміум
     Аккаунт',
-    'plansPremiumAccHelp' => 'Підходить для більшості',
+    'plansPremiumAccHelp' => 'Включає основні можливості',
     'plansPremium+Acc' => 'Преміум+
     Аккаунт',
-    'plansPremium+AccHelp' => 'Підходить для тих, хто хоче розмістити багато оголошень і надовго',
+    'plansPremium+AccHelp' => 'Для тих хто хоче випробувати всі переваги нашого сервісу',
     'plansOff' => 'знижка',
     'plansMonth' => 'місяць',
     'plansChoose' => 'Обрати',
@@ -499,7 +502,7 @@ return [
     'planRequired' => 'Щоб здійснити цю дію
         вам потрібно отримати аккаунт зі статусом',
     'plansPostImport' => 'Масовий імпорт оголошень',
-    'plansPostTracking' => 'Отслежка оголошень',
+    'plansPostTracking' => 'Статистика переглядів',
 
     // user plan 
     'planStatus' => 'Ваша підписка:',

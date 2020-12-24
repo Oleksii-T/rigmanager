@@ -73,7 +73,7 @@
                     </tr>
                     <tr class="table-row">
                         <td class="table-key">
-                            <p>{{__('ui.plansSearch')}}<img class="help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="plan-help hidden">{{__('ui.plansSearchHelp')}}</span></p>
+                            <p>{{__('ui.plansSearch')}}<img class="help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="functionality-help hidden">{{__('ui.plansSearchHelp')}}</span></p>
                         </td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
@@ -105,7 +105,7 @@
                     </tr>
                     <tr class="table-row">
                         <td class="table-key">
-                            <p>{{__('ui.plansCreate1')}}<img class="help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="plan-help hidden">{{__('ui.plansCreate1Help')}}</span></p>
+                            <p>{{__('ui.plansCreate1')}}<img class="help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="functionality-help hidden">{{__('ui.plansCreate1Help')}}</span></p>
                         </td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/yesIcon.svg')}}" alt=""></td>
@@ -129,7 +129,7 @@
                     </tr>
                     <tr class="table-row">
                         <td class="table-key">
-                            <p>{{__('ui.plansCreate2')}}<img class="help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="plan-help hidden">{{__('ui.plansCreate2Help')}}</span></p>
+                            <p>{{__('ui.plansCreate2')}}<img class="help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="functionality-help hidden">{{__('ui.plansCreate2Help')}}</span></p>
                         </td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
@@ -137,7 +137,7 @@
                     </tr>
                     <tr class="table-row">
                         <td class="table-key">
-                            <p>{{__('ui.plansTopPost')}}<a class="help-link" href="{{loc_url(route('faq'))}}#premiumPost">?</a></p>
+                            <p>{{__('ui.tenders')}}<img class="help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="functionality-help hidden">{{__('ui.tendersHelp')}}</span></p></p>
                         </td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
@@ -153,7 +153,7 @@
                     </tr>
                     <tr class="table-row">
                         <td class="table-key">
-                            <p>{{__('ui.plansPostTracking')}}<a class="help-link" href="{{loc_url(route('faq'))}}#postTracker">?</a></p>
+                            <p>{{__('ui.plansPostTracking')}}</p>
                         </td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>

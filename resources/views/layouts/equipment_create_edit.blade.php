@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/post_create_edit.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/dropzone.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/tags.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/components/post_creation_types.css')}}" />
     <style>
         #equipment-create {
             background-color: #FE9042;

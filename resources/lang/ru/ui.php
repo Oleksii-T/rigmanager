@@ -29,7 +29,7 @@ return [
     'introSe' => 'Предоставление и
         получение услуг',
     'introTender' => 'Тендеры по упрощенной
-        процедурой',
+        процедуре',
     'motePosts' => 'Больше предложений',
     'otherPartners' => 'Другие
         партнеры',
@@ -204,6 +204,9 @@ return [
     'tryOtherFilters' => 'Попробуйте другий фильтры.',
 
     // post edit/create/edit massages
+    'tender' => 'Тендер',
+    'tenders' => 'Тендеры',
+    'tendersHelp' => 'Публиковать тендеры по упрощенной неофициальной процедуре. Максимум: 100',
     'equipment' => 'Оборудование',
     'service' => 'Сервис',
     'addPost' => 'Добавить объявление',
@@ -463,13 +466,13 @@ return [
     тарифных планов rigmanager.com.ua',
     'plansGuestAcc' => 'Гостевой
     Аккаунт',
-    'plansGuestAccHelp' => 'Для тех, кто хочет познакомиться с нашим сервисом',
+    'plansGuestAccHelp' => 'Для ознакомления с нашим сервисом',
     'plansPremiumAcc' => 'Премиум
     Аккаунт',
-    'plansPremiumAccHelp' => 'Подходит для большинства',
+    'plansPremiumAccHelp' => 'Включает основные функции',
     'plansPremium+Acc' => 'Премиум+
     Аккаунт',
-    'plansPremium+AccHelp' => 'Подходит тем, кто хочет размещать много объявлений и надолго',
+    'plansPremium+AccHelp' => 'Для тех кто хочет опробовать все преимущества нашего сервиса',
     'plansOff' => 'скидка',
     'plansMonth' => 'месяц',
     'plansChoose' => 'Выбрать',
@@ -497,7 +500,7 @@ return [
     'planRequired' => 'Чтобы сделать это действие
         вам необходимо получить аккаунт со статусом',
     'plansPostImport' => 'Массовый импорт объявлений',
-    'plansPostTracking' => 'Отслежка объявлений',
+    'plansPostTracking' => 'Статистика просмотров',
 
     // user plan 
     'planStatus' => 'Ваша подписка:',

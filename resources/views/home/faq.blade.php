@@ -56,14 +56,8 @@
             <a class="question" id="autoTranslator">{{__('faq.qAutoTranslator')}}</a>
             <p class="answer">{{__('faq.aAutoTranslator')}}</p>
 
-            <a class="question" id="premiumPost">{{__('faq.qPremiumPost')}}</a>
-            <p class="answer">{{__('faq.aPremiumPost')}}</p>
-
             <a class="question" id="import">{{__('faq.qImport')}}</a>
             <p class="answer">{{__('faq.aImport')}}</p>
-
-            <a class="question" id="postTracker">{{__('faq.qPostTracker')}}</a>
-            <p class="answer">{{__('faq.aPostTracker')}}</p>
 
             <a class="question" id="release">{{__('faq.qRelease')}}</a>
             <p class="answer">{{__('faq.aRelease')}}</p>

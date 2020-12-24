@@ -14,29 +14,6 @@
     margin-top: 0px;
 }
 
-.creation-type { 
-    overflow: hidden;
-}
-
-.creation-type li { 
-    display: inline; 
-}
-
-.creation-type a {
-    float: left;
-    text-align: center;
-    width: 33.3334%;
-    padding: 14px;
-    text-decoration: none;
-    font-size: 100%;
-    transition: 0.2s;
-    border-bottom: 2px solid #ffffff;
-}
-
-.creation-type a:hover {
-    background-color: rgb(149, 149, 149, 0.7);;
-}
-
 #post-import {
     background-color: #FE9042;
 }

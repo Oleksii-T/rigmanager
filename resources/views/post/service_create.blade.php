@@ -7,13 +7,7 @@
 @section('form')
     <form method="POST" class="post-form" id="formCreatePost" action="{{ loc_url(route('posts.store')) }}" enctype="multipart/form-data">
         @csrf
-        <nav class="creation-type">
-            <ul>
-                <li><a id="equipment-create" href="{{loc_url(route('posts.create'))}}">{{__('ui.equipment')}}</a></li>
-                <li><a id="service-create" href="{{loc_url(route('service.create'))}}">{{__('ui.service')}}</a></li>
-                <li><a id="post-import" href="{{loc_url(route('post.import'))}}">{{__('ui.postImport')}}</a></li>
-            </ul>
-        </nav>
+        <x-post-creation-types/>
 @endsection
 
 @section('input-title')

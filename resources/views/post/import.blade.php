@@ -2,19 +2,14 @@
 
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{asset('css/post_import.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/components/post_creation_types.css')}}" />
 @endsection
 
 @section('content')
     <div class="master-wraper">
         <h1 class="page-title">{{__('ui.postImport')}}</h1>
         <div class="page-content">
-            <nav class="creation-type content-nav">
-                <ul>
-                    <li><a id="equipment-create" href="{{loc_url(route('posts.create'))}}">{{__('ui.equipment')}}</a></li>
-                    <li><a id="service-create" href="{{loc_url(route('service.create'))}}">{{__('ui.service')}}</a></li>
-                    <li><a id="post-import" href="{{loc_url(route('post.import'))}}">{{__('ui.postImport')}}</a></li>
-                </ul>
-            </nav>
+            <x-post-creation-types/>
             <div class="content-body">
                 <h2 class="body-title">{{__('ui.postImportTitle')}}</h2>
                 @if (Session::has('import-error'))

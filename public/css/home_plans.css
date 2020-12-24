@@ -65,6 +65,7 @@
 
 .plans-table {
     white-space: pre-line;
+    width: 100%;
 }
 
 .plan-column {
@@ -94,10 +95,6 @@
 .plan-choose button {
     margin-top: 10px;
     display: inline-block;
-}
-
-.plan-help th {
-    color: #888888;
 }
 
 .table-row td {
@@ -134,7 +131,7 @@
     cursor: pointer;
 }
 
-.plan-help {
+.functionality-help {
     position: absolute;
     background-color: rgb(11, 11, 11, 0.8);
     padding: 10px;

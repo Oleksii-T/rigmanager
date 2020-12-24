@@ -206,6 +206,9 @@ return [
     'tryOtherFilters' => 'You may try other filters',
 
     // post edit/create/show massages
+    'tender' => 'Tender',
+    'tenders' => 'Tenders',
+    'tendersHelp' => 'Publish tenders using a simplified informal procedure. Maximum: 100',
     'equipment' => 'Equipment',
     'service' => 'Service',
     'addPost' => 'Add post',
@@ -466,13 +469,13 @@ return [
     rigmanager.com.ua plans',
     'plansGuestAcc' => 'Guest
     Account',
-    'plansGuestAccHelp' => 'For those who want to get acquainted with our service',
+    'plansGuestAccHelp' => 'To get acquainted with our service',
     'plansPremiumAcc' => 'Premium
     Account',
-    'plansPremiumAccHelp' => 'Suitable for most',
+    'plansPremiumAccHelp' => 'Includes basic functionalities',
     'plansPremium+Acc' => 'Premium+
     Account',
-    'plansPremium+AccHelp' => 'Suitable for those who want to place a lot of Posts and for a long time',
+    'plansPremium+AccHelp' => 'For those who want to try all the advantages of our service',
     'plansOff' => 'off',
     'plansMonth' => 'month',
     'plansChoose' => 'Choose',
@@ -498,7 +501,7 @@ return [
     'planRequired' => 'To make this action
         you need to obtain account with status',
     'plansPostImport' => 'Bulk posts import',
-    'plansPostTracking' => 'Posts tracker',
+    'plansPostTracking' => 'Views statistics',
 
     // user plan 
     'planStatus' => 'Your Account status:',
