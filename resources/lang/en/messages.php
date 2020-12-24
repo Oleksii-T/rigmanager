@@ -33,6 +33,7 @@ return [
     'postOutdated' => 'This Post is outdated, please update the lifetime in Post settings',
     'tooManyPostsError' => 'You have reached the maximum amount of posts. (200 for premium, 500 for Premium+)',
     'allPostsDeleted' => 'All posts has been deleted!',
+    'tooManyUrgentPostsError' => 'You have reached the maximum number of urgent posts. (100 for premium, 300 for Premium+)',
 
     'mailerToManyTags' => 'Too many categories',
     'mailerUploaded' => 'Mailer has been configured successfully!',
@@ -96,4 +97,7 @@ return [
     'importPhoneError' => '"Phone" field is filled incorrectly.',
     'importTagEqualThredError' => '"Tag" field must comply with "Equipment/Service" field',
     'importTooManyPostsError' => 'You are trying to import :amount Posts, but there are only :diff to maximum.',
+    'importTooManyPremiums' => 'Too many posts with premium status.',
+    'importTooManyUrgents' => 'Too many urgent posts.',
+
 ];

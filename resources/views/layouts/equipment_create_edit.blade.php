@@ -345,6 +345,18 @@
                 @yield('input-lifetime')
             </div>
 
+            <div id="speial" class="element">
+                <h2 class="sub-header">{{__('ui.specialPostsStatus')}}</h2>
+                <label class="cb-container filter-checked" for="urgent">{{__('ui.makePostUrgent')}} <span class="help-mark">?</span>
+                    @yield('urgent-input')
+                    <span class="cb-checkmark"></span>
+                    <div class="input-help urgent-help hidden">
+                        <img src="{{asset('icons/leftArrowIcon.svg')}}" alt="{{__('alt.keyword')}}">
+                        <p><i>{{__('ui.postUrgentStatusHelp')}}</i></p>
+                    </div>
+                </label>
+            </div>
+
             <div id="btns" class="element">
                 <button class="def-button submit-button" id="form-submit">{{__('ui.save')}}</button>
                 @yield('buttons')
@@ -401,6 +413,17 @@
                 minlength: 10,
                 maxlength: 9000
             };
+
+            //show/hide the premium help
+            $(".help-mark").hover(
+                function() {
+                    $(this).parent().children('.input-help').removeClass('hidden');
+                    console.log('hover in');
+                }, function() {
+                    $(this).parent().children('.input-help').addClass('hidden');
+                    console.log('hover out');
+                }
+            );
 
             // user uses legal type filter
             $('.lifetime-select').change(function(){

@@ -272,6 +272,10 @@
     <input type="text" id="lifetimeChanged" name="lifetime_changed" value="0" hidden>
 @endsection
 
+@section('urgent-input')
+    <input id="urgent" type="checkbox" name="is_urgent" value="1" {{ $post->is_urgent ? 'checked' : '' }}>
+@endsection
+
 @section('modals')
     <div class="modalView animate" id="modalPostDelete">
         <div class="modalContent">

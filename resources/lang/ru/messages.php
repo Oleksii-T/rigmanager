@@ -33,6 +33,7 @@ return [
     'postOutdated' => 'Это объявление устарело, пожалуйста, обновите период жизни в настройках объявления',
     'tooManyPostsError' => 'Вы достигли максимального количества объявлений. (200 для Премиум, 500 для Премиум+)',
     'allPostsDeleted' => 'Все объявления были удалены!',
+    'tooManyUrgentPostsError' => 'Вы достигли максимального количества срочных объявлений. (100 для Премиум, 300 для Премиум+)',
 
     'mailerRequestAdded' => 'Запрос был успешно добавлен в Рассылку!',
     'mailerTooManyMailers' => 'Слишком много Рассылок! (макс.10)',
@@ -96,4 +97,6 @@ return [
     'importPhoneError' => 'Поле "Контактный телефон" заполнено неправильно.',
     'importTagEqualThredError' => 'Поле "Категория" должна сочетаться с полем "Оборудование/Сервис"',
     'importTooManyPostsError' => 'Вы пытаетесь сделать импорт :amount объявлений, но у вас осталось :diff до максимума.',
+    'importTooManyPremiums' => 'Too many posts with premium status.',
+    'importTooManyUrgents' => 'Too many urgent posts.',
 ];

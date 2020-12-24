@@ -240,6 +240,10 @@
     <input type="text" id="lifetimeChanged" name="lifetime_changed" value="0" hidden>
 @endsection
 
+@section('urgent-input')
+    <input id="urgent" type="checkbox" name="is_urgent" value="1" {{ $post->is_urgent ? 'checked' : '' }}>
+@endsection
+
 @section('buttons')
     <button class="def-button delete-button" type="button" id="modalPostDeleteOn">{{__('ui.deletePost')}}</button>
 @endsection

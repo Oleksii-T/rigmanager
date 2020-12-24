@@ -22,6 +22,9 @@ class CreatePostsTable extends Migration
             $table->boolean('is_banned')->default(false);
             $table->boolean('is_active')->default(true);
             $table->boolean('is_premium')->default(false);
+            $table->boolean('is_vip')->default(false);
+            $table->integer('priority')->default(1);
+            $table->boolean('is_urgent')->default(false);
             $table->integer('thread');
             $table->string('origin_lang', 5);
             $table->json('user_translations')->nullable();

@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'is_active' => true,
             'role' => 2,
-            'payed' => '0',
+            'payment' => '0',
             'activated_at' => Carbon\Carbon::now(),
             'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
             'created_at' => Carbon\Carbon::now(),
@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 2,
             'is_active' => true,
             'role' => 2,
-            'payed' => '0',
+            'payment' => '0',
             'activated_at' => Carbon\Carbon::now(),
             'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
             'created_at' => Carbon\Carbon::now(),
@@ -112,7 +112,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 3,
             'is_active' => true,
             'role' => 2,
-            'payed' => '0',
+            'payment' => '0',
             'activated_at' => Carbon\Carbon::now(),
             'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
             'created_at' => Carbon\Carbon::now(),
@@ -138,7 +138,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 4,
             'is_active' => true,
             'role' => 2,
-            'payed' => '0',
+            'payment' => '0',
             'activated_at' => Carbon\Carbon::now(),
             'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
             'created_at' => Carbon\Carbon::now(),
@@ -166,7 +166,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 5,
             'is_active' => true,
             'role' => 2,
-            'payed' => '0',
+            'payment' => '0',
             'activated_at' => Carbon\Carbon::now(),
             'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
             'created_at' => Carbon\Carbon::now(),

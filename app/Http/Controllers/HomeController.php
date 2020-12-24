@@ -34,9 +34,14 @@ class HomeController extends Controller
         $translated['title'] = 'title_'.App::getLocale();
         $translated['description'] = 'description_'.App::getLocale();
         $new_posts = Post::where('is_active', 1)->orderBy('created_at', 'desc')->take(7)->get();
-        $top_posts = Post::where(['is_active'=>1, 'is_premium'=>1])->orderBy('created_at', 'desc')->take(4)->get();
-        $top_posts = $top_posts->diff($new_posts);
-        return view('home.home', compact('new_posts', 'translated', 'top_posts'));
+        
+        $urgent_posts = Post::where(['is_active'=>1,'is_urgent'=>1])->orderBy('created_at', 'desc')->get();
+        $urgent_posts = $urgent_posts->diff($new_posts);
+        if ($urgent_posts->isNotEmpty() && $urgent_posts->count()>4) {
+            $urgent_posts = $urgent_posts->random(4);
+        }
+
+        return view('home.home', compact('new_posts', 'translated', 'urgent_posts'));
     }
 
     static public function test() {

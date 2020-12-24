@@ -103,11 +103,17 @@ p, h1 {
     font-size: 140%;
     font-weight: 700;
     margin-bottom: 20px;
+    white-space: normal;
 }
 
 span.post-type {
     color: #FE9242;
     font-size: 90%;
+}
+
+span.post-urgent {
+    font-size: 90%;
+    color: red;
 }
 
 #mainInfo p {

@@ -69,8 +69,8 @@ div.input-help {
     padding: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    right: 0px;
     top: -10px;
+    max-width: 500px;
     z-index: 20;
     border-left: 1px solid #fe9042;
     width: auto;
@@ -375,7 +375,6 @@ div.translation-input-field {
 
 div.amount-help {
     left: 18%;
-    max-width: 500px;
 }
 
 /*==================COMPANY==================*/
@@ -429,7 +428,6 @@ div.manuf-help,
 div.manuf-date-help,
 div.part-num-help {
     left: 38%;
-    max-width: 450px;
 }
 
 #inputCost { 
@@ -437,8 +435,7 @@ div.part-num-help {
 }
 
 div.cost-help {
-    left: 45%;
-    max-width: 450px;
+    left: 42%;
 }
 
 /*==================DESCRIPTION==================*/
@@ -493,7 +490,6 @@ div.desc-help {
 
 .town-help {
     left: 43%;
-    max-width: 450px;
 }
 
 #inputTown { 
@@ -510,7 +506,6 @@ div.desc-help {
 
 div.phone-help {
     left: 27%;
-    max-width: 450px;
 }
 
 div.phone-wraper {
@@ -579,6 +574,21 @@ p.active-to-time span {
 
 #lifetime .error {
     max-width: 550px;
+}
+
+/*==================SPECIAL_STATUS==================*/
+
+.premium-help {
+    left: 160px;
+}
+
+.premium-help p {
+    display: inline;
+}
+
+.urgent-help {
+    left: 180px;
+    top: 0px;
 }
 
 /*==================BUTTONS==================*/

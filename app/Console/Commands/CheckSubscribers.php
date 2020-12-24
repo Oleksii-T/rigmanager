@@ -60,13 +60,13 @@ class CheckSubscribers extends Command
                             'from' => $sub->activated_at,
                             'to' => $sub->expire_at
                         ],
-                        'cost' => $sub->payed,
+                        'payment' => $sub->payment,
                         'role' => $sub->role,
                         'comment' => 'Subscription period expired automaticaly'
                     ];
                     $sub->activated_at = null;
                     $sub->expire_at = null;
-                    $sub->payed = null;
+                    $sub->payment = null;
                     $sub->role = 0;
                     $sub->is_active = false;
                     $sub->history = $history;

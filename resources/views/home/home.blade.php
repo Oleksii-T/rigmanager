@@ -126,7 +126,6 @@
 
     <div class="items-block new-items">
         <h2 class="items-block-title">{{__('ui.newPosts')}}</h2>
-        
         <section class="items">
             <x-home-items :posts="$new_posts" :translated="$translated"/>
             <div class="item more-items">
@@ -138,15 +137,17 @@
         </section>
     </div>
     
-    @if ($top_posts->isNotEmpty())
+    @if ($urgent_posts->isNotEmpty())
         <div class="items-block top-items">
-            <h2 class="items-block-title">{{__('ui.topPosts')}}</h2>
+            <h2 class="items-block-title">{{__('ui.urgentPosts')}}</h2>
             <section class="items">
-                <x-home-items :posts="$top_posts" :translated="$translated"/>
+                <x-home-items :posts="$urgent_posts" :translated="$translated"/>
             </section>
+            <!--
             <div class="more-items-btn">
-                <a href="{{loc_url(route('list'))}}">{{__('ui.morePosts')}}</a>
+                <a href="#" class="not-allowed">{{__('ui.moreUrgentPosts')}}</a>
             </div>
+            -->
         </div>
     @endif
 

@@ -168,6 +168,10 @@
     </div>
 @endsection
 
+@section('urgent-input')
+    <input id="urgent" type="checkbox" name="is_urgent" value="1">
+@endsection
+
 @section('post-scripts')
     <script type="text/javascript">
         $(document).ready(function() {

@@ -35,7 +35,12 @@ return [
     'otherPartners' => 'Other
         partners',
     'newPosts' => 'New posts',
-    'topPosts' => 'Top posts',
+    'premiumPosts' => 'Premium posts',
+    'morePremiumPosts' => 'More premium
+        posts',
+    'urgentPosts' => 'Urgent posts',
+    'moreUrgentPosts' => 'More urgent
+        posts',
     'epilogue1' => 'Online announcements of any type and complexity in Oil&Gas sphere. Sale, purchase, services. On the rigmanager platform you can quickly and conveniently publish your offers or easily find an announcement you are interested in!',
     'epilogue2' => 'Market analysis, sales planning, simplification of the process and increase of the level of purchases/sales, control of relevance of purchases and timely supply - all this on the rigmanager platform!',
 
@@ -345,6 +350,13 @@ return [
     'postIsHidden' => 'Only you(author) can view this Post, because it been hidden.',
     'translationRequirePremium' => 'To see the translated version, the Premium account is required.',
     'deleteAllPosts' => 'Delete all posts',
+    'specialPostsStatus' => 'Special status for post',
+    'makePostUrgent' => 'Urgent',
+    'postUrgentStatusHelp' => 'The Urgent posts will have an appropriate mark.
+        Random 4 Urgent posts are listed on home page.
+        The number of Urgent posts is limited to 100 for Premium users.
+        The number of Urgent posts is limited to 300 for Premium+ users.',
+    'urgent' => 'Urgent',
 
     //post deactivated messages
     'postHiddenNotifSubject' => 'Post has been deactivated',

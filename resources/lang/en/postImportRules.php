@@ -4,13 +4,15 @@ return [
     'intro' => 'Rules for filling the file for bulk post import',
     'mainRulesTitle' => 'General rules',
     'mainRules1' => 'Changing the file structure makes automatic import impossible. Those. adding / removing columns / pages, swapping or moving already created cells is highly discouraged.',
-    'mainRules2' => 'Filling out the form is allowed on cells A3: V502',
-    'mainRules3' => 'The form is designed to import from 1 to 500 ads.',
-    'mainRules4' => 'Each line is a separate ad.',
-    'mainRules5' => 'The first announcement should be placed in cells A3: V3.',
-    'mainRules6' => 'The form will be accepted only upon compliance with all the rules in all ads.',
+    'mainRules2' => 'Filling out the form is allowed on cells A3:W502',
+    'mainRules3' => 'The form is designed to import from 1 to 500 posts.',
+    'mainRules4' => 'Each line is a separate post.',
+    'mainRules5' => 'The first announcement should be placed in cells A3:W3.',
+    'mainRules6' => 'The form will be accepted only upon compliance with all the rules in all posts.',
     'mainRules7' => 'The algorithm analyzes the shape line by line; if an error is found, the analysis will be stopped.',
     'mainRules8' => 'After importing the form, you will be told in which declaration the error was found.',
+    'mainRules9' => 'The form must be completed in one language (Rus / Ukr / Eng).',
+    'mainRules10' => 'You can add images, set the "Urgent" status and change the auto-translation for each ad manually through the ad edit page on the site.',
     'detailedRules' => 'Detailed instructions for filling in each field.',
     'required' => 'Required',
     'titleRule' => 'Enter the name of the equipment / part / service.
@@ -73,5 +75,5 @@ return [
     'lifetimeRule' => 'Only certain values ​​are allowed for input:
         1 - 1 month
         2 - 2 months
-        3 - Unlimited (Unlimited duration can only be selected by users with a Premium + Account)',
+        3 - Unlimited (Available for Premium+ accounts)',
 ];

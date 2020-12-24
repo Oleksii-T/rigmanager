@@ -21,6 +21,8 @@
                     <li>{{__('postImportRules.mainRules6')}}</li>
                     <li>{{__('postImportRules.mainRules7')}}</li>
                     <li>{{__('postImportRules.mainRules8')}}</li>
+                    <li>{{__('postImportRules.mainRules9')}}</li>
+                    <li>{{__('postImportRules.mainRules10')}}</li>
                 </ul>
             </div>
             <div class="detailed-rules">

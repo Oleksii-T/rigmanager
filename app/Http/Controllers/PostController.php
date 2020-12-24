@@ -63,10 +63,22 @@ class PostController extends Controller
                 return abort(111, __('messages.tooManyPostsError'));
             }
             Session::flash('message-error', __('messages.tooManyPostsError'));
-            return redirect(loc_url(route('profile.posts')));
+            return back()->withInput();
         }
 
         $input = $request->all();
+
+        //check for max urgent posts
+        if ( isset($input['is_urgent']) ) {
+            $max = $this->isPremiumPlus() ? 300 : 100;
+            if (auth()->user()->posts()->where('is_urgent', 1)->get()->count() >= $max) {
+                if ($request->wantsJson()) {
+                    return abort(111, __('messages.tooManyUrgentPostsError'));
+                }
+                Session::flash('message-error', __('messages.tooManyUrgentPostsError'));
+                return back()->withInput();
+            }
+        }
 
         if ( !$input['cost'] ) {
             unset($input['currency']);
@@ -123,7 +135,7 @@ class PostController extends Controller
                 return abort(111, __('messages.postUploadedError'));
             }
             Session::flash('message-error', __('messages.postUploadedError'));
-            return redirect(loc_url(route('home')));
+            return back()->withInput();
         }
         if ($request->hasFile('images')) {
             $this->postImageUpload($request->file('images'), $post);
@@ -221,7 +233,21 @@ class PostController extends Controller
         
         $input = $request->all();
 
-        //recraete the url name if title was changed
+        //parse is_urgent
+        if ( isset($input['is_urgent']) ) {
+            $max = $this->isPremiumPlus() ? 300 : 100;
+            if ( !$post->is_urgent && auth()->user()->posts()->where('is_urgent', 1)->get()->count() >= $max) {
+                if ($request->wantsJson()) {
+                    return abort(111, __('messages.tooManyUrgentPostsError'));
+                }
+                Session::flash('message-error', __('messages.tooManyUrgentPostsError'));
+                return back()->withInput();
+            }
+        } else {
+            $input['is_urgent'] = false;
+        }
+
+        //re-create the url name if title was changed
         $input['url_name'] = 
             $post->title == $input['title']
             ? $post->url_name
@@ -297,7 +323,7 @@ class PostController extends Controller
                 return abort(111, __('messages.postUploadedError'));
             }
             Session::flash('message-error', __('messages.postEditedError'));
-            return redirect(loc_url(route('home')));
+            return back()->withInput();
         }
 
         // if there is images submited, upload them
@@ -443,7 +469,7 @@ class PostController extends Controller
         }
         $import = Excel::toArray(new PostsImport, $request->file('import-file'));
         //check the structure
-        if (count($import[0]) < 502 || count($import[0][0]) < 22) {
+        if (count($import[0]) < 502 || count($import[0][0]) < 24) {
             Session::flash('message-error', __('messages.postImportError'));
             Session::flash('import-error', __('messages.importStructureError'));
             return redirect(loc_url(route('post.import')));
@@ -456,9 +482,9 @@ class PostController extends Controller
             Session::flash('import-error', __('messages.importEmptyError'));
             return redirect(loc_url(route('post.import')));
         }
-        // for each row in import file validate the fields 
+        // for each row in import file validate the fields
         foreach ($import as $key => $value) {
-            //if title is empty cosider this row as last one and finish analizing
+            //if title is empty consider this row as last one and finish analizing
             if ($value[1] == null) {
                 $lastRow = $key;
                 break;
@@ -475,14 +501,8 @@ class PostController extends Controller
         if (isset($lastRow)) {
             $import = array_slice($import, 0, $lastRow);
         }
-        //check for maximum posts
-        $max = $this->isPremiumPlus() ? 500 : 200;
-        if (auth()->user()->posts->count()+$lastRow > $max) {
-            $diff = $max - auth()->user()->posts->count();
-            Session::flash('message-error', __('messages.postImportError'));
-            Session::flash('import-error', __('messages.tooManyPostsError'). '. ' . __('messages.importTooManyPostsError', ['amount'=>$lastRow, 'diff'=>$diff]));
-            return redirect(loc_url(route('post.import')));
-        }
+        //check for maximum posts not necessary cause the file was cut till 500 rows
+        //make general orinal language
         $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
         $lang = $translate->detectLanguage( $import[0][1] . '. ' . $import[0][2] )['languageCode']; // merge title and description and find out the origin language
         if ($lang != 'ru' && $lang != 'en' && $lang != 'uk') {
@@ -529,6 +549,8 @@ class PostController extends Controller
                 'lifetime' => $row[22],
                 'active_to' => $activeTo,
                 'user_translations' => $translations,
+                'is_premium' => $is_premium,
+                'is_urgent' => $is_urgent
             ];
             if ($row[3]) {
                 $input['amount'] = $row[3];

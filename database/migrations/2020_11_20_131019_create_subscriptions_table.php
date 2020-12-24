@@ -18,7 +18,7 @@ class CreateSubscriptionsTable extends Migration
             $table->foreignId('user_id');
             $table->boolean('is_active');
             $table->string('role', 20)->nullable();
-            $table->string('payed')->nullable();
+            $table->string('payment')->nullable();
             $table->date('activated_at')->nullable();
             $table->date('expire_at')->nullable();
             $table->json('history')->nullable();

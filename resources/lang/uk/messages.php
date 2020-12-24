@@ -54,6 +54,7 @@ return [
     'mailerEmptyTypesError' => 'Необхідно вибрати хоча б один Тип!',
     'mailerEmptyRolesError' => 'Необхідно вибрати хоча б один Сектор!',
     'mailerEmptyThreadsError' => 'Оберіть Обладнання або Сервіс',
+    'tooManyUrgentPostsError' => 'Ви досягли максимальної кількості термінових оголошень. (100 для Преміум, 300 для Преміум +)',
 
     'profileEdited' => 'Профіль було змінено успішно!',
     'profileImgDeleted' => 'Зображення профілю успішно видалено!',
@@ -96,4 +97,6 @@ return [
     'importPhoneError' => 'Поле "Номер телефону" заповнене неправильно.',
     'importTagEqualThredError' => 'Поле "Категорія" повинна відповідати полю "Обладнання/Сервіс"',
     'ImportTooManyPostsError' => 'Ви намагаєтеся зробити імпорт :amount оголошень, але у вас залишилося :diff до максимуму.',
+    'importTooManyPremiums' => 'Too many posts with premium status. You have - :am. Maximum - :max',
+    'importTooManyUrgents' => 'Too many urgent posts. You have - :am. Maximum - :max.',
 ];

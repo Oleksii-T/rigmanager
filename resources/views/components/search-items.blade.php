@@ -2,7 +2,10 @@
     @foreach ($posts as $post)
         <article class="item {{$post->is_active ? '' : 'inactive'}}" id="{{$post->id}}">
             <figure class="post-img">
-                <img src="{{ $post->preview_image }}" alt="{{__('alt.keyword')}}">
+                <img class="post-preview-img" src="{{ $post->preview_image }}" alt="{{__('alt.keyword')}}">
+                @if ($post->is_urgent)
+                    <span class="urgent-banner">{{__('ui.urgent')}}</span>
+                @endif
             </figure>
             <div class="post-text">
                 <div class="post-row post-row-1">

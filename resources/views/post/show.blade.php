@@ -32,14 +32,26 @@
                 <section class="element" id="mainInfo">
                     @if ( $translated && $post->{$translated['title']} )
                         @if ($premium)
-                            <h1 class="translated-title"><span class="post-type">{{$post->type_readable}}: </span>{{ $post->{$translated['title']} }}</h1>
-                            <h1 class="origin-title hidden"><span class="post-type">{{$post->type_readable}}: </span>{{ $post->title }}</h1>
+                            <h1 class="translated-title">
+                                <span class="post-urgent">{{__('ui.urgent')}}. </span>
+                                <span class="post-type">{{$post->type_readable}}: </span>
+                                {{ $post->{$translated['title']} }}
+                            </h1>
+                            <h1 class="origin-title hidden">
+                                <span class="post-urgent">{{__('ui.urgent')}}. </span>
+                                <span class="post-type">{{$post->type_readable}}: </span>
+                                {{ $post->title }}
+                            </h1>
                             <div class="translated-alert ta-title">
                                 <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationTitleAlert')}}</p>
                                 <button class="ta-button title-show" title="{{__('ui.showOrigin')}}">{{__('ui.originLang')}} {{$post->origin_lang_readable}}</button>
                             </div>
                         @else
-                            <h1 class="origin-title"><span class="post-type">{{$post->type_readable}}: </span>{{ $post->title }}</h1>
+                            <h1 class="origin-title">
+                                <span class="post-urgent">{{__('ui.urgent')}}. </span>
+                                <span class="post-type">{{$post->type_readable}}: </span>
+                                {{ $post->title }}
+                            </h1>
                             <div class="translated-alert ta-title">
                                 <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationRequirePremium')}}
                                     <a class="see-plans-btn" href="{{loc_url(route('plans'))}}">{{__('ui.planDetailsBtn')}}</a>
@@ -47,7 +59,11 @@
                             </div>
                         @endif
                     @else
-                        <h1><span class="post-type">{{$post->type_readable}}: </span>{{ $post->title }}</h1>
+                        <h1>
+                            <span class="post-urgent">{{__('ui.urgent')}}. </span>
+                            <span class="post-type">{{$post->type_readable}}: </span>
+                            {{ $post->title }}
+                        </h1>
                     @endif
                     <div id="item-tag-section">
                         @foreach ($post->tag_map as $id => $tag)
