@@ -21,13 +21,10 @@ class Post extends Model
         'type_readable_short', 'created_at_readable', 'preview_image'
     ];
 
-    protected $fillable = [
-        'is_active', 'is_premium', 'is_urgent', 'thread', 'user_id', 'origin_lang', 'user_translations', 'amount', 'url_name', 'title',
-        'title_uk', 'title_ru', 'title_en', 'company', 'type', 'role', 'condition', 'tag_encoded', 
-        'description', 'description_uk', 'description_ru', 'description_en', 'cost', 'currency', 
-        'region_encoded', 'town', 'user_email', 'user_phone_raw', 'viber','telegram', 'whatsapp',
-        'manufacturer', 'manufactured_date', 'part_number', 'lifetime', 'active_to', 'is_verified'
+    protected $guarded = [
+        'id', 'is_banned', 'is_premium', 'is_vip', 'priority', 'is_verified', 'created_at', 'updated_at', 'deleted_at'
     ];
+
     /**
      * Get the indexable data array for the model.
      *

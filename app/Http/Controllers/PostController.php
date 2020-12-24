@@ -469,7 +469,7 @@ class PostController extends Controller
         }
         $import = Excel::toArray(new PostsImport, $request->file('import-file'));
         //check the structure
-        if (count($import[0]) < 502 || count($import[0][0]) < 24) {
+        if (count($import[0]) < 502 || count($import[0][0]) < 22) {
             Session::flash('message-error', __('messages.postImportError'));
             Session::flash('import-error', __('messages.importStructureError'));
             return redirect(loc_url(route('post.import')));
@@ -549,8 +549,6 @@ class PostController extends Controller
                 'lifetime' => $row[22],
                 'active_to' => $activeTo,
                 'user_translations' => $translations,
-                'is_premium' => $is_premium,
-                'is_urgent' => $is_urgent
             ];
             if ($row[3]) {
                 $input['amount'] = $row[3];

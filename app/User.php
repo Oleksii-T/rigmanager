@@ -27,6 +27,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'url_name', 'name', 'email', 'password', 'activation_token', 'phone_raw', 'viber', 'telegram',
         'whatsapp', 'language', 'facebook_id', 'google_id'
     ];
+    protected $guarder = [
+        'id', 'is_banned', 'email_verified_at', 'remember_token', 'created_at', 'updated_at', 'deleted_at'
+    ];
 
     /**
      * The attributes that should be hidden for arrays.

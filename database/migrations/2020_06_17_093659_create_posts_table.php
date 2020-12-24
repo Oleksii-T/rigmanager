@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->boolean('is_banned')->default(false);
+            $table->boolean('is_verified')->default(false);
             $table->boolean('is_active')->default(true);
             $table->boolean('is_premium')->default(false);
             $table->boolean('is_vip')->default(false);
@@ -57,7 +58,6 @@ class CreatePostsTable extends Migration
             $table->boolean('whatsapp')->default(false);
             $table->string('lifetime')->default(1);
             $table->date('active_to')->default(Carbon::now()->addMonth())->nullable();
-            $table->boolean('is_verified')->default(false);
             $table->timestamps();
             $table->softDeletes('deleted_at', 0); // Adds a nullable deleted_at TIMESTAMP equivalent column for soft deletes with precision (total digits).
         });
