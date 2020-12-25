@@ -153,7 +153,7 @@
                     </tr>
                     <tr class="table-row">
                         <td class="table-key">
-                            <p>{{__('ui.plansPostTracking')}}</p>
+                            <p>{{__('ui.plansPostTracking')}}<img class="help-img" src="{{ asset('icons/informationIcon.svg') }}" alt="{{__('alt.keyword')}}"><span class="functionality-help hidden">{{__('ui.trackingHelp')}}</span></p></p>
                         </td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>
                         <td class="table-value"><img src="{{asset('icons/noIcon.svg')}}" alt=""></td>

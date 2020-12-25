@@ -18,7 +18,7 @@ class Post extends Model
     protected $appends = [
         'tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable',
         'user_phone_intern', 'region_readable', 'role_readable', 'type_readable', 'origin_lang_readable',
-        'type_readable_short', 'created_at_readable', 'preview_image'
+        'type_readable_short', 'created_at_readable', 'preview_image', 'views_amount', 'views_all'
     ];
 
     protected $guarded = [
@@ -54,6 +54,14 @@ class Post extends Model
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
+    public function getViewsAmountAttribute() {
+        if (!$this->views) {
+            return 0;
+        } else {
+            return count($this->views);
+        }
+    }
+
     public function getPreviewImageAttribute() {
         if ( $this->images->isEmpty() ) {
             $tag = $this->tag_encoded;
@@ -68,6 +76,16 @@ class Post extends Model
         } else {
             return $this->images()->where('version', 'optimized')->first()->url;
         }
+    }
+
+    public function setViewsAttribute($value)
+    {
+        $this->attributes['views'] = json_encode($value);
+    }
+
+    public function getViewsAttribute($value)
+    {
+        return json_decode($value, true);
     }
 
     public function setUserTranslationsAttribute($value)

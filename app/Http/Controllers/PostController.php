@@ -158,7 +158,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($locale, $urlName=null)
+    public function show(Request $request, $locale, $urlName=null)
     {
         $urlName = $urlName==null ? $locale : $urlName;
         $post = Post::where('url_name', $urlName)->first();
@@ -173,11 +173,30 @@ class PostController extends Controller
             $translated['title'] = 'title_'.App::getLocale();
             $translated['description'] = 'description_'.App::getLocale();
         }
-        if (auth()->check()) {
-            $premium = $this->isPremium();
-        } else {
-            $premium = false;
+        //count views;
+        if ( !$this->isOwner($post->user_id) ) {
+            $views = $post->views;
+            if (auth()->check()) {
+                $key = auth()->user()->id;
+                $name = auth()->user()->name;
+            } else {
+                $key = $request->ip();
+                $name = '';
+            }
+            if ( !$post->views || !array_key_exists($key,$views) ) {
+                $views[$key] = [
+                    'name' => $name,
+                    'last_date' => Carbon::now()->format('Y-m-d'),
+                    'times' => 1,
+                ];
+            } else {
+                $views[$key]['last_date'] = Carbon::now()->format('Y-m-d');
+                $views[$key]['times']++;
+            }
+            $post->views = $views;
+            $post->save();
         }
+        $premium = $this->isPremium();
         return view('post.show', compact('post', 'translated', 'premium'));
     }
 
@@ -689,10 +708,10 @@ class PostController extends Controller
 
     private function isOwner($authorId) 
     {
-        if (auth()->user()->id != $authorId) {
-            return false;
+        if (auth()->check() && auth()->user()->id == $authorId) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     public function deleteAll() 
@@ -706,5 +725,3 @@ class PostController extends Controller
     }
 
 }
-
-

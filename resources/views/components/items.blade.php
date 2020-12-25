@@ -18,10 +18,14 @@
                         <li><p class="province misc">{{ $post->region_readable }}</p></li>
                         <li><p>&#x02022</p></li>
                     @endif
-                    <li><time class="date misc" >{{ $post->created_at }}</time></li>
+                    <li><time class="date misc" >{{ $post->created_at_readable }}</time></li>
                     @if ($post->cost)
                         <li><p>&#x02022</p></li>
                         <li><p class="cost misc">{{ $post->cost_readable }}</p></li>
+                    @endif
+                    @if ($button == 'deleteAndEdit' && auth()->user()->subscription && auth()->user()->subscription->role==2)
+                        <li><p>&#x02022</p></li>
+                        <li><p class="views misc">{{ __('ui.views') . ': ' . $post->views_amount }}</p></li>
                     @endif
                 </ul>
             </div>

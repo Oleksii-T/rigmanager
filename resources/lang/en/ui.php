@@ -363,6 +363,7 @@ return [
         The number of Urgent posts is limited to 100 for Premium users.
         The number of Urgent posts is limited to 300 for Premium+ users.',
     'urgent' => 'Urgent',
+    'views' => 'Views',
 
     //post deactivated messages
     'postHiddenNotifSubject' => 'Post has been deactivated',
@@ -505,6 +506,8 @@ return [
         you need to obtain account with status',
     'plansPostImport' => 'Bulk posts import',
     'plansPostTracking' => 'Views statistics',
+    'trackingHelp' => 'Views statistics can be found on "My posts" page. 
+        On each post the new banner with number of views will be visible.',
 
     // user plan 
     'planStatus' => 'Your Account status:',

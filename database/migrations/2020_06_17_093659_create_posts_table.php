@@ -58,6 +58,8 @@ class CreatePostsTable extends Migration
             $table->boolean('whatsapp')->default(false);
             $table->string('lifetime')->default(1);
             $table->date('active_to')->default(Carbon::now()->addMonth())->nullable();
+            $table->json('views')->nullable();
+            $table->json('contacts_views')->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', 0); // Adds a nullable deleted_at TIMESTAMP equivalent column for soft deletes with precision (total digits).
         });
