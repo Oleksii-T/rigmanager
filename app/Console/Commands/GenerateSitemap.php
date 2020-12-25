@@ -117,9 +117,9 @@ class GenerateSitemap extends Command
                     ->setPriority(0.8))
                 ->writeToFile(public_path('sitemap.xml'));
 
-            Log::channel('single')->info('[custom.info][sitemap.generate] Site map generated successfully');
+            Log::channel('jobs')->info('[sitemap.generate] Site map generated successfully');
         } catch (\Throwable $th) {
-            Log::channel('single')->error('[custom.error][sitemap.generate] Site map generation fails. '.$th->getMessage());
+            Log::channel('jobs')->error('[sitemap.generate] Site map generation fails. '.$th->getMessage());
         }
     }
 }

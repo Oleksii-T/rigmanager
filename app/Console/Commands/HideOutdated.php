@@ -49,9 +49,9 @@ class HideOutdated extends Command
                 $post->save();
                 Mail::to($post->user->email)->send(new PostWasHiddenNotification($post)); //send mail notification to user    
             }
-            Log::channel('single')->info('[custom.info][hide.outdated] Outdated posts checked successfully');
+            Log::channel('jobs')->info('[hide.outdated] Outdated posts checked successfully');
         } catch (\Throwable $th) {
-            Log::channel('single')->error('[custom.error][hide.outdated] Outdated posts check fails. '.$th->getMessage());
+            Log::channel('jobs')->error('[hide.outdated] Outdated posts check fails. '.$th->getMessage());
         }
     }
 }

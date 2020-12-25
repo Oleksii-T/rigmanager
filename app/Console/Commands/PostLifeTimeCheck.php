@@ -48,11 +48,11 @@ class PostLifeTimeCheck extends Command
                 $post->is_active = false;
                 $post->save();
                 Mail::to($post->user->email)->send(new PostHiddenNotification($post));
-                Log::channel('single')->info('[custom.info][lifetime.check] Outdated post [id='.$post->id.',active_to='.$post->active_to.'] has been hidden');
+                Log::channel('jobs')->info('[lifetime.check] Outdated post [id='.$post->id.',active_to='.$post->active_to.'] has been hidden');
             }
-            Log::channel('single')->info('[custom.info][lifetime.check] Outdated posts has been checked');
+            Log::channel('jobs')->info('[lifetime.check] Outdated posts has been checked');
         } catch (\Throwable $th) {
-            Log::channel('single')->info('[custom.error][lifetime.check] Outdated posts checking fails');
+            Log::channel('jobs')->info('[lifetime.check] Outdated posts checking fails');
         }
     }
 }

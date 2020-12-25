@@ -73,9 +73,9 @@ class CheckSubscribers extends Command
                     $sub->save();
                 }
             }
-            Log::channel('single')->info('[custom.info][subscribers.check] Subscribers checked sucessfully');
+            Log::channel('jobs')->info('[subscribers.check] Subscribers checked sucessfully');
         } catch (\Throwable $th) {
-            Log::channel('single')->error('[custom.error][subscribers.check] Subscribers check fails. '.$th->getMessage());
+            Log::channel('jobs')->error('[subscribers.check] Subscribers check fails. '.$th->getMessage());
         }
 
     }

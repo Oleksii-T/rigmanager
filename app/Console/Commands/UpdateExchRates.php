@@ -40,12 +40,12 @@ class UpdateExchRates extends Command
     {
         try {
             if ( \App\Http\Controllers\UsdExchangeController::update() ) {
-                Log::channel('single')->info('[custom.info][rates.update] Rates updated successfully');
+                Log::channel('jobs')->info('[rates.update] Rates updated successfully');
             } else {
-                Log::channel('single')->error('[custom.error][rates.update] Rates updating fails. The API key is empty');
+                Log::channel('jobs')->error('[rates.update] Rates updating fails. The API key is empty');
             }
         } catch (\Throwable $th) {
-            Log::channel('single')->error('[custom.error][rates.update] Rates updating fails. '.$th->getMessage());
+            Log::channel('jobs')->error('[rates.update] Rates updating fails. '.$th->getMessage());
         }
     }
 }
