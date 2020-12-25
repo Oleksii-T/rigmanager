@@ -65,6 +65,7 @@ return [
     'post' => 'Post',
     'catalog' => 'Catalog',
     'add' => 'Add',
+    'reset' => 'Reset',
     
     // auth massages
     'signIn' => 'Sign in',
@@ -93,11 +94,13 @@ return [
 
     // my posts massages
     'myPosts' => 'My posts',
-    'noMyPosts' => 'No posts.',
+    'noMyPosts' => 'You did not publish any posts yet.',
+    'noMyPostsBySearch' => 'Unfortunately, we cannot find any posts by your request.',
 
     // favoutites massages
     'favourites' => 'Favourites',
     'noFavPosts' => 'No favourites post.',
+    'noFavPostsBySearch' => 'Unfortunately, we cannot find any posts by your request.',
     'inFav' => 'In Favourites',
     'removeFromFav' => 'Remove from Favourites',
 

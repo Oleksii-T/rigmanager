@@ -6,15 +6,28 @@
 @endsection
 
 @section('content')
-    @if ($posts_list->isNotEmpty())
+    @if ($posts_list->isEmpty() && !$searchValue)
+        <div class="emptyItems">
+            <p>{{__('ui.noMyPosts')}}</p>
+        </div>
+    @else
         <button id="modalAllPostDeleteOn">{{__('ui.deleteAllPosts')}}</button>
+        <p>Total posts: {{$posts_list->total()}}</p>
+        <form class="search-items" method="GET" action="{{loc_url(route('profile.posts'))}}">
+            <input type="text" name="text" value="{{$searchValue}}">
+            <button type="submit">{{__('ui.search')}}</button>
+            @if ($searchValue)
+                <a href="{{loc_url(route('profile.posts'))}}">{{__('ui.reset')}}</a>
+            @endif
+        </form>
+        @if ($posts_list->isEmpty())
+            <div class="emptyItems">
+                <p>{{__('ui.noMyPostsBySearch')}}</p>
+            </div>
+        @endif
         <x-items :posts="$posts_list" button='deleteAndEdit' :translated="$translated"/>
         <div class="pagination-field">
             {{ $posts_list->links() }}
-        </div>
-    @else
-        <div class="emptyItems">
-            <p>{{__('ui.noMyPosts')}}</p>
         </div>
     @endif
 @endsection

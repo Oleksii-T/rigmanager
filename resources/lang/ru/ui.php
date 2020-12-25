@@ -64,6 +64,7 @@ return [
     'post' => 'Объявление',
     'catalog' => 'Каталог',
     'add' => 'Добавить',
+    'reset' => 'Сбросить',
 
     // auth massages
     'signIn' => 'Войти',
@@ -93,10 +94,12 @@ return [
     // my posts massages
     'myPosts' => 'Мои объявления',
     'noMyPosts' => 'У вас еще нет объявлений.',
+    'noMyPostsBySearch' => 'К сожалению, мы не можем найти ни одного объявления по вашему запросу.',
 
     // favoutites massages
     'favourites' => 'Избранное',
     'noFavPosts' => 'У вас еще нет избранных объявлений.',
+    'noFavPostsBySearch' => 'К сожалению, мы не можем найти ни одного объявления по вашему запросу.',
     'inFav' => 'В Избранном',
     'removeFromFav' => 'Удалить их Избранного',
 

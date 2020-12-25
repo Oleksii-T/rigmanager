@@ -145,14 +145,12 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()
         ]);
 
-/*
-
         // user 4 - yaroslav
         DB::table('users')->insert([
             'id' => 5,
             'name' => 'Yaroslav',
-            'url_name' => 'Yaroslav',
-            'phone_raw' => '1234567890',
+            'url_name' => 'seo-master',
+            'phone_raw' => '023456789',
             'telegram' => '1',
             'email' => 'yarikmoklyak2010@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
@@ -172,7 +170,7 @@ class DatabaseSeeder extends Seeder
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
-
+/*
 
         // post dp
         DB::table('posts')->insert([

@@ -98,20 +98,34 @@ class UserController extends Controller
         return redirect(loc_url(route('home')));
     }
 
-    public function favourites()
+    public function favourites(Request $request)
     {
+        $searchValue = null;
+        $query = auth()->user()->favPosts->reverse();
+        if ( isset($request->all()['text']) ) {
+            $searchValue = $request->all()['text'];
+            $searched = Post::search($request->all()['text'])->get();
+            $query = $query->intersect($searched);
+        }
+        $posts_list = $query->paginate(env('POSTS_PER_PAGE'));
         $translated['title'] = 'title_'.App::getLocale();
         $translated['description'] = 'description_'.App::getLocale();
-        $posts_list = auth()->user()->favPosts->reverse()->paginate(env('POSTS_PER_PAGE'));
-        return view('profile.favourites', compact('posts_list', 'translated'));
+        return view('profile.favourites', compact('posts_list', 'translated', 'searchValue'));
     }
 
-    public function userPosts()
+    public function userPosts(Request $request)
     {
+        $searchValue = null;
+        if ( isset($request->all()['text']) ) {
+            $searchValue = $request->all()['text'];
+            $query = Post::search($request->all()['text'])->get()->where('user_id', auth()->user()->id)->sortByDesc('created_at');
+        } else {
+            $query = auth()->user()->posts()->orderBy('created_at', 'desc');
+        }
+        $posts_list = $query->paginate(env('POSTS_PER_PAGE'));
         $translated['title'] = 'title_'.App::getLocale();
         $translated['description'] = 'description_'.App::getLocale();
-        $posts_list = auth()->user()->posts()->orderBy('created_at', 'desc')->paginate(env('POSTS_PER_PAGE'));
-        return view('profile.posts', compact('posts_list', 'translated'));
+        return view('profile.posts', compact('posts_list', 'translated', 'searchValue'));
     }
 
     public function addToFav(Request $request)

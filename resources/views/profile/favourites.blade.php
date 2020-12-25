@@ -6,14 +6,27 @@
 @endsection
 
 @section('content')
-    @if ($posts_list->isNotEmpty())
+    @if ($posts_list->isEmpty() && !$searchValue)
+        <div class="emptyItems">
+            <p>{{__('ui.noFavPosts')}}</p>
+        </div>
+    @else
+        <p>Total posts: {{$posts_list->total()}}</p>
+        <form class="search-items" method="GET" action="{{loc_url(route('profile.favourites'))}}">
+            <input type="text" name="text" value="{{$searchValue}}">
+            <button type="submit">{{__('ui.search')}}</button>
+            @if ($searchValue)
+                <a href="{{loc_url(route('profile.favourites'))}}">{{__('ui.reset')}}</a>
+            @endif
+        </form>
+        @if ($posts_list->isEmpty())
+            <div class="emptyItems">
+                <p>{{__('ui.noFavPostsBySearch')}}</p>
+            </div>
+        @endif
         <x-items :posts="$posts_list" button='removeFromFav' :translated="$translated"/>
         <div class="pagination-field">
             {{ $posts_list->links() }}
-        </div>
-    @else
-        <div class="emptyItems">
-            <p>{{__('ui.noFavPosts')}}</p>
         </div>
     @endif
 @endsection
