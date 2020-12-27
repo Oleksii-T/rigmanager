@@ -428,6 +428,7 @@ return [
 
    // Regions
    'regionOdessa' => 'Одеська область',
+   'import' => 'Імпорт',
    'regionDnipropetrovsk' => 'Дніпропетровська область',
    'regionChernihiv' => 'Чернігівська область',
    'regionKharkiv' => 'Харківська область',

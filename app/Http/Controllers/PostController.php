@@ -618,7 +618,7 @@ class PostController extends Controller
                                     //validate  "Currency" field
                                     if ($row[14]=='UAH' || $row[14]=='USD' || $row[14]==null) {
                                         //validate  "region" field
-                                        if ($row[15]==0 || $row[15]==1 || $row[15]==2 || $row[15]==3 || $row[15]==4 || $row[15]==5 || $row[15]==6 || $row[15]==7 || $row[15]==8 || $row[15]==9 || $row[15]==10 || $row[15]==11 || $row[15]==12 || $row[15]==13 || $row[15]==14 || $row[15]==15 || $row[15]==16 || $row[15]==17 || $row[15]==18 || $row[15]==19 || $row[15]==20 || $row[15]==21 || $row[15]==22 || $row[15]==23 || $row[15]==24) {
+                                        if ($row[15]==0 || $row[15]==1 || $row[15]==2 || $row[15]==3 || $row[15]==4 || $row[15]==5 || $row[15]==6 || $row[15]==7 || $row[15]==8 || $row[15]==9 || $row[15]==10 || $row[15]==11 || $row[15]==12 || $row[15]==13 || $row[15]==14 || $row[15]==15 || $row[15]==16 || $row[15]==17 || $row[15]==18 || $row[15]==19 || $row[15]==20 || $row[15]==21 || $row[15]==22 || $row[15]==23 || $row[15]==24 || $row[15]==30) {
                                             //validate  "lifetime" field (import is available only for Premium+ so no need to check for unlim lifetime)
                                             if ($row[22]==1 || $row[22]==2 || $row[22]==3) {
                                                 //validate  "title" field
