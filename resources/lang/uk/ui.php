@@ -181,9 +181,6 @@ return [
     'addNewMailer' => 'Налаштувати нову Розсилку',
     'editMailers' => 'Правити Розсилки',
 
-    //subscription massages
-    'mySubscription' => 'Підписка',
-
     // search bar and search result massages
     'search' => 'Пошук',
     'searchEquipment' => 'Шукати обладнання за категоріями',
@@ -512,6 +509,7 @@ return [
         На кожному оголошенні буде видно нову позначку з кількістю переглядів.',
 
     // user plan 
+    'mySubscription' => 'Моя підписка',
     'planStatus' => 'Ваша підписка:',
     'planGuest' => 'Гостьова',
     'planPremium' => 'Преміум',
@@ -522,6 +520,10 @@ return [
     'planDetailsBtn' => 'Платні підписки',
     'planCancel' => 'Скасувати підписку',
     'planNotActive' => 'У вас немає активних підписок',
+    'planRole' => 'Тип',
+    'payment' => 'Оплата',
+    'comment' => 'Коментар',
+    'active' => 'Автивно',
     
     // posts import
     'postImport' => 'Імпорт оголошень',

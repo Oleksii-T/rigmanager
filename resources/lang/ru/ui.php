@@ -179,9 +179,6 @@ return [
     'addNewMailer' => 'Настроить новую Рассылку',
     'editMailers' => 'Править Рассылки',
 
-    //subscription massages
-    'mySubscription' => 'Моя подписка',
-
     // search bar and search result massages
     'search' => 'Поиск',
     'searchEquipment' => 'Поиск Оборудования по категориям',
@@ -510,6 +507,7 @@ return [
         На каждом объявление будет видна новая пометка с количеством просмотров.',
 
     // user plan 
+    'mySubscription' => 'Моя подписка',
     'planStatus' => 'Ваша подписка:',
     'planGuest' => 'Гостевая',
     'planPremium' => 'Премиум',
@@ -520,6 +518,10 @@ return [
     'planDetailsBtn' => 'Платные подписки',
     'planCancel' => 'Отменить подписку',
     'planNotActive' => 'У вас нет активных подписок',
+    'planRole' => 'Тип',
+    'payment' => 'Оплата',
+    'comment' => 'Комментарий',
+    'active' => 'Активно',
     
     // posts import
     'postImport' => 'Импорт объявлений',

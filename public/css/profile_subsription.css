@@ -57,6 +57,30 @@
     margin-bottom: 50px;
 }
 
+#open-history {
+    border: 2px solid #888888;
+    border-radius: 10px;
+    padding: 7px 10px;
+    background-color: transparent;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.history {
+    margin-bottom: 50px;
+}
+
+.history-wraper table {
+    width: 100%;
+}
+
+.history-wraper table th{
+    padding-bottom: 10px;
+    font-weight: bold;
+    
+}
+
+
 .subscription-cancel {
     display: block;
     margin-left: auto;

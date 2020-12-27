@@ -185,11 +185,7 @@ class UserController extends Controller
 
     public function subscription()
     {
-        if ($this->isSubscribed()) {
-            $subscription = auth()->user()->subscription;
-        } else {
-            $subscription = null;
-        }
+        $subscription = auth()->user()->subscription;
         return view('profile.subscription', compact('subscription'));
     }
 

@@ -179,10 +179,6 @@ return [
     'mailerAllPosts' => 'All new posts',
     'addNewMailer' => 'Set up new Mailer',
     'editMailers' => 'Edit Mailers',
-    
-
-    //subscription massages
-    'mySubscription' => 'My subscription',
 
     // search bar and search result massages
     'search' => 'Search',
@@ -511,15 +507,21 @@ return [
         On each post the new banner with number of views will be visible.',
 
     // user plan 
+    'mySubscription' => 'My subscription',
     'planStatus' => 'Your Account status:',
     'planGuest' => 'Guest',
     'planPremium' => 'Premium',
     'planPremium+' => 'Premium+',
     'planActiveTo' => 'Active untill',
-    'planDetails' => 'See details, or change subscription:',
+    'planDetails' => 'See details, 
+        or change subscription:',
     'planDetailsBtn' => 'Paid Plans',
     'planCancel' => 'Cancel subscription',
     'planNotActive' => 'You do not have any active subscriptions',
+    'planRole' => 'Type',
+    'payment' => 'Payment',
+    'comment' => 'Comment',
+    'active' => 'Active',
     
     // posts import
     'postImport' => 'Posts import',
