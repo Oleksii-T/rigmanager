@@ -5,7 +5,7 @@ return [
     // Dev massages
     'workInProgress' => 'Work In Progress',
     'development' => 'The website is on the stage of active development.
-    The release is scheduled for December 2020.',
+        Website launching soon.',
 
 
     // no script massage
