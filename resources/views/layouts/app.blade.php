@@ -24,7 +24,7 @@
 </head>
 <body>
 
-    <div class="development-notif">
+    <div class="development-notif" hidden>
         <p>{{__('ui.development')}}</p>
     </div>
 
