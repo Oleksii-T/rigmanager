@@ -7,6 +7,7 @@ return [
     'development' => 'The website is on the stage of active development.
         Website launching soon.',
 
+    'mobileDev' => 'The mobile version is in progress.',
 
     // no script massage
     'noscript' => 'Javascript is disabled in your browser.

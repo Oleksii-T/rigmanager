@@ -28,6 +28,11 @@
         <p>{{__('ui.development')}}</p>
     </div>
 
+
+    <div class="mobile-alert">
+        <p>{{__('ui.mobileDev')}}</p>
+    </div>
+
     <div id="app">
         <div id="pop-up-container">
             <!-- Session flash massages -->
