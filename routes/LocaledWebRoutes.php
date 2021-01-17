@@ -69,7 +69,7 @@ Route::middleware('verified')->group(function () {
     Route::get      ('profile/mailer',              'MailerController@index')       ->name('mailer.index');
     Route::middleware('premium')->group(function () {
         Route::patch    ('profile/mailer/update',   'MailerController@update')      ->name('mailer.update');
-        Route::get      ('profile/mailer/edit',     'MailerController@edit')        ->name('mailer.edit');
+        Route::get      ('profile/mailer/edit/{id}','MailerController@edit')        ->name('mailer.edit');
         Route::resource ('profile/mailer',          'MailerController')             ->except(['show', 'edit', 'update', 'destroy', 'index']);
     });
 });

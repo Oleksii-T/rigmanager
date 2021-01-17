@@ -59,9 +59,13 @@ class MailerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(Request $request)
     {
-        $mailer = auth()->user()->mailer;
+        //dd($request->id);
+        $mailer = Mailer::findOrFail($request->id);
+        if ($mailer->user_id != auth()->user()->id) {
+            abort(403);
+        }
         return view('mailer.edit', compact('mailer'));
     }
 

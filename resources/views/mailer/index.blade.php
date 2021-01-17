@@ -14,19 +14,26 @@
             <div class="mailerContent">
                 @if ($mailers)
                     <div class="mailerBody">
+                        <h3>{{__('ui.mailer') . ' (' . $mailers->count() . ')'}}</h3>
+                        <div class="mailer-buttons">
+                            <button class="def-button not-allowed">{{__('ui.deleteMailers')}}</button>
+                        </div>
                         <div class="mailers">
                             @foreach ($mailers as $mailer)
                                 <div class="mailer">
                                     <h2 class="title">{{$mailer->title}} 
-                                        @if ($mailer->is_active)
-                                            <span class="not-allowed" style="color: #888888">{{__('ui.active')}}</span>
-                                        @else
-                                            <span class="not-allowed" style="color: #888888">{{__('ui.notActive')}}</span>
-                                        @endif
-                                        <span class="not-allowed" style="color: #888888">{{__('ui.deleteMailer')}}</span>
+                                        <a href="{{loc_url(route('mailer.edit', ['id'=>$mailer->id]))}}">{{__('ui.edit')}}</a>
+                                        <button style="background-color: transparent">{{__('ui.delete')}}</button>
                                     </h2>
 
-                                    <div class="mailer-detailes">
+                                    <div class="mailer-detailes">  
+
+                                        @if ($mailer->is_active)
+                                            <p>{{__('ui.active')}}</p>
+                                        @else
+                                            <p>{{__('ui.notActive')}}</p>
+                                        @endif
+
                                         @if ($mailer->keyword)
                                             <p class="keyword">{{__('ui.text')}}: {{$mailer->keyword}}</p>
                                         @endif
@@ -87,10 +94,6 @@
                             <div class="mailer">
                                 <h2 class="not-allowed">{{__('ui.addNewMailer')}}</h2>
                             </div>
-                        </div>
-                        <div class="mailer-buttons">
-                            <button class="def-button not-allowed">{{__('ui.editMailers')}}</button>
-                            <button class="def-button not-allowed">{{__('ui.deleteMailers')}}</button>
                         </div>
                     </div>
                 @else

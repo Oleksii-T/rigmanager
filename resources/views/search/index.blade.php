@@ -252,7 +252,7 @@
             <div class="mailer-suggestion">
                 <p>{{__('ui.mailerSuggestText')}}</p>
                 <img src="{{asset('icons/addToMailerIcon.svg')}}" alt="">
-                <button>{{__('ui.add')}}</button>
+                <button class="not-allowed">{{__('ui.add')}}</button>
             </div>
         </div>
         <div class="search-result">
@@ -354,6 +354,8 @@
 
             // add search request to mailer
             $('.mailer-suggestion button').click(function(){
+                showPopUpMassage(false, "{{ __('messages.inProgress') }}");
+                return;
                 var search = '{!! json_encode($search) !!}';
                 var resByTag = JSON.stringify(null);
                 if ("{{isset($resByTag)}}") {

@@ -145,9 +145,9 @@
                     @auth
                         @if ($post->user_id != Auth::id())
                             @if (auth()->user()->mailers && auth()->user()->mailers->pluck('author')->contains($post->user_id))
-                                <button class="def-button">{{__('ui.mailerAuthorAlreadyAdded')}}</button>
+                                <button class="def-button not-allowed">{{__('ui.mailerAuthorAlreadyAdded')}}</button>
                             @else
-                                <button class="def-button" id="mailerAddAuthor">{{__('ui.mailerAddAuthor')}}</button>
+                                <button class="def-button not-allowed" id="mailerAddAuthor">{{__('ui.mailerAddAuthor')}}</button>
                             @endif
                         @endif
                     @endauth
@@ -275,6 +275,8 @@
 
             // user click add author to mailer btn
             $('#mailerAddAuthor').click(function() {
+                showPopUpMassage(false, "{{ __('messages.inProgress') }}");
+                return;
                 var button = $(this);
                 button.addClass('loading');
                 $.ajax({

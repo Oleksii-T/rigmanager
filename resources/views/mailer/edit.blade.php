@@ -10,6 +10,47 @@
         @method('PATCH')
 @endsection
 
+@section('input-title')
+    <input class="def-input" id="inputTitle" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{ old('title') ?? $mailer->title }}"/>
+@endsection
+
+@section('input-keywords')
+    <textarea id="inputKeywords" name="keywords" form="formUpdateMailer" rows="5" maxlength="9000">{{ old('keywords') ?? $mailer->keywords }}</textarea>
+@endsection
+
+@section('tags')
+    <p class="tags-selected">
+        @foreach ($mailer->tags_map as $tag)
+        {{$tag}}
+        <span class="tags-selecte-delim">&#x02192;</span>
+        @endforeach
+    </p>
+@endsection
+
+@section('input-authors')
+    <input id="inputAuthors" name="authors_encoded" value="{{ $mailer->authors_string }} " hidden>
+    @if ($mailer->authors_encoded)
+        <ol class="orderedList">
+            @foreach ($mailer->authors_map as $id => $author)
+                <li><button class="remove-author author_{{$id}}" type="button" title="{{__('ui.delete')}}">{{$author}}<img src="{{asset('icons/closeRedIcon.svg')}}" alt="{{__('alt.keyword')}}"></button></li>
+            @endforeach
+        </ol>
+    @else
+        <p id="noAuthors">{{__('ui.mailerNoAuthors')}}</p>
+    @endif
+@endsection
+
+@section('input-cost')
+    <input class="input-cost cost-from-input" name="costFrom" type="text" placeholder="{{__('ui.from')}}">
+    <span class="cost-delimeter">-</span>
+    <input class="input-cost cost-to-input" name="costTo" type="text" placeholder="{{__('ui.to')}}">
+@endsection
+
+@section('input-region')
+    <x-region-select locale='{{app()->getLocale()}}' :defValue='$mailer->region'/>
+@endsection
+
+
 @section('input-type')
     <label class="cb-container" for="typeSell">{{__('ui.postTypeSellFull')}}
         <input id="typeSell" type="checkbox" name="types[]" value="1" {{array_key_exists("1", $mailer->types_map) ? 'checked="checked"' : "" }}>
@@ -38,56 +79,6 @@
     <x-server-input-error errorName='types' inputName='typeSell' errorClass='error'/>
 @endsection
 
-@section('input-keywords')
-    <textarea id="inputKeywords" name="keywords" form="formUpdateMailer" rows="5" maxlength="9000">{{ old('keywords') ?? $mailer->keywords }}</textarea>
-@endsection
-
-@section('input-equipment-tags')
-    <!--Hidden field for encoded tag for DB-->
-    <input id="tagEqEncodedHidden" type="text" name="eq_tags_encoded" value="{{$mailer->eq_tags_encoded ? json_encode($mailer->eq_tags_encoded) : ''}}" hidden/>
-
-    <!--Visible fields for readable tag-->
-    <div class="chosen-tags equipment">
-        <p>{{__('ui.mailerEqTags')}}:</p>
-        <ol class="orderedList">
-            @if ($mailer->eq_tags_encoded)
-                @foreach ($mailer->eq_tags_map as $id => $tag)
-                    <li><button class="removeTag chosen_{{$id}}" type="button" title="{{__('ui.delete')}}">{{$tag}}<img src="{{asset('icons/closeRedIcon.svg')}}" alt="{{__('alt.keyword')}}"></button></li>
-                @endforeach
-            @endif
-        </ol>
-    </div>
-@endsection
-
-@section('input-service-tags')
-    <!--Hidden field for encoded tag for DB-->
-    <input id="tagSeEncodedHidden" type="text" name="se_tags_encoded" value="{{$mailer->se_tags_encoded ? json_encode($mailer->se_tags_encoded) : ''}}" hidden/>
-
-    <!--Visible fields for readable tag-->
-    <div class="chosen-tags service">
-        <p>{{__('ui.mailerSeTags')}}:</p>
-        <ol class="orderedList">
-            @if ($mailer->se_tags_encoded)
-                @foreach ($mailer->se_tags_map as $id => $tag)
-                    <li><button class="removeTag chosen_{{$id}}" type="button" title="{{__('ui.delete')}}">{{$tag}}<img src="{{asset('icons/closeRedIcon.svg')}}" alt="{{__('alt.keyword')}}"></button></li>
-                @endforeach
-            @endif
-        </ol>
-    </div>
-@endsection
-
-@section('input-authors')
-    <input id="inputAuthors" name="authors_encoded" value="{{ $mailer->authors_string }} " hidden>
-    @if ($mailer->authors_encoded)
-        <ol class="orderedList">
-            @foreach ($mailer->authors_map as $id => $author)
-                <li><button class="remove-author author_{{$id}}" type="button" title="{{__('ui.delete')}}">{{$author}}<img src="{{asset('icons/closeRedIcon.svg')}}" alt="{{__('alt.keyword')}}"></button></li>
-            @endforeach
-        </ol>
-    @else
-        <p id="noAuthors">{{__('ui.mailerNoAuthors')}}</p>
-    @endif
-@endsection
 
 @section('mailer-scripts')
     <script type="text/javascript">

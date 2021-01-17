@@ -2,6 +2,7 @@
 
 return [
 
+    'inProgress' => 'Functionality is not ready yet',
     'success' => '',
     'error' => 'An error occured.',
     'info' => '',

@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/mailer_create_edit.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/components/special_inputs.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/profile_layout.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/mailer_create_edit.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/components/tags.css')}}" />
 @endsection
 
@@ -18,11 +19,11 @@
 
                 @yield('form')
 
-                    <div class="element" id="type">
-                        <h3 class="elementHeading">{{__('ui.choosePostType')}}</h3>
-                        @yield('input-type')
+                    <div class="element" id="title">
+                        <h3 class="elementHeading">{{__('ui.chooseMailerTitle')}}</h3>
+                        @yield('input-title')
                         <div class="help">
-                            <p><i>{{__('ui.mailerTypesHelp')}}</i></p>
+                            <p><i>{{__('ui.mailerTitleHelp')}}</i></p>
                         </div>
                     </div>
 
@@ -38,17 +39,10 @@
                     <div class="element" id="tags">
                         <h3 class="elementHeading">{{__('ui.mailerChooseTags')}}</h3>
 
-                        @yield('input-equipment-tags')
-                        <x-equipment-tags role="3"/>
-
-                        @yield('input-service-tags')
-                        <x-service-tags role="3"/>
+                        <button class="open-tags-selecter">{{__('ui.tags')}} &#x02192;</button>
+                        @yield('tags')
 
                         <x-server-input-error errorName='eq_tags_encoded' inputName='' errorClass='error'/>
-
-                        <div class="help">
-                            <p><i>{{__('ui.mailerTagsHelp')}}</i></p>
-                        </div>
                     </div>
 
                     <div class="element" id="authors">
@@ -56,6 +50,36 @@
                         @yield('input-authors')
                         <div class="help">
                             <p><i>{{__('ui.mailerAuthorsHelp')}}</i></p>
+                        </div>
+                    </div>
+
+                    <div class="element" id="cost">
+                        <h5 class="elementHeading">{{__('ui.cost')}},</h5>
+                        <div class="filter-currency">
+                            <span class="currency-lable active-currency" id="currency-uah-lable">UAH</span>
+    
+                            <label class="switch currency-switch" for="currency-usd">
+                                <input id="currency-usd" name="currency-usd" type="checkbox" value="1">
+                                <span class="slider"></span>
+                            </label>
+    
+                            <span class="currency-lable" id="currency-usd-lable">USD</span>
+                        </div>
+                        <div class="cost-input">
+                            @yield('input-cost')
+                        </div>
+                    </div>
+
+                    <div class="element" id="region">
+                        <h3 class="elementHEading">{{__('ui.region')}}</h3>
+                        @yield('input-region')
+                    </div>
+
+                    <div class="element" id="type">
+                        <h3 class="elementHeading">{{__('ui.choosePostType')}}</h3>
+                        @yield('input-type')
+                        <div class="help">
+                            <p><i>{{__('ui.mailerTypesHelp')}}</i></p>
                         </div>
                     </div>
 
