@@ -20,6 +20,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/base.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/components/popUpAndFlash.css') }}" >
+    <link rel="icon" href="{{ asset('icons/favicon.svg') }}" type="image/x-icon"/>
+    
     @yield('styles')
 </head>
 <body>

@@ -248,11 +248,11 @@ return [
     'postTypeSellFull' => 'Продаж обладнання', // type = 1
     'postTypeBuy' => 'Купівля', // type = 2
     'postTypeBuyFull' => 'Купівля обладнання', // type = 2
-    'postTypeRent' => 'Здача в оренду', // type = 3
-    'postTypeRentFull' => 'Здача в обладнання оренду', // type = 3
+    'postTypeRent' => 'Взяття в оренду', // type = 3
+    'postTypeRentFull' => 'Взяття в обладнання оренду', // type = 3
     'postTypeRentShort' => 'Оренда', // type = 3
-    'postTypeLeas' => 'Надання в оренду', // type = 4
-    'postTypeLeasFull' => 'Надання в обладнання оренду', // type = 4
+    'postTypeLeas' => 'Здача в оренду', // type = 4
+    'postTypeLeasFull' => 'Здача в обладнання оренду', // type = 4
     'postTypeLeasShort' => 'Оренда', // type = 4
     'postTypeGiveS' => 'Надання сервісу', // type = 5
     'postTypeGetS' => 'Запит на сервіс', // type = 6
