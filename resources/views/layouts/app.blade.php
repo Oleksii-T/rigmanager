@@ -24,10 +24,9 @@
 </head>
 <body>
 
-    <div class="development-notif" hidden>
+    <div class="development-notif">
         <p>{{__('ui.development')}}</p>
     </div>
-
 
     <div class="mobile-alert">
         <p>{{__('ui.mobileDev')}}</p>

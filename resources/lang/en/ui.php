@@ -4,8 +4,7 @@ return [
 
     // Dev massages
     'workInProgress' => 'Work In Progress',
-    'development' => 'The website is on the stage of active development.
-        Website launching soon.',
+    'development' => 'The site is at a late development stage. Coming soon.',
 
     'mobileDev' => 'The mobile version is in progress.',
 
