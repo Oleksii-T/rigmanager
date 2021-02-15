@@ -12,7 +12,7 @@
         </li>
         @if ($loop->last)
             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                @if (!App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'title_'.App::getLocale()})
+                @if (auth()->user() && !App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'title_'.App::getLocale()})
                     <span itemprop="item"><span itemprop="name">{{ $post->{'title_'.App::getLocale()} }}</span></span>
                 @else
                     <span itemprop="item"><span itemprop="name">{{$post->title}}</span></span>
@@ -59,7 +59,7 @@
             @endif
             <div class="prod-about">
                 @if (!App::isLocale($post->origin_lang))
-                    @if (auth()->user()->is_standart)
+                    @if (auth()->user() && auth()->user()->is_standart)
                         @if (!$post->{'title_'.App::getLocale()} || !$post->{'description_'.App::getLocale()})
                             <div class="warning">{{__('ui.translationCorrupted')}}</div>
                             <h1>{{$post->title}}</h1>
@@ -208,7 +208,7 @@
             $('.show-contacts').click(function(){
                 var button = $(this);
                 button.addClass('loading');
-                if ("{{!auth()->user()->is_standart}}") {
+                if ("{{auth()->user() && !auth()->user()->is_standart}}") {
                     $.fancybox.close();
                     showPopUpMassage(false, "{{ __('messages.requireStandart') }}");
                     return;

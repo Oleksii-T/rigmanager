@@ -17,7 +17,7 @@
                         <a href="{{loc_url(route('search', ['type'=>'services']))}}">{{__('ui.introSe')}}</a>
                     </div>
                     <div class="top-links-item">
-                        <a href="#">{{__('ui.introTender')}}</a>
+                        <a class="not-ready" href="{{loc_url(route('search', ['type'=>'tenders']))}}">{{__('ui.introTender')}}</a>
                     </div>
                 </div>
                 <div class="top-form">

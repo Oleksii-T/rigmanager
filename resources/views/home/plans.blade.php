@@ -115,7 +115,7 @@
 						</div>
 					</div>
 					<a href="" class="sub-mob">{{__('ui.details')}}</a>
-					<a href="" class="sub-button">{{__('ui.plansChoose')}}</a>
+					<a href="" class="not-ready sub-button">{{__('ui.plansChoose')}}</a>
 				</div>
 				<div class="sub-col">
 					<div class="sub-top">
@@ -177,7 +177,7 @@
 						</div>
 					</div>
 					<a href="" class="sub-mob">{{__('ui.details')}}</a>
-					<a href="" class="sub-button">{{__('ui.plansChoose')}}</a>
+					<a href="" class="not-ready sub-button">{{__('ui.plansChoose')}}</a>
 				</div>
 				<div class="sub-col"> <!--sub-active-->
 					<div class="sub-top">
@@ -239,7 +239,7 @@
 						</div>
 					</div>
 					<a href="" class="sub-mob">{{__('ui.details')}}</a>
-					<a href="" class="sub-button">{{__('ui.plansChoose')}}</a>
+					<a href="" class="not-ready sub-button">{{__('ui.plansChoose')}}</a>
 				</div>
 			</div>
 		</div>

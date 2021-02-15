@@ -212,6 +212,9 @@ button.button {width: 100%;}
 .hidden {
 	display: none !important;
 }
+.not-ready {
+	cursor: not-allowed !important;
+}
 /************************* form-block *************************/
 .input {
 	display: block;
@@ -1074,7 +1077,7 @@ textarea.form-error {
 	padding: 0 0 40px;
 }
 .pagination li {
-	margin: 0 12px 10px;
+	margin: 0 8px 10px;
 }
 .pagination a {
 	display: block;
@@ -1088,6 +1091,7 @@ textarea.form-error {
 }
 .pagination a:hover {color: #fff;}
 .pagination .active {
+	padding: 4px 12px 0px 12px;
 	color: #fff;
 	background: #ff8d12;
 	border-radius: 8px;
