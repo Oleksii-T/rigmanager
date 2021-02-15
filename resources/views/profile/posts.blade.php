@@ -1,35 +1,65 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
-@section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/profile_posts.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('css/components/post_posts.css')}}" />
+@section('bc')
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <span itemprop="item"><span itemprop="name">{{__('ui.myPosts')}}</span></span>
+        <meta itemprop="position" content="2" />
+    </li>
 @endsection
 
 @section('content')
-    @if ($posts_list->isEmpty() && !$searchValue)
-        <div class="emptyItems">
-            <p>{{__('ui.noMyPosts')}}</p>
-        </div>
-    @else
-        <button id="modalAllPostDeleteOn">{{__('ui.deleteAllPosts')}}</button>
-        <p>Total posts: {{$posts_list->total()}}</p>
-        <form class="search-items" method="GET" action="{{loc_url(route('profile.posts'))}}">
-            <input type="text" name="text" value="{{$searchValue}}">
-            <button type="submit">{{__('ui.search')}}</button>
-            @if ($searchValue)
-                <a href="{{loc_url(route('profile.posts'))}}">{{__('ui.reset')}}</a>
+    <div class="main-block">
+        <x-profile-nav active='posts'/>
+        <div class="content">
+            <h1>{{__('ui.myPosts')}} (<span class="orange">{{$posts_list->total()}}</span>)</h1>
+            @if ($posts_list->count() == 0)
+                <p>{{__('ui.noFavPosts')}}</p>
+            @else
+                <div class="cabinet-line">
+                    <div class="cabinet-search">
+                        <form  method="GET" action="{{loc_url(route('profile.posts'))}}">
+                            <fieldset>
+                                <input type="text" class="input" placeholder="{{__('ui.search')}}" name="text" value="{{$searchValue}}">
+                                <button class="search-button"></button>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="cabinet-line-right">
+                        <a href="#popup-delete-all-posts" data-fancybox class="cabinet-line-link">{{__('ui.deleteAllPosts')}}</a>
+                        <!--
+                        <div class="cabinet-line-check">
+                            <div class="check-item">
+                                <input type="checkbox" class="check-input" id="ch11">
+                                <label for="ch11" class="check-label">Все</label>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                </div>
+                <div class="catalog catalog-my">
+                    <x-items :posts="$posts_list" type='profile.posts'/>
+                </div>
+                <div class="pagination-field">
+                    {{ $posts_list->links() }}
+                </div>
             @endif
-        </form>
-        @if ($posts_list->isEmpty())
-            <div class="emptyItems">
-                <p>{{__('ui.noMyPostsBySearch')}}</p>
-            </div>
-        @endif
-        <x-items :posts="$posts_list" button='deleteAndEdit' :translated="$translated"/>
-        <div class="pagination-field">
-            {{ $posts_list->links() }}
         </div>
-    @endif
+    </div>
+@endsection
+
+@section('modals')
+    <div id="popup-delete-all-posts" class="popup">
+        <div class="popup-title">{{__('ui.sure?')}}</div>
+        <div class="sure-dialog">
+            <a href="#" class="delete-all-posts">{{__('ui.deleteAllPosts')}}</a>
+        </div>
+    </div>
+    <div id="popup-delete-post" class="popup">
+        <div class="popup-title">{{__('ui.sure?')}}</div>
+        <div class="sure-dialog">
+            <a href="#" class="delete-post">{{__('ui.deletePost')}}</a>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
@@ -37,12 +67,14 @@
         $(document).ready(function(){
 
             // delete all user`s posts
-            $('.delete-all-posts').click(function(){
-                $('#modalAllPostDelete').addClass('hidden');
-                $('#items').addClass('hidden');
-                $('.pagination-field').addClass('hidden');
-                $('#modalAllPostDeleteOn').after('<div class="emptyItems"><p>{{__("ui.noMyPosts")}}</p></div>');
-                $('#modalAllPostDeleteOn').addClass('hidden');
+            $('.delete-all-posts').click(function(e){
+                e.preventDefault();
+                $.fancybox.close();
+                $('div.cabinet-line').addClass('hidden');
+                $('div.catalog-my').addClass('hidden');
+                $('div.pagination-field').addClass('hidden');
+                $('div.content h1').after('<p>{{__("ui.noMyPosts")}}</p>');
+                $('div.content h1 span').html('0');
                 $.ajax({
                     type: "POST",
                     url: "{{route('posts.delete')}}",
@@ -63,21 +95,12 @@
                 });
             });
 
-            // show submit form for delete ALL posts
-            $('#modalAllPostDeleteOn').click(function(){
-                $('#modalAllPostDelete').removeClass('hidden');
-            });
-
-            //hide the modal delet all posts 
-            $('#modalAllPostDeleteOff').click(function(){
-                $('#modalAllPostDelete').addClass('hidden');
-            });
-
             // hide or show the post
-            $('button.item-hide-btn').click(function(){
+            $('.bar-view').click(function(e){
+                e.preventDefault();
                 id = getIdFromClasses( $(this).attr('class'), 'id_' );
+                $(this).addClass('loading');
                 button = $(this);
-                button.addClass('loading');
                 ajaxUrl = "{{route('post.toggle', ':postId')}}";
                 ajaxUrl = ajaxUrl.replace(':postId', id);
                 $.ajax({
@@ -93,12 +116,12 @@
                                 break;
                             case 0:
                                 showPopUpMassage(true, "{{ __('messages.postDisactivated') }}");
-                                button.children().attr('src', "{{asset('icons/showDocIcon.svg')}}");
+                                button.addClass('active');
                                 $('#'+id).toggleClass('inactive');
                                 break;
                             case 1:
                                 showPopUpMassage(true, "{{ __('messages.postActivated') }}");
-                                button.children().attr('src', "{{asset('icons/hideDocIcon.svg')}}");
+                                button.removeClass('active');
                                 $('#'+id).toggleClass('inactive');
                                 break;
                             default:
@@ -107,59 +130,27 @@
                         button.removeClass('loading');
                     },
                     error: function() {
-                        button.removeClass('loading');
                         showPopUpMassage(false, "{{ __('messages.error') }}"); // pop up error message
+                        button.removeClass('loading');
                     }
                 });
-            });
-
-            //get digit from classes of DOM element (depends on prefix)
-            function getIdFromClasses(classes, prefix) {
-                // regex special chars does not escaped in prefix!!!
-                var reg = new RegExp("^"+prefix+"[0-9]+$", 'g');
-                var result = '';
-                classes.split(' ').every(function(string){
-                    result = reg.exec(string);
-                    if ( result != null ) {
-                        result = result + '';
-                        result = result.split('_')[1];
-                        return false;
-                    } else {
-                        return true;
-                    }
-                });
-                return result;
-            }
-
-            //add hover effect on item when hover on addToFav btn
-            $("div.item-btns").hover(function(){
-                var postId = getIdFromClasses($(this).attr("class"), 'id_');
-                $("#"+postId+" .globalItemButton").addClass('hover');
-            }, function(){
-                var postId = getIdFromClasses($(this).attr("class"), 'id_');
-                $("#"+postId+" .globalItemButton").removeClass('hover');
             });
 
             //open modal delete confirm when user ask to
-            $('.modalPostDeleteOn').click(function() {
+            $('.bar-delete').click(function() {
                 var id = getIdFromClasses($(this).attr('class'), 'id_');
-                var oldClasses = $('#modalPostDelete .modalSubmitButton').attr('class');
-                $('#modalPostDelete .modalSubmitButton').attr('class', 'id_'+id+' '+oldClasses);
-                $('#modalPostDelete').removeClass('hidden');
+                var oldClasses = $('#popup-delete-post a').attr('class');
+                $('#popup-delete-post a').attr('class', 'id_'+id+' '+oldClasses);
             });
 
-            //close delete confirmation
-            $('#modalPostDeleteOff').click(function(){
-                $('#modalPostDelete').addClass('hidden');
-            });
-
-            $('.modalSubmitButton').click(function() {
+            //delete one post
+            $('.delete-post').click(function() {
                 var postId = getIdFromClasses($(this).attr('class'), 'id_');
-                $('#modalPostDelete').css("display", "none");
+                $.fancybox.close();
+                $('div.catalog-item.id_'+postId).addClass('hidden');
+                $('div.content h1 span').html($('div.content h1 span').html()-1);
                 var ajaxUrl = "{{route('posts.destroy.ajax', ':postId')}}";
                 ajaxUrl = ajaxUrl.replace(':postId', postId);
-                $('#'+postId+' .globalItemButton').addClass('loading');
-                $('#'+postId+' img').addClass('loading');
                 $.ajax({
                     url: ajaxUrl,
                     type: 'POST',
@@ -174,29 +165,12 @@
                         } else {
                             showPopUpMassage(false, "{{ __('messages.postDeleteError') }}");
                         }
-                        $('#'+postId+' .globalItemButton').removeClass('loading');
-                        $('#'+postId+' img').removeClass('loading');
                     },
                     error: function() {
-                        $('#'+postId+' .globalItemButton').removeClass('loading');
-                        $('#'+postId+' .img').removeClass('loading');
                         showPopUpMassage(false, "{{ __('messages.error') }}");
                     }
                 });
             });
-
-            //make any click beyong the modal to close modal
-            window.onclick = function(event) {
-                var delPost = document.getElementById("modalPostDelete");
-                var delAllPost = document.getElementById("modalAllPostDelete");
-                if (event.target == delPost) {
-                    $('#modalPostDelete').addClass('hidden');
-                } else if (event.target == delAllPost) {
-                    $('#modalAllPostDelete').addClass('hidden');
-                }
-            }
-
         });
     </script>
 @endsection
-

@@ -1,92 +1,107 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
-@section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/profile_subsription.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('css/components/profile_layout.css')}}" />
+@section('bc')
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <span itemprop="item"><span itemprop="name">{{__('ui.mySubscription')}}</span></span>
+        <meta itemprop="position" content="2" />
+    </li>
 @endsection
 
 @section('content')
-    <div class="master-wraper">
-        <div id="profileContent">
-            <nav class="profileNavBar">
-                <x-profile-nav/>
-            </nav> 
-            <div class="subscription-content">
-                @if ($subscription && $subscription->is_active)
-                    <p class="subscription-header">{{__('ui.planStatus')}}</p>
-                    <h1 class="subscription-plan">{{$subscription->roleReadable}}</h1>
-                    <p class="subscription-active-to">{{__('ui.planActiveTo')}}: {{$subscription->expire_at_readable}}</p>
-                @else
-                    <p class="subscription-header">{{__('ui.planNotActive')}}</p>
-                @endif
-                <div class="deliter-line"></div>
-                <p class="subscription-more">{{__('ui.planDetails')}}</p>
-                <a class="def-button subscription-plans" href="{{loc_url(route('plans'))}}">{{__('ui.planDetailsBtn')}}</a>
-                <br>
-                @if ($subscription && $subscription->history)
-                    <div class="history-wraper">
-                        <button id="open-history">See subscription history</button>
-                        <div class="history hidden">
-                            <table>
-                                <th>#</th>
-                                <th>{{__('ui.from')}}</th>
-                                <th>{{__('ui.to')}}</th>
-                                <th>{{__('ui.planRole')}}</th>
-                                <th>{{__('ui.payment')}}</th>
-                                <th>{{__('ui.comment')}}</th>
-                                @if ($subscription && $subscription->is_active)
-                                    <tr>
-                                        <td>{{count($subscription->history)+1}}</td>
-                                        <td>{{$subscription->activated_at}}</td>
-                                        <td>{{$subscription->expire_at}}</td>
-                                        <td>{{$subscription->roleReadable}}</td>
-                                        <td>{{$subscription->payment}}</td>
-                                        <td>{{__('ui.active')}}</td>
-                                    </tr>
-                                @endif
-                                @foreach (array_reverse($subscription->history, true) as $key => $item)
-                                    <tr>
-                                        <td>{{$key+1}}</td>
-                                        <td>{{$item['period']['from']}}</td>
-                                        <td>{{$item['period']['to']}}</td>
-                                        @if ($item['role'] == 1)
-                                            <td>{{__('ui.planPremium')}}</td>
-                                        @elseif ($item['role'] == 2)
-                                            <td>{{__('ui.planPremium+')}}</td>
-                                        @endif
-                                        <td>{{$item['payment']}}</td>
-                                        <td>{{$item['comment']}}</td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                        </div>
-                    </div>
-                @endif
-                @if ($subscription)
-                    <button class="def-button delete-button subscription-cancel">{{__('ui.planCancel')}}</button>
-                @endif
+    <div class="main-block">
+        <x-profile-nav active='subscription'/>
+        <div class="content">
+            <h1>{{__('ui.mySubscription')}}</h1>
+            <div class="pack">
+                <div class="pack-side">
+                    @if (auth()->user()->subscription && auth()->user()->subscription->is_active)
+                        <div class="pack-name">{{__('ui.planActivated')}} «<span class="orange">{{auth()->user()->subscription->role_readable}}</span>»</div>
+                        <div class="pack-text"><span class="pack-text-min">{{__('ui.planActiveTo')}} {{auth()->user()->subscription->expire_at}}</span>  / <a href="#">{{__('ui.planCancel')}}</a></div>
+                    @else
+                        <div class="pack-name">{{__('ui.planActivated')}} «<span class="orange">{{__('ui.planStart')}}</span>»</div>
+                        <div class="pack-text"><span class="pack-text-min">{{__('ui.planStartChoosedHelp')}}</span></div>
+                    @endif
+                </div>
+                <div class="pack-button">
+                    <a href="{{loc_url(route('plans'))}}" class="button button-light">{{__('ui.changePlan')}}</a>
+                </div>
             </div>
+            
+            <div class="history">
+                <div class="history-top">
+                    <div class="history-title">Історія</div>
+                    <!--
+                    <div class="history-form">
+                        <form action="">
+                            <fieldset>
+                                <div class="history-form-line">
+                                    <div class="history-form-input">
+                                        <input type="text" class="input input-date" placeholder="дд-мм-гггг">
+                                    </div>
+                                    <div class="history-form-divider">-</div>
+                                    <div class="history-form-input">
+                                        <input type="text" class="input input-date" placeholder="дд-мм-гггг">
+                                    </div>
+                                    <button class="button">Показати</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    -->
+                </div>
+                <div class="history-table">
+                    <table>
+                        <tr>
+                            <th>№ {{__('ui.operation')}}</th>
+                            <th>{{__('ui.planRole')}}</th>
+                            <th>{{__('ui.from')}}</th>
+                            <th>{{__('ui.to')}}</th>
+                            <th>{{__('ui.payment')}}</th>
+                            <th>{{__('ui.status')}}</th>
+                        </tr>
+                        @if ($subscription && $subscription->history)
+                            @if ($subscription && $subscription->is_active)
+                            <tr>
+                                <td>{{$subscription->number}} <span class="history-table-date">{{$subscription->issued}}</span></td>
+                                <td>{{$subscription->roleReadable}}</td>
+                                <td>{{$subscription->activated_at}}</td>
+                                <td>{{$subscription->expire_at}}</td>
+                                <td>{{$subscription->payment}}</td>
+                                <td><span class="history-status history-status-active">{{__('ui.active')}}</span></td>
+                            </tr>
+                            @endif
+                            @foreach (array_reverse($subscription->history, true) as $key => $item)
+                                <tr>
+                                    <td>{{$item['number']}} <span class="history-table-date">{{$item['issued']}}</span></td>
+                                    @if ($item['role'] == 1)
+                                        <td>{{__('ui.planStandart')}}</td>
+                                    @elseif ($item['role'] == 2)
+                                        <td>{{__('ui.planPro')}}</td>
+                                    @endif
+                                    <td>{{$item['period']['from']}}</td>
+                                    <td>{{$item['period']['to']}}</td>
+                                    <td>{{$item['payment']}}</td>
+                                    @if ($item['status']==0)
+                                        <td><span class="history-status">{{__('ui.inactive')}}</span></td>
+                                    @elseif ($item['status']==1)   
+                                        <td><span class="history-status">{{__('ui.canceled')}}</span></td>
+                                    @else
+                                        <td><span class="history-status">{{__('ui.inactive')}}</span></td>
+                                    @endif
+                                </tr>
+                            @endforeach
+                        @else 
+                            <td>{{__('ui.empty')}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        @endif
+                    </table>
+                </div>
+            </div>
+            
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    <script type="text/javascript">
-        $(document).ready(function(){
-
-            // show subsciption history
-            $('#open-history').click(function(){
-                $('.history').removeClass('hidden');
-            });
-
-            //fade out flash massages
-            $("div.flash").delay(3000).fadeOut(350);
-
-            // show message that free subscription can not be canceled
-            $('.subscription-cancel').click(function(){
-                showPopUpMassage(false, "{{ __('messages.planCancelPremium+') }}");
-            });
-
-        });
-    </script>
 @endsection

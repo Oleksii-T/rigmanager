@@ -150,9 +150,7 @@ class SearchController extends Controller
             default:
                 abort(404);
         }
-        $translated['title'] = 'title_'.App::getLocale();
-        $translated['description'] = 'description_'.App::getLocale();
-        return view('search.index', compact('posts_list', 'search', 'postsIds', 'translated', 'resByTag'));
+        return view('search.index', compact('posts_list', 'search', 'postsIds', 'resByTag'));
     }
 
     private function countResultByTags($posts, $searchedTag=null) 

@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
-    protected $appends = ['phone_readable', 'phone_intern', 'is_social'];
+    protected $appends = ['phone_readable', 'phone_intern', 'is_social', 'is_standart', 'is_pro'];
 
     /**
      * The attributes that are mass assignable.
@@ -90,6 +90,20 @@ class User extends Authenticatable implements MustVerifyEmail
     public function setPhoneRawAttribute($value)
     {
         $this->attributes['phone_raw'] = substr(preg_replace('/[^0-9]+/', '', $value), 0, 10);
+    }
+
+    public function getIsStandartAttribute() {
+        if ( auth()->user()->subscription && auth()->user()->subscription->is_standart ) {
+            return true;
+        }
+        return false;
+    }
+
+    public function getIsProAttribute() {
+        if ( auth()->user()->subscription && auth()->user()->subscription->is_pro ) {
+            return true;
+        }
+        return false;
     }
 
     public function getPhoneReadableAttribute() {

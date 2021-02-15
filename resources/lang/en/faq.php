@@ -2,7 +2,7 @@
 
 return [
 
-    'intro' => 'Frequently Asked Questions',
+    'intro' => 'We have collected frequently asked questions for you. If you still have questions or suggestions - you always can',
 
     'qPurpose' => 'What for this website?',
     'aPurpose1' => 'We introduce Ukrainian The first specialized website for the cooperation of drilling companies.
@@ -23,7 +23,7 @@ return [
     'aForWhatSD4' => 'Purchase planning',
     'aForWhatSD5' => 'Control the relevance of procurement',
     'aForWhatSD6' => 'Tenders by simplified procedure',
-    'aForWhat3' => 'If you are supply department:',
+    'aForWhat3' => 'If you are sales department:',
     'aForWhatSaD1' => 'Publication announcements of sales department',
     'aForWhatSaD2' => 'Sales planning',
     'aForWhatSaD3' => 'Simplify and control the purchasing/selling process',
@@ -39,11 +39,10 @@ return [
     Our website supports three languages, Ukrainian, Russian, and English. And have automatic build in translation, so anyone can get information about your proposition.',
 
     'qBuy' => 'I need to buy equipment',
-    'aBuy1' => 'Just use the category system or search bar on the',
-    'aBuyLink' => 'Home',
-    'aBuy2' => 'page and you find what you looking for!
-    You could add a Post to Favourites list so that you won\'t lose it.
-    If you can not find proper equipment then subscribe for Mailer and you will always know when appropriate Post is published.',
+    'aBuy1' => 'You may use the',
+    'aBuy2' => 'of categories or use the search bar and you find what you looking for!
+        You could add a Post to Favourites list so that you won\'t lose it.
+        If you can not find proper equipment then subscribe for Mailer and you will always know when appropriate Post is published.',
 
     'qSell' => 'I need to sell equipment',
     'aSell1' => 'All You need to do, is',

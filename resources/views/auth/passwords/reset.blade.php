@@ -1,79 +1,45 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
-@section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/password_forget.css')}}" />
+@section('bc')
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <span itemprop="item"><span itemprop="name">{{__('ui.passReset')}}</span></span>
+        <meta itemprop="position" content="2" />
+    </li>
 @endsection
 
 @section('content')
-    <div class="pass-forget-wraper">
-        <div class="pass-forget-content">
-            <div class="pass-forget-header">
-                <p>{{ __('ui.passReset') }}</p>
-            </div>
-            <div class="pass-forget-body">
-                <form method="POST" id="pass-forget-reset-form" action="{{ loc_url(route('password.update')) }}">
-                    @csrf
+    <div class="login">
+        <div class="login-title">{{__('ui.passReset')}}</div>
+        <form id="form-pass-reset" method="POST" action="{{loc_url(route('password.update'))}}">
+            @csrf
+            <input type="hidden" name="token" value="{{ $token }}">
+            <fieldset>
+                <label class="label">{{__('ui.login')}} <span class="orange">*</span></label>
+                <input class="input" type="email" name="email" value="{{old('email')}}" required autocomplete="email" autofocus placeholder="{{__('ui.login')}}">
+                <x-server-input-error inputName='email'/>
+                
+                <label class="label">{{__('ui.password')}} <span class="orange">*</span></label>
+                <input class="input" id="password" type="password" name="password" value="{{old('password')}}" required autocomplete="new-password" placeholder="{{__('ui.password')}}">
+                <x-server-input-error inputName='email'/>
+                <div class="form-note">{{__('ui.passwordHelp')}}</div>
+                
+                <label class="label">{{__('ui.rePass')}} <span class="orange">*</span></label>
+                <input class="input" type="password" name="password_confirmation" value="{{old('password_confirmation')}}" required autocomplete="new-password" placeholder="{{__('ui.rePass')}}">
+                <x-server-input-error inputName='email'/>
+                <div class="form-note">{{__('ui.rePassHelp')}}</div>
 
-                    <input type="hidden" name="token" value="{{ $token }}">
-
-                    <div>
-                        <label for="inputEmail">{{ __('E-Mail Address') }}</label>
-                        <div class="pass-forget-input-field">
-                            <input class="pass-forget-input" id="inputEmail" type="email" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-                            <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="inputPassword">{{ __('Password') }}</label>
-                        <div class="pass-forget-input-field">
-                            <input class="pass-forget-input" id="inputPassword" type="password" name="password" required autocomplete="new-password">
-                            <x-server-input-error errorName='password' inputName='inputPassword' errorClass='error'/>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="input-password-confirm">{{ __('Confirm Password') }}</label>
-                        <div class="pass-forget-input-field">
-                            <input class="pass-forget-input" id="input-password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            <x-server-input-error errorName='password_confirmation' inputName='input-password-confirm' errorClass='error'/>
-                        </div>
-                    </div>
-
-                    <div>
-                        <button type="submit" class="pass-forget-submit def-button">
-                            {{ __('Reset Password') }}
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+                <button class="button">{{__('Reset Password')}}</button>
+                <div class="login-bottom">
+                    <a href="{{loc_url(route('login'))}}">{{__('ui.backToSignIn')}}</a>
+                </div>
+            </fieldset>
+        </form>
     </div>
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/hideShowPassword.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-
-            //Show password toggle button
-            $('#inputPassword, #input-password-confirm').hideShowPassword({
-                show: false,
-                innerToggle: 'focus'
-            });
-
-            // change default error-lable insertion location
-            $.validator.setDefaults({
-                errorPlacement: function(error, element) {
-                    if (element.prop('type') === 'password') {
-                        error.insertAfter(element.parent());
-                    } else {
-                        error.insertAfter(element);
-                    }
-                }
-            });
-
             // add regex validation of password
             $.validator.addMethod('validPassword',
                 function(value, element, param) {
@@ -86,9 +52,8 @@
                 },
                 '{{__("validation.password")}}'
             );
-
             //Validate the form
-            $('#pass-forget-reset-formm').validate({
+            $('#form-pass-reset').validate({
                 rules: {
                     email: {
                         required: true,
@@ -103,11 +68,8 @@
                         maxlength: 20
                     },
                     password_confirmation: {
-                        equalTo: '#inputPassword',
+                        equalTo: '#password',
                         required: true,
-                        minlength: 6,
-                        validPassword: true,
-                        maxlength: 20,
                     }
                 },
                 messages: {
@@ -124,14 +86,13 @@
                     },
                     password_confirmation: {
                         equalTo: '{{ __("validation.confirmed") }}',
-                        required: '{{ __("validation.required") }}',
-                        minlength: '{{ __("validation.min.string", ["min" => 6]) }}',
-                        maxlength: '{{ __("validation.max.string", ["max" => 20]) }}'
+                        required: '{{ __("validation.required") }}'
                     }
-                }
+                },
+                errorElement: 'div',
+				errorClass: 'form-error'
             });
 
         });
     </script>
 @endsection
-

@@ -1,109 +1,65 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
-@section('styles')
-    <style>
-        .contants-wraper {
-            background-color: rgba(11, 11, 11, 0.6);
-            width: 75%;
-            margin: 0 auto;
-            padding: 30px
-        }
-        .field {
-            margin-bottom: 25px;
-        }
-        .field-header {
-            margin-bottom: 15px;
-            font-size: 110%;
-        }
-        .page-header {
-            text-align: center;
-        }
-        .name-input,
-        .email-input,
-        .subject-input {
-            width: 60%;
-        }
-        .master-wraper {
-            padding-top: 1px;
-        }
-        .contacts-list {
-            margin-top: 110px;
-            text-align: center;
-            margin-bottom: 50px
-        }
-        .list-header {
-            font-size: 260%;
-            font-weight: 100;
-            letter-spacing: 0.5em;
-            margin-bottom: 80px;
-        }
-        .list-body {
-            font-size: 125%;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #fe9042;
-            display: inline-block;
-            font-style: italic;
-        }
-        .list-item {
-            font-size: 120%;
-            margin-bottom: 8px;
-        }
-    </style>
+@section('bc')
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<span itemprop="item"><span itemprop="name">{{__('ui.footerContact')}}</span></span>
+		<meta itemprop="position" content="2" />
+	</li>
 @endsection
 
 @section('content')
-    <div class="master-wraper">
-        <h1 class="page-header">{{__('ui.fromUserTitle')}}</h1>
-        <form class="contants-wraper" id="contact-form" method="POST" action="{{loc_url(route('contact.us'))}}">
-            @csrf
-            <div class="field name-field">
-                <p class="field-header">{{__('ui.userName')}}<span class="required-input">*</span></p>
-                <input type="text" class="def-input name-input" id="name-input" name="name"
-                @auth
-                    value="{{old('name') ?? auth()->user()->name}}"
-                @else
-                    value="{{old('name')}}"
-                @endauth
-                required>
-                <x-server-input-error errorName='name' inputName='name-input' errorClass='error'/>
-            </div>
-            <div class="field email-field">
-                <p class="field-header">{{__('ui.fromUserEmail')}}<span class="required-input">*</span></p>
-                <input type="email" class="def-input email-input" id="email-input" name="email"
-                @auth
-                    value="{{old('email') ?? auth()->user()->email}}"
-                    @else
-                        value="{{old('email')}}"
-                @endauth
-                required>
-                <x-server-input-error errorName='email' inputName='email-input' errorClass='error'/>
-            </div>
-            <div class="field subject-file">
-                <p class="field-header">{{__('ui.fromUserSubject')}}<span class="required-input">*</span></p>
-                <input type="text" class="def-input subject-input" id="subject-input" name="subject" value="{{old('subject')}}" required>
-                <x-server-input-error errorName='subject' inputName='subject-input' errorClass='error'/>
-            </div>
-            <div class="field text-field">
-                <p class="field-header">{{__('ui.fromUserText')}}<span class="required-input">*</span></p>
-                <textarea name="text" id="text-input" rows="10" maxlength="5000" class="def-textarea" placeholder="{{__('ui.fromUserTextPlaceholder')}}" required>{{old('text')}}</textarea>
-                <x-server-input-error errorName='text' inputName='text-input' errorClass='error'/>
-            </div>
-            <div class="field btns-field">
-                <button class="def-button submit-button">{{__('ui.fromUserSubmit')}}</button>
-                <a class="def-button cancel-button" href="{{loc_url(route('home'))}}">{{__('ui.cancel')}}</a>
-            </div>
-            <div class="contacts-list">
-                <p class="list-header">{{__('ui.or')}}</p>
-                <p class="list-body">{{__('ui.contactsFooter')}}</p>
-                <p class="list-item">{{env('MAIL_TO_ADDRESS')}}</p>
-                <p class="list-item">{{env('CONTACT_PHONE')}}</p>
-            </div>
-        </form>
-    </div>
+	<div class="main-block">
+		<x-informations-nav active='contact'/>
+
+		<div class="content">
+			<h1>{{__('ui.footerContact')}}</h1>
+			<div class="content-top-text">{{__('ui.contactsFooter')}}
+
+				{{env('MAIL_TO_ADDRESS')}}
+				{{env('CONTACT_PHONE')}}</div>
+			<div class="form-block">
+				<form id="form-contact" method="POST" action="{{loc_url(route('contact.us'))}}">
+					@csrf
+                    <fieldset>
+						<label class="label">{{__('ui.userName')}} <span class="orange">*</span></label>
+						<input id="input-name" type="text" class="input" name="name"
+							@auth
+								value="{{old('name') ?? auth()->user()->name}}"
+							@else
+								value="{{old('name')}}"
+							@endauth
+						required>
+                        <x-server-input-error inputName='name'/>
+
+						<label class="label">{{__('ui.fromUserEmail')}} <span class="orange">*</span></label>
+						<input id="input-email" type="text" class="input" name="email" 
+							@auth
+								value="{{old('email') ?? auth()->user()->email}}"
+							@else
+								value="{{old('email')}}"
+							@endauth
+						required>
+                        <x-server-input-error inputName='email'/>
+
+						<label class="label">{{__('ui.fromUserSubject')}} <span class="orange">*</span></label>
+						<input id="input-subject" type="text" class="input" name="subject" value="{{old('subject')}}" required>
+                        <x-server-input-error inputName='subject'/>
+
+						<label class="label">{{__('ui.fromUserText')}} <span class="orange">*</span></label>
+						<textarea id="input-text" cols="30" rows="10" maxlength="5000" name="text" class="textarea" placeholder="{{__('ui.fromUserTextPlaceholder')}}">{{old('text')}}</textarea>
+                        <x-server-input-error inputName='text'/>
+
+						<div class="form-button">
+							<button class="button">{{__('ui.fromUserSubmit')}}</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
 
@@ -121,7 +77,7 @@
             );
 
             //Validate the form
-            $('#contact-form').validate({
+            $('#form-contact').validate({
                 rules: {
                     name: {
                         required: true,
@@ -166,7 +122,9 @@
                         minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 5000]) }}'
                     }
-                }
+                },
+				errorElement: 'div',
+				errorClass: 'form-error'
             });
         });
     </script>

@@ -1,353 +1,218 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
-@section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/post_show.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('css/components/subscription_required.css')}}" />
+@section('bc')
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a itemprop="item" href="{{loc_url(route('catalog'))}}"><span itemprop="name">{{__('ui.catalog')}}</span></a>
+        <meta itemprop="position" content="2" />
+    </li>
+    @foreach ($post->tag_map as $id => $tag)
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemprop="item" href="{{loc_url(route('tag-'.$id))}}"><span itemprop="name">{{$tag}}</span></a>
+            <meta itemprop="position" content="{{$loop->index+3}}" />
+        </li>
+        @if ($loop->last)
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                @if (!App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'title_'.App::getLocale()})
+                    <span itemprop="item"><span itemprop="name">{{ $post->{'title_'.App::getLocale()} }}</span></span>
+                @else
+                    <span itemprop="item"><span itemprop="name">{{$post->title}}</span></span>
+                @endif
+                <meta itemprop="position" content="{{$loop->index+4}}" />
+            </li>
+        @endif
+    @endforeach
 @endsection
 
 @section('content')
-    <article id="itemWraper">
-        @if (!$post->is_active)
-            <div class="outdated-notif">
-                <p>{{__('ui.postIsHidden')}}</p>
-            </div>
-        @endif
-        <div id="leftContentWraper">
-            <div id="leftContent">
-                @if ( $post->images->isNotEmpty() )
-                    <figure class="element" id="mainImgWraper">
-                        <a target="_blank" href="{{ $post->images->where('version', 'origin')->first()->url }}">
-                            <img id="mainImg" src="{{ $post->images->where('version', 'origin')->first()->url }}" alt="{{__('alt.keyword')}}">
-                        </a>
-                    </figure>
-
-                    <figure class="element" id="otherImg">
-                        @foreach ($post->images->where('version', 'optimized') as $image)
-                            <div class="moreImg">
-                                <img class="imgTriger" src="{{ $image->url }}" alt="{{__('alt.keyword')}}">
-                            </div>
-                        @endforeach
-                    </figure>
-                @endif
-                <section class="element" id="mainInfo">
-                    @if ( $translated && $post->{$translated['title']} )
-                        @if ($premium)
-                            <h1 class="translated-title">
-                                <span class="post-urgent">{{__('ui.urgent')}}. </span>
-                                <span class="post-type">{{$post->type_readable}}: </span>
-                                {{ $post->{$translated['title']} }}
-                            </h1>
-                            <h1 class="origin-title hidden">
-                                <span class="post-urgent">{{__('ui.urgent')}}. </span>
-                                <span class="post-type">{{$post->type_readable}}: </span>
-                                {{ $post->title }}
-                            </h1>
-                            <div class="translated-alert ta-title">
-                                <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationTitleAlert')}}</p>
-                                <button class="ta-button title-show" title="{{__('ui.showOrigin')}}">{{__('ui.originLang')}} {{$post->origin_lang_readable}}</button>
-                            </div>
-                        @else
-                            <h1 class="origin-title">
-                                <span class="post-urgent">{{__('ui.urgent')}}. </span>
-                                <span class="post-type">{{$post->type_readable}}: </span>
-                                {{ $post->title }}
-                            </h1>
-                            <div class="translated-alert ta-title">
-                                <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationRequirePremium')}}
-                                    <a class="see-plans-btn" href="{{loc_url(route('plans'))}}">{{__('ui.planDetailsBtn')}}</a>
-                                </p>
-                            </div>
-                        @endif
-                    @else
-                        <h1>
-                            <span class="post-urgent">{{__('ui.urgent')}}. </span>
-                            <span class="post-type">{{$post->type_readable}}: </span>
-                            {{ $post->title }}
-                        </h1>
-                    @endif
-                    <div id="item-tag-section">
-                        @foreach ($post->tag_map as $id => $tag)
-                            <a class="item-tag" href="{{loc_url(route('tag-'.$id))}}">{{$tag}}</a>
-                            <span class="item-tag-delim">></span>
-                        @endforeach
-                    </div>
-
-                    @if ( $translated && $post->{$translated['description']} )
-                        @if ($premium)
-                            <p class="translated-desc">{{ $post->{$translated['description']} }}</p>
-                            <p class="origin-desc hidden">{{ $post->description }}</p>
-                            <div class="translated-alert ta-desc">
-                                <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationDescAlert')}}</p>
-                                <button class="ta-button desc-show" title="{{__('ui.showOrigin')}}">{{__('ui.originLang')}} {{$post->origin_lang_readable}}</button>
-                            </div>
-                        @else
-                            <p class="origin-desc">{{ $post->description }}</p>
-                            <div class="translated-alert ta-title">
-                                <p class="ta-header"><img class="ta-img" src="{{ asset('icons/alertIcon.svg') }}" alt="{{__('alt.keyword')}}">{{__('ui.translationRequirePremium')}}
-                                    <a class="see-plans-btn" href="{{loc_url(route('plans'))}}">{{__('ui.planDetailsBtn')}}</a>
-                                </p>
-                            </div>
-                        @endif
-
-                    @else
-                        <p>{{ $post->description }}</p>
-                    @endif
-                </section>
-            </div>
+    @if (!$post->is_active)
+        <div class="outdated-post-alert">
+            <p>{{__('ui.postIsHidden')}}</p>
         </div>
-        <div id="rightContentWraper">
-            <div id="rightContent">
-                @auth
-                    @if ($post->user_id != Auth::id())
-                        <aside class="element" id="addToFavBtn">
-                            @if (auth()->user()->favPosts->contains($post))
-                                <p>{{__('ui.inFav')}}</p>
-                                <button class="addToFavButton id_{{$post->id}}">
-                                    <img src="{{ asset('icons/heartOrangeIcon.svg') }}" title="{{__('ui.removeFromFav')}}" alt="{{__('alt.keyword')}}">
-                                </button>
-                            @else
-                                <p>{{__('ui.addToFav')}}</p>
-                                <button class="addToFavButton id_{{$post->id}}">
-                                    <img src="{{ asset('icons/heartWhiteIcon.svg') }}" title="{{__('ui.addToFav')}}" alt="{{__('alt.keyword')}}">
-                                </button>
-                            @endif
-                        </aside>
+    @endif
+    <div class="prod">
+        <div class="prod-content">
+            <div class="prod-top">
+                <a href="" class="catalog-fav add-to-fav {{Auth::check() ? '' : 'auth-block'}} {{Auth::check() && $post->user_id == auth()->user()->id ? 'block' : ''}} {{Auth::check() && auth()->user()->favPosts->contains($post) ? 'active' : ''}}">
+                    <svg viewBox="0 0 464 424" xmlns="http://www.w3.org/2000/svg">
+                        <path class="cls-1" d="M340,0A123.88,123.88,0,0,0,232,63.2,123.88,123.88,0,0,0,124,0C55.52,0,0,63.52,0,132,0,304,232,424,232,424S464,304,464,132C464,63.52,408.48,0,340,0Z"/>
+                    </svg>
+                    {{__('ui.addToFav')}}
+                </a>
+                @if ( $post->images->isNotEmpty() )
+                    <div class="prod-controls">
+                        <a href="" class="prod-arrow prod-prev"></a>
+                        <div class="prod-current"></div>
+                        <div class="prod-divider"></div>
+                        <div class="prod-all"></div>
+                        <a href="" class="prod-arrow prod-next"></a>
+                    </div>
+                @endif
+            </div>
+            @if ( $post->images->isNotEmpty() )
+                <div class="prod-photo">
+                    @foreach ($post->images->where('version', 'origin') as $image)
+                        <div class="prod-photo-slide">
+                            <a href="{{$image->url}}" data-fancybox="prod"><img src="{{$image->url}}" alt=""></a>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+            <div class="prod-about">
+                @if (!App::isLocale($post->origin_lang))
+                    @if (auth()->user()->is_standart)
+                        @if (!$post->{'title_'.App::getLocale()} || !$post->{'description_'.App::getLocale()})
+                            <div class="warning">{{__('ui.translationCorrupted')}}</div>
+                            <h1>{{$post->title}}</h1>
+                            <p>{{$post->description}}</p>
+                        @else
+                            <div class="warning">{{__('ui.originPostLang')}} <a class="show-origin-text" href="">{{$post->origin_lang_readable}}</a>.</div>
+                            <h1>{{ $post->{'title_'.App::getLocale()} }}</h1>
+                            <p>{{ $post->{'description_'.App::getLocale()} }}</p>
+                            <h1 class="hidden">{{$post->title}}</h1>
+                            <p class="hidden">{{$post->description}}</p>
+                        @endif
                     @else
-                        <aside class="element" id="editBtn">
-                            <p>{{__('ui.yoursPost')}}</p>
-                            <a class="def-button" href="{{ loc_url(route('posts.edit', ['post'=>$post->url_name])) }}">{{__('ui.edit')}}</a>
-                        </aside>
+                        <div class="warning">{{__('ui.translationRequireStandart')}} <a href="{{loc_url(route('plans'))}}">{{__('ui.footerSubscription')}}</a></div>
+                        <h1>{{$post->title}}</h1>
+                        <p>{{$post->description}}</p>
                     @endif
                 @else
-                    <aside class="element" id="addToFavBtn">
-                        <p>{{__('ui.addToFav')}}</p>
-                        <button class="addToFavButton id_{{$post->id}}">
-                            <img src="{{ asset('icons/heartWhiteIcon.svg') }}" title="{{__('ui.addToFav')}}" alt="{{__('alt.keyword')}}">
-                        </button>
-                    </aside>
-                @endauth
-
-                <section class="element" id="authorView">
-                    <h4>{{__('ui.postAuthor')}}</h4>
-                    <div id="authorInfo">
-                        @if ($post->user->image)
-                            <img src="{{ $post->user->image->url }}" alt="{{__('alt.keyword')}}">
-                        @else
-                            <img src="{{ asset('icons/emptyUserIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                        @endif
-                        <div>
-                            <p>{{ $post->user->name }}</p>
-                        </div>
-                        <!-- mb add time how many days registered -->
-                    </div>
-                    <a class="def-button" href="{{loc_url(route('search', ['author'=>$post->user->url_name]))}}">{{__('ui.otherAuthorPosts')}}</a>
-                    <button class="def-button" id="modalTriger">{{__('ui.showContacts')}}</button>
-                    @auth
-                        @if ($post->user_id != Auth::id())
-                            @if (auth()->user()->mailers && auth()->user()->mailers->pluck('author')->contains($post->user_id))
-                                <button class="def-button not-allowed">{{__('ui.mailerAuthorAlreadyAdded')}}</button>
-                            @else
-                                <button class="def-button not-allowed" id="mailerAddAuthor">{{__('ui.mailerAddAuthor')}}</button>
-                            @endif
-                        @endif
-                    @endauth
-                </section>
-
-                <aside class="element" id="role">
-                    <p>{{__('ui.postRole')}}: {{ $post->role_readable }}</p>
-                </aside>
-
-                @if ($post->company)
-                    <aside class="element" id="company">
-                        <p>{{__('ui.company')}}: {{ $post->company }}</p>
-                    </aside>
+                    <h1>{{$post->title}}</h1>
+                    <p>{{$post->description}}</p>
                 @endif
-
-                @if ($post->amount)
-                    <aside class="element" id="amount">
-                        <p>{{__('ui.amount')}}: {{ $post->amount }}</p>
-                    </aside>
-                @endif
-
-                @if ($post->condition)
-                    <aside class="element" id="status">
-                        <p>{{__('ui.condition')}}: {{ $post->condition_readable }}</p>
-                    </aside>
-                @endif
-
-                @if ($post->manufacturer)
-                    <aside class="element" id="manufacturer">
-                        <p>{{__('ui.manufacturer')}}: {{ $post->manufacturer }}</p>
-                    </aside>
-                @endif
-
-                @if ($post->manufactured_date)
-                    <aside class="element" id="manufacturedDate">
-                        <p>{{__('ui.manufacturedDate')}}: {{ $post->manufactured_date }}</p>
-                    </aside>
-                @endif
-
-                @if ($post->part_number)
-                    <aside class="element" id="partNumber">
-                        <p>{{__('ui.partNum')}}: {{ $post->part_number }}</p>
-                    </aside>
-                @endif
-
-                @if ($post->region_encoded)
-                    <aside class="element" id="region">
-                        <p>{{__('ui.location')}}: {{ $post->region_readable}}{{ $post->town ? ", ".$post->town : "" }}</p>
-                    </aside>
-                @endif
-
-                @if ($post->cost)
-                    <aside class="element" id="cost">
-                        <div>
-                            <p>{{__('ui.cost')}}: {{ $post->cost_readable }} </p>
-                        </div>
-                    </aside>
-                @endif
-
-                <aside class="element" id="createdOn">
-                    <time>{{__('ui.postCreated')}}: {{ $post->created_at_readable }} </time>
-                </aside>
             </div>
         </div>
-
-        <div class="modalView" id="modal">
-            <address class="modalContent">
-                <h1>{{__('ui.contactInfo')}}:</h1>
-
-                <ul>
-                    <li>
-                        <p>{{__('ui.email')}}:</p>
-                        <span class="emailField"></span>
-                    </li>
-                    <li class="phoneField">
-                        <p>{{__('ui.phone')}}: </p>
-                        <span></span>
-                    </li>
-                </ul>
-            </address>
+        <div class="prod-side">
+            <div class="prod-author">
+                <div class="prod-author-info">
+                    @if ($post->user->image)
+                        <div class="prod-author-ava" style="background-image: url({{$post->user->image->url}})"></div>
+                    @else
+                        <div class="prod-author-ava" style="background-image: url({{asset('icons/emptyAva.svg')}})"></div>
+                    @endif
+                    <div class="prod-author-about">
+                        <div class="prod-author-name">{{$post->user->name}}</div>
+                        <a href="{{loc_url(route('search', ['author'=>$post->user->url_name]))}}" class="prod-author-link">{{__('ui.otherAuthorPosts')}}</a>
+                        @auth
+                            <br>
+                            @if ($post->user_id != Auth::id())
+                                @if (auth()->user()->mailers && auth()->user()->mailers->pluck('author')->contains($post->user_id))
+                                    <a href="" class="prod-author-link add-to-mailer not-ready">{{__('ui.mailerAuthorAlreadyAdded')}}</a>
+                                @else
+                                    <a href="" class="prod-author-link add-to-mailer not-ready">{{__('ui.mailerAddAuthor')}}</a>
+                                @endif
+                            @endif
+                        @endauth
+                    </div>
+                </div>
+                <a href="#popup-contacts" data-fancybox class="button button-light show-contacts">{{__('ui.showContacts')}}</a>
+                @if (Auth::check() && $post->user_id==Auth::id())
+                    <br>
+                    <a href="{{loc_url(route('posts.edit', ['post'=>$post->url_name]))}}" class="button button-light">{{__('ui.edit')}}</a>
+                @endif
+            </div>
+            <div class="prod-info">
+                <div class="prod-info-title">{{__('ui.info')}}</div>
+                @if ($post->is_urgent)
+                    <div class="prod-info-item">
+                        <div class="prod-info-text"><span class="orange">{{__('ui.urgent')}}</span></div>
+                    </div>
+                @endif
+                <div class="prod-info-item">
+                    <div class="prod-info-name">{{__('ui.postRole')}}</div>
+                    <div class="prod-info-text">{{$post->role_readable}}</div>
+                </div>
+                @if ($post->company)
+                    <div class="prod-info-item">
+                        <div class="prod-info-name">{{__('ui.company')}}</div>
+                        <div class="prod-info-text">{{$post->company}}</div>
+                    </div>
+                @endif
+                @if ($post->amount)
+                    <div class="prod-info-item">
+                        <div class="prod-info-name">{{__('ui.amount')}}</div>
+                        <div class="prod-info-text">{{$post->amount}}</div>
+                    </div>
+                @endif
+                @if ($post->condition)
+                    <div class="prod-info-item">
+                        <div class="prod-info-name">{{__('ui.condition')}}</div>
+                        <div class="prod-info-text">{{$post->condition_readable}}</div>
+                    </div>
+                @endif
+                @if ($post->manufacturer)
+                    <div class="prod-info-item">
+                        <div class="prod-info-name">{{__('ui.manufacturer')}}</div>
+                        <div class="prod-info-text">{{$post->manufacturer}}</div>
+                    </div>
+                @endif
+                @if ($post->manufactured_date)
+                    <div class="prod-info-item">
+                        <div class="prod-info-name">{{__('ui.manufacturedDate')}}</div>
+                        <div class="prod-info-text">{{$post->manufactured_date}}</div>
+                    </div>
+                @endif
+                @if ($post->part_number)
+                    <div class="prod-info-item">
+                        <div class="prod-info-name">{{__('ui.partNum')}}</div>
+                        <div class="prod-info-text">{{$post->part_number}}</div>
+                    </div>
+                @endif
+                @if ($post->region_encoded)
+                    <div class="prod-info-item">
+                        <div class="prod-info-name">{{__('ui.location')}}</div>
+                        <div class="prod-info-text">{{$post->region_readable}}{{$post->town ? ", ".$post->town : ""}}</div>
+                    </div>
+                @endif
+                @if ($post->cost)
+                    <div class="prod-info-item">
+                        <div class="prod-info-name">{{__('ui.cost')}}</div>
+                        <div class="prod-info-text">{{$post->cost_readable}}</div>
+                    </div>
+                @endif
+                <div class="prod-info-item">
+                    <div class="prod-info-name">{{__('ui.postCreated')}}</div>
+                    <div class="prod-info-text">{{$post->created_at_readable}}</div>
+                </div>
+            </div>
         </div>
-        <x-subscription-required role='1'/>
-    </article>
+    </div>
+@endsection
 
+@section('modals')
+    <div id="popup-contacts" class="popup">
+        <div class="popup-title">{{__('ui.contactInfo')}}</div>
+        <div class="popup-prod-info">
+            <div class="prod-info-item contact-email">
+                <div class="prod-info-name">{{__('ui.email')}}:</div>
+                <div class="prod-info-text"></div>
+            </div>
+            <div class="prod-info-item contact-phone">
+                <div class="prod-info-name">{{__('ui.phone')}}:</div>
+                <div class="prod-info-text"></div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('js/subscription_required.js') }}"></script>
     <script type="text/javascript">
-
         $(document).ready(function() {
-
-            $('.title-show').click(function(){
-                $('.origin-title').removeClass('hidden');
-                $('.translated-title').addClass('hidden');
-                $('.translated-alert.ta-title').addClass('hidden');
+            //hide/show translated/origin title/description
+            $('.show-origin-text').click(function(e){
+                e.preventDefault();
+                $('.prod-about h1, .prod-about p').toggleClass('hidden');
             });
-
-            $('.desc-show').click(function(){
-                $('.origin-desc').removeClass('hidden');
-                $('.translated-desc').addClass('hidden');
-                $('.translated-alert.ta-desc').addClass('hidden');
-            });
-
-            //get digit from classes of DOM element (depends on prefix)
-            function getIdFromClasses(classes, prefix) {
-                // regex special chars does not escaped in prefix!!!
-                var reg = new RegExp("^"+prefix+"[0-9]+$", 'g');
-                var result = '';
-                classes.split(' ').every(function(string){
-                    result = reg.exec(string);
-                    if ( result != null ) {
-                        result = result + '';
-                        result = result.split('_')[1];
-                        return false;
-                    } else {
-                        return true;
-                    }
-                });
-                return result;
-            }
-
-            //remove last '>' symbol from searched tags
-            $('#item-tag-section span').last().remove();
-
-            // user click add author to mailer btn
-            $('#mailerAddAuthor').click(function() {
-                showPopUpMassage(false, "{{ __('messages.inProgress') }}");
-                return;
-                var button = $(this);
-                button.addClass('loading');
-                $.ajax({
-                    type: "GET",
-                    url: "{{ route('mailer.add.author', $post->user_id) }}",
-                    success: function(data) {
-                        data = JSON.parse(data);
-                        if ( data.code == 500 ) {
-                            showPopUpMassage(true, data.message);
-                        } else {
-                            showPopUpMassage(false, data.message);
-                        }
-                        button.removeClass('loading');
-                    },
-                    error: function() {
-                        showPopUpMassage(false, "{{ __('messages.error') }}");
-                        button.removeClass('loading');
-                    }
-                });
-            });
-
-            //action when user clicks on addToFav icon
-            $(".addToFavButton").click(function(){
-                var postId = getIdFromClasses($(this).attr("class"), 'id_');
-                var button = $(this);
-                button.addClass('loading');
-                $.ajax({
-                    type: "GET",
-                    url: "{{ route('toFav') }}",
-                    data: { post_id: postId },
-                    success: function(data) {
-                        confirmation(data, postId);
-                        button.removeClass('loading');
-                    },
-                    error: function(xhr, status, error) {
-                        xhr['status'] == 403
-                            ? showPopUpMassage(false, "{{ __('messages.authError') }}")
-                            : showPopUpMassage(false, "{{ __('messages.error') }}");
-                        button.removeClass('loading');
-                    }
-                });
-            });
-
-            //change addToFav btn color and incr/decr number of favItems if succes
-            function confirmation(data, postId) {
-                if ( data ) {
-                    var target = $(".id_"+postId+" img");
-                    var n = $("#favItemsTab span").text();
-                    n = parseInt(n,10);
-                    if ( target.attr("src") != "{{ asset('icons/heartOrangeIcon.svg') }}" ) {
-                        $("#favItemsTab span").html(n+1);
-                        target.attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
-                        target.attr("title", "{{__('ui.removeFromFav')}}");
-                        $('#addToFavBtn p').html('{{__('ui.inFav')}}');
-                        showPopUpMassage(true, "{{ __('messages.postAddedFav') }}");
-                    }   else {
-                        $("#favItemsTab span").html(n-1);
-                        target.attr("src", "{{ asset('icons/heartWhiteIcon.svg') }}");
-                        target.attr("title", "{{__('ui.addToFav')}}");
-                        $('#addToFavBtn p').html('{{__('ui.addToFav')}}');
-                        showPopUpMassage(true, "{{ __('messages.postRemovedFav') }}");
-                    }
-                } else {
-                    showPopUpMassage(false, "{{ __('messages.postAddFavError') }}");
-                }
-            }
 
             //show modal contacts
-            $('#modalTriger').click(function(){
+            $('.show-contacts').click(function(){
                 var button = $(this);
                 button.addClass('loading');
+                if ("{{!auth()->user()->is_standart}}") {
+                    $.fancybox.close();
+                    showPopUpMassage(false, "{{ __('messages.requireStandart') }}");
+                    return;
+                }
                 $.ajax({
                     type: "GET",
                     url: "{{ route('get.contacts', $post->id) }}",
@@ -355,10 +220,9 @@
                         data = JSON.parse(data);
                         if ( data ) {
                             fillUpContacts(data);
-                            $('.modalView').css("display", "block");
                         } else {
-                            showPopUpMassage(false, "{{ __('messages.requirePremium') }}");
-                            showSubscriptionAlert();
+                            showPopUpMassage(false, "{{ __('messages.requireStandart') }}");
+                            $.fancybox.close();
                         }
                         button.removeClass('loading');
                     },
@@ -373,42 +237,12 @@
 
             function fillUpContacts (contacts) {
                 contacts['email']
-                    ? $('span.emailField').text(contacts['email'])
-                    : $('span.emailField').text("{{__('ui.notSpecified')}}");
+                    ? $('.contact-email .prod-info-text').text(contacts['email'])
+                    : $('.contact-email .prod-info-text').text("{{__('ui.notSpecified')}}");
                 contacts['phone']
-                    ? $('li.phoneField span').text(contacts['phone'])
-                    : $('li.phoneField span').text("{{__('ui.notSpecified')}}");
-                if (contacts['viber']) {
-                    $('li.phoneField').append("<img src='{{ asset('icons/viberIcon.svg') }}' alt='{{__('alt.keyword')}}'>");
-                }
-                if (contacts['telegram']) {
-                    $('li.phoneField').append("<img src='{{ asset('icons/telegramIcon.svg') }}' alt='{{__('alt.keyword')}}'>");
-                }
-                if (contacts['whatsapp']) {
-                    $('li.phoneField').append("<img src='{{ asset('icons/whatsappIcon.svg') }}' alt='{{__('alt.keyword')}}'>");
-                }
+                    ? $('.contact-phone .prod-info-text').text(contacts['phone'])
+                    : $('.contact-phone .prod-info-text').text("{{__('ui.notSpecified')}}");
             }
-
-            //change main image to clicked image from gallery
-            $(".imgTriger").click(function(){
-                var smallUrl = $(this).attr('src');
-                var url = smallUrl.replace('optimized', 'origin');
-                $("#mainImgWraper img").attr("src",url);
-                $("#mainImgWraper a").attr("href",url);
-            });
-
-            //close modal if clicked beyong the modal
-            window.onclick = function(event) {
-                var modal = document.getElementById("modal");
-                if (event.target == modal) {
-                    $('#modal').css("display", "none");
-                    $('.emailField').text('');
-                    $('.phoneField span').text('');
-                    $('.phoneField img').remove();
-                }
-            }
-
         });
-
     </script>
 @endsection

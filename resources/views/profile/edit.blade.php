@@ -1,223 +1,112 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
-@section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/profile_edit.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('css/components/profile_layout.css')}}" />
+@section('bc')
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a itemprop="item" href="{{loc_url(route('profile'))}}"><span itemprop="name">{{__('ui.profileInfo')}}</span></a>
+        <meta itemprop="position" content="2" />
+    </li>
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <span itemprop="item"><span itemprop="name">{{__('ui.profileEditing')}}</span></span>
+        <meta itemprop="position" content="3" />
+    </li>
 @endsection
 
 @section('content')
+    <div class="main-block">
+        <x-profile-nav active='profile'/>
+        <div class="content">
+            <h1>{{__('ui.profileEditing')}}</h1>
+            <div class="profile-edit">
+                <div class="profile-edit-column">
+                    <form method="POST" id="form-profile" action="{{loc_url(route('profile.update'))}}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
+                        <fieldset>
+                            <div class="form-title">{{__('ui.profileInfo')}}</div>
 
-    <div class="master-wraper">
-        <div id="profileContent">
-            <nav class="profileNavBar">
-                <x-profile-nav/>
-            </nav> 
+                            <label class="label">{{__('ui.login')}} <span class="orange">*</span></label>
+                            <input type="email" class="input" name="email" value="{{ old('email') ?? $user->email}}" placeholder="{{__('ui.login')}}" required autocomplete="email">
+                            <x-server-input-error inputName='email'/>
+                            <div class="form-note">{{__('ui.loginHelp')}}</div>
 
-            <div id="userData">
-                <form method="POST" id="formProfile" action="{{ loc_url(route('profile.update')) }}" enctype="multipart/form-data">
-                    @csrf
-                    @method('PATCH')
-                    <div>
-                        <h1>{{__('ui.profileSettings')}}</h1>
-                        <table>
-                            <tr id="avaEdit">
-                                <td class="nameOfField"><p>{{__('ui.avatar')}}</p></td>
-                                <td class="valueOfField">
-                                    <label for="inputAva">
-                                        <div id="avaPreview">
-                                            @if ($user->image)
-                                                <img src="{{ $user->image->url }}" title="{{__('ui.changeProfilePic')}}" alt="{{__('alt.keyword')}}">
-                                            @else
-                                                <img src="{{ asset('icons/emptyUserIcon.svg') }}" title="{{__('ui.changeProfilePic')}}" alt="{{__('alt.keyword')}}">
-                                            @endif
-                                        </div>
-                                    </label>
-                                    <input id="inputAva" type="file" name="ava" hidden>
-                                    @if ($user->image)
-                                        <button class="def-button delete-button" type="button" id="modalShow">{{__('ui.deleteProfileImg')}}</button>
-                                    @endif
-                                    @error('ava')
-                                        <div class="error">
-                                            <p>{{ $message }}</p>
-                                        </div>
-                                    @enderror
-                                </td>
-                            </tr>
-                            <tr id="nameShow">
-                                <td class="nameOfField"><p>{{__('ui.userName')}}<span class="required-input">*</span></p></td>
-                                <td class="valueOfField">
-                                    <input class="def-input" id="inputName" name="name" type="text" placeholder="Имя" value="{{ old('name') ?? $user->name}}" required autocomplete="name" autofocus/>
-                                    <x-server-input-error errorName='name' inputName='inputName' errorClass='error'/>
-                                    <div class="help"><p><i>{{__('ui.userNameHelp')}}</i></p></div>
-                                </td>
-                            </tr>
-                            <tr id="phoneShow">
-                                <td class="nameOfField"><p>{{__('ui.phone')}}</p></td>
-                                <td class="valueOfField">
-                                    <div class="phone-wraper">
-                                        <div class="phone-prefix">
-                                            <img class="country-flag" src="{{asset('icons/ukraineIcon.svg')}}" alt="{{__('alt.keyword')}}">
-                                            <span class="country-code">+38</span>
-                                        </div>
-                                        <input class="def-input format-phone" id="inputPhone" name="phone_raw" type="text" placeholder="0 (00) 000 00 00" value="{{ old('phone_raw') ?? $user->phone_readable}}" autocomplete="phone" autofocus/>
-                                    </div>
-                                    <x-server-input-error errorName='phone_raw' inputName='inputPhone' errorClass='error'/>
-                                    <div class="mediaCheckBoxes">
-                                        <div>
-                                            <input type="checkbox" id="viberInput" name="viber" value="1" {{ $user->viber ? 'checked' : '' }}>
-                                            <label for="viberInput">
-                                                Viber
-                                                <img class="messengers-image" src="{{ asset('icons/viberIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="telegramInput" name="telegram" value="1" {{ $user->telegram ? 'checked' : '' }}>
-                                            <label for="telegramInput">
-                                                Telegram
-                                                <img class="messengers-image" src="{{ asset('icons/telegramIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="whatsappInput" name="whatsapp" value="1" {{ $user->whatsapp ? 'checked' : '' }}>
-                                            <label for="whatsappInput">
-                                                WhatsApp
-                                                <img class="messengers-image" src="{{ asset('icons/whatsappIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="help"><p><i>{{__('ui.phoneHelp')}}</i></p></div>
-                                </td>
-                            </tr>
-                            @if ( !$user->is_social )
-                                <tr id="emailShow">
-                                    <td class="nameOfField"><p>{{__('ui.login')}}<span class="required-input">*</span></p></td>
-                                    <td class="valueOfField">
-                                        <input class="def-input" id="inputEmail" type="email" name="email" type="email" placeholder="Логин" value="{{ old('email') ?? $user->email}}" required autocomplete="email"/>
-                                        <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
-                                        <div class="help"><p><i>{{__('ui.loginHelp')}}</i></p></div>
-                                    </td>
-                                </tr>
-                                <tr id="passShow">
-                                    <td class="nameOfField"><p>{{__('ui.password')}}</p></td>
-                                    <td class="valueOfField">
-                                        <input class="def-input" type="password" id="inputPassword" name="password" placeholder="Новый пароль..."/>
-                                        <x-server-input-error errorName='password' inputName='inputPassword' errorClass='error'/>
-                                        <div class="help"><p><i>{{__('ui.passwordEditHelp')}}</i></p></div>
-                                    </td>
-                                </tr>
-                            @endif
-                        </table>
-                    </div>
-                    <button class="def-button submit-button" id="sumbitBtn" type="submit">{{__('ui.save')}}</button>
-                    <a class="def-button cancel-button" id="cancelBtn" href="{{ loc_url(route('profile')) }}">{{__('ui.cancel')}}</a>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="modalView animate" id="modalProfileImgDelete">
-        <div class="modalContent">
-            <p>{{__('ui.sure?')}}</p>
-            <div>
-                <button class="def-button submit-button" type="button" id="modalHide">{{__('ui.no')}}</button>
-                <button class="def-button cancel-button" id="modalSubmit">{{__('ui.delete')}}</button>
+                            <label class="label">{{__('ui.userName')}} <span class="orange">*</span></label>
+                            <input type="text" class="input" name="name" value="{{ old('name') ?? $user->name}}" placeholder="{{__('ui.userName')}}" required autocomplete="name">
+                            <x-server-input-error inputName='name'/>
+                            <div class="form-note">{{__('ui.userNameHelp')}}</div>
+
+                            <label class="label">{{__('ui.phone')}}</label>
+                            <input type="tel" class="input format-phone" name="phone_raw" value="{{ old('phone_raw') ?? $user->phone_readable}}" placeholder="+38 ( _ _ _ ) _ _ _ - _ _ - _ _" autocomplete="phone">
+                            <x-server-input-error inputName='phone_raw'/>
+                            <div class="form-note">{{__('ui.phoneHelp')}}</div>
+
+                            <div class="edit-ava">
+                                @if ($user->image)
+                                    <div class="edit-ava-img" style="background-image:url({{$user->image->url}})"></div>
+                                @else
+                                    <div class="edit-ava-img" style="background-image:url({{asset('icons/emptyAva.svg')}})"></div>
+                                @endif
+                                <div class="edit-ava-button">
+                                    <input id="ava" type="file" name="ava">
+                                    <label for="ava" class="edit-ava-label">{{__('ui.changeProfilePic')}}</label>
+                                </div>
+                            </div>
+
+                            <div class="form-button">
+                                <button class="button">{{__('ui.saveChanges')}}</button>
+                            </div>	
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="profile-edit-column">
+                    <form method="POST" id="form-password" action="{{loc_url(route('profile.update.pass'))}}">
+                        @csrf
+                        @method('PATCH')
+                        <fieldset>
+                            <div class="form-title">{{__('ui.password')}}</div>
+
+                            <label class="label">{{__('ui.curPass')}} <span class="orange">*</span></label>
+                            <input type="password" name="old_password" class="input" placeholder="{{__('ui.password')}}">
+                            <x-server-input-error inputName='old_password'/>
+
+                            <label class="label">{{__('ui.newPass')}} <span class="orange">*</span></label>
+                            <input type="password" name="password" id="password" class="input" placeholder="{{__('ui.newPass')}}">
+                            <x-server-input-error inputName='password'/>
+                            <div class="form-note">{{__('ui.passwordHelp')}}</div>
+
+                            <label class="label">{{__('ui.reNewPass')}} <span class="orange">*</span></label>
+                            <input type="password" name="password_confirmation" class="input" placeholder="{{__('ui.reNewPass')}}">
+                            <x-server-input-error inputName='password_confirmation'/>
+                            <div class="form-note">{{__('ui.rePassHelp')}}</div>
+
+                            <div class="form-button">
+                                <button class="button">{{__('ui.changePassword')}}</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/hideShowPassword.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-
-            // delete priflie pic
-            $('#modalSubmit').click(function(){
-                $.ajax({
-                    url: "{{route('profile.img.delete')}}",
-                    type: 'PATCH',
-                    data: {
-                        _method: "PATCH",
-                        _token: "{{ csrf_token() }}",
-                    },
-                    success: function() {
-                        //location.reload();
-                        $('#avaPreview img').attr('src', "");
-                        $('#modalProfileImgDelete').css("display", "none");
-                        showPopUpMassage(true, "{{ __('messages.profileImgDeleted') }}");
-                    },
-                    error: function() {
-                        // Print error massage
-                        showPopUpMassage(false, "{{ __('messages.error') }}");
-                    }
-                });
-            });
-
-            // formate phone field
-            $('.format-phone').focusin(function(){
-                var newVal = phoneFormater( $(this).val(), false );
-                $(this).val(newVal);
-            });
-
-            // formate phone field
-            $('.format-phone').focusout(function(){
-                var newVal = phoneFormater( $(this).val(), false );
-                var newVal = phoneFormater( newVal, true );
-                $(this).val(newVal);
-            });
-
-            // formate phone field helper
-            function phoneFormater(phone, mode) {
-                if (phone) {
-                    if (mode) {
-                        for (let i = phone.length-1; i >= 0; i--) {
-                            if (i==1) {
-                                phone = phone.slice(0, i) + ' (' + phone.slice(i);
-                            } else if (i==3) {
-                                phone = phone.slice(0, i) + ') ' + phone.slice(i);
-                            }
-                            else if (i==8 || i==6) {
-                                phone = phone.slice(0, i) + ' ' + phone.slice(i);
-                            }
-                        }
-                        return phone;
-                    } else {
-                        return phone.replace(/[^0-9]+/g,"").substring(0,10);
-                    }
-                }
-            };
 
             //pre-view of picture
             function readURL(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
                     reader.onload = function(e) {
-                        $('#avaPreview img').attr('src', e.target.result);
+                        $('.edit-ava-img').css('background-image', 'url('+e.target.result+')');
                     }
                     reader.readAsDataURL(input.files[0]); // convert to base64 string
                 }
             }
 
             //when user submit new image preview it
-            $("#inputAva").change(function() {
+            $(".edit-ava-button input").change(function() {
                 readURL(this);
-            });
-
-            $("#helpImg").hover(function(){
-                $(".helpText").css("opacity", "1");
-                }, function(){
-                $(".helpText").css("opacity", "0");
-            });
-
-            // change default error-lable insertion location
-            $.validator.setDefaults({
-                errorPlacement: function(error, element) {
-                    if (element.prop('type') === 'password') {
-                        error.insertAfter(element.parent());
-                    } else {
-                        error.insertAfter(element);
-                    }
-                }
             });
 
             // add regex validation of name
@@ -248,7 +137,7 @@
 
             //Validate the form
             var userId = '{{ $user->id }}';
-            $('#formProfile').validate({
+            $('#form-profile').validate({
                 rules: {
                     name: {
                         required: true,
@@ -272,11 +161,6 @@
                             }
                         },
                         maxlength: 254
-                    },
-                    password: {
-                        minlength: 6,
-                        validPassword: true,
-                        maxlength: 20
                     }
                 },
                 messages: {
@@ -291,37 +175,38 @@
                         remote: '{{ __("validation.unique-email") }}',
                         email: '{{ __("validation.email") }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 254]) }}'
+                    }
+                },
+                errorElement: 'div',
+				errorClass: 'form-error'
+            });
+
+            //Validate the form
+            $('#form-password').validate({
+                rules: {
+                    password: {
+                        minlength: 6,
+                        validPassword: true,
+                        maxlength: 20
                     },
+                    password_confirmation: {
+                        required: true,
+                        equalTo: "#password"
+                    }
+                },
+                messages: {
                     password: {
                         minlength: '{{ __("validation.min.string", ["min" => 6]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 40]) }}'
+                    },
+                    password_confirmation: {
+                        required: '{{ __("validation.required") }}',
+                        equalTo: '{{ __("validation.passEqual") }}'
                     }
-                }
+                },
+                errorElement: 'div',
+				errorClass: 'form-error'
             });
-
-            // Show password toggle button
-            $('#inputPassword').hideShowPassword({
-                show: false,
-                innerToggle: 'focus'
-            });
-
-            //open modal delete confirm when user ask to
-            $('#modalShow').click(function(){
-                $('#modalProfileImgDelete').css("display", "block");
-            });
-
-            //close delete confirmation
-            $('#modalHide').click(function(){
-                $('#modalProfileImgDelete').css("display", "none");
-            });
-
-            //make any click beyong the modal to close modal
-            window.onclick = function(event) {
-                if (event.target == document.getElementById("modalProfileImgDelete")) {
-                    $('#modalProfileImgDelete').css("display", "none");
-                }
-            }
-
         });
     </script>
 @endsection

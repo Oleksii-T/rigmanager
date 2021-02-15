@@ -1,9 +1,12 @@
 <?php
 
 return [
-    'intro' => 'Rules for filling the file for bulk post import',
+    'title' => 'Posts import policy',
+    'intro' => 'Here is described the procedure and rules of',
+    'introLink' => 'bulk posts import',
+    'intro1' => 'from an XLSX file into rigmanager.com.ua.',
     'mainRulesTitle' => 'General rules',
-    'mainRules1' => 'Changing the file structure makes automatic import impossible. Those. adding / removing columns / pages, swapping or moving already created cells is highly discouraged.',
+    'mainRules1' => 'Changing the file structure makes automatic import impossible. Thus, adding / removing columns / pages, swapping or moving already created cells is highly discouraged.',
     'mainRules2' => 'Filling out the form is allowed on cells A3:W502',
     'mainRules3' => 'The form is designed to import from 1 to 500 posts.',
     'mainRules4' => 'Each line is a separate post.',

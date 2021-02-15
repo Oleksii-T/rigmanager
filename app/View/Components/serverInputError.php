@@ -6,20 +6,16 @@ use Illuminate\View\Component;
 
 class serverInputError extends Component
 {
-    public $errorName;
     public $inputName;
-    public $errorClass;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($errorName, $inputName, $errorClass)
+    public function __construct($inputName)
     {
-        $this->errorName = $errorName;
         $this->inputName = $inputName;
-        $this->errorClass = $errorClass;
     }
 
     /**

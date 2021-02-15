@@ -2,6 +2,7 @@
 
 return [
 
+    'notSelected' => 'Category not selected',
     'other' => 'Other',
 
     'bit' => 'Drilling bits',

@@ -1,80 +1,121 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
-@section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/tos_pp.css')}}" />
+@section('bc')
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<span itemprop="item"><span itemprop="name">{{__('ui.footerPrivacy')}}</span></span>
+		<meta itemprop="position" content="2" />
+	</li>
 @endsection
 
 @section('content')
-    <article class="article" id="policyWraper">
-        <h1 class="page-header">{{__('ui.footerPrivacy')}}</h1>
-        <div class="p">
-            <h2 class="ph"><span class="pn">1</span> {{__('privacy.P1')}}</h2>
-            <p class="pb"><span class="pn">1.1</span> {{__('privacy.P1.1')}}</p>
-            <p class="pb"><span class="pn">1.2</span> {{__('privacy.P1.2')}}</p>
-            <p class="pb"><span class="pn">1.3</span> {{__('privacy.P1.3')}}</p>
-            <p class="pb"><span class="pn">1.4</span> {{__('privacy.P1.4')}}</p>
-            <p class="pb"><span class="pn">1.5</span> {{__('privacy.P1.5')}}</p>
-        </div>
-        <div class="p">
-            <h2 class="ph"><span class="pn">2</span> {{__('privacy.P2')}}</h2>
-            <p class="pb"><span class="pn">2.1</span> {{__('privacy.P2.1')}}</p>
-            <p class="pb"><span class="pn">2.2</span> {{__('privacy.P2.2')}}</p>
-            <p class="pb"><span class="pn">2.3</span> {{__('privacy.P2.3')}}</p>
-            <p class="pb"><span class="pn">2.4</span> {{__('privacy.P2.4')}}</p>
-        </div>
-        <div class="p">
-            <h2 class="ph"><span class="pn">3</span> {{__('privacy.P3')}}</h2>
-            <p class="pb"><span class="pn">3.1</span> {{__('privacy.P3.1')}}</p>
-            <p class="pb"><span class="pn">3.2</span> {{__('privacy.P3.2')}}</p>
-            <p class="pb"><span class="pn">3.3</span> {{__('privacy.P3.3')}}</p>
-            <p class="pb"><span class="pn">3.4</span> {{__('privacy.P3.4')}}</p>
-        </div>
-        <div class="p">
-            <h2 class="ph"><span class="pn">4</span> {{__('privacy.P4')}}</h2>
-            <p class="pb"><span class="pn">4.1</span> {{__('privacy.P4.1')}}</p>
-            <p class="psb"><span class="pn">4.1.1</span> {{__('privacy.P4.1.1')}}</p>
-            <p class="psb"><span class="pn">4.1.2</span> {{__('privacy.P4.1.2')}}</p>
-            <p class="psb"><span class="pn">4.1.3</span> {{__('privacy.P4.1.3')}}</p>
-            <p class="psb"><span class="pn">4.1.4</span> {{__('privacy.P4.1.4')}}</p>
-            <p class="psb"><span class="pn">4.1.5</span> {{__('privacy.P4.1.5')}}</p>
-            <p class="psb"><span class="pn">4.1.6</span> {{__('privacy.P4.1.6')}}</p>
-            <p class="pb"><span class="pn">4.2</span> {{__('privacy.P4.2')}}</p>
-        </div>
-        <div class="p">
-            <h2 class="ph"><span class="pn">5</span> {{__('privacy.P5')}}</h2>
-            <p class="pb"><span class="pn">5.1</span> {{__('privacy.P5.1')}}</p>
-            <p class="pb"><span class="pn">5.2</span> {{__('privacy.P5.2')}}</p>
-            <p class="pb"><span class="pn">5.3</span> {{__('privacy.P5.3')}}</p>
-            <p class="pb"><span class="pn">5.4</span> {{__('privacy.P5.4')}}</p>
-            <p class="pb"><span class="pn">5.5</span> {{__('privacy.P5.5')}}</p>
-            <p class="pb"><span class="pn">5.6</span> {{__('privacy.P5.6')}}</p>
-            <p class="pb"><span class="pn">5.7</span> {{__('privacy.P5.7')}}</p>
-        </div>
-        <div class="p">
-            <h2 class="ph"><span class="pn">6</span> {{__('privacy.P6')}}</h2>
-            <p class="pb"><span class="pn">6.1</span> {{__('privacy.P6.1')}}</p>
-            <p class="pb"><span class="pn">6.2</span> {{__('privacy.P6.2')}}</p>
-            <p class="pb"><span class="pn">6.3</span> {{__('privacy.P6.3')}}</p>
-            <p class="psb"><span class="pn">6.3.1</span> {{__('privacy.P6.3.1')}}</p>
-            <p class="psb"><span class="pn">6.3.2</span> {{__('privacy.P6.3.2')}}</p>
-            <p class="psb"><span class="pn">6.3.3</span> {{__('privacy.P6.3.3')}}</p>
-            <p class="psb"><span class="pn">6.3.4</span> {{__('privacy.P6.3.4')}}</p>
-            <p class="psb"><span class="pn">6.3.5</span> {{__('privacy.P6.3.5')}}</p>
-            <p class="psb"><span class="pn">6.3.6</span> {{__('privacy.P6.3.6')}}</p>
-            <p class="psb"><span class="pn">6.3.7</span> {{__('privacy.P6.3.7')}}</p>
-            <p class="psb"><span class="pn">6.3.8</span> {{__('privacy.P6.3.8')}}</p>
-        </div>
-        <div class="p">
-            <h2 class="ph"><span class="pn">7</span> {{__('privacy.P7')}}</h2>
-            <p class="pb"><span class="pn">7.1</span> {{__('privacy.P7.1')}}</p>
-        </div>
-        <div class="p">
-            <h2 class="ph"><span class="pn">8</span> {{__('privacy.P8')}}</h2>
-            <p class="pb"><span class="pn">8.1</span> {{__('privacy.P8.1')}}</p>
-            <p class="pb"><span class="pn">8.2</span> {{__('privacy.P8.2')}}</p>
-        </div>
-    </article>
-@endsection
+	<div class="main-block">
+		<x-informations-nav active='pp'/>
 
-@section('scripts')
+		<div class="content">
+			<h1>{{__('ui.footerPrivacy')}}</h1>
+			<div class="content-top-text">{{__('ui.content')}}:
+
+                1. <a href="#pp-p1">{{__('privacy.P1')}}</a>
+                2. <a href="#pp-p2">{{__('privacy.P2')}}</a>
+                3. <a href="#pp-p3">{{__('privacy.P3')}}</a>
+                4. <a href="#pp-p4">{{__('privacy.P4')}}</a>
+                5. <a href="#pp-p5">{{__('privacy.P5')}}</a>
+                6. <a href="#pp-p6">{{__('privacy.P6')}}</a>
+                7. <a href="#pp-p7">{{__('privacy.P7')}}</a>
+                8. <a href="#pp-p8">{{__('privacy.P8')}}</a>
+            </div>
+			<article class="policy">
+				<ol class="policy-list">
+					<li>
+						<a id="pp-p1">{{__('privacy.P1')}}</a>
+						<ol>
+							<li>{{__('privacy.P1.1')}}</li>
+							<li>{{__('privacy.P1.2')}}</li>
+							<li>{{__('privacy.P1.3')}}</li>
+							<li>{{__('privacy.P1.4')}}</li>
+							<li>{{__('privacy.P1.5')}}</li>
+						</ol>
+					</li>
+					<li>
+						<a id="pp-p2">{{__('privacy.P2')}}</a>
+						<ol>
+							<li>{{__('privacy.P2.1')}}</li>
+							<li>{{__('privacy.P2.2')}}</li>
+							<li>{{__('privacy.P2.3')}}</li>
+							<li>{{__('privacy.P2.4')}}</li>
+						</ol>
+					</li>
+					<li>
+						<a id="pp-p3">{{__('privacy.P3')}}</a>
+						<ol>
+							<li>{{__('privacy.P3.1')}}</li>
+							<li>{{__('privacy.P3.2')}}</li>
+							<li>{{__('privacy.P3.3')}}</li>
+							<li>{{__('privacy.P3.4')}}</li>
+						</ol>
+					</li>
+					<li>
+						<a id="pp-p4">{{__('privacy.P4')}}</a>
+						<ol>
+							<li>{{__('privacy.P4.1')}}
+								<ol>
+									<li>{{__('privacy.P4.1.1')}}</li>
+									<li>{{__('privacy.P4.1.2')}}</li>
+									<li>{{__('privacy.P4.1.3')}}</li>
+									<li>{{__('privacy.P4.1.4')}}</li>
+									<li>{{__('privacy.P4.1.5')}}</li>
+									<li>{{__('privacy.P4.1.6')}}</li>
+								</ol>
+							</li>
+							<li>{{__('privacy.P4.2')}}</li>
+						</ol>
+					</li>
+					<li>
+						<a id="pp-p5">{{__('privacy.P5')}}</a>
+						<ol>
+							<li>{{__('privacy.P5.1')}}</li>
+							<li>{{__('privacy.P5.2')}}</li>
+							<li>{{__('privacy.P5.3')}}</li>
+							<li>{{__('privacy.P5.4')}}</li>
+							<li>{{__('privacy.P5.5')}}</li>
+							<li>{{__('privacy.P5.6')}}</li>
+							<li>{{__('privacy.P5.7')}}</li>
+						</ol>
+					</li>
+					<li>
+						<a id="pp-p6">{{__('privacy.P6')}}</a>
+						<ol>
+							<li>{{__('privacy.P6.1')}}</li>
+							<li>{{__('privacy.P6.2')}}</li>
+							<li>{{__('privacy.P6.3')}}
+								<ol>
+									<li>{{__('privacy.P6.3.1')}}</li>
+									<li>{{__('privacy.P6.3.2')}}</li>
+									<li>{{__('privacy.P6.3.3')}}</li>
+									<li>{{__('privacy.P6.3.4')}}</li>
+									<li>{{__('privacy.P6.3.5')}}</li>
+									<li>{{__('privacy.P6.3.6')}}</li>
+									<li>{{__('privacy.P6.3.7')}}</li>
+									<li>{{__('privacy.P6.3.8')}}</li>
+								</ol>
+							</li>
+						</ol>
+					</li>
+					<li>
+						<a id="pp-p7">{{__('privacy.P7')}}</a>
+						<ol>
+							<li>{{__('privacy.P7.1')}}</li>
+						</ol>
+					</li>
+					<li>
+						<a id="pp-p8">{{__('privacy.P8')}}</a>
+						<ol>
+							<li>{{__('privacy.P8.1')}}</li>
+							<li>{{__('privacy.P8.2')}}</li>
+						</ol>
+					</li>
+				</ol>
+			</article>
+		</div>
+	</div>
 @endsection

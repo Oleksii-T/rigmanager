@@ -40,7 +40,6 @@ class UpdateUserRequest extends FormRequest
             'name' => ['required', 'string', 'min:3', 'max:40', Rule::unique('users')->ignore(auth()->user()), new UserName],
             'phone_raw' => ['nullable', 'string', 'size:16', new Phone],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore(auth()->user())],
-            'password' => ['nullable', 'string', 'min:6', 'max:20', new Password],
             'ava' => 'nullable|mimes:jpeg,jpg,jpe,png|max:5000'
         ];
     }

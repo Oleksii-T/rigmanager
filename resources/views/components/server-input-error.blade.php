@@ -1,8 +1,7 @@
-@error( $errorName )
+@error( $inputName )
     <script type="text/javascript">
-        document.getElementById( "{{ $inputName }}" ).className += " {{ $errorClass }}";
+        document.querySelectorAll("select[name={{$inputName}}], input[name={{$inputName}}], textarea[name={{$inputName}}]")[0].className += " form-error";
     </script>
-    <div class="{{ $errorClass }}">
-        <p>{{ $message }}</p>
-    </div>
+    <div class="form-error">{{$message}}</div>
 @enderror
+<div class="{{$inputName}} form-error dz-error hidden"></div>

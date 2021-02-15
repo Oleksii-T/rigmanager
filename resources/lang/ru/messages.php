@@ -10,8 +10,8 @@ return [
     'serverError' => 'Произошла ошибка сервера',
     'accountActivated' => 'Ваша учетная запись была подтверждена!',
 
-    'requirePremium' => 'Требуется Премиум аккаунт',
-    'requirePremium+' => 'Требуется Премиум+ аккаунт',
+    'requireStandart' => 'Требуется «Standart» аккаунт',
+    'requirePro' => 'Требуется «Pro» аккаунт',
 
     'postUploaded' => 'Объявление добавлено успешно!',
     'postUploadedError' => 'При добавлении объявления произошла ошибка.',

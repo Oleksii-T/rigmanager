@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Traits\ImageUploader;
 use App\Http\Controllers\Traits\Subscription;
+use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
@@ -35,6 +36,7 @@ class UserController extends Controller
      */
     public function edit()
     {
+        //dd( auth()->user()->getAuthPassword() );
         $user = auth()->user();
         return view('profile.edit', compact('user'));
     }
@@ -56,15 +58,20 @@ class UserController extends Controller
         $input['whatsapp'] = $request->whatsapp ? 1 : 0;
         $input['url_name'] = transliteration($input['name'], User::all()->pluck('url_name')->toArray());
         $user = auth()->user();
-        if (!$user->is_social) {
-            if ($input['password']) {
-                $input['password'] = Hash::make($input['password']);
-            } else {
-                unset($input['password']);
-            }
-        }
         $user->update($input);
         Session::flash('message-success', __('messages.profileEdited'));
+        return redirect(loc_url(route('profile')));
+    }
+
+    public function updatePass(UpdatePasswordRequest $request)
+    {
+        $input = $request->only('password');
+        $user = auth()->user();
+        if (!$user->is_social) {
+                $input['password'] = Hash::make($input['password']);
+                $user->update($input);
+                Session::flash('message-success', __('messages.profileEdited'));
+        }
         return redirect(loc_url(route('profile')));
     }
 
@@ -108,9 +115,7 @@ class UserController extends Controller
             $query = $query->intersect($searched);
         }
         $posts_list = $query->paginate(env('POSTS_PER_PAGE'));
-        $translated['title'] = 'title_'.App::getLocale();
-        $translated['description'] = 'description_'.App::getLocale();
-        return view('profile.favourites', compact('posts_list', 'translated', 'searchValue'));
+        return view('profile.favourites', compact('posts_list', 'searchValue'));
     }
 
     public function userPosts(Request $request)
@@ -123,9 +128,7 @@ class UserController extends Controller
             $query = auth()->user()->posts()->orderBy('created_at', 'desc');
         }
         $posts_list = $query->paginate(env('POSTS_PER_PAGE'));
-        $translated['title'] = 'title_'.App::getLocale();
-        $translated['description'] = 'description_'.App::getLocale();
-        return view('profile.posts', compact('posts_list', 'translated', 'searchValue'));
+        return view('profile.posts', compact('posts_list', 'searchValue'));
     }
 
     public function addToFav(Request $request)

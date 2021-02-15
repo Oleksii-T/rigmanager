@@ -1,207 +1,80 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
-@section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/register.css')}}" />
+@section('bc')
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <span itemprop="item"><span itemprop="name">{{__('ui.signUp')}}</span></span>
+        <meta itemprop="position" content="2" />
+    </li>
 @endsection
 
 @section('content')
-    <div id="userData">
-        <form id="formSignup" method="POST" action="{{loc_url(route('register'))}}" enctype="multipart/form-data">
-            @csrf
-            <div id="formContent">
-                <nav>
-                    <ul>
-                        <li><a id="loginBtn" href="{{loc_url(route('login'))}}">{{__('ui.signIn')}}</a></li>
-                        <li><a id="registerBtn" href="{{loc_url(route('register'))}}">{{__('ui.signUp')}}</a></li>
-                    </ul>
-                </nav>
-                <p>{{__('ui.signUp')}}</p>
-                <table>
-                    <tr id="avaEdit">
-                        <td class="nameOfField"><p>{{__('ui.avatar')}}</p></td>
-                        <td class="valueOfField">
-                            <label for="inputAva">
-                                <div id="avaPreview"><img src="{{ asset('icons/emptyUserIcon.svg') }}" alt="{{__('alt.keyword')}}"></div>
-                            </label>
-                            <input id="inputAva" type="file" name="ava">
-                            @error('ava')
-                                <div class="error" id="fileError">
-                                    <p>{{ $message }}</p>
-                                </div>
-                            @enderror
-                        </td>
-                    </tr>
-
-                    <tr id="nameShow">
-                        <td class="nameOfField"><p>{{__('ui.userName')}}<span class="required-input">*</span></p></td>
-                        <td class="valueOfField">
-                            <input class="def-input" id="inputName" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                            <x-server-input-error errorName='name' inputName='inputName' errorClass='error'/>
-                            <div class="help"><p><i>{{__('ui.userNameHelp')}}</i></p></div>
-                        </td>
-                    </tr>
-
-                    <tr id="phoneShow">
-                        <td class="nameOfField"><p>{{__('ui.phone')}}</p></td>
-                        <td class="valueOfField">
-                            <div class="phone-wraper">
-                                <div class="phone-prefix">
-                                    <img class="country-flag" src="{{asset('icons/ukraineIcon.svg')}}" alt="{{__('alt.keyword')}}">
-                                    <span class="country-code">+38</span>
-                                </div>
-                                <input class="def-input format-phone" id="inputPhone" name="phone_raw" type="text" placeholder="0 (00) 000 00 00" value="{{ old('phone_raw')}}" autocomplete="phone" autofocus/>
-                            </div>
-                            <x-server-input-error errorName='phone_raw' inputName='inputPhone' errorClass='error'/>
-                            <div class="mediaCheckBoxes">
-                                <div>
-                                    <input type="checkbox" id="viberInput" name="viber" value="1" {{ old('viber') ? 'checked' : '' }}>
-                                    <label for="viberInput">
-                                        Viber
-                                        <img src="{{ asset('icons/viberIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="telegramInput" name="telegram" value="1" {{ old('telegram') ? 'checked' : '' }}>
-                                    <label for="telegramInput">
-                                        Telegram
-                                        <img src="{{ asset('icons/telegramIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="whatsappInput" name="whatsapp" value="1" {{ old('whatsapp') ? 'checked' : '' }}>
-                                    <label for="whatsappInput">
-                                        WhatsApp
-                                        <img src="{{ asset('icons/whatsappIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                                    </label>
+    <div class="reg">
+        <div class="reg-content">
+            <h1>{{__('ui.signUp')}}</h1>
+            <form id="form-signup" method="POST" action="{{loc_url(route('register'))}}">
+                @csrf
+                <fieldset>
+                    <div class="reg-wrap">
+                        <div class="reg-col">
+                            <label class="label">{{__('ui.login')}} <span class="orange">*</span></label>
+                            <input class="input" type="text" name="email" value="{{old('email')}}" required autocomplete="email" placeholder="mail.mail@mail.com">
+                            <x-server-input-error inputName='email'/>
+                            <div class="form-note">{{__('ui.loginHelp')}}</div>
+                        </div>
+                        <div class="reg-col">
+                            <label class="label">{{__('ui.phone')}}</label>
+                            <input class="input format-phone" type="text" name="phone_raw" value="{{old('phone_raw')}}" autocomplete="phone" placeholder="+38 ( _ _ _ ) _ _ _ - _ _ - _ _">
+                            <x-server-input-error inputName='phone_raw'/>
+                            <div class="form-note">{{__('ui.phoneHelp')}}</div>
+                        </div>
+                        <div class="reg-col">
+                            <label class="label">{{__('ui.userName')}} <span class="orange">*</span></label>
+                            <input class="input" type="text" name="name" value="{{old('name')}}" required autocomplete="name" placeholder="{{__('ui.userName')}}">
+                            <x-server-input-error inputName='name'/>
+                            <div class="form-note">{{__('ui.userNameHelp')}}</div>
+                        </div>
+                    </div>
+                    <div class="reg-wrap">
+                        <div class="reg-col">
+                            <label class="label">{{__('ui.password')}} <span class="orange">*</span></label>
+                            <input class="input" id="password" type="password" name="password" required autocomplete="new-password" placeholder="{{__('ui.password')}}">
+                            <x-server-input-error inputName='password'/>
+                            <div class="form-note">{{__('ui.passwordHelp')}}</div>
+                        </div>
+                        <div class="reg-col">
+                            <label class="label">{{__('ui.rePass')}} <span class="orange">*</span></label>
+                            <input class="input" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="{{__('ui.rePass')}}">
+                            <x-server-input-error inputName='password_confirmation'/>
+                            <div class="form-note">{{__('ui.rePassHelp')}}</div>
+                        </div>
+                        <div class="reg-col">
+                            <div class="check-block">
+                                <div class="check-item">
+                                    <input type="checkbox" class="check-input" id="ch1" name="agreement">
+                                    <label for="ch1" class="check-label">{{__('ui.iAgree')}} «<a href="{{loc_url(route('terms'))}}">{{__('ui.iAgreeLink')}}</a>»</label>
                                 </div>
                             </div>
-                            <div class="help"><p><i>{{__('ui.phoneHelp')}}</i></p></div>
-                        </td>
-                    </tr>
-
-                    <tr id="emailShow">
-                        <td class="nameOfField"><p>{{__('ui.login')}}<span class="required-input">*</span></p></td>
-                        <td class="valueOfField">
-                            <input class="def-input" id="inputEmail" type="email" name="email" value="{{ old('email') }}" required autocomplete="email">
-                            <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
-                            <div class="help"><p><i>{{__('ui.loginHelp')}}</i></p></div>
-                        </td>
-                    </tr>
-
-                    <tr id="passShow">
-                        <td class="nameOfField"><p>{{__('ui.password')}}<span class="required-input">*</span></p></td>
-                        <td class="valueOfField">
-                            <input class="def-input" id="inputPassword" type="password" name="password" required autocomplete="new-password">
-                            <x-server-input-error errorName='password' inputName='inputPassword' errorClass='error'/>
-                            <div class="help"><p><i>{{__('ui.passwordHelp')}}</i></p></div>
-                        </td>
-                    </tr>
-
-                    <tr id="agreementShow">
-                        <td>
-                            <label class="cb-container" for="inputAgreement">{{__('ui.iAgree')}} <a href="{{loc_url(route('terms'))}}">{{__('ui.iAgreeLink')}}</a>
-                                <input id="inputAgreement" type="checkbox" name="agreement" value="1">
-                                <span class="cb-checkmark"></span>
-                            </label>
-                            <x-server-input-error errorName='agreement' inputName='inputAgreement' errorClass='error'/>
-                        </td>
-                    </tr>
-                </table>
+                            <x-server-input-error inputName='agreement'/>
+                            <button class="button">{{__('ui.makeSignUp')}}</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="reg-side">
+            <div class="reg-social-title">{{__('ui.socialSignInTitle')}}</div>
+            <div class="reg-social-text">{{__('ui.socialSignIn')}}</div>
+            <div class="social-buttons">
+                <a href="{{route('login.social', ['social'=>'facebook'])}}" class="social-fb"><img src="{{asset('icons/fb.svg')}}" alt=""></a>
+                <a href="{{route('login.social', ['social'=>'google'])}}" class="social-google"><img src="{{asset('icons/google.svg')}}" alt=""></a>
             </div>
-            <div>
-                <button class="def-button submit-button" type="submit">{{__('ui.signUp')}}</button>
-                <div class="social">
-                    <a class="social-link google-link" href="{{route('login.social', ['social'=>'google'])}}">
-                        <img class="social-logo google-logo" src="{{ asset('icons/googleIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                        <span class="social-text google-text">{{__('ui.socialSignIn')}} Google</span>
-                    </a>
-                    <a class="social-link fb-link" href="{{route('login.social', ['social'=>'facebook'])}}">
-                        <img class="social-logo fb-logo" src="{{ asset('icons/facebookIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                        <span class="social-text fb-text">{{__('ui.socialSignIn')}} Facebook</span>
-                    </a>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/hideShowPassword.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-
-            // formate phone field
-            $('.format-phone').focusin(function(){
-                var newVal = phoneFormater( $(this).val(), false );
-                $(this).val(newVal);
-            });
-
-            // formate phone field
-            $('.format-phone').focusout(function(){
-                var newVal = phoneFormater( $(this).val(), false );
-                var newVal = phoneFormater( newVal, true );
-                $(this).val(newVal);
-            });
-
-            // formate phone field helper
-            function phoneFormater(phone, mode) {
-                if (phone) {
-                    if (mode) {
-                        for (let i = phone.length-1; i >= 0; i--) {
-                            if (i==1) {
-                                phone = phone.slice(0, i) + ' (' + phone.slice(i);
-                            } else if (i==3) {
-                                phone = phone.slice(0, i) + ') ' + phone.slice(i);
-                            }
-                            else if (i==8 || i==6) {
-                                phone = phone.slice(0, i) + ' ' + phone.slice(i);
-                            }
-                        }
-                        return phone;
-                    } else {
-                        return phone.replace(/[^0-9]+/g,"").substring(0,10);
-                    }
-                }
-            };
-
-            //make cursor wait
-            function makeCursorWait() {
-                document.body.style.cursor = "wait"
-                $('button').css('cursor', 'inherit');
-                $('input').css('cursor', 'inherit');
-                $('label').css('cursor', 'inherit');
-                $('a').css('cursor', 'inherit');
-                $('img').css('cursor', 'inherit');
-                return false;
-            }
-
-            //show image (help func)
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#avaPreview img').attr('src', e.target.result);
-                    }
-                    reader.readAsDataURL(input.files[0]); // convert to base64 string
-                }
-            }
-
-            //if user submits image, preview it
-            $("#inputAva").change(function() {
-                readURL(this);
-            });
-
-            // change default error-lable insertion location
-            $.validator.setDefaults({
-                errorPlacement: function(error, element) {
-                    if (element.prop('type') === 'password') {
-                        error.insertAfter(element.parent());
-                    } else {
-                        error.insertAfter(element);
-                    }
-                }
-            });
 
             // add regex validation of name
             $.validator.addMethod('validName',
@@ -229,8 +102,19 @@
                 '{{__("validation.password")}}'
             );
 
+            // change default error-lable insertion location
+            $.validator.setDefaults({
+                errorPlacement: function(error, element) {
+                    if (element.prop('name') === 'agreement') {
+                        error.insertAfter(element.parent().parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+            });
+
             //Validate the form
-            $('#formSignup').validate({
+            $('#form-signup').validate({
                 rules: {
                     name: {
                         required: true,
@@ -250,6 +134,10 @@
                         minlength: 6,
                         validPassword: true,
                         maxlength: 20
+                    },
+                    password_confirmation: {
+                        required: true,
+                        equalTo: "#password"
                     },
                     agreement: {
                         required: true
@@ -273,25 +161,16 @@
                         minlength: '{{ __("validation.min.string", ["min" => 6]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 20]) }}'
                     },
+                    password_confirmation: {
+                        required: '{{ __("validation.required") }}',
+                        equalTo: '{{ __("validation.passEqual") }}'
+                    },
                     agreement: {
                         required: '{{ __("validation.agreement") }}'
                     }
                 },
-                submitHandler: function (form) {
-                    document.body.style.cursor = "wait"
-                    $('button').css('cursor', 'inherit');
-                    $('input').css('cursor', 'inherit');
-                    $('label').css('cursor', 'inherit');
-                    $('a').css('cursor', 'inherit');
-                    $('img').css('cursor', 'inherit');
-                    form.submit(); // submit the form
-                }
-            });
-
-            //Show password toggle button
-            $('#inputPassword').hideShowPassword({
-                show: false,
-                innerToggle: 'focus'
+                errorElement: 'div',
+				errorClass: 'form-error'
             });
         });
     </script>

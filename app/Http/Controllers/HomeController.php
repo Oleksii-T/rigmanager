@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\App;
 use App\Mail\fromUserNotification;
 use Illuminate\Http\Request;
+use App\Partner;
 use App\Post;
 
 class HomeController extends Controller
@@ -31,8 +32,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $translated['title'] = 'title_'.App::getLocale();
-        $translated['description'] = 'description_'.App::getLocale();
         $new_posts = Post::where('is_active', 1)->orderBy('created_at', 'desc')->take(7)->get();
         
         $urgent_posts = Post::where(['is_active'=>1,'is_urgent'=>1])->orderBy('created_at', 'desc')->get();
@@ -40,12 +39,12 @@ class HomeController extends Controller
         if ($urgent_posts->isNotEmpty() && $urgent_posts->count()>4) {
             $urgent_posts = $urgent_posts->random(4);
         }
-
-        return view('home.home', compact('new_posts', 'translated', 'urgent_posts'));
-    }
-
-    static public function test() {
-        return 'this is from controller!';
+        $partners = Partner::where('is_on_home', true)->take(7)->get();
+        $diff = 7 - $partners->count();
+        for ($i=$diff; $i > 0; $i--) {
+            $partners[] = false;
+        }
+        return view('home.home', compact('new_posts', 'urgent_posts', 'partners'));
     }
 
     public function faq()
@@ -72,9 +71,12 @@ class HomeController extends Controller
 
     public function terms()
     {
-        $locale = App::getLocale();
-        $view = 'home.terms.'.$locale;
-        return view($view);
+        return view('home.terms');
+    }
+
+    public function catalog()
+    {
+        return view('home.catalog');
     }
 
     public function privacy()
@@ -92,9 +94,9 @@ class HomeController extends Controller
         return view('home.import_rules');
     }
 
-    public function news()
+    public function blog()
     {
-        return view('home.news');
+        return view('home.blog');
     }
 
     public function aboutUs()

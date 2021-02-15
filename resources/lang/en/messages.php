@@ -10,8 +10,8 @@ return [
     'serverError' => 'Server error occurred',
     'accountActivated' => 'Your account has been verified!',
 
-    'requirePremium' => 'The Premium account status is required',
-    'requirePremium+' => 'The Premium+ account status is required',
+    'requireStandart' => 'The «Standart» account is required',
+    'requirePro' => 'The «Pro» account is required',
 
     'postUploaded' => 'Post has been published successfully!',
     'postUploadedError' => 'Error occured while publishing the Post.',

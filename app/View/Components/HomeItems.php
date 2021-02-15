@@ -8,17 +8,15 @@ class HomeItems extends Component
 {
 
     public $posts;
-    public $translated;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($posts, $translated)
+    public function __construct($posts)
     {
         $this->posts = $posts;
-        $this->translated = $translated;
     }
 
     /**

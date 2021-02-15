@@ -8,19 +8,17 @@ class Items extends Component
 {
 
     public $posts;
-    public $button;
-    public $translated;
+    public $type;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($posts, $button, $translated)
+    public function __construct($posts, $type)
     {
         $this->posts = $posts;
-        $this->button = $button;
-        $this->translated = $translated;
+        $this->type = $type;
     }
 
     /**

@@ -10,8 +10,8 @@ return [
     'serverError' => 'Сталася помилка сервера',
     'accountActivated' => 'Ваш обліковий запис був підтверджений!',
 
-    'requirePremium' => 'Потрібен Преміум аккаунт',
-    'requirePremium+' => 'Потрібен Преміум+ аккаунт',
+    'requireStandart' => 'Потрібен «Standart» аккаунт',
+    'requirePro' => 'Потрібен «Pro» аккаунт',
 
     'postUploaded' => 'Оголошення додано успішно!',
     'postUploadedError' => 'При публікації оголошення виникла помилка.',

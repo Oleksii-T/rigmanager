@@ -45,23 +45,27 @@ class PostRequest extends FormRequest
             'images.*' => 'nullable|image|mimes:jpeg,jpg,jpe,png|max:5000',
             'images' => 'max:5',
         ];
-        if ( !array_key_exists('uk', $this->request->get('title_translate')) ) {
-            $rules['title_uk'] = $titleRule;
+        if ( $this->request->get('title_translate') ) {
+            if ( !array_key_exists('uk', $this->request->get('title_translate')) ) {
+                $rules['title_uk'] = $titleRule;
+            }
+            if ( !array_key_exists('ru', $this->request->get('title_translate')) ) {
+                $rules['title_ru'] = $titleRule;
+            }
+            if ( !array_key_exists('en', $this->request->get('title_translate')) ) {
+                $rules['title_en'] = $titleRule;
+            }
         }
-        if ( !array_key_exists('ru', $this->request->get('title_translate')) ) {
-            $rules['title_ru'] = $titleRule;
-        }
-        if ( !array_key_exists('en', $this->request->get('title_translate')) ) {
-            $rules['title_en'] = $titleRule;
-        }
-        if ( !array_key_exists('uk', $this->request->get('desc_translate')) ) {
-            $rules['description_uk'] = $descRule;
-        }
-        if ( !array_key_exists('ru', $this->request->get('desc_translate')) ) {
-            $rules['description_ru'] = $descRule;
-        }
-        if ( !array_key_exists('en', $this->request->get('desc_translate')) ) {
-            $rules['description_en'] = $descRule;
+        if ( $this->request->get('desc_translate') ) {
+            if ( !array_key_exists('uk', $this->request->get('desc_translate')) ) {
+                $rules['description_uk'] = $descRule;
+            }
+            if ( !array_key_exists('ru', $this->request->get('desc_translate')) ) {
+                $rules['description_ru'] = $descRule;
+            }
+            if ( !array_key_exists('en', $this->request->get('desc_translate')) ) {
+                $rules['description_en'] = $descRule;
+            }
         }
         return $rules;
     }

@@ -1,7 +1,9 @@
-<p class="filtered-items-no" hidden>{{$posts->total()}}</p>
+<span class="filtered-amount" hidden>{{$posts->total()}}</span>
 
-<x-search-items :p="$posts" :t="$translated"/>
+<div class="searched-content catalog">
+    <x-items :posts="$posts" type='list'/>
+</div>
 
-<div class="pagination-field filter-pagination">
+<div class="searched-content pagination-field filter-pagination">
     {{ $posts->links() }}
 </div>

@@ -40,9 +40,7 @@ class FiltersController extends Controller
             }
         }
         $posts = $posts->paginate(env('POSTS_PER_PAGE'));
-        $translated['title'] = 'title_'.App::getLocale();
-        $translated['description'] = 'description_'.App::getLocale();
-        return view('components.filtered-items', ['posts'=>$posts, 'translated'=>$translated]);
+        return view('components.filtered-items', ['posts'=>$posts]);
     }
 
     private function getPostsByIds($postsIds) {

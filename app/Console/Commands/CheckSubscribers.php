@@ -62,7 +62,8 @@ class CheckSubscribers extends Command
                         ],
                         'payment' => $sub->payment,
                         'role' => $sub->role,
-                        'comment' => 'Закінчився автоматично'
+                        'number' => $sub->number,
+                        'issued' => $sub->issued
                     ];
                     $sub->activated_at = null;
                     $sub->expire_at = null;

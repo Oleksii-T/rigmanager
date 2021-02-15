@@ -71,7 +71,7 @@ class Post extends Model
             if ( file_exists($image) ) {
                 return (asset($image));
             } else {
-                return (asset('icons/noImageIcon.svg'));
+                return (asset('icons/noImage.svg'));
             }
         } else {
             return $this->images()->where('version', 'optimized')->first()->url;
@@ -282,6 +282,9 @@ class Post extends Model
 
     public function getCostReadableAttribute()
     {
+        if (!$this->cost) {
+            return '';
+        }
         $cost = strval($this->cost);
         $coins = strstr($cost, '.');
         if (!$coins) {

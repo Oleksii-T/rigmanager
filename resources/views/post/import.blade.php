@@ -1,50 +1,43 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
-@section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/post_import.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('css/components/post_creation_types.css')}}" />
+@section('bc')
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <span itemprop="item"><span itemprop="name">{{__('ui.postImport')}}</span></span>
+        <meta itemprop="position" content="2" />
+    </li>
 @endsection
 
 @section('content')
-    <div class="master-wraper">
-        <h1 class="page-title">{{__('ui.postImport')}}</h1>
-        <div class="page-content">
-            <x-post-creation-types/>
-            <div class="content-body">
-                <h2 class="body-title">{{__('ui.postImportTitle')}}</h2>
-                @if (Session::has('import-error'))
-                    <div class="import-errors">
-                        <p>{{Session::get('import-error')}}
-
-                        {{__('ui.importErrorAfter')}}</p>
-                    </div>
-                @endif
-                <div class="content-btns">
-                    <div class="input-field">
-                        <label class="btn-label" for="download-import">{{__('ui.postImportDownload')}}:</label>
-                        <a id="download-import" class="def-button submit-button" href="{{route('download.post.import')}}">{{__('ui.download')}}</a>
-                    </div>
-                    <div class="input-field">
-                        <form id="import-form" action="{{loc_url(route('import.upload'))}}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <p class="btn-label">{{__('ui.postImportUpload')}}:</p>
-                            <div class="choose-file-field">
-                                <label class="def-button" for="input-file">{{__('ui.chooseFile')}}</label>
-                                <p class="file-name hidden"></p>
-                                <input class="hidden" id="input-file" type="file" name="import-file">
+    <div class="main-block">
+        <x-post-create-nav active='import'/>
+        <div class="content">
+            <h1>{{__('ui.postImport')}}</h1>
+            <div class="import">
+                <div class="import-top">
+                    <div class="import-top-text">{{__('ui.postImportTitle')}}</div>
+                    <form id="form-import" action="{{loc_url(route('import.upload'))}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <fieldset>
+                            <label class="label">{{__('ui.postImportUpload')}} <span class="orange">*</span></label>
+                            <div class="upload-zone">
+                                <div class="dz-message"><span>{{__('ui.dzDesc')}}</span></div>
                             </div>
-                            <button type="submit" class="def-button submit-button submit-import hidden">{{__('ui.upload')}}</button>
-                        </form>
+                            <div class="form-note-import hidden">{{__('ui.fileImporting')}}</div>
+                            <div class="form-error"></div>
+                            <div class="form-button">
+                                <button class="button" type="submit">{{__('ui.publish')}}</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="import-bottom">
+                    <div class="import-bottom-title">{{__('ui.importHow?')}}</div>
+                    <div class="import-bottom-text">
+                        <p>{{__('ui.postImportHow')}}</p>
+                        <p>{{__('ui.postImportRules')}} <a href="{{loc_url(route('import.rules'))}}">{{__('postImportRules.title')}}</a>.</p>
                     </div>
-                </div>
-                <div class="import-loading hidden">
-                    <p>{{__('ui.fileImporting')}}</p>
-                </div>
-                <div class="content-text">
-                    <p class="body-intro">{{__('ui.postImportIntro')}}</p>
-                    <p class="body-text">{{__('ui.postImportHow')}}</p>
-                    <a class="learn-rules" href="{{loc_url(route('import.rules'))}}">{{__('ui.postImportRules')}}</a>
-                    <p class="body-last">{{__('ui.postImportWarning')}}</p>
+                    <a href="{{route('download.post.import')}}" class="button button-blue">{{__('ui.postImportDownload')}}</a>
+                    <div class="warning">{{__('ui.postImportWarning')}}</div>
                 </div>
             </div>
         </div>
@@ -53,20 +46,69 @@
 
 @section('scripts')
     <script type="text/javascript">
+        $(document).ready(function(){
 
-        $(document).ready(function() {
-            $('.submit-import').click(function(){
-                $('.import-loading').removeClass('hidden');
+            // create file upload form (dropzone)
+            $('.upload-zone').dropzone({
+                url: "{{loc_url(route('import.upload'))}}",
+                paramName: "import-file",
+                uploadMultiple: false,
+                parallelUploads: 5,
+                maxFilesize: 1, // MB
+                addRemoveLinks: true,
+                timeout: 60000, //ms
+                maxFiles: 1,
+                acceptedFiles: '.xlsx',
+                autoProcessQueue: false,
+                dictDefaultMessage: "",
+                dictFileTooBig: "{{__('ui.dzBigFile')}}",
+                dictInvalidFileType: "{{__('ui.dzInvalidMimeXlsx')}}",
+                dictResponseError: "{{__('ui.dzServerError')}}",
+                dictUploadCanceled: "{{__('ui.dzUploadCanceled')}}",
+                dictRemoveFile: "{{__('ui.dzUploadRemoveLink')}}",
+                dictMaxFilesExceeded: "{{__('ui.dzTooFewFiles')}}",
+                init: function () {
+                    var myDropzone = this;
+
+                    $("#form-import button[type=submit]").click(function (e) {
+                        e.preventDefault();
+                        $('#form-import .form-error').empty();
+                        if (myDropzone.getQueuedFiles().length < 1) {
+                            $('#form-import .form-error').text("{{__('ui.importFileRequireError')}}");
+                        } else {
+                            $(this).addClass('loading');
+                            $('.form-note-import').removeClass('hidden');
+                            myDropzone.processQueue();
+                        }
+                    });
+
+                    this.on('sending', function(file, xhr, formData) {
+                        formData.append("_token", "{{ csrf_token() }}");
+                    });
+
+                    this.on("success", function(){
+                        $("#form-import button[type=submit]").removeClass('loading');
+                        $('.form-note-import').addClass('hidden');
+                        showPopUpMassage(true, "{{ __('messages.postImportSuccess') }}");
+                        myDropzone.removeAllFiles();
+                    });
+
+                    this.on("error", function(file, errorMessage, xhr){
+                        $("#form-import button[type=submit]").removeClass('loading');
+                        $('.form-note-import').addClass('hidden');
+                        myDropzone.removeAllFiles();
+                        if (typeof errorMessage == 'string') {
+                            $('#form-import .form-error').text(errorMessage);
+                        }
+                        else if (errorMessage['message']) {
+                            $('#form-import .form-error').text(errorMessage['message']);
+                        } else {
+                            $('#form-import .form-error').text("{{ __('messages.error') }}");
+                        }
+                    });
+                },
             });
-            $('#input-file').change(function(){
-                var file = $(this)[0].files[0];
-                if (file.name) {
-                    $('.file-name').html(file.name);
-                    $('.file-name').removeClass('hidden');
-                    $('.submit-import').removeClass('hidden');
-                }
-            });
+            
         });
-
     </script>
 @endsection

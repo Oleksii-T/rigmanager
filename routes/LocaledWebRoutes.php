@@ -14,10 +14,11 @@ Route::get ('plans',                'HomeController@plans')     ->name('plans');
 Route::get ('terms',                'HomeController@terms')     ->name('terms');
 Route::get ('privacy',              'HomeController@privacy')   ->name('privacy');
 Route::get ('sitemap',              'HomeController@sitemap')   ->name('site.map');
-Route::get ('about-us',             'HomeController@news')      ->name('news');
-Route::get ('news',                 'HomeController@aboutUs')   ->name('about.us');
-Route::get ('posts/import/rules',   'HomeController@import')    ->name('import.rules');
+Route::get ('blog',                 'HomeController@blog')      ->name('blog');
+Route::get ('about-us',             'HomeController@aboutUs')   ->name('about.us');
+Route::get ('import-rules',         'HomeController@import')    ->name('import.rules');
 Route::get ('contact-us',           'HomeController@contacts')  ->name('contacts');
+Route::get ('catalog',              'HomeController@catalog')   ->name('catalog');
 Route::post('contacting',           'HomeController@contactUs') ->name('contact.us');
 
 //post route
@@ -48,7 +49,7 @@ Route::middleware('verified')->group(function () {
     // posts routes
     Route::middleware('premium.plus')->group(function () {
         Route::get      ('posts/import',         'PostController@import')        ->name('post.import');
-        Route::post     ('posts/import',         'PostController@importStore')   ->name('import.upload');
+        Route::post     ('posts/import/upload',  'PostController@importStore')   ->name('import.upload');
     });
     Route::middleware('premium')->group(function () {
         Route::get      ('fake/store',          'PostController@storeFake')     ->name('posts.store.fake');
@@ -63,6 +64,7 @@ Route::middleware('verified')->group(function () {
     Route::get      ('profile/posts',           'UserController@userPosts')         ->name('profile.posts');
     Route::get      ('profile/subscription',    'UserController@subscription')      ->name('profile.subscription');
     Route::patch    ('profile/update',          'UserController@update')            ->name('profile.update');
+    Route::patch    ('profile/update/pass',     'UserController@updatePass')        ->name('profile.update.pass');
     
     // mailer routes
     Route::delete   ('profile/mailer/destroy',      'MailerController@destroy')     ->name('mailer.destroy');

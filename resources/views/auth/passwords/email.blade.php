@@ -1,65 +1,36 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
-@section('styles')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/password_forget.css')}}" />
+@section('bc')
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <span itemprop="item"><span itemprop="name">{{__('ui.passReset')}}</span></span>
+        <meta itemprop="position" content="2" />
+    </li>
 @endsection
 
 @section('content')
-    <div class="pass-forget-wraper">
-        <div class="pass-forget-content">
-            <div class="pass-forget-header">
-                <p>{{ __('ui.passReset') }}</p>
-            </div>
-            <div class="pass-forget-body">
-                @if (session('status'))
-                    <div class="pass-forget-alert" role="alert">
-                        <p>{{ session('status') }}</p>
-                    </div>
-                @endif
-                <div class="pass-forget-guide">
-                    <p>{{__('ui.passForgetGuide1')}}</p>
-                    <p>{{__('ui.passForgetGuide2')}}</p>
-                    <p>{{__('ui.passForgetGuide3')}}</p>
-                    <p>{{__('ui.passForgetGuide4')}}</p>
+    <div class="login">
+        <div class="login-title">{{__('ui.passReset')}}</div>
+        <form id="form-pass-reset" method="POST" action="{{loc_url(route('password.email'))}}">
+            @csrf
+            <fieldset>
+                <input class="input" type="email" name="email" value="{{old('email')}}" required autocomplete="email" autofocus placeholder="{{__('ui.login')}}">
+                <x-server-input-error inputName='email'/>
+                <div class="form-note">{{__('ui.passResetEmailHelp')}}</div>
+                <button class="button">{{__('ui.sendPassResetLink')}}</button>
+                <div class="login-bottom">
+                    <a href="{{loc_url(route('login'))}}">{{__('ui.backToSignIn')}}</a>
                 </div>
-                <form class="pass-forget-form" id="pass-forget-email-form" method="POST" action="{{ loc_url(route('password.email')) }}">
-                    @csrf
-                    <div>
-                        <label for="inputEmail">{{ __('E-Mail Address') }}</label>
-                        <div class="pass-forget-input-field">
-                            <input class="pass-forget-input" id="inputEmail" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                            <x-server-input-error errorName='email' inputName='inputEmail' errorClass='error'/>
-                        </div>
-                    </div>
-                    <div>
-                        <button type="submit" class="pass-forget-submit def-button">{{ __('ui.submit') }}</button>
-                    </div>
-                </form>
-                <div class="social">
-                    <a class="social-link google-link" href="{{route('login.social', ['social'=>'google'])}}">
-                        <img class="social-logo google-logo" src="{{ asset('icons/googleIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                        <span class="social-text google-text">{{__('ui.socialSignIn')}} Google</span>
-                    </a>
-                    <a class="social-link fb-link" href="{{route('login.social', ['social'=>'facebook'])}}">
-                        <img class="social-logo fb-logo" src="{{ asset('icons/facebookIcon.svg') }}" alt="{{__('alt.keyword')}}">
-                        <span class="social-text fb-text">{{__('ui.socialSignIn')}} Facebook</span>
-                    </a>
-                </div>
-                <div class="pass-forget-misc">
-                    <a class="pass-forget-back" href="{{route('login')}}">{{__('ui.backToLogin')}}</a>
-                </div>
-            </div>
-        </div>
+            </fieldset>
+        </form>
     </div>
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
 
             //Validate the form
-            $('#pass-forget-email-form').validate({
+            $('#form-pass-reset').validate({
                 rules: {
                     email: {
                         required: true,
@@ -75,7 +46,9 @@
                         email: '{{ __("validation.email") }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 254]) }}'
                     }
-                }
+                },
+                errorElement: 'div',
+				errorClass: 'form-error'
             });
 
         });

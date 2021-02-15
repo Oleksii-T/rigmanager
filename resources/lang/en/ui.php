@@ -6,13 +6,14 @@ return [
     'workInProgress' => 'Work In Progress',
     'development' => 'The site is at a late development stage. Coming soon.',
 
-    'mobileDev' => 'The mobile version is in progress.',
+    'tagsCodesNotReady' => 'The list of categories is not ready. See list of categories in import file.',
 
     // no script massage
     'noscript' => 'Javascript is disabled in your browser.
         It may serously reflect the web site functionality.',
 
     //maintenance mode
+    'maintenance' => 'Maintenance',
     'maintenanceHeader' => 'Sorry for the inconvenience',
     'maintenanceText' => 'The website is temporarily unavailable
     We will be available',
@@ -20,6 +21,7 @@ return [
     'maintenanceSoon' => 'soon',
 
     //home massages
+    'home' => 'Home',
     'cabinet' => 'Cabinet',
     'introduction' => 'Specialized platform for cooperation
         of oil and gas companies of Ukraine',
@@ -43,8 +45,10 @@ return [
         posts',
     'epilogue1' => 'Online announcements of any type and complexity in Oil&Gas sphere. Sale, purchase, services. On the rigmanager platform you can quickly and conveniently publish your offers or easily find an announcement you are interested in!',
     'epilogue2' => 'Market analysis, sales planning, simplification of the process and increase of the level of purchases/sales, control of relevance of purchases and timely supply - all this on the rigmanager platform!',
+    'info' => 'Information',
 
     // jeneral massages
+    'error' => 'Error',
     'delete' => 'Delete',
     'no' => 'No',
     'yes' => 'Yes',
@@ -64,14 +68,23 @@ return [
     'chooseFile' => 'Choose File',
     'post' => 'Post',
     'catalog' => 'Catalog',
+    'catalogHelp' => 'The full list of equipment and service categories for fast navigation and searching of posts.',
     'add' => 'Add',
     'reset' => 'Reset',
+    'content' => 'Content',
+    'saveChanges' => 'Save changes',
+    'publish' => 'Publish',
     
     // auth massages
+    'auth' => 'Authorization',
     'signIn' => 'Sign in',
-    'socialSignIn' => 'Sign in via',
+    'socialSignInTitle' => 'Are you on social media?',
+    'socialSignIn' => 'Register on the site using social networks. ',
     'signOut' => 'Sign out',
+    'notSignUp?' => 'Are you not registered?',
     'signUp' => 'Sign up',
+    'makeSignUp' => 'Sign up',
+    'registerVerify' => 'Registration completion ',
     'or' => 'Or',
     'login' => 'Login',
     'remember me' => 'remember me',
@@ -82,10 +95,10 @@ return [
     'backToLogin' => 'Back to Login Page',
     'socialError' => 'The error occurred while logging in',
     'passReset' => 'Password reset',
-    'passForgetGuide1' => 'Here you can reset your password.',
-    'passForgetGuide2' => 'Please enter your login (e-mail) here, and click submit.',
-    'passForgetGuide3' => 'You will receive the mail soon, where You can follow the link to set new account password.',
-    'passForgetGuide4' => 'Please, dont forget to check the spam folder.',
+    'passResetEmailHelp' => 'Please enter your login (e-mail) here to get the "Password reset" link to your email.
+        Don\'t forget to check the spam folder.',
+    'sendPassResetLink' => 'Send "Password reset" link',
+    'backToSignIn' => 'Return to sign in',
 
     //home massages
     'home' => 'Home',
@@ -106,13 +119,20 @@ return [
 
     // profile massages
     'profile' => 'Profle',
+    'profileEditing' => 'Profle editing',
     'loginHelp' => 'Login should be the email address.',
     'password' => 'Password',
     'passwordHelp' => 'Minimum 6 symbols.
         Minimum one char and one digit.',
+    'curPass' => 'Current password',
+    'newPass' => 'New password',
+    'reNewPass' => 'Repeat new password',
+    'rePass' => 'Repeat the password',
+    'rePassHelp' => 'Check yourself, repeat the password again.',
     'passwordEditHelp' => 'Minimum 6 symbols.
         Minimum one char and one digit.
         Leave empty to keep old password.',
+    'changePassword' => 'Change password',
     'avatar' => 'Profile picture',
     'userName' => 'Name',
     'userNameHelp' => 'Your name will be public within the web site.
@@ -215,6 +235,8 @@ return [
     'addPostSe' => 'Add post (Service)',
     'postCreate' => 'Post creation',
     'postSettings' => 'Post settings',
+    'showOptionals' => 'Show optional fields',
+    'hideOptionals' => 'Hide optional fields',
     'thread' => 'Equipment/Service',
     'title' => 'Title',
     'titleEqHelp' => 'Enter the equipment/part name.
@@ -319,9 +341,6 @@ return [
     'town' => 'City / Village / Warehouse / Site',
     'townHelp' => 'Here you can specify the location of product.
         Maximum 100 symbols.',
-    'phoneHelp' => 'Only Ukrainian phone numbers are supported.
-        Format: 0123456789.
-        You can choose messengers below, so users will know that You can be contacted via Messengers.',
     'email' => 'Email',
     'contactHelp' => 'One of fields is compulsory (email or phone).
         You can enter any email and phone number.',
@@ -340,18 +359,18 @@ return [
     'choosePostStatus' => 'Choose post status (visibility)',
     'postActive' => 'Visible for everyone',
     'postInactive' => 'Hidden',
-    'postInactiveError' => 'Sorry, but the Post Author
-        deactivated this post.
+    'postInactiveError' => 'Sorry, but the Post Author deactivated this post.
+
         You can return here later,
         it may be activated again soon!',
-    'translationTitleAlert' => 'This is the translated title.',
-    'translationDescAlert' => 'This is the translated description.',
-    'originLang' => 'Original language is',
+    'originPostLang' => 'This is translated post. Original language is',
+    'translationCorrupted' => 'The translatatin is currapted. Original is displayed',
     'showOrigin' => 'Show origin',
     'postIsOutdated' => 'The lifetime of this post is expired',
     'postIsHidden' => 'Only you(author) can view this Post, because it been hidden.',
-    'translationRequirePremium' => 'To see the translated version, the Premium account is required.',
+    'translationRequireStandart' => 'To see the translated version, the Standart account is required.',
     'deleteAllPosts' => 'Delete all posts',
+    'deleteAllPostsSure?' => 'Are you sure you want to delete all posts?',
     'specialPostsStatus' => 'Special status for post',
     'makePostUrgent' => 'Urgent',
     'postUrgentStatusHelp' => 'The Urgent posts will have an appropriate mark.
@@ -377,7 +396,8 @@ return [
     'dzServerError' => 'Server error occurred',
     'dzUploadCanceled' => 'Uploading was canceled',
     'dzUploadRemoveLink' => 'Remove',
-    'dzTooFewFiles' => 'Too many images',
+    'dzTooFewFiles' => 'Too many files',
+    'dzInvalidMimeXlsx' => 'The import file must be .XLSX',
 
     // post show masssages
     'yoursPost' => 'This post is yours',
@@ -403,7 +423,7 @@ return [
     'footerFAQ' => 'FAQ',
     'footerCopyright' => 'All Rights Reserved.',
     'footerIconsRef' => 'Icons made by',
-    'footerSubscription' => 'Our Plans',
+    'footerSubscription' => 'Paid Plans',
     'footerContact' => 'Contact Us',
     'footerTerms' => 'Terms of
     Service',
@@ -411,8 +431,8 @@ return [
     Policy',
     'footerDevelop' => 'Delelopment',
     'footerSiteMap' => 'Site Map',
-    'footerNews' => 'News',
-    'contactsFooter' => 'You can contact us by yourself',
+    'footerBlog' => 'Blog',
+    'contactsFooter' => 'Сontact us by filling the form below or using the following credentials:',
     'ourPartners' => 'Our partners',
 
     // sitemap
@@ -466,17 +486,23 @@ return [
     'serverErrorGoBack' => 'Return to previous page',
 
     //plans
+    'details' => 'details',
+    'mon' => 'mon',
+    'free' => 'free',
+    'account' => 'account',
     'plansHeader' => 'Cost and comparison of 
-    rigmanager.com.ua plans',
-    'plansGuestAcc' => 'Guest
-    Account',
-    'plansGuestAccHelp' => 'To get acquainted with our service',
-    'plansPremiumAcc' => 'Premium
-    Account',
-    'plansPremiumAccHelp' => 'Includes basic functionalities',
-    'plansPremium+Acc' => 'Premium+
-    Account',
-    'plansPremium+AccHelp' => 'For those who want to try all the advantages of our service',
+        rigmanager.com.ua plans',
+    'plansStartAcc' => 'Start
+        Account',
+    'plansStartAccHelp' => 'for
+        familiarization',
+    'plansStandartAcc' => 'Standart
+        Account',
+    'plansStandartAccHelp' => 'Includes basic functionalities',
+    'plansProAcc' => 'Pro
+        Account',
+    'plansProAccHelp' => 'Includes all
+        features',
     'plansOff' => 'off',
     'plansMonth' => 'month',
     'plansChoose' => 'Choose',
@@ -495,10 +521,7 @@ return [
     'plansCreate2Help' => 'Max posts to be publiched: 500.
         Max lifetime for each post: unlimited.',
     'plansTopPost' => 'Premium status for posts',
-    'plansFreeAccessTitle' => 'Free Premium access!',
-    'plansFreeAccessBody1' => 'We are announcing free access to full list of functionalities during the growth of our service.',
-    'plansFreeAccessBody2' => 'In other words',
-    'plansFreeAccessBody3' => 'Premium+ Account for all new clients!',
+    'plansFreeAccessTitle' => 'We are pleased to announce that during the development of the site, the free Pro-Accounts is automatically granted for every registered user!',
     'planRequired' => 'To make this action
         you need to obtain account with status',
     'plansPostImport' => 'Bulk posts import',
@@ -507,32 +530,36 @@ return [
         On each post the new banner with number of views will be visible.',
 
     // user plan 
+    'subscription' => 'Subscription',
     'mySubscription' => 'My subscription',
-    'planStatus' => 'Your Account status:',
-    'planGuest' => 'Guest',
-    'planPremium' => 'Premium',
-    'planPremium+' => 'Premium+',
+    'planActivated' => 'Activated subscription',
+    'planStart' => 'Start',
+    'planStartChoosedHelp' => 'Free plan to get acquainted with the rigmanager.com.ua',
+    'planStandart' => 'Standart',
+    'planPro' => 'Pro',
     'planActiveTo' => 'Active untill',
     'planDetails' => 'See details, 
         or change subscription:',
-    'planDetailsBtn' => 'Paid Plans',
     'planCancel' => 'Cancel subscription',
     'planNotActive' => 'You do not have any active subscriptions',
     'planRole' => 'Type',
     'payment' => 'Payment',
     'comment' => 'Comment',
     'active' => 'Active',
+    'inactive' => 'Inactive',
+    'until' => 'until',
+    'changePlan' => 'Change plan',
+    'status' => 'Status',
+    'operation' => 'Operation',
+    'canceled' => 'Canceled',
     
     // posts import
     'postImport' => 'Posts import',
     'postImportTitle' => 'Here you can import a number of Posts at once',
     'postImportDownload' => 'Download import file',
     'postImportUpload' => 'Upload filled import file',
-    'postImportIntro' => 'We understand that if a client have significant amount of posts,
-        it is not convenient to upload them one by one.
-        So, we introduce bulk posts import via our excel import file.',
-    'postImportHow' => 'How it is works:
-        After You download the excel import file and fill it due to the rules, You can upload it above.
+    'importHow?' => 'How it is works?',
+    'postImportHow' => 'After You download the excel import file and fill it due to the rules, You can upload it above.
         Then our algorithm analyze the submitted file.
         If there are no errors, all posts from the file become public on our website.',
     'postImportRules' => 'Please, read the rules before filling the form.',
@@ -540,4 +567,5 @@ return [
     'importErrorAfter' => 'None of your Post been published.
     Please fix the error and submit the import file again.',
     'fileImporting' => 'Your file is being processed, please wait.',
+    'importFileRequireError' => 'Please select filled import file. You can download it below.',
 ];

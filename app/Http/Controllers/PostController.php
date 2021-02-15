@@ -60,7 +60,7 @@ class PostController extends Controller
         $max = $this->isPremiumPlus() ? 500 : 200;
         if (auth()->user()->posts->count() >= $max) {
             if ($request->wantsJson()) {
-                return abort(111, __('messages.tooManyPostsError'));
+                return abort(400, __('messages.tooManyPostsError'));
             }
             Session::flash('message-error', __('messages.tooManyPostsError'));
             return back()->withInput();
@@ -73,7 +73,7 @@ class PostController extends Controller
             $max = $this->isPremiumPlus() ? 300 : 100;
             if (auth()->user()->posts()->where('is_urgent', 1)->get()->count() >= $max) {
                 if ($request->wantsJson()) {
-                    return abort(111, __('messages.tooManyUrgentPostsError'));
+                    return abort(400, __('messages.tooManyUrgentPostsError'));
                 }
                 Session::flash('message-error', __('messages.tooManyUrgentPostsError'));
                 return back()->withInput();
@@ -113,6 +113,7 @@ class PostController extends Controller
         $appLanguages = ['uk', 'ru', 'en'];
         $userTitleTranslations = [];
         $userDescTranslations = [];
+        /*
         foreach ($appLanguages as $lang) {
             if ( array_key_exists($lang, $input['title_translate']) === false ) {
                 $userTitleTranslations[] = $lang;
@@ -122,6 +123,7 @@ class PostController extends Controller
             }
         }
         $input['user_translations'] = ['title' => $userTitleTranslations, 'description' => $userDescTranslations];
+        */
 
         $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
         $input['origin_lang'] = $translate->detectLanguage( $input['title'] . '. ' . $input['description'] )['languageCode']; // merge title and description and find out the origin language
@@ -132,7 +134,7 @@ class PostController extends Controller
         $post = new Post($input);
         if (!auth()->user()->posts()->save($post)) {
             if ($request->wantsJson()) {
-                return abort(111, __('messages.postUploadedError'));
+                return abort(400, __('messages.postUploadedError'));
             }
             Session::flash('message-error', __('messages.postUploadedError'));
             return back()->withInput();
@@ -166,7 +168,7 @@ class PostController extends Controller
             abort(404);
         }
         if (!$post->is_active && !$this->isOwner($post->user->id)) {
-            return view('post.inactive');
+            return view('post.inactive', compact('post'));
         }
         $translated = [];
         if ( App::getLocale() != $post->origin_lang ) {
@@ -196,8 +198,7 @@ class PostController extends Controller
             $post->views = $views;
             $post->save();
         }
-        $premium = $this->isPremium();
-        return view('post.show', compact('post', 'translated', 'premium'));
+        return view('post.show', compact('post'));
     }
 
     /**
@@ -229,7 +230,7 @@ class PostController extends Controller
             $images = json_encode($images);
         }
         if ($post->thread == 1) {
-            return view('post.equipment_edit', compact('post', 'images'));
+            return view('post.equipment_create', compact('post', 'images'));
         } else {
             return view('post.service_edit', compact('post', 'images'));
         }
@@ -257,7 +258,7 @@ class PostController extends Controller
             $max = $this->isPremiumPlus() ? 300 : 100;
             if ( !$post->is_urgent && auth()->user()->posts()->where('is_urgent', 1)->get()->count() >= $max) {
                 if ($request->wantsJson()) {
-                    return abort(111, __('messages.tooManyUrgentPostsError'));
+                    return abort(400, __('messages.tooManyUrgentPostsError'));
                 }
                 Session::flash('message-error', __('messages.tooManyUrgentPostsError'));
                 return back()->withInput();
@@ -284,7 +285,7 @@ class PostController extends Controller
         }
 
         //make lifetime and active_to columns
-        if ($input['lifetime_changed']) {
+        if ( array_key_exists('lifetime_changed', $input) ) {
             switch ($input['lifetime']) {
                 case '1':
                     $input['active_to'] = Carbon::now()->addMonth()->toDateString();
@@ -304,6 +305,7 @@ class PostController extends Controller
         $appLanguages = ['uk', 'ru', 'en'];
         $userTitleTranslations = [];
         $userDescTranslations = [];
+        /*
         foreach ($appLanguages as $lang) {
             if ( array_key_exists($lang, $input['title_translate']) === false ) {
                 $userTitleTranslations[] = $lang;
@@ -313,7 +315,8 @@ class PostController extends Controller
             }
         }
         $input['user_translations'] = ['title' => $userTitleTranslations, 'description' => $userDescTranslations];
-
+        */
+        
         // check origin language
         $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
         $input['origin_lang'] = $translate->detectLanguage( $input['title'] . '. ' . $input['description'] )['languageCode']; // merge title and description and find out the origin language
@@ -339,14 +342,14 @@ class PostController extends Controller
         // if there was an error while updating, return previous page with error
         if (!$post->update($input)) {
             if ($request->wantsJson()) {
-                return abort(111, __('messages.postUploadedError'));
+                return abort(400, __('messages.postUploadedError'));
             }
             Session::flash('message-error', __('messages.postEditedError'));
             return back()->withInput();
         }
 
         // if there is images submited, upload them
-        if ( $request->hasFile('images')) {
+        if ( $request->hasFile('images') ) {
             $this->postImageUpload($request->file('images'), $post);
         }
 
@@ -480,26 +483,23 @@ class PostController extends Controller
 
     public function importStore(Request $request) 
     {
+        if (!$request->hasFile('import-file')) {
+            abort(400, __('messages.importFileRequireError'));
+        }
         //check for xlsx file
         if (strtolower($request->file('import-file')->getClientOriginalExtension()) != 'xlsx') {
-            Session::flash('message-error', __('messages.postImportError'));
-            Session::flash('import-error', __('messages.importExtError'));
-            return redirect(loc_url(route('post.import')));
+            abort(400, __('messages.importExtError'));
         }
         $import = Excel::toArray(new PostsImport, $request->file('import-file'));
         //check the structure
         if (count($import[0]) < 502 || count($import[0][0]) < 22) {
-            Session::flash('message-error', __('messages.postImportError'));
-            Session::flash('import-error', __('messages.importStructureError'));
-            return redirect(loc_url(route('post.import')));
+            abort(400, __('messages.importStructureError'));
         }
         $import = array_slice($import[0], 2); // remove the header from import file
         $import = array_slice($import, 0, 500); // remove all but first 500 rows
         // check for empty file
         if ($import[0][1] == null) {
-            Session::flash('message-error', __('messages.postImportError'));
-            Session::flash('import-error', __('messages.importEmptyError'));
-            return redirect(loc_url(route('post.import')));
+            abort(400, __('messages.importEmptyError'));
         }
         // for each row in import file validate the fields
         foreach ($import as $key => $value) {
@@ -511,9 +511,7 @@ class PostController extends Controller
             $importError = $this->vaidateExcelRow($key, $value); // validate the row
             //if error detected finish analizing and return an error message
             if ($importError!='') {
-                Session::flash('message-error', __('messages.postImportError'));
-                Session::flash('import-error', $importError);
-                return redirect(loc_url(route('post.import')));
+                abort(400, $importError);
             }
         }
         //there is not 500 rows, delete the empty ones
@@ -595,8 +593,8 @@ class PostController extends Controller
             auth()->user()->posts()->save($post); // save post with respect to user
             TranslatePost::dispatch($post, ['title'=>$row[1], 'description'=>$row[2], 'origin_lang'=>$lang], true)->onQueue('translation'); // dispatch the translation of post
         }
-        Session::flash('message-success', __('messages.postImportSuccess'));
-        return redirect(loc_url(route('home')));
+        return json_encode(true);
+        //return redirect(loc_url(route('home')));
     }
 
     private function vaidateExcelRow ($key, $row) 

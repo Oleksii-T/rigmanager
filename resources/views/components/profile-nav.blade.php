@@ -1,8 +1,15 @@
-<a class="profile-nav-link" id="personlaInfoBtn" href="{{loc_url(route('profile'))}}">{{__('ui.profileInfo')}}</a>
-<a class="profile-nav-link not-allowed" id="mailerBtn" href="#">{{__('ui.mailer')}}</a> <!--{{loc_url(route('mailer.index'))}}-->
-<a class="profile-nav-link" id="mySubscriptionBtn" href="{{loc_url(route('profile.subscription'))}}">{{__('ui.mySubscription')}}</a>
-<a class="profile-nav-link" id="MyPostsBtn" href="{{loc_url(route('profile.posts'))}}">{{__('ui.myPosts')}}</a>
-<a class="profile-nav-link" id="FavouritesBtn" href="{{loc_url(route('profile.favourites'))}}">{{__('ui.favourites')}}</a>
-<a class="profile-nav-link" id="logOutBtn" href="#" onclick="document.getElementById('logout-form').submit();">{{__('ui.signOut')}}</a>
-
-<form id="logout-form" class="hidden" action="{{ loc_url(route('logout')) }}" method="POST">@csrf</form>
+<aside class="side">
+    <a href="#side-block" data-fancybox class="side-mob">{{__('ui.cabinet')}}</a>
+    <div class="side-block" id="side-block">
+        <div class="side-title">{{__('ui.cabinet')}}</div>
+        <ul class="side-list">
+            <li><a href="{{loc_url(route('profile'))}}" class="{{$active=="profile" ? 'active' : ''}}">{{__('ui.profileInfo')}}</a></li>
+            <li><a href="{{loc_url(route('mailer.index'))}}" class="not-ready {{$active=="mailer" ? 'active' : ''}}">{{__('ui.mailer')}}</a></li>
+            <li><a href="{{loc_url(route('profile.subscription'))}}" class="{{$active=="subscription" ? 'active' : ''}}">{{__('ui.mySubscription')}}</a></li>
+            <li><a href="{{loc_url(route('profile.posts'))}}" class="{{$active=="posts" ? 'active' : ''}}">{{__('ui.myPosts')}}</a></li>
+            <li><a href="{{loc_url(route('profile.favourites'))}}" class="{{$active=="fav" ? 'active' : ''}}">{{__('ui.favourites')}}</a></li>
+            <li><a href="#" onclick="document.getElementById('logout-form').submit();">{{__('ui.signOut')}}</a></li>
+            <form id="logout-form" action="{{ loc_url(route('logout')) }}" method="POST" hidden>@csrf</form>
+        </ul>
+    </div>
+</aside>
