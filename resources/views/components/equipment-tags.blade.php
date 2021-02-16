@@ -1,6 +1,6 @@
 <div id="popup-select-eq-tag" class="popup">
-    <div class="popup-title">Категорії</div>
-    <div class="popup-text">Виберіть категорію, яку бажаєте відстежувати</div>
+    <div class="popup-title">{{__('ui.tags')}}</div>
+    <div class="popup-text">{{__('ui.chooseTag')}}</div>
     <form action="">
         <fieldset>
             <div class="select-block tag-lvl-1">
@@ -522,7 +522,7 @@
                 </select>
             </div>
             <input type="text" name="tag-hidden" hidden>
-            <button class="button select-tag-btn" type="button">Змінити</button>
+            <button class="button select-tag-btn" type="button">{{__('ui.choose')}}</button>
         </fieldset>
     </form>
 </div>

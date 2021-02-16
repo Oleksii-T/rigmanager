@@ -8,7 +8,7 @@
                 <div class="catalog-name"><a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}">{{$post->title}}</a></div>
             @endif
             <div class="catalog-line">
-                <a href="#" class="catalog-tag">{{$post->type==5 ? '' : $post->type_readable}}</a>
+                <a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}" class="catalog-tag">{{$post->type==5 ? '' : $post->type_readable}}</a>
                 @if ($type=='list')
                     @auth
                         <a href="" class="catalog-fav add-to-fav {{$post->user_id == auth()->user()->id ? 'block' : ''}} id_{{$post->id}} {{auth()->user()->favPosts->contains($post) ? 'active' : ''}}">

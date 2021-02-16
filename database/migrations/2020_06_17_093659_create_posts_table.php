@@ -36,7 +36,7 @@ class CreatePostsTable extends Migration
             $table->string('title_ru', 100)->nullable();
             $table->string('title_en', 100)->nullable();
             $table->string('company', 255)->nullable(); //company name
-            $table->string('type', 2); // sell/buy/loan
+            $table->string('type', 2); // sell/buy/loan/lease/give_se/get_se
             $table->string('role', 2); // private/bussiness
             $table->integer('condition')->nullable();
             $table->string('tag_encoded', 255);

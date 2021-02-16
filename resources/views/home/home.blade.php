@@ -174,7 +174,6 @@
                     -->
                 </div>
             @endif
-
         </div>
     </section>
     <section class="main-about">

@@ -119,6 +119,10 @@
                     </div>
                 @endif
                 <div class="prod-info-item">
+                    <div class="prod-info-name">{{__('ui.postType')}}</div>
+                    <div class="prod-info-text">{{$post->type_readable}}</div>
+                </div>
+                <div class="prod-info-item">
                     <div class="prod-info-name">{{__('ui.postRole')}}</div>
                     <div class="prod-info-text">{{$post->role_readable}}</div>
                 </div>

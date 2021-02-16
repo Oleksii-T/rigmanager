@@ -38,11 +38,11 @@ class SearchController extends Controller
                 $value['name'] = __('ui.introBuyEq');
                 break;
             case 'services':
-                $query = Post::where(["is_active"=>1, 'type'=>[5,6]]);
+                $query = Post::where(["is_active"=>1, 'thread'=>2]);
                 $value['name'] = __('ui.introSe');
                 break;
             case 'tenders':
-                $query = Post::where(["is_active"=>1, 'type'=>7]);
+                $query = Post::where(["is_active"=>1, 'thread'=>3]);
                 $value['name'] = __('ui.introTender');
                 break;
             default:

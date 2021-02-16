@@ -80,7 +80,7 @@ class PostController extends Controller
             }
         }
 
-        if ( !$input['cost'] ) {
+        if ( array_key_exists('cost',$input) && !$input['cost'] ) {
             unset($input['currency']);
             unset($input['cost']);
         }
@@ -231,9 +231,12 @@ class PostController extends Controller
         }
         if ($post->thread == 1) {
             return view('post.equipment_create', compact('post', 'images'));
-        } else {
-            return view('post.service_edit', compact('post', 'images'));
+        } else if ($post->thread == 2) {
+            return view('post.service_create', compact('post'));
+        } else if ($post->thread == 3) {
+            abort(404);
         }
+        abort(404);
     }
 
     /**

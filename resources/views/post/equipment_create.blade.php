@@ -129,7 +129,7 @@
 
                                     <div class="company hidden">
                                         <label class="label">{{__('ui.company')}}</label>
-                                        <input class="input" name="company" type="text" placeholder="{{__('ui.companyP')}}" value="{{isset($post) ? (old('company') ?? $post->company) : old('company')}}"/>
+                                        <input class="input" name="company" type="text" value="{{isset($post) ? (old('company') ?? $post->company) : old('company')}}"/>
                                         <x-server-input-error inputName='company'/>
                                     </div>
 
