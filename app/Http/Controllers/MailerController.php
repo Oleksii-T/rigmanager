@@ -61,7 +61,6 @@ class MailerController extends Controller
      */
     public function edit(Request $request)
     {
-        //dd($request->id);
         $mailer = Mailer::findOrFail($request->id);
         if ($mailer->user_id != auth()->user()->id) {
             abort(403);
@@ -142,12 +141,6 @@ class MailerController extends Controller
             return json_encode(['message'=>__('messages.mailerUploadedError'), 'code'=>404]);
         }
         return json_encode(['message'=>__('messages.mailerAddedAuthor'), 'code'=>500]);
-        /*
-        showPopUpMassage(true, "{{ __('messages.mailerAddedAuthor') }}");
-        $('#mailerAddAuthor').html("{{__('ui.mailerRemoveAuthor')}}");
-        showPopUpMassage(true, "{{ __('messages.mailerRemovedAuthor') }}");
-        $('#mailerAddAuthor').html("{{__('ui.mailerAddAuthor')}}");
-        */
     }
 
     public function createBySearchRequest(Request $request) {

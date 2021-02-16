@@ -4,12 +4,15 @@ $(document).ready(function () {
 	$(window).scroll( function(){
 		if ($(this).scrollTop() > 50){
 			$('.header').addClass('fixed');
+			$('#pop-up-container').addClass('scrolled');
 		}else{
 			$('.header').removeClass('fixed');
+			$('#pop-up-container').removeClass('scrolled');
 		}
 	});
 	if ($(window).scrollTop() > 50){
 		$('.header').addClass('fixed');
+		$('#pop-up-container').addClass('scrolled');
 	}
 
 	// mob nav

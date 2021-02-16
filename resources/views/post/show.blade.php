@@ -202,6 +202,13 @@
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function() {
+
+            $.ajax({
+                type: "POST",
+                url: "{{loc_url(route('post.viewed'))}}",
+                data: { "_token": "{{csrf_token()}}", "post_id": "{{$post->id}}" }
+            });
+
             //hide/show translated/origin title/description
             $('.show-origin-text').click(function(e){
                 e.preventDefault();

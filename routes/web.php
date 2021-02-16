@@ -32,6 +32,8 @@ Route::get('download/posts-import', function() {
     return response()->download($file);
 })->name('download.post.import');
 
+Route::post('ajax/post/viewed','PostController@viewed')->name('post.viewed'); //Ajax reqeust
+
 Route::middleware('verified')->group(function () {
 
     // post routes

@@ -533,7 +533,7 @@
                         $('select[name='+key+']').addClass('form-error');
                         $('.'+key+'.dz-error').removeClass('hidden');
                     });
-                } else if (error['code'] == 111 && typeof error['message'] != 'undefined') {// if it is custom error from post upload 
+                } else if (typeof error['message'] != 'undefined' && error['message'] != '') {// if it is custom error from post upload no check for 400 error code
                     showPopUpMassage(false, error['message']);
                 //} else if (typeof error['code'] != 'undefined') { // if it is any error with error code
                     //showPopUpMassage(false, error['code'] + ". " + "{{__('messages.error')}}");

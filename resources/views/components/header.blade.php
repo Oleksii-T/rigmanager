@@ -23,6 +23,15 @@
                 </div>
             </div>
             <div class="header-right">
+                @if (!App::isLocale('uk'))
+                    <a href="{{ loc_url(route('locale.setting', ['lang'=>'uk'])) }}" class="header-language">Ukr</a>
+                @endif
+                @if (!App::isLocale('ru'))
+                    <a href="{{ loc_url(route('locale.setting', ['lang'=>'ru'])) }}" class="header-language">Rus</a>
+                @endif
+                @if (!App::isLocale('en'))
+                    <a href="{{ loc_url(route('locale.setting', ['lang'=>'en'])) }}" class="header-language">Eng</a>
+                @endif
                 <a href="{{loc_url(route('profile'))}}" class="header-cabinet">{{auth()->check() ? __('ui.cabinet') : __('ui.signIn')}}</a>
                 <a href="{{loc_url(route('posts.create'))}}" class="header-button">{{__('ui.addPost')}}</a>
             </div>
@@ -41,10 +50,20 @@
                     <ul class="mob-nav-list">
                         <li><a href="{{loc_url(route('about.us'))}}">{{__('ui.footerAbout')}}</a></li>
                         <li><a href="{{loc_url(route('blog'))}}">{{__('ui.footerBlog')}}</a></li>
-                        <li><a href="{{loc_url(route('catalog'))}}">{{__('ui.catalog')}}</a></li>
                         <li><a href="{{loc_url(route('plans'))}}">{{__('ui.footerSubscription')}}</a></li>
                         <li><a href="{{loc_url(route('contacts'))}}">{{__('ui.footerContact')}}</a></li>
                         <li><a href="{{loc_url(route('faq'))}}">FAQ</a></li>
+                    </ul>
+                    <ul class="mob-nav-list">
+                        @if (!App::isLocale('uk'))
+                            <li><a href="{{ loc_url(route('locale.setting', ['lang'=>'uk'])) }}">Ukr</a></li>
+                        @endif
+                        @if (!App::isLocale('ru'))
+                            <li><a href="{{ loc_url(route('locale.setting', ['lang'=>'ru'])) }}">Rus</a></li>
+                        @endif
+                        @if (!App::isLocale('en'))
+                            <li><a href="{{ loc_url(route('locale.setting', ['lang'=>'en'])) }}">Eng</a></li>
+                        @endif
                     </ul>
                     <ul class="mob-nav-list mob-nav-grey">
                         <li><a href="{{loc_url(route('terms'))}}">{{__('ui.footerTerms')}}</a></li>

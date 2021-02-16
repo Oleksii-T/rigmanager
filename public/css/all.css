@@ -521,6 +521,12 @@ textarea.form-error {
 .header-cabinet:hover {
 	background: #626262;
 }
+.header-language {
+	color: #fff;
+	line-height: 24px;
+	padding: 8px 0 10px;
+	margin-right: 16px;
+}
 .header-button {
 	white-space: nowrap;
 	padding: 8px 23px 10px;
@@ -642,7 +648,7 @@ textarea.form-error {
 /************************* developing alert **********************/
 .development-alert {
 	position: fixed;
-	left: 5px;
+	left: 0px;
 	bottom: 0px;
 	background-color: rgb(182, 0, 0);
 }
@@ -652,24 +658,28 @@ textarea.form-error {
 }
 /************************* pop-up-messages **********************/
 #pop-up-container {
-    z-index: 10;
+    z-index: 99999;
     position: fixed;
-    top: 120px;
-    right: 15px;
+    top: 111px;
+    right: 0px;
     overflow: hidden;
 	max-width: 90%;
+}
+#pop-up-container.scrolled {
+	top: 91px;
 }
 .pop-up,
 .flash {
     padding: 7px 10px;
     margin-bottom: 15px;
-    border-left: 5px solid #FE9042;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-right: 5px solid #FE9042;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
     float: right;
     display: block;
     clear: right;
     position: relative;
+	cursor: pointer;
 }
 .pop-up img,
 .flash img {
@@ -683,8 +693,9 @@ textarea.form-error {
 .flash p{
     font-size: 110%;
     position: relative;
-    padding-left: 30px;
+    padding-left: 35px;
 	margin: 0;
+	color: #000000;
 }
 .pop-up-success, 
 .flash-success {
@@ -698,10 +709,11 @@ textarea.form-error {
     height: 5px;
     position: absolute;
     top: 0px;
-    left: 0px;
+    right: 0px;
     width: 100%;
-    background-color: #FE9042;
-    background-color: #3936f0bd;
+	border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: #0159ac;
     animation-duration: 4s;
     animation-delay: 0s;
     animation-timing-function: linear;
@@ -2951,10 +2963,11 @@ article ul li:before {
 	white-space: pre-line;
 	margin-bottom: 60px;
 }
-/************************* critical-erorr *************************/
-
 /************************* media *************************/
 @media screen and (max-width: 1300px) {
+	.header-language {
+		display: none;
+	}
 	.ad-img {
 		width: 203px;
 		height: 203px;

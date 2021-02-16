@@ -36,7 +36,6 @@ class UserController extends Controller
      */
     public function edit()
     {
-        //dd( auth()->user()->getAuthPassword() );
         $user = auth()->user();
         return view('profile.edit', compact('user'));
     }
@@ -98,7 +97,7 @@ class UserController extends Controller
         foreach ($user->mailers as $mailer) {
             $mailer->delete();
         }
-        // PARSE SUBSCRIPTION!
+        // TODO - PARSE SUBSCRIPTION!
         auth()->logout(); //logout user
         $user->delete();
         Session::flash('message-success', __('messages.profileDeleted'));

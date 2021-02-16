@@ -175,7 +175,11 @@ class PostController extends Controller
             $translated['title'] = 'title_'.App::getLocale();
             $translated['description'] = 'description_'.App::getLocale();
         }
-        //count views;
+        return view('post.show', compact('post'));
+    }
+
+    public function viewed(Request $request) {
+        $post = Post::findOrFail($request->post_id);
         if ( !$this->isOwner($post->user_id) ) {
             $views = $post->views;
             if (auth()->check()) {
@@ -198,7 +202,6 @@ class PostController extends Controller
             $post->views = $views;
             $post->save();
         }
-        return view('post.show', compact('post'));
     }
 
     /**
