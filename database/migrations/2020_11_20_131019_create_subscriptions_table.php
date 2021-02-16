@@ -16,11 +16,11 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->boolean('is_active');
-            $table->string('role', 20)->nullable();
-            $table->string('payment')->nullable();
             $table->string('number')->nullable();
-            $table->string('issued')->nullable();
+            $table->boolean('is_active');
+            $table->string('role', 100)->nullable();
+            $table->string('payment', 100)->nullable();
+            $table->date('issued')->nullable();
             $table->date('activated_at')->nullable();
             $table->date('expire_at')->nullable();
             $table->json('history')->nullable();

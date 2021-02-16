@@ -77,7 +77,7 @@
 						{{__('faq.qBuy')}}
 					</a>
 					<div class="faq-hidden">
-						<p>{{__('faq.aBuy1')}} <a class="link" href="{{ loc_url(route('catalog')) }}">{{__('ui.catalog')}}</a> {{__('faq.aBuy2')}}</p>
+						<p>{{__('faq.aBuy1')}} <a class="link" href="{{loc_url(route('catalog'))}}">{{__('ui.catalog')}}</a> {{__('faq.aBuy2')}}</p>
 					</div>
 				</div>
 				<div class="faq-item">
@@ -88,7 +88,7 @@
 						{{__('faq.qSell')}}
 					</a>
 					<div class="faq-hidden">
-						<p>{{__('faq.aSell1')}} <a class="link" href="{{ loc_url(route('posts.create')) }}">{{__('faq.aSellLink')}}</a>, {{__('faq.aSell2')}}</p>
+						<p>{{__('faq.aSell1')}} <a class="link" href="{{loc_url(route('posts.create'))}}">{{__('faq.aSellLink')}}</a>, {{__('faq.aSell2')}}</p>
 					</div>
 				</div>
 				<div class="faq-item">
@@ -99,7 +99,7 @@
 						{{__('faq.qWhatIsMailer')}}
 					</a>
 					<div class="faq-hidden">
-						<p>{{__('faq.aWhatIsMailer1')}} <a class="link" href="{{loc_url(route('mailer.index'))}}">{{__('faq.aWhatIsMailerLink')}}</a> {{__('faq.aWhatIsMailer2')}}</p>
+						<p>{{__('faq.aWhatIsMailer1')}} <a class="not-ready link" href="{{loc_url(route('mailer.index'))}}">{{__('faq.aWhatIsMailerLink')}}</a> {{__('faq.aWhatIsMailer2')}}</p>
 					</div>
 				</div>
 				<div class="faq-item">

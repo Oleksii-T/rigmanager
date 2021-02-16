@@ -10,10 +10,12 @@ trait Subscription
     public function freeAccess() {
         auth()->user()->subscription()->save(new \App\Subscription([
             'is_active' => true,
+            'number' => 000000,
             'role' => 2,
             'payment' => 0,
+            'issued' => Carbon::now(),
             'activated_at' => Carbon::now(),
-            'expire_at' => Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
+            'expire_at' => Carbon::create(2021, 5, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
         ]));
     }
 

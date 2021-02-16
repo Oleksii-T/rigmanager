@@ -53,6 +53,7 @@ class CreatePostsTable extends Migration
             $table->string('town', 255)->nullable();
             $table->string('user_email', 255)->nullable();
             $table->string('user_phone_raw', 11)->nullable();
+            $table->string('doc', 255)->nullable();
             $table->boolean('viber')->default(false);
             $table->boolean('telegram')->default(false);
             $table->boolean('whatsapp')->default(false);

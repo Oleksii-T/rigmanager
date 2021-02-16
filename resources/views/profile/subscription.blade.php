@@ -59,8 +59,7 @@
                             <th>{{__('ui.payment')}}</th>
                             <th>{{__('ui.status')}}</th>
                         </tr>
-                        @if ($subscription && $subscription->history)
-                            @if ($subscription && $subscription->is_active)
+                        @if ($subscription && $subscription->is_active)
                             <tr>
                                 <td>{{$subscription->number}} <span class="history-table-date">{{$subscription->issued}}</span></td>
                                 <td>{{$subscription->roleReadable}}</td>
@@ -69,7 +68,8 @@
                                 <td>{{$subscription->payment}}</td>
                                 <td><span class="history-status history-status-active">{{__('ui.active')}}</span></td>
                             </tr>
-                            @endif
+                        @endif
+                        @if ($subscription && $subscription->history)
                             @foreach (array_reverse($subscription->history, true) as $key => $item)
                                 <tr>
                                     <td>{{$item['number']}} <span class="history-table-date">{{$item['issued']}}</span></td>
@@ -90,13 +90,6 @@
                                     @endif
                                 </tr>
                             @endforeach
-                        @else 
-                            <td>{{__('ui.empty')}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
                         @endif
                     </table>
                 </div>

@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
+        $freeProExpire = Carbon\Carbon::create(2021, 5, 1, 0, 0, 0); // May 1, 2021 (01/05/2021)
         //factory(App\Post::class, 100)->create();
 
         DB::table('usd_exchanges')->insert([
@@ -54,8 +54,11 @@ class DatabaseSeeder extends Seeder
             'is_active' => true,
             'role' => 2,
             'payment' => '0',
+            'number' => '000000',
+            'history' => '[{"role": "1", "issued": "2020-10-24", "number": "4212", "period": {"to": "2020-11-25", "from": "2020-10-25"}, "status": "0", "payment": "0"}, {"role": "2", "issued": "2020-11-20", "number": "6234", "period": {"to": "2020-12-25", "from": "2020-11-25"}, "status": "0", "payment": "399"}]',
+            'issued' => Carbon\Carbon::now(),
             'activated_at' => Carbon\Carbon::now(),
-            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
+            'expire_at' => $freeProExpire, 
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
@@ -65,7 +68,7 @@ class DatabaseSeeder extends Seeder
             'id' => 2,
             'name' => 'Beiken LLC',
             'url_name' => 'beiken-llc',
-            'phone_raw' => '0000000000',
+            'phone_raw' => '0953536999',
             'email' => 'pavlo.tarb@gmail.com',
             'email_verified_at' => Carbon\Carbon::now(),
             'password' => Hash::make('Pavel123'),
@@ -88,8 +91,10 @@ class DatabaseSeeder extends Seeder
             'is_active' => true,
             'role' => 2,
             'payment' => '0',
+            'number' => '000000',
+            'issued' => Carbon\Carbon::now(),
             'activated_at' => Carbon\Carbon::now(),
-            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
+            'expire_at' => $freeProExpire,
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
@@ -113,8 +118,10 @@ class DatabaseSeeder extends Seeder
             'is_active' => true,
             'role' => 2,
             'payment' => '0',
+            'number' => '000000',
+            'issued' => Carbon\Carbon::now(),
             'activated_at' => Carbon\Carbon::now(),
-            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
+            'expire_at' => $freeProExpire,
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
@@ -139,8 +146,10 @@ class DatabaseSeeder extends Seeder
             'is_active' => true,
             'role' => 2,
             'payment' => '0',
+            'number' => '000000',
+            'issued' => Carbon\Carbon::now(),
             'activated_at' => Carbon\Carbon::now(),
-            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
+            'expire_at' => $freeProExpire,
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
@@ -165,8 +174,10 @@ class DatabaseSeeder extends Seeder
             'is_active' => true,
             'role' => 2,
             'payment' => '0',
+            'number' => '000000',
+            'issued' => Carbon\Carbon::now(),
             'activated_at' => Carbon\Carbon::now(),
-            'expire_at' => Carbon\Carbon::create(2021, 3, 1, 0, 0, 0), // March 1, 2021 (01/03/2021)
+            'expire_at' => $freeProExpire,
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
