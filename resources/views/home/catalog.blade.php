@@ -10,6 +10,8 @@
 @section('content')
 	<h1>{{__('ui.catalog')}}</h1>
 	<div class="content-top-text">{{__('ui.catalogHelp')}}
+
+		<a href="{{loc_url(route('tag-0'))}}">{{__('ui.postsWithoutTag')}}</a>
 	</div>
 	<div class="category">
 		<div class="category-col">

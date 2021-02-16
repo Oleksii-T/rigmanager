@@ -30,6 +30,7 @@
                             <li>{{__('postImportRules.mainRules8')}}</li>
                             <li>{{__('postImportRules.mainRules9')}}</li>
                             <li>{{__('postImportRules.mainRules10')}}</li>
+                            <li>{{__('postImportRules.mainRules11')}}</li>
                         </ul>
                     </div>
                 </div>
@@ -42,11 +43,6 @@
                     <h3>{{__('ui.description')}}</h3>
                     <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span><br>
                         {{__('postImportRules.titleRule')}}</p>
-                </div>
-                <div class="article-part">
-                    <h3>{{__('ui.thread')}}</h3>
-                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span><br>
-                        {{__('postImportRules.threadRule')}}</p>
                 </div>
                 <div class="article-part">
                     <h3>{{__('ui.postRole')}}</h3>

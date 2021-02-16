@@ -13,7 +13,7 @@
         <div class="content">
             <h1>{{__('ui.myPosts')}} (<span class="orange">{{$posts_list->total()}}</span>)</h1>
             @if ($posts_list->count() == 0)
-                <p>{{__('ui.noFavPosts')}}</p>
+                <p>{{__('ui.noMyPosts')}}</p>
             @else
                 <div class="cabinet-line">
                     <div class="cabinet-search">

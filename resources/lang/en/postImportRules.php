@@ -6,16 +6,17 @@ return [
     'introLink' => 'bulk posts import',
     'intro1' => 'from an XLSX file into rigmanager.com.ua.',
     'mainRulesTitle' => 'General rules',
-    'mainRules1' => 'Changing the file structure makes automatic import impossible. Thus, adding / removing columns / pages, swapping or moving already created cells is highly discouraged.',
-    'mainRules2' => 'Filling out the form is allowed on cells A3:W502',
-    'mainRules3' => 'The form is designed to import from 1 to 500 posts.',
-    'mainRules4' => 'Each line is a separate post.',
-    'mainRules5' => 'The first announcement should be placed in cells A3:W3.',
-    'mainRules6' => 'The form will be accepted only upon compliance with all the rules in all posts.',
-    'mainRules7' => 'The algorithm analyzes the shape line by line; if an error is found, the analysis will be stopped.',
-    'mainRules8' => 'After importing the form, you will be told in which declaration the error was found.',
-    'mainRules9' => 'The form must be completed in one language (Rus / Ukr / Eng).',
-    'mainRules10' => 'You can add images, set the "Urgent" status and change the auto-translation for each ad manually through the ad edit page on the site.',
+    'mainRules1' => 'The file designed for bulk uploading of posts about equipment. Thus, posts сoncerning services must be uploaded manually.',
+    'mainRules2' => 'Changing the file structure makes automatic import impossible. Thus, adding / removing columns / pages, swapping or moving already created cells is highly discouraged.',
+    'mainRules3' => 'Filling out the form is allowed on cells B3:S502',
+    'mainRules4' => 'The form is designed to import from 1 to 500 posts.',
+    'mainRules5' => 'Each line is a separate post.',
+    'mainRules6' => 'The first announcement should be placed in cells B3:S3.',
+    'mainRules7' => 'The form will be accepted only upon compliance with all the rules in all posts.',
+    'mainRules8' => 'The algorithm analyzes the shape line by line; if an error is found, the analysis will be stopped.',
+    'mainRules9' => 'After importing the form, you will be told in which declaration the error was found.',
+    'mainRules10' => 'The form must be completed in one language (Rus / Ukr / Eng).',
+    'mainRules11' => 'You can add images, set the "Urgent" status and change the auto-translation for each ad manually through the ad edit page on the site.',
     'detailedRules' => 'Detailed instructions for filling in each field.',
     'required' => 'Required',
     'titleRule' => 'Enter the name of the equipment / part / service.
@@ -28,9 +29,6 @@ return [
         Should not contain: telephone, email, link, words in capital letters (except for abbreviations).
         Minimum 10 characters.
         Maximum 9000 characters.',
-    'threadRule' => 'Only certain values ​​are allowed for entry:
-        1 - Equipment
-        2 - Service',
     'companyRule' => 'If you entered the value "2" in "Sector", you can enter the company name here.
         Minimum 5 characters.
         Maximum 200 characters.',
@@ -39,9 +37,7 @@ return [
         1 - Equipment sale
         2 - Equipment purchase
         3 - Equipment rent
-        4 - Equipment lease
-        5 - Service provision
-        6 - Service request',
+        4 - Equipment lease',
     'roleRule' => 'Only certain values ​​are allowed for input:
         1 - Private person
         2 - Business',

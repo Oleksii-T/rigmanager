@@ -2221,6 +2221,7 @@ article ul li:before {
 }
 .import-top-text {
 	margin: 0 0 33px;
+	white-space: pre-line;
 }
 .import-top .button {max-width: 280px;}
 .import-bottom-title {

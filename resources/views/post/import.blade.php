@@ -35,6 +35,7 @@
                     <div class="import-bottom-text">
                         <p>{{__('ui.postImportHow')}}</p>
                         <p>{{__('ui.postImportRules')}} <a href="{{loc_url(route('import.rules'))}}">{{__('postImportRules.title')}}</a>.</p>
+                        <p>{{__('ui.importFileLastUpdate')}}: {{env('IMPORT_FILE_UPDATED')}}</p>
                     </div>
                     <a href="{{route('download.post.import')}}" class="button button-blue">{{__('ui.postImportDownload')}}</a>
                     <div class="warning">{{__('ui.postImportWarning')}}</div>

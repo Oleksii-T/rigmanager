@@ -225,6 +225,7 @@ return [
     'tryOtherFilters' => 'You may try other filters',
 
     // post edit/create/show massages
+    'postsWithoutTag' => 'Posts without chosen category',
     'tender' => 'Tender',
     'tenders' => 'Tenders',
     'tendersHelp' => 'Publish tenders using a simplified informal procedure. Maximum: 100',
@@ -555,17 +556,19 @@ return [
     
     // posts import
     'postImport' => 'Posts import',
-    'postImportTitle' => 'Here you can import a number of Posts at once',
-    'postImportDownload' => 'Download import file',
+    'postImportTitle' => 'Here you can import a number of Posts at once. 
+        Only equipment, service must be published manually.',
+    'postImportDownload' => 'Download import file template',
     'postImportUpload' => 'Upload filled import file',
     'importHow?' => 'How it is works?',
     'postImportHow' => 'After You download the excel import file and fill it due to the rules, You can upload it above.
         Then our algorithm analyze the submitted file.
         If there are no errors, all posts from the file become public on our website.',
     'postImportRules' => 'Please, read the rules before filling the form.',
+    'importFileLastUpdate' => 'Last update of import file template',
     'postImportWarning' => 'Currently, we are not supporting image uploading via excel import file, so after all posts been published, you may upload photos for each one individually.',
     'importErrorAfter' => 'None of your Post been published.
-    Please fix the error and submit the import file again.',
+        Please fix the error and submit the import file again.',
     'fileImporting' => 'Your file is being processed, please wait.',
     'importFileRequireError' => 'Please select filled import file. You can download it below.',
 ];
