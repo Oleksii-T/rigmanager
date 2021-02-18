@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Traits\Subscription;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Traits\Tags;
 use App\Http\Requests\MailerRequest;
@@ -12,7 +11,7 @@ use App\User;
 
 class MailerController extends Controller
 {
-    use Tags, Subscription;
+    use Tags;
     /**
      * Display a user`s resourse.
      *
@@ -20,7 +19,7 @@ class MailerController extends Controller
      */
     public function index()
     {
-        return view('mailer.index', ["mailers"=>auth()->user()->mailers, "subscription"=>$this->isSubscribed()]);
+        return view('mailer.index', ["mailers"=>auth()->user()->mailers]);
     }
 
     /**
@@ -93,30 +92,56 @@ class MailerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($locale, $id=null)
     {
-        $mailer = auth()->user()->mailer;
-        $mailer->delete();
+        $id = $id==null ? $locale : $id;
+        $m = Mailer::findOrFail($id);
+        if ( $m->user_id!=auth()->user()->id  ) {
+            abort(403);
+        }
+        $m->delete();
         Session::flash('message-success', __('messages.mailerDeleted'));
         return redirect(loc_url(route('mailer.index')));
     }
 
-    public function toggle()
+    public function deleteAll() 
     {
-        $mailer = auth()->user()->mailer;
-        if ($mailer->is_active) {
-            $mailer->is_active = false;
-        } else {
-            $mailer->is_active = true;
+        foreach (auth()->user()->mailers as $m) {
+            $m->delete();
         }
-        $mailer->save();
+        Session::flash('message-success', __('messages.mailerAllDeleted'));
+        return redirect(loc_url(route('mailer.index')));
+    }
+
+    public function deactivateAll() 
+    {
+        foreach (auth()->user()->mailers as $m) {
+            $m->is_active = false;
+            $m->save();
+        }
+        Session::flash('message-success', __('messages.mailersDeactivated'));
+        return redirect(loc_url(route('mailer.index')));
+    }
+
+    public function toggle($id)
+    {
+        $m = Mailer::findOrFail($id);
+        if ( $m->user_id!=auth()->user()->id  ) {
+            abort(403);
+        }
+        if ($m->is_active) {
+            $m->is_active = false;
+        } else {
+            $m->is_active = true;
+        }
+        $m->save();
         return true;
     }
 
     public function addAuthor($user_id)
     {
-        if (!$this->isSubscribed()) {
-            return json_encode(['message'=>__('messages.requirePremium'), 'code'=>404]);
+        if (!auth()->user()->is_standart) {
+            return json_encode(['message'=>__('messages.requireStandart'), 'code'=>404]);
         }
         if ( auth()->user()->mailers->count() > 10 ) {
             return json_encode(['message'=>__('messages.mailerTooManyMailers'), 'code'=>404]);
@@ -132,8 +157,8 @@ class MailerController extends Controller
             $input['title'] = mb_substr($input['title'], 0, 22) . '...';
         }
         $input['author'] = $user_id;
-        $input['condition'] = [1,2,3,4];
-        $input['type'] = [1,2,3,4,5,6,7];
+        $input['condition'] = [2,3,4];
+        $input['type'] = [1,2,3,4,5,6];
         $input['thread'] = [1,2];
         $input['role'] = [1,2];
         $mailer = new Mailer($input);
@@ -144,8 +169,8 @@ class MailerController extends Controller
     }
 
     public function createBySearchRequest(Request $request) {
-        if (!$this->isSubscribed()) {
-            return json_encode(['message'=>__('messages.requirePremium'), 'code'=>404]);
+        if (!auth()->user()->is_standart) {
+            return json_encode(['message'=>__('messages.requireStandart'), 'code'=>404]);
         }
         if ( auth()->user()->mailers->count() > 10 ) {
             return json_encode(['message'=>__('messages.mailerTooManyMailers'), 'code'=>404]);

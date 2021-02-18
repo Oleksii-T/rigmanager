@@ -11,7 +11,9 @@ class Mailer extends Model
     use Tags;
 
     protected $appends = [
-        'author_name', 'types_map', 'tags_map', 'conditions_map', 'roles_map', 'threads_map'
+        'author_name', 'types_map', 'types_readable', 'tag_map', 'conditions_map', 'conditions_readable', 
+        'roles_map', 'types_readable', 'threads_map', 'threads_map', 'cost_readable',
+        'all_conditions', 'all_types', 'all_roles', 'all_threads', 'region_name'
     ];
 
     protected $fillable = [
@@ -69,6 +71,47 @@ class Mailer extends Model
 
     public function getRoleAttribute($value) {
         return json_decode($value);
+    }
+
+    public function getCostReadableAttribute() {
+        if (!$this->cost_from && !$this->cost_to) {
+            return 0;
+        }
+        if ($this->cost_from && $this->cost_to) {
+            $f = $this->cost_from;
+            $t = $this->cost_to;
+        } else if ($this->cost_from) {
+            $f = $this->cost_from;
+            $t = 0;
+        } else if ($this->cost_to) {
+            $f = 0;
+            $t = $this->cost_to;
+        }
+        return formatNumberToCost($f, $this->currency) . ' - ' . formatNumberToCost($t, $this->currency);
+    }
+
+    public function getAllConditionsAttribute() {
+        return $this->condition==[2,3,4]
+            ? true
+            : false;
+    }
+
+    public function getAllTypesAttribute() {
+        return $this->type==[1,2,3,4,5,6]
+            ? true
+            : false;
+    }
+
+    public function getAllRolesAttribute() {
+        return $this->role==[1,2]
+            ? true
+            : false;
+    }
+
+    public function getAllThreadsAttribute() {
+        return $this->thread==[1,2]
+            ? true
+            : false;
     }
 
     public function getRegionNameAttribute() {
@@ -148,6 +191,9 @@ class Mailer extends Model
             case '25':
                 return __('ui.regionChernihiv');
                 break;
+            case '30':
+                return __('ui.import');
+                break;
             default:
                 return __('ui.notSpecified');
         }
@@ -175,6 +221,10 @@ class Mailer extends Model
             }
         }
         return $conditionsMap;
+    }
+
+    public function getConditionsReadableAttribute() {
+        return implode(", ", $this->getConditionsMapAttribute());
     }
 
     public function getTypesMapAttribute() {
@@ -209,6 +259,10 @@ class Mailer extends Model
         return $typesMap;
     }
 
+    public function getTypesReadableAttribute() {
+        return implode(", ", $this->getTypesMapAttribute());
+    }
+
     public function getRolesMapAttribute() {
         foreach ($this->role as $role) {
             switch ($role) {
@@ -221,6 +275,10 @@ class Mailer extends Model
             }
         }
         return $rolesMap;
+    }
+
+    public function getRolesReadableAttribute() {
+        return implode(", ", $this->getRolesMapAttribute());
     }
 
     public function getThreadsMapAttribute() {
@@ -237,7 +295,11 @@ class Mailer extends Model
         return $threadsMap;
     }
 
-    public function getTagsMapAttribute() {
+    public function getThreadsReadableAttribute() {
+        return implode(", ", $this->getThreadsMapAttribute());
+    }
+
+    public function getTagMapAttribute() {
         return $this->getTagMap($this->tag);
     }
 }

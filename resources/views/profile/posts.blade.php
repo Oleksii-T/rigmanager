@@ -160,13 +160,14 @@
                     },
                     success: function(data) {
                         if (data) {
-                            $('#'+postId).remove();
                             showPopUpMassage(true, "{{ __('messages.postDeleted') }}");
                         } else {
+                            $('div.catalog-item.id_'+postId).removeClass('hidden');
                             showPopUpMassage(false, "{{ __('messages.postDeleteError') }}");
                         }
                     },
                     error: function() {
+                        $('div.catalog-item.id_'+postId).removeClass('hidden');
                         showPopUpMassage(false, "{{ __('messages.error') }}");
                     }
                 });

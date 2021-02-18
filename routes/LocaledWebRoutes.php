@@ -50,33 +50,31 @@ Route::middleware('verified')->group(function () {
     Route::post('plans/change', 'SubscriptionController@update') ->name('plans.update');
     Route::get('plans/cancel', 'SubscriptionController@cancel') ->name('plans.cancel');
 
-    // posts routes
-    Route::middleware('plan.pro')->group(function () {
-        Route::get      ('posts/import',         'PostController@import')        ->name('post.import');
-        Route::post     ('posts/import/upload',  'PostController@importStore')   ->name('import.upload');
-    });
-    Route::middleware('plan.standart')->group(function () {
-        Route::get      ('fake/store',          'PostController@storeFake')     ->name('posts.store.fake');
-        Route::get      ('update/store',        'PostController@updateFake')    ->name('posts.update.fake');
-        Route::get      ('posts/create/service','PostController@serviceCreate') ->name('service.create');
-        Route::resource ('posts',               'PostController')               ->except(['index', 'show']);
-    });
-
-    // prifile/user routes
+    // profile/user routes
     Route::get      ('profile/edit',            'UserController@edit')              ->name('profile.edit');
     Route::get      ('profile/favourites',      'UserController@favourites')        ->name('profile.favourites');
     Route::get      ('profile/posts',           'UserController@userPosts')         ->name('profile.posts');
     Route::get      ('profile/subscription',    'UserController@subscription')      ->name('profile.subscription');
     Route::patch    ('profile/update',          'UserController@update')            ->name('profile.update');
     Route::patch    ('profile/update/pass',     'UserController@updatePass')        ->name('profile.update.pass');
-    
-    // mailer routes
-    Route::delete   ('profile/mailer/destroy',      'MailerController@destroy')     ->name('mailer.destroy');
-    Route::get      ('profile/mailer',              'MailerController@index')       ->name('mailer.index');
+
     Route::middleware('plan.standart')->group(function () {
-        Route::patch    ('profile/mailer/update',   'MailerController@update')      ->name('mailer.update');
-        Route::get      ('profile/mailer/edit/{id}','MailerController@edit')        ->name('mailer.edit');
-        Route::resource ('profile/mailer',          'MailerController')             ->except(['show', 'edit', 'update', 'destroy', 'index']);
+        //posts routes
+        Route::get      ('fake/store',          'PostController@storeFake')     ->name('posts.store.fake');
+        Route::get      ('update/store',        'PostController@updateFake')    ->name('posts.update.fake');
+        Route::get      ('posts/create/service','PostController@serviceCreate') ->name('service.create');
+        Route::resource ('posts',               'PostController')               ->except(['index', 'show']);
+
+        // mailer routes
+        Route::delete   ('mailer/delete-all',       'MailerController@deleteAll')       ->name('mailers.delete');
+        Route::get      ('mailer/deactivate-all',   'MailerController@deactivateAll')   ->name('mailers.deactivate');
+        Route::resource ('profile/mailer',          'MailerController');
+    });
+
+    // posts import routes
+    Route::middleware('plan.pro')->group(function () {
+        Route::get      ('posts/import',         'PostController@import')        ->name('post.import');
+        Route::post     ('posts/import/upload',  'PostController@importStore')   ->name('import.upload');
     });
 });
 

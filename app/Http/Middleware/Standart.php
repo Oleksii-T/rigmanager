@@ -16,7 +16,7 @@ class Standart
      */
     public function handle($request, Closure $next)
     {
-        if ( !auth()->user()->is_standart ) {
+        if ( !(auth()->user() && auth()->user()->is_standart) ) {
             Session::flash('subscription-required', __('messages.requireStandart'));
             return redirect(loc_url(route('plans')));
         }

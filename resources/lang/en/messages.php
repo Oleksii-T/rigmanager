@@ -37,6 +37,9 @@ return [
     'tooManyUrgentPostsError' => 'You have reached the maximum number of urgent posts. (100 for premium, 300 for Premium+)',
 
     'mailerToManyTags' => 'Too many categories',
+    'mailersDeactivated' => 'All mailer deactivated successfully!',
+    'mailerActivated' => 'Mailer has been activated successfully!',
+    'mailerDeactivated' => 'Mailer has been deactivated successfully!',
     'mailerUploaded' => 'Mailer has been configured successfully!',
     'mailerUploadedError' => 'Error occured while configuring the Mailer.',
     'mailerDeleted' => 'Mailer has been deleted successfully!',

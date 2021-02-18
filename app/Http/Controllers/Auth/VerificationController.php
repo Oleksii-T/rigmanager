@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\Traits\Subscription;
 
 class VerificationController extends Controller
 {
+    use VerifiesEmails;
+
     /*
     |--------------------------------------------------------------------------
     | Email Verification Controller
@@ -21,8 +23,6 @@ class VerificationController extends Controller
     | be re-sent if the user didn't receive the original email message.
     |
     */
-
-    use VerifiesEmails, Subscription;
 
     /**
      * Where to redirect users after verification.
@@ -45,7 +45,8 @@ class VerificationController extends Controller
 
     protected function verified(Request $request)
     {
-        $this->freeAccess();
+        $s = new SubscriptionController;
+        $s->freeAccess();
         Session::flash('message-success', __('messages.accountActivated'));
     }
 }

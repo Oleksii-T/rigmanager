@@ -134,82 +134,82 @@
                 <div id="type" class="check-block">
                     @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch11" value="5" checked>
-                            <label for="ch11" class="check-label">{{__('ui.postTypeGiveS')}}</label>
+                            <input type="checkbox" class="check-input" id="ch8" value="5" checked>
+                            <label for="ch8" class="check-label">{{__('ui.postTypeGiveS')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch12" value="6" checked>
-                            <label for="ch12" class="check-label">{{__('ui.postTypeGetS')}}</label>
+                            <input type="checkbox" class="check-input" id="ch9" value="6" checked>
+                            <label for="ch9" class="check-label">{{__('ui.postTypeGetS')}}</label>
                         </div>
                     @elseif ( $search['type'] == 'tags' && $search['tag_type'] == 'eq' )
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch13" value="1" checked>
-                            <label for="ch13" class="check-label">{{__('ui.postTypeSell')}}</label>
+                            <input type="checkbox" class="check-input" id="ch4" value="1" checked>
+                            <label for="ch4" class="check-label">{{__('ui.postTypeSell')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="2" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeBuy')}}</label>
+                            <input type="checkbox" class="check-input" id="ch5" value="2" checked>
+                            <label for="ch5" class="check-label">{{__('ui.postTypeBuy')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="3" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeRent')}}</label>
+                            <input type="checkbox" class="check-input" id="ch6" value="3" checked>
+                            <label for="ch6" class="check-label">{{__('ui.postTypeRent')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="4" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeLeas')}}</label>
+                            <input type="checkbox" class="check-input" id="ch7" value="4" checked>
+                            <label for="ch7" class="check-label">{{__('ui.postTypeLeas')}}</label>
                         </div>
                     @elseif ( $search['type'] == 'type' && $search['url'] == 'equipment-sell' )
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="1" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeSell')}}</label>
+                            <input type="checkbox" class="check-input" id="ch4" value="1" checked>
+                            <label for="ch4" class="check-label">{{__('ui.postTypeSell')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="3" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeRent')}}</label>
+                            <input type="checkbox" class="check-input" id="ch6" value="3" checked>
+                            <label for="ch6" class="check-label">{{__('ui.postTypeRent')}}</label>
                         </div>
                     @elseif ( $search['type'] == 'type' && $search['url'] == 'equipment-buy' )
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="2" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeBuy')}}</label>
+                            <input type="checkbox" class="check-input" id="ch5" value="2" checked>
+                            <label for="ch5" class="check-label">{{__('ui.postTypeBuy')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="4" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeLeas')}}</label>
+                            <input type="checkbox" class="check-input" id="ch7" value="4" checked>
+                            <label for="ch7" class="check-label">{{__('ui.postTypeLeas')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="5" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeGiveS')}}</label>
+                            <input type="checkbox" class="check-input" id="ch8" value="5" checked>
+                            <label for="ch8" class="check-label">{{__('ui.postTypeGiveS')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="6" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeGetS')}}</label>
+                            <input type="checkbox" class="check-input" id="ch9" value="6" checked>
+                            <label for="ch9" class="check-label">{{__('ui.postTypeGetS')}}</label>
                         </div>
                     @elseif ( $search['type'] == 'type' && $search['url'] == 'tenders' )
                         <!--empty-->
                     @else
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="1" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeSell')}}</label>
+                            <input type="checkbox" class="check-input" id="ch4" value="1" checked>
+                            <label for="ch4" class="check-label">{{__('ui.postTypeSell')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="2" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeBuy')}}</label>
+                            <input type="checkbox" class="check-input" id="ch5" value="2" checked>
+                            <label for="ch5" class="check-label">{{__('ui.postTypeBuy')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="3" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeRent')}}</label>
+                            <input type="checkbox" class="check-input" id="ch6" value="3" checked>
+                            <label for="ch6" class="check-label">{{__('ui.postTypeRent')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="4" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeLeas')}}</label>
+                            <input type="checkbox" class="check-input" id="ch7" value="4" checked>
+                            <label for="ch7" class="check-label">{{__('ui.postTypeLeas')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="5" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeGiveS')}}</label>
+                            <input type="checkbox" class="check-input" id="ch8" value="5" checked>
+                            <label for="ch8" class="check-label">{{__('ui.postTypeGiveS')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch14" value="6" checked>
-                            <label for="ch14" class="check-label">{{__('ui.postTypeGetS')}}</label>
+                            <input type="checkbox" class="check-input" id="ch9" value="6" checked>
+                            <label for="ch9" class="check-label">{{__('ui.postTypeGetS')}}</label>
                         </div>
                     @endif
                 </div>
@@ -218,12 +218,12 @@
                     <label class="label">{{__('ui.postRole')}}</label>
                     <div id="role" class="check-block">
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch21" value="1" checked>
-                            <label for="ch21" class="check-label">{{__('ui.postRolePrivate')}}</label>
+                            <input type="checkbox" class="check-input" id="ch10" value="1" checked>
+                            <label for="ch10" class="check-label">{{__('ui.postRolePrivate')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch22" value="2" checked>
-                            <label for="ch22" class="check-label">{{__('ui.postRoleBusiness')}}</label>
+                            <input type="checkbox" class="check-input" id="ch11" value="2" checked>
+                            <label for="ch11" class="check-label">{{__('ui.postRoleBusiness')}}</label>
                         </div>
                     </div>
                 @endif
@@ -232,12 +232,12 @@
                     <label class="label">{{__('ui.thread')}}</label>
                     <div id="thread" class="check-block">
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch21" value="1" checked>
-                            <label for="ch21" class="check-label">{{__('ui.equipment')}}</label>
+                            <input type="checkbox" class="check-input" id="ch12" value="1" checked>
+                            <label for="ch12" class="check-label">{{__('ui.equipment')}}</label>
                         </div>
                         <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch22" value="2" checked>
-                            <label for="ch22" class="check-label">{{__('ui.service')}}</label>
+                            <input type="checkbox" class="check-input" id="ch13" value="2" checked>
+                            <label for="ch13" class="check-label">{{__('ui.service')}}</label>
                         </div>
                     </div>  
                 @endif
@@ -335,6 +335,40 @@
             filters.type = ["1","2","3","4","5","6"];
             filters.thread = ["1","2"];
             filters.sorting = "2";
+
+            // add search request to mailer
+            $('.add-request-to-mailer').click(function(e){
+                return;
+                e.preventDefault();
+                var search = '{!! json_encode($search) !!}';
+                var resByTag = JSON.stringify(null);
+                if ("{{isset($resByTag)}}") {
+                    var resByTag = '{!! json_encode($resByTag) !!}';
+                }
+                var filtersJson = JSON.stringify(filters);
+                var ajaxUrl = "{!! route('mailer.create.by.search', ['search'=>'search-r', 'resByTag'=>'resByTag-r', 'filters'=>'filters-r']) !!}";
+                ajaxUrl = ajaxUrl.replace('search-r', search);
+                ajaxUrl = ajaxUrl.replace('resByTag-r', resByTag);
+                ajaxUrl = ajaxUrl.replace('filters-r', filtersJson);
+                $.ajax({
+                    url: ajaxUrl,
+                    type: 'POST',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                    },
+                    success: function(data) {
+                        data = JSON.parse(data);
+                        if ( data.code == 500 ) {
+                            showPopUpMassage(true, data.message);
+                        } else {
+                            showPopUpMassage(false, data.message);
+                        }
+                    },
+                    error: function() {
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
+                    }
+                });
+            });
 
             //handle manual ajax pagination
             $('body').on('click', 'div.filter-pagination a', function(e){

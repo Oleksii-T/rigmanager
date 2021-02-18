@@ -203,10 +203,35 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
+            //count views
             $.ajax({
                 type: "POST",
-                url: "{{loc_url(route('post.viewed'))}}",
+                url: "{{route('post.viewed')}}",
                 data: { "_token": "{{csrf_token()}}", "post_id": "{{$post->id}}" }
+            });
+
+            // user click add author to mailer btn
+            $('.add-to-mailer').click(function() {
+                return;
+                var button = $(this);
+                button.addClass('loading');
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('mailer.add.author', $post->user_id) }}",
+                    success: function(data) {
+                        data = JSON.parse(data);
+                        if ( data.code == 500 ) {
+                            showPopUpMassage(true, data.message);
+                        } else {
+                            showPopUpMassage(false, data.message);
+                        }
+                        button.removeClass('loading');
+                    },
+                    error: function() {
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
+                        button.removeClass('loading');
+                    }
+                });
             });
 
             //hide/show translated/origin title/description

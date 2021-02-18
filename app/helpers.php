@@ -1,7 +1,7 @@
 <?php
   
 // custom loc_url helpers for using in blade template
-if (! function_exists('loc_url')) {
+if ( !function_exists('loc_url') ) {
     /**
      * Return URL with lang prefix to slug
      */
@@ -27,7 +27,7 @@ if (! function_exists('loc_url')) {
 }
 
 // convert string in "UK" or "RU" to transiterated version of "EN"
-if (! function_exists('transliteration'))  {
+if ( !function_exists('transliteration') )  {
     function transliteration($str, $check) {
         $converter = array(
             'а' => 'a',   'б' => 'b',   'в' => 'v',
@@ -63,5 +63,34 @@ if (! function_exists('transliteration'))  {
             }
         }
         return $t;
+    }
+}
+
+//format number to cost
+if ( !function_exists('formatNumberToCost') ) {
+    function formatNumberToCost($number, $currency) {
+        $cost = strval($number);
+        $coins = strstr($cost, '.');
+        if (!$coins) {
+            $cost = $cost.".00";
+        }
+        else if (strlen($coins) != 3 ) {
+            $cost = $cost."0";
+        }
+        $step = 1;
+        $commaIndexes = array();
+        for ($i=strlen($cost)-4; $i > 0 ; $i--) {
+            if ($step == 3) {
+                $commaIndexes[] = $i;
+                $step = 1;
+            } else {
+                $step++;
+            }
+        }
+        foreach ($commaIndexes as $commaIndex) {
+            $cost = substr_replace($cost, ',', $commaIndex, 0);
+        }
+        $c = $currency=="UAH" ? '₴' : '$' ;
+        return substr_replace($cost, $c, 0, 0);
     }
 }

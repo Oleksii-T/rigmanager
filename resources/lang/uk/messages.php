@@ -36,6 +36,9 @@ return [
     'allPostsDeleted' => 'Всі оголошення були видалені!',
 
     'mailerRequestAdded' => 'Запит успішно додано до Розсилку!',
+    'mailersDeactivated' => '',
+    'mailerActivated' => 'Розсилка активована успішно!',
+    'mailerDeactivated' => 'Розсилка деактивована успішно!',
     'mailerTooManyMailers' => 'Забагато Розсилок! (макс. 10)',
     'mailerToManyTags' => 'Занадто багато категорій',
     'mailerUploaded' => 'Розсилка налаштована успішно!',

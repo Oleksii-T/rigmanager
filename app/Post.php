@@ -285,30 +285,7 @@ class Post extends Model
         if (!$this->cost) {
             return '';
         }
-        $cost = strval($this->cost);
-        $coins = strstr($cost, '.');
-        if (!$coins) {
-            $cost = $cost.".00";
-        }
-        else if (strlen($coins) != 3 ) {
-            $cost = $cost."0";
-        }
-        $step = 1;
-        $commaIndexes = array();
-        for ($i=strlen($cost)-4; $i > 0 ; $i--) {
-            if ($step == 3) {
-                $commaIndexes[] = $i;
-                $step = 1;
-            } else {
-                $step++;
-            }
-        }
-        foreach ($commaIndexes as $commaIndex) {
-            $cost = substr_replace($cost, ',', $commaIndex, 0);
-        }
-        $currency = $this->currency=="UAH" ? '₴' : '$' ;
-        $cost = substr_replace($cost, $currency, 0, 0);
-        return $cost;
+        return formatNumberToCost($this->cost, $this->currency);
     }
 
     public function getUserPhoneReadableAttribute() {

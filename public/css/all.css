@@ -1574,6 +1574,7 @@ textarea.form-error {
 	color: #7a7a7a;
 	font-size: 14px;
 	line-height: 22px;
+	margin-left: 15px;
 }
 .cabinet-line-check {
 	margin: 0 14px 0 35px;
@@ -1799,7 +1800,11 @@ textarea.form-error {
 	flex-wrap: wrap;
 	padding: 12px 0 10px;
 }
-.form-category-list li {
+.mailing-item .form-category-list {
+	padding: 0px;
+}
+.form-category-list li,
+.form-category-list li a{
 	margin: 0 7px 5px 0;
 	padding: 0;
 	font-size: 14px;
@@ -1819,7 +1824,8 @@ textarea.form-error {
 	background-size: 7px 5px;
 }
 .form-category-list li:first-child:before {display: none;}
-.form-category-list li:last-child {color: #fff;}
+.form-category-list li:last-child,
+.form-category-list li:last-child a {color: #fff;}
 .form-button-block {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -2342,6 +2348,9 @@ article ul li:before {
 	line-height: 18px;
 	border-radius: 20px;
 }
+.status-passive a{
+	color: inherit;
+}
 .status-active {
 	background: #328d01;
 }
@@ -2362,9 +2371,13 @@ article ul li:before {
 	width: 125px;
 	padding: 0 15px 0 0;
 	font-weight: 500;
+	white-space: pre-line;
 }
 .mailing-info-text {
 	flex: 1;
+}
+.mailing-info-text a{
+	color: white;
 }
 .side-add-mailing {
 	background: #0159ac;

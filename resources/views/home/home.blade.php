@@ -25,24 +25,8 @@
                         <fieldset>
                             <div class="top-form-line">
                                 <input type="text" class="input" name="text" placeholder="{{__('ui.search')}}" required>
-                                <!--
-                                <div class="select-block">
-                                    <select class="styled">
-                                        <option value="">Вся Україна</option>
-                                        <option value="">Опция 1</option>
-                                        <option value="">Опция 2</option>
-                                        <option value="">Опция 3</option>
-                                        <option value="">Опция 4</option>
-                                    </select>
-                                </div>
-                                -->
                                 <button class="button">{{__('ui.search')}}</button>
                             </div>
-                            <!--
-                            <div class="top-form-link">
-                                <a href="">Розширений пошук</a>
-                            </div>
-                            -->
                         </fieldset>
                     </form>
                 </div>

@@ -160,6 +160,10 @@ return [
     'whatIsMailer' => 'What is Mailer',
     'settingUpMailer' => 'Mailer configuration',
     'mailerDescription' => 'Description',
+    'mailerHowToCreate' => 'How to create new mailer?',
+    'see' => 'See',
+    'mailerDeactivateAll' => 'Deactivate all',
+    'mailerDeleteAll' => 'Delete all',
     'mailerChooseDescription' => 'Describe what you are looking for',
     'mailerDescriptionHelp' => 'Here you can briefly describe the product you are interested in.
         If You are interested in few independent products, please split the description of them by new line.',
@@ -168,14 +172,16 @@ return [
     'mailerChooseTags' => 'Select the categories you are interested in',
     'mailerTagsHelp' => 'You can choose up to 10 categories total.
         Click on entry to delete.',
-    'mailerAuthors' => 'Authors',
     'mailerAuthorsHelp' => 'You can add an Author to Mailer on the page of any Post, near the \'Show contacts\' button.
         You can add up to 10 authors.
         Click on entry to delete.',
     'deleteMailer' => 'Delete Mailer',
     'deleteMailers' => 'Delete all Mailers',
     'active' => 'enabled',
+    'activete' => 'enable',
     'notActive' => 'disabled',
+    'deactivate' => 'disable',
+    'mailerKeywords' => 'Keywords',
     'mailerAddAuthor' => 'Add Author to Mailer',
     'mailerRemoveAuthor' => 'Remove Author from Mailer',
     'mailerAuthorAlreadyAdded' => 'Author already in Mailer',
@@ -238,7 +244,8 @@ return [
     'postSettings' => 'Post settings',
     'showOptionals' => 'Show optional fields',
     'hideOptionals' => 'Hide optional fields',
-    'thread' => 'Equipment/Service',
+    'author' => 'Author',
+    'thread' => 'Equipment / Service',
     'title' => 'Title',
     'titleEqHelp' => 'Enter the equipment/part name.
         Should not contain words and synonyms:
@@ -264,6 +271,7 @@ return [
     'chooseAmount' => 'Choose amount',
     'amountHelp' => 'Here You may specify the number of pieces you have.
         If it is not obvious what this number stands for, you can specify this information in the description',
+    'type' => 'Type',
     'choosePostType' => 'Choose post type',
     'postTypeSell' => 'Sell', // type = 1
     'postTypeSellFull' => 'Equipment Sell', // type = 1
@@ -278,6 +286,7 @@ return [
     'postTypeGiveS' => 'Providing of service', // type = 5
     'postTypeGetS' => 'Request for service', // type = 6
     'postTypeHelp' => 'The variant you choose will be appended to your title.',
+    'postRole' => 'Legal type',
     'choosePostRole' => 'Chose legal type',
     'postRoleBusiness' => 'Business',
     'postRolePrivate' => 'Private person',

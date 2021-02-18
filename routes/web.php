@@ -26,33 +26,36 @@ if (env('MAINTENANCE')) {
 Route::get          ('emailexists',                         'UserController@emailExists')       ->name('email.exist'); //Ajax reqeust
 Route::get          ('usernameexists',                      'UserController@userNameExists')    ->name('username.exist'); //Ajax reqeust
 
-//impoer file download
+//import file download
 Route::get('download/posts-import', function() {
     $file = public_path().'/rigmanager-import.xlsx';
     return response()->download($file);
 })->name('download.post.import');
 
+//post views counter
 Route::post('ajax/post/viewed','PostController@viewed')->name('post.viewed'); //Ajax reqeust
 
 Route::middleware('verified')->group(function () {
-
-    // post routes
-    Route::get      ('ajax/contacts/{postId}',              'PostController@getContacts')       ->name('get.contacts'); //Ajax reqeust
-    Route::get      ('ajax/posts/images/{post}',            'PostController@getImages')         ->name('get.images'); //Ajax reqeust
-    Route::patch    ('posts/images/delete/{post}',          'PostController@imgsDel')           ->name('posts.imgs.delete'); //Ajax reqeust
-    Route::patch    ('posts/images/delete/{post}/{image}',  'PostController@imgDel')            ->name('posts.img.delete'); //Ajax reqeust
-    Route::delete   ('ajax/posts/a//{post}',                'PostController@destroyAjax')       ->name('posts.destroy.ajax'); //Ajax reqeust
-    Route::post     ('ajax/posts/toggle/status/{post}',     'PostController@togglePost')        ->name('post.toggle'); //Ajax reqeust
-    Route::delete   ('ajax/delete/posts',                   'PostController@deleteAll')         ->name('posts.delete'); //Ajax reqeust
 
     // user routes
     Route::get      ('ajax/profile/favourite',              'UserController@addToFav')          ->name('toFav'); //Ajax reqeust
     Route::patch    ('profile/image/delete',                'UserController@userImageDelete')   ->name('profile.img.delete'); //Ajax reqeust
 
-    // mailer routes
-    Route::get      ('ajax/mailer/author/{author}',         'MailerController@addAuthor')    ->name('mailer.add.author');// Ajax request
-    Route::get      ('ajax/mailer/toggle',                  'MailerController@toggle')          ->name('mailer.toggle');// Ajax request
-    Route::post     ('ajax/mailer/create',                  'MailerController@createBySearchRequest')->name('mailer.create.by.search');// Ajax request
+    Route::middleware('plan.standart')->group(function () {
+        // mailer routes
+        Route::get      ('ajax/mailer/author/{author}',         'MailerController@addAuthor')       ->name('mailer.add.author');// Ajax request
+        Route::post     ('ajax/mailer/toggle/{mailer}',         'MailerController@toggle')          ->name('mailer.toggle');// Ajax request
+        Route::post     ('ajax/mailer/create',                  'MailerController@createBySearchRequest')->name('mailer.create.by.search');// Ajax request
+
+        // post routes
+        Route::get      ('ajax/contacts/{postId}',              'PostController@getContacts')       ->name('get.contacts'); //Ajax reqeust
+        Route::get      ('ajax/posts/images/{post}',            'PostController@getImages')         ->name('get.images'); //Ajax reqeust
+        Route::patch    ('posts/images/delete/{post}',          'PostController@imgsDel')           ->name('posts.imgs.delete'); //Ajax reqeust
+        Route::patch    ('posts/images/delete/{post}/{image}',  'PostController@imgDel')            ->name('posts.img.delete'); //Ajax reqeust
+        Route::delete   ('ajax/posts/a//{post}',                'PostController@destroyAjax')       ->name('posts.destroy.ajax'); //Ajax reqeust
+        Route::post     ('ajax/posts/toggle/status/{post}',     'PostController@togglePost')        ->name('post.toggle'); //Ajax reqeust
+        Route::delete   ('ajax/delete/posts',                   'PostController@deleteAll')         ->name('posts.delete'); //Ajax reqeust
+    });
 });
 
 Route::group(['middleware' => 'make.locale'], function() {

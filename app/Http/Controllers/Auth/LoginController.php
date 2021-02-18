@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\Traits\ImageUploader;
-use App\Http\Controllers\Traits\Subscription;
 use Laravel\Socialite\Facades\Socialite;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Session;
@@ -17,7 +16,7 @@ use Auth;
 
 class LoginController extends Controller
 {
-    use ImageUploader, Subscription;
+    use ImageUploader;
     /*
     |--------------------------------------------------------------------------
     | Login Controller

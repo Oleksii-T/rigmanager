@@ -427,7 +427,7 @@ class PostController extends Controller
     public function getContacts($postId)
     {
         $post = Post::findOrFail($postId);
-        if ($this->isSubscribed()) {
+        if (auth()->user()->is_standart) {
             $contacts['email'] = $post->user_email;
             $contacts['phone'] = $post->user_phone_intern;
             $contacts['viber'] = $post->viber;
