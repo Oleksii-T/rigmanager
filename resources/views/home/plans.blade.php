@@ -13,6 +13,9 @@
 
 		<div class="content">
 			<h1>{{__('ui.footerSubscription')}}</h1>
+			@if (Session::has('subscription-required'))
+				<div class="content-top-text content-top-error">{{ Session::get('subscription-required') }}</div>
+			@endif
 			<div class="content-top-text">{{__('ui.plansFreeAccessTitle')}}</div>
 			<div class="sub">
 				<div class="sub-side">
@@ -32,30 +35,32 @@
 						<div class="sub-info-item">
 							<div class="sub-info-text">{{__('ui.plansContacts')}}</div>
 						</div>
-						<div class="sub-info-item">
-							<div class="sub-info-text">{{__('ui.plansCreate1')}}</div>
+						<div class="sub-info-item with-help">
+							<div class="sub-info-text">{{__('ui.publishPosts')}}
+							<span>{{__('ui.publishPosts1Help')}}</span></div>
 						</div>
 						<div class="sub-info-item">
-							<div class="sub-info-text">{{__('ui.plansMailer')}}</div>
+							<div class="sub-info-text">{{__('ui.plansMailer')}} <a href="{{loc_url(route('faq'))}}#WhatIsMailer">?</a></div>
 						</div>
 						<div class="sub-info-item">
-							<div class="sub-info-text">{{__('ui.plansTranslate')}}</div>
+							<div class="sub-info-text">{{__('ui.plansTranslate')}} <a href="{{loc_url(route('faq'))}}#WhatIsAutoTranslator">?</a></div>
+						</div>
+						<div class="sub-info-item with-help">
+							<div class="sub-info-text">{{__('ui.publishPosts')}}
+								<span>{{__('ui.publishPosts2Help')}}</span></div>
 						</div>
 						<div class="sub-info-item">
-							<div class="sub-info-text">{{__('ui.plansCreate2')}}</div>
+							<div class="sub-info-text">{{__('ui.publishTenders')}}</div>
 						</div>
 						<div class="sub-info-item">
-							<div class="sub-info-text">{{__('ui.tenders')}}</div>
-						</div>
-						<div class="sub-info-item">
-							<div class="sub-info-text">{{__('ui.plansPostImport')}}</div>
+							<div class="sub-info-text">{{__('ui.plansPostImport')}} <a href="{{loc_url(route('faq'))}}#WhatIsImport">?</a></div>
 						</div>
 						<div class="sub-info-item">
 							<div class="sub-info-text">{{__('ui.plansPostTracking')}}</div>
 						</div>
 					</div>
 				</div>
-				<div class="sub-col">
+				<div class="sub-col {{auth()->user() && !auth()->user()->is_standart ? 'sub-active' : ''}}">
 					<div class="sub-top">
 						<div class="sub-name">
 							<b>Start</b>
@@ -85,29 +90,31 @@
 							<div class="sub-no"></div>
 							<div class="sub-info-text">{{__('ui.plansContacts')}}</div>
 						</div>
-						<div class="sub-info-item">
+						<div class="sub-info-item with-help">
 							<div class="sub-no"></div>
-							<div class="sub-info-text">{{__('ui.plansCreate1')}}</div>
+							<div class="sub-info-text">{{__('ui.publishPosts')}}
+								<span>{{__('ui.publishPosts1Help')}}</span></div>
 						</div>
 						<div class="sub-info-item">
 							<div class="sub-no"></div>
-							<div class="sub-info-text">{{__('ui.plansMailer')}}</div>
+							<div class="sub-info-text">{{__('ui.plansMailer')}} <a href="{{loc_url(route('faq'))}}#WhatIsMailer">?</a></div>
 						</div>
 						<div class="sub-info-item">
 							<div class="sub-no"></div>
-							<div class="sub-info-text">{{__('ui.plansTranslate')}} </div>
+							<div class="sub-info-text">{{__('ui.plansTranslate')}} <a href="{{loc_url(route('faq'))}}#WhatIsAutoTranslator">?</a></div>
+						</div>
+						<div class="sub-info-item with-help">
+							<div class="sub-no"></div>
+							<div class="sub-info-text">{{__('ui.publishPosts')}}
+								<span>{{__('ui.publishPosts2Help')}}</span></div>
 						</div>
 						<div class="sub-info-item">
 							<div class="sub-no"></div>
-							<div class="sub-info-text">{{__('ui.plansCreate2')}}</div>
+							<div class="sub-info-text">{{__('ui.publishTenders')}}</div>
 						</div>
 						<div class="sub-info-item">
 							<div class="sub-no"></div>
-							<div class="sub-info-text">{{__('ui.tenders')}}</div>
-						</div>
-						<div class="sub-info-item">
-							<div class="sub-no"></div>
-							<div class="sub-info-text">{{__('ui.plansPostImport')}}</div>
+							<div class="sub-info-text">{{__('ui.plansPostImport')}} <a href="{{loc_url(route('faq'))}}#WhatIsImport">?</a></div>
 						</div>
 						<div class="sub-info-item">
 							<div class="sub-no"></div>
@@ -115,9 +122,17 @@
 						</div>
 					</div>
 					<a href="" class="sub-mob">{{__('ui.details')}}</a>
-					<a href="" class="not-ready sub-button">{{__('ui.plansChoose')}}</a>
+					@if (auth()->user() && !auth()->user()->is_standart)
+						<button href="" class="sub-button">{{__('ui.chosen')}}</button>
+					@else						
+						<form action="{{loc_url(route('plans.update'))}}" method="POST">
+							@csrf
+							<input type="text" name="plan" value="start" hidden>
+							<button href="" class="sub-button">{{__('ui.plansChoose')}}</button>
+						</form>
+					@endif
 				</div>
-				<div class="sub-col">
+				<div class="sub-col {{auth()->user() && auth()->user()->is_standart && !auth()->user()->is_pro ? 'sub-active' : ''}}">
 					<div class="sub-top">
 						<div class="sub-name">
 							<b>Standart</b>
@@ -147,29 +162,31 @@
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
 							<div class="sub-info-text">{{__('ui.plansContacts')}}</div>
 						</div>
-						<div class="sub-info-item">
+						<div class="sub-info-item with-help">
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
-							<div class="sub-info-text">{{__('ui.plansCreate1')}}</div>
-						</div>
-						<div class="sub-info-item">
-							<img src="{{asset('icons/sub-check.svg')}}" alt="">
-							<div class="sub-info-text">{{__('ui.plansMailer')}}</div>
+							<div class="sub-info-text">{{__('ui.publishPosts')}}
+								<span>{{__('ui.publishPosts1Help')}}</span></div>
 						</div>
 						<div class="sub-info-item">
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
-							<div class="sub-info-text">{{__('ui.plansTranslate')}}</div>
+							<div class="sub-info-text">{{__('ui.plansMailer')}} <a href="{{loc_url(route('faq'))}}#WhatIsMailer">?</a></div>
+						</div>
+						<div class="sub-info-item">
+							<img src="{{asset('icons/sub-check.svg')}}" alt="">
+							<div class="sub-info-text">{{__('ui.plansTranslate')}} <a href="{{loc_url(route('faq'))}}#WhatIsAutoTranslator">?</a></div>
+						</div>
+						<div class="sub-info-item with-help">
+							<div class="sub-no"></div>
+							<div class="sub-info-text">{{__('ui.publishPosts')}}
+								<span>{{__('ui.publishPosts2Help')}}</span></div>
 						</div>
 						<div class="sub-info-item">
 							<div class="sub-no"></div>
-							<div class="sub-info-text">{{__('ui.plansCreate2')}}</div>
+							<div class="sub-info-text">{{__('ui.publishTenders')}}</div>
 						</div>
 						<div class="sub-info-item">
 							<div class="sub-no"></div>
-							<div class="sub-info-text">{{__('ui.tenders')}}</div>
-						</div>
-						<div class="sub-info-item">
-							<div class="sub-no"></div>
-							<div class="sub-info-text">{{__('ui.plansPostImport')}}</div>
+							<div class="sub-info-text">{{__('ui.plansPostImport')}} <a href="{{loc_url(route('faq'))}}#WhatIsImport">?</a></div>
 						</div>
 						<div class="sub-info-item">
 							<div class="sub-no"></div>
@@ -177,9 +194,17 @@
 						</div>
 					</div>
 					<a href="" class="sub-mob">{{__('ui.details')}}</a>
-					<a href="" class="not-ready sub-button">{{__('ui.plansChoose')}}</a>
+					@if (auth()->user() && auth()->user()->is_standart && !auth()->user()->is_pro)
+						<button href="" class="sub-button">{{__('ui.chosen')}}</button>
+					@else						
+						<form action="{{loc_url(route('plans.update'))}}" method="POST">
+							@csrf
+							<input type="text" name="plan" value="standart" hidden>
+							<button href="" class="sub-button">{{__('ui.plansChoose')}}</button>
+						</form>
+					@endif
 				</div>
-				<div class="sub-col"> <!--sub-active-->
+				<div class="sub-col {{auth()->user() && auth()->user()->is_pro ? 'sub-active' : ''}}">
 					<div class="sub-top">
 						<div class="sub-name">
 							<b>Pro</b>
@@ -209,37 +234,47 @@
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
 							<div class="sub-info-text">{{__('ui.plansContacts')}}</div>
 						</div>
-						<div class="sub-info-item">
+						<div class="sub-info-item with-help">
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
-							<div class="sub-info-text">{{__('ui.plansCreate1')}}</div>
+							<div class="sub-info-text">{{__('ui.publishPosts')}}
+								<span>{{__('ui.publishPosts1Help')}}</span></div>
 						</div>
 						<div class="sub-info-item">
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
-							<div class="sub-info-text">{{__('ui.plansMailer')}}</div>
+							<div class="sub-info-text">{{__('ui.plansMailer')}} <a href="{{loc_url(route('faq'))}}#WhatIsMailer">?</a></div>
 						</div>
 						<div class="sub-info-item">
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
-							<div class="sub-info-text">{{__('ui.plansTranslate')}} </div>
+							<div class="sub-info-text">{{__('ui.plansTranslate')}} <a href="{{loc_url(route('faq'))}}#WhatIsAutoTranslator">?</a></div>
+						</div>
+						<div class="sub-info-item with-help">
+							<img src="{{asset('icons/sub-check.svg')}}" alt="">
+							<div class="sub-info-text">{{__('ui.publishPosts')}}
+								<span>{{__('ui.publishPosts2Help')}}</span></div>
 						</div>
 						<div class="sub-info-item">
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
-							<div class="sub-info-text">{{__('ui.plansCreate2')}}</div>
+							<div class="sub-info-text">{{__('ui.publishTenders')}}</div>
 						</div>
 						<div class="sub-info-item">
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
-							<div class="sub-info-text">{{__('ui.tenders')}}</div>
-						</div>
-						<div class="sub-info-item">
-							<img src="{{asset('icons/sub-check.svg')}}" alt="">
-							<div class="sub-info-text">{{__('ui.plansPostImport')}}</div>
+							<div class="sub-info-text">{{__('ui.plansPostImport')}} <a href="{{loc_url(route('faq'))}}#WhatIsImport">?</a></div>
 						</div>
 						<div class="sub-info-item">
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
 							<div class="sub-info-text">{{__('ui.plansPostTracking')}}</div>
 						</div>
-					</div>
+					</div> 
 					<a href="" class="sub-mob">{{__('ui.details')}}</a>
-					<a href="" class="not-ready sub-button">{{__('ui.plansChoose')}}</a>
+					@if (auth()->user() && auth()->user()->is_pro)
+						<button href="" class="sub-button">{{__('ui.chosen')}}</button>
+					@else						
+						<form action="{{loc_url(route('plans.update'))}}" method="POST">
+							@csrf
+							<input type="text" name="plan" value="pro" hidden>
+							<button href="" class="sub-button">{{__('ui.plansChoose')}}</button>
+						</form>
+					@endif
 				</div>
 			</div>
 		</div>

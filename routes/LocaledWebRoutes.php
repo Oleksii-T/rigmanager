@@ -46,12 +46,16 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('verified')->group(function () {
 
+    //change subscriptiob routes
+    Route::post('plans/change', 'SubscriptionController@update') ->name('plans.update');
+    Route::get('plans/cancel', 'SubscriptionController@cancel') ->name('plans.cancel');
+
     // posts routes
-    Route::middleware('premium.plus')->group(function () {
+    Route::middleware('plan.pro')->group(function () {
         Route::get      ('posts/import',         'PostController@import')        ->name('post.import');
         Route::post     ('posts/import/upload',  'PostController@importStore')   ->name('import.upload');
     });
-    Route::middleware('premium')->group(function () {
+    Route::middleware('plan.standart')->group(function () {
         Route::get      ('fake/store',          'PostController@storeFake')     ->name('posts.store.fake');
         Route::get      ('update/store',        'PostController@updateFake')    ->name('posts.update.fake');
         Route::get      ('posts/create/service','PostController@serviceCreate') ->name('service.create');
@@ -69,7 +73,7 @@ Route::middleware('verified')->group(function () {
     // mailer routes
     Route::delete   ('profile/mailer/destroy',      'MailerController@destroy')     ->name('mailer.destroy');
     Route::get      ('profile/mailer',              'MailerController@index')       ->name('mailer.index');
-    Route::middleware('premium')->group(function () {
+    Route::middleware('plan.standart')->group(function () {
         Route::patch    ('profile/mailer/update',   'MailerController@update')      ->name('mailer.update');
         Route::get      ('profile/mailer/edit/{id}','MailerController@edit')        ->name('mailer.edit');
         Route::resource ('profile/mailer',          'MailerController')             ->except(['show', 'edit', 'update', 'destroy', 'index']);

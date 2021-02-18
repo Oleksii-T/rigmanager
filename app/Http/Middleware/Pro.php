@@ -2,13 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\Traits\Subscription;
 use Illuminate\Support\Facades\Session;
 use Closure;
 
-class PremiumPlus
+class Pro
 {
-    use Subscription;
     /**
      * Handle an incoming request.
      *
@@ -18,8 +16,8 @@ class PremiumPlus
      */
     public function handle($request, Closure $next)
     {
-        if (!$this->isPremiumPlus()) {
-            Session::flash('subscription-required', __('messages.requirePremium+'));
+        if ( !(auth()->user() && auth()->user()->is_pro) ) {
+            Session::flash('subscription-required', __('messages.requirePro'));
             return redirect(loc_url(route('plans')));
         }
         return $next($request);

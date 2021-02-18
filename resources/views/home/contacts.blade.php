@@ -50,7 +50,7 @@
                         <x-server-input-error inputName='text'/>
 
 						<div class="form-button">
-							<button class="button">{{__('ui.fromUserSubmit')}}</button>
+							<button type="submit" class="button">{{__('ui.fromUserSubmit')}}</button>
 						</div>
 					</fieldset>
 				</form>
@@ -62,6 +62,13 @@
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function() {
+
+            //anti bot protection
+            $('#form-contact button[type=submit]').click(function(e){
+                e.preventDefault();
+                $('#form-contact').append('<input type="text" name="anti-bot-protection" value="1" hidden>');
+                $('#form-contact').submit();
+            });
 
             // add regex validation of name
             $.validator.addMethod('validName',

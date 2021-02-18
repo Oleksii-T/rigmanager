@@ -513,22 +513,23 @@ return [
     'plansFilter' => 'Filtering',
     'plansFav' => 'Favourites',
     'plansContacts' => 'See contacts',
-    'plansCreate1' => 'Create Post',
-    'plansCreate1Help' => 'Max posts to be publiched: 200.
-        Max lifetime for each post: 2 months.',
+    'publishPosts' => 'Publish Post',
+    'publishPosts1Help' => 'Max posts: 200,
+        Max lifetime: 1-2m.',
     'plansMailer' => 'Mailer',
     'plansTranslate' => 'Auto-Translator',
-    'plansCreate2' => 'Create Post',
-    'plansCreate2Help' => 'Max posts to be publiched: 500.
-        Max lifetime for each post: unlimited.',
+    'publishPosts2Help' => 'Max posts: unlim,
+        Max lifetime: unlim.',
     'plansTopPost' => 'Premium status for posts',
     'plansFreeAccessTitle' => 'We are pleased to announce that during the development of the site, the free Pro-Accounts is automatically granted for every registered user!',
     'planRequired' => 'To make this action
         you need to obtain account with status',
     'plansPostImport' => 'Bulk posts import',
+    'publishTenders' => 'Publish tenders',
     'plansPostTracking' => 'Views statistics',
     'trackingHelp' => 'Views statistics can be found on "My posts" page. 
         On each post the new banner with number of views will be visible.',
+    'chosen' => 'Chosen',    
 
     // user plan 
     'subscription' => 'Subscription',
@@ -553,6 +554,7 @@ return [
     'status' => 'Status',
     'operation' => 'Operation',
     'canceled' => 'Canceled',
+    'history' => 'History',
     
     // posts import
     'postImport' => 'Posts import',

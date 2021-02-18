@@ -75,7 +75,7 @@ return [
     'aImport' => 'Sometimes users want to publish a lot of posts. We understand, that create them one by one will take some time.
         To solve such an issue we provide the Bulk posts import system.
         All you need to do is fill the import file with respect to the rules and submit it. (see details here)
-        The Bulk posts import is available only for Premium+ users.',
+        The Bulk posts import is available only for Pro users.',
 
     'qRelease' => 'When website will be released?',
     'aRelease' => 'There is still a lot of work ahead to make our service reliable, full of content, and recognizable by every Ukraine Oil & Gas company.

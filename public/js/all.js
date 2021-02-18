@@ -51,18 +51,7 @@ $(document).ready(function () {
 	// faq dropdown
 	$(document).on('click','.faq-top',function(e){
 		e.preventDefault();
-		if($(this).hasClass('active')){
-			$('.faq-hidden').slideUp();
-			$('.faq-top').removeClass('active');
-			$('.faq-item').removeClass('active');
-		}else{
-			$('.faq-hidden').slideUp();
-			$('.faq-top').removeClass('active');
-			$('.faq-item').removeClass('active');
-			$(this).parent().addClass('active');
-			$(this).parent().find('.faq-hidden').slideDown();
-			$(this).addClass('active');
-		}
+		toggleFaqText( $(this) );
 	});
 
 	// select styled
@@ -326,7 +315,21 @@ $(document).ready(function () {
 	});
 });
 
-
+// faq dropdown
+function toggleFaqText(item) {
+	if(item.hasClass('active')){
+		$('.faq-hidden').slideUp();
+		$('.faq-top').removeClass('active');
+		$('.faq-item').removeClass('active');
+	}else{
+		$('.faq-hidden').slideUp();
+		$('.faq-top').removeClass('active');
+		$('.faq-item').removeClass('active');
+		item.parent().addClass('active');
+		item.parent().find('.faq-hidden').slideDown();
+		item.addClass('active');
+	}
+}
 
 //get digit from classes of DOM element (depends on prefix)
 function getIdFromClasses(classes, prefix) {

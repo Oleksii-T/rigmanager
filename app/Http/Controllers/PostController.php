@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Traits\ImageUploader;
-use App\Http\Controllers\Traits\Subscription;
 use Google\Cloud\Translate\TranslateClient;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Traits\Tags;
@@ -21,7 +20,7 @@ use App\User;
 
 class PostController extends Controller
 {
-    use ImageUploader, Tags, Subscription;
+    use ImageUploader, Tags;
 
     /**
      * Display a listing of the resource.
@@ -57,7 +56,7 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         //check for maximum posts
-        $max = $this->isPremiumPlus() ? 500 : 200;
+        $max = auth()->user()->is_pro ? 500 : 200;
         if (auth()->user()->posts->count() >= $max) {
             if ($request->wantsJson()) {
                 return abort(400, __('messages.tooManyPostsError'));
@@ -70,7 +69,7 @@ class PostController extends Controller
 
         //check for max urgent posts
         if ( isset($input['is_urgent']) ) {
-            $max = $this->isPremiumPlus() ? 300 : 100;
+            $max = auth()->user()->is_pro ? 300 : 100;
             if (auth()->user()->posts()->where('is_urgent', 1)->get()->count() >= $max) {
                 if ($request->wantsJson()) {
                     return abort(400, __('messages.tooManyUrgentPostsError'));
@@ -261,7 +260,7 @@ class PostController extends Controller
 
         //parse is_urgent
         if ( isset($input['is_urgent']) ) {
-            $max = $this->isPremiumPlus() ? 300 : 100;
+            $max = auth()->user()->is_pro ? 300 : 100;
             if ( !$post->is_urgent && auth()->user()->posts()->where('is_urgent', 1)->get()->count() >= $max) {
                 if ($request->wantsJson()) {
                     return abort(400, __('messages.tooManyUrgentPostsError'));

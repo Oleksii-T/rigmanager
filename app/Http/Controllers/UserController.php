@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Traits\ImageUploader;
-use App\Http\Controllers\Traits\Subscription;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Session;
@@ -15,7 +14,7 @@ use App\Post;
 
 class UserController extends Controller
 {
-    use ImageUploader, Subscription;
+    use ImageUploader;
 
     /**
      * Display a listing of the resource.

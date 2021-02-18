@@ -8,7 +8,7 @@ use App\User;
 
 class Subscription extends Model
 {
-    protected $fillable = ['is_active', 'role', 'activated_at', 'payed', 'updated_at', 'expire_at', 'history'];
+    protected $fillable = ['number', 'is_active', 'role', 'activated_at', 'payment', 'issued', 'updated_at', 'expire_at', 'history'];
 
     protected $appends = ['role_readable', 'expite_at_readable', 'is_standart', 'is_pro'];
 

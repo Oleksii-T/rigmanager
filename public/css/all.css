@@ -1598,6 +1598,9 @@ textarea.form-error {
 	margin: 0 0 41px;
 	white-space: pre-line;
 }
+.content-top-error {
+	color: red;
+}
 .content-top-text a {
 	color: #fff;
 }
@@ -2534,12 +2537,25 @@ article ul li:before {
 	font-size: 12px;
 	line-height: 20px;
 }
+.sub-info-text a {
+	color: #ffffff;
+}
 .sub-side .sub-info-item {
 	justify-content: flex-start;
+}
+.sub-info-item.with-help {
+	height: 90px;
 }
 .sub-side .sub-info-text {
 	display: block;
 	font-size: 14px;
+}
+.sub-info-text span{
+	display: block;
+	font-size: 12px;
+	white-space: pre-line;
+	text-decoration: underline;
+	margin-left: 3px;
 }
 .sub-button {
 	display: -webkit-box;
@@ -2556,6 +2572,8 @@ article ul li:before {
 	text-decoration: none;
 	border: 1px solid #ff8d11;
 	border-radius: 8px;
+	font-size: 16px;
+	transition: all .3s linear;
 }
 .sub-button:hover {
 	background: #ff8d11;
@@ -2828,6 +2846,8 @@ article ul li:before {
 }
 .history-table {
 	overflow-x: auto;
+	overflow-y: scroll;
+	max-height: 900px;
 	padding: 0 0 11px;
 	background: #191919;
 }
@@ -3851,6 +3871,7 @@ article ul li:before {
 	}
 	.sub-info-text {
 		display: block;
+		max-width: 120px;
 	}
 	.sub-info-item img {
 		margin: 0 30px 0 0;

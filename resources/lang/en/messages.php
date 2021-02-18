@@ -65,9 +65,10 @@ return [
     'signedOut' => 'Good bye',
 
     'messageSent' => 'The message has been sent!',
+
+    'planUpdated' => 'Your subscription has been changed successfully!',
+    'planCanceled' => 'Your subscription has been canceled successfully!',
     
-    'planAlreadyPremium+' => 'You already have free Premium+ Account!',
-    'planCancelPremium+' => 'Sorry, you cannot cancel free Premium+ right now',
     
     'postImportError' => 'The error occurred while analyzing the import file',
     'postImportSuccess' => 'The post imported successfully',

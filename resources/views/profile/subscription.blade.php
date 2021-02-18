@@ -16,7 +16,7 @@
                 <div class="pack-side">
                     @if (auth()->user()->subscription && auth()->user()->subscription->is_active)
                         <div class="pack-name">{{__('ui.planActivated')}} «<span class="orange">{{auth()->user()->subscription->role_readable}}</span>»</div>
-                        <div class="pack-text"><span class="pack-text-min">{{__('ui.planActiveTo')}} {{auth()->user()->subscription->expire_at}}</span>  / <a href="#">{{__('ui.planCancel')}}</a></div>
+                        <div class="pack-text"><span class="pack-text-min">{{__('ui.planActiveTo')}} {{auth()->user()->subscription->expire_at}}</span>  / <a href="{{loc_url(route('plans.cancel'))}}">{{__('ui.planCancel')}}</a></div>
                     @else
                         <div class="pack-name">{{__('ui.planActivated')}} «<span class="orange">{{__('ui.planStart')}}</span>»</div>
                         <div class="pack-text"><span class="pack-text-min">{{__('ui.planStartChoosedHelp')}}</span></div>
@@ -29,7 +29,7 @@
             
             <div class="history">
                 <div class="history-top">
-                    <div class="history-title">Історія</div>
+                    <div class="history-title">{{__('ui.history')}}</div>
                     <!--
                     <div class="history-form">
                         <form action="">
@@ -70,7 +70,7 @@
                             </tr>
                         @endif
                         @if ($subscription && $subscription->history)
-                            @foreach (array_reverse($subscription->history, true) as $key => $item)
+                            @foreach (array_reverse($subscription->history, true) as $item)
                                 <tr>
                                     <td>{{$item['number']}} <span class="history-table-date">{{$item['issued']}}</span></td>
                                     @if ($item['role'] == 1)
@@ -83,7 +83,7 @@
                                     <td>{{$item['payment']}}</td>
                                     @if ($item['status']==0)
                                         <td><span class="history-status">{{__('ui.inactive')}}</span></td>
-                                    @elseif ($item['status']==1)   
+                                    @elseif ($item['status']==1)
                                         <td><span class="history-status">{{__('ui.canceled')}}</span></td>
                                     @else
                                         <td><span class="history-status">{{__('ui.inactive')}}</span></td>

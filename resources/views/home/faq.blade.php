@@ -92,7 +92,7 @@
 					</div>
 				</div>
 				<div class="faq-item">
-					<a href="" class="faq-top">
+					<a href="" id="WhatIsMailer" class="faq-top">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255.99 511.99">
 							<path d="M253,248.62,18.37,3.29A10.67,10.67,0,1,0,3,18L230.56,256,3,494A10.67,10.67,0,0,0,18.37,508.7L253,263.37A10.7,10.7,0,0,0,253,248.62Z"/>
 						</svg>
@@ -103,18 +103,18 @@
 					</div>
 				</div>
 				<div class="faq-item">
-					<a href="" class="faq-top">
+					<a href="" id="WhatIsSocialAcc" class="faq-top">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255.99 511.99">
 							<path d="M253,248.62,18.37,3.29A10.67,10.67,0,1,0,3,18L230.56,256,3,494A10.67,10.67,0,0,0,18.37,508.7L253,263.37A10.7,10.7,0,0,0,253,248.62Z"/>
 						</svg>
 						{{__('faq.qWhatIsSocialAcc')}}
 					</a>
 					<div class="faq-hidden">
-						<p>{{__('faq.aWhatIsSocialAcc')}} <a class="link" href="{{loc_url(route('login.social', ['social'=>'google']))}}">Google</a> / <a class="link" href="{{route('login.social', ['social'=>'facebook'])}}">Facebook</a>.</p>
+						<p>{{__('faq.aWhatIsSocialAcc')}} <a class="link" href="{{loc_url(route('login.social', ['social'=>'google']))}}">Google</a> / <a class="link not-ready" href="{{route('login.social', ['social'=>'facebook'])}}">Facebook</a>.</p>
 					</div>
 				</div>
 				<div class="faq-item">
-					<a href="" class="faq-top">
+					<a href="" id="WhatIsAutoTranslator" class="faq-top">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255.99 511.99">
 							<path d="M253,248.62,18.37,3.29A10.67,10.67,0,1,0,3,18L230.56,256,3,494A10.67,10.67,0,0,0,18.37,508.7L253,263.37A10.7,10.7,0,0,0,253,248.62Z"/>
 						</svg>
@@ -125,14 +125,16 @@
 					</div>
 				</div>
 				<div class="faq-item">
-					<a href="" class="faq-top">
+					<a href="" id="WhatIsImport" class="faq-top">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255.99 511.99">
 							<path d="M253,248.62,18.37,3.29A10.67,10.67,0,1,0,3,18L230.56,256,3,494A10.67,10.67,0,0,0,18.37,508.7L253,263.37A10.7,10.7,0,0,0,253,248.62Z"/>
 						</svg>
 						{{__('faq.qImport')}}
 					</a>
 					<div class="faq-hidden">
-						<p>{{__('faq.aImport')}}</p>
+						<p>{{__('faq.aImport')}}
+						<a href="{{loc_url(route('post.import'))}}">{{__('ui.postImport')}}</a>
+						<a href="{{loc_url(route('import.rules'))}}">{{__('postImportRules.title')}}</a></p>
 					</div>
 				</div>
 				<div class="faq-item">
@@ -149,4 +151,22 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+			//open the faq hidden text when lining the exact faq article
+			currLoc = $(location).attr('href'); 
+			if ( currLoc.includes('WhatIsMailer') ) {
+				toggleFaqText( $('#WhatIsMailer') );
+			} else if ( currLoc.includes('WhatIsSocialAcc') ) {
+				toggleFaqText( $('#WhatIsSocialAcc') );
+			} else if ( currLoc.includes('WhatIsAutoTranslator') ) {
+				toggleFaqText( $('#WhatIsAutoTranslator') );
+			} else if ( currLoc.includes('WhatIsImport') ) {
+				toggleFaqText( $('#WhatIsImport') );
+			}
+        });
+    </script>
 @endsection
