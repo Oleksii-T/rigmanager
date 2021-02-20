@@ -97,9 +97,9 @@
                             <br>
                             @if ($post->user_id != Auth::id())
                                 @if (auth()->user()->mailers && auth()->user()->mailers->pluck('author')->contains($post->user_id))
-                                    <a href="" class="prod-author-link add-to-mailer not-ready">{{__('ui.mailerAuthorAlreadyAdded')}}</a>
+                                    <a href="" class="prod-author-link add-to-mailer">{{__('ui.mailerAuthorAlreadyAdded')}}</a>
                                 @else
-                                    <a href="" class="prod-author-link add-to-mailer not-ready">{{__('ui.mailerAddAuthor')}}</a>
+                                    <a href="" class="prod-author-link add-to-mailer">{{__('ui.mailerAddAuthor')}}</a>
                                 @endif
                             @endif
                         @endauth
@@ -211,8 +211,8 @@
             });
 
             // user click add author to mailer btn
-            $('.add-to-mailer').click(function() {
-                return;
+            $('.add-to-mailer').click(function(e) {
+                e.preventDefault();
                 var button = $(this);
                 button.addClass('loading');
                 $.ajax({

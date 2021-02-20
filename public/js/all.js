@@ -173,13 +173,13 @@ $(document).ready(function () {
 	};
 
 	//format-cost
-	$(".format-cost").focusin(function(){
+	$("input.format-cost").focusin(function(){
 		newVal = $(this).val()
 			? CurrencyToNumber($(this).val())
 			: '';
 		$(this).val(newVal);
 	});
-	$(".format-cost").focusout(function(){
+	$("input.format-cost").focusout(function(){
 		if ($(this).val()){
 			var currency = $('.currency-switch.active').text();
 			$(this).val( NumberToCurrency( currency, $(this).val() ) );
@@ -228,15 +228,14 @@ $(document).ready(function () {
 	}
 	$('.currency-switch').click(function(){
 		if ( $(".format-cost").length ) {
-			var currency = $(this).hasClass('usd')
-			? 'USD'
-			: 'UAH';
-			oldVal = $(".format-cost").val();
-			if (oldVal) {
-				currency = currency=='UAH' ? '₴' : '$';
-				newVal = oldVal.replace(oldVal[0], currency);
-				$(".format-cost").val( newVal );
-			}
+			var currency = $(this).hasClass('uah') ? '₴' : '$';
+			$(".format-cost").each(function(i, obj) {
+				oldVal = $(this).val();
+				if (oldVal) {
+					newVal = oldVal.replace(oldVal[0], currency);
+					$(this).val( newVal );
+				}
+			});
 		}
 	});
 
@@ -253,7 +252,6 @@ $(document).ready(function () {
 			$('select.tags_'+val).removeClass('hidden'); //show oppropriate child tag
 			selectedTag.id = val;
 			selectedTag.first = $(this).find('option:selected').text();
-			console.log(selectedTag.first);
 			selectedTag.second = "0";
 			selectedTag.third = "0";
 			// TODO - reset select

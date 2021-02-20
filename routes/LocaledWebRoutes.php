@@ -68,7 +68,7 @@ Route::middleware('verified')->group(function () {
         // mailer routes
         Route::delete   ('mailer/delete-all',       'MailerController@deleteAll')       ->name('mailers.delete');
         Route::get      ('mailer/deactivate-all',   'MailerController@deactivateAll')   ->name('mailers.deactivate');
-        Route::resource ('profile/mailer',          'MailerController');
+        Route::resource ('profile/mailer',          'MailerController')                 ->except(['create']);
     });
 
     // posts import routes

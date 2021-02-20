@@ -26,11 +26,14 @@ class MailerRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'condition' => 'required',
+            'title' => 'required|string|max:50',
+            'keyword' => 'nullable|string|min:3|max:50',
+            'cost_from' => 'nullable|string|max:50',
+            'cost_to' => 'nullable|string|max:50',
             'type' => 'required',
+            'condition' => 'required',
             'role' => 'required',
-            'thread' => 'required'
+            'thread' => 'required',
         ];
     }
 
@@ -38,10 +41,10 @@ class MailerRequest extends FormRequest
     {
         return [
             'title.required' => trans('validation.mailerTitleRequired'),
-            'condition.required' => trans('messages.mailerEmptyConditionsError'),
             'type.required' => trans('messages.mailerEmptyTypesError'),
+            'condition.required' => trans('messages.mailerEmptyConditionsError'),
             'role.required' => trans('messages.mailerEmptyRolesError'),
-            'thread.required' => trans('messages.mailerEmptyThreadsError')
+            'thread.required' => trans('messages.mailerEmptyThreadsError'),
         ];
     }
 }

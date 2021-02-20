@@ -99,7 +99,18 @@
 						{{__('faq.qWhatIsMailer')}}
 					</a>
 					<div class="faq-hidden">
-						<p>{{__('faq.aWhatIsMailer1')}} <a class="not-ready link" href="{{loc_url(route('mailer.index'))}}">{{__('faq.aWhatIsMailerLink')}}</a> {{__('faq.aWhatIsMailer2')}}</p>
+						<p>{{__('faq.aWhatIsMailer')}}</p>
+					</div>
+				</div>
+				<div class="faq-item">
+					<a href="" id="HowToCreateMailer" class="faq-top">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255.99 511.99">
+							<path d="M253,248.62,18.37,3.29A10.67,10.67,0,1,0,3,18L230.56,256,3,494A10.67,10.67,0,0,0,18.37,508.7L253,263.37A10.7,10.7,0,0,0,253,248.62Z"/>
+						</svg>
+						{{__('faq.qHowToCreateMailer')}}
+					</a>
+					<div class="faq-hidden">
+						<p>{{__('faq.aHowToCreateMailer1')}} <a class="link" href="{{loc_url(route('search', ['type'=>'equipment-sell']))}}">{{__('ui.introSellEq')}}</a> {{__('ui.or')}} <a class="link" href="{{loc_url(route('tag-2'))}}">{{__('tags.dp')}}</a>) {{__('faq.aHowToCreateMailer2')}} <a href="{{loc_url(route('mailer.index'))}}" class="link">{{__('ui.mailer')}}</a></p>
 					</div>
 				</div>
 				<div class="faq-item">
@@ -166,6 +177,8 @@
 				toggleFaqText( $('#WhatIsAutoTranslator') );
 			} else if ( currLoc.includes('WhatIsImport') ) {
 				toggleFaqText( $('#WhatIsImport') );
+			} else if ( currLoc.includes('HowToCreateMailer') ) {
+				toggleFaqText( $('#HowToCreateMailer') );
 			}
         });
     </script>

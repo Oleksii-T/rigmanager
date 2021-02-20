@@ -23,8 +23,8 @@
                             </svg>
                         </a>
                     @endauth
-                @endif
-                <div class="catalog-adress">{{$post->region_readable}}</div>
+                @endif 
+                <div class="catalog-adress">{{$post->region_encoded!=0 ? $post->region_readable : ''}}</div>
                 @if ($type=='profile.posts' && auth()->user()->is_pro)
                     <div class="catalog-adress">{{__('ui.views') . ': ' . $post->views_amount}}</div>
                 @endif

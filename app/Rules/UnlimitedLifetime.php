@@ -2,12 +2,10 @@
 
 namespace App\Rules;
 
-use App\Http\Controllers\Traits\Subscription;
 use Illuminate\Contracts\Validation\Rule;
 
 class UnlimitedLifetime implements Rule
 {
-    use Subscription;
 
     /**
      * Create a new rule instance.
@@ -28,7 +26,7 @@ class UnlimitedLifetime implements Rule
      */
     public function passes($attribute, $value)
     {
-        if ($value=='3' && !$this->isPremiumPlus()) {
+        if ($value=='3' && !auth()->user()->is_pro) {
             return false;
         }
         return true;

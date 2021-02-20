@@ -26,7 +26,7 @@
             <div class="side-add side-add-mailing">
                 <div class="side-add-text">{{__('ui.mailerHowToCreate')}}</div>
                 <div class="side-add-icon"><img src="{{asset('icons/mailing-icon.svg')}}" alt=""></div>
-                <a href="" class="button">{{__('ui.see')}}</a>
+                <a href="{{loc_url(route('faq'))}}#HowToCreateMailer" class="button">{{__('ui.see')}}</a>
             </div>
         </aside>
         <div class="content">
@@ -49,13 +49,19 @@
                             <div class="mailing-info">
                                 @if (!$m->tag && !$m->author && !$m->keyword)
                                     <div class="mailing-info-item">
-                                        <div class="mailing-info-name"></div>
+                                        <div class="mailing-info-name">{{__('ui.setting')}}:</div>
                                         <div class="mailing-info-text"><a href="{{loc_url(route('list'))}}">{{__('ui.mailerAllPosts')}}</a></div>
+                                    </div>
+                                @endif
+                                @if ($m->author)
+                                    <div class="mailing-info-item">
+                                        <div class="mailing-info-name">{{__('ui.author')}}:</div>
+                                        <div class="mailing-info-text"><a href="" class="not-ready">{{$m->author_name}}</a></div>
                                     </div>
                                 @endif
                                 @if ($m->tag)
                                     <div class="mailing-info-item">
-                                        <div class="mailing-info-name">{{__('ui.tags')}}:</div>
+                                        <div class="mailing-info-name">{{__('ui.tag')}}:</div>
                                         <div class="mailing-info-text">
                                             <ul class="form-category-list">
                                                 @foreach ($m->tag_map as $id=>$t)
@@ -65,15 +71,9 @@
                                         </div>
                                     </div>
                                 @endif
-                                @if ($m->author)
-                                    <div class="mailing-info-item">
-                                        <div class="mailing-info-name">{{__('ui.author')}}:</div>
-                                        <div class="mailing-info-text"><a href="" class="not-ready">{{$m->author_name}}</a></div>
-                                    </div>
-                                @endif
                                 @if ($m->keyword)
                                     <div class="mailing-info-item">
-                                        <div class="mailing-info-name">{{__('ui.mailerKeywords')}}:</div>
+                                        <div class="mailing-info-name">{{__('ui.mailerKeyword')}}:</div>
                                         <div class="mailing-info-text mailer-keywords"><a href="" class="link">{{$m->keyword}}</a>
                                             <form action="{{loc_url(route('search'))}}" hidden>
                                                 <input type="text" name="text" value="{{$m->keyword}}">
@@ -84,7 +84,7 @@
                                 @if ($m->cost_from || $m->cost_to)
                                     <div class="mailing-info-item">
                                         <div class="mailing-info-name">{{__('ui.cost')}}:</div>
-                                        <div class="mailing-info-text">{{$m->cost_readable}}</div>
+                                        <div class="mailing-info-text">{{$m->cost_from_readable}} - {{$m->cost_to_readable}}</div>
                                     </div>
                                 @endif
                                 @if ($m->region || $m->region!=0)

@@ -261,7 +261,7 @@
             <div class="side-add">
                 <div class="side-add-text">{{__('ui.mailerSuggestText')}}</div>
                 <div class="side-add-icon"><img src="{{asset('icons/add-icon.svg')}}" alt=""></div>
-                <a href="" class="button not-ready add-request-to-mailer">{{__('ui.add')}}</a>
+                <a href="" class="button add-request-to-mailer">{{__('ui.add')}}</a>
             </div>
         </aside>
         <div class="content">
@@ -338,7 +338,6 @@
 
             // add search request to mailer
             $('.add-request-to-mailer').click(function(e){
-                return;
                 e.preventDefault();
                 var search = '{!! json_encode($search) !!}';
                 var resByTag = JSON.stringify(null);

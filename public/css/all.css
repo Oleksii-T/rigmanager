@@ -258,10 +258,13 @@ button.button {width: 100%;}
 .label a {color: #fff;}
 .form-note,
 .form-note-import,
-.form-error {
+div.form-error {
 	margin: -14px 0 24px;
 	font-size: 12px;
 	line-height: 14px;
+}
+.form-note a {
+	color: inherit;
 }
 .form-note-import {
 	text-align: center;
@@ -1451,7 +1454,7 @@ textarea.form-error {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
-	-webkit-line-clamp: 2; /* number of lines to show */
+	-webkit-line-clamp: 3; /* number of lines to show */
 	-webkit-box-orient: vertical;
 }
 .catalog-price {
@@ -1635,6 +1638,9 @@ textarea.form-error {
 	margin: 0 0 24px;
 	white-space: pre-line;
 }
+.faq-hidden p a{
+	white-space: nowrap;
+}
 .faq-top svg {
 	position: absolute;
 	top: 25px;
@@ -1707,7 +1713,9 @@ textarea.form-error {
 	width: 30%;
 	padding: 0 10px;
 }
-
+#form-mailer .add-radio-col {
+	width: 50%;
+}
 .tumbler {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -1777,6 +1785,7 @@ textarea.form-error {
 	text-decoration: none;
 	border: 1px solid #ff8d12;
 	border-radius: 8px;
+	height: 44px;
 }
 .form-category-button:after {
 	position: absolute;

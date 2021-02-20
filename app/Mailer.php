@@ -12,17 +12,27 @@ class Mailer extends Model
 
     protected $appends = [
         'author_name', 'types_map', 'types_readable', 'tag_map', 'conditions_map', 'conditions_readable', 
-        'roles_map', 'types_readable', 'threads_map', 'threads_map', 'cost_readable',
-        'all_conditions', 'all_types', 'all_roles', 'all_threads', 'region_name'
+        'roles_map', 'types_readable', 'threads_map', 'threads_map', 'cost_from_readable', 'cost_to_readable',
+        'all_conditions', 'all_types', 'all_roles', 'all_threads', 'region_name', 'tag_is_eq'
     ];
 
     protected $fillable = [
         'title', 'tag', 'keyword', 'author', 'is_active', 'type', 'currency', 'cost_from', 'cost_to', 'region',
-        'condition', 'thread', 'role'
+        'condition', 'thread', 'role', 'found_posts'
     ];
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function setCostFromAttribute($value) {
+        $value = preg_replace('/[^0-9.]+/', '', $value);
+        $this->attributes['cost_from'] = $value=='0.00' ? null : $value;
+    }
+    
+    public function setCostToAttribute($value) {
+        $value = preg_replace('/[^0-9.]+/', '', $value);
+        $this->attributes['cost_to'] = $value=='0.00' ? null : $value;
     }
 
     public function setTypeAttribute($value) {
@@ -61,6 +71,21 @@ class Mailer extends Model
         return json_decode($value);
     }
 
+    public function setFoundPostsAttribute($value) {
+        if (!$value) {
+            $this->attributes['found_posts'] = null;
+        } else {
+            $this->attributes['found_posts'] = json_encode($value);
+        }
+    }
+
+    public function getFoundPostsAttribute($value) {
+        if (!$value) {
+            return array();
+        }
+        return json_decode($value);
+    }
+
     public function setRoleAttribute($value) {
         if (!$value) {
             $this->attributes['role'] = null;
@@ -73,27 +98,22 @@ class Mailer extends Model
         return json_decode($value);
     }
 
-    public function getCostReadableAttribute() {
-        if (!$this->cost_from && !$this->cost_to) {
-            return 0;
-        }
-        if ($this->cost_from && $this->cost_to) {
-            $f = $this->cost_from;
-            $t = $this->cost_to;
-        } else if ($this->cost_from) {
-            $f = $this->cost_from;
-            $t = 0;
-        } else if ($this->cost_to) {
-            $f = 0;
-            $t = $this->cost_to;
-        }
-        return formatNumberToCost($f, $this->currency) . ' - ' . formatNumberToCost($t, $this->currency);
+    public function getCostFromReadableAttribute() {
+        return formatNumberToCost($this->cost_from, $this->currency);
+    }
+
+    public function getCostToReadableAttribute() {
+        return formatNumberToCost($this->cost_to, $this->currency);
     }
 
     public function getAllConditionsAttribute() {
         return $this->condition==[2,3,4]
             ? true
             : false;
+    }
+
+    public function getTagIsEqAttribute() {
+        return $this->isEquipment($this->tag);
     }
 
     public function getAllTypesAttribute() {

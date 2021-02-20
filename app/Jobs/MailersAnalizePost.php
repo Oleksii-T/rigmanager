@@ -7,8 +7,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\MailerNotification;
 use Illuminate\Bus\Queueable;
 use App\Mailer;
 use App\Post;
@@ -65,23 +63,27 @@ class MailersAnalizePost implements ShouldQueue
                         if (!$mailer->author || $mailer->author == $this->post->user->id ) {
                             if (!$mailer->cost_from || $this->checkCostFrom($mailer->cost_from, $mailer->currency) ) {
                                 if (!$mailer->cost_to || $this->checkCostTo($mailer->cost_to, $mailer->currency) ) {
-                                    if ($mailer->region==$this->post->region_encoded) {
+                                    if (!$mailer->region || $mailer->region==$this->post->region_encoded) {
                                         if (in_array($this->post->condition, $mailer->condition)) {
                                             if (in_array($this->post->type, $mailer->type)) {
                                                 if (in_array($this->post->role, $mailer->role)) {
                                                     if (in_array($this->post->thread, $mailer->thread)) {
-                                                        Mail::to($mailer->user->email)->send(new MailerNotification($this->post, $mailer->title)); //send mail notification to user    
+                                                        // save the post founded list of mailer
+                                                        $fp = $mailer->found_posts;
+                                                        $fp[] = $this->post->id;
+                                                        $mailer->found_posts = $fp;
+                                                        $mailer->save();
                                                         break; // skip other user`s mailers if one mailer will send a message
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } 
-                } 
+                                                    }else {dd('no thread');}
+                                                } else {dd('no role');}
+                                            } else {dd('no type');}
+                                        } else {dd('no condition');}
+                                    } else {dd('no region');}
+                                } else {dd('no cost_To');}
+                            } else {dd('no cost_from');}
+                        } else {dd('no author');}
+                    }  else {dd('no tag');}
+                } else {dd('no tag' . $mailer->tag);}
             }
         }
     }

@@ -189,6 +189,7 @@
 .ui-selectmenu-button {
 	display: block;
 	width: 100% !important;
+	max-width: 100%;
 	overflow: hidden;
 	position: relative;
 	z-index: 100;

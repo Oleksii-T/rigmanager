@@ -50,10 +50,16 @@ return [
     'aSell2' => 'by filling input fields and after just wait for your clients!',
 
     'qWhatIsMailer' => 'What is Mailer?',
-    'aWhatIsMailer1' => 'Mailer is smart mailing engine, thanks to which You can be sure that no post You are interested in will pass You.
-    You are free to',
-    'aWhatIsMailerLink' => 'configure the Mailer',
-    'aWhatIsMailer2' => 'for Your personal needs. Describe equipment/service, choose category, subscribe to author, and just wait for someone post what you need.',
+    'aWhatIsMailer' => 'Mailer is smart mailing engine for notifying the user about new posts.
+        You can create several individual Mailers e.g. Subscribe to different authors or categories.
+        When an author publishes a post all your Mailers analyze it and if all its settings coincide with a publication, you receive e-mail notification with link to this post.',
+
+    'qHowToCreateMailer' => 'How to create new Mailer?',
+    'aHowToCreateMailer1' => 'New Mailer can be created from two pages. 
+        First is page of exact post by clicking "Add author to Mailer" button.
+        Second is any search page (e.g.',
+    'aHowToCreateMailer2' => 'by clicking "Add this request to Mailer" button below filters.
+        After Mailer been created it can be reached and configured on its own page -',
 
     'qWhatIsSocialAcc' => 'What is Social Account?',
     'aWhatIsSocialAcc' => 'Social Account almost the same a regular user account, it has absolutely all features offered by our service.

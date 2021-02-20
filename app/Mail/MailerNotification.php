@@ -14,7 +14,7 @@ class MailerNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $post;
+    public $found_posts;
     public $title;
 
     /**
@@ -22,9 +22,9 @@ class MailerNotification extends Mailable
      *
      * @return void
      */
-    public function __construct(Post $post, $title)
+    public function __construct($found_posts, $title)
     {
-        $this->post = $post;
+        $this->found_posts = $found_posts;
         $this->title = $title;
     }
 

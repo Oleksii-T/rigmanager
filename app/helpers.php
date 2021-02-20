@@ -69,6 +69,10 @@ if ( !function_exists('transliteration') )  {
 //format number to cost
 if ( !function_exists('formatNumberToCost') ) {
     function formatNumberToCost($number, $currency) {
+        $c = $currency=="UAH" ? '₴' : '$' ;
+        if(!$number) {
+            return $c . '0.00';
+        }
         $cost = strval($number);
         $coins = strstr($cost, '.');
         if (!$coins) {
@@ -90,7 +94,6 @@ if ( !function_exists('formatNumberToCost') ) {
         foreach ($commaIndexes as $commaIndex) {
             $cost = substr_replace($cost, ',', $commaIndex, 0);
         }
-        $c = $currency=="UAH" ? '₴' : '$' ;
         return substr_replace($cost, $c, 0, 0);
     }
 }

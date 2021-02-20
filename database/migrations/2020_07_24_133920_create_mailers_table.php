@@ -28,6 +28,7 @@ class CreateMailersTable extends Migration
             $table->string('type', 25); // sell/buy/loan/leas/provide/reqeust/tender
             $table->string('role', 25); // business/private
             $table->string('thread', 25); // eq/se
+            $table->json('found_posts')->nullable(); // ids of posts found be mailer
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

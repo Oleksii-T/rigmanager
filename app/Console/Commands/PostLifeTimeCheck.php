@@ -52,7 +52,7 @@ class PostLifeTimeCheck extends Command
             }
             Log::channel('jobs')->info('[lifetime.check] Outdated posts has been checked');
         } catch (\Throwable $th) {
-            Log::channel('jobs')->info('[lifetime.check] Outdated posts checking fails');
+            Log::channel('jobs')->error('[lifetime.check] Outdated posts checking fails');
         }
     }
 }

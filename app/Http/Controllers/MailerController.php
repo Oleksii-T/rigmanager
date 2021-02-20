@@ -23,44 +23,14 @@ class MailerController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        $user_email = auth()->user()->email;
-        return view('mailer.create', compact('user_email'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  App\Http\Requests\MailerRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(MailerRequest $request)
-    {
-        $input = $request->all();
-        $input['eq_tags_encoded'] = json_decode($input['eq_tags_encoded']);
-        $input['se_tags_encoded'] = json_decode($input['se_tags_encoded']);
-        $mailer = new Mailer($input);
-        if (!auth()->user()->mailer()->save($mailer)) {
-            Session::flash('message-error', __('messages.mailerUploadedError'));
-            return view('mailer.index', ["mailer"=>null]);
-        }
-        Session::flash('message-success', __('messages.mailerUploaded'));
-        return redirect(loc_url(route('mailer.index')));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit($locale, $id=null)
     {
-        $mailer = Mailer::findOrFail($request->id);
+        $id = $id==null ? $locale : $id;
+        $mailer = Mailer::findOrFail($id);
         if ($mailer->user_id != auth()->user()->id) {
             abort(403);
         }
@@ -73,12 +43,21 @@ class MailerController extends Controller
      * @param  App\Http\Requests\MailerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(MailerRequest $request)
+    public function update(MailerRequest $request, $locale, $id=null)
     {
-        $mailer = auth()->user()->mailer;
-        $input = $request->all();
-        $input['eq_tags_encoded'] = json_decode($input['eq_tags_encoded']);
-        $input['se_tags_encoded'] = json_decode($input['se_tags_encoded']);
+        $id = $id==null ? $locale : $id;
+        $mailer = Mailer::findOrFail($id);
+        if ($mailer->user_id != auth()->user()->id) {
+            abort(403);
+        }
+        $input = $request->input();
+        if( array_key_exists('tag_encoded', $input) ) {
+            $input['tag'] = $input['tag_encoded'];
+        }
+        if( array_key_exists('region_encoded', $input) ) {
+            $input['region'] = $input['region_encoded'];
+        }
+        //dd($input);
         if ( !$mailer->update($input) ) {
             Session::flash('message-error', __('messages.mailerEditedError'));
         } else {
