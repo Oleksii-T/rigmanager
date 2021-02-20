@@ -31,7 +31,7 @@
                     -->
                 </div>
                 <div class="ad-list">
-                    <x-home-items :posts="$posts_list"/>
+                    <x-items :posts="$posts_list" type='list'/>
                 </div>
                 <div class="pagination-field">
                     {{ $posts_list->links() }}

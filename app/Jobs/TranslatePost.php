@@ -76,15 +76,11 @@ class TranslatePost implements ShouldQueue
         }
         // translate to each language but not to origin one
         foreach ($this->translateTo as $lang) {
-            if ( $this->input['origin_lang'] != $this->input['origin_lang_old'] || $this->input['title'] != $this->input['title_old'] || $this->input['user_translations']['title'] != $this->input['user_translations_old']['title'] ) { // if origin language was changed OR title was changed OR user changed allowed to translate languages
-                if ( array_key_exists($lang, $this->input['title_translate']) || ( !array_key_exists($lang, $this->input['title_translate']) && !$this->input['title_'.$lang] ) ) { // if lang is in title_translate array OR lang in not in title_translate array AND title_lang is empty
-                    $this->translate('title_'.$lang, $this->input['title'], $lang);// add new translation record
-                }
+            if ( $this->input['origin_lang'] != $this->input['origin_lang_old'] || $this->input['title'] != $this->input['title_old'] ) { // if origin language was changed OR title was changed OR  title_lang is empty
+                $this->translate('title_'.$lang, $this->input['title'], $lang);// add new translation record
             }
-            if ( $this->input['origin_lang'] != $this->input['origin_lang_old'] || $this->input['description'] != $this->input['description_old'] || $this->input['user_translations']['description'] != $this->input['user_translations_old']['description'] ) {
-                if ( array_key_exists($lang,  $this->input['desc_translate']) || ( !array_key_exists($lang, $this->input['desc_translate']) && !$this->input['description_'.$lang] ) ) {
-                    $this->translate('description_'.$lang, $this->input['description'], $lang);// add new translation record
-                }
+            if ( $this->input['origin_lang'] != $this->input['origin_lang_old'] || $this->input['description'] != $this->input['description_old'] ) {
+                $this->translate('description_'.$lang, $this->input['description'], $lang);
             }
         }
         if ( $this->shouldUpdate ) {

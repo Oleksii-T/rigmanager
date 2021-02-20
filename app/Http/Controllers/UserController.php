@@ -51,6 +51,9 @@ class UserController extends Controller
             $this->userImageUpdate($request->file('ava'));
         }
         $input = $request->except('ava');
+        if (auth()->user()->is_social) {
+            unset($input['email']);
+        }
         $input['viber'] = $request->viber ? 1 : 0;
         $input['telegram'] = $request->telegram ? 1 : 0;
         $input['whatsapp'] = $request->whatsapp ? 1 : 0;

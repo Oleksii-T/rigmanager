@@ -712,7 +712,8 @@ class PostController extends Controller
             $this->postImagesDelete($post);
             $post->delete();
         }
-        return true;
+        Session::flash('message-success', __('messages.allPostsDeleted'));
+        return redirect(loc_url(route('profile.posts')));
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Traits\ImageUploader;
 use Laravel\Socialite\Facades\Socialite;
 use App\Providers\RouteServiceProvider;
@@ -76,7 +77,7 @@ class LoginController extends Controller
             $social = Socialite::driver($driver)->user();
         } catch (\Throwable $th) {
             Session::flash('message-error', __('messages.serverError'));
-            return loc_url(route('home'));
+            return redirect(loc_url(route('home')));
         }
         $socialId = $driver . '_id';
         $user = User::where($socialId, $social->id)->first();
@@ -99,14 +100,16 @@ class LoginController extends Controller
             } else {
                 // it is new email and user
                 $user = new User;
-                $user->name = $this->fetchName($social->name);;
+                $user->name = $this->fetchName($social->name);
+                $user->url_name = transliteration($user->name, User::all()->pluck('url_name')->toArray());;
                 $user->email = $social->email;
                 $user->$socialId = $social->id;
                 $user->email_verified_at = Carbon::now();
                 $user->save();
                 Auth::loginUsingId($user->id);
                 $this->userImageUpload($social->avatar);
-                $this->freeAccess();
+                $s = new SubscriptionController;
+                $s->freeAccess();
             }
         }
         Session::flash('message-success', __('messages.signedIn'));

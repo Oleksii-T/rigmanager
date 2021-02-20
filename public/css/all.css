@@ -1435,11 +1435,15 @@ textarea.form-error {
 	opacity: 0;
 }
 
-.catalog-adress {
+.catalog-lable {
 	margin: 0 auto 0 0;
 	padding: 2px 0 0;
 	font-size: 12px;
 	line-height: 22px;
+	max-width: 140px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 .catalog-date {
 	padding: 2px 0 0;
@@ -1990,6 +1994,10 @@ Fot Portrait-oriented Images
 	color: #fff;
 	font-size: 25px;
 }
+.profile-name a {
+	color: #7a7a7a;
+	font-size: 19px;
+}
 .profile-info {
 	margin: 0 0 20px;
 }
@@ -2025,6 +2033,10 @@ Fot Portrait-oriented Images
     font-size: 25px;
     font-weight: 300;
     line-height: 30px;
+}
+.form-title a {
+	color: #7a7a7a;
+	font-size: 19px;
 }
 .edit-ava {
 	display: -webkit-box;
@@ -3703,13 +3715,20 @@ article ul li:before {
 		padding: 25px 0 0;
 		padding: 0px 7px;
 	}
+	.catalog-text {
+		display: none;
+	}
 	.catalog-name {
 		padding: 0;
 		font-size: 16px;
+		margin-bottom: 10px;
 	}
-	.catalog-adress {
+	.catalog-lable {
 		width: 100%;
-		padding: 15px 0 0;
+		padding: 7px 0 0;
+	}
+	.catalog-region {
+		display: none;
 	}
 	.catalog-date {
 		width: 100%;
@@ -3740,16 +3759,19 @@ article ul li:before {
 		padding: 0 0 50px;
 		background-color: #1f1f1f;
 	}
+	.catalog-line {
+		padding-bottom: 10px;
+	}
 	.bar {
 		top: auto;
 		left: 0;
 		width: auto;
 		height: 50px;
-		padding: 14px;
+		padding: 10px;
 	}
 	.bar-icons {
 		top: 2px;
-		left: 28px;
+		left: 10px;
 		right: auto;
 		padding: 0;
 		display: -webkit-box;

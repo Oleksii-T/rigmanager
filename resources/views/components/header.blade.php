@@ -55,6 +55,12 @@
                         <li><a href="{{loc_url(route('faq'))}}">FAQ</a></li>
                     </ul>
                     <ul class="mob-nav-list">
+                        <li><a href="{{loc_url(route('search', ['type'=>'equipment-sell']))}}">{{__('ui.introSellEq')}}</a></li>
+                        <li><a href="{{loc_url(route('search', ['type'=>'equipment-buy']))}}">{{__('ui.introBuyEq')}}</a></li>
+                        <li><a href="{{loc_url(route('search', ['type'=>'services']))}}">{{__('ui.introSe')}}</a></li>
+                        <li><a class="not-ready" href="{{loc_url(route('search', ['type'=>'tenders']))}}">{{__('ui.introTender')}}</a></li>
+                    </ul>
+                    <ul class="mob-nav-list">
                         @if (!App::isLocale('uk'))
                             <li><a href="{{ loc_url(route('locale.setting', ['lang'=>'uk'])) }}">Ukr</a></li>
                         @endif

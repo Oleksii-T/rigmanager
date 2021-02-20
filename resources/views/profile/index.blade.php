@@ -22,7 +22,12 @@
                     <a href="{{loc_url(route('profile.edit'))}}" class="profile-edit-link">{{__('ui.edit')}}<br>{{__('ui.profile')}}</a>
                 </div>
                 <div class="profile-content">
-                    <div class="profile-name">{{$user->name}}</div>
+                    <div class="profile-name">{{$user->name}}
+                        @if ($user->is_social)
+                            <br>
+                            <a href="{{loc_url(route('faq'))}}#WhatIsSocialAcc">{{__('ui.socialAcc')}}</a>
+                        @endif
+                    </div>
                     <div class="profile-info">
                         <div class="profile-info-title">{{__('ui.phone')}}</div>
                         @if ($user->phone_raw)

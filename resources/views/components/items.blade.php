@@ -9,6 +9,9 @@
             @endif
             <div class="catalog-line">
                 <a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}" class="catalog-tag">{{$post->type==5 ? '' : $post->type_readable}}</a>
+                @if ($post->is_urgent)
+                    <div class="catalog-lable orange">{{__('ui.urgent')}}</div>
+                @endif
                 @if ($type=='list')
                     @auth
                         <a href="" class="catalog-fav add-to-fav {{$post->user_id == auth()->user()->id ? 'block' : ''}} id_{{$post->id}} {{auth()->user()->favPosts->contains($post) ? 'active' : ''}}">
@@ -24,9 +27,9 @@
                         </a>
                     @endauth
                 @endif 
-                <div class="catalog-adress">{{$post->region_encoded!=0 ? $post->region_readable : ''}}</div>
+                <div class="catalog-lable catalog-region">{{$post->region_encoded!=0 ? $post->region_readable : ''}}</div>
                 @if ($type=='profile.posts' && auth()->user()->is_pro)
-                    <div class="catalog-adress">{{__('ui.views') . ': ' . $post->views_amount}}</div>
+                    <div class="catalog-lable">{{__('ui.views') . ': ' . $post->views_amount}}</div>
                 @endif
                 <div class="catalog-date">{{$post->created_at_readable}}</div>
             </div>

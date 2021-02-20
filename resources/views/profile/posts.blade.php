@@ -12,7 +12,7 @@
         <x-profile-nav active='posts'/>
         <div class="content">
             <h1>{{__('ui.myPosts')}} (<span class="orange">{{$posts_list->total()}}</span>)</h1>
-            @if ($posts_list->count() == 0)
+            @if ($posts_list->count() == 0 && !$searchValue)
                 <p>{{__('ui.noMyPosts')}}</p>
             @else
                 <div class="cabinet-line">
@@ -26,22 +26,18 @@
                     </div>
                     <div class="cabinet-line-right">
                         <a href="#popup-delete-all-posts" data-fancybox class="cabinet-line-link">{{__('ui.deleteAllPosts')}}</a>
-                        <!--
-                        <div class="cabinet-line-check">
-                            <div class="check-item">
-                                <input type="checkbox" class="check-input" id="ch11">
-                                <label for="ch11" class="check-label">Все</label>
-                            </div>
-                        </div>
-                        -->
                     </div>
                 </div>
-                <div class="catalog catalog-my">
-                    <x-items :posts="$posts_list" type='profile.posts'/>
-                </div>
-                <div class="pagination-field">
-                    {{ $posts_list->links() }}
-                </div>
+                @if ($posts_list->count()==0)
+                    <p>{{__('ui.noMyPostsBySearch')}}</p>
+                @else
+                    <div class="catalog catalog-my">
+                        <x-items :posts="$posts_list" type='profile.posts'/>
+                    </div>
+                    <div class="pagination-field">
+                        {{ $posts_list->links() }}
+                    </div>
+                @endif
             @endif
         </div>
     </div>
@@ -51,7 +47,11 @@
     <div id="popup-delete-all-posts" class="popup">
         <div class="popup-title">{{__('ui.sure?')}}</div>
         <div class="sure-dialog">
-            <a href="#" class="delete-all-posts">{{__('ui.deleteAllPosts')}}</a>
+            <form method="POST" action="{{route('posts.delete')}}">
+                @csrf
+                @method('DELETE')
+                <button type="submit">{{__('ui.deleteAllPosts')}}</button>
+            </form>
         </div>
     </div>
     <div id="popup-delete-post" class="popup">
@@ -65,35 +65,6 @@
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function(){
-
-            // delete all user`s posts
-            $('.delete-all-posts').click(function(e){
-                e.preventDefault();
-                $.fancybox.close();
-                $('div.cabinet-line').addClass('hidden');
-                $('div.catalog-my').addClass('hidden');
-                $('div.pagination-field').addClass('hidden');
-                $('div.content h1').after('<p>{{__("ui.noMyPosts")}}</p>');
-                $('div.content h1 span').html('0');
-                $.ajax({
-                    type: "POST",
-                    url: "{{route('posts.delete')}}",
-                    data: {
-                        _method: 'DELETE',
-                        _token: "{{ csrf_token() }}",
-                    },
-                    success: function(data) {
-                        showPopUpMassage(true, "{{ __('messages.allPostsDeleted') }}");
-                    },
-                    error: function() {
-                        $('#items').removeClass('hidden');
-                        $('.pagination-field').removeClass('hidden');
-                        $('.emptyItems').addClass('hidden');
-                        $('#modalAllPostDeleteOn').removeClass('hidden');
-                        showPopUpMassage(false, "{{ __('messages.error') }}"); // pop up error message
-                    }
-                });
-            });
 
             // hide or show the post
             $('.bar-view').click(function(e){

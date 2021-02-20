@@ -22,20 +22,25 @@
                         @csrf
                         @method('PATCH')
                         <fieldset>
-                            <div class="form-title">{{__('ui.profileInfo')}}</div>
+                            <div class="form-title">{{__('ui.profileInfo')}}
+                                @if ($user->is_social)
+                                    <br>    
+                                    <a href="{{loc_url(route('faq'))}}#WhatIsSocialAcc">{{__('ui.socialAcc')}}</a>
+                                @endif
+                            </div>
 
                             <label class="label">{{__('ui.login')}} <span class="orange">*</span></label>
-                            <input type="email" class="input" name="email" value="{{ old('email') ?? $user->email}}" placeholder="{{__('ui.login')}}" required autocomplete="email">
+                            <input type="email" class="input" name="email" value="{{old('email') ?? $user->email}}" placeholder="{{__('ui.login')}}" required autocomplete="email" {{$user->is_social ? 'disabled' : ''}}>
                             <x-server-input-error inputName='email'/>
                             <div class="form-note">{{__('ui.loginHelp')}}</div>
 
                             <label class="label">{{__('ui.userName')}} <span class="orange">*</span></label>
-                            <input type="text" class="input" name="name" value="{{ old('name') ?? $user->name}}" placeholder="{{__('ui.userName')}}" required autocomplete="name">
+                            <input type="text" class="input" name="name" value="{{old('name') ?? $user->name}}" placeholder="{{__('ui.userName')}}" required autocomplete="name">
                             <x-server-input-error inputName='name'/>
                             <div class="form-note">{{__('ui.userNameHelp')}}</div>
 
                             <label class="label">{{__('ui.phone')}}</label>
-                            <input type="tel" class="input format-phone" name="phone_raw" value="{{ old('phone_raw') ?? $user->phone_readable}}" placeholder="+38 ( _ _ _ ) _ _ _ - _ _ - _ _" autocomplete="phone">
+                            <input type="tel" class="input format-phone" name="phone_raw" value="{{old('phone_raw') ?? $user->phone_readable}}" placeholder="+38 ( _ _ _ ) _ _ _ - _ _ - _ _" autocomplete="phone">
                             <x-server-input-error inputName='phone_raw'/>
                             <div class="form-note">{{__('ui.phoneHelp')}}</div>
 
@@ -57,33 +62,35 @@
                         </fieldset>
                     </form>
                 </div>
-                <div class="profile-edit-column">
-                    <form method="POST" id="form-password" action="{{loc_url(route('profile.update.pass'))}}">
-                        @csrf
-                        @method('PATCH')
-                        <fieldset>
-                            <div class="form-title">{{__('ui.password')}}</div>
+                @if (!$user->is_social)
+                    <div class="profile-edit-column">
+                        <form method="POST" id="form-password" action="{{loc_url(route('profile.update.pass'))}}">
+                            @csrf
+                            @method('PATCH')
+                            <fieldset>
+                                <div class="form-title">{{__('ui.password')}}</div>
 
-                            <label class="label">{{__('ui.curPass')}} <span class="orange">*</span></label>
-                            <input type="password" name="old_password" class="input" placeholder="{{__('ui.password')}}">
-                            <x-server-input-error inputName='old_password'/>
+                                <label class="label">{{__('ui.curPass')}} <span class="orange">*</span></label>
+                                <input type="password" name="old_password" class="input" placeholder="{{__('ui.password')}}">
+                                <x-server-input-error inputName='old_password'/>
 
-                            <label class="label">{{__('ui.newPass')}} <span class="orange">*</span></label>
-                            <input type="password" name="password" id="password" class="input" placeholder="{{__('ui.newPass')}}">
-                            <x-server-input-error inputName='password'/>
-                            <div class="form-note">{{__('ui.passwordHelp')}}</div>
+                                <label class="label">{{__('ui.newPass')}} <span class="orange">*</span></label>
+                                <input type="password" name="password" id="password" class="input" placeholder="{{__('ui.newPass')}}">
+                                <x-server-input-error inputName='password'/>
+                                <div class="form-note">{{__('ui.passwordHelp')}}</div>
 
-                            <label class="label">{{__('ui.reNewPass')}} <span class="orange">*</span></label>
-                            <input type="password" name="password_confirmation" class="input" placeholder="{{__('ui.reNewPass')}}">
-                            <x-server-input-error inputName='password_confirmation'/>
-                            <div class="form-note">{{__('ui.rePassHelp')}}</div>
+                                <label class="label">{{__('ui.reNewPass')}} <span class="orange">*</span></label>
+                                <input type="password" name="password_confirmation" class="input" placeholder="{{__('ui.reNewPass')}}">
+                                <x-server-input-error inputName='password_confirmation'/>
+                                <div class="form-note">{{__('ui.rePassHelp')}}</div>
 
-                            <div class="form-button">
-                                <button class="button">{{__('ui.changePassword')}}</button>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
+                                <div class="form-button">
+                                    <button class="button">{{__('ui.changePassword')}}</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
