@@ -107,7 +107,7 @@ class LoginController extends Controller
                 $user->email_verified_at = Carbon::now();
                 $user->save();
                 Auth::loginUsingId($user->id);
-                $this->userImageUpload($social->avatar);
+                $this->userImageUpload($social->avatar, auth()->user());
                 $s = new SubscriptionController;
                 $s->freeAccess();
             }
