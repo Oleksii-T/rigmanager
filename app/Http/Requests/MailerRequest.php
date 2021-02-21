@@ -28,8 +28,8 @@ class MailerRequest extends FormRequest
         return [
             'title' => 'required|string|max:50',
             'keyword' => 'nullable|string|min:3|max:50',
-            'cost_from' => 'nullable|string|max:50',
-            'cost_to' => 'nullable|string|max:50',
+            'cost_from' => 'nullable|string|max:20',
+            'cost_to' => 'nullable|string|max:20',
             'type' => 'required',
             'condition' => 'required',
             'role' => 'required',

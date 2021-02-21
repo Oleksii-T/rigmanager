@@ -575,7 +575,7 @@
                         maxlength: 70
                     },
                     cost: {
-                        maxlength: 51
+                        maxlength: 20
                     },
                     description: {
                         required: true,
@@ -623,7 +623,7 @@
                         maxlength: '{{ __("validation.max.string", ["max" => 9000]) }}'
                     },
                     cost: {
-                        maxlength: '{{ __("validation.max.string", ["max" => 50]) }}'
+                        maxlength: '{{ __("validation.max.string", ["max" => 20]) }}'
                     },
                     town: {
                         maxlength: '{{ __("validation.max.string", ["max" => 100]) }}'

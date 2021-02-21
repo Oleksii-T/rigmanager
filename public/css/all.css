@@ -897,6 +897,7 @@ textarea.form-error {
 	line-height: 22px;
 	border: 1px solid #505050;
 	border-radius: 8px;
+	white-space: pre-line;
 }
 .ad-more:hover {border: 1px solid #ff8d11;}
 .brand-line {
@@ -1333,15 +1334,15 @@ textarea.form-error {
 	display: -ms-flexbox;
 	display: flex;
 	position: relative;
-	margin: 0 0 50px;
+	margin: 0 0 20px;
 	background: #1f1f1f;
 	border-radius: 8px;
 	overflow: hidden;
 }
 .catalog-img {
 	overflow: hidden;
-	width: 262px;
-	height: 262px;
+	width: 180px;
+	height: 180px;
 }
 .catalog-img img {
 	width: 100%;
@@ -1351,10 +1352,10 @@ textarea.form-error {
 }
 .catalog-content {
 	flex: 1;
-	padding: 30px 35px 30px;
+	padding: 15px 25px;
 }
 .catalog-name {
-	margin: 0 0 21px;
+	margin: 0 0 11px;
 	padding: 0 25px 0 0;
 	font-size: 18px;
 	line-height: 24px;
@@ -1379,7 +1380,7 @@ textarea.form-error {
 	-webkit-flex-wrap: wrap;
 	flex-wrap: wrap;
 	position: relative;
-	padding: 0 0 22px;
+	padding: 0 0 12px;
 }
 .catalog-tag {
 	padding: 2px 13px 1px;
@@ -1397,7 +1398,7 @@ textarea.form-error {
 }
 .catalog-fav {
 	position: absolute;
-	top: -38px;
+	top: -30px;
 	right: 0;
 }
 .catalog-fav svg {
@@ -1458,7 +1459,7 @@ textarea.form-error {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
-	-webkit-line-clamp: 3; /* number of lines to show */
+	-webkit-line-clamp: 2; /* number of lines to show */
 	-webkit-box-orient: vertical;
 }
 .catalog-price {
@@ -2501,6 +2502,9 @@ article ul li:before {
 .ad-price {
 	color: #fff;
 	line-height: 22px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 /************************* info-subscription page *************************/
 .sub {
@@ -3019,6 +3023,12 @@ article ul li:before {
 }
 /************************* media *************************/
 @media screen and (max-width: 1300px) {
+	.catalog-region {
+		display: none;
+	}
+	.ad-col .ad-more {
+		height: 203px;
+	}
 	.header-language {
 		display: none;
 	}
@@ -3418,20 +3428,6 @@ article ul li:before {
 		width: 50%;
 		padding: 0 12px;
 	}
-	.ad-section .ad-col-more {
-		width: 100%;
-		padding: 0 0 30px;
-	}
-	.ad-more {
-		justify-content: center;
-		align-items: center;
-		height: 45px;
-		padding: 0 10px;
-		color: #fff;
-		font-size: 14px;
-		text-align: center;
-	}
-	.ad-more br {display: none;}
 	.ad-section .ad-list {
 		padding: 0;
 	}
@@ -3722,17 +3718,11 @@ article ul li:before {
 		padding: 0;
 		font-size: 16px;
 		margin-bottom: 10px;
+		word-wrap: break-word;
 	}
-	.catalog-lable {
-		width: 100%;
-		padding: 7px 0 0;
-	}
-	.catalog-region {
-		display: none;
-	}
+	.catalog-lable,
 	.catalog-date {
-		width: 100%;
-		padding: 4px 0 0;
+		padding: 2px 5px 0px 0px;
 	}
 	.catalog-fav {
 		top: 4px;
@@ -3941,6 +3931,11 @@ article ul li:before {
 	}
 }
 @media screen and (max-width: 576px) {
+	.ad-col .ad-more {
+		height: auto;
+		width: auto;
+		padding: 40px 15px;
+	}
 	.ad-img {
 		width: auto;
 		height: auto;

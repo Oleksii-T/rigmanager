@@ -252,10 +252,10 @@
                         maxlength: 50,
                     },
                     cost_from: {
-                        maxlength: 50
+                        maxlength: 20
                     },
                     cost_to: {
-                        maxlength: 50
+                        maxlength: 20
                     },
                     keyword: {
                         minlength: 3,
@@ -281,10 +281,10 @@
                         maxlength: '{{ __("validation.max.string", ["max" => 50]) }}'
                     },
                     cost_from: {
-                        maxlength: '{{ __("validation.max.string", ["max" => 50]) }}'
+                        maxlength: '{{ __("validation.max.string", ["max" => 20]) }}'
                     },
                     cost_to: {
-                        maxlength: '{{ __("validation.max.string", ["max" => 50]) }}'
+                        maxlength: '{{ __("validation.max.string", ["max" => 20]) }}'
                     },
                     keyword: {
                         minlength: '{{ __("validation.min.string", ["min" => 3]) }}',

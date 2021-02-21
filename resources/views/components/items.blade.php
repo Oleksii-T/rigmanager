@@ -27,7 +27,9 @@
                         </a>
                     @endauth
                 @endif 
-                <div class="catalog-lable catalog-region">{{$post->region_encoded!=0 ? $post->region_readable : ''}}</div>
+                @if ($post->region_encoded!=0)
+                    <div class="catalog-lable catalog-region">{{$post->region_readable}}</div>
+                @endif
                 @if ($type=='profile.posts' && auth()->user()->is_pro)
                     <div class="catalog-lable">{{__('ui.views') . ': ' . $post->views_amount}}</div>
                 @endif
