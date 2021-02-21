@@ -5,11 +5,12 @@ return [
     'intro' => 'We have collected frequently asked questions for you. If you still have questions or suggestions - you always can',
 
     'qPurpose' => 'What for this website?',
-    'aPurpose1' => 'We introduce Ukrainian The first specialized website for the cooperation of drilling companies.
-    Sale, purchase, rent, services.
-    On our website, you can find catalog of drilling equipment and services.
-    We are aiming to inform Ukraine drilling market place about all its participants and set up convenient and reliable cooperation between companies.
-    For abroad equipment/service providers we introduce our website as a place where they can find a Ukraine customer easily.',
+    'aPurpose1' => 'We introduce Ukrainian The first specialized website for the cooperation of oil and gas companies of Ukraine.
+        In other words, we are presenting a Bulletin board for companies looking for clients.
+        Sale, purchase, rent, services.
+        On our website, you can find catalog of drilling equipment and services.
+        We are aiming to inform Ukraine drilling market place about all its participants and set up convenient and reliable cooperation between companies.
+        For abroad equipment/service providers we introduce our website as a place where they can find a Ukraine customer easily.',
 
     'qForWhat' => 'Why am I need this?',
     'aForWhat1' => 'If you are company menegment:',
@@ -19,7 +20,7 @@ return [
     'aForWhat2' => 'If you are supply department:',
     'aForWhatSD1' => 'Simplify and control the procurement/sales process',
     'aForWhatSD2' => 'Control of intime supply',
-    'aForWhatSD3' => 'To establish contacts between the services of drilling companies',
+    'aForWhatSD3' => 'To establish contacts between the services of oil and gas companies of Ukraine',
     'aForWhatSD4' => 'Purchase planning',
     'aForWhatSD5' => 'Control the relevance of procurement',
     'aForWhatSD6' => 'Tenders by simplified procedure',
@@ -30,7 +31,7 @@ return [
     'aForWhatSaD4' => 'Publication of anonymous announcements if desired',
 
     'qWhyWe' => 'Why our resource is better?',
-    'aWhyWe' => 'First of all, we are the first specialized website for cooperation of drilling companies.
+    'aWhyWe' => 'First of all, we are the first specialized website for cooperation of oil and gas companies of Ukraine.
     We provide the strict scope of content, only Oil & Gas Equipment and Services. Nothing extra.
     Personal data is the main deal for us, in other words - anonymity is the key.
     For each Post published, You are free to choose a minimum one contact field, Email, or Phone. We do not put bounds on Your choices. Moreover for each Post, You could choose unique contact information.

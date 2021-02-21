@@ -184,9 +184,9 @@ class MailerController extends Controller
         }
         switch ($search['type']) {
             case 'type':
-                $mailerByType = $this->createFromType($search['url']); // type_name and type_codes
-                $input['type'] = array_intersect($input['type'], $mailerByType['type']); // make sure that type from chosen type-group respects the "type" filter
-                $input['title'] = trim(preg_replace('/\s+/', ' ', $mailerByType['title'])); //save title of future mail message to array
+                //$mailerByType = $this->createFromType($search['url']); // type_name and type_codes
+                //$input['type'] = array_intersect($input['type'], $mailerByType['type']); // make sure that type from chosen type-group respects the "type" filter
+                $input['title'] = trim(preg_replace('/\s+/', ' ', $this->createTitleFromType($search['url']))); //save title of future mail message to array
                 break;
             case 'tags':
                 $input['tag'] = array_key_last($search['value']);
@@ -217,29 +217,18 @@ class MailerController extends Controller
         return json_encode(['message'=>__('messages.mailerRequestAdded'), 'code'=>200]);
     }
 
-    private function createFromType($typeUrl) {
+    private function createTitleFromType($typeUrl) {
         switch ($typeUrl) {
             case 'equipment-sell': 
-                $types = array(1,3);
-                $name = __('ui.introSellEq');
-                break;
+                return __('ui.introSellEq');
             case 'equipment-buy':
-                $types = [2,4];
-                $name = __('ui.introBuyEq');
-                break;
+                return __('ui.introBuyEq');
             case 'services':
-                $types = [5,6];
-                $name = __('ui.introSe');
-                break;
+                return __('ui.introSe');
             case 'tenders':
-                $types = array(7);
-                $name = __('ui.introTender');
-                break;
+                return __('ui.introTender');
             default: 
                 abort(404);
         }
-        $r['type'] = $types;
-        $r['title'] = $name;
-        return $r;
     }
 }

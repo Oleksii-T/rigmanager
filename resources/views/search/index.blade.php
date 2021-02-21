@@ -105,14 +105,16 @@
                     <input type="text" class="input cost-to" placeholder="{{__('ui.to')}}">
                 </div>
 
-                @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') )
+                <!--region-->
+                @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') ) 
                     <label class="label">{{__('ui.region')}}</label>
                     <div class="select-block">
                         <x-region-select locale='{{app()->getLocale()}}'/>
                     </div>
                 @endif
-
-                @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') )
+                
+                <!--condition-->
+                @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') && !($search['type'] == 'type' && $search['url'] == 'services') )
                     <label class="label">{{__('ui.condition')}}</label>
                     <div id="condition" class="check-block">
                         <div class="check-item">
@@ -129,8 +131,9 @@
                         </div>
                     </div>
                 @endif
-
-                <label class="label">{{__('ui.postType')}}</label>
+                
+                <!--type-->
+                <label class="label">{{__('ui.postType')}}</label>  
                 <div id="type" class="check-block">
                     @if ( $search['type'] == 'tags' && $search['tag_type'] == 'se' )
                         <div class="check-item">
@@ -176,6 +179,7 @@
                             <input type="checkbox" class="check-input" id="ch7" value="4" checked>
                             <label for="ch7" class="check-label">{{__('ui.postTypeLeas')}}</label>
                         </div>
+                    @elseif ( $search['type'] == 'type' && $search['url'] == 'services' )
                         <div class="check-item">
                             <input type="checkbox" class="check-input" id="ch8" value="5" checked>
                             <label for="ch8" class="check-label">{{__('ui.postTypeGiveS')}}</label>
@@ -214,7 +218,8 @@
                     @endif
                 </div>
                 
-                @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') )
+                <!--legal-->
+                @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') && !($search['type'] == 'type' && $search['url'] == 'services') )
                     <label class="label">{{__('ui.postRole')}}</label>
                     <div id="role" class="check-block">
                         <div class="check-item">
@@ -227,8 +232,9 @@
                         </div>
                     </div>
                 @endif
-
-                @if ( $search['type'] != 'tags' && $search['type'] != 'type' )
+                
+                <!--thread-->
+                @if ( $search['type'] != 'tags' && $search['type'] != 'type' ) 
                     <label class="label">{{__('ui.thread')}}</label>
                     <div id="thread" class="check-block">
                         <div class="check-item">
@@ -241,8 +247,9 @@
                         </div>
                     </div>  
                 @endif
-
-                <label class="label">{{__('ui.sort')}}</label>
+                
+                <!--sorting-->
+                <label class="label">{{__('ui.sort')}}</label> 
                 <div class="radio-block filter-sorting">
                     <div class="radio-item">
                         <input type="radio" name="sorting" class="radio-input" id="r1" value="2" checked>
@@ -257,6 +264,7 @@
                         <label for="r3" class="radio-label">{{__('ui.sortExpensive')}}</label>
                     </div>
                 </div>
+ 
             </div>
             <div class="side-add">
                 <div class="side-add-text">{{__('ui.mailerSuggestText')}}</div>
@@ -336,6 +344,29 @@
             filters.thread = ["1","2"];
             filters.sorting = "2";
 
+            //set default type and thread value with respect to search
+            if ("{{$search['type']}}" == 'type') {
+                switch ("{{$search['url']}}") {
+                    case 'equipment-sell':
+                        filters.type = ["1","3"];
+                        filters.thread = ["1"];
+                        break;
+                    case 'equipment-buy':
+                        filters.type = ["2","4"];
+                        filters.thread = ["1"];
+                        break;
+                    case 'services':
+                        filters.type = ["5","6"];
+                        filters.thread = ["2"];
+                        break;
+                    case 'tenders':
+                        //TODO
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             // add search request to mailer
             $('.add-request-to-mailer').click(function(e){
                 e.preventDefault();
@@ -349,6 +380,8 @@
                 ajaxUrl = ajaxUrl.replace('search-r', search);
                 ajaxUrl = ajaxUrl.replace('resByTag-r', resByTag);
                 ajaxUrl = ajaxUrl.replace('filters-r', filtersJson);
+                button = $(this);
+                button.addClass('loading');
                 $.ajax({
                     url: ajaxUrl,
                     type: 'POST',
@@ -356,6 +389,7 @@
                         _token: "{{ csrf_token() }}",
                     },
                     success: function(data) {
+                        console.log(data);
                         try {
                             data = JSON.parse(data);
                             if ( data.code == 200 ) {
@@ -370,6 +404,7 @@
                     },
                     error: function() {
                         showPopUpMassage(false, "{{ __('messages.error') }}");
+                        button.removeClass('loading');
                     }
                 });
             });
