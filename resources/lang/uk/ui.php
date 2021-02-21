@@ -389,7 +389,7 @@ return [
     //post deactivated messages
     'postHiddenNotifSubject' => 'Оголошення було деактивовано',
     'postHiddenNotifGreetings' => 'Доброго дня',
-    'postHiddenNotifHeader' => 'Це оголошення було деактивовано',
+    'postHiddenNotifHeader' => 'Ці оголошення були деактивовані',
     'postHiddenNotifBody1' => 'Термін дії публікації закінчився. Будь ласка, оновіть термін дії у налаштуваннях оголошення, якщо ви хочете знову зробити це оголошення публічним',
     'postHiddenNotifBody2' => 'Якщо у вас виникли проблеми натискаючи на оголошення вище, скопіюйте та вставте URL нижче у свій браузер',
     'postHiddenNotifSlg' => 'З повагою,',

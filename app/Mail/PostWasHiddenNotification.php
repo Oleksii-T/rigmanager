@@ -13,16 +13,18 @@ class PostWasHiddenNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $post;
+    public $found_posts;
+    public $lang;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Post $post)
+    public function __construct($fp, $lang)
     {
-        $this->post = $post;
+        $this->found_posts = $fp;
+        $this->lang = $lang;
     }
 
     /**
@@ -32,7 +34,7 @@ class PostWasHiddenNotification extends Mailable
      */
     public function build()
     {
-        App::setLocale($this->post->user->language);
+        App::setLocale($this->lang);
         return $this->subject(__('ui.postHiddenNotifSubject'))
                     ->view('emails.postHidden.notification')
                     ->text('emails.postHidden.notification_plain')

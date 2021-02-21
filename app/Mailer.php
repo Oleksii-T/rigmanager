@@ -13,7 +13,7 @@ class Mailer extends Model
     protected $appends = [
         'author_name', 'types_map', 'types_readable', 'tag_map', 'conditions_map', 'conditions_readable', 
         'roles_map', 'types_readable', 'threads_map', 'threads_map', 'cost_from_readable', 'cost_to_readable',
-        'all_conditions', 'all_types', 'all_roles', 'all_threads', 'region_name', 'tag_is_eq'
+        'all_conditions', 'all_types', 'all_roles', 'all_threads', 'region_name', 'tag_is_eq', 'author_url_name'
     ];
 
     protected $fillable = [
@@ -221,6 +221,10 @@ class Mailer extends Model
 
     public function getAuthorNameAttribute() {
         return User::find( (int) $this->author)->name;
+    }
+
+    public function getAuthorUrlNameAttribute() {
+        return User::find( (int) $this->author)->url_name;
     }
 
     public function getConditionsMapAttribute() {

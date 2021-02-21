@@ -56,7 +56,7 @@
                                 @if ($m->author)
                                     <div class="mailing-info-item">
                                         <div class="mailing-info-name">{{__('ui.author')}}:</div>
-                                        <div class="mailing-info-text"><a href="" class="not-ready">{{$m->author_name}}</a></div>
+                                        <div class="mailing-info-text"><a href="{{loc_url(route('search', ['author'=>$m->author_url_name]))}}">{{$m->author_name}}</a></div>
                                     </div>
                                 @endif
                                 @if ($m->tag)

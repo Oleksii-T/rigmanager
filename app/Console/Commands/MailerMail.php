@@ -48,6 +48,7 @@ class MailerMail extends Command
             $mails_sent = 0;
             foreach ($mailers as $m) {
                 if ($m->found_posts != []) {
+                    $fp = [];
                     foreach ($m->found_posts as $id) {
                         $p = Post::findOrFail($id);
                         $fp[] = [
@@ -56,10 +57,12 @@ class MailerMail extends Command
                         ];
                     }
                     Mail::to($m->user->email)->send(new MailerNotification($fp, $m->title)); //send mail notification to user
-                    $mails_sent++;  
+                    $m->found_posts=null;
+                    $m->save();
+                    $mails_sent++;
                 }
             }
-            Log::channel('jobs')->info('[mailer.mail] Mailers successfully mailed ' . $mails_sent . ' users.');
+            Log::channel('jobs')->info('[mailer.mail] Mailers mailed ' . $mails_sent . ' users successfully');
         } catch (\Throwable $th) {
             Log::channel('jobs')->error('[mailer.mail] Mailers mailing fails');
         }

@@ -2,12 +2,13 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\PostWasHiddenNotification;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Console\Command;
-use App\Post;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\PostWasHiddenNotification;
+use App\Post;
+use App\User;
 
 class PostLifeTimeCheck extends Command
 {
@@ -43,14 +44,23 @@ class PostLifeTimeCheck extends Command
     public function handle()
     {
         try {
-            $posts = Post::where('is_active', true)->whereDate('active_to', '<', Carbon::now())->get();
-            foreach ($posts as $post) {
-                $post->is_active = false;
-                $post->save();
-                Mail::to($post->user->email)->send(new PostWasHiddenNotification($post));
-                Log::channel('jobs')->info('[lifetime.check] Outdated post [id='.$post->id.',active_to='.$post->active_to.'] has been hidden');
+            $posts = Post::where('is_active', true)->whereDate('active_to', '<', Carbon::now())->get()->groupBy('user_id');
+            foreach ($posts as $userId => $userPosts) {
+                $email = User::findOrFail($userId)->email;
+                $lang = User::findOrFail($userId)->language;
+                $fp = [];
+                foreach ($userPosts as $p) {
+                    $fp[] = [
+                        'url_name' => $p->url_name,
+                        'title' => $p->title
+                    ];
+                    $p->is_active = false;
+                    $p->save();
+                    Log::channel('jobs')->info('[lifetime.check] Outdated post [id='.$p->id.',active_to='.$p->active_to.'] has been hidden');
+                }
+                Mail::to($email)->send(new PostWasHiddenNotification($fp, $lang));
             }
-            Log::channel('jobs')->info('[lifetime.check] Outdated posts has been checked');
+            Log::channel('jobs')->info('[lifetime.check] Outdated posts has been checked sucessfully');
         } catch (\Throwable $th) {
             Log::channel('jobs')->error('[lifetime.check] Outdated posts checking fails');
         }

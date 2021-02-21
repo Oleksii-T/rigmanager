@@ -388,7 +388,7 @@ return [
     //post deactivated messages
     'postHiddenNotifSubject' => 'Post has been deactivated',
     'postHiddenNotifGreetings' => 'Hello',
-    'postHiddenNotifHeader' => 'This post has been deactivated',
+    'postHiddenNotifHeader' => 'Those posts has been deactivated',
     'postHiddenNotifBody1' => 'Lifetime of the post expired, please update the lifetime in Post settings if you want to make this Post public again',
     'postHiddenNotifBody2' => 'If you’re having trouble clicking the Post above, copy and paste the URL below into your web browser',
     'postHiddenNotifSlg' => 'Regards,',
