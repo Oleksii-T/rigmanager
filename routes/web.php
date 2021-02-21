@@ -35,25 +35,26 @@ Route::get('download/posts-import', function() {
 //post views counter
 Route::post('ajax/post/viewed','PostController@viewed')->name('post.viewed'); //Ajax reqeust
 
-Route::middleware('verified')->group(function () {
+// mailer routes
+Route::post     ('ajax/mailer/toggle/{mailer}',         'MailerController@toggle')          ->name('mailer.toggle');// Ajax request
+Route::post     ('ajax/mailer/create',                  'MailerController@createBySearchRequest')->name('mailer.create.by.search');// Ajax request
+Route::get      ('ajax/mailer/author/{author}',         'MailerController@createByAuthor')       ->name('mailer.create.by.author');// Ajax request
 
+Route::middleware('verified')->group(function () {
     // user routes
     Route::get      ('ajax/profile/favourite',              'UserController@addToFav')          ->name('toFav'); //Ajax reqeust
     Route::patch    ('profile/image/delete',                'UserController@userImageDelete')   ->name('profile.img.delete'); //Ajax reqeust
+    
+    // post routes
+    Route::post     ('ajax/posts/toggle/status/{post}',     'PostController@togglePost')        ->name('post.toggle'); //Ajax reqeust
+    Route::delete   ('ajax/posts/a//{post}',                'PostController@destroyAjax')       ->name('posts.destroy.ajax'); //Ajax reqeust
 
     Route::middleware('plan.standart')->group(function () {
-        // mailer routes
-        Route::get      ('ajax/mailer/author/{author}',         'MailerController@addAuthor')       ->name('mailer.add.author');// Ajax request
-        Route::post     ('ajax/mailer/toggle/{mailer}',         'MailerController@toggle')          ->name('mailer.toggle');// Ajax request
-        Route::post     ('ajax/mailer/create',                  'MailerController@createBySearchRequest')->name('mailer.create.by.search');// Ajax request
-
         // post routes
         Route::get      ('ajax/contacts/{postId}',              'PostController@getContacts')       ->name('get.contacts'); //Ajax reqeust
         Route::get      ('ajax/posts/images/{post}',            'PostController@getImages')         ->name('get.images'); //Ajax reqeust
         Route::patch    ('posts/images/delete/{post}',          'PostController@imgsDel')           ->name('posts.imgs.delete'); //Ajax reqeust
         Route::patch    ('posts/images/delete/{post}/{image}',  'PostController@imgDel')            ->name('posts.img.delete'); //Ajax reqeust
-        Route::delete   ('ajax/posts/a//{post}',                'PostController@destroyAjax')       ->name('posts.destroy.ajax'); //Ajax reqeust
-        Route::post     ('ajax/posts/toggle/status/{post}',     'PostController@togglePost')        ->name('post.toggle'); //Ajax reqeust
     });
 });
 

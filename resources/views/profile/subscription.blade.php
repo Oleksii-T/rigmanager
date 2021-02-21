@@ -30,24 +30,6 @@
             <div class="history">
                 <div class="history-top">
                     <div class="history-title">{{__('ui.history')}}</div>
-                    <!--
-                    <div class="history-form">
-                        <form action="">
-                            <fieldset>
-                                <div class="history-form-line">
-                                    <div class="history-form-input">
-                                        <input type="text" class="input input-date" placeholder="дд-мм-гггг">
-                                    </div>
-                                    <div class="history-form-divider">-</div>
-                                    <div class="history-form-input">
-                                        <input type="text" class="input input-date" placeholder="дд-мм-гггг">
-                                    </div>
-                                    <button class="button">Показати</button>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                    -->
                 </div>
                 <div class="history-table">
                     <table>
@@ -82,7 +64,7 @@
                                     <td>{{$item['period']['to']}}</td>
                                     <td>{{$item['payment']}}</td>
                                     @if ($item['status']==0)
-                                        <td><span class="history-status">{{__('ui.inactive')}}</span></td>
+                                        <td><span class="history-status">{{__('ui.expired')}}</span></td>
                                     @elseif ($item['status']==1)
                                         <td><span class="history-status">{{__('ui.canceled')}}</span></td>
                                     @else

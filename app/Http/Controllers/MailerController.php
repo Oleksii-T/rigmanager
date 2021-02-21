@@ -104,23 +104,29 @@ class MailerController extends Controller
 
     public function toggle($id)
     {
+        // codes: Bag Plan(-2), Bad Auth(-1), Diactivated(0), Activated(1)
         $m = Mailer::findOrFail($id);
         if ( $m->user_id!=auth()->user()->id  ) {
-            abort(403);
+            return json_encode(-1);
         }
         if ($m->is_active) {
             $m->is_active = false;
-        } else {
-            $m->is_active = true;
+            $m->save();
+            return json_encode(0);
         }
+        //if user not subscribed and tryes activate mailer
+        if (!auth()->user()->is_standart) {
+            return json_encode(-2);
+        }
+        $m->is_active = true;
         $m->save();
-        return true;
+        return json_encode(1);
     }
 
-    public function addAuthor($user_id)
+    public function createByAuthor($user_id)
     {
         if (!auth()->user()->is_standart) {
-            return json_encode(['message'=>__('messages.requireStandart'), 'code'=>404]);
+            return json_encode(['message'=>__('messages.requireStandart'), 'code'=>403]);
         }
         if ( auth()->user()->mailers->count() > 10 ) {
             return json_encode(['message'=>__('messages.mailerTooManyMailers'), 'code'=>404]);
@@ -144,7 +150,7 @@ class MailerController extends Controller
         if (!auth()->user()->mailers()->save($mailer)) {
             return json_encode(['message'=>__('messages.mailerUploadedError'), 'code'=>404]);
         }
-        return json_encode(['message'=>__('messages.mailerAddedAuthor'), 'code'=>500]);
+        return json_encode(['message'=>__('messages.mailerAddedAuthor'), 'code'=>200]);
     }
 
     public function createBySearchRequest(Request $request) {
@@ -206,9 +212,9 @@ class MailerController extends Controller
         }
         $mailer = new Mailer($input);
         if (!auth()->user()->mailers()->save($mailer)) {
-            return json_encode(['message'=>__('messages.mailerUploadedError'), 'code'=>404]);
+            return json_encode(['message'=>__('messages.mailerUploadedError'), 'code'=>500]);
         }
-        return json_encode(['message'=>__('messages.mailerRequestAdded'), 'code'=>500]);
+        return json_encode(['message'=>__('messages.mailerRequestAdded'), 'code'=>200]);
     }
 
     private function createFromType($typeUrl) {

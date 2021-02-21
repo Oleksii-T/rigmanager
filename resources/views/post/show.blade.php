@@ -217,13 +217,18 @@
                 button.addClass('loading');
                 $.ajax({
                     type: "GET",
-                    url: "{{ route('mailer.add.author', $post->user_id) }}",
+                    url: "{{ route('mailer.create.by.author', $post->user_id) }}",
                     success: function(data) {
-                        data = JSON.parse(data);
-                        if ( data.code == 500 ) {
-                            showPopUpMassage(true, data.message);
-                        } else {
-                            showPopUpMassage(false, data.message);
+                        try {
+                            data = JSON.parse(data);
+                            if ( data.code == 200 ) {
+                                showPopUpMassage(true, data.message);
+                                button.text("{{ __('ui.mailerAuthorAlreadyAdded') }}");
+                            } else {
+                                showPopUpMassage(false, data.message);
+                            }
+                        } catch (error) {
+                            showPopUpMassage(false, "{{ __('messages.error') }}");
                         }
                         button.removeClass('loading');
                     },

@@ -7,7 +7,8 @@ return [
 
     //subscription notifications
     'subNotifSubject' => 'Reminder about paid subscription.',
-    'subExpired' => 'Your paid subscription has expired.',
+    'subExpired' => 'Your paid subscription has expired.
+        All you posts and mailers was deactivated.',
     'subWillExpire' => 'We remind you that on :date your paid subscription expires.',
     'subDetails' => 'You can find out more on',
     'subProfile' => 'your profile page',

@@ -563,6 +563,7 @@ return [
     'operation' => 'Операції',
     'canceled' => 'Скасовано',
     'history' => 'История',
+    'expired' => 'Истек',
     
     // posts import
     'postImport' => 'Импорт объявлений',

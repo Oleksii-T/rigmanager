@@ -19,6 +19,7 @@
                     @else
                         <div class="profile-ava" style="background-image:url({{asset('icons/emptyAva.svg')}})"></div>
                     @endif
+                    <br>
                     <a href="{{loc_url(route('profile.edit'))}}" class="profile-edit-link">{{__('ui.edit')}}<br>{{__('ui.profile')}}</a>
                 </div>
                 <div class="profile-content">

@@ -559,6 +559,7 @@ return [
     'operation' => 'Operation',
     'canceled' => 'Canceled',
     'history' => 'History',
+    'expired' => 'Expired',
     
     // posts import
     'postImport' => 'Posts import',

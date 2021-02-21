@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\SubscriptionNotification;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Console\Command;
@@ -53,25 +53,8 @@ class CheckSubscribers extends Command
                 } else if ($tomorrow == $sub->expire_at) {
                     Mail::to($sub->user->email)->send(new SubscriptionNotification(2, $sub->expire_at, $sub->user->name, $sub->user->language)); //send mail notification to user    
                 } else if ($now > $sub->expire_at) {
-                    Mail::to($sub->user->email)->send(new SubscriptionNotification(1, $sub->expire_at, $sub->user->name, $sub->user->language)); //send mail notification to user    
-                    $history = $sub->history;
-                    $history[] = [
-                        'period' => [
-                            'from' => $sub->activated_at,
-                            'to' => $sub->expire_at
-                        ],
-                        'payment' => $sub->payment,
-                        'role' => $sub->role,
-                        'number' => $sub->number,
-                        'issued' => $sub->issued
-                    ];
-                    $sub->activated_at = null;
-                    $sub->expire_at = null;
-                    $sub->payment = null;
-                    $sub->role = 0;
-                    $sub->is_active = false;
-                    $sub->history = $history;
-                    $sub->save();
+                    $sc = new SubscriptionController;
+                    $sc->expire($sub);
                 }
             }
             Log::channel('jobs')->info('[subscribers.check] Subscribers checked sucessfully');

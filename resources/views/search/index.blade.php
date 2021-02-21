@@ -356,12 +356,17 @@
                         _token: "{{ csrf_token() }}",
                     },
                     success: function(data) {
-                        data = JSON.parse(data);
-                        if ( data.code == 500 ) {
-                            showPopUpMassage(true, data.message);
-                        } else {
-                            showPopUpMassage(false, data.message);
+                        try {
+                            data = JSON.parse(data);
+                            if ( data.code == 200 ) {
+                                showPopUpMassage(true, data.message);
+                            } else {
+                                showPopUpMassage(false, data.message);
+                            }
+                        } catch (error) {
+                            showPopUpMassage(false, "{{ __('messages.error') }}");
                         }
+                        button.removeClass('loading');
                     },
                     error: function() {
                         showPopUpMassage(false, "{{ __('messages.error') }}");

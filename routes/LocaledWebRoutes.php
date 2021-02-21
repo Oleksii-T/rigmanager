@@ -49,6 +49,15 @@ Route::middleware('verified')->group(function () {
     //change subscriptiob routes
     Route::post('plans/change', 'SubscriptionController@update') ->name('plans.update');
     Route::get('plans/cancel', 'SubscriptionController@cancel') ->name('plans.cancel');
+    
+    //posts routes
+    Route::delete   ('posts/delete-all',    'PostController@deleteAll')     ->name('posts.delete');
+
+    // mailer routes
+    Route::get      ('profile/mailer',          'MailerController@index')           ->name('mailer.index');
+    Route::get      ('mailer/deactivate-all',   'MailerController@deactivateAll')   ->name('mailers.deactivate');
+    Route::delete   ('mailer/delete-all',       'MailerController@deleteAll')       ->name('mailers.delete');
+    Route::delete   ('profile/mailer/{mailer}', 'MailerController@destroy')         ->name('mailer.destroy');
 
     // profile/user routes
     Route::get      ('profile/edit',            'UserController@edit')              ->name('profile.edit');
@@ -63,13 +72,10 @@ Route::middleware('verified')->group(function () {
         Route::get      ('fake/store',          'PostController@storeFake')     ->name('posts.store.fake');
         Route::get      ('update/store',        'PostController@updateFake')    ->name('posts.update.fake');
         Route::get      ('posts/create/service','PostController@serviceCreate') ->name('service.create');
-        Route::delete   ('posts/delete-all',    'PostController@deleteAll')     ->name('posts.delete');
         Route::resource ('posts',               'PostController')               ->except(['index', 'show']);
-
+        
         // mailer routes
-        Route::delete   ('mailer/delete-all',       'MailerController@deleteAll')       ->name('mailers.delete');
-        Route::get      ('mailer/deactivate-all',   'MailerController@deactivateAll')   ->name('mailers.deactivate');
-        Route::resource ('profile/mailer',          'MailerController')                 ->except(['create']);
+        Route::resource ('profile/mailer',          'MailerController')                 ->except(['create', 'index', 'destroy']);
     });
 
     // posts import routes

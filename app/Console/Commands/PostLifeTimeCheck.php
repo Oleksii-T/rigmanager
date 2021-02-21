@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 use App\Post;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\PostHiddenNotification;
+use App\Mail\PostWasHiddenNotification;
 
 class PostLifeTimeCheck extends Command
 {
@@ -47,7 +47,7 @@ class PostLifeTimeCheck extends Command
             foreach ($posts as $post) {
                 $post->is_active = false;
                 $post->save();
-                Mail::to($post->user->email)->send(new PostHiddenNotification($post));
+                Mail::to($post->user->email)->send(new PostWasHiddenNotification($post));
                 Log::channel('jobs')->info('[lifetime.check] Outdated post [id='.$post->id.',active_to='.$post->active_to.'] has been hidden');
             }
             Log::channel('jobs')->info('[lifetime.check] Outdated posts has been checked');

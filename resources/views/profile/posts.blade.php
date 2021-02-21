@@ -81,22 +81,35 @@
                         _token: "{{ csrf_token() }}",
                     },
                     success: function(data) {
-                        switch (JSON.parse(data)) {
-                            case -1:
-                                showPopUpMassage(false, "{{ __('messages.postOutdated') }}");
-                                break;
-                            case 0:
-                                showPopUpMassage(true, "{{ __('messages.postDisactivated') }}");
-                                button.addClass('active');
-                                $('#'+id).toggleClass('inactive');
-                                break;
-                            case 1:
-                                showPopUpMassage(true, "{{ __('messages.postActivated') }}");
-                                button.removeClass('active');
-                                $('#'+id).toggleClass('inactive');
-                                break;
-                            default:
-                                break;
+                        try {
+                            var d = JSON.parse(data);
+                            // codes: Outdated(-3), Bag Plan(-2), Bad Auth(-1), Diactivated(0), Activated(1)
+                            switch (d) {
+                                case -3:
+                                    showPopUpMassage(false, "{{ __('messages.postOutdated') }}");
+                                    break;
+                                case -2:
+                                    showPopUpMassage(false, "{{ __('messages.requireStandart') }}");
+                                    break;
+                                case -1:
+                                    showPopUpMassage(false, "{{ __('messages.authError') }}");
+                                    break;
+                                case 0:
+                                    showPopUpMassage(true, "{{ __('messages.postDisactivated') }}");
+                                    button.addClass('active');
+                                    $('#'+id).toggleClass('inactive');
+                                    break;
+                                case 1:
+                                    showPopUpMassage(true, "{{ __('messages.postActivated') }}");
+                                    button.removeClass('active');
+                                    $('#'+id).toggleClass('inactive');
+                                    break;
+                                default:
+                                    showPopUpMassage(false, "{{ __('messages.error') }}");
+                                    break;
+                            }
+                        } catch (error) {
+                            showPopUpMassage(false, "{{ __('messages.error') }}");
                         }
                         button.removeClass('loading');
                     },

@@ -55,7 +55,6 @@ class DatabaseSeeder extends Seeder
             'role' => 2,
             'payment' => '0',
             'number' => '000000',
-            'history' => '[{"role": "1", "issued": "2020-10-24", "number": "4212", "period": {"to": "2020-11-25", "from": "2020-10-25"}, "status": "0", "payment": "0"}, {"role": "2", "issued": "2020-11-20", "number": "6234", "period": {"to": "2020-12-25", "from": "2020-11-25"}, "status": "0", "payment": "399"}]',
             'issued' => Carbon\Carbon::now(),
             'activated_at' => Carbon\Carbon::now(),
             'expire_at' => $freeProExpire, 

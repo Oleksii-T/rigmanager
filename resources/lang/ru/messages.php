@@ -37,7 +37,7 @@ return [
     'tooManyUrgentPostsError' => 'Вы достигли максимального количества срочных объявлений. (100 для Премиум, 300 для Премиум+)',
 
     'mailerRequestAdded' => 'Запрос был успешно добавлен в Рассылку!',
-    'mailersDeactivated' => '',
+    'mailersDeactivated' => 'Все Рассылки были успешно деактивирован!',
     'mailerActivated' => 'Рассылка была активирована успешно!',
     'mailerDeactivated' => 'Рассылка была деактивирована успешно!',
     'mailerTooManyMailers' => 'Слишком много Рассылок! (макс.10)',

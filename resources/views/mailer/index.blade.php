@@ -188,22 +188,38 @@
                         _token: "{{ csrf_token() }}",
                     },
                     success: function(data) {
-                        var curr = button.parent().parent().find('.mailing-status.current');
-                        if ( curr.hasClass('status-active') ) {
-                            curr.removeClass('status-active').addClass('status-disabled').text('{{__("ui.notActive")}}');
-                            button.text('{{__("ui.activete")}}');
-                            showPopUpMassage(true, "{{ __('messages.mailerDeactivated') }}");
-                        } else {
-                            curr.removeClass('status-disabled').addClass('status-active').text('{{__("ui.active")}}');
-                            button.text('{{__("ui.deactivate")}}');
-                            showPopUpMassage(true, "{{ __('messages.mailerActivated') }}");
+                        try {
+                            var d = JSON.parse(data);
+                            var curr = button.parent().parent().find('.mailing-status.current');
+                            // codes: Bag Plan(-2), Bad Auth(-1), Diactivated(0), Activated(1)
+                            switch (d) {
+                                case -2:
+                                    showPopUpMassage(false, "{{ __('messages.requireStandart') }}");
+                                    break;
+                                case -1:
+                                    showPopUpMassage(false, "{{ __('messages.authError') }}");
+                                    break;
+                                case 0:
+                                    curr.removeClass('status-active').addClass('status-disabled').text('{{__("ui.notActive")}}');
+                                    button.text('{{__("ui.activete")}}');
+                                    showPopUpMassage(true, "{{ __('messages.mailerDeactivated') }}");
+                                    break;
+                                case 1:
+                                    curr.removeClass('status-disabled').addClass('status-active').text('{{__("ui.active")}}');
+                                    button.text('{{__("ui.deactivate")}}');
+                                    showPopUpMassage(true, "{{ __('messages.mailerActivated') }}");
+                                    break;
+                                default:
+                                    showPopUpMassage(false, "{{ __('messages.error') }}");
+                                    break;
+                            }
+                            button.removeClass('loading');
+                        } catch (error) {
+                            showPopUpMassage(false, "{{ __('messages.error') }}");
                         }
-                        button.removeClass('loading');
                     },
                     error: function(xhr, status, error) {
-                        xhr['status'] == 403
-                            ? showPopUpMassage(false, "{{ __('messages.authError') }}")
-                            : showPopUpMassage(false, "{{ __('messages.error') }}");
+                        showPopUpMassage(false, "{{ __('messages.error') }}");
                         button.removeClass('loading');
                     }
                 });

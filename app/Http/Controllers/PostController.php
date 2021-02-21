@@ -460,25 +460,29 @@ class PostController extends Controller
 
     public function togglePost($postId) 
     {
+        // codes: Outdated(-3), Bag Plan(-2), Bad Auth(-1), Diactivated(0), Activated(1)
         $post = Post::findOrFail($postId);
-        if ($this->isOwner($post->user->id)) {
-            if ( $post->is_active ) {
-                //disactivate post
-                $post->is_active = false;
-                $post->save();
-                return json_encode(0);
-            } else {
-                if ( $post->active_to < Carbon::now() ) {
-                    // the post is outdated
-                    return json_encode(-1);
-                }
-                //activate post
-                $post->is_active = true;
-                $post->save();
-                return json_encode(1);
-            }
+        if (!$this->isOwner($post->user->id)) {
+            return json_encode(-1);
         }
-        abort(403);
+        //disactivate post
+        if ( $post->is_active ) {
+            $post->is_active = false;
+            $post->save();
+            return json_encode(0);
+        } 
+        // the post is outdated
+        if ( $post->active_to < Carbon::now() ) {
+            return json_encode(-3);
+        }
+        //if user not subscribed and tryes activate post
+        if (!auth()->user()->is_standart) {
+            return json_encode(-2);
+        }
+        //activate post
+        $post->is_active = true;
+        $post->save();
+        return json_encode(1);
     }
 
     public function import() 

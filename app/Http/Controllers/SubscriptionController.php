@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Session;
+use App\Mail\SubscriptionNotification;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Subscription;
 use Carbon\Carbon;
 
 class SubscriptionController extends Controller
 {
+    /*
+        status code of history:
+        0 - expired
+        1 - canceled
+    */
     public function freeAccess() {
         auth()->user()->subscription()->save(new \App\Subscription([
             'is_active' => true,
@@ -23,9 +30,14 @@ class SubscriptionController extends Controller
 
     public function update(Request $request) {
         $newPlan = $this->planNameToInt($request->plan);
+        if ($newPlan==0) {
+            $this->cancelExpireHelper(auth()->user()->subscription, 1);
+            Session::flash('message-success', __('messages.planUpdated'));
+            return redirect( loc_url(route('profile.subscription')) );
+        }
         $data = [
             'number' => '000000',
-            'is_active' => $newPlan==0 ? 0 : 1,
+            'is_active' => 1,
             'role' => $newPlan,
             'payment' => 0,
             'issued' => Carbon::now()->toDateString(),
@@ -52,6 +64,31 @@ class SubscriptionController extends Controller
 
     public function cancel() {
         $sub = auth()->user()->subscription;
+        $this->cancelExpireHelper($sub, 1);
+        Session::flash('message-success', __('messages.planCanceled'));
+        return redirect( loc_url(route('profile.subscription')) );
+    }
+
+    public function expire($sub) {
+        $this->cancelExpireHelper($sub, 0);
+        Mail::to($sub->user->email)->send(new SubscriptionNotification(1, $sub->expire_at, $sub->user->name, $sub->user->language)); //send mail notification to user    
+        //diactivate posts
+        if ($sub->user->posts->isNotEmpty()) {
+            foreach ($sub->user->posts as $p) {
+                $p->is_active = false;
+                $p->save();
+            }
+        }
+        //diactivate mailer
+        if ($sub->user->mailers->isNotEmpty()) {
+            foreach ($sub->user->mailers as $m) {
+                $m->is_active = false;
+                $m->save();
+            }
+        }
+    }
+
+    private function cancelExpireHelper($sub, $status) {
         $data = [
             'number' => null,
             'is_active' => 0,
@@ -60,19 +97,9 @@ class SubscriptionController extends Controller
             'issued' => null,
             'activated_at' => null,
             'expire_at' => null,
-            'history' => $this->makeHistory($sub, 1),
+            'history' => $this->makeHistory($sub, $status),
         ];
         $sub->update($data);
-        Session::flash('message-success', __('messages.planCanceled'));
-        return redirect( loc_url(route('profile.subscription')) );
-    }
-
-    public function checkAll() {
-
-    }
-
-    private function expire($user) {
-
     }
 
     private function planNameToInt($name) {
