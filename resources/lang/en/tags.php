@@ -23,7 +23,7 @@ return [
         'floatCollar' => 'Float Collars',
         'joint' => 'Pipe joints',
         'xOver' => 'Crossovers',
-            'xOverDamp' => 'Dampe crossovers',
+            'xOverDump' => 'Dampe crossovers',
         'packerRubber' => 'Packer rubbers for pipe connection',
         'stabilizersOnPipe' => 'Stabilizers',
         'pipeStd' => 'Standart drilling pipes',

@@ -11,13 +11,13 @@
 	<h1>{{__('ui.catalog')}}</h1>
 	<div class="content-top-text">{{__('ui.catalogHelp')}}
 
-		<a href="{{loc_url(route('tag-0'))}}">{{__('ui.postsWithoutTag')}}</a>
+		<a href="{{loc_url(route('tag-0'))}}">{{__('ui.postsWithoutEqTag')}} (<span class="orange">{{array_key_exists(0, $posts_amount) ? $posts_amount[0] : '0'}}</span>)</a>
 	</div>
 	<div class="category">
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-1'))}}"><img src="{{asset('icons/tags/1.png')}}" alt=""></a></div>
-				<div class="category-name"><a href="{{loc_url(route('tag-1'))}}">{{__('tags.bit')}}</a></div>
+				<div class="category-name"><a href="{{loc_url(route('tag-1'))}}">{{__('tags.bit')}}</a> (<span class="orange">{{array_key_exists(1, $posts_amount) ? $posts_amount[1] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-1.1'))}}">{{__('tags.bicentric')}}</a></li>
 					<li><a href="{{loc_url(route('tag-1.2'))}}">{{__('tags.bitBreaker')}}</a></li>
@@ -35,7 +35,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-2'))}}"><img src="{{asset('icons/tags/2.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-2" href="{{loc_url(route('tag-2'))}}">{{__('tags.dp')}}</a></div>
+				<div class="category-name"><a id="tag-2" href="{{loc_url(route('tag-2'))}}">{{__('tags.dp')}}</a> (<span class="orange">{{array_key_exists(2, $posts_amount) ? $posts_amount[2] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-2.1'))}}">{{__('tags.slipJoint')}}</a></li>
 					<li><a href="{{loc_url(route('tag-2.2'))}}">{{__('tags.ldp')}}</a></li>
@@ -65,7 +65,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-3'))}}"><img src="{{asset('icons/tags/3.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-3" href="{{loc_url(route('tag-3'))}}">{{__('tags.rig')}}</a></div>
+				<div class="category-name"><a id="tag-3" href="{{loc_url(route('tag-3'))}}">{{__('tags.rig')}}</a> (<span class="orange">{{array_key_exists(3, $posts_amount) ? $posts_amount[3] : ''}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-3.1'))}}">{{__('tags.mastTools')}}</a></li>
 					<li><a href="{{loc_url(route('tag-3.2'))}}">{{__('tags.drillerHouse')}}</a></li>
@@ -83,10 +83,10 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-4'))}}"><img src="{{asset('icons/tags/4.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-4" href="{{loc_url(route('tag-4'))}}">{{__('tags.pump')}}</a></div>
+				<div class="category-name"><a id="tag-4" href="{{loc_url(route('tag-4'))}}">{{__('tags.pump')}}</a> (<span class="orange">{{array_key_exists(4, $posts_amount) ? $posts_amount[4] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-4.1'))}}">{{__('tags.pumpiI')}}</a></li>
-					<li><a href="{{loc_url(route('tag-4.2'))}}">{{__('tags.hydComonents')}}</a>
+					<li><a href="{{loc_url(route('tag-4.2'))}}">{{__('tags.hydComponents')}}</a>
 						<ul class="category-sublist">
 							<li><a href="{{loc_url(route('tag-4.2.1'))}}">{{__('tags.hydActuator')}}</a></li>
 							<li><a href="{{loc_url(route('tag-4.2.2'))}}">{{__('tags.hydPulser')}}</a></li>
@@ -125,7 +125,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-5'))}}"><img src="{{asset('icons/tags/5.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-5" href="{{loc_url(route('tag-5'))}}">{{__('tags.mud')}}</a></div>
+				<div class="category-name"><a id="tag-5" href="{{loc_url(route('tag-5'))}}">{{__('tags.mud')}}</a> (<span class="orange">{{array_key_exists(5, $posts_amount) ? $posts_amount[5] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-5.1'))}}">{{__('tags.buffer')}}</a></li>
 					<li><a href="{{loc_url(route('tag-5.2'))}}">{{__('tags.mudDmpr')}}</a></li>
@@ -163,7 +163,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-6'))}}"><img src="{{asset('icons/tags/6.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-6" href="{{loc_url(route('tag-6'))}}">{{__('tags.boreholeSurvey')}}</a></div>
+				<div class="category-name"><a id="tag-6" href="{{loc_url(route('tag-6'))}}">{{__('tags.boreholeSurvey')}}</a> (<span class="orange">{{array_key_exists(6, $posts_amount) ? $posts_amount[6] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-6.1'))}}">{{__('tags.coring')}}</a>
 						<ul class="category-sublist">
@@ -199,7 +199,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-7'))}}"><img src="{{asset('icons/tags/7.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-7" href="{{loc_url(route('tag-7'))}}">{{__('tags.miscHelpEq')}}</a></div>
+				<div class="category-name"><a id="tag-7" href="{{loc_url(route('tag-7'))}}">{{__('tags.miscHelpEq')}}</a> (<span class="orange">{{array_key_exists(7, $posts_amount) ? $posts_amount[7] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-7.1'))}}">{{__('tags.grinding')}}</a>
 						<ul class="category-sublist">
@@ -223,7 +223,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-8'))}}"><img src="{{asset('icons/tags/8.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-8" href="{{loc_url(route('tag-8'))}}">{{__('tags.motor')}}</a></div>
+				<div class="category-name"><a id="tag-8" href="{{loc_url(route('tag-8'))}}">{{__('tags.motor')}}</a> (<span class="orange">{{array_key_exists(8, $posts_amount) ? $posts_amount[8] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-8.1'))}}">{{__('tags.rotational')}}</a></li>
 					<li><a href="{{loc_url(route('tag-8.2'))}}">{{__('tags.percussion')}}</a></li>
@@ -236,13 +236,13 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-9'))}}"><img src="{{asset('icons/tags/9.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-9" href="{{loc_url(route('tag-9'))}}">{{__('tags.parts')}}</a></div>
+				<div class="category-name"><a id="tag-9" href="{{loc_url(route('tag-9'))}}">{{__('tags.parts')}}</a> (<span class="orange">{{array_key_exists(9, $posts_amount) ? $posts_amount[9] : '0'}}</span>)</div>
 			</div>
 		</div>
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-10'))}}"><img src="{{asset('icons/tags/10.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-10" href="{{loc_url(route('tag-10'))}}">{{__('tags.control')}}</a></div>
+				<div class="category-name"><a id="tag-10" href="{{loc_url(route('tag-10'))}}">{{__('tags.control')}}</a> (<span class="orange">{{array_key_exists(10, $posts_amount) ? $posts_amount[10] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-10.1'))}}">{{__('tags.indicator')}}</a></li>
 					<li><a href="{{loc_url(route('tag-10.2'))}}">{{__('tags.measurmentEq')}}</a></li>
@@ -256,7 +256,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-11'))}}"><img src="{{asset('icons/tags/11.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-11" href="{{loc_url(route('tag-11'))}}">{{__('tags.stub')}}</a></div>
+				<div class="category-name"><a id="tag-11" href="{{loc_url(route('tag-11'))}}">{{__('tags.stub')}}</a> (<span class="orange">{{array_key_exists(11, $posts_amount) ? $posts_amount[11] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-11.1'))}}">{{__('tags.stubB')}}</a></li>
 					<li><a href="{{loc_url(route('tag-11.2'))}}">{{__('tags.stubP')}}</a></li>
@@ -270,7 +270,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-12'))}}"><img src="{{asset('icons/tags/12.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-12" href="{{loc_url(route('tag-12'))}}">{{__('tags.camp')}}</a></div>
+				<div class="category-name"><a id="tag-12" href="{{loc_url(route('tag-12'))}}">{{__('tags.camp')}}</a> (<span class="orange">{{array_key_exists(12, $posts_amount) ? $posts_amount[12] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-12.1'))}}">{{__('tags.shower')}}</a></li>
 					<li><a href="{{loc_url(route('tag-12.2'))}}">{{__('tags.house')}}</a></li>
@@ -284,7 +284,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-13'))}}"><img src="{{asset('icons/tags/13.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-13" href="{{loc_url(route('tag-13'))}}">{{__('tags.casingCementing')}}</a></div>
+				<div class="category-name"><a id="tag-13" href="{{loc_url(route('tag-13'))}}">{{__('tags.casingCementing')}}</a> (<span class="orange">{{array_key_exists(13, $posts_amount) ? $posts_amount[13] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-13.1'))}}">{{__('tags.shoe')}}</a></li>
 					<li><a href="{{loc_url(route('tag-13.2'))}}">{{__('tags.casingPipe')}}</a></li>
@@ -317,7 +317,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-14'))}}"><img src="{{asset('icons/tags/14.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-14" href="{{loc_url(route('tag-14'))}}">{{__('tags.emergency')}}</a></div>
+				<div class="category-name"><a id="tag-14" href="{{loc_url(route('tag-14'))}}">{{__('tags.emergency')}}</a> (<span class="orange">{{array_key_exists(14, $posts_amount) ? $posts_amount[14] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-14.1'))}}">{{__('tags.emergencyValve')}}</a></li>
 					<li><a href="{{loc_url(route('tag-14.2'))}}">{{__('tags.bath')}}</a></li>
@@ -337,7 +337,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-15'))}}"><img src="{{asset('icons/tags/15.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-15" href="{{loc_url(route('tag-15'))}}">{{__('tags.lubricator')}}</a></div>
+				<div class="category-name"><a id="tag-15" href="{{loc_url(route('tag-15'))}}">{{__('tags.lubricator')}}</a> (<span class="orange">{{array_key_exists(15, $posts_amount) ? $posts_amount[15] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-15.1'))}}">{{__('tags.lubricatorDP')}}</a></li>
 					<li><a href="{{loc_url(route('tag-15.2'))}}">{{__('tags.lubricatorTong')}}</a></li>
@@ -350,7 +350,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-16'))}}"><img src="{{asset('icons/tags/16.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-16" href="{{loc_url(route('tag-16'))}}">{{__('tags.tubingEq')}}</a></div>
+				<div class="category-name"><a id="tag-16" href="{{loc_url(route('tag-16'))}}">{{__('tags.tubingEq')}}</a> (<span class="orange">{{array_key_exists(16, $posts_amount) ? $posts_amount[16] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-16.1'))}}">{{__('tags.knockOffValve')}}</a></li>
 					<li><a href="{{loc_url(route('tag-16.2'))}}">{{__('tags.collTubing')}}</a></li>
@@ -363,7 +363,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-17'))}}"><img src="{{asset('icons/tags/17.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-17" href="{{loc_url(route('tag-17'))}}">{{__('tags.wellHeadEq')}}</a></div>
+				<div class="category-name"><a id="tag-17" href="{{loc_url(route('tag-17'))}}">{{__('tags.wellHeadEq')}}</a> (<span class="orange">{{array_key_exists(17, $posts_amount) ? $posts_amount[17] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-17.1'))}}">{{__('tags.casingSpool')}}</a></li>
 					<li><a href="{{loc_url(route('tag-17.2'))}}">{{__('tags.xMassTree')}}</a></li>
@@ -373,7 +373,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-18'))}}"><img src="{{asset('icons/tags/18.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-18" href="{{loc_url(route('tag-18'))}}">{{__('tags.packer')}}</a></div>
+				<div class="category-name"><a id="tag-18" href="{{loc_url(route('tag-18'))}}">{{__('tags.packer')}}</a> (<span class="orange">{{array_key_exists(18, $posts_amount) ? $posts_amount[18] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-18.1'))}}">{{__('tags.packerPumps')}}</a></li>
 					<li><a href="{{loc_url(route('tag-18.2'))}}">{{__('tags.floatCollar')}}</a></li>
@@ -386,7 +386,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-19'))}}"><img src="{{asset('icons/tags/19.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-19" href="{{loc_url(route('tag-19'))}}">{{__('tags.airUtility')}}</a></div>
+				<div class="category-name"><a id="tag-19" href="{{loc_url(route('tag-19'))}}">{{__('tags.airUtility')}}</a> (<span class="orange">{{array_key_exists(19, $posts_amount) ? $posts_amount[19] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-19.1'))}}">{{__('tags.airLine')}}</a></li>
 					<li><a href="{{loc_url(route('tag-19.2'))}}">{{__('tags.airTank')}}</a></li>
@@ -398,7 +398,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-20'))}}"><img src="{{asset('icons/tags/20.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-20" href="{{loc_url(route('tag-20'))}}">{{__('tags.boe')}}</a></div>
+				<div class="category-name"><a id="tag-20" href="{{loc_url(route('tag-20'))}}">{{__('tags.boe')}}</a> (<span class="orange">{{array_key_exists(20, $posts_amount) ? $posts_amount[20] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-20.1'))}}">{{__('tags.controlUnit')}}</a>
 						<ul class="category-sublist">
@@ -450,7 +450,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-21'))}}"><img src="{{asset('icons/tags/21.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-20" href="{{loc_url(route('tag-21'))}}">{{__('tags.rotory')}}</a></div>
+				<div class="category-name"><a id="tag-20" href="{{loc_url(route('tag-21'))}}">{{__('tags.rotory')}}</a> (<span class="orange">{{array_key_exists(21, $posts_amount) ? $posts_amount[21] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-21.1'))}}">{{__('tags.kelly')}}</a></li>
 					<li><a href="{{loc_url(route('tag-21.2'))}}">{{__('tags.swivel')}}</a></li>
@@ -486,7 +486,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-22'))}}"><img src="{{asset('icons/tags/22.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-22" href="{{loc_url(route('tag-22'))}}">{{__('tags.power')}}</a></div>
+				<div class="category-name"><a id="tag-22" href="{{loc_url(route('tag-22'))}}">{{__('tags.power')}}</a> (<span class="orange">{{array_key_exists(22, $posts_amount) ? $posts_amount[22] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-22.1'))}}">{{__('tags.distributionUnit')}}</a></li>
 					<li><a href="{{loc_url(route('tag-22.2'))}}">{{__('tags.generator')}}</a></li>
@@ -498,7 +498,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-23'))}}"><img src="{{asset('icons/tags/23.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-23" href="{{loc_url(route('tag-23'))}}">{{__('tags.simCasing')}}</a></div>
+				<div class="category-name"><a id="tag-23" href="{{loc_url(route('tag-23'))}}">{{__('tags.simCasing')}}</a> (<span class="orange">{{array_key_exists(23, $posts_amount) ? $posts_amount[23] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-23.1'))}}">{{__('tags.simCasingS')}}</a></li>
 					<li><a href="{{loc_url(route('tag-23.2'))}}">{{__('tags.simCasingB')}}</a>
@@ -513,7 +513,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-24'))}}"><img src="{{asset('icons/tags/24.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-24" href="{{loc_url(route('tag-24'))}}">{{__('tags.diselStorage')}}</a></div>
+				<div class="category-name"><a id="tag-24" href="{{loc_url(route('tag-24'))}}">{{__('tags.diselStorage')}}</a> (<span class="orange">{{array_key_exists(24, $posts_amount) ? $posts_amount[24] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-24.1'))}}">{{__('tags.bomb')}}</a></li>
 					<li><a href="{{loc_url(route('tag-24.2'))}}">{{__('tags.fillingStation')}}</a></li>
@@ -526,7 +526,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-25'))}}"><img src="{{asset('icons/tags/25.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-25" href="{{loc_url(route('tag-25'))}}">{{__('tags.specMachinery')}}</a></div>
+				<div class="category-name"><a id="tag-25" href="{{loc_url(route('tag-25'))}}">{{__('tags.specMachinery')}}</a> (<span class="orange">{{array_key_exists(25, $posts_amount) ? $posts_amount[25] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-25.1'))}}">{{__('tags.crane')}}</a></li>
 					<li><a href="{{loc_url(route('tag-25.2'))}}">{{__('tags.forklifter')}}</a></li>
@@ -538,7 +538,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-26'))}}"><img src="{{asset('icons/tags/26.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-26" href="{{loc_url(route('tag-26'))}}">{{__('tags.lifting')}}</a></div>
+				<div class="category-name"><a id="tag-26" href="{{loc_url(route('tag-26'))}}">{{__('tags.lifting')}}</a> (<span class="orange">{{array_key_exists(26, $posts_amount) ? $posts_amount[26] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-26.1'))}}">{{__('tags.emergencyDrive')}}</a></li>
 					<li><a href="{{loc_url(route('tag-26.2'))}}">{{__('tags.drillHook')}}</a></li>
@@ -562,7 +562,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-27'))}}"><img src="{{asset('icons/tags/27.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-27" href="{{loc_url(route('tag-27'))}}">{{__('tags.pipeHandling')}}</a></div>
+				<div class="category-name"><a id="tag-27" href="{{loc_url(route('tag-27'))}}">{{__('tags.pipeHandling')}}</a> (<span class="orange">{{array_key_exists(27, $posts_amount) ? $posts_amount[27] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-27.1'))}}">{{__('tags.slip')}}</a></li>
 					<li><a href="{{loc_url(route('tag-27.2'))}}">{{__('tags.heavingPlug')}}</a></li>
@@ -582,7 +582,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-28'))}}"><img src="{{asset('icons/tags/28.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-28" href="{{loc_url(route('tag-28'))}}">{{__('tags.hseEq')}}</a></div>
+				<div class="category-name"><a id="tag-28" href="{{loc_url(route('tag-28'))}}">{{__('tags.hseEq')}}</a> (<span class="orange">{{array_key_exists(28, $posts_amount) ? $posts_amount[28] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-28.1'))}}">{{__('tags.fireHazard')}}</a></li>
 					<li><a href="{{loc_url(route('tag-28.2'))}}">{{__('tags.signalization')}}</a></li>
@@ -596,7 +596,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-29'))}}"><img src="{{asset('icons/tags/29.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-29" href="{{loc_url(route('tag-29'))}}">{{__('tags.tong')}}</a></div>
+				<div class="category-name"><a id="tag-29" href="{{loc_url(route('tag-29'))}}">{{__('tags.tong')}}</a> (<span class="orange">{{array_key_exists(29, $posts_amount) ? $posts_amount[29] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-29.1'))}}">{{__('tags.component')}}</a></li>
 					<li><a href="{{loc_url(route('tag-29.2'))}}">{{__('tags.tongHy')}}</a>
@@ -617,7 +617,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-30'))}}"><img src="{{asset('icons/tags/30.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-30" href="{{loc_url(route('tag-30'))}}">{{__('tags.chemics')}}</a></div>
+				<div class="category-name"><a id="tag-30" href="{{loc_url(route('tag-30'))}}">{{__('tags.chemics')}}</a> (<span class="orange">{{array_key_exists(30, $posts_amount) ? $posts_amount[30] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-30.1'))}}">{{__('tags.sequesteringAgentFiltrationControl')}}</a></li>
 					<li><a href="{{loc_url(route('tag-30.2'))}}">{{__('tags.mudHeaver')}}</a></li>
@@ -631,7 +631,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-31'))}}"><img src="{{asset('icons/tags/31.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-31" href="{{loc_url(route('tag-31'))}}">{{__('tags.chemLab')}}</a></div>
+				<div class="category-name"><a id="tag-31" href="{{loc_url(route('tag-31'))}}">{{__('tags.chemLab')}}</a> (<span class="orange">{{array_key_exists(31, $posts_amount) ? $posts_amount[31] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-31.1'))}}">{{__('tags.densityEq')}}</a></li>
 					<li><a href="{{loc_url(route('tag-31.2'))}}">{{__('tags.asgEq')}}</a></li>
@@ -645,7 +645,7 @@
 		<div class="category-col">
 			<div class="category-item">
 				<div class="category-img"><a href="{{loc_url(route('tag-32'))}}"><img src="{{asset('icons/tags/32.png')}}" alt=""></a></div>
-				<div class="category-name"><a id="tag-32" href="{{loc_url(route('tag-32'))}}">{{__('tags.jar')}}</a></div>
+				<div class="category-name"><a id="tag-32" href="{{loc_url(route('tag-32'))}}">{{__('tags.jar')}}</a> (<span class="orange">{{array_key_exists(32, $posts_amount) ? $posts_amount[32] : '0'}}</span>)</div>
 				<ul class="category-list">
 					<li><a href="{{loc_url(route('tag-32.1'))}}">{{__('tags.hyrdoMeck')}}</a></li>
 					<li><a href="{{loc_url(route('tag-32.2'))}}">{{__('tags.hydraulic')}}</a></li>
@@ -658,47 +658,47 @@
 		<div class="category-serv-block">
 			<div class="category-serv-col">
 				<ul class="category-serv-list">
-					<li><a href="{{loc_url(route('tag-50'))}}">{{__('tags.otherService')}}</a></li>
-					<li><a href="{{loc_url(route('tag-51'))}}">{{__('tags.multipleService')}}</a></li>
-					<li><a href="{{loc_url(route('tag-52'))}}">{{__('tags.emergencySe')}}</a></li>
-					<li><a href="{{loc_url(route('tag-53'))}}">{{__('tags.controll')}}</a></li>
-					<li><a href="{{loc_url(route('tag-54'))}}">{{__('tags.airWaste')}}</a></li>
-					<li><a href="{{loc_url(route('tag-55'))}}">{{__('tags.loggingSe')}}</a>
+					<li><a href="{{loc_url(route('tag-50'))}}">{{__('tags.otherService')}}</a> (<span class="orange">{{array_key_exists(50, $posts_amount) ? $posts_amount[50] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-51'))}}">{{__('tags.complexService')}}</a> (<span class="orange">{{array_key_exists(51, $posts_amount) ? $posts_amount[51] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-52'))}}">{{__('tags.emergencySe')}}</a> (<span class="orange">{{array_key_exists(52, $posts_amount) ? $posts_amount[52] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-53'))}}">{{__('tags.controll')}}</a> (<span class="orange">{{array_key_exists(53, $posts_amount) ? $posts_amount[53] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-54'))}}">{{__('tags.airWaste')}}</a> (<span class="orange">{{array_key_exists(54, $posts_amount) ? $posts_amount[54] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-55'))}}">{{__('tags.loggingSe')}}</a> (<span class="orange">{{array_key_exists(55, $posts_amount) ? $posts_amount[55] : '0'}}</span>)
 						<ul class="category-sublist">
 							<li><a href="{{loc_url(route('tag-55.1'))}}">{{__('tags.coringSe')}}</a></li>
 							<li><a href="{{loc_url(route('tag-55.2'))}}">{{__('tags.stdWellLog')}}</a></li>
 						</ul></li>
-					<li><a href="{{loc_url(route('tag-56'))}}">{{__('tags.ndt')}}</a></li>
-					<li><a href="{{loc_url(route('tag-57'))}}">{{__('tags.bitSe')}}</a></li>
+					<li><a href="{{loc_url(route('tag-56'))}}">{{__('tags.ndt')}}</a> (<span class="orange">{{array_key_exists(56, $posts_amount) ? $posts_amount[56] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-57'))}}">{{__('tags.bitSe')}}</a> (<span class="orange">{{array_key_exists(57, $posts_amount) ? $posts_amount[57] : '0'}}</span>)</li>
 				</ul>
 			</div>
 			<div class="category-serv-col">
 				<ul class="category-serv-list">
-					<li><a href="{{loc_url(route('tag-58'))}}">{{__('tags.dhmSe')}}</a></li>
-					<li><a href="{{loc_url(route('tag-59'))}}">{{__('tags.grounding')}}</a></li>
-					<li><a href="{{loc_url(route('tag-60'))}}">{{__('tags.sideHole')}}</a></li>
-					<li><a href="{{loc_url(route('tag-61'))}}">{{__('tags.directionalDrilling')}}</a></li>
-					<li><a href="{{loc_url(route('tag-62'))}}">{{__('tags.casingSe')}}</a></li>
-					<li><a href="{{loc_url(route('tag-63'))}}">{{__('tags.guard')}}</a></li>
-					<li><a href="{{loc_url(route('tag-64'))}}">{{__('tags.bopSe')}}</a></li>
-					<li><a href="{{loc_url(route('tag-65'))}}">{{__('tags.training')}}</a></li>
-					<li><a href="{{loc_url(route('tag-66'))}}">{{__('tags.pipeShipment')}}</a></li>
+					<li><a href="{{loc_url(route('tag-58'))}}">{{__('tags.dhmSe')}}</a> (<span class="orange">{{array_key_exists(58, $posts_amount) ? $posts_amount[58] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-59'))}}">{{__('tags.grounding')}}</a> (<span class="orange">{{array_key_exists(59, $posts_amount) ? $posts_amount[59] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-60'))}}">{{__('tags.sideHole')}}</a> (<span class="orange">{{array_key_exists(60, $posts_amount) ? $posts_amount[60] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-61'))}}">{{__('tags.directionalDrilling')}}</a> (<span class="orange">{{array_key_exists(61, $posts_amount) ? $posts_amount[61] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-62'))}}">{{__('tags.casingSe')}}</a> (<span class="orange">{{array_key_exists(62, $posts_amount) ? $posts_amount[62] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-63'))}}">{{__('tags.guard')}}</a> (<span class="orange">{{array_key_exists(63, $posts_amount) ? $posts_amount[63] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-64'))}}">{{__('tags.bopSe')}}</a> (<span class="orange">{{array_key_exists(64, $posts_amount) ? $posts_amount[64] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-65'))}}">{{__('tags.training')}}</a> (<span class="orange">{{array_key_exists(65, $posts_amount) ? $posts_amount[65] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-66'))}}">{{__('tags.pipeShipment')}}</a> (<span class="orange">{{array_key_exists(66, $posts_amount) ? $posts_amount[66] : '0'}}</span>)</li>
 				</ul>
 			</div>
 			<div class="category-serv-col">
 				<ul class="category-serv-list">
-					<li><a href="{{loc_url(route('tag-67'))}}">{{__('tags.sellControllFuel')}}</a></li>
-					<li><a href="{{loc_url(route('tag-68'))}}">{{__('tags.vihacle')}}</a></li>
-					<li><a href="{{loc_url(route('tag-69'))}}">{{__('tags.builders')}}</a></li>
-					<li><a href="{{loc_url(route('tag-70'))}}">{{__('tags.loggingSt')}}</a></li>
-					<li><a href="{{loc_url(route('tag-71'))}}">{{__('tags.transport')}}</a></li>
-					<li><a href="{{loc_url(route('tag-72'))}}">{{__('tags.recyclingSe')}}</a>
+					<li><a href="{{loc_url(route('tag-67'))}}">{{__('tags.sellControllFuel')}}</a> (<span class="orange">{{array_key_exists(67, $posts_amount) ? $posts_amount[67] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-68'))}}">{{__('tags.vihacle')}}</a> (<span class="orange">{{array_key_exists(68, $posts_amount) ? $posts_amount[68] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-69'))}}">{{__('tags.builders')}}</a> (<span class="orange">{{array_key_exists(69, $posts_amount) ? $posts_amount[69] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-70'))}}">{{__('tags.loggingSt')}}</a> (<span class="orange">{{array_key_exists(70, $posts_amount) ? $posts_amount[70] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-71'))}}">{{__('tags.transport')}}</a> (<span class="orange">{{array_key_exists(71, $posts_amount) ? $posts_amount[71] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-72'))}}">{{__('tags.recyclingSe')}} (<span class="orange">{{array_key_exists(72, $posts_amount) ? $posts_amount[72] : '0'}}</span>)</a>
 						<ul class="category-sublist">
 							<li><a href="{{loc_url(route('tag-72.1'))}}">{{__('tags.recyclingDrill')}}</a></li>
 							<li><a href="{{loc_url(route('tag-72.2'))}}">{{__('tags.recyclingDomestic')}}</a></li>
 						</ul></li>
-					<li><a href="{{loc_url(route('tag-73'))}}">{{__('tags.lab')}}</a></li>
-					<li><a href="{{loc_url(route('tag-74'))}}">{{__('tags.cementingSe')}}</a></li>
+					<li><a href="{{loc_url(route('tag-73'))}}">{{__('tags.lab')}}</a> (<span class="orange">{{array_key_exists(73, $posts_amount) ? $posts_amount[73] : '0'}}</span>)</li>
+					<li><a href="{{loc_url(route('tag-74'))}}">{{__('tags.cementingSe')}}</a> (<span class="orange">{{array_key_exists(74, $posts_amount) ? $posts_amount[74] : '0'}}</span>)</li>
 				</ul>
 			</div>
 		</div>

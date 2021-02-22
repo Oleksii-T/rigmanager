@@ -225,7 +225,7 @@ return [
     'tryOtherFilters' => 'You may try other filters',
 
     // post edit/create/show massages
-    'postsWithoutTag' => 'Posts without chosen category',
+    'postsWithoutEqTag' => 'Equipment without chosen category',
     'tender' => 'Tender',
     'tenders' => 'Tenders',
     'tendersHelp' => 'Publish tenders using a simplified informal procedure. Maximum: 100',

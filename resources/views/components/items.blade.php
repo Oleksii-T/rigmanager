@@ -36,9 +36,9 @@
                 <div class="catalog-date">{{$post->created_at_readable}}</div>
             </div>
             @if (auth()->user() && !App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'description_'.App::getLocale()})
-                <div class="catalog-text">{{ $post->{'description_'.App::getLocale()} }}</div>
+                <div class="catalog-text">{{ preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $post->{'description_'.App::getLocale()}) }}</div>
             @else
-                <div class="catalog-text">{{$post->description}}</div>
+                <div class="catalog-text">{{preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $post->description)}}</div>
             @endif
             <div class="catalog-price">{{$post->cost_readable}}</div>
             @if ($type=='profile.posts')

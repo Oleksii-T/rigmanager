@@ -237,6 +237,10 @@ class Post extends Model
         }
     }
 
+    public function setDescriptionAttribute($value) {
+        $this->attributes['description'] = preg_replace("/\n\s*\n[\s*\n]+/s","\n\n",preg_replace("/\h+/", " ", $value));;
+    }
+
     public function getTypeReadableShortAttribute()
     {
         switch ($this->type) {

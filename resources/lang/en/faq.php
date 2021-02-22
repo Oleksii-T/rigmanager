@@ -55,7 +55,7 @@ return [
     'qWhatIsMailer' => 'What is Mailer?',
     'aWhatIsMailer' => 'Mailer is smart mailing engine for notifying the user about new posts.
         You can create several individual Mailers e.g. Subscribe to different authors or categories.
-        When an author publishes a post all your Mailers analyze it and if all its settings coincide with a publication, you receive e-mail notification with link to this post.',
+        Every day you will receive notifications to your e-mail(login) if suitable posts have been published over the past day.',
 
     'qHowToCreateMailer' => 'How to create new Mailer?',
     'aHowToCreateMailer1' => 'New Mailer can be created from two pages. 

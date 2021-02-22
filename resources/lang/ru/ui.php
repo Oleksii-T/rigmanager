@@ -225,7 +225,7 @@ return [
     'tryOtherFilters' => 'Попробуйте другий фильтры.',
 
     // post edit/create/edit massages
-    'postsWithoutTag' => 'Оголошення без обраної категорії',
+    'postsWithoutEqTag' => 'Оборудование без выбранной категории',
     'tender' => 'Тендер',
     'tenders' => 'Тендеры',
     'tendersHelp' => 'Публиковать тендеры по упрощенной неофициальной процедуре. Максимум: 100',

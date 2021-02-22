@@ -76,7 +76,21 @@ class HomeController extends Controller
 
     public function catalog()
     {
-        return view('home.catalog');
+        $posts = Post::all()->groupBy('tag_encoded');
+        $posts_amount = [];
+        foreach ($posts as $tag => $p) {
+            if (!is_int($tag)) {
+                $t = substr($tag, 0, strpos($tag, "."));
+            } else {
+                $t = $tag;
+            }
+            if ( array_key_exists($t, $posts_amount) ) {
+                $posts_amount[$t] += $p->count();
+            } else {
+                $posts_amount[$t] = $p->count();
+            }
+        }
+        return view('home.catalog', compact('posts_amount'));
     }
 
     public function privacy()
