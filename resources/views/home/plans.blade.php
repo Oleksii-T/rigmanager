@@ -122,15 +122,6 @@
 						</div>
 					</div>
 					<a href="" class="sub-mob">{{__('ui.details')}}</a>
-					@if (auth()->user() && !auth()->user()->is_standart)
-						<button href="" class="sub-button">{{__('ui.chosen')}}</button>
-					@else						
-						<form action="{{loc_url(route('plans.update'))}}" method="POST">
-							@csrf
-							<input type="text" name="plan" value="start" hidden>
-							<button href="" class="sub-button">{{__('ui.plansChoose')}}</button>
-						</form>
-					@endif
 				</div>
 				<div class="sub-col {{auth()->user() && auth()->user()->is_standart && !auth()->user()->is_pro ? 'sub-active' : ''}}">
 					<div class="sub-top">

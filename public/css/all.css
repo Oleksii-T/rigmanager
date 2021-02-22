@@ -262,6 +262,7 @@ div.form-error {
 	margin: -14px 0 24px;
 	font-size: 12px;
 	line-height: 14px;
+	white-space: pre-line;
 }
 .form-note a {
 	color: inherit;
@@ -933,6 +934,7 @@ textarea.form-error {
 	line-height: 16px;
 	background: transparent;
 	border: 1px solid #505050;
+	white-space: pre-line;
 }
 .brand-more:hover {border: 1px solid #ff8d11;}
 /************************* main-about *************************/
@@ -3023,6 +3025,9 @@ article ul li:before {
 }
 /************************* media *************************/
 @media screen and (max-width: 1300px) {
+	a.brand-item.brand-more {
+		padding-left: 10px;
+	}
 	.catalog-region {
 		display: none;
 	}
@@ -3071,6 +3076,9 @@ article ul li:before {
 
 }
 @media screen and (max-width: 1023px) {
+	a.brand-item.brand-more {
+		padding-left: 20px;
+	}
 	.inactive-prod h1{
 		margin: 0px 0px 25px 0px;
 	}

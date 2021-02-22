@@ -345,26 +345,26 @@
             filters.sorting = "2";
 
             //set default type and thread value with respect to search
-            if ("{{$search['type']}}" == 'type') {
-                switch ("{{$search['url']}}") {
-                    case 'equipment-sell':
-                        filters.type = ["1","3"];
-                        filters.thread = ["1"];
-                        break;
-                    case 'equipment-buy':
-                        filters.type = ["2","4"];
-                        filters.thread = ["1"];
-                        break;
-                    case 'services':
-                        filters.type = ["5","6"];
-                        filters.thread = ["2"];
-                        break;
-                    case 'tenders':
-                        //TODO
-                        break;
-                    default:
-                        break;
-                }
+            switch ("{{$search['type']=='type' ? $search['url'] : ''}}") {
+                case '':
+                    break;
+                case 'equipment-sell':
+                    filters.type = ["1","3"];
+                    filters.thread = ["1"];
+                    break;
+                case 'equipment-buy':
+                    filters.type = ["2","4"];
+                    filters.thread = ["1"];
+                    break;
+                case 'services':
+                    filters.type = ["5","6"];
+                    filters.thread = ["2"];
+                    break;
+                case 'tenders':
+                    //TODO
+                    break;
+                default:
+                    break;
             }
 
             // add search request to mailer

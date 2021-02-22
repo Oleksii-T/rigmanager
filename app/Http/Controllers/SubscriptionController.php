@@ -30,11 +30,6 @@ class SubscriptionController extends Controller
 
     public function update(Request $request) {
         $newPlan = $this->planNameToInt($request->plan);
-        if ($newPlan==0) {
-            $this->cancelExpireHelper(auth()->user()->subscription, 1);
-            Session::flash('message-success', __('messages.planUpdated'));
-            return redirect( loc_url(route('profile.subscription')) );
-        }
         $data = [
             'number' => '000000',
             'is_active' => 1,
@@ -72,20 +67,6 @@ class SubscriptionController extends Controller
     public function expire($sub) {
         $this->cancelExpireHelper($sub, 0);
         Mail::to($sub->user->email)->send(new SubscriptionNotification(1, $sub->expire_at, $sub->user->name, $sub->user->language)); //send mail notification to user    
-        //diactivate posts
-        if ($sub->user->posts->isNotEmpty()) {
-            foreach ($sub->user->posts as $p) {
-                $p->is_active = false;
-                $p->save();
-            }
-        }
-        //diactivate mailer
-        if ($sub->user->mailers->isNotEmpty()) {
-            foreach ($sub->user->mailers as $m) {
-                $m->is_active = false;
-                $m->save();
-            }
-        }
     }
 
     private function cancelExpireHelper($sub, $status) {
@@ -100,6 +81,20 @@ class SubscriptionController extends Controller
             'history' => $this->makeHistory($sub, $status),
         ];
         $sub->update($data);
+        //diactivate posts
+        if ($sub->user->posts->isNotEmpty()) {
+            foreach ($sub->user->posts as $p) {
+                $p->is_active = false;
+                $p->save();
+            }
+        }
+        //diactivate mailer
+        if ($sub->user->mailers->isNotEmpty()) {
+            foreach ($sub->user->mailers as $m) {
+                $m->is_active = false;
+                $m->save();
+            }
+        }
     }
 
     private function planNameToInt($name) {
