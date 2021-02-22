@@ -126,7 +126,6 @@
                                     <span class="text-show">{{__('ui.showOptionals')}}</span>
                                 </a>
                                 <div class="faq-hidden">   
-
                                     <div class="company hidden">
                                         <label class="label">{{__('ui.company')}}</label>
                                         <input class="input" name="company" type="text" value="{{isset($post) ? (old('company') ?? $post->company) : old('company')}}"/>
@@ -169,11 +168,11 @@
                                         {{__('ui.cost')}}, 
                                         <div class="tumbler-inline">
                                             <div class="tumbler">
-                                                <a href="" class="tumbler-left currency-switch uah {{isset($post) ? ($post->currency=='UAH' ? 'active' : '') : 'active'}}">UAH</a>
+                                                <a href="" class="tumbler-left currency-switch uah {{isset($post) ? ($post->currency=='UAH'||$post->currency==null ? 'active' : '') : 'active'}}">UAH</a>
                                                 <span class="tumbler-block"></span>
                                                 <a href="" class="tumbler-right currency-switch usd {{isset($post) ? ($post->currency=='USD' ? 'active' : '') : ''}}">USD</a>
                                             </div>
-                                            <input type="text" name="currency" hidden {{isset($post) ? "value=$post->currency" : ""}}>
+                                            <input type="text" name="currency" hidden value="{{isset($post) ? $post->currency : ""}}">
                                         </div>
                                     </label>
                                     <input class="input format-cost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{isset($post) ? (old('cost') ?? $post->cost_readable) : old('cost')}}"/>
@@ -339,9 +338,7 @@
 
             //store choosed cost to hidden input
             $('.currency-switch').click(function(){
-                var currency = $(this).hasClass('usd')
-                    ? 'USD'
-                    : 'UAH';
+                var currency = $(this).hasClass('usd') ? 'USD' : 'UAH';
                 $('input[name=currency]').val(currency);
             });
 

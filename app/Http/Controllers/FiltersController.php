@@ -51,16 +51,22 @@ class FiltersController extends Controller
     }
 
     private function costFrom($posts, $cost) {
+        if (!$cost) {
+            return $posts;
+        }
         $filtered = $posts->filter(function($post, $key) use ($cost) {
             if ($post->currency!='USD') {
                 return UsdExchangeController::uahToUsd($post->cost) >= $cost;
             }
-            return $post->cost >= $cost;
+            return $post->cost >= $cost; // if posts cost empty returns false
         });
         return $filtered;
     }
 
     private function costTo($posts, $cost) {
+        if (!$cost) {
+            return $posts;
+        }
         $filtered = $posts->filter(function($post, $key) use ($cost) {
             if ($post->currency!='USD') {
                 return UsdExchangeController::uahToUsd($post->cost) <= $cost;
