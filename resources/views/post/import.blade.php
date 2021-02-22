@@ -100,8 +100,7 @@
                         myDropzone.removeAllFiles();
                         if (typeof errorMessage == 'string') {
                             $('#form-import .form-error').text(errorMessage);
-                        }
-                        else if (errorMessage['message']) {
+                        } else if (errorMessage['message']) {
                             $('#form-import .form-error').text(errorMessage['message']);
                         } else {
                             $('#form-import .form-error').text("{{ __('messages.error') }}");

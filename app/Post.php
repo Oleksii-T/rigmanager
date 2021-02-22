@@ -238,7 +238,8 @@ class Post extends Model
     }
 
     public function setDescriptionAttribute($value) {
-        $this->attributes['description'] = preg_replace("/\n\s*\n[\s*\n]+/s","\n\n",preg_replace("/\h+/", " ", $value));;
+        $value = preg_replace("/\n\s*\n[\s*\n]+/s","\n\n",preg_replace("/\h+/", " ", $value));;
+        $this->attributes['description'] = mb_convert_encoding($value, 'UTF-8', 'UTF-8');
     }
 
     public function getTypeReadableShortAttribute()
