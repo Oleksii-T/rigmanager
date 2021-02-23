@@ -439,6 +439,9 @@
 
             //make filter
             function filter() {
+                if ("{{$search['isEmpty']}}") {
+                    return;
+                }
                 toggleFilters();
                 displayResultHelper('prepare');
                 $('div.searched-empty').addClass('hidden'); //hide empty-items block
@@ -569,8 +572,8 @@
                 filter();
             });
 
+            //disable filters white previuls filter reqeust is processed
             function toggleFilters() {
-                //disable filters white previuls filter reqeust is processed
                 $('div.filter-block').toggleClass('loading');
                 $('div.filter-block input, div.filter-block label').toggleClass('block-click');
                 $('.ui-selectmenu-menu').toggleClass('hidden');

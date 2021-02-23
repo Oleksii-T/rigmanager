@@ -32,7 +32,7 @@
     <div class="prod">
         <div class="prod-content">
             <div class="prod-top">
-                <a href="" class="catalog-fav add-to-fav {{Auth::check() ? '' : 'auth-block'}} {{Auth::check() && $post->user_id == auth()->user()->id ? 'block' : ''}} {{Auth::check() && auth()->user()->favPosts->contains($post) ? 'active' : ''}}">
+                <a href="" class="catalog-fav add-to-fav id_{{$post->id}} {{Auth::check() ? '' : 'auth-block'}} {{Auth::check() && $post->user_id == auth()->user()->id ? 'block' : ''}} {{Auth::check() && auth()->user()->favPosts->contains($post) ? 'active' : ''}}">
                     <svg viewBox="0 0 464 424" xmlns="http://www.w3.org/2000/svg">
                         <path class="cls-1" d="M340,0A123.88,123.88,0,0,0,232,63.2,123.88,123.88,0,0,0,124,0C55.52,0,0,63.52,0,132,0,304,232,424,232,424S464,304,464,132C464,63.52,408.48,0,340,0Z"/>
                     </svg>

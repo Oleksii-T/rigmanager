@@ -171,7 +171,6 @@ return [
     'removed' => 'удален',
     'deleteMailer' => 'Удалить Рассылку',
     'deleteMailers' => 'Удалить все Рассылки',
-    'active' => 'активна',
     'activete' => 'активировать',
     'notActive' => 'не активна',
     'deactivate' => 'деактивировать',

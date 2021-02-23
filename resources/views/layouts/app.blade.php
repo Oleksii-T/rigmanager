@@ -17,26 +17,22 @@
 <body>	
 	<div id="wrapper">
 		<div id="pop-up-container">
-            <!-- Session flash massages -->
-            @if (Session::has('message-success'))
-                <div class="flash flash-success">
-                    <p><img src="{{asset('icons/success.svg')}}" alt="{{__('alt.keyword')}}">{{ Session::get('message-success') }}</p>
-                    <div class="animated-line"></div>
-                </div>
-            @endif
-            @if (Session::has('message-error'))
-                <div class="flash flash-error">
-                    <p><img src="{{asset('icons/warning.svg')}}" alt="{{__('alt.keyword')}}">{{ Session::get('message-error') }}</p>
-                    <div class="animated-line"></div>
-                </div>
-            @endif
-            @if (session('status'))
-                <div class="flash flash-success">
-                    <p><img src="{{asset('icons/success.svg')}}" alt="{{__('alt.keyword')}}">{{ session('status') }}</p>
-                    <div class="animated-line"></div>
-                </div>
-            @endif
-        </div>
+			<!-- Session flash massages -->
+			@if (Session::has('message-success'))
+			@endif
+			@if (Session::has('message-error'))
+				<div class="flash flash-error">
+					<p><img src="{{asset('icons/warning.svg')}}" alt="{{__('alt.keyword')}}">{{ Session::get('message-error') }}</p>
+					<div class="animated-line"></div>
+				</div>
+			@endif
+			@if (session('status'))
+				<div class="flash flash-success">
+					<p><img src="{{asset('icons/success.svg')}}" alt="{{__('alt.keyword')}}">{{ session('status') }}</p>
+					<div class="animated-line"></div>
+				</div>
+			@endif
+		</div>
 		@yield('page-content')
 		<footer class="footer">
 			<div class="holder">
@@ -123,6 +119,7 @@
 					addPostToFav($(this), getIdFromClasses($(this).attr("class"), 'id_'), blade);
 				}
 			});
+			//block not-reday links
 			$('.not-ready').click(function(e){
 				e.preventDefault();
 				showPopUpMassage(false, "{{ __('messages.inProgress') }}");

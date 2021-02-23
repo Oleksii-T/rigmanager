@@ -177,8 +177,6 @@
     <script type="text/javascript">
         $(document).ready(function(){
 
-            // paint in orange addToFav btn of appropriate items
-            //$('.active-fav-img').attr("src", "{{ asset('icons/heartOrangeIcon.svg') }}");
         });
     </script>
 @endsection

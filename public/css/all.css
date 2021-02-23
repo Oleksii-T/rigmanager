@@ -672,11 +672,10 @@ textarea.form-error {
 #pop-up-container.scrolled {
 	top: 91px;
 }
-.pop-up,
-.flash {
+.pop-up, .flash {
     padding: 7px 10px;
     margin-bottom: 15px;
-    border-right: 5px solid #FE9042;
+    border-right: 5px solid #ff8d11;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     float: right;
@@ -695,7 +694,6 @@ textarea.form-error {
 }
 .pop-up p,
 .flash p{
-    font-size: 110%;
     position: relative;
     padding-left: 35px;
 	margin: 0;
@@ -3076,6 +3074,10 @@ article ul li:before {
 
 }
 @media screen and (max-width: 1023px) {
+	#pop-up-container,
+	#pop-up-container.scrolled {
+		top: 67px;
+	}
 	a.brand-item.brand-more {
 		padding-left: 20px;
 	}
@@ -3939,6 +3941,24 @@ article ul li:before {
 	}
 }
 @media screen and (max-width: 576px) {
+	#pop-up-container,
+	#pop-up-container.scrolled {
+		width: 100%;
+		left: 0px;
+		max-width: none;
+	}
+	.pop-up, .flash {
+		padding: 2px 5px;
+		margin-bottom: 0px;
+		border-right: none;
+		border-bottom: 2px solid #ff8d11;
+		border-top-left-radius: 0px;
+		border-bottom-left-radius: 0px;
+		float: none;
+		position: relative;
+		cursor: pointer;
+		width: 100%;
+	}
 	.ad-col .ad-more {
 		height: auto;
 		width: auto;

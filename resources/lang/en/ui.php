@@ -171,7 +171,6 @@ return [
     'removed' => 'removed',
     'deleteMailer' => 'Delete Mailer',
     'deleteMailers' => 'Delete all Mailers',
-    'active' => 'enabled',
     'activete' => 'enable',
     'notActive' => 'disabled',
     'deactivate' => 'disable',

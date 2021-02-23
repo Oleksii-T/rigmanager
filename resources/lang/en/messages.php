@@ -43,6 +43,7 @@ return [
     'mailerUploaded' => 'Mailer has been configured successfully!',
     'mailerUploadedError' => 'Error occured while configuring the Mailer.',
     'mailerDeleted' => 'Mailer has been deleted successfully!',
+    'mailersDeleted' => 'All Mailers has been deleted successfully!',
     'mailerEditedError' => 'Error occured while editing the Mailer.',
     'mailerEdited' => 'Mailer has been changed successfully!',
     'mailerAddedAuthor' => 'Author added to Mailer',

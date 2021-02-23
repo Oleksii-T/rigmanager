@@ -88,7 +88,7 @@ class MailerController extends Controller
         foreach (auth()->user()->mailers as $m) {
             $m->delete();
         }
-        Session::flash('message-success', __('messages.mailerAllDeleted'));
+        Session::flash('message-success', __('messages.mailersDeleted'));
         return redirect(loc_url(route('mailer.index')));
     }
 
