@@ -70,6 +70,7 @@ return [
     'post' => 'Post',
     'catalog' => 'Catalog',
     'catalogHelp' => 'The full list of equipment and service categories for fast navigation and searching of posts.',
+    'catalogNav' => 'Main equipment categories',
     'add' => 'Add',
     'reset' => 'Reset',
     'content' => 'Content',

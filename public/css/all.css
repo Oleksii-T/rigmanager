@@ -1167,6 +1167,15 @@ textarea.form-error {
 .rule li {margin: 0 0 10px;}
 /************************* category page *************************/
 /************************* category *************************/
+.catalog-help a {
+	text-decoration: none;
+	transition: all .3s linear;
+	color: #ff8d11 !important;
+	font-size: 22px;
+}
+.catalog-help a:hover {
+	text-decoration: underline;
+}
 .category {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -1191,14 +1200,20 @@ textarea.form-error {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 263px;
+	height: 183px;
 	margin: 0 0 29px;
 	background: #3f3f3f;
 	border-radius: 8px;
 }
+.category-img a {
+	width: 90%;
+	height: 90%;
+}
 .category-img img {
-	max-width: 90%;
-	max-height: 90%;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	object-position: center;
 }
 .category-name {
 	margin: 0 0 20px;
@@ -3074,6 +3089,9 @@ article ul li:before {
 
 }
 @media screen and (max-width: 1023px) {
+	.category-img {
+		height: 220px;
+	}
 	#pop-up-container,
 	#pop-up-container.scrolled {
 		top: 67px;
@@ -3300,7 +3318,7 @@ article ul li:before {
 		padding: 0px;
 	}
 	.category-col {
-		width: 50%;
+		width: 33.33%;
 		padding: 0 15px;
 	}
 	.category-serv {
@@ -3941,6 +3959,9 @@ article ul li:before {
 	}
 }
 @media screen and (max-width: 576px) {
+	.category-img {
+		height: 160px;
+	}
 	#pop-up-container,
 	#pop-up-container.scrolled {
 		width: 100%;
