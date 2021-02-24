@@ -64,7 +64,7 @@ class MailerMail extends Command
             }
             Log::channel('jobs')->info('[mailer.mail] Mailers mailed ' . $mails_sent . ' users successfully');
         } catch (\Throwable $th) {
-            Log::channel('jobs')->error('[mailer.mail] Mailers mailing fails');
+            Log::channel('jobs')->error('[mailer.mail] Mailers mailing fails. '.$th->getMessage());
         }
     }
 }
