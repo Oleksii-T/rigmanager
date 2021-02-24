@@ -50,7 +50,10 @@ class MailerMail extends Command
                 if ($m->found_posts != []) {
                     $fp = [];
                     foreach ($m->found_posts as $id) {
-                        $p = Post::findOrFail($id);
+                        $p = Post::find($id);
+                        if (!$p) {
+                            continue;
+                        }
                         $fp[] = [
                             'url_name' => $p->url_name,
                             'title' => $p->title
