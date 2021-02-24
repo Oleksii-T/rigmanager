@@ -2,7 +2,7 @@
 {{ __('ui.mailerNotifHeader') }}.
 
 @foreach ($found_posts as $p)
-    {{ $p['title'] }}
+    {{$loop->index+1 . '. ' . $p['title'] . '('.loc_url(route('posts.show', ['post'=>$p['url_name']])).')' }}
 
 @endforeach
 
