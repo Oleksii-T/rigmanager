@@ -32,9 +32,9 @@ return [
     'postActivated' => 'Объявление было опубликовано снова',
     'postDisactivated' => 'Объявление было скрыто от публики',
     'postOutdated' => 'Это объявление устарело, пожалуйста, обновите период жизни в настройках объявления',
-    'tooManyPostsError' => 'Вы достигли максимального количества объявлений. (200 для Премиум, 500 для Премиум+)',
+    'tooManyPostsError' => 'Вы достигли максимального количества объявлений. (200 для Standart, 500 для Pro)',
     'allPostsDeleted' => 'Все объявления были удалены!',
-    'tooManyUrgentPostsError' => 'Вы достигли максимального количества срочных объявлений. (100 для Премиум, 300 для Премиум+)',
+    'tooManyUrgentPostsError' => 'Вы достигли максимального количества срочных объявлений. (100 для Standart, 300 для Pro)',
 
     'mailerRequestAdded' => 'Запрос был успешно добавлен в Рассылку!',
     'mailersDeactivated' => 'Все Рассылки были успешно деактивирован!',
@@ -56,17 +56,17 @@ return [
     'mailerTagAdded' => 'Указанные категории успешно добавлены в вашу Рассылку!',
     'mailerTextAdded' => 'Указанный запрос успешно добавлен в вашу Рассылку!',
     'tagAlreadyChosen' => 'Вы не можете выбрать одну и ту же категорию дважды!',
-    'mailerEmptyConditionsError' => 'Требуется хотя бы одно Состояние!',
-    'mailerEmptyTypesError' => 'Требуется хотя бы один Тип!',
-    'mailerEmptyRolesError' => 'Требуется хотя бы один Сектор!',
-    'mailerEmptyThreadsError' => 'Выберите Оборудование или Сервис',
+    'mailerEmptyConditionsError' => 'Требуется хотя бы одно состояние!',
+    'mailerEmptyTypesError' => 'Требуется хотя бы один тип!',
+    'mailerEmptyRolesError' => 'Требуется хотя бы один сектор!',
+    'mailerEmptyThreadsError' => 'Выберите оборудование или сервис',
 
     'profileEdited' => 'Профиль изменен успешно!',
     'profileImgDeleted' => 'Изображение профиля было успешно удалено!',
     'profileDeleted' => 'Профиль был успешно удален!',
 
     'signedIn' => 'Добро пожаловать!',
-    'signedOut' => 'До Свидания',
+    'signedOut' => 'До свидания',
 
     'messageSent' => 'Сообщение отправлено!',
     
@@ -102,6 +102,6 @@ return [
     'importPhoneError' => 'Поле "Контактный телефон" заполнено неправильно.',
     'importTagEqualThredError' => 'Поле "Категория" должна сочетаться с полем "Оборудование/Сервис"',
     'importTooManyPostsError' => 'Вы пытаетесь сделать импорт :amount объявлений, но у вас осталось :diff до максимума.',
-    'importTooManyPremiums' => 'Too many posts with premium status.',
-    'importTooManyUrgents' => 'Too many urgent posts.',
+    'importTooManyPremiums' => '',
+    'importTooManyUrgents' => 'Много срочных объявлений. Ви имеете - :am. Максимум - :max.',
 ];

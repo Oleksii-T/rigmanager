@@ -148,17 +148,6 @@
 						<a href="{{loc_url(route('import.rules'))}}">{{__('postImportRules.title')}}</a></p>
 					</div>
 				</div>
-				<div class="faq-item">
-					<a href="" class="faq-top">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255.99 511.99">
-							<path d="M253,248.62,18.37,3.29A10.67,10.67,0,1,0,3,18L230.56,256,3,494A10.67,10.67,0,0,0,18.37,508.7L253,263.37A10.7,10.7,0,0,0,253,248.62Z"/>
-						</svg>
-						{{__('faq.qRelease')}}
-					</a>
-					<div class="faq-hidden">
-						<p>{{__('faq.aRelease')}}</p>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>

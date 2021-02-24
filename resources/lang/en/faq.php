@@ -5,7 +5,7 @@ return [
     'intro' => 'We have collected frequently asked questions for you. If you still have questions or suggestions - you always can',
 
     'qPurpose' => 'What for this website?',
-    'aPurpose1' => 'We introduce Ukrainian The first specialized website for the cooperation of oil and gas companies of Ukraine.
+    'aPurpose1' => 'We introduce Ukrainian the first specialized website for the cooperation of oil and gas companies of Ukraine.
         In other words, we are presenting a Bulletin board for companies looking for clients.
         Sale, purchase, rent, services.
         On our website, you can find catalog of drilling equipment and services.
@@ -14,7 +14,7 @@ return [
         Our long-term goal is to become an international platform for trade and services advertising among all oil and gas companies in the world.',
 
     'qForWhat' => 'Why am I need this?',
-    'aForWhat1' => 'If you are company menegment:',
+    'aForWhat1' => 'If you are company management:',
     'aForWhatCM1' => 'Reducing purchasing costs',
     'aForWhatCM2' => 'Increase the sales level',
     'aForWhatCM3' => 'Get a service market analysis tool, detailed to any level including prices',
@@ -33,28 +33,28 @@ return [
 
     'qWhyWe' => 'Why our resource is better?',
     'aWhyWe' => 'First of all, we are the first specialized website for cooperation of oil and gas companies of Ukraine.
-        We provide the strict scope of content, only Oil & Gas Equipment and Services. Nothing extra.
+        We provide the strict scope of content, only Oil & Gas equipment and services. Nothing extra.
         Personal data is the main deal for us, in other words - anonymity is the key.
-        For each Post published, You are free to choose a minimum one contact field, Email, or Phone. We do not put bounds on Your choices. Moreover for each Post, You could choose unique contact information.
+        For each post published, you are free to choose a minimum one contact field, email, or phone. We do not put bounds on your choices. Moreover, for each post, you could choose unique contact information.
         We have developing system of categories thanks to which you can navigate through Oil & Gas equipment or services quickly and easily.
-        You have the possibility to subscribe to Mailer and get notification about Oil & Gas equipment or/end services you looking for.
-        Our website supports three languages, Ukrainian, Russian, and English. Posts content is no exception.
+        You have the possibility to subscribe to Mailer and get notification about Oil & Gas equipment or/end services you are looking for.
+        Our website supports three languages: Ukrainian, Russian and English. posts content is no exception.
         Convenient system of bulk publication of posts.',
 
     'qBuy' => 'I need to buy equipment or find a service',
     'aBuy1' => 'You may use the',
     'aBuy2' => 'of categories or use the search bar and you find what you looking for!
-        You could add a Post to Favourites list so that you won\'t lose it.
-        If you can not find proper equipment/service then subscribe for Mailer and you will always know when appropriate Post is published.',
+        You could add a post to favourites list so that you won\'t lose it.
+        If you can not find proper equipment/service then subscribe for Mailer and you will always know when appropriate post is published.',
 
     'qSell' => 'I need to sell equipment or advertise my service',
-    'aSell1' => 'All You need to do, is',
-    'aSellLink' => 'create and publish your Post',
+    'aSell1' => 'All you need to do, is',
+    'aSellLink' => 'create and publish your post',
     'aSell2' => 'by filling input fields and after just wait for your clients!',
 
     'qWhatIsMailer' => 'What is Mailer?',
     'aWhatIsMailer' => 'Mailer is smart mailing engine for notifying the user about new posts.
-        You can create several individual Mailers e.g. Subscribe to different authors or categories.
+        You can create several individual Mailers e.g. subscribe to different authors or categories.
         Every day you will receive notifications to your e-mail(login) if suitable posts have been published over the past day.',
 
     'qHowToCreateMailer' => 'How to create new Mailer?',
@@ -64,18 +64,18 @@ return [
     'aHowToCreateMailer2' => 'by clicking "Add this request to Mailer" button below filters.
         After Mailer been created it can be reached and configured on its own page -',
 
-    'qWhatIsSocialAcc' => 'What is Social Account?',
-    'aWhatIsSocialAcc' => 'Social Account almost the same a regular user account, it has absolutely all features offered by our service.
+    'qWhatIsSocialAcc' => 'What is Social account?',
+    'aWhatIsSocialAcc' => 'Social account is almost the same as regular user account, it has absolutely all features offered by our service.
         There are only a few differences:
-        User Email can not be changed.
+        User email can not be changed.
         Social accounts do not have a password.
         Login into such account only possible via',
 
     'qAutoTranslator' => 'What is Auto-Translator',
-    'aAutoTranslator' => 'Auto-Translator is automatic title and description translation on Ukrainian and Russian languages for Your newly created Posts.
-        It is made up for increasing chances of finding Your clients.
-        You will be able to see the result of the Post translation by selecting the interface language you are interested in and going to your Post page.
-        The User who opens the Post will always have the possibility to see the original title and description if he reviews the Post not in the original language.
+    'aAutoTranslator' => 'Auto-Translator is automatic title and description translation in Ukrainian and Russian languages for your newly created posts.
+        It is made up for increasing chances of finding your clients.
+        You will be able to see the result of the post translation by selecting the interface language you are interested in and going to your post page.
+        The user who opens the post will always have the possibility to see the original title and description if he reviews the post not in the original language.
         We are updating and improving our Auto-Translator to achieve the best translation result.
         Currently, we are using Phrase-Based Google Cloud Translation Model.
         Available only for Pro users.',
@@ -83,13 +83,8 @@ return [
     'qImport' => 'What is bulk posts import?',
     'aImport' => 'Sometimes users want to publish a lot of posts. We understand, that create them one by one will take some time.
         To solve such an issue we provide the Bulk posts import system.
-        All you need to do is fill the import file with respect to the rules and submit it.
+        All you need to do is fill the import file with according to the rules and submit it.
         Available only for Pro users.',
-
-    'qRelease' => 'When website will be released?',
-    'aRelease' => 'There is still a lot of work ahead to make our service reliable, full of content, and recognizable by every Ukraine Oil & Gas company.
-    We do our best to get the service running as quickly as possible.
-        Website launching soon.',
 
     'q' => '',
     'a' => '',
@@ -97,5 +92,5 @@ return [
     'slg1' => 'Sincerely, development team',
     'slg2' => 'If you have any questions or suggestions,
     please fill-up the',
-    'slg3' => 'Contact Us form',
+    'slg3' => 'Contact us form',
 ];
