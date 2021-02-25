@@ -53,6 +53,19 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        $locale = 'uk';
+        if ($request->method() === 'GET') {
+            $segment = $request->segment(1);
+            if (in_array($segment, config('app.locales'))) {
+                $locale = $segment;
+            }
+        } else {
+            if ( session()->has('locale') ) {
+                $locale = session('locale');
+            }
+        }
+        session(['locale' => $locale]);
+        app()->setLocale($locale);
         return parent::render($request, $exception);
     }
 }

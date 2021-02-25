@@ -4,10 +4,12 @@
 Auth::routes(['verify' => true]);
 
 // home routes
-Route::get ('home.php',             'HomeController@index');
-Route::get ('home.html',            'HomeController@index');
-Route::get ('index.html',           'HomeController@index');
-Route::get ('index.php',            'HomeController@index');
+Route::get('home.html', function() {
+    return redirect(loc_url(route('home')));
+});
+Route::get('index.html', function() {
+    return redirect(loc_url(route('home')));
+});
 Route::get ('',                     'HomeController@index')     ->name('home');
 Route::get ('faq',                  'HomeController@faq')       ->name('faq');
 Route::get ('plans',                'HomeController@plans')     ->name('plans');
