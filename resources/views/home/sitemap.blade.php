@@ -17,19 +17,21 @@
 				<li><a href="">{{__('ui.stMain')}}</a>
 					<ul class="sitemap-sub">
 						<li><a href="{{loc_url(route('home'))}}">{{__('ui.home')}}</a></li>
+						<li><a href="{{loc_url(route('catalog'))}}">{{__('ui.catalog')}}</a></li>
 					</ul>
 				</li>
 				<li><a href="">{{__('ui.stPost')}}</a>
 					<ul class="sitemap-sub">
 						<li><a href="{{loc_url(route('posts.create'))}}">{{__('ui.addPostEq')}}</a></li>
 						<li><a href="{{loc_url(route('service.create'))}}">{{__('ui.addPostSe')}}</a></li>
+						<li><a class="not-ready" href="{{loc_url(route('tender.create'))}}">{{__('ui.addPostTe')}}</a></li>
 					</ul>
 				</li>
 				<li><a href="">{{__('ui.stAuth')}}</a>
 					<ul class="sitemap-sub">
 						<li><a href="{{loc_url(route('login'))}}">{{__('ui.signIn')}}</a></li>
-						<li><a href="{{route('login.social', ['social'=>'facebook'])}}">{{__('ui.socialSignIn')}} Facebook</a></li>
-						<li><a href="{{route('login.social', ['social'=>'google'])}}">{{__('ui.socialSignIn')}} Google</a></li>
+						<li><a href="{{route('login.social', ['social'=>'facebook'])}}">{{__('ui.signInVia')}} Facebook</a></li>
+						<li><a href="{{route('login.social', ['social'=>'google'])}}">{{__('ui.signInVia')}} Google</a></li>
 						<li><a href="{{loc_url(route('register'))}}">{{__('ui.signUp')}}</a></li>
 					</ul>
 				</li>
@@ -44,8 +46,8 @@
 				</li>
 				<li><a href="">{{__('ui.info')}}</a>
 					<ul class="sitemap-sub">
-						<li><a href="{{loc_url(route('about.us'))}}">{{__('ui.footerAbout')}}</a></li>
-						<li><a href="{{loc_url(route('blog'))}}">{{__('ui.footerBlog')}}</a></li>
+						<li><a class="not-ready" href="{{loc_url(route('about.us'))}}">{{__('ui.footerAbout')}}</a></li>
+						<li><a class="not-ready" href="{{loc_url(route('blog'))}}">{{__('ui.footerBlog')}}</a></li>
 						<li><a href="{{loc_url(route('terms'))}}">{{__('ui.footerTerms')}}</a></li>
 						<li><a href="{{loc_url(route('privacy'))}}">{{__('ui.footerPrivacy')}}</a></li>
 						<li><a href="{{loc_url(route('site.map'))}}">{{__('ui.footerSiteMap')}}</a></li>

@@ -72,6 +72,7 @@ Route::middleware('verified')->group(function () {
         Route::get      ('fake/store',          'PostController@storeFake')     ->name('posts.store.fake');
         Route::get      ('update/store',        'PostController@updateFake')    ->name('posts.update.fake');
         Route::get      ('posts/create/service','PostController@serviceCreate') ->name('service.create');
+        Route::get      ('posts/create/tender', 'PostController@tenderCreate')  ->name('tender.create');
         Route::resource ('posts',               'PostController')               ->except(['index', 'show']);
         
         // mailer routes

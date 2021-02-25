@@ -97,3 +97,21 @@ if ( !function_exists('formatNumberToCost') ) {
         return substr_replace($cost, $c, 0, 0);
     }
 }
+
+//format url to locales url
+if ( !function_exists('hreflang_url') ) {
+    function hreflang_url($slug, $loc) {
+        $cloc = App::getLocale();
+        if ($cloc == $loc) {
+            return $slug;
+        }
+        $base = route('home');
+        $slug = str_replace($base, "", $slug);
+        $loc = $loc=='uk' ? '' : '/'.$loc;
+        if ($cloc != 'uk') {
+            $slug = substr($slug, 3);// remove locale of Url
+        }
+        $slug = $base . $loc . $slug;
+        return $slug;
+    }
+}

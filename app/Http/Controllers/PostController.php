@@ -47,6 +47,11 @@ class PostController extends Controller
         return view('post.service_create', compact('user'));
     }
 
+    public function tenderCreate() {
+        $user = auth()->user();
+        return view('post.tender_create', compact('user'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

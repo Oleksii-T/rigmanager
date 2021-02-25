@@ -23,8 +23,8 @@ if (env('MAINTENANCE')) {
 }
 
 // auth routes
-Route::get          ('emailexists',                         'UserController@emailExists')       ->name('email.exist'); //Ajax reqeust
-Route::get          ('usernameexists',                      'UserController@userNameExists')    ->name('username.exist'); //Ajax reqeust
+Route::get          ('ajax/emailexists',                         'UserController@emailExists')       ->name('email.exist'); //Ajax reqeust
+Route::get          ('ajax/usernameexists',                      'UserController@userNameExists')    ->name('username.exist'); //Ajax reqeust
 
 //import file download
 Route::get('download/posts-import', function() {
@@ -43,7 +43,7 @@ Route::get      ('ajax/mailer/author/{author}',         'MailerController@create
 Route::middleware('verified')->group(function () {
     // user routes
     Route::get      ('ajax/profile/favourite',              'UserController@addToFav')          ->name('toFav'); //Ajax reqeust
-    Route::patch    ('profile/image/delete',                'UserController@userImageDelete')   ->name('profile.img.delete'); //Ajax reqeust
+    Route::patch    ('ajax/profile/image/delete',                'UserController@userImageDelete')   ->name('profile.img.delete'); //Ajax reqeust
     
     // post routes
     Route::post     ('ajax/posts/toggle/status/{post}',     'PostController@togglePost')        ->name('post.toggle'); //Ajax reqeust
@@ -53,8 +53,8 @@ Route::middleware('verified')->group(function () {
         // post routes
         Route::get      ('ajax/contacts/{postId}',              'PostController@getContacts')       ->name('get.contacts'); //Ajax reqeust
         Route::get      ('ajax/posts/images/{post}',            'PostController@getImages')         ->name('get.images'); //Ajax reqeust
-        Route::patch    ('posts/images/delete/{post}',          'PostController@imgsDel')           ->name('posts.imgs.delete'); //Ajax reqeust
-        Route::patch    ('posts/images/delete/{post}/{image}',  'PostController@imgDel')            ->name('posts.img.delete'); //Ajax reqeust
+        Route::patch    ('ajax/posts/images/delete/{post}',          'PostController@imgsDel')           ->name('posts.imgs.delete'); //Ajax reqeust
+        Route::patch    ('ajax/posts/images/delete/{post}/{image}',  'PostController@imgDel')            ->name('posts.img.delete'); //Ajax reqeust
     });
 });
 
@@ -69,6 +69,9 @@ Route::group(['middleware' => 'make.locale'], function() {
         $base = route('home');
         $url = str_replace($base, "", $url);
         $url = $base . '/' . $newLocale . $url;
+        if( substr($url, -1)=='/' ){
+            $url = substr($url, 0, -1);
+        }
         return redirect($url);
     })->name('locale.setting');
 
