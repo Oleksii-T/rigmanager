@@ -57,7 +57,7 @@ trait Tags
                 '3.10' => __('tags.rigUpDown'),
             '4' => __('tags.pump'),
                 '4.1' => __('tags.pumpiI'),
-                '4.2' => __('tags.hydComonents'),
+                '4.2' => __('tags.hydComponents'),
                     '4.2.1' => __('tags.hydActuator'),
                     '4.2.2' => __('tags.hydPulser'),
                     '4.2.3' => __('tags.hydController'),

@@ -490,6 +490,7 @@ return [
     'serverErrorDesc' => 'Похоже, на сервере произошла ошибка.',
     'serverErrorContact' => 'Сообщить о проблеме',
     'serverErrorGoHome' => 'Вернуться на главную страницу',
+    'serverErrorGoBack' => 'Вернуться на предыдущую страницу',
 
     //plans
     'details' => 'детали',

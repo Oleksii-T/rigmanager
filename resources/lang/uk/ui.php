@@ -491,6 +491,7 @@ return [
     'serverErrorDesc' => 'Схоже, на сервері сталася помилка.',
     'serverErrorContact' => 'Повідомити про проблему',
     'serverErrorGoHome' => 'Повернутися на головну сторінку',
+    'serverErrorGoBack' => 'Повернутися на попередню сторінку',
 
     //plans
     'details' => 'детальніше',

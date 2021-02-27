@@ -490,6 +490,7 @@ return [
     'serverErrorDesc' => 'Seems like you got a server error.',
     'serverErrorContact' => 'Let us know about your issue',
     'serverErrorGoHome' => 'Return to home page',
+    'serverErrorGoBack' => 'Return to previus page',
 
     //plans
     'details' => 'details',
