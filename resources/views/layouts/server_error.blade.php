@@ -19,7 +19,7 @@
                 </p>
                 <p><a href="{{loc_url(route('contacts'))}}">{{__('ui.serverErrorContact')}}</a>
                     <br>
-                    <a href="{{ url()->previous() }}">{{__('ui.serverErrorGoBack')}}</a>
+                    <a href="{{loc_url(route('home'))}}">{{__('ui.serverErrorGoHome')}}</a>
                 </p>
             </div>
         </div>

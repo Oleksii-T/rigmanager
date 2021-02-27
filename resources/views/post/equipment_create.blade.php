@@ -172,7 +172,7 @@
                                                 <span class="tumbler-block"></span>
                                                 <a href="" class="tumbler-right currency-switch usd {{isset($post) ? ($post->currency=='USD' ? 'active' : '') : ''}}">USD</a>
                                             </div>
-                                            <input type="text" name="currency" hidden value="{{isset($post) ? $post->currency : ""}}">
+                                            <input type="text" name="currency" hidden value="{{isset($post) ? $post->currency : "UAH"}}">
                                         </div>
                                     </label>
                                     <input class="input format-cost" name="cost" type="text" placeholder="{{__('ui.cost')}}" value="{{isset($post) ? (old('cost') ?? $post->cost_readable) : old('cost')}}"/>

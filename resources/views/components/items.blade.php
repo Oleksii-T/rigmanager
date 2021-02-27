@@ -8,7 +8,7 @@
                 <div class="catalog-name"><a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}">{{$post->title}}</a></div>
             @endif
             <div class="catalog-line">
-                <a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}" class="catalog-tag">{{$post->type==5 ? '' : $post->type_readable}}</a>
+                <a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}" class="catalog-tag">{{$post->type_readable}}</a>
                 @if ($post->is_urgent)
                     <div class="catalog-lable orange">{{__('ui.urgent')}}</div>
                 @endif

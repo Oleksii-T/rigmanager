@@ -350,13 +350,13 @@ return [
     'email' => 'Email',
     'contactHelp' => 'One of fields is compulsory (email or phone).
         You can enter any email and phone number.',
-    'chooseActiveTo' => 'Select the live period',
+    'chooseActiveTo' => 'Select the lifetime',
     'activeOneMonth' => '1 month',
     'activeTwoMonth' => '2 months',
     'activeForever' => 'Forever',
     'hiddenOn' => 'The post will be hidden on',
     'willNotHide' => 'The post lifetime is unlimited',
-    'activeToHelp' => 'After live period will expire, the post will be hidden from other users (not deleted).
+    'activeToHelp' => 'When lifetime expire, the post will be hidden from other users (not deleted).
         You will be notified about post been hidden.',
     'deletePost' => 'Delete post',
     'sure?' => 'Are you sure?',
@@ -489,7 +489,7 @@ return [
     'serverErrorTittle' => 'Oops!',
     'serverErrorDesc' => 'Seems like you got a server error.',
     'serverErrorContact' => 'Let us know about your issue',
-    'serverErrorGoBack' => 'Return to previous page',
+    'serverErrorGoHome' => 'Return to home page',
 
     //plans
     'details' => 'details',
@@ -565,7 +565,9 @@ return [
     // posts import
     'postImport' => 'Posts import',
     'postImportTitle' => 'Here you can import a number ofposts at once. 
-        Only equipment, service must be published manually.',
+        Only equipment posts. Service posts must be published manually.
+        The post from import file are always considered as new.
+        You can not update already existing posts via import file.',
     'postImportDownload' => 'Download import file template',
     'postImportUpload' => 'Upload filled import file',
     'importHow?' => 'How it is works?',

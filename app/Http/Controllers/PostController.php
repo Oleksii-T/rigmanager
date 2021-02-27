@@ -9,7 +9,6 @@ use App\Http\Controllers\Traits\Tags;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\App;
 use App\Http\Requests\PostRequest;
-use App\Jobs\MailersAnalizePost;
 use Illuminate\Http\Request;
 use App\Imports\PostsImport;
 use Illuminate\Support\Str;
@@ -146,7 +145,6 @@ class PostController extends Controller
         if ($request->hasFile('images')) {
             $this->postImageUpload($request->file('images'), $post);
         }
-        MailersAnalizePost::dispatch($post, auth()->user()->id)->onQueue('mailer');
         TranslatePost::dispatch($post, $input, true)->onQueue('translation');
         Session::flash('message-success', __('messages.postUploaded'));
         return redirect(loc_url(route('profile.posts')));
@@ -335,7 +333,7 @@ class PostController extends Controller
         }
 
         // if there is no cost specified, remove currency
-        if ( !$input['cost'] ) {
+        if ( array_key_exists('cost',$input) && !$input['cost'] ) {
             $input['currency'] = null;
             $input['cost'] = 0;
         }

@@ -2,13 +2,14 @@
 
 namespace App\Jobs;
 
-use Illuminate\Bus\Queueable;
+use Google\Cloud\Translate\TranslateClient;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Google\Cloud\Translate\TranslateClient;
 use Illuminate\Support\Facades\Log;
+use App\Jobs\MailersAnalizePost;
+use Illuminate\Bus\Queueable;
 
 class TranslatePost implements ShouldQueue
 {
@@ -62,6 +63,7 @@ class TranslatePost implements ShouldQueue
         $this->translator = new TranslateClient(['key' => env('GCP_KEY')]); // object of translation provider
         if ( $this->mode ) {
             $this->translateNewPost();
+            MailersAnalizePost::dispatch($this->post)->onQueue('mailer');
         } else {
             $this->translateOldPost();
         }

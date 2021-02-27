@@ -33,8 +33,8 @@ class Post extends Model
     public function toSearchableArray()
     {
         $array = $this->only(
-            'title', 'title_uk', 'title_ru', 'title_en', 'manufacturer', 'manufactured_date', 'part_number',
-            'description', 'description_uk', 'description_ru', 'description_en', 'town', 'is_active', 'company'
+            'title', 'title_uk', 'title_ru', 'title_en', 'manufacturer', 'part_number',
+            'description', 'description_uk', 'description_ru', 'description_en', 'is_active', 'company'
         );
         return $array;
     }
@@ -231,6 +231,9 @@ class Post extends Model
                 break;
             case '6':
                 return __('ui.postTypeGetS');
+                break;
+            case '7':
+                return __('ui.tender');
                 break;
             default:
                 return __('ui.notSpecified');

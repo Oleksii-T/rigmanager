@@ -96,7 +96,7 @@ $(document).ready(function () {
 		nextArrow: $('.prod-next'),
 		speed: 1000,
 		slidesToShow: 1,
-		slidesToScroll: 1,
+		slidesToScroll: 1
 	});
 	$('.brand-slider').slick({
 		dots: false,

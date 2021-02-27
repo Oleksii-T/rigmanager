@@ -24,6 +24,10 @@
 		<div id="pop-up-container">
 			<!-- Session flash massages -->
 			@if (Session::has('message-success'))
+				<div class="flash flash-success">
+					<p><img src="{{asset('icons/success.svg')}}" alt="{{__('alt.keyword')}}">{{ Session::get('message-success') }}</p>
+					<div class="animated-line"></div>
+				</div>
 			@endif
 			@if (Session::has('message-error'))
 				<div class="flash flash-error">

@@ -30,17 +30,15 @@ class MailersAnalizePost implements ShouldQueue
     public $timeout = 30;
 
     protected $post;
-    protected $ignoreUserId;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Post $post, $id)
+    public function __construct(Post $post)
     {
         $this->post = $post;
-        $this->ignoreUserId = $id;
     }
 
     /**
@@ -58,13 +56,14 @@ class MailersAnalizePost implements ShouldQueue
                 continue;
             }
             foreach ($userMailers as  $mailer) {
+                var_dump('Chekc mailer: ' . $mailer->title);
                 if (!$mailer->tag || $this->ckeckTags($mailer->tag) ) {
-                    if (!$mailer->keywords || $this->checkKeywords($mailer->keyword) ) {
+                    if (!$mailer->keyword || $this->checkKeywords($mailer->keyword) ) {
                         if (!$mailer->author || $mailer->author == $this->post->user->id ) {
                             if (!$mailer->cost_from || $this->checkCostFrom($mailer->cost_from, $mailer->currency) ) {
                                 if (!$mailer->cost_to || $this->checkCostTo($mailer->cost_to, $mailer->currency) ) {
                                     if (!$mailer->region || $mailer->region==$this->post->region_encoded) {
-                                        if (in_array($this->post->condition, $mailer->condition)) {
+                                        if (!$this->post->condition || in_array($this->post->condition, $mailer->condition)) {
                                             if (in_array($this->post->type, $mailer->type)) {
                                                 if (in_array($this->post->role, $mailer->role)) {
                                                     if (in_array($this->post->thread, $mailer->thread)) {
@@ -74,21 +73,21 @@ class MailersAnalizePost implements ShouldQueue
                                                         $mailer->found_posts = $fp;
                                                         $mailer->save();
                                                         break; // skip other user`s mailers if one mailer will send a message
-                                                    }else {dd('no thread');}
-                                                } else {dd('no role');}
-                                            } else {dd('no type');}
-                                        } else {dd('no condition');}
-                                    } else {dd('no region');}
-                                } else {dd('no cost_To');}
-                            } else {dd('no cost_from');}
-                        } else {dd('no author');}
-                    }  else {dd('no tag');}
-                } else {dd('no tag' . $mailer->tag);}
+                                                    } //else {var_dump('Bad thread');}
+                                                } //else {var_dump('Bad role');}
+                                            } //else {var_dump('Bad type');}
+                                        }  //else {var_dump('Bad condition');}
+                                    } //else {var_dump('Bad region');}
+                                } //else {var_dump('Bad cost to');}
+                            } //else {var_dump('Bad corst from');}
+                        } //else {var_dump('Bad author');}
+                    } //else {var_dump('Bad keyword');}
+                } //else {var_dump('Bad tag');}
             }
         }
     }
 
-    private function checkCostTo($costFrom, $currency) {
+    private function checkCostTo($costTo, $currency) {
         if ($currency == $this->post->currency) {
             return $costTo >= $this->post->cost;
         } else {
@@ -111,15 +110,28 @@ class MailersAnalizePost implements ShouldQueue
     }
 
     private function checkKeywords($keywords) {
+        if (!$keywords) {
+            return false;
+        }
         foreach ( explode("\n", $keywords) as $keyword) {
             $keyword = str_replace("\r", '', $keyword);
-            if ( mb_stristr($this->post->description, $keyword) ) {
+            if (   mb_stristr($this->post->description, $keyword) 
+                || mb_stristr($this->post->description_uk, $keyword) 
+                || mb_stristr($this->post->description_ru, $keyword) 
+                || mb_stristr($this->post->description_en, $keyword) 
+                || mb_stristr($this->post->title, $keyword) 
+                || mb_stristr($this->post->title_uk, $keyword) 
+                || mb_stristr($this->post->title_ru, $keyword) 
+                || mb_stristr($this->post->title_en, $keyword) 
+                || mb_stristr($this->post->manufacturer, $keyword) 
+                || mb_stristr($this->post->company, $keyword) 
+                || mb_stristr($this->post->part_number, $keyword) ) 
+            {
                 return true;
-            }
+            } 
         }
         return false;
     }
-
     private function ckeckTags($tag) {
         $tag = str_replace('.', '\.', $tag); // Escape dot in tags for regex
         $regex = "/^$tag(.[0-9]+)*$/"; // Create regex from tag
