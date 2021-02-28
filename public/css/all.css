@@ -1370,7 +1370,7 @@ textarea.form-error {
 	padding: 15px 25px;
 }
 .catalog-name {
-	margin: 0 0 11px;
+	margin: 0 0 12px;
 	padding: 0 25px 0 0;
 	font-size: 18px;
 	line-height: 24px;
@@ -1395,7 +1395,29 @@ textarea.form-error {
 	-webkit-flex-wrap: wrap;
 	flex-wrap: wrap;
 	position: relative;
-	padding: 0 0 12px;
+	padding: 0 0 8px;
+}
+.catalog-line-bottom {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	flex-flow: flex-end;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.catalog-line-bottom div div {
+	display: inline-block;
+}
+.catalog-line-bottom .catalog-lable{
+	font-size: 15px;
+	padding: 0;
+}
+.catalog-lable.lable-views{
+	margin-right: 10px;
+}
+.catalog-lable.lable-import{
+	margin-left: 10px;
 }
 .catalog-tag {
 	padding: 2px 13px 1px;
@@ -1453,7 +1475,7 @@ textarea.form-error {
 
 .catalog-lable {
 	margin: 0 auto 0 0;
-	padding: 2px 0 0;
+	padding: 2px 5px 0 0;
 	font-size: 12px;
 	line-height: 22px;
 	max-width: 140px;
@@ -1467,7 +1489,7 @@ textarea.form-error {
 	line-height: 22px;
 }
 .catalog-text {
-	margin: 0 0 16px;
+	margin: 0 0 8px;
 	font-size: 12px;
 	line-height: 22px;
 	white-space: pre-line;
@@ -1479,7 +1501,6 @@ textarea.form-error {
 }
 .catalog-price {
 	color: #fff;
-	line-height: 22px;
 }
 .side-add {
 	position: relative;
@@ -1958,41 +1979,6 @@ textarea.form-error {
 	background-position: center center;
 	background-size: cover;
 }
-/*
-For Square images
-	#container {}
-	#img {
-		border-radius: 50%;
-	}
-
-For Landscape-oriented Images
-	#container {
-		display: inline-block;
-		position: relative;
-		width: 200px;
-		height: 200px;
-		overflow: hidden;
-		border-radius: 50%;
-	}
-	#img {
-		width: auto;
-		height: 100%;
-		margin-left: -50px;
-	}
-
-Fot Portrait-oriented Images
-	#container {
-		position: relative;
-		width: 200px;
-		height: 200px;
-		overflow: hidden;
-		border-radius: 50%;
-	}
-	#img {
-		width: 100%;
-  		height: auto;
-	}
-*/
 .profile-edit-link {
 	display: inline-block;
 	vertical-align: top;
@@ -2479,6 +2465,7 @@ article ul li:before {
 	padding: 2px 0 0;
 	font-size: 12px;
 	line-height: 22px;
+	margin-right: 6px;
 }
 .ad-tag {
 	padding: 2px 13px 1px;
@@ -2509,12 +2496,19 @@ article ul li:before {
 .ad-title a:hover {
 	color: #ff8d11;
 }
-.ad-company {
+.ad-region,
+.ad-import {
 	margin: 0 0 12px;
 	font-size: 14px;
 	line-height: 22px;
 }
+.ad-import {
+	margin-right: 6px;
+	display: inline;
+	color: #ff8d11;
+}
 .ad-price {
+	display: inline;
 	color: #fff;
 	line-height: 22px;
 	overflow: hidden;
@@ -3039,9 +3033,6 @@ article ul li:before {
 @media screen and (max-width: 1300px) {
 	a.brand-item.brand-more {
 		padding-left: 10px;
-	}
-	.catalog-region {
-		display: none;
 	}
 	.ad-col .ad-more {
 		height: 203px;
@@ -3777,7 +3768,7 @@ article ul li:before {
 		background-color: #1f1f1f;
 	}
 	.catalog-line {
-		padding-bottom: 10px;
+		padding-bottom: 0px;
 	}
 	.bar {
 		top: auto;
@@ -3987,6 +3978,15 @@ article ul li:before {
 	.ad-img {
 		height: 242px;
 	}
+	.ad-line {
+		padding-bottom: 0px;
+	}
+	.ad-title {
+		margin: 0px;
+	}
+	.ad-region {
+		display: none;
+	}
 	.header-logo img {
 		width: 220px;
 	}
@@ -4039,14 +4039,6 @@ article ul li:before {
 		font-size: 24px;
 		line-height: 30px;
 	}
-
-}
-@media screen and (max-width: 374px) {
-	.ad-date {
-		width: 100%;
-		padding: 0 0 6px;
-	}
-	
 }
 /*=FIX=*/
 #wrapper {

@@ -386,6 +386,7 @@ return [
         Кількість термінових оголошень обмежена до 300 для Premium+ користувачів.',
     'urgent' => 'Терміново',
     'views' => 'Перегляди',
+    'importExport' => 'Імпорт-Експорт',
 
     //post deactivated messages
     'postHiddenNotifSubject' => 'Оголошення було деактивовано',

@@ -1,6 +1,5 @@
 <select class="styled" name="region_encoded">
     <option value="0" >{{__('ui.notSpecified')}}</option>
-    <option value="30" {{$defValue==30 ? 'selected' : ''}}>{{__('ui.import')}}</option>
     <option value="1" {{$defValue==1 ? 'selected' : ''}}>{{__('ui.regionCrimea')}}</option>
     <option value="7" {{$defValue==7 ? 'selected' : ''}}>{{__('ui.regionCarpathian')}}</option>
     <option value="23" {{$defValue==23 ? 'selected' : ''}}>{{__('ui.regionCherkasy')}}</option>

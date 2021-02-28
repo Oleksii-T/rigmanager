@@ -49,7 +49,9 @@ return [
     'tagRule' => 'Tag must be one of available tag-code, click the button below to see the full list of available codes.
         The chosen tag must comply with chosen "Equipment / service" field.',
     'tagRuleEqBtn' => 'See list of equipment category codes',
+    'tagsEqList' => 'List of equipment categories codes',
     'tagRuleSeBtn' => 'See list of service category codes',
+    'tagsSeList' => 'List of service categories codes',
     'manufManufDatePN' => 'Manufacturer. Date of manufacture. Part number',
     'manufManufDatePNRule' => 'We advise adding manufacturer, manufacturing date and part number to make it easier for customers to find and understand your proposal.
         Minimum 5 for manufacturer, 4 for manufacturing date, 3 for p/n characters.
@@ -60,6 +62,7 @@ return [
         USD - Dollar',
     'regionRule' => 'Region must be one of region-code, click the button below to see the full list of available codes.',
     'regionRuleBtn' => 'See list of region codes',
+    'regionsList' => 'List of region codes',
     'emailRule' => 'Mail is not required if a contact phone number has been entered.
         You can enter any email address.
         Max lenght: 254',

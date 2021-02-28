@@ -21,20 +21,26 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id');
             $table->boolean('is_banned')->default(false);
             $table->boolean('is_verified')->default(false);
+            $table->integer('priority')->default(1);
             $table->boolean('is_active')->default(true);
             $table->boolean('is_premium')->default(false);
             $table->boolean('is_vip')->default(false);
-            $table->integer('priority')->default(1);
             $table->boolean('is_urgent')->default(false);
+            $table->boolean('is_import')->default(false);
+            $table->boolean('is_export')->default(false);
             $table->integer('thread');
             $table->string('origin_lang', 5);
-            $table->json('user_translations')->nullable();
-            $table->string('amount', 15)->nullable();
             $table->string('url_name', 50)->unique();
+            $table->json('user_translations')->nullable();
             $table->string('title', 100);
             $table->string('title_uk', 100)->nullable();
             $table->string('title_ru', 100)->nullable();
             $table->string('title_en', 100)->nullable();
+            $table->text('description', 9000);
+            $table->text('description_uk', 9000)->nullable();
+            $table->text('description_ru', 9000)->nullable();
+            $table->text('description_en', 9000)->nullable();
+            $table->string('amount', 15)->nullable();
             $table->string('company', 255)->nullable(); //company name
             $table->string('type', 2); // sell/buy/loan/lease/give_se/get_se
             $table->string('role', 2); // private/bussiness
@@ -43,10 +49,6 @@ class CreatePostsTable extends Migration
             $table->string('manufacturer', 80)->nullable();
             $table->string('manufactured_date', 80)->nullable();
             $table->string('part_number', 80)->nullable();
-            $table->text('description', 9000);
-            $table->text('description_uk', 9000)->nullable();
-            $table->text('description_ru', 9000)->nullable();
-            $table->text('description_en', 9000)->nullable();
             $table->double('cost', 50, 2)->nullable();
             $table->string('currency', 4)->nullable();
             $table->string('region_encoded', 10)->nullable();

@@ -26,7 +26,14 @@
             @else
                 <div class="ad-title"><a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}">{{ $post->title }}</a></div>
             @endif
-            <div class="ad-company">{{ $post->manufacturer ? $post->manufacturer.', ' : '' }}{{ $post->region_encoded ? $post->region_readable : '' }}</div>
+            @if ($post->region_encoded)
+                <div class="ad-region">{{$post->region_readable}}</div>
+            @endif
+            @if ($post->is_import)
+                <div class="ad-import">
+                    {{__('ui.import')}}
+                </div>
+            @endif
             <div class="ad-price">{{ $post->cost ? $post->cost_readable : '' }}</div>
         </div>
     </div>

@@ -385,6 +385,7 @@ return [
         The number of urgent posts is limited to 300 for Pro users.',
     'urgent' => 'Urgent',
     'views' => 'Views',
+    'importExport' => 'Import-Export',
 
     //post deactivated messages
     'postHiddenNotifSubject' => 'Post has been deactivated',

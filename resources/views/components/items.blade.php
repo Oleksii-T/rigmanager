@@ -9,9 +9,7 @@
             @endif
             <div class="catalog-line">
                 <a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}" class="catalog-tag">{{$post->type_readable}}</a>
-                @if ($post->is_urgent)
-                    <div class="catalog-lable orange">{{__('ui.urgent')}}</div>
-                @endif
+
                 @if ($type=='list')
                     @auth
                         <a href="" class="catalog-fav add-to-fav {{$post->user_id == auth()->user()->id ? 'block' : ''}} id_{{$post->id}} {{auth()->user()->favPosts->contains($post) ? 'active' : ''}}">
@@ -40,7 +38,17 @@
             @else
                 <div class="catalog-text">{{preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $post->description)}}</div>
             @endif
-            <div class="catalog-price">{{$post->cost_readable}}</div>
+            <div class="catalog-line-bottom">
+                <div class="catalog-price">{{$post->cost_readable}}</div>
+                <div>
+                    @if ($post->is_urgent)
+                        <div class="catalog-lable orange">{{__('ui.urgent')}}</div>
+                    @endif
+                    @if ($post->is_import)
+                        <div class="catalog-lable lable-import orange">{{__('ui.import')}}</div>
+                    @endif
+                </div>
+            </div>
             @if ($type=='profile.posts')
                 <div class="bar">
                     <!--

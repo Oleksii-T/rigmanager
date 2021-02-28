@@ -385,6 +385,7 @@ return [
         Количество срочных объявлений ограничено до 300 для Premium+ пользователей.',
     'urgent' => 'Срочно',
     'views' => 'Просмотры',
+    'importExport' => 'Импорт-Экспорт',
 
     //post deactivated messages
     'postHiddenNotifSubject' => 'Объявление было деактивировано',

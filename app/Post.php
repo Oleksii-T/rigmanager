@@ -203,9 +203,6 @@ class Post extends Model
             case '25':
                 return __('ui.regionChernihiv');
                 break;
-            case '30':
-                return __('ui.import');
-                break;
             default:
                 return __('ui.notSpecified');
         }

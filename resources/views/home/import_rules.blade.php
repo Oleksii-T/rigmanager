@@ -128,12 +128,8 @@
 
 @section('modals')
     <div id="popup-regions" class="popup">
-        <div class="popup-title">Дивитися список кодів областей</div>
+        <div class="popup-title">{{__('postImportRules.regionsList')}}</div>
         <div class="code">
-            <div class="code-item">
-                <div class="code-num">30</div>
-                <div class="code-text">{{__('ui.import')}}</div>
-            </div>
             <div class="code-item">
                 <div class="code-num">0</div>
                 <div class="code-text">{{__('ui.notSpecified')}}</div>
@@ -241,7 +237,7 @@
         </div>
     </div>
     <div id="popup-eq-tags" class="popup">
-        <div class="popup-title">Дивитися список кодів областей</div>
+        <div class="popup-title">{{__('postImportRules.tagsEqList')}}</div>
         <p>{{__('ui.tagsCodesNotReady')}}</p>
         <div class="code">
             <div class="code-item">
@@ -251,7 +247,7 @@
         </div>
     </div>
     <div id="popup-se-tags" class="popup">
-        <div class="popup-title">Дивитися список кодів областей</div>
+        <div class="popup-title">{{__('postImportRules.tagsSeList')}}</div>
         <p>{{__('ui.tagsCodesNotReady')}}</p>
         <div class="code">
             <div class="code-item">
