@@ -93,7 +93,7 @@
 				</div>
 			</div>
 		</footer>
-		<div class="development-alert">
+		<div class="development-alert hidden">
 			<p>{{__('ui.development')}}</p>
 		</div>
 	</div>
