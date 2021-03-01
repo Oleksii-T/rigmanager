@@ -52,7 +52,8 @@
 	</aside>
 	<div class="content">
 		<h1>{{__('ui.catalog')}}</h1>
-		<div class="content-top-text catalog-help">{{__('ui.catalogHelp')}}</div>
+		<div class="content-top-text catalog-help">{{__('ui.catalogHelp')}}
+		<a href="#se-tags-flag">{{__('ui.gotToSeTags')}}</a></div>
 		<div class="category">
 			<div class="category-col">
 				<div class="category-item">
@@ -699,7 +700,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="category-serv">
+		<div id="se-tags-flag" class="category-serv">
 			<h2>{{__('ui.service')}}</h2>
 			<div class="category-serv-block">
 				<div class="category-serv-col">

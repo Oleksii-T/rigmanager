@@ -107,7 +107,7 @@ class Mailer extends Model
     }
 
     public function getAllConditionsAttribute() {
-        return $this->condition==[2,3,4]
+        return $this->condition==[1,2,3,4]
             ? true
             : false;
     }

@@ -89,24 +89,27 @@
             <div class="filter-block" id="filter-block">
                 <div class="filter-title">{{__('ui.filters')}}</div>
                 
-                <label class="label">
-                    {{__('ui.cost')}}, 
-                    <div class="tumbler-inline">
-                        <div class="tumbler">
-                            <a href="" class="tumbler-left currency-switch uah active">UAH</a>
-                            <span class="tumbler-block"></span>
-                            <a href="" class="tumbler-right currency-switch usd">USD</a>
+                <!--cost-->
+                @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') && !($search['type'] == 'type' && $search['url'] == 'services') )
+                    <label class="label">
+                        {{__('ui.cost')}}, 
+                        <div class="tumbler-inline">
+                            <div class="tumbler">
+                                <a href="" class="tumbler-left currency-switch uah active">UAH</a>
+                                <span class="tumbler-block"></span>
+                                <a href="" class="tumbler-right currency-switch usd">USD</a>
+                            </div>
                         </div>
+                    </label>
+                    <div class="price-input">
+                        <input type="text" class="input cost-from" placeholder="{{__('ui.from')}}">
+                        <span class="price-input-divider">-</span>
+                        <input type="text" class="input cost-to" placeholder="{{__('ui.to')}}">
                     </div>
-                </label>
-                <div class="price-input">
-                    <input type="text" class="input cost-from" placeholder="{{__('ui.from')}}">
-                    <span class="price-input-divider">-</span>
-                    <input type="text" class="input cost-to" placeholder="{{__('ui.to')}}">
-                </div>
+                @endif
 
                 <!--region-->
-                @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') ) 
+                @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') && !($search['type'] == 'type' && $search['url'] == 'services') ) 
                     <label class="label">{{__('ui.region')}}</label>
                     <div class="select-block">
                         <x-region-select locale='{{app()->getLocale()}}'/>
@@ -117,6 +120,10 @@
                 @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') && !($search['type'] == 'type' && $search['url'] == 'services') )
                     <label class="label">{{__('ui.condition')}}</label>
                     <div id="condition" class="check-block">
+                        <div class="check-item">
+                            <input type="checkbox" class="check-input" value="1" id="ch0" checked>
+                            <label for="ch0" class="check-label">{{__('ui.notSpecified')}}</label>
+                        </div>
                         <div class="check-item">
                             <input type="checkbox" class="check-input" value="2" id="ch1" checked>
                             <label for="ch1" class="check-label">{{__('ui.conditionNew')}}</label>
@@ -338,7 +345,7 @@
             filters.costFrom = null;
             filters.costTo = null;
             filters.region = "0";
-            filters.condition = ["2","3","4"];
+            filters.condition = ["1","2","3","4"];
             filters.role = ['1','2'];
             filters.type = ["1","2","3","4","5","6"];
             filters.thread = ["1","2"];

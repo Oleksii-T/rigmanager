@@ -56,10 +56,8 @@ return [
     'manufManufDatePNRule' => 'We advise adding manufacturer, manufacturing date and part number to make it easier for customers to find and understand your proposal.
         Minimum 5 for manufacturer, 4 for manufacturing date, 3 for p/n characters.
         Maximum 70 characters.',
-    'currency' => 'Currency',
-    'currencyRule' => 'Only certain values ​​are allowed for input:
-        UAH - Hryvnia
-        USD - Dollar',
+    'cost' => 'Cost-Currency',
+    'currencyRule' => 'After the price, indicate the currency - "USD" or "UAH". Example: "999.9USD"',
     'regionRule' => 'Region must be one of region-code, click the button below to see the full list of available codes.',
     'regionRuleBtn' => 'See list of region codes',
     'regionsList' => 'List of region codes',
@@ -73,6 +71,7 @@ return [
         0 (12) 345 67 89',
     'VTW' => 'Have Viber / Telegram / Whatsapp',
     'VTWRule' => 'Leave the field blank if you are not using this application, or enter any character if you are.',
+    'importRule' => 'Enter any character, if you want to indicate that this deal will be held on the terms of import / export.',
     'lifetime' => 'Live period',
     'lifetimeRule' => 'Only certain values ​​are allowed for input:
         1 - 1 month

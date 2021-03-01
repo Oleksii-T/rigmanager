@@ -1154,6 +1154,9 @@ textarea.form-error {
 	background: #0159ac;
 	border-radius: 8px;
 }
+.import-rules .article-part p {
+	white-space: pre-line;
+}
 .rule-icon {
 	width: 128px;
 	min-width: 128px;

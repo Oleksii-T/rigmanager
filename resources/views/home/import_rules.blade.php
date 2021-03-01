@@ -12,7 +12,7 @@
         <x-informations-nav active='xlsx-info'/>
 
         <div class="content">
-            <article class="article">
+            <article class="article import-rules">
                 <h1>{{__('postImportRules.title')}}</h1>
                 <div class="content-top-text">{{__('postImportRules.intro')}} <a href="{{loc_url(route('post.import'))}}">{{__('postImportRules.introLink')}}</a> {{__('postImportRules.intro1')}}</div>
                 <div class="rule">
@@ -34,92 +34,88 @@
                         </ul>
                     </div>
                 </div>
-                <div class="article-part">
+                <div class="article-part"> <!--title-->
                     <h3>{{__('ui.title')}}</h3>
-                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span><br>
+                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span>
                         {{__('postImportRules.titleRule')}}</p>
                 </div>
-                <div class="article-part">
+                <div class="article-part"> <!--description-->
                     <h3>{{__('ui.description')}}</h3>
-                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span><br>
+                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span>
                         {{__('postImportRules.titleRule')}}</p>
                 </div>
-                <div class="article-part">
-                    <h3>{{__('ui.postRole')}}</h3>
-                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span><br>
-                        {{__('postImportRules.roleRule')}}</p>
+                <div class="article-part"> <!--amount-->
+                    <h3>{{__('ui.amount')}}</h3>
+                    <p><span class="yellow">{{__('postImportRules.required')}}: {{__('ui.no')}}</span>
+                        {{__('ui.amountHelp')}}</p>
                 </div>
-                <div class="article-part">
+                <div class="article-part"> <!--company-->
                     <h3>{{__('ui.company')}}</h3>
-                    <p><span class="yellow">{{__('postImportRules.required')}}: {{__('ui.no')}}</span><br>
+                    <p><span class="yellow">{{__('postImportRules.required')}}: {{__('ui.no')}}</span>
                         {{__('postImportRules.companyRule')}}</p> 
                 </div>
-                <div class="article-part">
+                <div class="article-part"> <!--type-->
                     <h3>{{__('postImportRules.type')}}</h3>
-                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span><br>
+                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span>
                         {{__('postImportRules.typeRule')}}</p> 
                 </div>
-                <div class="article-part">
+                <div class="article-part"> <!--role-->
+                    <h3>{{__('ui.postRole')}}</h3>
+                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span>
+                        {{__('postImportRules.roleRule')}}</p>
+                </div>
+                <div class="article-part"> <!--condition-->
                     <h3>{{__('ui.condition')}}</h3>
-                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span><br>
+                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span>
                         {{__('postImportRules.conditionRule')}}</p> 
                 </div>
-                <div class="article-part">
+                <div class="article-part"> <!--tag-->
                     <h3>{{__('postImportRules.tag')}}</h3>
-                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span><br>
+                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span>
                         {{__('postImportRules.tagRule')}}</p>
                     <div class="article-buttons">
                         <a href="#popup-eq-tags" data-fancybox class="button button-blue">{{__('postImportRules.tagRuleEqBtn')}}</a>
                         <a href="#popup-se-tags" data-fancybox class="button button-blue">{{__('postImportRules.tagRuleSeBtn')}}</a>
                     </div>
                 </div>
-                <div class="article-part">
+                <div class="article-part"> <!--manuf+manuf_date+pn-->
                     <h3>{{__('postImportRules.manufManufDatePN')}}</h3>
-                    <p><span class="yellow">{{__('postImportRules.required')}}: {{__('ui.no')}}</span><br>
+                    <p><span class="yellow">{{__('postImportRules.required')}}: {{__('ui.no')}}</span>
                         {{__('postImportRules.manufManufDatePNRule')}}</p>
                 </div>
-                <div class="article-part">
-                    <h3>{{__('ui.cost')}}</h3>
-                    <p><span class="yellow">{{__('postImportRules.required')}}: {{__('ui.no')}}</span><br>
-                        {{__('ui.costHelp')}}</p> 
-                </div>
-                <div class="article-part">
-                    <h3>{{__('postImportRules.currency')}}</h3>
-                    <p><span class="yellow">{{__('postImportRules.required')}}: {{__('ui.no')}}</span><br>
+                <div class="article-part"> <!--cost-->
+                    <h3>{{__('postImportRules.cost')}}</h3>
+                    <p><span class="yellow">{{__('postImportRules.required')}}: {{__('ui.no')}}</span>
+                        {{__('ui.costHelp')}}
                         {{__('postImportRules.currencyRule')}}</p> 
                 </div>
-                <div class="article-part">
+                <div class="article-part"> <!--region-->
                     <h3>{{__('ui.region')}}</h3>
-                    <p><span class="yellow">{{__('postImportRules.required')}}: {{__('ui.no')}}</span><br>
+                    <p><span class="yellow">{{__('postImportRules.required')}}: {{__('ui.no')}}</span>
                         {{__('postImportRules.regionRule')}}</p>
                     <div class="article-buttons">
                         <a href="#popup-regions" data-fancybox class="button button-blue">{{__('postImportRules.regionRuleBtn')}}</a>
                     </div>
                 </div>
-                <div class="article-part">
-                    <h3>{{__('ui.locationTown')}}</h3>
-                    <p><span class="yellow">{{__('postImportRules.required')}}: {{__('ui.no')}}</span><br>
-                        {{__('ui.townHelp')}}</p> 
+                <div class="article-part"> <!--email-->
+                    <h3>{{__('ui.email')}}</h3>
+                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span>
+                        {{__('postImportRules.emailRule')}}</p>
                 </div>
-                <div class="article-part">
+                <div class="article-part"> <!--phone-->
                     <h3>{{__('ui.phone')}}</h3>
-                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span><br>
+                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span>
                         {{__('postImportRules.phoneRule')}}</p> 
                 </div>
-                <div class="article-part">
-                    <h3>{{__('postImportRules.VTW')}}</h3>
-                    <p><span class="yellow">{{__('postImportRules.required')}}: {{__('ui.no')}}</span><br>
-                        {{__('postImportRules.VTWRule')}}</p> 
+                <div class="article-part"> <!--import-->
+                    <h3>{{__('ui.importExport')}}</h3>
+                    <p><span class="yellow">{{__('postImportRules.required')}}: {{__('ui.no')}}</span>
+                        {{__('postImportRules.importRule')}}</p> 
                 </div>
-                <div class="article-part">
+                <div class="article-part"> <!--lifetime-->
                     <h3>{{__('postImportRules.lifetime')}}</h3>
-                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span><br>
+                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span>
                         {{__('postImportRules.lifetimeRule')}}</p> 
-                </div>
-                <div class="article-part">
-                    <h3>{{__('ui.email')}}</h3>
-                    <p><span class="white">{{__('postImportRules.required')}}: {{__('ui.yes')}}</span><br>
-                        {{__('postImportRules.emailRule')}}</p>
                 </div>
             </article>
         </div>

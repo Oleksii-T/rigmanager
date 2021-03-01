@@ -88,23 +88,14 @@
                                     </div>
                                 </div>
                                 <div class="add-radio-col">
-                                    <label class="label">{{__('ui.choosePostRole')}} <span class="orange">*</span></label>
-                                    <div class="radio-block">
-                                        <div class="radio-item">
-                                            <input type="radio" name="role" class="radio-input" id="r11" value="1" {{isset($post) ? ($post->role==1 ? 'checked' : '') : 'checked'}}>
-                                            <label for="r11" class="radio-label">{{__('ui.postRolePrivate')}}</label>
-                                        </div>
-                                        <div class="radio-item">
-                                            <input type="radio" name="role" class="radio-input" id="r12" value="2" {{isset($post) && $post->role==2 ? 'checked' : ''}}>
-                                            <label for="r12" class="radio-label">{{__('ui.postRoleBusiness')}}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="add-radio-col">
                                     <label class="label">{{__('ui.chooseCondition')}} <span class="orange">*</span></label>
                                     <div class="radio-block">
                                         <div class="radio-item">
-                                            <input type="radio" name="condition" class="radio-input" id="r21" value="2" {{isset($post) ? ($post->condition==2 ? 'checked' : '') : 'checked'}}>
+                                            <input type="radio" name="condition" class="radio-input" id="r20" value="1" {{isset($post) ? ($post->condition==1 ? 'checked' : '') : 'checked'}}>
+                                            <label for="r20" class="radio-label">{{__('ui.notSpecified')}}</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" name="condition" class="radio-input" id="r21" value="2" {{isset($post) && $post->condition==2 ? 'checked' : ''}}>
                                             <label for="r21" class="radio-label">{{__('ui.conditionNew')}}</label>
                                         </div>
                                         <div class="radio-item">
@@ -114,6 +105,19 @@
                                         <div class="radio-item">
                                             <input type="radio" name="condition" class="radio-input" id="r23" value="4" {{isset($post) && $post->condition==4 ? 'checked' : ''}}>
                                             <label for="r23" class="radio-label">{{__('ui.conditionForParts')}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="add-radio-col">
+                                    <label class="label">{{__('ui.choosePostRole')}} <span class="orange">*</span></label>
+                                    <div class="radio-block">
+                                        <div class="radio-item">
+                                            <input type="radio" name="role" class="radio-input" id="r11" value="1" {{isset($post) ? ($post->role==1 ? 'checked' : '') : 'checked'}}>
+                                            <label for="r11" class="radio-label">{{__('ui.postRolePrivate')}}</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" name="role" class="radio-input" id="r12" value="2" {{isset($post) && $post->role==2 ? 'checked' : ''}}>
+                                            <label for="r12" class="radio-label">{{__('ui.postRoleBusiness')}}</label>
                                         </div>
                                     </div>
                                 </div>

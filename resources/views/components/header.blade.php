@@ -37,15 +37,22 @@
             </div>
             <div class="mob-nav">
                 <div class="holder">
-                    <a href="{{loc_url(route('catalog'))}}" class="header-catalog">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M0.000,11.000 L0.000,10.000 L11.000,10.000 L11.000,11.000 L0.000,11.000 ZM0.000,5.000 L11.000,5.000 L11.000,6.000 L0.000,6.000 L0.000,5.000 ZM0.000,0.000 L11.000,0.000 L11.000,1.000 L0.000,1.000 L0.000,0.000 Z"/>
-                        </svg>
-                        {{__('ui.catalog')}}
-                    </a>
+                    <ul class="mob-nav-list">
+                        <li><a href="{{loc_url(route('catalog'))}}">{{__('ui.catalog')}}</a></li>
+                    </ul>
                     <ul class="mob-nav-list">
                         <li><a href="{{loc_url(route('profile'))}}">{{auth()->check() ? __('ui.cabinet') : __('ui.signIn')}}</a></li>
+                        @if (auth()->check())
+                            <li><a href="{{loc_url(route('profile.posts'))}}">{{__('ui.myPosts')}}</a></li>    
+                            <li><a href="{{loc_url(route('profile.favourites'))}}">{{__('ui.favourites')}}</a></li>
+                        @endif
                         <li><a href="{{loc_url(route('posts.create'))}}">{{__('ui.addPost')}}</a></li>
+                    </ul>
+                    <ul class="mob-nav-list">
+                        <li><a href="{{loc_url(route('search', ['type'=>'equipment-sell']))}}">{{__('ui.introSellEq')}}</a></li>
+                        <li><a href="{{loc_url(route('search', ['type'=>'equipment-buy']))}}">{{__('ui.introBuyEq')}}</a></li>
+                        <li><a href="{{loc_url(route('search', ['type'=>'services']))}}">{{__('ui.introSe')}}</a></li>
+                        <li><a class="not-ready" href="{{loc_url(route('search', ['type'=>'tenders']))}}">{{__('ui.introTender')}}</a></li>
                     </ul>
                     <ul class="mob-nav-list">
                         <li><a class="not-ready" href="{{loc_url(route('about.us'))}}">{{__('ui.footerAbout')}}</a></li>
@@ -53,12 +60,6 @@
                         <li><a href="{{loc_url(route('plans'))}}">{{__('ui.footerSubscription')}}</a></li>
                         <li><a href="{{loc_url(route('contacts'))}}">{{__('ui.footerContact')}}</a></li>
                         <li><a href="{{loc_url(route('faq'))}}">FAQ</a></li>
-                    </ul>
-                    <ul class="mob-nav-list">
-                        <li><a href="{{loc_url(route('search', ['type'=>'equipment-sell']))}}">{{__('ui.introSellEq')}}</a></li>
-                        <li><a href="{{loc_url(route('search', ['type'=>'equipment-buy']))}}">{{__('ui.introBuyEq')}}</a></li>
-                        <li><a href="{{loc_url(route('search', ['type'=>'services']))}}">{{__('ui.introSe')}}</a></li>
-                        <li><a class="not-ready" href="{{loc_url(route('search', ['type'=>'tenders']))}}">{{__('ui.introTender')}}</a></li>
                     </ul>
                     <ul class="mob-nav-list">
                         @if (!App::isLocale('uk'))

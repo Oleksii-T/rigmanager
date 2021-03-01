@@ -22,7 +22,7 @@ return [
 
     //home massages
     'home' => 'Home',
-    'cabinet' => 'Cabinet',
+    'cabinet' => 'Profile',
     'introduction' => 'Specialized platform for cooperation
         of oil and gas companies of Ukraine',
     'introSellEq' => 'Sell of drilling
@@ -46,6 +46,7 @@ return [
     'epilogue1' => 'Online announcements of any type and complexity in oil&gas sphere. Sale, purchase, services. On the rigmanager platform you can quickly and conveniently publish your offers or easily find an announcement you are interested in!',
     'epilogue2' => 'Market analysis, sales planning, simplification of the process and increase of the level of purchases/sales, control of relevance of purchases and timely supply - all this on the rigmanager platform!',
     'info' => 'Information',
+    'gotToSeTags' => 'Show service categories',
 
     // jeneral massages
     'error' => 'Error',
