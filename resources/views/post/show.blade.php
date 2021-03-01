@@ -118,6 +118,11 @@
                         <div class="prod-info-text"><span class="orange">{{__('ui.urgent')}}</span></div>
                     </div>
                 @endif
+                @if ($post->is_import)
+                    <div class="prod-info-item">
+                        <div class="prod-info-text"><span class="orange">{{__('ui.import')}}</span></div>
+                    </div>
+                @endif
                 <div class="prod-info-item">
                     <div class="prod-info-name">{{__('ui.postType')}}</div>
                     <div class="prod-info-text">{{$post->type_readable}}</div>
