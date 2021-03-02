@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\URL;
 |
 */
 
+/*
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
-/*
+*/
 if (env('APP_ENV') === 'production') {
     URL::forceScheme('https');
 }
-*/
 
 // maintenance route
 if (env('MAINTENANCE')) {
