@@ -622,15 +622,15 @@ class PostController extends Controller
                                         //validate  "description" field
                                         if (is_string($row[2]) && mb_strlen($row[2])>10 && mb_strlen($row[2])<9000) {
                                             //validate "amount" field (time consuming solution)
-                                            if ($row[3]==null || ( strlen($row[3]) < 10 && filter_var($row[3], FILTER_VALIDATE_INT) !== false )) {
+                                            if ($row[3]==null || mb_strlen($row[3]) < 16) {
                                                 //validate  "company" field
                                                 if ($row[4]==null || ( is_string($row[4]) && mb_strlen($row[4])>5 && mb_strlen($row[4])<200 )) {
                                                     //validate  "manufacturer" field
-                                                    if ($row[9]==null || ( is_string($row[9]) && mb_strlen($row[9])>5 && mb_strlen($row[9])<70) ) {
+                                                    if ($row[9]==null || ( is_string($row[9]) && mb_strlen($row[9])>2 && mb_strlen($row[9])<70) ) {
                                                         //validate  "manufactured date" field
-                                                        if ($row[10]==null || ( is_string($row[10]) && mb_strlen($row[10])>3 && mb_strlen($row[10])<70 )) {
+                                                        if ($row[10]==null || ( is_string($row[10]) && mb_strlen($row[10])>2 && mb_strlen($row[10])<70 )) {
                                                             //validate  "part number" field
-                                                            if ($row[11]==null || ( is_string($row[11]) && mb_strlen($row[11])>3 && mb_strlen($row[11])<70 )) {
+                                                            if ($row[11]==null || ( is_string($row[11]) && mb_strlen($row[11])>2 && mb_strlen($row[11])<70 )) {
                                                                 //validate "cost" field
                                                                 if ($this->costValidate($row[12])) {
                                                                     //validate  "email" field
@@ -656,7 +656,6 @@ class PostController extends Controller
             } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importTypeError'); }
         } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importCompulsoryError'); }
     }
-
     private function costValidate ($cost) 
     {
         if (!$cost) {

@@ -77,7 +77,7 @@ return [
     'postImportSuccess' => 'Оголошення успішно імпортовані',
 
     'importExtError' => 'Дозволені лише файли xlsx.',
-    'importStuctureError' => 'Структура файлу імпорту порушена.',
+    'importStructureError' => 'Структура файлу імпорту порушена.',
     'importEmptyError' => 'Завантажений файл порожній.',
     'importCompulsoryError' => 'Обов’язкові поля не заповненні.',
     'importThreadError' => 'Поле "Обладнання/Сервіс" заповнене неправильно.',

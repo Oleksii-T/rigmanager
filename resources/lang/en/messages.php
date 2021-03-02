@@ -78,7 +78,7 @@ return [
     'postImportSuccess' => 'The post imported successfully',
 
     'importExtError' => 'Only xlsx files are allowed.',
-    'importStuctureError' => 'The import file structure is broken.',
+    'importStructureError' => 'The import file structure is broken.',
     'importEmptyError' => 'The uploaded file is empty.',
     'importCompulsoryError' => 'Compulsory fields are not filled.',
     'importThreadError' => '"Equipment/service" field is filled incorrectly.',

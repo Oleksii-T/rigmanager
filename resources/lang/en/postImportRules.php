@@ -54,7 +54,7 @@ return [
     'tagsSeList' => 'List of service categories codes',
     'manufManufDatePN' => 'Manufacturer. Date of manufacture. Part number',
     'manufManufDatePNRule' => 'We advise adding manufacturer, manufacturing date and part number to make it easier for customers to find and understand your proposal.
-        Minimum 5 for manufacturer, 4 for manufacturing date, 3 for p/n characters.
+        Minimum 3 characters.
         Maximum 70 characters.',
     'cost' => 'Cost-Currency',
     'currencyRule' => 'After the price, indicate the currency - "USD" or "UAH". Example: "999.9USD"',

@@ -267,7 +267,7 @@ return [
     'amount' => 'Amount',
     'chooseAmount' => 'Choose amount',
     'amountHelp' => 'Here you may specify the number of pieces you have.
-        If it is not obvious what this number stands for, you can specify this information in the description',
+        Example: ""432 pcs.""',
     'type' => 'Type',
     'choosePostType' => 'Choose post type',
     'postTypeSell' => 'Sell', // type = 1
@@ -307,11 +307,11 @@ return [
     'clearTagsFromPost' => 'Clear сhosen categories',
     'manufacturer' => 'Manufacturer',
     'manufHelp' => 'We advise include manufacturer detail to simplify search and understanding of your proposition by viewers.
-        Minimum 5 symbols.
+        Minimum 3 symbols.
         Maximum 70 symbols.',
     'manufacturedDate' => 'Manufacture date',
     'manufDateHelp' => 'We advise include manufacture date to simplify search and understanding of your proposition by viewers.
-        Minimum 4 symbols.
+        Minimum 3 symbols.
         Maximum 70 symbols.',
     'partNum' => 'Part number',
     'partNumHelp' => 'We advise include part number to simplify search and understanding of your proposition by viewers.

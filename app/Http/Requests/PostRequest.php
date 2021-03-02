@@ -31,10 +31,10 @@ class PostRequest extends FormRequest
         $descRule = 'required|string|min:10|max:9000';
         $rules = [
             'title' => $titleRule,
-            'amount' => 'nullable|integer|digits_between:1,9',
+            'amount' => 'nullable|string|max:15',
             'company' => 'nullable|string|min:5|max:200',
-            'manufacturer' => 'nullable|string|min:5|max:70',
-            'manufactured_date' => 'nullable|string|min:4|max:70',
+            'manufacturer' => 'nullable|string|min:3|max:70',
+            'manufactured_date' => 'nullable|string|min:3|max:70',
             'part_number' => 'nullable|string|min:3|max:70',
             'description' => $descRule,
             'cost' => 'nullable|string|max:20',

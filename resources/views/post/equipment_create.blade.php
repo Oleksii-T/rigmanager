@@ -564,18 +564,17 @@
                         maxlength: 200
                     },
                     amount: {
-                        digits: true,
-                        maxlength: 9
+                        maxlength: 15
                     },
                     town: {
                         maxlength: 100
                     },
                     manufacturer: {
-                        minlength: 5,
+                        minlength: 3,
                         maxlength: 70
                     },
                     manufactured_date: {
-                        minlength: 4,
+                        minlength: 3,
                         maxlength: 70
                     },
                     part_number: {
@@ -606,19 +605,18 @@
                         maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
                     },
                     amount: {
-                        digits: '{{ __("validation.integer") }}',
-                        maxlength: '{{ __("validation.max.string", ["max" => 9]) }}'
+                        maxlength: '{{ __("validation.max.string", ["max" => 15]) }}'
                     },
                     company: {
                         minlength: '{{ __("validation.min.string", ["min" => 5]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 200]) }}'
                     },
                     manufacturer: {
-                        minlength: '{{ __("validation.min.string", ["min" => 5]) }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 3]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
                     },
                     manufactured_date: {
-                        minlength: '{{ __("validation.min.string", ["min" => 4]) }}',
+                        minlength: '{{ __("validation.min.string", ["min" => 3]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 70]) }}'
                     },
                     part_number: {
