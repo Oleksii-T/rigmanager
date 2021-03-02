@@ -1,8 +1,8 @@
 User-agent: *
 
-Disallow: /profile/*
-Disallow: /search
-Disallow: /search/
+Disallow: */profile/*
+Disallow: */search
+Disallow: */search/
 Disallow: /ajax/
 
 Allow: /

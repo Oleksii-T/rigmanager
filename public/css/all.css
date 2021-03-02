@@ -3973,6 +3973,14 @@ article ul li:before {
 		cursor: pointer;
 		width: 100%;
 	}
+	.catalog-name {
+		white-space: pre-line;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
 	.ad-col .ad-more {
 		height: auto;
 		width: auto;
@@ -3987,7 +3995,8 @@ article ul li:before {
 	.ad-title {
 		margin: 0px;
 	}
-	.ad-region {
+	.ad-region,
+	.catalog-lable.catalog-region {
 		display: none;
 	}
 	.header-logo img {
