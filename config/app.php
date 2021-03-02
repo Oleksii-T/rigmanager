@@ -102,7 +102,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'uk',
+    'fallback_locale' => 'en',
     /*
     'fallback_locale' => 'en',
     */

@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\URL;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
 if (env('APP_ENV') === 'production') {
     URL::forceScheme('https');
 }
