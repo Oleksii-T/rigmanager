@@ -12,7 +12,8 @@ use App\Partner;
 use App\Mailer;
 use App\Post;
 
-class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
+//class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
