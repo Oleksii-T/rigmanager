@@ -81,6 +81,9 @@ class FiltersController extends Controller
             return false;
         }
         $filtered = $posts->filter(function($post, $key) use ($condition) {
+            if (!$post->condition) {
+                return true;
+            }
             return in_array($post->condition, $condition);
         });
         return $filtered;

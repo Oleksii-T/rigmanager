@@ -403,6 +403,14 @@
                 default:
                     break;
             }
+            if ("{{$search['type'] == 'tags' && $search['tag_type'] == 'se'}}") {
+                filters.type = ["5","6"];
+                filters.thread = ["2"];
+            }  
+            if ("{{$search['type'] == 'tags' && $search['tag_type'] == 'eq'}}") {
+                filters.type = ["1","2","3","4"];
+                filters.thread = ["1"];
+            }  
 
             // add search request to mailer
             $('.add-request-to-mailer').click(function(e){
