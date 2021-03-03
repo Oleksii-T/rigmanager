@@ -109,6 +109,12 @@ class TranslatePost implements ShouldQueue
 
     private function translate ($column, $text, $lang) {
         // check is the translation column is empty (if it is not, it means that user made manual translation)
+        if (env('APP_ENV')!='production') {
+            $this->result[$column] = 'The transaction is disabled.
+App environment must be production.';
+            $this->shouldUpdate = true;
+            return;
+        }
         try {
             $translated = $this->translator->translate($text, ['target' => $lang])['text'];
             // escape special chars
