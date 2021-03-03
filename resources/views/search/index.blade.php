@@ -256,19 +256,17 @@
                 @endif
                 
                 <!--urgent-->
-                @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') && !($search['type'] == 'type' && $search['url'] == 'services') )
-                    <label class="label">{{__('ui.urgent')}}</label>
-                    <div id="urgent" class="check-block">
-                        <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch16" value="1" checked>
-                            <label for="ch16" class="check-label">{{__('ui.yes')}}</label>
-                        </div>
-                        <div class="check-item">
-                            <input type="checkbox" class="check-input" id="ch17" value="0" checked>
-                            <label for="ch17" class="check-label">{{__('ui.no')}}</label>
-                        </div>
+                <label class="label">{{__('ui.urgent')}}</label>
+                <div id="urgent" class="check-block">
+                    <div class="check-item">
+                        <input type="checkbox" class="check-input" id="ch16" value="1" checked>
+                        <label for="ch16" class="check-label">{{__('ui.yes')}}</label>
                     </div>
-                @endif
+                    <div class="check-item">
+                        <input type="checkbox" class="check-input" id="ch17" value="0" checked>
+                        <label for="ch17" class="check-label">{{__('ui.no')}}</label>
+                    </div>
+                </div>
 
                 <!--import-->
                 @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') && !($search['type'] == 'type' && $search['url'] == 'services') )
