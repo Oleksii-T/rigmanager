@@ -87,17 +87,18 @@
                 <div id="tab2" class="tab-content">
                     <div class="main-category-block">
                         <ul class="main-category-col">
-                            <li><a href="{{loc_url(route('tag-51'))}}">{{__('tags.complexService')}}</a></li>
+                            <li><a href="{{loc_url(route('tag-51'))}}">{{__('tags.multipleService')}}</a></li>
                             <li><a href="{{loc_url(route('tag-52'))}}">{{__('tags.emergencySe')}}</a></li>
                             <li><a href="{{loc_url(route('tag-53'))}}">{{__('tags.controll')}}</a></li>
+                            <li><a href="{{loc_url(route('tag-75'))}}">{{__('tags.drillingCntr')}}</a></li>
                             <li><a href="{{loc_url(route('tag-54'))}}">{{__('tags.airWaste')}}</a></li>
                             <li><a href="{{loc_url(route('tag-55'))}}">{{__('tags.loggingSe')}}</a></li>
                             <li><a href="{{loc_url(route('tag-56'))}}">{{__('tags.ndt')}}</a></li>
                             <li><a href="{{loc_url(route('tag-57'))}}">{{__('tags.bitSe')}}</a></li>
                             <li><a href="{{loc_url(route('tag-58'))}}">{{__('tags.dhmSe')}}</a></li>
-                            <li><a href="{{loc_url(route('tag-59'))}}">{{__('tags.grounding')}}</a></li>
                         </ul>
                         <ul class="main-category-col">
+                            <li><a href="{{loc_url(route('tag-59'))}}">{{__('tags.grounding')}}</a></li>
                             <li><a href="{{loc_url(route('tag-60'))}}">{{__('tags.sideHole')}}</a></li>
                             <li><a href="{{loc_url(route('tag-61'))}}">{{__('tags.directionalDrilling')}}</a></li>
                             <li><a href="{{loc_url(route('tag-62'))}}">{{__('tags.casingSe')}}</a></li>
@@ -106,9 +107,9 @@
                             <li><a href="{{loc_url(route('tag-65'))}}">{{__('tags.training')}}</a></li>
                             <li><a href="{{loc_url(route('tag-66'))}}">{{__('tags.pipeShipment')}}</a></li>
                             <li><a href="{{loc_url(route('tag-67'))}}">{{__('tags.sellControllFuel')}}</a></li>
-                            <li><a href="{{loc_url(route('tag-68'))}}">{{__('tags.vihacle')}}</a></li>
                         </ul>
                         <ul class="main-category-col">
+                            <li><a href="{{loc_url(route('tag-68'))}}">{{__('tags.vihacle')}}</a></li>
                             <li><a href="{{loc_url(route('tag-69'))}}">{{__('tags.builders')}}</a></li>
                             <li><a href="{{loc_url(route('tag-70'))}}">{{__('tags.loggingSt')}}</a></li>
                             <li><a href="{{loc_url(route('tag-71'))}}">{{__('tags.transport')}}</a></li>
