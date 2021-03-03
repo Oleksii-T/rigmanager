@@ -255,6 +255,20 @@
                     </div>  
                 @endif
                 
+                @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') && !($search['type'] == 'type' && $search['url'] == 'services') )
+                    <label class="label">{{__('ui.importExport')}}</label>
+                    <div id="import" class="check-block">
+                        <div class="check-item">
+                            <input type="checkbox" class="check-input" id="ch14" value="1" checked>
+                            <label for="ch14" class="check-label">{{__('ui.yes')}}</label>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" class="check-input" id="ch15" value="0" checked>
+                            <label for="ch15" class="check-label">{{__('ui.no')}}</label>
+                        </div>
+                    </div> 
+                @endif
+
                 <!--sorting-->
                 <label class="label">{{__('ui.sort')}}</label> 
                 <div class="radio-block filter-sorting">

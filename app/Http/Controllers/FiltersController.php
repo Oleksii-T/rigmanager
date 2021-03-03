@@ -126,6 +126,16 @@ class FiltersController extends Controller
         return $filtered;
     }
 
+    private function import($posts, $import) {
+        if (!$import) {
+            return false;
+        }
+        $filtered = $posts->filter(function($post, $key) use ($import) {
+            return in_array($post->is_import, $import);
+        });
+        return $filtered;
+    }
+
     private function sorting($posts, $value) {
         switch ($value) {
             case '2':
