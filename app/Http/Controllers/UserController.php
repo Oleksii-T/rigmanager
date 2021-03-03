@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 use App\User;
 use App\Post;
+use Google\Cloud\Translate\TranslateClient;
 
 class UserController extends Controller
 {
@@ -108,6 +109,12 @@ class UserController extends Controller
 
     public function favourites(Request $request)
     {
+        if (auth()->user()->email == 'alex.tarbeev@gmail.com') {
+            $translator = new TranslateClient(['key' => 'AIzaSyDTWxXwRDnAKv4eM0gkYof3uQ7zYs3_7-Q']); //create google translation object
+            $tr = $translator->translate('один', ['target' => 'en'])['text'];
+            dd($tr);
+        }
+
         $searchValue = null;
         $query = auth()->user()->favPosts->reverse();
         if ( isset($request->all()['text']) ) {
