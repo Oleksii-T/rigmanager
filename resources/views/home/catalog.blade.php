@@ -112,7 +112,7 @@
 			<div class="category-col">
 				<div class="category-item">
 					<div class="category-img"><a href="{{loc_url(route('tag-3'))}}"><img src="{{asset('icons/tags/3.png')}}" alt=""></a></div>
-					<div class="category-name"><a id="tag-3" href="{{loc_url(route('tag-3'))}}">{{__('tags.rig')}}</a> (<span class="orange">{{array_key_exists(3, $posts_amount) ? $posts_amount[3] : ''}}</span>)</div>
+					<div class="category-name"><a id="tag-3" href="{{loc_url(route('tag-3'))}}">{{__('tags.rig')}}</a> (<span class="orange">{{array_key_exists(3, $posts_amount) ? $posts_amount[3] : '0'}}</span>)</div>
 					<ul class="category-list">
 						<li><a href="{{loc_url(route('tag-3.1'))}}">{{__('tags.mastTools')}}</a></li>
 						<li><a href="{{loc_url(route('tag-3.2'))}}">{{__('tags.drillerHouse')}}</a></li>

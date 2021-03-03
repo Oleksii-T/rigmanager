@@ -76,7 +76,7 @@ class HomeController extends Controller
 
     public function catalog()
     {
-        $posts = Post::all()->groupBy('tag_encoded');
+        $posts = Post::where("is_active", 1)->groupBy('tag_encoded');
         $posts_amount = [];
         foreach ($posts as $tag => $p) {
             if (!is_int($tag)) {
