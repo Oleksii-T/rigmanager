@@ -28,7 +28,7 @@
                             <div class="form-note">{{__('ui.mailerTitleHelp')}}</div>
 
                             <label class="label">{{__('ui.mailerKeyword')}}</label>
-                            <input type="text" class="input input-long" name="keyword" placeholder="{{__('ui.mailerKeywords')}}" value="{{old('keyword') ?? $mailer->keyword}}">
+                            <input type="text" class="input input-long" name="keyword" placeholder="{{__('ui.mailerKeyword')}}" value="{{old('keyword') ?? $mailer->keyword}}">
                             <x-server-input-error inputName='keyword'/>
                             <div class="form-note">{{__('ui.mailerKeywordHelp')}}</div>
 

@@ -3952,6 +3952,13 @@ article ul li:before {
 	}
 }
 @media screen and (max-width: 576px) {
+	.form-block {
+		padding: 15px 10px 10px;
+	}
+	.profile-edit-column {
+		padding: 15px 10px 10px;
+		margin: 0 0 25px;
+	}
 	.category-img {
 		height: 160px;
 	}
