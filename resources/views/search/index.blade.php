@@ -255,6 +255,22 @@
                     </div>  
                 @endif
                 
+                <!--urgent-->
+                @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') && !($search['type'] == 'type' && $search['url'] == 'services') )
+                    <label class="label">{{__('ui.urgent')}}</label>
+                    <div id="urgent" class="check-block">
+                        <div class="check-item">
+                            <input type="checkbox" class="check-input" id="ch16" value="1" checked>
+                            <label for="ch16" class="check-label">{{__('ui.yes')}}</label>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" class="check-input" id="ch17" value="0" checked>
+                            <label for="ch17" class="check-label">{{__('ui.no')}}</label>
+                        </div>
+                    </div>
+                @endif
+
+                <!--import-->
                 @if ( !($search['type'] == 'tags' && $search['tag_type'] == 'se') && !($search['type'] == 'type' && $search['url'] == 'services') )
                     <label class="label">{{__('ui.importExport')}}</label>
                     <div id="import" class="check-block">
@@ -363,6 +379,8 @@
             filters.role = ['1','2'];
             filters.type = ["1","2","3","4","5","6"];
             filters.thread = ["1","2"];
+            filters.urgent = ["1","0"];
+            filters.import = ["1","0"];
             filters.sorting = "2";
 
             //set default type and thread value with respect to search

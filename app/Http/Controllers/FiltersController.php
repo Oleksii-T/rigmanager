@@ -126,6 +126,16 @@ class FiltersController extends Controller
         return $filtered;
     }
 
+    private function urgent($posts, $urgent) {
+        if (!$urgent) {
+            return false;
+        }
+        $filtered = $posts->filter(function($post, $key) use ($urgent) {
+            return in_array($post->is_urgent, $urgent);
+        });
+        return $filtered;
+    }
+
     private function import($posts, $import) {
         if (!$import) {
             return false;
