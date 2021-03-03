@@ -344,6 +344,7 @@ Route::get('drugoj-servis',     'SearchController@searchTag')->name('tag-50');
 Route::get('kompleksnye-uslugi',     'SearchController@searchTag')->name('tag-51');
 Route::get('avarijnye-raboty',     'SearchController@searchTag')->name('tag-52');
 Route::get('avarijnaya-sluzhba',     'SearchController@searchTag')->name('tag-53');
+Route::get('burovoj-podryadchik',     'SearchController@searchTag')->name('tag-75');
 Route::get('vybrosy-v-atmosferu',     'SearchController@searchTag')->name('tag-54');
 Route::get('geologo-issledovanie-skvazhiny',     'SearchController@searchTag')->name('tag-55');
     Route::get('geologo-issledovanie-skvazhiny/otbor-kerna',     'SearchController@searchTag')->name('tag-55.1');

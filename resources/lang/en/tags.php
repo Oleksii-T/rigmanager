@@ -381,6 +381,7 @@ return [
     'multipleService' => 'Multiple services',
     'emergencySe' => 'Emergency operations',
     'controll' => 'Well controll',
+    'drillingCntr' => 'Drilling contractor',
     'airWaste' => 'Atmospheric discharge',
     'loggingSe' => 'Geo-physical borehole survey',
         'coringSe' => 'Coring operations',

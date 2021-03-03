@@ -6,9 +6,10 @@
             <div class="select-block tag-lvl-1">
                 <select class="styled">
                     <option value="50">{{__('tags.otherService')}}</option>
-                    <option value="51">{{__('tags.complexService')}}</option>
+                    <option value="51">{{__('tags.multipleService')}}</option>
                     <option value="52">{{__('tags.emergencySe')}}</option>
                     <option value="53">{{__('tags.controll')}}</option>
+                    <option value="75">{{__('tags.drillingCntr')}}</option>
                     <option value="54">{{__('tags.airWaste')}}</option>
                     <option value="55">{{__('tags.loggingSe')}}</option>
                     <option value="56">{{__('tags.ndt')}}</option>

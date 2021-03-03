@@ -706,9 +706,10 @@
 				<div class="category-serv-col">
 					<ul class="category-serv-list">
 						<li><a href="{{loc_url(route('tag-50'))}}">{{__('tags.otherService')}}</a> (<span class="orange">{{array_key_exists(50, $posts_amount) ? $posts_amount[50] : '0'}}</span>)</li>
-						<li><a href="{{loc_url(route('tag-51'))}}">{{__('tags.complexService')}}</a> (<span class="orange">{{array_key_exists(51, $posts_amount) ? $posts_amount[51] : '0'}}</span>)</li>
+						<li><a href="{{loc_url(route('tag-51'))}}">{{__('tags.multipleService')}}</a> (<span class="orange">{{array_key_exists(51, $posts_amount) ? $posts_amount[51] : '0'}}</span>)</li>
 						<li><a href="{{loc_url(route('tag-52'))}}">{{__('tags.emergencySe')}}</a> (<span class="orange">{{array_key_exists(52, $posts_amount) ? $posts_amount[52] : '0'}}</span>)</li>
 						<li><a href="{{loc_url(route('tag-53'))}}">{{__('tags.controll')}}</a> (<span class="orange">{{array_key_exists(53, $posts_amount) ? $posts_amount[53] : '0'}}</span>)</li>
+						<li><a href="{{loc_url(route('tag-75'))}}">{{__('tags.drillingCntr')}}</a> (<span class="orange">{{array_key_exists(75, $posts_amount) ? $posts_amount[75] : '0'}}</span>)</li>
 						<li><a href="{{loc_url(route('tag-54'))}}">{{__('tags.airWaste')}}</a> (<span class="orange">{{array_key_exists(54, $posts_amount) ? $posts_amount[54] : '0'}}</span>)</li>
 						<li><a href="{{loc_url(route('tag-55'))}}">{{__('tags.loggingSe')}}</a> (<span class="orange">{{array_key_exists(55, $posts_amount) ? $posts_amount[55] : '0'}}</span>)
 							<ul class="category-sublist">
@@ -716,11 +717,11 @@
 								<li><a href="{{loc_url(route('tag-55.2'))}}">{{__('tags.stdWellLog')}}</a></li>
 							</ul></li>
 						<li><a href="{{loc_url(route('tag-56'))}}">{{__('tags.ndt')}}</a> (<span class="orange">{{array_key_exists(56, $posts_amount) ? $posts_amount[56] : '0'}}</span>)</li>
-						<li><a href="{{loc_url(route('tag-57'))}}">{{__('tags.bitSe')}}</a> (<span class="orange">{{array_key_exists(57, $posts_amount) ? $posts_amount[57] : '0'}}</span>)</li>
 					</ul>
 				</div>
 				<div class="category-serv-col">
 					<ul class="category-serv-list">
+						<li><a href="{{loc_url(route('tag-57'))}}">{{__('tags.bitSe')}}</a> (<span class="orange">{{array_key_exists(57, $posts_amount) ? $posts_amount[57] : '0'}}</span>)</li>
 						<li><a href="{{loc_url(route('tag-58'))}}">{{__('tags.dhmSe')}}</a> (<span class="orange">{{array_key_exists(58, $posts_amount) ? $posts_amount[58] : '0'}}</span>)</li>
 						<li><a href="{{loc_url(route('tag-59'))}}">{{__('tags.grounding')}}</a> (<span class="orange">{{array_key_exists(59, $posts_amount) ? $posts_amount[59] : '0'}}</span>)</li>
 						<li><a href="{{loc_url(route('tag-60'))}}">{{__('tags.sideHole')}}</a> (<span class="orange">{{array_key_exists(60, $posts_amount) ? $posts_amount[60] : '0'}}</span>)</li>
