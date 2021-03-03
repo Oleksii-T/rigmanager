@@ -378,7 +378,7 @@ return [
     /* ========SERVICES ======== */
 
     'otherService' => 'Other services',
-    'complexService' => 'Multiple services',
+    'multipleService' => 'Multiple services',
     'emergencySe' => 'Emergency operations',
     'controll' => 'Well controll',
     'airWaste' => 'Atmospheric discharge',
