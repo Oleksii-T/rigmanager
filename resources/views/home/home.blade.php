@@ -128,7 +128,7 @@
                             @if ($partner)
                                 <a href="{{loc_url(route('search', ['author'=>$partner->user->url_name]))}}" class="brand-item"><img src="{{asset($partner->logo)}}" alt=""></a>
                             @else
-                                <a href="{{loc_url(route('contacts'))}}" class="brand-item"><img src="{{asset('icons/partnerIcon.svg')}}" alt=""></a>
+                                <a href="{{loc_url(route('faq'))}}#WhatIsPartner" class="brand-item"><img src="{{asset('icons/partnerIcon.svg')}}" alt=""></a>
                             @endif
                         </div>
                     @endforeach

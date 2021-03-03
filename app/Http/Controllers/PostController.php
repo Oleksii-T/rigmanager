@@ -61,7 +61,7 @@ class PostController extends Controller
     {
         //check for maximum posts
         $max = auth()->user()->is_pro ? 500 : 200;
-        if (auth()->user()->posts->count() >= $max) {
+        if (!$user->partner && auth()->user()->posts->count() >= $max) {
             if ($request->wantsJson()) {
                 return abort(400, __('messages.tooManyPostsError'));
             }
@@ -74,7 +74,7 @@ class PostController extends Controller
         //check for max urgent posts
         if ( isset($input['is_urgent']) ) {
             $max = auth()->user()->is_pro ? 300 : 100;
-            if (auth()->user()->posts()->where('is_urgent', 1)->get()->count() >= $max) {
+            if (!$user->partner && !$user->partner && auth()->user()->posts()->where('is_urgent', 1)->get()->count() >= $max) {
                 if ($request->wantsJson()) {
                     return abort(400, __('messages.tooManyUrgentPostsError'));
                 }
@@ -264,7 +264,7 @@ class PostController extends Controller
         //parse is_urgent
         if ( isset($input['is_urgent']) ) {
             $max = auth()->user()->is_pro ? 300 : 100;
-            if ( !$post->is_urgent && auth()->user()->posts()->where('is_urgent', 1)->get()->count() >= $max) {
+            if (!$user->partner && !$post->is_urgent && auth()->user()->posts()->where('is_urgent', 1)->get()->count() >= $max) {
                 if ($request->wantsJson()) {
                     return abort(400, __('messages.tooManyUrgentPostsError'));
                 }

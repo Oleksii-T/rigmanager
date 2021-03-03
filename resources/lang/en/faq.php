@@ -86,6 +86,19 @@ return [
         All you need to do is fill the import file with according to the rules and submit it.
         Available only for Pro users.',
 
+    'qPartner' => 'What is an Affiliate Program?',
+    'aPartner' => 'The affiliate program with rigmanager.com.ua allows you to increase your base of potential customers.
+        Partners are provided with:',
+    'aPartnerL1' => 'Place in the "Partners" block on the home page of the site;',
+    'aPartnerL2' => 'Special mark on posts;',
+    'aPartnerL3' => 'Technical support 24/7;',
+    'aPartnerL4' => 'Help with posts managing;',
+    'aPartnerL5' => 'Removing limits. (max. no. of posts, max. no. of urgent posts); ',
+    'aPartnerL6' => 'Possibility to advertise your company in post text;',
+    'aPartnerL7' => 'Priority for your posts;',
+    'aPartnerL8' => 'Impact on the development of our resource.',
+    'aPartner2' => 'If you are interested or want more information, please contact us',
+
     'q' => '',
     'a' => '',
 

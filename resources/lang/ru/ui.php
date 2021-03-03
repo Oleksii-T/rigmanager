@@ -78,6 +78,7 @@ return [
     'saveChanges' => 'Сохранить изменения',
     'publish' => 'Опубликовать',
     'setting' => 'Настройка',
+    'here' => 'здесь',
 
     // auth massages
     'auth' => 'Авторизація',

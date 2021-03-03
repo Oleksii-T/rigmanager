@@ -148,6 +148,28 @@
 						<a href="{{loc_url(route('import.rules'))}}">{{__('postImportRules.title')}}</a></p>
 					</div>
 				</div>
+				<div class="faq-item">
+					<a href="" id="WhatIsPartner" class="faq-top">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255.99 511.99">
+							<path d="M253,248.62,18.37,3.29A10.67,10.67,0,1,0,3,18L230.56,256,3,494A10.67,10.67,0,0,0,18.37,508.7L253,263.37A10.7,10.7,0,0,0,253,248.62Z"/>
+						</svg>
+						{{__('faq.qPartner')}}
+					</a>
+					<div class="faq-hidden">
+						<p>{{__('faq.aPartner')}}</p>
+						<ol>
+							<li>{{__('faq.aPartnerL1')}}</li>
+							<li>{{__('faq.aPartnerL2')}}</li>
+							<li>{{__('faq.aPartnerL3')}}</li>
+							<li>{{__('faq.aPartnerL4')}}</li>
+							<li>{{__('faq.aPartnerL5')}}</li>
+							<li>{{__('faq.aPartnerL6')}}</li>
+							<li>{{__('faq.aPartnerL7')}}</li>
+							<li>{{__('faq.aPartnerL8')}}</li>
+						</ol>
+						<p>{{__('faq.aPartner2')}} <a href="{{loc_url(route('contacts'))}}">{{__('ui.here')}}</a>.</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -168,6 +190,8 @@
 				toggleFaqText( $('#WhatIsImport') );
 			} else if ( currLoc.includes('HowToCreateMailer') ) {
 				toggleFaqText( $('#HowToCreateMailer') );
+			}	else if ( currLoc.includes('#WhatIsPartner') ) {
+				toggleFaqText( $('#WhatIsPartner') );
 			}
         });
     </script>
