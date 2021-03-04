@@ -47,7 +47,7 @@
 			<div class="holder">
 				<div class="footer-block">
 					<div class="footer-copy">
-						&copy; <script>var mdate = new Date(); document.write(mdate.getFullYear());</script> 
+						&copy; {{ date("Y") }}
 						<span>«Rigmanager»</span> - {{__('ui.introduction')}}. {{__('ui.footerCopyright')}}
 					</div>
 					<div class="footer-col">

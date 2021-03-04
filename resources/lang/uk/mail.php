@@ -4,6 +4,7 @@ return [
     // general
     'mailGreetings' => 'Добрий день',
     'mailSlg' => 'З повагою,',
+    'contactBack' => 'Якщо у вас є які-небудь питання або сумніви, не соромтеся зв’язуватися:',
 
     //subscription notifications
     'subNotifSubject' => 'Пам\'ятка про платну підписку. ',

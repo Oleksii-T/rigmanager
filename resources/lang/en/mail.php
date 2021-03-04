@@ -4,6 +4,7 @@ return [
     // general
     'mailGreetings' => 'Hi',
     'mailSlg' => 'With best regards,',
+    'contactBack' => 'If you have any questions or concerns, don\'t hesitate to get in touch:',
 
     //subscription notifications
     'subNotifSubject' => 'Reminder about paid subscription.',
