@@ -65,17 +65,18 @@ class Post extends Model
     public function getPreviewImageAttribute() {
         if ( $this->images->isEmpty() ) {
             $tag = $this->tag_encoded;
+            if ( $this->isService($tag) ) {
+                return asset('icons/tags/service.png');
+            }
             preg_match_all('/^[0-9]+/', $tag, $m);
             $tag = $m[0][0];
             $image = 'icons/tags/' . $tag . '.png';
             if ( file_exists($image) ) {
-                return (asset($image));
-            } else {
-                return (asset('icons/noImage.svg'));
-            }
-        } else {
-            return $this->images()->where('version', 'optimized')->first()->url;
+                return asset($image);
+            } 
+            return asset('icons/noImage.svg');
         }
+        return $this->images()->where('version', 'optimized')->first()->url;
     }
 
     public function setViewsAttribute($value)
@@ -117,7 +118,8 @@ class Post extends Model
 
     public function setCostAttribute($value)
     {
-        $this->attributes['cost'] = preg_replace('/[^0-9.]+/', '', $value);
+        $value = preg_replace('/[^0-9.]+/', '', $value);
+        $this->attributes['cost'] = !$value ? null : $value;
     }
 
     public function setUserPhoneRawAttribute($value)
@@ -287,10 +289,8 @@ class Post extends Model
 
     public function getCostReadableAttribute()
     {
-        if (!$this->cost) {
-            return '';
-        }
-        return formatNumberToCost($this->cost, $this->currency);
+        $c = $this->currency=="UAH" ? '₴' : '$' ;
+        return $c . number_format($this->cost, 2, '.', ',');
     }
 
     public function getUserPhoneReadableAttribute() {

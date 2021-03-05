@@ -177,7 +177,7 @@
   border-color: #ff7800;
 }
 .dz-progress {
-  display: block;
+  display: none;
 }
 .dz-error-mark path {
   fill: red;

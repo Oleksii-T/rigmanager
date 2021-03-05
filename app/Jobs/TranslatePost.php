@@ -116,7 +116,7 @@ App environment must be production.';
             return;
         }
         try {
-            $translated = $this->translator->translate($text, ['target' => $lang])['text'];
+            $translated = $this->translator->translate($text, ['target' => $lang, 'format'=>'text'])['text'];
             // escape special chars
             $translated = str_replace('&amp;', '&', $translated);
             $translated = str_replace('&quot;', '"', $translated);

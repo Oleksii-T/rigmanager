@@ -57,7 +57,7 @@
 		<div class="category">
 			<div class="category-col">
 				<div class="category-item">
-					<div class="category-img"><a href="{{loc_url(route('tag-0'))}}"><img src="{{asset('icons/tags/19.png')}}" alt=""></a></div>
+					<div class="category-img"><a href="{{loc_url(route('tag-0'))}}"><img src="{{asset('icons/noImage.svg')}}" alt=""></a></div>
 					<div class="category-name"><a href="{{loc_url(route('tag-0'))}}">{{__('tags.other')}}</a> (<span class="orange">{{array_key_exists(0, $posts_amount) ? $posts_amount[0] : '0'}}</span>)</div>
 				</div>
 			</div>

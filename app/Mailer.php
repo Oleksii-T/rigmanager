@@ -27,12 +27,12 @@ class Mailer extends Model
 
     public function setCostFromAttribute($value) {
         $value = preg_replace('/[^0-9.]+/', '', $value);
-        $this->attributes['cost_from'] = $value=='0.00' ? null : $value;
+        $this->attributes['cost_from'] = !$value ? null : $value;
     }
     
     public function setCostToAttribute($value) {
         $value = preg_replace('/[^0-9.]+/', '', $value);
-        $this->attributes['cost_to'] = $value=='0.00' ? null : $value;
+        $this->attributes['cost_to'] = !$value ? null : $value;
     }
 
     public function setTypeAttribute($value) {
@@ -99,11 +99,13 @@ class Mailer extends Model
     }
 
     public function getCostFromReadableAttribute() {
-        return formatNumberToCost($this->cost_from, $this->currency);
+        $c = $this->currency=="UAH" ? '₴' : '$' ;
+        return $c . number_format($this->cost_from, 2, '.', ',');
     }
 
     public function getCostToReadableAttribute() {
-        return formatNumberToCost($this->cost_to, $this->currency);
+        $c = $this->currency=="UAH" ? '₴' : '$' ;
+        return $c . number_format($this->cost_to, 2, '.', ',');
     }
 
     public function getAllConditionsAttribute() {

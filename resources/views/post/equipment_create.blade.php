@@ -49,6 +49,7 @@
                             <label class="label">{{__('ui.title')}} <span class="orange">*</span></label>
                             <input class="input input-long" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{isset($post) ? (old('title') ?? $post->title) : old('title')}}"/>
                             <x-server-input-error inputName='title'/>
+                            <div class="form-note lifetime-note-pre">{{__('ui.titleEqHelp')}}</div>
 
                             <label class="label">{{__('ui.chooseTag')}} <span class="orange">*</span></label>
                             <div class="form-category">
@@ -67,7 +68,7 @@
                         <div class="form-section"> <!--type+role+condition+optionals-->
                             <div class="add-radio">
                                 <div class="add-radio-col">
-                                    <label class="label">{{__('ui.choosePostType')}} <span class="orange">*</span></label>
+                                    <label class="label">{{__('ui.choosePostType')}}<span class="orange">*</span></label>
                                     <div class="radio-block">
                                         <div class="radio-item">
                                             <input type="radio" name="type" class="radio-input" id="r1" value="1" {{isset($post) ? ($post->type==1 ? 'checked' : '') : 'checked'}}>
@@ -88,7 +89,7 @@
                                     </div>
                                 </div>
                                 <div class="add-radio-col">
-                                    <label class="label">{{__('ui.chooseCondition')}} <span class="orange">*</span></label>
+                                    <label class="label">{{__('ui.chooseCondition')}}<span class="orange">*</span></label>
                                     <div class="radio-block">
                                         <div class="radio-item">
                                             <input type="radio" name="condition" class="radio-input" id="r20" value="1" {{isset($post) ? ($post->condition==1 ? 'checked' : '') : 'checked'}}>
@@ -109,7 +110,7 @@
                                     </div>
                                 </div>
                                 <div class="add-radio-col">
-                                    <label class="label">{{__('ui.choosePostRole')}} <span class="orange">*</span></label>
+                                    <label class="label">{{__('ui.choosePostRole')}}<span class="orange">*</span></label>
                                     <div class="radio-block">
                                         <div class="radio-item">
                                             <input type="radio" name="role" class="radio-input" id="r11" value="1" {{isset($post) ? ($post->role==1 ? 'checked' : '') : 'checked'}}>
@@ -130,6 +131,8 @@
                                     <span class="text-show">{{__('ui.showOptionals')}}</span>
                                 </a>
                                 <div class="faq-hidden">   
+                                    <p>{{__('ui.optionalsHelp')}}</p>
+
                                     <div class="company hidden">
                                         <label class="label">{{__('ui.company')}}</label>
                                         <input class="input" name="company" type="text" value="{{isset($post) ? (old('company') ?? $post->company) : old('company')}}"/>
@@ -188,6 +191,7 @@
                             <label class="label">{{__('ui.description')}} <span class="orange">*</span></label>
                             <textarea cols="30" rows="10" maxlength="9000" class="textarea" name="description" form="form-post">{{isset($post) ? (old('description') ?? $post->description) : old('description')}}</textarea>
                             <x-server-input-error inputName='description'/>
+                            <div class="form-note lifetime-note-pre">{{__('ui.descriptionEqHelp')}}</div>
                         </div>
                         <div class="form-section"> <!--images-->
                             <label class="label">{{__('ui.image')}}</label>
@@ -195,6 +199,7 @@
                                 <div class="dz-message"><span>{{__('ui.dzDesc')}}</span></div>
                             </div>
                             <x-server-input-error inputName='images'/>
+                            <div class="form-note lifetime-note-pre">{{__('ui.imageHelp')}}</div>
                         </div>
                         <div class="form-section"> <!--lifetime+special-->
                             <label class="label">{{__('ui.chooseActiveTo')}} <span class="orange">*</span></label>
@@ -250,6 +255,11 @@
                             <x-server-input-error inputName='user_email'/>
                             <div class="form-note">{{__('ui.contactHelp')}}</div>
                         </div>
+                        @if (isset($post))
+                            <div class="form-section"> <!--edit_translations-->
+                                <p><a class="not-ready" href="{{loc_url(route('posts.trans.edit', ['post'=>$post->url_name]))}}">{{__('ui.editTrans')}}</a></p>
+                            </div>
+                        @endif
                         <div class="form-button-block">
                             <button type="submit" class="button">{{isset($post) ? __('ui.saveChanges') : __('ui.publish')}}</button>
                             @if (isset($post))
@@ -314,10 +324,8 @@
                 });
                 /*
                 var tag = $('input[name=tag_encoded]').val();
-                console.log(tag);
                 $('#popup-select-eq-tag option').each(function(){
                     if ( $(this).attr('value')==tag ) {
-                        console.log( $(this) );
                         $(this).parent().removeClass('hidden');
                         $(this).parent().val(tag);
                         $(this).parent().selectmenu('refresh');
@@ -336,7 +344,6 @@
             //show/hide "town" input
             $('select[name=region_encoded]').selectmenu({
                 change: function (event, ui) {
-                    console.log('changed region!');
                     var val = $(this).find('option:selected').val();
                     if (val==0) {
                         $('div.town').addClass('hidden');

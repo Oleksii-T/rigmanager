@@ -237,8 +237,9 @@ class PostController extends Controller
         if ($post->thread == 1) {
             return view('post.equipment_create', compact('post', 'images'));
         } else if ($post->thread == 2) {
-            return view('post.service_create', compact('post'));
+            return view('post.service_create', compact('post', 'images'));
         } else if ($post->thread == 3) {
+            //TODO
             abort(404);
         }
         abort(404);
@@ -370,6 +371,18 @@ class PostController extends Controller
     {
         Session::flash('message-success', __('messages.postEdited'));
         return redirect(loc_url(route('profile.posts')));
+    }
+
+    public function editTranslations($locale, $urlName=null) {
+        $urlName = $urlName==null ? $locale : $urlName;
+        $post = Post::where('url_name', $urlName)->first();
+        if (!$post) {
+            abort(404);
+        }
+        if (!$this->isOwner($post->user->id)) {
+            abort(403);
+        }
+        return view('post.edit_translations', compact('post'));
     }
 
     /**
@@ -656,6 +669,7 @@ class PostController extends Controller
             } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importTypeError'); }
         } else { return __('ui.post') . ' #' . ($key+1) . '. ' . __('messages.importCompulsoryError'); }
     }
+
     private function costValidate ($cost) 
     {
         if (!$cost) {
@@ -666,30 +680,11 @@ class PostController extends Controller
             return false;
         }
         $cost = preg_replace('/[^0-9.]+/', '', $cost);
-        $occ = substr_count ($cost, '.');
-        if ($occ!=0) {
-            //remove all dots but one
-            if ($occ != 1) {
-                for ($i=1; $i < $occ; $i++) { 
-                    $pos = strpos($cost, '.');
-                    if ($pos !== false) {
-                        $cost = substr_replace($cost, '', $pos, 1);
-                    }
-                }
-            }
-            //remove all coins but one
-            $dot = strpos($cost, '.');
-            $length = strlen ($cost);
-            $diff = $length-$dot;
-            if ($diff==1) {
-                $cost = $cost . '00';
-            } else if ($diff==2) {
-                $cost = $cost . '0';
-            } else if ($diff>3) {
-                $cost = substr($cost, 0, -1*($diff-3));
-            }
+        if (!$cost) {
+            return false;
         }
-        if (strlen($cost) > 0 && strlen($cost) < 100) {
+        $cost = number_format($cost, 2, '.', ',');
+        if (strlen($cost) < 16) {
             return ['cost'=>$cost, 'currency'=>$curr];
         } else {
             return false;

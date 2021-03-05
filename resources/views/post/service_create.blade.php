@@ -50,6 +50,7 @@
                             <label class="label">{{__('ui.title')}} <span class="orange">*</span></label>
                             <input class="input input-long" name="title" type="text" placeholder="{{__('ui.title')}}" value="{{isset($post) ? (old('title') ?? $post->title) : old('title')}}"/>
                             <x-server-input-error inputName='title'/>
+                            <div class="form-note lifetime-note-pre">{{__('ui.titleSeHelp')}}</div>
 
                             <label class="label">{{__('ui.chooseTag')}} <span class="orange">*</span></label>
                             <div class="form-category">
@@ -68,7 +69,7 @@
                         <div class="form-section"> <!--type-->
                             <div class="add-radio">
                                 <div class="add-radio-col">
-                                    <label class="label">{{__('ui.choosePostType')}} <span class="orange">*</span></label>
+                                    <label class="label">{{__('ui.choosePostType')}}<span class="orange">*</span></label>
                                     <div class="radio-block">
                                         <div class="radio-item">
                                             <input type="radio" name="type" class="radio-input" id="r1" value="5" {{isset($post) ? ($post->type==5 ? 'checked' : '') : 'checked'}}>
@@ -91,6 +92,15 @@
                             <label class="label">{{__('ui.description')}} <span class="orange">*</span></label>
                             <textarea cols="30" rows="10" maxlength="9000" class="textarea" name="description" form="form-post">{{isset($post) ? (old('description') ?? $post->description) : old('description')}}</textarea>
                             <x-server-input-error inputName='description'/>
+                            <div class="form-note lifetime-note-pre">{{__('ui.descriptionSeHelp')}}</div>
+                        </div>
+                        <div class="form-section"> <!--images-->
+                            <label class="label">{{__('ui.image')}}</label>
+                            <div class="upload-zone">
+                                <div class="dz-message"><span>{{__('ui.dzDesc')}}</span></div>
+                            </div>
+                            <div class="form-note lifetime-note-pre">{{__('ui.imageHelp')}}</div>
+                            <x-server-input-error inputName='images'/>
                         </div>
                         <div class="form-section"> <!--lifetime+special-->
                             <label class="label">{{__('ui.chooseActiveTo')}} <span class="orange">*</span></label>
@@ -139,6 +149,11 @@
                             <x-server-input-error inputName='user_email'/>
                             <div class="form-note">{{__('ui.contactHelp')}}</div>
                         </div>
+                        @if (isset($post))
+                            <div class="form-section"> <!--edit_translations-->
+                                <p><a class="not-ready" href="{{loc_url(route('posts.trans.edit', ['post'=>$post->url_name]))}}">{{__('ui.editTrans')}}</a></p>
+                            </div>
+                        @endif
                         <div class="form-button-block">
                             <button type="submit" class="button">{{isset($post) ? __('ui.saveChanges') : __('ui.publish')}}</button>
                             @if (isset($post))
@@ -181,6 +196,170 @@
                 $('.lifetime-note-pre').toggleClass('hidden');
             });
 
+            // createa file upload form (dropzone)
+            if ("{{isset($post)}}") {
+                var postId = $('#post-id-flag').text();
+                var dzUrl = "{{route('posts.update', ['post'=>':postId'])}}".replace(':postId', postId);
+                $('.upload-zone').dropzone({
+                    url: dzUrl,
+                    paramName: "images",
+                    uploadMultiple: true,
+                    parallelUploads: 5,
+                    maxFilesize: 5, // MB
+                    addRemoveLinks: true,
+                    timeout: 5000,
+                    maxFiles: 5,
+                    acceptedFiles: '.jpeg,.jpg,.png',
+                    autoProcessQueue: false,
+                    dictDefaultMessage: "",
+                    dictFileTooBig: "{{__('ui.dzBigFile')}}",
+                    dictInvalidFileType: "{{__('ui.dzInvalidMime')}}",
+                    dictResponseError: "{{__('ui.dzServerError')}}",
+                    dictUploadCanceled: "{{__('ui.dzUploadCanceled')}}",
+                    dictRemoveFile: "{{__('ui.dzUploadRemoveLink')}}",
+                    dictMaxFilesExceeded: "{{__('ui.dzTooFewFiles')}}",
+                    init: function () {
+                        var thisDropzone = this;
+
+                        if ('{{isset($images) && $images}}') {
+                            var images = JSON.parse('{!! isset($post) ? $images : "" !!}');
+                            $.each(images, function(key,value){
+                                var mockFile = { name: value.name, size: value.size, id: value.id };
+                                thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+                                thisDropzone.options.thumbnail.call(thisDropzone, mockFile, value.url);
+                            });
+                        }
+
+                        this.on("removedfile", function(file) {
+                            if (file.id !== undefined) {
+                                ajaxUrl = "{{route('posts.img.delete', ['post'=>':postId', 'image'=>':imgNo'])}}";
+                                ajaxUrl = ajaxUrl.replace(':imgNo', file.id);
+                                ajaxUrl = ajaxUrl.replace(':postId', postId);
+                                $.ajax({
+                                    type: "POST",
+                                    url: ajaxUrl,
+                                    data: {
+                                        _method: 'PATCH',
+                                        _token: "{{ csrf_token() }}"
+                                    },
+                                    success: function(data) {
+                                        data
+                                            ? showPopUpMassage(true, "{{ __('messages.postImgDeleted') }}")
+                                            : showPopUpMassage(false, "{{ __('messages.error') }}");
+                                    },
+                                    error: function() {
+                                        showPopUpMassage(false, "{{ __('messages.error') }}");
+                                    }
+                                });
+                            }
+                        });
+
+                        $("#form-post button[type=submit]").click(function (e) {
+                            e.preventDefault();
+                            $('.dz-error').empty();
+                            $('.dz-error').addClass('hidden');
+                            $(this).addClass('loading');
+                            if (thisDropzone.getQueuedFiles().length > 0) {
+                                thisDropzone.processQueue();
+                            } else {
+                                $('#form-post').submit();
+                            }
+                        });
+
+                        this.on('sending', function(file, xhr, formData) {
+                            // Append all form inputs to the formData Dropzone will POST
+                            var data = $('#form-post').serializeArray();
+                            $.each(data, function(key, el) {
+                                formData.append(el.name, el.value);
+                            });
+                        });
+
+                        this.on("successmultiple", function(){
+                            window.location="{{ loc_url(route('posts.update.fake')) }}";
+                        });
+
+                        this.on("errormultiple", function(file, errorMessage, xhr){
+                            showErrorsFromDropzone(thisDropzone, errorMessage);
+                        });
+                    },
+                });
+            } else {
+                $('.upload-zone').dropzone({
+                    url: "{{route('posts.store')}}",
+                    paramName: "images",
+                    uploadMultiple: true,
+                    parallelUploads: 5,
+                    maxFilesize: 5, // MB
+                    addRemoveLinks: true,
+                    timeout: 5000,
+                    maxFiles: 5,
+                    acceptedFiles: '.jpeg,.jpg,.png',
+                    autoProcessQueue: false,
+                    dictDefaultMessage: "",
+                    dictFileTooBig: "{{__('ui.dzBigFile')}}",
+                    dictInvalidFileType: "{{__('ui.dzInvalidMime')}}",
+                    dictResponseError: "{{__('ui.dzServerError')}}",
+                    dictUploadCanceled: "{{__('ui.dzUploadCanceled')}}",
+                    dictRemoveFile: "{{__('ui.dzUploadRemoveLink')}}",
+                    dictMaxFilesExceeded: "{{__('ui.dzTooFewFiles')}}",
+                    init: function () {
+                        var myDropzone = this;
+
+                        $("#form-post button[type=submit]").click(function (e) {
+                            e.preventDefault();
+                            $('.dz-error').empty();
+                            $('.dz-error').addClass('hidden');
+                            $(this).addClass('loading');
+                            if (myDropzone.getQueuedFiles().length > 0) {
+                                myDropzone.processQueue();
+                            } else {
+                                $('#form-post').submit();
+                            }
+                        });
+
+                        this.on('sending', function(file, xhr, formData) {
+                            // Append all form inputs to the formData Dropzone will POST
+                            var data = $('#form-post').serializeArray();
+                            $.each(data, function(key, el) {
+                                formData.append(el.name, el.value);
+                            });
+                        });
+
+                        this.on("successmultiple", function(){
+                            window.location="{{ loc_url(route('posts.store.fake')) }}";
+                        });
+
+                        this.on("errormultiple", function(file, errorMessage, xhr){
+                            showErrorsFromDropzone(myDropzone, errorMessage);
+                        });
+                    },
+                });
+            }
+
+            // show error from submit post with dropzone 
+            function showErrorsFromDropzone(dz, error) {
+                $("#form-post button[type=submit]").removeClass('loading');
+                // parse error messages
+                if (typeof error['message'] != 'undefined' && error['message'] == "The given data was invalid.") { // if it is error from input fields
+                    showPopUpMassage(false, "{{ __('messages.postInputErrors') }}");
+                    var invalidInputErrors = error['errors'];
+                    $.each(invalidInputErrors, function(key, value) {
+                        $('.'+key+'.dz-error').text(value);
+                        $('input[name='+key+']').addClass('form-error');
+                        $('textarea[name='+key+']').addClass('form-error');
+                        $('select[name='+key+']').addClass('form-error');
+                        $('.'+key+'.dz-error').removeClass('hidden');
+                    });
+                } else if (typeof error['message'] != 'undefined' && error['message'] != '') {// if it is custom error from post upload no check for 400 error code
+                    showPopUpMassage(false, error['message']);
+                //} else if (typeof error['code'] != 'undefined') { // if it is any error with error code
+                    //showPopUpMassage(false, error['code'] + ". " + "{{__('messages.error')}}");
+                } else {
+                    showPopUpMassage(false, "{{__('messages.error')}}");
+                }
+                dz.removeAllFiles();
+            }
+
             //select all values if it is editing 
             if ("{{isset($post)}}") {
                 //show company field
@@ -203,10 +382,8 @@
                 });
                 /*
                 var tag = $('input[name=tag_encoded]').val();
-                console.log(tag);
                 $('#popup-select-eq-tag option').each(function(){
                     if ( $(this).attr('value')==tag ) {
-                        console.log( $(this) );
                         $(this).parent().removeClass('hidden');
                         $(this).parent().val(tag);
                         $(this).parent().selectmenu('refresh');

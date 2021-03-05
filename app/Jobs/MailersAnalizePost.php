@@ -56,7 +56,6 @@ class MailersAnalizePost implements ShouldQueue
                 continue;
             }
             foreach ($userMailers as  $mailer) {
-                var_dump('Chekc mailer: ' . $mailer->title);
                 if (!$mailer->tag || $this->ckeckTags($mailer->tag) ) {
                     if (!$mailer->keyword || $this->checkKeywords($mailer->keyword) ) {
                         if (!$mailer->author || $mailer->author == $this->post->user->id ) {

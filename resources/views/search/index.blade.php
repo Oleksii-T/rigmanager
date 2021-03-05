@@ -298,6 +298,10 @@
                         <input type="radio" name="sorting" class="radio-input" id="r3" value="4">
                         <label for="r3" class="radio-label">{{__('ui.sortExpensive')}}</label>
                     </div>
+                    <div class="radio-item">
+                        <input type="radio" name="sorting" class="radio-input" id="r4" value="5">
+                        <label for="r4" class="radio-label">{{__('ui.sortViews')}}</label>
+                    </div>
                 </div>
  
             </div>
@@ -434,7 +438,6 @@
                         _token: "{{ csrf_token() }}",
                     },
                     success: function(data) {
-                        console.log(data);
                         try {
                             data = JSON.parse(data);
                             if ( data.code == 200 ) {

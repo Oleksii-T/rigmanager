@@ -28,7 +28,7 @@
                 @if ($post->region_encoded!=0)
                     <div class="catalog-lable catalog-region">{{$post->region_readable}}</div>
                 @endif
-                @if ($type=='profile.posts' && auth()->user()->is_pro)
+                @if (auth()->check() && auth()->user()->is_pro)
                     <div class="catalog-lable">{{__('ui.views') . ': ' . $post->views_amount}}</div>
                 @endif
                 <div class="catalog-date">{{$post->created_at_readable}}</div>
@@ -39,7 +39,7 @@
                 <div class="catalog-text">{{preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $post->description)}}</div>
             @endif
             <div class="catalog-line-bottom">
-                <div class="catalog-price">{{$post->cost_readable}}</div>
+                <div class="catalog-price">{{$post->cost ? $post->cost_readable : ''}}</div>
                 <div>
                     @if ($post->is_urgent)
                         <div class="catalog-lable orange">{{__('ui.urgent')}}</div>

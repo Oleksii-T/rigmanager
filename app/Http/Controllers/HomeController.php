@@ -36,8 +36,8 @@ class HomeController extends Controller
         
         $urgent_posts = Post::where(['is_active'=>1,'is_urgent'=>1])->orderBy('created_at', 'desc')->get();
         $urgent_posts = $urgent_posts->diff($new_posts);
-        if ($urgent_posts->isNotEmpty() && $urgent_posts->count()>4) {
-            $urgent_posts = $urgent_posts->random(4);
+        if ($urgent_posts->isNotEmpty() && $urgent_posts->count()>8) {
+            $urgent_posts = $urgent_posts->random(8);
         }
         $partners = Partner::where('is_on_home', true)->take(7)->get();
         $diff = 7 - $partners->count();

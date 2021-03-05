@@ -152,10 +152,13 @@ class FiltersController extends Controller
     private function sorting($posts, $value) {
         switch ($value) {
             case '2':
-                $sorted = $posts->sortBy('created_at');
+                $sorted = $posts->sortByDesc('created_at');
                 return $sorted;
             case '3':
                 $sorted = $posts->sortBy(function ($post, $key) {
+                    if (!$post->cost) {
+                        return 999999999999.99;
+                    }
                     if ($post->cost && $post->currency!='USD') {
                         return UsdExchangeController::uahToUsd($post->cost);
                     }
@@ -169,6 +172,9 @@ class FiltersController extends Controller
                     }
                     return $post->cost;
                 });
+                return $sorted;
+            case '5':
+                $sorted = $posts->sortByDesc('views_amount');
                 return $sorted;
             default:
                 break;

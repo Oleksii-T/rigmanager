@@ -33,7 +33,7 @@ return [
         of services',
     'introTender' => 'Tenders by
         simplified procedure',
-    'motePosts' => 'More posts',
+    'morePosts' => 'More posts',
     'otherPartners' => 'Other
         partners',
     'newPosts' => 'New posts',
@@ -222,6 +222,7 @@ return [
     'sortNew' => 'Newest',
     'sortCheap' => 'Cheapest',
     'sortExpensive' => 'Most expensive',
+    'sortViews' => 'Most Popular',
     'searchAmount' => 'Search results',
     'postType' => 'Post type',
     'postRole' => 'Legal type',
@@ -240,8 +241,11 @@ return [
     'addPostTe' => 'Add post (tender)',
     'postCreate' => 'Post creation',
     'postSettings' => 'Post settings',
+    'postTransSettings' => 'Translations settings',
+    'editTrans' => 'View and edit the translated version of this post.',
     'showOptionals' => 'Show optional fields',
     'hideOptionals' => 'Hide optional fields',
+    'optionalsHelp' => 'We advise fill in following details to simplify search and understanding of your proposition by viewers.',
     'author' => 'Author',
     'thread' => 'Equipment / Service',
     'title' => 'Title',
@@ -341,7 +345,7 @@ return [
     'cost' => 'Cost',
     'costHelp' => 'If it is not obvious what the price is for, you can specify this information in the description.
         Enter cost in format: 0000.00.
-        Maximum 50 digits.',
+        Maximum 20 digits.',
     'locationRegion' => 'Location of product (region)',
     'locationTown' => 'Specify location',
     'location' => 'Location of product',
@@ -382,7 +386,7 @@ return [
     'specialPostsStatus' => 'Special status for post',
     'makePostUrgent' => 'Urgent',
     'postUrgentStatusHelp' => 'The urgent posts will have an appropriate mark.
-        Random 4 urgent posts are listed on home page.
+        Random 8 urgent posts are listed on home page.
         The number of urgent posts is limited to 100 for Standart users.
         The number of urgent posts is limited to 300 for Pro users.',
     'urgent' => 'Urgent',
