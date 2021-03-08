@@ -188,10 +188,10 @@
 					@if (auth()->user() && auth()->user()->is_standart && !auth()->user()->is_pro)
 						<button href="" class="sub-button">{{__('ui.chosen')}}</button>
 					@else						
-						<form action="{{loc_url(route('plans.update'))}}" method="POST">
+						<form action="" method="POST">
 							@csrf
 							<input type="text" name="plan" value="standart" hidden>
-							<button href="" class="sub-button">{{__('ui.plansChoose')}}</button>
+							<button href="" class="not-ready sub-button">{{__('ui.plansChoose')}}</button>
 						</form>
 					@endif
 				</div>

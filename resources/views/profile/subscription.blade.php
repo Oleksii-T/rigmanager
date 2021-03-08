@@ -16,7 +16,7 @@
                 <div class="pack-side">
                     @if (auth()->user()->subscription && auth()->user()->subscription->is_active)
                         <div class="pack-name">{{__('ui.planActivated')}} «<span class="orange">{{auth()->user()->subscription->role_readable}}</span>»</div>
-                        <div class="pack-text"><span class="pack-text-min">{{__('ui.planActiveTo')}} {{auth()->user()->subscription->expire_at}}</span>  / <a href="{{loc_url(route('plans.cancel'))}}">{{__('ui.planCancel')}}</a></div>
+                        <div class="pack-text"><span class="pack-text-min">{{__('ui.planActiveTo')}} {{auth()->user()->subscription->expire_at}}</span>  / <a class="not-ready" href="#">{{__('ui.planCancel')}}</a></div>
                     @else
                         <div class="pack-name">{{__('ui.planActivated')}} «<span class="orange">{{__('ui.planStart')}}</span>»</div>
                         <div class="pack-text"><span class="pack-text-min">{{__('ui.planStartChoosedHelp')}}</span></div>
