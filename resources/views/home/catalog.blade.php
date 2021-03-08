@@ -724,7 +724,6 @@
 						<li><a href="{{loc_url(route('tag-57'))}}">{{__('tags.bitSe')}}</a> (<span class="orange">{{array_key_exists(57, $posts_amount) ? $posts_amount[57] : '0'}}</span>)</li>
 						<li><a href="{{loc_url(route('tag-58'))}}">{{__('tags.dhmSe')}}</a> (<span class="orange">{{array_key_exists(58, $posts_amount) ? $posts_amount[58] : '0'}}</span>)</li>
 						<li><a href="{{loc_url(route('tag-59'))}}">{{__('tags.grounding')}}</a> (<span class="orange">{{array_key_exists(59, $posts_amount) ? $posts_amount[59] : '0'}}</span>)</li>
-						<li><a href="{{loc_url(route('tag-60'))}}">{{__('tags.sideHole')}}</a> (<span class="orange">{{array_key_exists(60, $posts_amount) ? $posts_amount[60] : '0'}}</span>)</li>
 						<li><a href="{{loc_url(route('tag-61'))}}">{{__('tags.directionalDrilling')}}</a> (<span class="orange">{{array_key_exists(61, $posts_amount) ? $posts_amount[61] : '0'}}</span>)</li>
 						<li><a href="{{loc_url(route('tag-62'))}}">{{__('tags.casingSe')}}</a> (<span class="orange">{{array_key_exists(62, $posts_amount) ? $posts_amount[62] : '0'}}</span>)</li>
 						<li><a href="{{loc_url(route('tag-63'))}}">{{__('tags.guard')}}</a> (<span class="orange">{{array_key_exists(63, $posts_amount) ? $posts_amount[63] : '0'}}</span>)</li>

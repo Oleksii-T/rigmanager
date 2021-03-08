@@ -95,11 +95,10 @@
                             <li><a href="{{loc_url(route('tag-55'))}}">{{__('tags.loggingSe')}}</a></li>
                             <li><a href="{{loc_url(route('tag-56'))}}">{{__('tags.ndt')}}</a></li>
                             <li><a href="{{loc_url(route('tag-57'))}}">{{__('tags.bitSe')}}</a></li>
-                            <li><a href="{{loc_url(route('tag-58'))}}">{{__('tags.dhmSe')}}</a></li>
                         </ul>
                         <ul class="main-category-col">
+                            <li><a href="{{loc_url(route('tag-58'))}}">{{__('tags.dhmSe')}}</a></li>
                             <li><a href="{{loc_url(route('tag-59'))}}">{{__('tags.grounding')}}</a></li>
-                            <li><a href="{{loc_url(route('tag-60'))}}">{{__('tags.sideHole')}}</a></li>
                             <li><a href="{{loc_url(route('tag-61'))}}">{{__('tags.directionalDrilling')}}</a></li>
                             <li><a href="{{loc_url(route('tag-62'))}}">{{__('tags.casingSe')}}</a></li>
                             <li><a href="{{loc_url(route('tag-63'))}}">{{__('tags.guard')}}</a></li>

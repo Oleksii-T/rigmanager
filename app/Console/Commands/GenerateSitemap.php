@@ -459,7 +459,6 @@ class GenerateSitemap extends Command
                 ->add(Url::create('/dolotnyj-servis')->setLastModificationDate(\Carbon\Carbon::now())->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)->setPriority(0.8))
                 ->add(Url::create('/servis-zabojnye-dvigatelya')->setLastModificationDate(\Carbon\Carbon::now())->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)->setPriority(0.8))
                 ->add(Url::create('/zazemlenie')->setLastModificationDate(\Carbon\Carbon::now())->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)->setPriority(0.8))
-                ->add(Url::create('/zarezka-bokovogo-stvola')->setLastModificationDate(\Carbon\Carbon::now())->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)->setPriority(0.8))
                 ->add(Url::create('/naklonno-napravlennoe-burenie')->setLastModificationDate(\Carbon\Carbon::now())->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)->setPriority(0.8))
                 ->add(Url::create('/osnashchenie-ok')->setLastModificationDate(\Carbon\Carbon::now())->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)->setPriority(0.8))
                 ->add(Url::create('/ohrana')->setLastModificationDate(\Carbon\Carbon::now())->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)->setPriority(0.8))

@@ -16,7 +16,6 @@
                     <option value="57">{{__('tags.bitSe')}}</option>
                     <option value="58">{{__('tags.dhmSe')}}</option>
                     <option value="59">{{__('tags.grounding')}}</option>
-                    <option value="60">{{__('tags.sideHole')}}</option>
                     <option value="61">{{__('tags.directionalDrilling')}}</option>
                     <option value="62">{{__('tags.casingSe')}}</option>
                     <option value="63">{{__('tags.guard')}}</option>

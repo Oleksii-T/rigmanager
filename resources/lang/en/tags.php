@@ -390,7 +390,6 @@ return [
     'bitSe' => 'Bits',
     'dhmSe' => 'Down hole motor',
     'grounding' => 'Grounding',
-    'sideHole' => 'Side hole drilling',
     'directionalDrilling' => 'Directional drilling',
     'casingSe' => 'Casing running',
     'guard' => 'Security',

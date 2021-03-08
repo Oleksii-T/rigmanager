@@ -353,7 +353,6 @@ Route::get('defektoskopiya-i-sertifikaciya',     'SearchController@searchTag')->
 Route::get('dolotnyj-servis',     'SearchController@searchTag')->name('tag-57');
 Route::get('servis-zabojnye-dvigatelya',     'SearchController@searchTag')->name('tag-58');
 Route::get('zazemlenie',     'SearchController@searchTag')->name('tag-59');
-Route::get('zarezka-bokovogo-stvola',     'SearchController@searchTag')->name('tag-60');
 Route::get('naklonno-napravlennoe-burenie',     'SearchController@searchTag')->name('tag-61');
 Route::get('osnashchenie-ok',     'SearchController@searchTag')->name('tag-62');
 Route::get('ohrana',     'SearchController@searchTag')->name('tag-63');
