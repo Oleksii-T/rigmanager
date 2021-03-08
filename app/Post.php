@@ -18,7 +18,7 @@ class Post extends Model
     protected $appends = [
         'tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable',
         'user_phone_intern', 'region_readable', 'role_readable', 'type_readable', 'origin_lang_readable',
-        'type_readable_short', 'created_at_readable', 'preview_image', 'views_amount', 'views_all'
+        'type_readable_short', 'created_at_readable', 'preview_image', 'views_amount', 'views_all', 'doc_name'
     ];
 
     protected $guarded = [
@@ -350,6 +350,11 @@ class Post extends Model
     public function getTagMapAttribute()
     {
         return $this->getTagMap($this->tag_encoded);
+    }
+    
+    public function getDocNameAttribute()
+    {
+        return substr($this->doc, strpos($this->doc, "/") + 1);  ;
     }
 
     public function scopeFilterBy($query, $filters)

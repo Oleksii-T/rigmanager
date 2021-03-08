@@ -1912,6 +1912,28 @@ textarea.form-error {
 	color: #fff;
 	text-align: center;
 }
+.edit-doc-button {
+	margin-bottom: 27px;
+}
+.doc-file-name {
+	margin-top: -27px;
+}
+.doc-file-name span{
+	color: rgb(0, 80, 155);
+}
+.doc-file-name svg {
+	display: inline-block;
+	vertical-align: top;
+	width: 13px;
+	height: 13px;
+	margin: 7px 5px 0 0;
+	padding-left: 4px;
+	cursor: pointer;
+	transition: all 0.3s linear;
+}
+.doc-file-name svg:hover path{
+	fill: red;
+}
 /************************* sitemap page *************************/
 .sitemap {
 	padding: 0 0 16px;
@@ -2061,18 +2083,21 @@ textarea.form-error {
 	background-position: center center;
 	background-size: cover;
 }
-.edit-ava-button {
+.edit-ava-button,
+.edit-doc-button {
 	position: relative;
 	flex: 1;
 }
-.edit-ava-button input {
+.edit-ava-button input,
+.edit-doc-button input {
 	position: absolute;
 	left: 0;
 	width: 0;
 	height: 0;
 	opacity: 0;
 }
-.edit-ava-label {
+.edit-ava-label,
+.edit-doc-label {
 	display: block;
 	padding: 10px 15px 9px;
 	color: #fff;
@@ -2083,7 +2108,8 @@ textarea.form-error {
 	border-radius: 50px;
 	transition: all 0.3s linear;
 }
-.edit-ava-label:hover {
+.edit-ava-label:hover,
+.edit-doc-label:hover {
 	background: #505050;
 }
 /************************* reg page *************************/
@@ -2788,6 +2814,10 @@ article ul li:before {
 	color: #fff;
 	font-size: 25px;
 	line-height: 30px;
+}
+.prod-doc div{
+	margin: 0 10px 10px 0;
+	display: inline-block;
 }
 .prod-info-item {
 	margin: 0 0 21px;

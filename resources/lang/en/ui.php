@@ -342,6 +342,11 @@ return [
         Maximum image size 5MB.',
     'uploadFile' => 'Choose file',
     'preview' => 'Preview',
+    'attDoc' => 'Attached document',
+    'doc' => 'Document',
+    'chosen' => 'Chosen',
+    'chooseDoc' => 'Choose document',
+    'postDocHelp' => 'You may upload one .pdf file such as technical specification of documentation.',
     'cost' => 'Cost',
     'costHelp' => 'If it is not obvious what the price is for, you can specify this information in the description.
         Enter cost in format: 0000.00.

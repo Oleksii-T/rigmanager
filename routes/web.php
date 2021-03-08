@@ -39,8 +39,22 @@ Route::get          ('ajax/usernameexists',                      'UserController
 //import file download
 Route::get('download/posts-import', function() {
     $file = public_path().'/rigmanager-import.xlsx';
-    return response()->download($file);
+    if (file_exists($file)) {
+        return response()->download($file);
+    }
+    abort(404);
 })->name('download.post.import');
+
+//post`s document download
+Route::get('download/post-document/{post}', function($post) {
+    $file = public_path().'/storage/'.App\Post::findOrFail($post)->doc;
+    if (file_exists($file)) {
+        return response()->download($file);
+    } else {
+        dd($file);
+    }
+    abort(404);
+})->name('download.post.doc');
 
 //post views counter
 Route::post('ajax/post/viewed','PostController@viewed')->name('post.viewed'); //Ajax reqeust

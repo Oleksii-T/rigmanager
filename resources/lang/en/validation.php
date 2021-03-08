@@ -80,7 +80,7 @@ return [
     ],
     'max' => [
         'numeric' => 'The :attribute may not be greater than :max.',
-        'file' => 'May not be greater than 5 MB.',//
+        'file' => 'May not be greater than :max KB.',//
         'string' => 'May not be greater than :max characters.',//
         'array' => 'The :attribute may not have more than :max items.',
     ],

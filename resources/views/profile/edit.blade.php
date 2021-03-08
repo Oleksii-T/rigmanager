@@ -116,32 +116,6 @@
                 readURL(this);
             });
 
-            // add regex validation of name
-            $.validator.addMethod('validName',
-                function(value, element, param) {
-                    if (value != '') {
-                        if (value.match(/^[а-яёґєіїА-ЯЁҐЄІЇa-zA-Z0-9\s]*$/u) == null) {
-                            return false;
-                        }
-                    }
-                    return true;
-                },
-                '{{__("validation.username")}}'
-            );
-
-            // add regex validation of password
-            $.validator.addMethod('validPassword',
-                function(value, element, param) {
-                    if (value != '') {
-                        if (value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/) == null) {
-                            return false;
-                        }
-                    }
-                    return true;
-                },
-                '{{__("validation.password")}}'
-            );
-
             //Validate the form
             var userId = '{{ $user->id }}';
             $('#form-profile').validate({
@@ -176,6 +150,7 @@
                         minlength: '{{ __("validation.min.string", ["min" => 3]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 40]) }}',
                         remote: '{{ __("validation.unique-username") }}',
+                        validName: '{{__("validation.username")}}'
                     },
                     email: {
                         required: '{{ __("validation.required") }}',
@@ -204,7 +179,8 @@
                 messages: {
                     password: {
                         minlength: '{{ __("validation.min.string", ["min" => 6]) }}',
-                        maxlength: '{{ __("validation.max.string", ["max" => 40]) }}'
+                        maxlength: '{{ __("validation.max.string", ["max" => 40]) }}',
+                        validPassword: '{{__("validation.password")}}'
                     },
                     password_confirmation: {
                         required: '{{ __("validation.required") }}',

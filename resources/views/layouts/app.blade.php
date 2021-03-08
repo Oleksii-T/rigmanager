@@ -104,6 +104,7 @@
 	<link media="all" rel="stylesheet" type="text/css" href="{{asset('css/dropzone.css')}}" />
 	<script src="{{asset('js/jquery-2.2.4.min.js')}}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.validate-additional.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/dropzone.min.js') }}"></script>
 	<script src="{{asset('js/jquery.fancybox.min.js')}}"></script>
 	<script src="{{asset('js/slick.min.js')}}"></script>

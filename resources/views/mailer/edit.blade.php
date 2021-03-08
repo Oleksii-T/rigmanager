@@ -214,22 +214,6 @@
                 $('.form-category-button').toggleClass('hidden');
             });
 
-            $.validator.addMethod("atLeastOneType", function(value, elem, param) {
-                return $(".type-cb input:checked").length > 0;
-            },"{{ __('messages.mailerEmptyTypesError') }}");
-
-            $.validator.addMethod("atLeastOneCondition", function(value, elem, param) {
-                return $(".condition-cb input:checked").length > 0;
-            },"{{ __('messages.mailerEmptyConditionsError') }}");
-
-            $.validator.addMethod("atLeastOneRole", function(value, elem, param) {
-                return $(".role-cb input:checked").length > 0;
-            },"{{ __('messages.mailerEmptyRolesError') }}");
-
-            $.validator.addMethod("atLeastOneThread", function(value, elem, param) {
-                return $(".thread-cb input:checked").length > 0;
-            },"{{ __('messages.mailerEmptyThreadsError') }}");
-
             // change default error-lable insertion location
             $.validator.setDefaults({
                 errorPlacement: function(error, element) {
@@ -289,6 +273,18 @@
                     keyword: {
                         minlength: '{{ __("validation.min.string", ["min" => 3]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 50]) }}'
+                    },
+                    "type[]": {
+                        atLeastOneType: '{{ __("messages.mailerEmptyTypesError") }}'
+                    },
+                    "condition[]": {
+                        atLeastOneCondition: '{{ __("messages.mailerEmptyConditionsError") }}'
+                    },
+                    "role[]": {
+                        atLeastOneRole: '{{ __("messages.mailerEmptyRolesError") }}'
+                    },
+                    "thread[]": {
+                        atLeastOneThread: '{{ __("messages.mailerEmptyThreadsError") }}'
                     }
                 },
                 errorElement: 'div',

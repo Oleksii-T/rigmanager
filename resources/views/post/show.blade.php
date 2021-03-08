@@ -111,6 +111,15 @@
                     <a href="{{loc_url(route('posts.edit', ['post'=>$post->url_name]))}}" class="button button-light">{{__('ui.edit')}}</a>
                 @endif
             </div>
+            @if ($post->doc)
+                <div class="prod-info">
+                    <div class="prod-info-title">{{__('ui.attDoc')}}</div>
+                    <div class="prod-info-item prod-doc">
+                        <div class="prod-info-text"><span class="orange">{{$post->doc_name}}</span></div>
+                        <a href="{{route('download.post.doc', ['post'=>$post->id])}}" class="button button-blue">{{__('ui.download')}}</a>
+                    </div>
+                </div>
+            @endif
             <div class="prod-info">
                 <div class="prod-info-title">{{__('ui.info')}}</div>
                 @if ($post->is_urgent)

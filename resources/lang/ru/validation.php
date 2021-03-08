@@ -81,7 +81,7 @@ return [
     ],
     'max' => [
         'numeric' => 'The :attribute may not be greater than :max.',
-        'file' => 'Размер файла должен быть менее 5 МБ.', //'file' => 'The :attribute may not be greater than :max kilobytes.',
+        'file' => 'Размер файла должен быть менее :max KБ.', //'file' => 'The :attribute may not be greater than :max kilobytes.',
         'string' => 'Максимум :max символов.',//'string' => 'The :attribute may not be greater than :max characters.',
         'array' => 'The :attribute may not have more than :max items.',
     ],

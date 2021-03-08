@@ -94,13 +94,24 @@
                             <x-server-input-error inputName='description'/>
                             <div class="form-note lifetime-note-pre">{{__('ui.descriptionSeHelp')}}</div>
                         </div>
-                        <div class="form-section"> <!--images-->
+                        <div class="form-section"> <!--images+doc-->
                             <label class="label">{{__('ui.image')}}</label>
                             <div class="upload-zone">
                                 <div class="dz-message"><span>{{__('ui.dzDesc')}}</span></div>
                             </div>
                             <div class="form-note lifetime-note-pre">{{__('ui.imageHelp')}}</div>
                             <x-server-input-error inputName='images'/>
+
+                            <label class="label">{{__('ui.chooseDoc')}}</label>
+                            <div class="edit-doc-button">
+                                <input id="doc" type="file" name="doc">
+                                <label for="doc" class="edit-doc-label">{{__('ui.chooseFile')}}</label>
+                            </div>
+                            <p class="doc-file-name hidden">{{__('ui.chosen')}}: <span></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 329 328.99"><defs><style>.cls-1{fill:none;}.cls-2{clip-path:url(#clip-path);}.cls-3{fill:#595959;}</style><clipPath id="clip-path" transform="translate(0 0)"><rect class="cls-1" width="329" height="328.99"/></clipPath></defs><g id="Слой_2" data-name="Слой 2"><g id="Слой_1-2" data-name="Слой 1"><g class="cls-2"><path class="cls-3" d="M194.64,164.5,322.75,36.39A21.31,21.31,0,0,0,292.61,6.25L164.5,134.36,36.39,6.25A21.31,21.31,0,0,0,6.25,36.39L134.36,164.5,6.25,292.61a21.31,21.31,0,0,0,30.14,30.14L164.5,194.64,292.61,322.75a21.31,21.31,0,0,0,30.14-30.14Z" transform="translate(0 0)"/></g></g></g></svg>
+                            </p>
+                            <x-server-input-error inputName='doc'/>
+                            <div class="form-note doc-note">{{__('ui.postDocHelp')}}</div>
                         </div>
                         <div class="form-section"> <!--lifetime+special-->
                             <label class="label">{{__('ui.chooseActiveTo')}} <span class="orange">*</span></label>
@@ -415,6 +426,17 @@
                 }
             });
 
+            // change default error-lable insertion location
+            $.validator.setDefaults({
+                errorPlacement: function(error, element) {
+                    if (element.prop('name') === 'doc') {
+                        error.insertAfter('.doc-file-name');
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+            });
+
             //Validate the form
             $('#form-post').validate({
                 rules: {
@@ -431,6 +453,10 @@
                         required: true,
                         minlength: 10,
                         maxlength: 9000
+                    },
+                    doc: {
+                        accept: "application/pdf",
+                        extension: 'pdf'
                     },
                     user_phone_raw: {
                         minlength: 16,
@@ -455,6 +481,10 @@
                         required: '{{ __("validation.required") }}',
                         minlength: '{{ __("validation.min.string", ["min" => 10]) }}',
                         maxlength: '{{ __("validation.max.string", ["max" => 9000]) }}'
+                    },
+                    doc: {
+                        accept: '{{ __("validation.mimes", ["values" => "pdf"]) }}',
+                        extension: '{{ __("validation.mimes", ["values" => "pdf"]) }}'
                     },
                     user_email: {
                         email: '{{ __("validation.email") }}',

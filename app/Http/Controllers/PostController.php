@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Traits\ImageUploader;
 use Google\Cloud\Translate\TranslateClient;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Traits\Tags;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\App;
@@ -133,6 +134,16 @@ class PostController extends Controller
         if ($input['origin_lang'] != 'ru' && $input['origin_lang'] != 'en' && $input['origin_lang'] != 'uk') {
             $input['origin_lang'] = 'ru';
         }
+
+        //save document
+        if ($request->file('doc')) {
+            $name = $request->file('doc')->getClientOriginalName();
+            while(auth()->user()->posts()->where('doc', auth()->id().'/'.$name)->get()->isNotEmpty()) {
+                $rand = mb_strtolower(Str::random(3));
+                $name = substr_replace($name, '-'.$rand, strrpos($name, '.', -1), 0);
+            }
+            $input['doc'] = $request->file('doc')->storeAs(auth()->id(), $name);
+        } 
 
         $post = new Post($input);
         if (!auth()->user()->posts()->save($post)) {
@@ -348,6 +359,26 @@ class PostController extends Controller
         //add negative is_verified value
         $input['is_verified'] = false;
 
+        //save document
+        if ($request->file('doc')) {
+            if ($post->doc) {
+                //delete old doc
+                $input['doc'] = null;
+                Storage::delete($post->doc);
+            }
+            //uplaod new doc
+            $name = $request->file('doc')->getClientOriginalName();
+            while(auth()->user()->posts()->where('doc', auth()->id().'/'.$name)->get()->isNotEmpty()) {
+                $rand = mb_strtolower(Str::random(3));
+                $name = substr_replace($name, '-'.$rand, strrpos($name, '.', -1), 0);
+            }
+            $input['doc'] = $request->file('doc')->storeAs(auth()->id(), $name);
+        } else if (isset($input['doc-deleted'])) {
+            //delete old doc
+            $input['doc'] = null;
+            Storage::delete($post->doc);
+        }
+
         // if there was an error while updating, return previous page with error
         if (!$post->update($input)) {
             if ($request->wantsJson()) {
@@ -397,6 +428,9 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         if ($this->isOwner($post->user->id)) {
             $this->postImagesDelete($post);
+            if ($post->doc) {
+                Storage::delete($post->doc);
+            }
             $post->delete();
             Session::flash('message-success', __('messages.postDeleted'));
         }
@@ -414,6 +448,9 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         if ($this->isOwner($post->user->id)) {
             $this->postImagesDelete($post);
+            if ($post->doc) {
+                Storage::delete($post->doc);
+            }
             $post->delete();
             return true;
         }

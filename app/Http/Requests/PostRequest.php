@@ -44,6 +44,7 @@ class PostRequest extends FormRequest
             'lifetime' => [new UnlimitedLifetime],
             'images.*' => 'nullable|image|mimes:jpeg,jpg,jpe,png|max:5000',
             'images' => 'max:5',
+            'doc' => 'nullable|mimes:pdf|max:10000',
         ];
         if ( $this->request->get('title_translate') ) {
             if ( !array_key_exists('uk', $this->request->get('title_translate')) ) {
