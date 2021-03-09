@@ -1304,41 +1304,22 @@ textarea.form-error {
     line-height: 43px;
 }
 .sorting {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-flex-wrap: wrap;
-	flex-wrap: wrap;
-	margin: 0 -10px;
-	padding: 0 0 30px;
+	margin-bottom: 50px;
 }
 .sorting-col {
-	width: 50%;
-	padding: 0 10px;
-	margin: 0 0 20px;
+	display: inline;
+	margin-right: 18px;
 }
 .sorting-item {
-	display: block;
-	position: relative;
-	padding: 9px 55px 9px 15px;
-	color: #fff;
-	line-height: 24px;
+	color: #ffffff;
 	text-decoration: none;
-	background: #1f1f1f;
-	border-radius: 8px;
 }
-.sorting-item:hover {background: #111;}
+.sorting-item:hover {
+	color: #ff8d11;
+	text-decoration: underline;
+}
 .sorting-num {
-	position: absolute;
-	top: 8px;
-	right: 8px;
-	padding: 4px 12px;
-	font-size: 12px;
-	font-weight: 700;
-	line-height: 18px;
-	background: #ff8d12;
-	border-radius: 12px;
+	color: #999999;
 }
 .searched-loading {
 	text-align: center;
@@ -3726,11 +3707,13 @@ article ul li:before {
 		border-radius: 0 0 8px 8px;
 	}
 	.sorting {
-		padding: 0 0 18px;
+		margin-bottom: 20px;
 	}
 	.sorting-col {
-		width: 100%;
-		margin: 0 0 15px;
+		margin-right: 6px;
+	}
+	.sorting-item {
+		font-size: 12px;
 	}
 	.catalog {
 		display: -webkit-box;
