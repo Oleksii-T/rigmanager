@@ -149,7 +149,7 @@ class FiltersController extends Controller
         return $filtered;
     }
 
-    private function sorting($posts, $value) {
+    public function sorting($posts, $value) {
         switch ($value) {
             case '2':
                 $sorted = $posts->sortByDesc('created_at');

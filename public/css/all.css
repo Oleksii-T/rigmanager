@@ -1572,10 +1572,13 @@ textarea.form-error {
 	align-items: flex-start;
 	padding: 0 0 40px;
 }
+.cabinet-line .select-block {
+	margin-bottom: 0px;
+}
 .cabinet-search {
 	position: relative;
 	width: 264px;
-	margin: 0 auto 10px 0;
+	margin-bottom: 10px;
 }
 .cabinet-search .input {margin: 0;}
 .search-button {

@@ -153,7 +153,7 @@ class SearchController extends Controller
         return view('search.index', compact('posts_list', 'search', 'postsIds', 'resByTag'));
     }
 
-    private function countResultByTags($posts, $searchedTag=null) 
+    public function countResultByTags($posts, $searchedTag=null) 
     {
         if ($posts->isEmpty()) {
             return null;

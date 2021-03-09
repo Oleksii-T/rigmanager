@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Traits\ImageUploader;
 use App\Http\Requests\UpdatePasswordRequest;
+use App\Http\Controllers\FiltersController;
+use App\Http\Controllers\SearchController;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Traits\Tags;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
@@ -14,7 +17,7 @@ use App\Post;
 
 class UserController extends Controller
 {
-    use ImageUploader;
+    use ImageUploader, Tags;
 
     /**
      * Display a listing of the resource.
@@ -122,14 +125,40 @@ class UserController extends Controller
     public function userPosts(Request $request)
     {
         $searchValue = null;
+        $sort = null;
+        $searchC = new SearchController;
+        if ( isset($request->all()['tag']) ) {
+            $tagId = $this->getIdByUrl($request->all()['tag']);
+            $regex = str_replace('.', '\.', "^$tagId(.[0-9]+)*$"); //make regex from tag and escape regex '.' via '\'
+        }
         if ( isset($request->all()['text']) ) {
             $searchValue = $request->all()['text'];
-            $query = Post::search($request->all()['text'])->get()->where('user_id', auth()->user()->id)->sortByDesc('created_at');
+            $query = Post::search($request->all()['text'])->get()->where('user_id', auth()->id())->sortByDesc('created_at');
+            if ( isset($request->all()['tag']) ) {
+                $query = $query->filter(function ($post, $key) use ($regex) {
+                    return preg_match('/'.$regex.'/', $post->tag_encoded);
+                });
+                $resByTag = $searchC->countResultByTags($query, $tagId);
+            } else {
+                $resByTag = $searchC->countResultByTags($query);
+            }
+        } else if ( isset($request->all()['tag']) ) {
+            $query = Post::whereRaw("tag_encoded REGEXP '$regex'")->where('user_id', auth()->id())->orderBy('created_at', 'DESC'); //search appropriate for posts using raw where query
+            $resByTag = $searchC->countResultByTags($query->get(), $tagId);
         } else {
             $query = auth()->user()->posts()->orderBy('created_at', 'desc');
+            $resByTag = $searchC->countResultByTags($query->get());
+        }
+        if ( isset($request->all()['sort']) ) {
+            if (!is_a($query, 'Illuminate\Database\Eloquent\Collection')) {
+                $query = $query->get();
+            }
+            $sort = $request->all()['sort'];
+            $filteC = new FiltersController;
+            $query = $filteC->sorting($query, $request->all()['sort']);
         }
         $posts_list = $query->paginate(env('POSTS_PER_PAGE'));
-        return view('profile.posts', compact('posts_list', 'searchValue'));
+        return view('profile.posts', compact('posts_list', 'searchValue', 'resByTag', 'sort'));
     }
 
     public function addToFav(Request $request)
