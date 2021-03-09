@@ -26,7 +26,7 @@
             <h2 style="margin-bottom:20px;font-size:115%;">{{__('mail.mailGreetings')}}!</h2>
             <p style="">@yield('intro')</p>
             <div style="margin:10px auto 20px auto;height:auto;width:530px;display:flex;background-color:#cacaca;border-radius:8px;padding:20px">
-                <div>
+                <div style="overflow:hidden">
                     @yield('content')
                 </div>
             </div>

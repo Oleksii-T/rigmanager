@@ -142,7 +142,7 @@ class MailerController extends Controller
             $input['title'] = mb_substr($input['title'], 0, 22) . '...';
         }
         $input['author'] = $user_id;
-        $input['condition'] = [2,3,4];
+        $input['condition'] = [1,2,3,4];
         $input['type'] = [1,2,3,4,5,6];
         $input['thread'] = [1,2];
         $input['role'] = [1,2];

@@ -54,12 +54,22 @@ class MailerMail extends Command
                         if (!$p) {
                             continue;
                         }
+                        if ($m->user->is_pro) {
+                            $titleTrans = 'title_'.$m->user->language;
+                            if (!$p->$titleTrans) {
+                                $titleTrans = 'title';
+                            }
+                        } else {
+                            $titleTrans = 'title';
+                        }
                         $fp[] = [
                             'url_name' => $p->url_name,
-                            'title' => $p->title
+                            'title' => $p->$titleTrans
                         ];
                     }
-                    Mail::to($m->user->email)->send(new MailerNotification($fp, $m->title)); //send mail notification to user
+                    if (count($fp)!=0) {
+                        Mail::to($m->user->email)->send(new MailerNotification($fp, $m->title)); //send mail notification to user
+                    }
                     $m->found_posts=null;
                     $m->save();
                     $mails_sent++;

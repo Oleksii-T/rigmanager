@@ -94,14 +94,14 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function getIsStandartAttribute() {
-        if ( auth()->user()->subscription && auth()->user()->subscription->is_standart ) {
+        if ( $this->subscription && $this->subscription->is_standart ) {
             return true;
         }
         return false;
     }
 
     public function getIsProAttribute() {
-        if ( auth()->user()->subscription && auth()->user()->subscription->is_pro ) {
+        if ( $this->subscription && $this->subscription->is_pro ) {
             return true;
         }
         return false;

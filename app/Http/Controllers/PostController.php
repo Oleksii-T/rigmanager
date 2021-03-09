@@ -394,6 +394,9 @@ class PostController extends Controller
         }
 
         TranslatePost::dispatch($post, $input, false)->onQueue('translation');
+        if ($request->wantsJson()) {
+            return true;
+        }
         Session::flash('message-success', __('messages.postEdited'));
         return redirect(loc_url(route('profile.posts')));
     }

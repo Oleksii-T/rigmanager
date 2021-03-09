@@ -81,7 +81,7 @@
                         <x-items :posts="$posts_list" type='profile.posts'/>
                     </div>
                     <div class="pagination-field">
-                        {{ $posts_list->links() }}
+                        {{ $posts_list->appends(request()->input())->links() }}
                     </div>
                 @endif
             @endif
