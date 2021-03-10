@@ -106,7 +106,7 @@
             @endif
         </div>
     </div>
-    @if ($type=='profile.posts' && $post->views)
+    @if (auth()->check() && auth()->user()->is_pro && $type=='profile.posts' && $post->views)
         <div id="popup-views-{{$post->id}}" class="popup">
             <div class="popup-title">{{__('ui.totalUniqViews') . ': ' . $post->views_amount}}</div>
             <div class="popup-prod-info">

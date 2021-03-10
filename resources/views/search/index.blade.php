@@ -298,10 +298,12 @@
                         <input type="radio" name="sorting" class="radio-input" id="r3" value="4">
                         <label for="r3" class="radio-label">{{__('ui.sortExpensive')}}</label>
                     </div>
-                    <div class="radio-item">
-                        <input type="radio" name="sorting" class="radio-input" id="r4" value="5">
-                        <label for="r4" class="radio-label">{{__('ui.sortViews')}}</label>
-                    </div>
+                    @if (auth()->check() && auth()->user()->is_pro)
+                        <div class="radio-item">
+                            <input type="radio" name="sorting" class="radio-input" id="r4" value="5">
+                            <label for="r4" class="radio-label">{{__('ui.sortViews')}}</label>
+                        </div>
+                    @endif
                 </div>
  
             </div>
