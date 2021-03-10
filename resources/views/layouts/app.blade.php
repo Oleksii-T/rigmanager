@@ -18,6 +18,17 @@
 	<link rel="icon" href="{{asset('icons/favicon.png')}}" sizes="16x16">
 	<title>{{config('app.name')}}</title>
 	<link media="all" rel="stylesheet" type="text/css" href="{{asset('css/all.css')}}" />
+	@if (env('APP_ENV')=='production')
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-QV9G05NKK1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-QV9G05NKK1');
+		</script>
+	@endif
 </head>
 <body>	
 	<div id="wrapper">
