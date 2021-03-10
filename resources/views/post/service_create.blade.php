@@ -286,7 +286,7 @@
                         });
 
                         this.on("successmultiple", function(){
-                            window.location="{{ loc_url(route('posts.update.fake')) }}";
+                            window.location="{{loc_url(route('profile.posts'))}}";
                         });
 
                         this.on("errormultiple", function(file, errorMessage, xhr){
@@ -337,7 +337,7 @@
                         });
 
                         this.on("successmultiple", function(){
-                            window.location="{{ loc_url(route('posts.store.fake')) }}";
+                            window.location="{{loc_url(route('profile.posts'))}}";
                         });
 
                         this.on("errormultiple", function(file, errorMessage, xhr){

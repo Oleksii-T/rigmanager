@@ -396,6 +396,9 @@ return [
         The number of urgent posts is limited to 300 for Pro users.',
     'urgent' => 'Urgent',
     'views' => 'Views',
+    'guest' => 'Guest',
+    'totalUniqViews' => 'Total unique views',
+    'lastView' => 'Last view',
     'importExport' => 'Import-Export',
 
     //post deactivated messages

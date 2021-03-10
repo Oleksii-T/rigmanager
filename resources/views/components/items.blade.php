@@ -1,15 +1,20 @@
 @foreach ($posts as $post)
     <div class="catalog-item id_{{$post->id}}">
+        <!--post-image-->
         <a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}" class="catalog-img"><img src="{{$post->preview_image}}" alt=""></a>
+        <!--all post preview but image-->
         <div class="catalog-content">
+            <!--title-->
             @if (auth()->user() && !App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'title_'.App::getLocale()})
                 <div class="catalog-name"><a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}">{{ $post->{'title_'.App::getLocale()} }}</a></div>
             @else
                 <div class="catalog-name"><a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}">{{$post->title}}</a></div>
             @endif
+            <!--under title line. Lables: type, view, region, date-->
             <div class="catalog-line">
+                <!--type-->
                 <a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}" class="catalog-tag">{{$post->type_readable}}</a>
-
+                <!--add-to-fav-btn-->
                 @if ($type=='list')
                     @auth
                         <a href="" class="catalog-fav add-to-fav {{$post->user_id == auth()->user()->id ? 'block' : ''}} id_{{$post->id}} {{auth()->user()->favPosts->contains($post) ? 'active' : ''}}">
@@ -25,30 +30,44 @@
                         </a>
                     @endauth
                 @endif 
+                <!--region-->
                 @if ($post->region_encoded!=0)
                     <div class="catalog-lable catalog-region">{{$post->region_readable}}</div>
                 @endif
+                <!--views-->
                 @if (auth()->check() && auth()->user()->is_pro)
-                    <div class="catalog-lable">{{__('ui.views') . ': ' . $post->views_amount}}</div>
+                    @if ($type=='profile.posts' && $post->views)
+                        <div class="catalog-lable"><a href="#popup-views-{{$post->id}}" data-fancybox>{{__('ui.views') . ': ' . $post->views_amount}}</a></div>
+                    @else
+                        <div class="catalog-lable">{{__('ui.views') . ': ' . $post->views_amount}}</div>
+                    @endif
                 @endif
+                <!--date-->
                 <div class="catalog-date">{{$post->created_at_readable}}</div>
             </div>
+            <!--description-->
             @if (auth()->user() && !App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'description_'.App::getLocale()})
                 <div class="catalog-text">{{ preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $post->{'description_'.App::getLocale()}) }}</div>
             @else
                 <div class="catalog-text">{{preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $post->description)}}</div>
             @endif
+            <!--under description line. Lables: cost, urgent, import-->
             <div class="catalog-line-bottom">
+                <!--price-->
                 <div class="catalog-price">{{$post->cost ? $post->cost_readable : ''}}</div>
+                <!--urgent+import-->
                 <div>
+                    <!--urgent-->
                     @if ($post->is_urgent)
                         <div class="catalog-lable orange">{{__('ui.urgent')}}</div>
                     @endif
+                    <!--import-->
                     @if ($post->is_import)
                         <div class="catalog-lable lable-import orange">{{__('ui.import')}}</div>
                     @endif
                 </div>
             </div>
+            <!--bar. Buttons: edit, hide, delete-->
             @if ($type=='profile.posts')
                 <div class="bar">
                     <!--
@@ -87,4 +106,18 @@
             @endif
         </div>
     </div>
+    @if ($type=='profile.posts' && $post->views)
+        <div id="popup-views-{{$post->id}}" class="popup">
+            <div class="popup-title">{{__('ui.totalUniqViews') . ': ' . $post->views_amount}}</div>
+            <div class="popup-prod-info">
+                @foreach ($post->views as $view)
+                    <div class="prod-info-item contact-phone">
+                        <div class="prod-info-name">{{$view['name']==null ? __('ui.guest') : $view['name']}}:</div>
+                        <div class="prod-info-text">{{__('ui.views') . ': ' . $view['times']}}</div>
+                        <div class="prod-info-text">{{__('ui.lastView') . ': ' . $view['last_date']}}</div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
 @endforeach

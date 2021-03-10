@@ -1467,6 +1467,9 @@ textarea.form-error {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+.catalog-lable a{
+	color: inherit;
+}
 .catalog-date {
 	padding: 2px 0 0;
 	font-size: 12px;
