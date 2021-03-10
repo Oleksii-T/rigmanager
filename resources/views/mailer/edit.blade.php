@@ -123,6 +123,10 @@
                                     <label class="label">{{__('ui.condition')}} <span class="orange">*</span></label>
                                     <div class="check-block">
                                         <div class="check-item">
+                                            <input type="checkbox" class="check-input" name="condition[]" value="1" id="ch14" {{in_array('1', $mailer->condition) ? 'checked' : ''}}>
+                                            <label for="ch14" class="check-label">{{__('ui.notSpecified')}}</label>
+                                        </div>
+                                        <div class="check-item">
                                             <input type="checkbox" class="check-input" name="condition[]" value="2" id="ch7" {{in_array('2', $mailer->condition) ? 'checked' : ''}}>
                                             <label for="ch7" class="check-label">{{__('ui.conditionNew')}}</label>
                                         </div>
@@ -137,7 +141,6 @@
                                     </div>
                                     <x-server-input-error inputName='condition'/>
                                 </div>
-
                             </div>
 
                             <div class="add-radio">

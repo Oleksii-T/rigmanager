@@ -45,10 +45,36 @@
     </div>
 @endsection
 
+@section('modals')
+    <div id="popup-import-success" class="popup">
+        <div class="popup-title">{{__('messages.postImportSuccess')}}</div>
+        <div class="popup-prod-info">
+            <div class="prod-info-item">
+                <div class="prod-info-name">{{__('ui.totalImported')}}:</div>
+                <div class="prod-info-text total-imported"></div>
+            </div>
+            <div class="prod-info-item">
+                <div class="prod-info-name">{{__('ui.firstImported')}}:</div>
+                <div class="prod-info-text first-imported"></div>
+            </div>
+            <div class="prod-info-item">
+                <div class="prod-info-name">{{__('ui.lastImported')}}:</div>
+                <div class="prod-info-text last-imported"></div>
+            </div>
+            <div class="prod-info-item">
+                <div class="prod-info-name"><a href="{{loc_url(route('faq'))}}#WhyNotAllImported">{{__('faq.qWhyNotAllImported')}}</a></div>
+            </div>
+        </div>
+        <div class="sure-dialog">
+            <a href="{{loc_url(route('profile.posts'))}}">{{__('ui.myPosts')}}</a>
+            <button data-fancybox-close>Ok</button>
+        </div>
+    </div>
+@endsection
+
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function(){
-
             // create file upload form (dropzone)
             $('.upload-zone').dropzone({
                 url: "{{loc_url(route('import.upload'))}}",
@@ -87,10 +113,14 @@
                         formData.append("_token", "{{ csrf_token() }}");
                     });
 
-                    this.on("success", function(){
+                    this.on("success", function(file, response){
+                        var m = JSON.parse(response);
+                        $('.total-imported').text(m.total);
+                        $('.first-imported').text(m.first);
+                        $('.last-imported').text(m.last);
+                        $.fancybox.open($('#popup-import-success'));
                         $("#form-import button[type=submit]").removeClass('loading');
                         $('.form-note-import').addClass('hidden');
-                        showPopUpMassage(true, "{{ __('messages.postImportSuccess') }}");
                         myDropzone.removeAllFiles();
                     });
 
@@ -108,7 +138,6 @@
                     });
                 },
             });
-            
         });
     </script>
 @endsection

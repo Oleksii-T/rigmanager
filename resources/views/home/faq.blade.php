@@ -136,6 +136,22 @@
 					</div>
 				</div>
 				<div class="faq-item">
+					<a href="" id="WhyNotAllImported" class="faq-top">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255.99 511.99">
+							<path d="M253,248.62,18.37,3.29A10.67,10.67,0,1,0,3,18L230.56,256,3,494A10.67,10.67,0,0,0,18.37,508.7L253,263.37A10.7,10.7,0,0,0,253,248.62Z"/>
+						</svg>
+						{{__('faq.qWhyNotAllImported')}}
+					</a>
+					<div class="faq-hidden">
+						<p>{{__('faq.aWhyNotAllImported')}}</p>
+						<ol>
+							<li>{{__('faq.aWhyNotAllImportedL1')}}</li>
+							<li>{{__('faq.aWhyNotAllImportedL2')}}</li>
+						</ol>
+						<p>{{__('faq.aWhyNotAllImported2')}} <a href="{{loc_url(route('contacts'))}}">{{__('ui.here')}}</a>.</p>
+					</div>
+				</div>
+				<div class="faq-item">
 					<a href="" id="WhatIsImport" class="faq-top">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255.99 511.99">
 							<path d="M253,248.62,18.37,3.29A10.67,10.67,0,1,0,3,18L230.56,256,3,494A10.67,10.67,0,0,0,18.37,508.7L253,263.37A10.7,10.7,0,0,0,253,248.62Z"/>
@@ -194,6 +210,8 @@
 				toggleFaqText( $('#HowToCreateMailer') );
 			}	else if ( currLoc.includes('#WhatIsPartner') ) {
 				toggleFaqText( $('#WhatIsPartner') );
+			}	else if ( currLoc.includes('#WhyNotAllImported') ) {
+				toggleFaqText( $('#WhyNotAllImported') );
 			}
         });
     </script>

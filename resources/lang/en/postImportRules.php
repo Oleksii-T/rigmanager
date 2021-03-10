@@ -42,12 +42,12 @@ return [
         1 - Private person
         2 - Business',
     'conditionRule' => 'Only certain values ​​are allowed for input:
-        1 - New
-        2 - Used
-        3 - For spare parts',
+        1 - Not specified
+        2 - New
+        3 - Used
+        4 - For spare parts',
     'tag' => 'Category',
-    'tagRule' => 'Tag must be one of available tag-code, click the button below to see the full list of available codes.
-        The chosen tag must comply with chosen "Equipment / service" field.',
+    'tagRule' => 'Tag must be one of available category-code, click the button below to see the full list of available codes.',
     'tagRuleEqBtn' => 'See list of equipment category codes',
     'tagsEqList' => 'List of equipment categories codes',
     'tagRuleSeBtn' => 'See list of service category codes',
@@ -66,7 +66,7 @@ return [
         Max lenght: 254',
     'phoneRule' => 'A phone number is not required if a contact email has been entered.
         You can enter any phone number.
-        Only phone numbers of Ukraine are considered valid
+        Only phone numbers of Ukraine are considered valid.
         Phone format: 
         0 (12) 345 67 89',
     'VTW' => 'Have Viber / Telegram / Whatsapp',

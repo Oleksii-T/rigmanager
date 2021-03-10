@@ -557,7 +557,7 @@ class PostController extends Controller
         }
         $import = Excel::toArray(new PostsImport, $request->file('import-file'));
         //check the structure
-        if (count($import[0]) < 502 || count($import[0][0]) < 17) {
+        if ( count($import[0][0]) < 17 ) {
             abort(400, __('messages.importStructureError'));
         }
         $import = array_slice($import[0], 2); // remove the header from import file
@@ -650,7 +650,14 @@ class PostController extends Controller
             auth()->user()->posts()->save($post); // save post with respect to user
             TranslatePost::dispatch($post, ['title'=>$row[1], 'description'=>$row[2], 'origin_lang'=>$lang], true)->onQueue('translation'); // dispatch the translation of post
         }
-        return json_encode(true);
+        $firstT = $import[0][1];
+        $lastT = $import[count($import)-1][1];
+        $response = [
+            'total'=>count($import),
+            'first'=>$firstT,
+            'last'=>$lastT
+        ];
+        return json_encode($response);
         //return redirect(loc_url(route('home')));
     }
 
@@ -679,11 +686,11 @@ class PostController extends Controller
                                                 //validate  "company" field
                                                 if ($row[4]==null || ( is_string($row[4]) && mb_strlen($row[4])>5 && mb_strlen($row[4])<200 )) {
                                                     //validate  "manufacturer" field
-                                                    if ($row[9]==null || ( is_string($row[9]) && mb_strlen($row[9])>2 && mb_strlen($row[9])<70) ) {
+                                                    if ($row[9]==null || ( is_string($row[9]) && mb_strlen($row[9])>2 && mb_strlen($row[9])<71) ) {
                                                         //validate  "manufactured date" field
-                                                        if ($row[10]==null || ( is_string($row[10]) && mb_strlen($row[10])>2 && mb_strlen($row[10])<70 )) {
+                                                        if ($row[10]==null || ( is_string($row[10]) && mb_strlen($row[10])>2 && mb_strlen($row[10])<71 )) {
                                                             //validate  "part number" field
-                                                            if ($row[11]==null || ( is_string($row[11]) && mb_strlen($row[11])>2 && mb_strlen($row[11])<70 )) {
+                                                            if ($row[11]==null || ( is_string($row[11]) && mb_strlen($row[11])>2 && mb_strlen($row[11])<71 )) {
                                                                 //validate "cost" field
                                                                 if ($this->costValidate($row[12])) {
                                                                     //validate  "email" field

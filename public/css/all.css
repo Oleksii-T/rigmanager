@@ -2811,6 +2811,9 @@ article ul li:before {
 	font-size: 12px;
 	line-height: 14px;
 }
+.prod-info-name a {
+	color: inherit;
+}
 .prod-info-text {
 	color: #fff;
 }
@@ -3003,9 +3006,16 @@ article ul li:before {
 .sure-dialog {
 	text-align: center;
 }
+#popup-import-success .sure-dialog {
+	margin-top: 28px;
+}
 .sure-dialog a {
 	font-size: 20px;
 	color: white;
+}
+#popup-import-success .sure-dialog a,
+#popup-import-success .sure-dialog button {
+	padding: 0 20px 0 20px;
 }
 .sure-dialog button {
 	cursor: pointer;

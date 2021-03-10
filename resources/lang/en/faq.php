@@ -86,6 +86,15 @@ return [
         All you need to do is fill the import file with according to the rules and submit it.
         Available only for Pro users.',
 
+    'qWhyNotAllImported' => 'Why not all posts from my import file got published?',
+    'aWhyNotAllImported' => 'The importing algorithm treats empty title or fully empty line as the end of file.
+        So, there is be two possible reasons:',
+    'aWhyNotAllImportedL1' => 'You have entered empty title for some post.',
+    'aWhyNotAllImportedL2' => 'You left empty line between posts.',
+    'aWhyNotAllImported2' => 'After you fix such errors, please delete already published posts from your import file.
+        The importing algorithm always publishes posts as a new one, so you will end up cloning your own posts.
+        If this is not a solution to your problem, you can contact us',
+
     'qPartner' => 'What is an Affiliate Program?',
     'aPartner' => 'The affiliate program with rigmanager.com.ua allows you to increase your base of potential customers.
         Partners are provided with:',

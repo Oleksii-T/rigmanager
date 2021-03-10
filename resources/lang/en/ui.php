@@ -272,7 +272,7 @@ return [
     'amount' => 'Amount',
     'chooseAmount' => 'Choose amount',
     'amountHelp' => 'Here you may specify the number of pieces you have.
-        Example: ""432 pcs.""',
+        Example: "432 pcs."',
     'type' => 'Type',
     'choosePostType' => 'Choose post type',
     'postTypeSell' => 'Sell', // type = 1
@@ -594,4 +594,7 @@ return [
         Please fix the error and submit the import file again.',
     'fileImporting' => 'Your file is being processed, please wait.',
     'importFileRequireError' => 'Please select filled import file. you can download it below.',
+    'totalImported' => 'Total amount',
+    'firstImported' => 'First post',
+    'lastImported' => 'Last post',
 ];
