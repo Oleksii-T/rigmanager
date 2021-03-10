@@ -2,7 +2,7 @@
 
 @section('bc')
     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-        @if ($searchValue || $resByTag['searchedTagMap'])
+        @if ($searchValue || ($resByTag && $resByTag['searchedTagMap']))
             <a itemprop="item" href="{{loc_url(route('profile.posts'))}}"><span itemprop="name">{{__('ui.myPosts')}}</span></a>
         @else
             <span itemprop="item"><span itemprop="name">{{__('ui.myPosts')}}</span></span>
