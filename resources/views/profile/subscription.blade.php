@@ -1,5 +1,9 @@
 @extends('layouts.page')
 
+@section('meta')
+    <meta name="robots" content="noindex, nofollow">
+@endsection
+
 @section('bc')
     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
         <span itemprop="item"><span itemprop="name">{{__('ui.mySubscription')}}</span></span>

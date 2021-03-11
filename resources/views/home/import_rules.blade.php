@@ -1,5 +1,9 @@
 @extends('layouts.page')
 
+@section('meta')
+    <meta name="robots" content="index, follow">
+@endsection
+
 @section('bc')
     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
         <span itemprop="item"><span itemprop="name">{{__('postImportRules.title')}}</span></span>

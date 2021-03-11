@@ -1,5 +1,9 @@
 @extends('layouts.page')
 
+@section('meta')
+    <meta name="robots" content="noindex, nofollow">
+@endsection
+
 @section('bc')
     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
         @if ($searchValue || ($resByTag && $resByTag['searchedTagMap']))

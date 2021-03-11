@@ -1,5 +1,9 @@
 @extends('layouts.page')
 
+@section('meta')
+    <meta name="robots" content="noindex, nofollow">
+@endsection
+
 @section('bc')
     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
         <a itemprop="item" href="{{loc_url(route('profile'))}}"><span itemprop="name">{{__('ui.profileInfo')}}</span></a>

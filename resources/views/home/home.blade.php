@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('meta')
+    <meta name="robots" content="index, follow">
+@endsection
+
 @section('page-content')
     <div class="header-main">
         <x-header/>

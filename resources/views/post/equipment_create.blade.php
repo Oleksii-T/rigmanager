@@ -1,5 +1,9 @@
 @extends('layouts.page')
 
+@section('meta')
+    <meta name="robots" content="index, follow">
+@endsection
+
 @section('bc')
     @if (isset($post))
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">

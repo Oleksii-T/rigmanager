@@ -1,5 +1,13 @@
 @extends('layouts.page')
 
+@section('meta')
+    @if ($search['type'] == 'text' || $search['type'] == 'type' || $search['type'] == 'author')
+        <meta name="robots" content="noindex, nofollow">
+    @else
+        <meta name="robots" content="index, follow">
+    @endif
+@endsection
+
 @section('bc')
     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
         <a itemprop="item" href="{{loc_url(route('catalog'))}}"><span itemprop="name">{{__('ui.catalog')}}</span></a>

@@ -9,5 +9,8 @@ Disallow: /ajax/
 Disallow: */login
 Disallow: */register
 Disallow: */plans
+Disallow: */email
+Disallow: */password
+Disallow: */posts/*/edit
 
 Sitemap: https://www.rigmanager.com.ua/sitemap.xml

@@ -175,7 +175,7 @@ class PostController extends Controller
         $urlName = $urlName==null ? $locale : $urlName;
         $post = Post::where('url_name', $urlName)->first();
         if (!$post) {
-            abort(404);
+            abort(410);
         }
         if (!$post->is_active && !$this->isOwner($post->user->id)) {
             return view('post.inactive', compact('post'));

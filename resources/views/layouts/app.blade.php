@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="{{App::getLocale()}}">
 <head>
+	<title>{{config('app.name')}}</title>
 	<meta charset="utf-8">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#1f1f1f">
 	<meta name="msapplication-navbutton-color" content="#1f1f1f">
 	<meta name="apple-mobile-web-app-status-bar-style" content="#1f1f1f">
+	@yield('meta')
 	<link rel="canonical" href="{{url()->full()}}">
 	<link rel="alternate" href="{{hreflang_url(url()->full(), 'uk')}}" hreflang="x-default">
 	<link rel="alternate" href="{{hreflang_url(url()->full(), 'uk')}}" hreflang="uk">
 	<link rel="alternate" href="{{hreflang_url(url()->full(), 'ru')}}" hreflang="ru">
 	<link rel="alternate" href="{{hreflang_url(url()->full(), 'en')}}" hreflang="en">
-	@yield('meta')
 	<link rel="icon" href="{{asset('icons/favicon.png')}}" sizes="16x16">
-	<title>{{config('app.name')}}</title>
 	<link media="all" rel="stylesheet" type="text/css" href="{{asset('css/all.css')}}" />
 	@if (env('APP_ENV')=='production')
 		<!-- Global site tag (gtag.js) - Google Analytics -->
