@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{App::getLocale()}}">
 <head>
-	<title>{{config('app.name')}}</title>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="format-detection" content="telephone=no">

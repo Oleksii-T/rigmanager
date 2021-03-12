@@ -1,6 +1,8 @@
 @extends('layouts.page')
 
 @section('meta')
+	<title>{{__('meta.title.home')}}</title>
+	<meta name="description" content="{{__('meta.description.home')}}">
     @if ($search['type'] == 'text' || $search['type'] == 'type' || $search['type'] == 'author')
         <meta name="robots" content="noindex, nofollow">
     @else

@@ -8,7 +8,7 @@
             <li><a href="{{loc_url(route('profile.subscription'))}}" class="{{$active=="subscription" ? 'active' : ''}}">{{__('ui.mySubscription')}}</a></li>
             <li><a href="{{loc_url(route('profile.posts'))}}" class="{{$active=="posts" ? 'active' : ''}}">{{__('ui.myPosts')}}</a></li>
             <li><a href="{{loc_url(route('profile.favourites'))}}" class="{{$active=="fav" ? 'active' : ''}}">{{__('ui.favourites')}}</a></li>
-            @if (auth()->user()->role && auth()->user()->role->name=='admin')
+            @if (auth()->user()->role_id==1)
                 <li><a href="{{route('home').'/admin'}}">Voyager</a></li>
             @endif
             <li><a href="#" onclick="document.getElementById('logout-form').submit();">{{__('ui.signOut')}}</a></li>

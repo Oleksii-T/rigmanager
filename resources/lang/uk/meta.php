@@ -3,7 +3,7 @@
 return [
     // title
     'title' => [
-        'home' => '',
+        'home' => 'Бурове обладнання та нафтогазове обладнання на дошці оголошень rigmanager.',
         'auth' => '',
         'profile' => '',
         'post_create' => '',
@@ -27,7 +27,7 @@ return [
 
     //description
     'description' => [
-        'home' => '',
+        'home' => 'rigmanager.com.ua - спеціалізована дошка оголошень для учасників нафтогазового ринку. Купівля, продаж, оренда та сервіси.',
         'auth' => '',
         'profile' => '',
         'post_create' => '',
