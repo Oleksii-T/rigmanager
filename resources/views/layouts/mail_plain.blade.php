@@ -2,8 +2,12 @@
 
 {{__('mail.mailGreetings')}} {{$userName}},
 
+
 @yield('content')
+
+
+{{__('mail.contactBack') . ' ' . env('MAIL_TO_ADDRESS')}}
 
 {{__('mail.mailSlg')}}
 
-© {{ env('COPY_RIGHT_YEAR') }} {{ env('APP_NAME') }}. {{__('ui.footerCopyright')}}
+© {{date("Y"). ' ' . env('APP_NAME') . '. ' . __('ui.footerCopyright')}}
