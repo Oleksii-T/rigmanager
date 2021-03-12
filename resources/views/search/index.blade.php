@@ -9,15 +9,15 @@
 @endsection
 
 @section('bc')
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         <a itemprop="item" href="{{loc_url(route('catalog'))}}"><span itemprop="name">{{__('ui.catalog')}}</span></a>
         <meta itemprop="position" content="2" />
     </li>
     @if ( $search['type'] == 'tags' )
         @foreach ($search['value'] as $key => $name)
-            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                 @if ($loop->last)
-                    <span itemprop="item"><span itemprop="name">{{$name}}</span></span>
+                    <span itemprop="name">{{$name}}</span>
                 @else
                     <a itemprop="item" href="{{loc_url(route('tag-'.$key))}}"><span itemprop="name">{{$name}}</span></a>
                 @endif
@@ -25,19 +25,19 @@
             </li>
         @endforeach
     @elseif ( $search['type'] == 'text' )
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">    
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">    
             @if (isset($resByTag) && $resByTag['searchedTagMap'])
                 <a itemprop="item" href="{{loc_url(route('search', ['text'=>$search['value']]))}}"><span itemprop="name">"{{$search['value']}}"</span></a>
             @else
-                <span itemprop="item"><span itemprop="name">"{{$search['value']}}"</span></span>
+                <span itemprop="name">"{{$search['value']}}"</span>
             @endif
             <meta itemprop="position" content="3" />
         </li>
         @if (isset($resByTag) && $resByTag['searchedTagMap'])
             @foreach ($resByTag['searchedTagMap'] as $tagUrl => $tag)
-                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">            
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">            
                     @if ($loop->last)
-                        <span itemprop="item"><span itemprop="name">{{$tag}}</span></span>
+                        <span itemprop="name">{{$tag}}</span>
                     @else
                         <a itemprop="item" href="{{loc_url(route('search', ['text'=>$search['value'], 'tag'=>$tagUrl]))}}"><span itemprop="name">{{$tag}}</span></a>
                     @endif
@@ -46,19 +46,19 @@
             @endforeach
         @endif  
     @elseif ( $search['type'] == 'type' )
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             @if (isset($resByTag) && $resByTag['searchedTagMap'])
                 <a itemprop="item" href="{{loc_url(route('search', ['type'=>$search['url']]))}}"><span itemprop="name">{{$search['value']}}</span></a>
             @else
-                <span itemprop="item"><span itemprop="name">{{$search['value']}}</span></span>
+                <span itemprop="name">{{$search['value']}}</span>
             @endif
             <meta itemprop="position" content="3" />
         </li>
         @if (isset($resByTag) && $resByTag['searchedTagMap'])
             @foreach ($resByTag['searchedTagMap'] as $tagUrl => $tag)
-                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">    
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">    
                     @if ($loop->last)
-                        <span itemprop="item"><span itemprop="name">{{$tag}}</span></span>
+                        <span itemprop="name">{{$tag}}</span>
                     @else
                         <a itemprop="item" href="{{loc_url(route('search', ['type'=>$search['url'], 'tag'=>$tagUrl]))}}"><span itemprop="name">{{$tag}}</span></a>
                     @endif
@@ -67,19 +67,19 @@
             @endforeach
         @endif  
     @elseif ( $search['type'] == 'author' )
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             @if (isset($resByTag) && $resByTag['searchedTagMap'])
                 <a itemprop="item" href="{{loc_url(route('search', ['author'=>$search['value']['url']]))}}"><span itemprop="name">{{$search['value']['name']}}</span></a>
             @else
-                <span itemprop="item"><span itemprop="name">{{$search['value']['name']}}</span></span>
+                <span itemprop="name">{{$search['value']['name']}}</span>
             @endif
             <meta itemprop="position" content="3" />
         </li>
         @if (isset($resByTag) && $resByTag['searchedTagMap'])
             @foreach ($resByTag['searchedTagMap'] as $tagUrl => $tag)
-                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">    
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">    
                     @if ($loop->last)
-                        <span itemprop="item"><span itemprop="name">{{$tag}}</span></span>
+                        <span itemprop="name">{{$tag}}</span>
                     @else
                         <a itemprop="item" href="{{loc_url(route('search', ['author'=>$search['value']['url'], 'tag'=>$tagUrl]))}}"><span itemprop="name">{{$tag}}</span></a>
                     @endif

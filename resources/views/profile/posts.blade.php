@@ -5,25 +5,25 @@
 @endsection
 
 @section('bc')
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         @if ($searchValue || ($resByTag && $resByTag['searchedTagMap']))
             <a itemprop="item" href="{{loc_url(route('profile.posts'))}}"><span itemprop="name">{{__('ui.myPosts')}}</span></a>
         @else
-            <span itemprop="item"><span itemprop="name">{{__('ui.myPosts')}}</span></span>
+            <span itemprop="name">{{__('ui.myPosts')}}</span>
         @endif
         <meta itemprop="position" content="2" />
     </li>
     @if ($searchValue)
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             <a itemprop="item" href="{{loc_url(route('profile.posts', ['text'=>$searchValue]))}}"><span itemprop="name">"{{$searchValue}}"</span></a>
             <meta itemprop="position" content="2" />
         </li>
     @endif
     @if ($resByTag && $resByTag['searchedTagMap'])
         @foreach ($resByTag['searchedTagMap'] as $tagUrl => $tag)
-            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">    
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">    
                 @if ($loop->last)
-                    <span itemprop="item"><span itemprop="name">{{$tag}}</span></span>
+                    <span itemprop="name">{{$tag}}</span>
                 @else
                     <a itemprop="item" href="{{loc_url(route('profile.posts', ['tag'=>$tagUrl]))}}"><span itemprop="name">{{$tag}}</span></a>
                 @endif

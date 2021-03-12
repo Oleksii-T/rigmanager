@@ -5,12 +5,12 @@
 @endsection
 
 @section('bc')
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         <a itemprop="item" href="{{loc_url(route('profile'))}}"><span itemprop="name">{{__('ui.profileInfo')}}</span></a>
         <meta itemprop="position" content="2" />
     </li>
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-        <span itemprop="item"><span itemprop="name">{{__('ui.profileEditing')}}</span></span>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">{{__('ui.profileEditing')}}</span>
         <meta itemprop="position" content="3" />
     </li>
 @endsection

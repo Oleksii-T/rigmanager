@@ -5,8 +5,8 @@
 @endsection
 
 @section('bc')
-	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-		<span itemprop="item"><span itemprop="name">FAQ</span></span>
+	<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+		<span itemprop="name">FAQ</span>
 		<meta itemprop="position" content="2" />
 	</li>
 @endsection
