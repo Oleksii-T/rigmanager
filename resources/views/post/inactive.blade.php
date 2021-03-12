@@ -18,7 +18,7 @@
         </li>
         @if ($loop->last)
             <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                @if (!App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'title_'.App::getLocale()})
+                @if (auth()->user() && !App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'title_'.App::getLocale()})
                     <span itemprop="name">{{ $post->{'title_'.App::getLocale()} }}</span>
                 @else
                     <span itemprop="name">{{$post->title}}</span>
