@@ -82,7 +82,7 @@ Route::middleware('verified')->group(function () {
 
     // posts import routes
     Route::middleware('plan.pro')->group(function () {
-        Route::get      ('posts/import',         'PostController@import')        ->name('post.import');
+        Route::get      ('posts/create/import',  'PostController@import')        ->name('post.import');
         Route::post     ('posts/import/upload',  'PostController@importStore')   ->name('import.upload');
     });
 });

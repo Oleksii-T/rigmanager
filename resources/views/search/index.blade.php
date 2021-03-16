@@ -1,8 +1,20 @@
 @extends('layouts.page')
 
 @section('meta')
-	<title>{{__('meta.title.home')}}</title>
-	<meta name="description" content="{{__('meta.description.home')}}">
+    @if ($search['type'] == 'author')
+        <title>{{$search['value']['name'] . ' | ' . __('meta.title.search.author')}}</title>
+        <meta name="description" content="{{__('meta.description.search.author') . ' ' . $search['value']['name']}}">
+    @elseif ($search['type'] == 'text')
+        <title>{{$search['value'] . ' - ' . __('meta.title.search.text')}}</title>
+        <meta name="description" content="{{$search['value'] . ' - ' . __('meta.description.search.text')}}">
+    @elseif ($search['type'] == 'type')
+        <title>{{$search['value'] . ' - ' . __('meta.title.search.type')}}</title>
+        <meta name="description" content="{{$search['value'] . ' - ' . __('meta.description.search.type')}}">
+    @elseif ($search['type'] == 'tags')
+        <title>{{$search['tag_string'] . ' - ' . __('meta.title.search.tag')}}</title>
+        <meta name="description" content="{{__('meta.description.search.tag'). ' ' . $search['tag_string']}}">
+    @endif
+
     @if ($search['type'] == 'text' || $search['type'] == 'type' || $search['type'] == 'author')
         <meta name="robots" content="noindex, nofollow">
     @else

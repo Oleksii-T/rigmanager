@@ -1,8 +1,8 @@
 @extends('layouts.page')
 
 @section('meta')
-	<title>{{__('meta.title.home')}}</title>
-    <meta name="description" content="{{__('meta.description.home')}}">
+	<title>{{__('meta.title.info.subscription')}}</title>
+    <meta name="description" content="{{__('meta.description.info.subscription')}}">
     <meta name="robots" content="noindex, nofollow">
 @endsection
 

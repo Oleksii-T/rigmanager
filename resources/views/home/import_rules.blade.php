@@ -3,7 +3,7 @@
 @section('meta')
     <title>{{__('meta.title.home')}}</title>
     <meta name="description" content="{{__('meta.description.home')}}">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="noindex, nofollow">
 @endsection
 
 @section('bc')

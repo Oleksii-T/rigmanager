@@ -1,8 +1,8 @@
 @extends('layouts.page')
 
 @section('meta')
-	<title>{{__('meta.title.home')}}</title>
-	<meta name="description" content="{{__('meta.description.home')}}">
+	<title>{{$post->title . ' - ' . $post->tag_map[array_key_last($post->tag_map)] . ' ' . __('meta.title.post.show')}}</title>
+	<meta name="description" content="{{($post->cost ? $post->cost_readable : '') . ': ' . (strlen($post->description)>90 ? substr($post->description, 0, 90) . '...' : $post->description)}}">
     <meta name="robots" content="index, follow">
 @endsection
 

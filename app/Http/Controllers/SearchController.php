@@ -92,7 +92,7 @@ class SearchController extends Controller
         $regex = str_replace('.', '\.', "^$tagId(.[0-9]+)*$"); //make regex from tag and escape regex '.' via '\'
         $posts_list = Post::whereRaw("tag_encoded REGEXP '$regex'")->where("is_active", 1)->orderBy('created_at', 'DESC')->get(); //search appropriate for posts using raw where query
         $resByTag = $this->countResultByTags($posts_list, $tagId);
-        return $this->serializeSearch($posts_list, $resByTag, 'tags', ['tagMap'=>$this->getTagMap($tagId), 'tagTypeMap'=>$this->getTagType($tagId)]);
+        return $this->serializeSearch($posts_list, $resByTag, 'tags', ['tagMap'=>$this->getTagMap($tagId), 'tagTypeMap'=>$this->getTagType($tagId), 'tagString'=>$this->getTagReadable($tagId)]);
     }
 
     public function searchAuthor($input)
@@ -139,6 +139,7 @@ class SearchController extends Controller
             case 'tags':
                 $search['value'] = $value['tagMap'];
                 $search['tag_type'] = $value['tagTypeMap'];
+                $search['tag_string'] = $value['tagString'];
                 break;
             case 'author':
                 $search['value']['name'] = $value['name'];
