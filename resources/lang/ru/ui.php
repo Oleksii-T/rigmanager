@@ -421,8 +421,10 @@ return [
     'dzInvalidMimeXlsx' => 'Файл импорта должен быть .XLSX',
 
     // post show masssages
+    'similarPosts' => 'Похожие объявления',
     'yoursPost' => 'Это объявление принадлежит вам',
     'postAuthor' => 'Автор объявления',
+    'allAuthorPosts' => 'Все объявления автора',
     'otherAuthorPosts' => 'Другие объявления автора',
     'contactInfo' => 'Контактная информация',
     'showContacts' => 'Показать контакты',

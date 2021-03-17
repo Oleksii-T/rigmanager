@@ -648,18 +648,6 @@ textarea.form-error {
     top: 0;
     transform: rotate(-45deg);
 }
-/************************* main page *************************/
-/************************* developing alert **********************/
-.development-alert {
-	position: fixed;
-	left: 0px;
-	bottom: 0px;
-	background-color: rgb(182, 0, 0);
-}
-.development-alert p {
-	margin: 6px 10px;
-	color: #ffffff;
-}
 /************************* pop-up-messages **********************/
 #pop-up-container {
     z-index: 99999;
@@ -735,7 +723,19 @@ textarea.form-error {
     0% {width: 100%;}
     100% {width: 0%;}
 }
-/************************* header-main *************************/
+/************************* main page *************************/
+/*------------------------ developing alert -----------------*/
+.development-alert {
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	background-color: rgb(182, 0, 0);
+}
+.development-alert p {
+	margin: 6px 10px;
+	color: #ffffff;
+}
+/*------------------------ header-main ------------------------*/
 .header-main {
 	margin: -111px 0 0;
 	padding: 227px 0 225px;
@@ -823,7 +823,7 @@ textarea.form-error {
 .top-form-link a {
 	color: #999999;
 }
-/************************* main-section *************************/
+/*------------------------ main-section ------------------------*/
 .main-section {
 	padding: 1px 0 100px;
 }
@@ -935,7 +935,7 @@ textarea.form-error {
 	white-space: pre-line;
 }
 .brand-more:hover {border: 1px solid #ff8d11;}
-/************************* main-about *************************/
+/*------------------------ main-about ------------------------*/
 .main-about {
 	padding: 100px 0 70px;
 	background: url(../icons/main-about-bg.jpg) 50% 50% no-repeat;
@@ -1007,7 +1007,7 @@ textarea.form-error {
 	overflow: hidden;
 }
 .breadcrumbs a:hover {color: #fff;}
-/************************* catalog page *************************/
+/******************** pages with left sidebar ************/
 .main-block {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -1022,7 +1022,6 @@ textarea.form-error {
 .content {
 	flex: 1;
 }
-/************************* side *************************/
 .side-block {
 	padding: 45px 50px 21px;
 	margin: 8px 0 50px;
@@ -1051,7 +1050,7 @@ textarea.form-error {
 }
 .side-mob {display: none;}
 /************************* blog page *************************/
-/************************* blog *************************/
+/*------------------------ blog ------------------------*/
 .blog-item {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -1113,7 +1112,7 @@ textarea.form-error {
 	border-radius: 8px;
 }
 /************************* article page *************************/
-/************************* article *************************/
+/*------------------------ article ------------------------*/
 .article {padding: 0 0 17px;}
 .article-img {
 	display: block;
@@ -1168,8 +1167,8 @@ textarea.form-error {
 	margin: -7px 0 0;
 }
 .rule li {margin: 0 0 10px;}
-/************************* category page *************************/
-/************************* category *************************/
+/************************* catalog page *************************/
+/*------------------------ catalog ----------------------------*/
 .catalog-help a {
 	text-decoration: none;
 	transition: all .3s linear;
@@ -1239,7 +1238,7 @@ textarea.form-error {
 	text-decoration: none;
 }
 .category-list a:hover {color: #ff8d11;}
-/************************* category-serv *************************/
+/*------------------------ catalog-service ------------------------*/
 .category-serv {
 	padding: 68px 75px 50px;
 	margin: 0 0 50px;
@@ -1293,8 +1292,8 @@ textarea.form-error {
 .category-serv .category-sublist {
     padding: 13px 0 1px;
 }
-/************************* catalog page *************************/
-/************************* catalog *************************/
+/************************* search page *************************/
+/*------------------------ search ------------------------*/
 .filter-block {padding: 0 0 23px;}
 .filter-title {
     margin: 0 0 40px;
@@ -1520,7 +1519,7 @@ textarea.form-error {
 	background: url(../icons/rig.svg) 50% 50% no-repeat;
 	background-size: cover;
 }
-/************************* cabinet-ad page *************************/
+/************************* profile-post` line *************************/
 .catalog-my .catalog-item {
 	padding: 0 50px 0 0;
 }
@@ -1628,7 +1627,6 @@ textarea.form-error {
 	right: 6px;
 }
 /************************* faq page *************************/
-/************************* faq *************************/
 .content-top-text {
 	margin: 0 0 41px;
 	white-space: pre-line;
@@ -1965,7 +1963,7 @@ textarea.form-error {
 	color: #fff;
 }
 /************************* cabinet *************************/
-/************************* cabinet-info page *************************/
+/*------------------------ cabinet-info page ------------------------*/
 .profile {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -2024,7 +2022,7 @@ textarea.form-error {
 	color: #fff;
 }
 .green {color: #18c216;}
-/************************* profile-edit page *************************/
+/*------------------------ profile-edit page ------------------------*/
 .profile-edit {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -2734,8 +2732,8 @@ article ul li:before {
 	white-space: pre-line;
 }
 .prod-arrow {
-	width: 8px;
-	height: 14px;
+	width: 9px;
+	height: 19px;
 	background: url(../icons/slider-arrow.svg) 50% 50% no-repeat;
 	background-size: contain;
 }
@@ -2819,6 +2817,18 @@ article ul li:before {
 }
 .prod-info-text {
 	color: #fff;
+}
+/*------------------------ vertical posts ------------------------*/
+.horizontal-posts-top {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: baseline;
+	margin-bottom: 10px;
 }
 /************************* cabinet-subscription page *************************/
 .pack {

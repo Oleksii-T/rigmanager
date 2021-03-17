@@ -180,12 +180,12 @@ class PostController extends Controller
         if (!$post->is_active && !$this->isOwner($post->user->id)) {
             return view('post.inactive', compact('post'));
         }
-        $translated = [];
-        if ( App::getLocale() != $post->origin_lang ) {
-            $translated['title'] = 'title_'.App::getLocale();
-            $translated['description'] = 'description_'.App::getLocale();
-        }
-        return view('post.show', compact('post'));
+        $authorPosts = Post::where('user_id', $post->user_id)->where("is_active", 1)->where('id', '!=', $post->id)->inRandomOrder()->limit(11)->orderBy('created_at', 'DESC')->get();
+        $tagId = $post->tag_encoded;
+        $regex = str_replace('.', '\.', "^$tagId(.[0-9]+)*$"); //make regex from tag and escape regex '.' via '\'
+        $simPosts = Post::whereRaw("tag_encoded REGEXP '$regex'")->where("is_active", 1)->where('id', '!=', $post->id)->inRandomOrder()->limit(31)->orderBy('created_at', 'DESC')->get();
+        $simPosts = $simPosts->diff($authorPosts)->take(20);
+        return view('post.show', compact('post', 'authorPosts', 'simPosts'));
     }
 
     public function viewed(Request $request) {

@@ -381,7 +381,7 @@ return [
         
         Ви можете повернутися сюди пізніше,
         Воно може бути активоване незабаром знову!',
-    'originPostLang' => 'Це переведенийОригінальна мова -',
+    'originPostLang' => 'Це переведене оголошення. Оригінальна мова -',
     'translationCorrupted' => 'Переклад пошкоджено. Відображається оригінал',
     'showOrigin' => 'Показати оригінал',
     'postIsOutdated' => 'Термін дії цього оголошення завершився',
@@ -412,7 +412,7 @@ return [
 
     //dropzone
     'dzDesc' => 'Перетягніть файли або натисніть,
-    щоб завантажити зображення',
+        щоб завантажити зображення',
     'dzBigFile' => 'Зображення занадто велике',
     'dzInvalidMime' => 'Дозволено лише .jpeg, .jpg, .png',
     'dzServerError' => 'Виникла помилка сервера',
@@ -422,40 +422,42 @@ return [
     'dzInvalidMimeXlsx' => 'Файл імпорту повинен бути .XLSX',
 
    // post show masssages
-   'yoursPost' => 'Це оголошення належить вам',
-   'postAuthor' => 'Автор оголошення',
-   'otherAuthorPosts' => 'Інші оголошення автора',
-   'contactInfo' => 'Контактна інформація',
-   'showContacts' => 'Показати контакти',
-   'postCreated' => 'Оголошення додано',
-   'condition' => 'Стан',
-   'deleteAllImgs' => 'Видалити всі зображення',
+    'similarPosts' => 'Схожі оголошення',
+    'yoursPost' => 'Це оголошення належить вам',
+    'postAuthor' => 'Автор оголошення',
+    'allAuthorPosts' => 'Усі оголошення автора',
+    'otherAuthorPosts' => 'Інші оголошення автора',
+    'contactInfo' => 'Контактна інформація',
+    'showContacts' => 'Показати контакти',
+    'postCreated' => 'Оголошення додано',
+    'condition' => 'Стан',
+    'deleteAllImgs' => 'Видалити всі зображення',
 
-   // verification notice massages
-   'verifyNoticeThank' => 'Спасибі, що обрали наш ресурс',
-   'verifyNoticeBody' => 'На вашу електронну адресу було надіслано листа для активації облікового запису.
-   Будь ласка, перейдіть за посиланням наданого в нашому листі.
-   Якщо Ви не можете знайти лист, перевірте папку спам, або ми можемо відправити',
-   'verifyClickToResend' => 'новий лист активації',
-   'verifyNoticeResend' => 'Новий лист для активації облікового запису
-   відправлений на Вашу електронну адресу.',
+    // verification notice massages
+    'verifyNoticeThank' => 'Спасибі, що обрали наш ресурс',
+    'verifyNoticeBody' => 'На вашу електронну адресу було надіслано листа для активації облікового запису.
+        Будь ласка, перейдіть за посиланням наданого в нашому листі.
+        Якщо Ви не можете знайти лист, перевірте папку спам, або ми можемо відправити',
+    'verifyClickToResend' => 'новий лист активації',
+    'verifyNoticeResend' => 'Новий лист для активації облікового запису
+        відправлений на Вашу електронну адресу.',
 
-   // footer massages
-   'footerAbout' => 'Про нас',
-   'footerFAQ' => 'FAQ',
-   'footerCopyright' => 'Всі права захищені.',
-   'footerIconsRef' => 'Всі іконки надані',
-   'footerSubscription' => 'Підписки',
-   'footerContact' => 'Зв\'язатися з нами',
-   'footerTerms' => 'Угода
-   користувача ',
-   'footerPrivacy' => 'Політика
-   конфіденційності',
-   'footerDevelop' => 'Розробка',
-   'footerSiteMap' => 'Карта сайту',
-   'footerBlog' => 'Блог',
-   'contactsFooter' => 'Зв\'яжіться з нами, заповнивши форму нижче або використовуючи наступні контактні дані:',
-   'ourPartners' => 'Наші партнери',
+    // footer massages
+    'footerAbout' => 'Про нас',
+    'footerFAQ' => 'FAQ',
+    'footerCopyright' => 'Всі права захищені.',
+    'footerIconsRef' => 'Всі іконки надані',
+    'footerSubscription' => 'Підписки',
+    'footerContact' => 'Зв\'язатися з нами',
+    'footerTerms' => 'Угода
+        користувача ',
+    'footerPrivacy' => 'Політика
+        конфіденційності',
+    'footerDevelop' => 'Розробка',
+    'footerSiteMap' => 'Карта сайту',
+    'footerBlog' => 'Блог',
+    'contactsFooter' => 'Зв\'яжіться з нами, заповнивши форму нижче або використовуючи наступні контактні дані:',
+    'ourPartners' => 'Наші партнери',
 
     // sitemap
     'stMain' => 'Головна',
@@ -463,43 +465,43 @@ return [
     'stAuth' => 'Аутентифікація',
     'stProfile' => 'Користувач',
     'stMisc' => 'Додатково/Деталі',
-   'siteMapDesc' => '',
+    'siteMapDesc' => '',
 
-   // Regions
-   'regionOdessa' => 'Одеська область',
-   'import' => 'Імпорт',
-   'regionDnipropetrovsk' => 'Дніпропетровська область',
-   'regionChernihiv' => 'Чернігівська область',
-   'regionKharkiv' => 'Харківська область',
-   'regionZhytomyr' => 'Житомирська область',
-   'regionPoltava' => 'Полтавська область',
-   'regionKherson' => 'Херсонська область',
-   'regionKiev' => 'Київська область',
-   'regionZaporozhye' => 'Запорізька область',
-   'regionLuhansk' => 'Луганська область',
-   'regionDonetsk' => 'Донецька область',
-   'regionVinnytsia' => 'Вінницька область',
-   'regionCrimea' => 'Автономна Республіка Крим',
-   'regionMykolaiv' => 'Миколаївська область',
-   'regionKirovograd' => 'Кіровоградська область',
-   'regionSumy' => 'Сумська область',
-   'regionLviv' => 'Львівська область',
-   'regionCherkasy' => 'Черкаська область',
-   'regionKhmelnytsky' => 'Хмельницька область',
-   'regionVolyn' => 'Волинська область',
-   'regionRivne' => 'Рівненська область',
-   'regionIvano-Frankivsk' => 'Івано-Франківська область',
-   'regionTernopil' => 'Тернопільська область',
-   'regionCarpathian' => 'Закарпатська область',
-   'regionChernivtsi' => 'Чернівецька область',
+    // Regions
+    'regionOdessa' => 'Одеська область',
+    'import' => 'Імпорт',
+    'regionDnipropetrovsk' => 'Дніпропетровська область',
+    'regionChernihiv' => 'Чернігівська область',
+    'regionKharkiv' => 'Харківська область',
+    'regionZhytomyr' => 'Житомирська область',
+    'regionPoltava' => 'Полтавська область',
+    'regionKherson' => 'Херсонська область',
+    'regionKiev' => 'Київська область',
+    'regionZaporozhye' => 'Запорізька область',
+    'regionLuhansk' => 'Луганська область',
+    'regionDonetsk' => 'Донецька область',
+    'regionVinnytsia' => 'Вінницька область',
+    'regionCrimea' => 'Автономна Республіка Крим',
+    'regionMykolaiv' => 'Миколаївська область',
+    'regionKirovograd' => 'Кіровоградська область',
+    'regionSumy' => 'Сумська область',
+    'regionLviv' => 'Львівська область',
+    'regionCherkasy' => 'Черкаська область',
+    'regionKhmelnytsky' => 'Хмельницька область',
+    'regionVolyn' => 'Волинська область',
+    'regionRivne' => 'Рівненська область',
+    'regionIvano-Frankivsk' => 'Івано-Франківська область',
+    'regionTernopil' => 'Тернопільська область',
+    'regionCarpathian' => 'Закарпатська область',
+    'regionChernivtsi' => 'Чернівецька область',
 
-   // notification from user
-   'fromUserTitle' => 'Є питання?',
-   'fromUserEmail' => 'Електронна пошта (для зворотного зв\'язку)',
-   'fromUserSubject' => 'Тема',
-   'fromUserText' => 'Як ми можемо Вам допомогти?',
-   'fromUserTextPlaceholder' => 'Опишіть Вашу проблему/пропозицію',
-   'fromUserSubmit' => 'Відправити повідомлення',
+    // notification from user
+    'fromUserTitle' => 'Є питання?',
+    'fromUserEmail' => 'Електронна пошта (для зворотного зв\'язку)',
+    'fromUserSubject' => 'Тема',
+    'fromUserText' => 'Як ми можемо Вам допомогти?',
+    'fromUserTextPlaceholder' => 'Опишіть Вашу проблему/пропозицію',
+    'fromUserSubmit' => 'Відправити повідомлення',
 
     // server error
     'serverErrorTittle' => 'Ой!',
@@ -514,21 +516,21 @@ return [
     'free' => 'безкоштовно',
     'account' => 'аккаунт',
     'plansHeader' => 'Вартість та порівняння 
-    тарифних планів rigmanager.com.ua',
+        тарифних планів rigmanager.com.ua',
     'plansStartAcc' => 'Start
-    Аккаунт',
+        Аккаунт',
     'plansStartAccHelp' => 'Для
         ознайомлення
         з
         сервісом',
     'plansStandartAcc' => 'Standart
-    Аккаунт',
+        Аккаунт',
     'plansStandartAccHelp' => 'Включає
         основні
         можливості
         сервісу',
     'plansProAcc' => 'Pro
-    Аккаунт',
+        Аккаунт',
     'plansProAccHelp' => 'Включає
         всі
         переваги
@@ -601,7 +603,7 @@ return [
     'importFileLastUpdate' => 'Останнє оновлення шаблону файлу імпорту',
     'postImportWarning' => 'В даний момент, ми не підтримуємо завантаження зображень через файл імпорту, тому, після того як всі оголошення були опубліковані ви можете додати зображення до кожного окремо.',
     'importErrorAfter' => 'Жодне з ваших оголошень не опубліковано.
-    Виправте помилку та надішліть файл імпорту ще раз.',
+        Виправте помилку та надішліть файл імпорту ще раз.',
     'fileImporting' => 'Ваш файл обробляється, будь ласка, зачекайте.',
     'importFileRequireError' => 'Виберіть заповнений файл імпорту. Ви можете завантажити його нижче.',
     'totalImported' => 'Всього',

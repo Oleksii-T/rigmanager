@@ -98,7 +98,7 @@
                     @endif
                     <div class="prod-author-about">
                         <div class="prod-author-name">{{$post->user->name}}</div>
-                        <a href="{{loc_url(route('search', ['author'=>$post->user->url_name]))}}" class="prod-author-link">{{__('ui.otherAuthorPosts')}}</a>
+                        <a href="{{loc_url(route('search', ['author'=>$post->user->url_name]))}}" class="prod-author-link">{{__('ui.allAuthorPosts')}}</a>
                         @auth
                             <br>
                             @if ($post->user_id != Auth::id())
@@ -201,6 +201,43 @@
             </div>
         </div>
     </div>
+    @if ($authorPosts->isNotEmpty())
+        <div class="horizontal-posts author-posts">
+            <div class="horizontal-posts-top">
+                <h2>{{__('ui.otherAuthorPosts')}}</h2>
+                <div class="prod-controls author-posts-controls">
+                    <a href="" class="prod-arrow prod-prev"></a>
+                    <div class="prod-current"></div>
+                    <div class="prod-divider"></div>
+                    <div class="prod-all"></div>
+                    <a href="" class="prod-arrow prod-next"></a>
+                </div>
+            </div>
+            <div class="horizontal-posts-slider author-posts-slider">
+                <x-home-items :posts="$authorPosts"/>
+                <div class="ad-col ad-col-more">
+                    <a href="{{loc_url(route('search', ['author'=>$post->user->url_name]))}}" class="ad-more">{{__('ui.allAuthorPosts')}}</a>
+                </div>
+            </div>
+        </div>
+    @endif
+    @if ($simPosts->isNotEmpty())
+        <div class="horizontal-posts similar-posts">
+            <div class="horizontal-posts-top">
+                <h2>{{__('ui.similarPosts')}}</h2>
+                <div class="prod-controls similar-posts-controls">
+                    <a href="" class="prod-arrow prod-prev"></a>
+                    <div class="prod-current"></div>
+                    <div class="prod-divider"></div>
+                    <div class="prod-all"></div>
+                    <a href="" class="prod-arrow prod-next"></a>
+                </div>
+            </div>
+            <div class="horizontal-posts-slider similar-posts-slider">
+                <x-home-items :posts="$simPosts"/>
+            </div>
+        </div>
+    @endif
 @endsection
 
 @section('modals')

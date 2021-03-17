@@ -81,19 +81,19 @@ $(document).ready(function () {
 
 	// slider
 	$(".prod-photo").on("init", function(event, slick){
-		$(".prod-current").text(parseInt(slick.currentSlide + 1));
-		$(".prod-all").text(parseInt(slick.slideCount));
+		$(".prod-top .prod-current").text(parseInt(slick.currentSlide + 1));
+		$(".prod-top .prod-all").text(parseInt(slick.slideCount));
 	});
 	$(".prod-photo").on("afterChange", function(event, slick, currentSlide){
-		$(".prod-current").text(parseInt(slick.currentSlide + 1));
-		$(".prod-all").text(parseInt(slick.slideCount));
+		$(".prod-top .prod-current").text(parseInt(slick.currentSlide + 1));
+		$(".prod-top .prod-all").text(parseInt(slick.slideCount));
 	});
 	$('.prod-photo').slick({
 		dots: false,
 		arrows: true,
 		autoplay: false,
-		prevArrow: $('.prod-prev'),
-		nextArrow: $('.prod-next'),
+		prevArrow: $('.prod-top .prod-prev'),
+		nextArrow: $('.prod-top .prod-next'),
 		speed: 1000,
 		slidesToShow: 1,
 		slidesToScroll: 1,
@@ -103,7 +103,7 @@ $(document).ready(function () {
 		dots: false,
 		arrows: false,
 		autoplay: false,
-		speed: 1000,
+		speed: 500,
 		slidesToShow: 8,
 		slidesToScroll: 8,
 		responsive: [{
@@ -126,6 +126,67 @@ $(document).ready(function () {
 			}
 		}]
 	});
+	$('.similar-posts-slider').slick({
+		dots: false,
+		arrows: true,
+		autoplay: false,
+		infinite: false,
+		prevArrow: $('.similar-posts .prod-prev'),
+		nextArrow: $('.similar-posts .prod-next'),
+		speed: 500,
+		slidesToShow: 4,
+		slidesToScroll: 4,
+		responsive: [{
+			breakpoint: 1023,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 3,
+			}
+		},{
+			breakpoint: 767,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 2,
+			}
+		},{
+			breakpoint: 576,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 2,
+			}
+		}]
+	});
+	$('.author-posts-slider').slick({
+		dots: false,
+		arrows: true,
+		autoplay: false,
+		infinite: false,
+		prevArrow: $('.author-posts .prod-prev'),
+		nextArrow: $('.author-posts .prod-next'),
+		speed: 500,
+		slidesToShow: 4,
+		slidesToScroll: 4,
+		responsive: [{
+			breakpoint: 1023,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 3,
+			}
+		},{
+			breakpoint: 767,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 2,
+			}
+		},{
+			breakpoint: 576,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 2,
+			}
+		}]
+	});
+
 
 	// sub mob dropdown
 	$(document).on('click','.sub-mob',function(e){

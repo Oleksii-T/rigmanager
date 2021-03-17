@@ -421,8 +421,10 @@ return [
     'dzInvalidMimeXlsx' => 'The import file must be .XLSX',
 
     // post show masssages
+    'similarPosts' => 'Similar posts',
     'yoursPost' => 'This post is yours',
     'postAuthor' => 'Post author',
+    'allAuthorPosts' => 'All post by author',
     'otherAuthorPosts' => 'More post by author',
     'contactInfo' => 'Contact info',
     'showContacts' => 'Show contacts',
