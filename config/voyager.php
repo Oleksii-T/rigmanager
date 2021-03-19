@@ -135,7 +135,7 @@ return [
             'voyager::generic.home' => [
                 'route'        => '/',
                 'icon_class'   => 'voyager-home',
-                'target_blank' => true,
+                'target_blank' => false,
             ],
             'voyager::generic.logout' => [
                 'route'      => 'voyager.logout',
@@ -145,8 +145,9 @@ return [
 
         'widgets' => [
             'TCG\\Voyager\\Widgets\\UserDimmer',
-            'TCG\\Voyager\\Widgets\\PostDimmer',
-            'TCG\\Voyager\\Widgets\\PageDimmer',
+            'App\\Widgets\\PostWidget',
+            'App\\Widgets\\SubscriptionWidget',
+            'App\\Widgets\\PartnerWidget',
         ],
 
     ],
