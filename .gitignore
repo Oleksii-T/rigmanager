@@ -17,3 +17,4 @@ yarn-error.log
 /public/sitemap-obyavleniya.xml
 /public/sitemap-kategorii.xml
 /etc/*
+/storage/.DS_Store
