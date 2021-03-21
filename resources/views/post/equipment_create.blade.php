@@ -14,11 +14,7 @@
             <meta itemprop="position" content="2" />
         </li>
         <li class="crop-bc-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            @if (!App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'title_'.App::getLocale()})
-                <a itemprop="item" href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}"><span itemprop="name">{{ $post->{'title_'.App::getLocale()} }}</span></a>
-            @else
-                <a itemprop="item" href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}"><span itemprop="name">{{$post->title}}</span></a>
-            @endif
+            <a itemprop="item" href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}"><span itemprop="name">{{$post->title_localed}}</span></a>
             <meta itemprop="position" content="3" />
         </li>
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">

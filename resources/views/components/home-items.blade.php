@@ -21,11 +21,7 @@
                 <div class="ad-date">{{ $post->created_at_readable }}</div>
                 <a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}" class="ad-tag">{{$post->type_readable_short}}</a>
             </div>
-            @if (auth()->user() && !App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'title_'.App::getLocale()})
-                <div class="ad-title"><a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}">{{ $post->{'title_'.App::getLocale()} }}</a></div>
-            @else
-                <div class="ad-title"><a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}">{{ $post->title }}</a></div>
-            @endif
+            <div class="ad-title"><a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}">{{ $post->title_localed }}</a></div>
             @if ($post->region_encoded)
                 <div class="ad-region">{{$post->region_readable}}</div>
             @endif

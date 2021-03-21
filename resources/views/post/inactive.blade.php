@@ -1,8 +1,8 @@
 @extends('layouts.page')
 
 @section('meta')
-    <title>{{$post->title . ' - ' . $post->tag_map[array_key_last($post->tag_map)] . ' ' . __('meta.title.post.inactive')}}</title>
-    <meta name="description" content="{{($post->cost ? $post->cost_readable : '') . ': ' . (strlen($post->description)>90 ? substr($post->description, 0, 90) . '...' : $post->description)}}">
+    <title>{{$post->title_localed . ' - ' . $post->tag_map[array_key_last($post->tag_map)] . ' ' . __('meta.title.post.inactive')}}</title>
+    <meta name="description" content="{{($post->cost ? $post->cost_readable : '') . ': ' . (strlen($post->description_localed)>90 ? substr($post->description_localed, 0, 90) . '...' : $post->description_localed)}}">
     <meta name="robots" content="index, follow">
 @endsection
 
@@ -18,11 +18,7 @@
         </li>
         @if ($loop->last)
             <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                @if (auth()->user() && !App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'title_'.App::getLocale()})
-                    <span itemprop="name">{{ $post->{'title_'.App::getLocale()} }}</span>
-                @else
-                    <span itemprop="name">{{$post->title}}</span>
-                @endif
+                <span itemprop="name">{{$post->title_localed}}</span>
                 <meta itemprop="position" content="{{$loop->index+4}}" />
             </li>
         @endif

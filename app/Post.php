@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\Traits\Tags;
+use Illuminate\Support\Facades\App;
 use App\Utilities\FilterBuilder;
 use Laravel\Scout\Searchable;
 use App\Favourite;
@@ -16,9 +17,10 @@ class Post extends Model
     use Searchable, Tags;
 
     protected $appends = [
-        'tag_readable', 'tag_map', 'condition_readable', 'cost_readable', 'user_phone_readable',
-        'user_phone_intern', 'region_readable', 'role_readable', 'type_readable', 'origin_lang_readable',
-        'type_readable_short', 'created_at_readable', 'preview_image', 'views_amount', 'views_all', 'doc_name'
+        'title_localed', 'description_localed', 'tag_readable', 'tag_map', 
+        'condition_readable', 'cost_readable', 'user_phone_readable', 'user_phone_intern', 'region_readable', 
+        'role_readable', 'type_readable', 'origin_lang_readable', 'type_readable_short', 'created_at_readable', 
+        'preview_image', 'views_amount', 'views_all', 'doc_name'
     ];
 
     protected $guarded = [
@@ -52,6 +54,38 @@ class Post extends Model
     public function favOfUser()
     {
         return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+    public function getTitleLocaledAttribute() {
+        $tl = 'title_'.App::getLocale();
+        if ( !App::isLocale($this->origin_lang) && $this->$tl ) {
+            return $this->$tl;
+        }
+        return $this->title;
+    }
+
+    public function getTitleIsLocaledAttribute() {
+        $tl = 'title_'.App::getLocale();
+        if ( $this->$tl ) {
+            return true;
+        }
+        return false;
+    }
+
+    public function getDescriptionLocaledAttribute() {
+        $dl = 'description_'.App::getLocale();
+        if ( !App::isLocale($this->origin_lang) && $this->$dl ) {
+            return $this->$dl;
+        }
+        return $this->description;
+    }
+
+    public function getDescriptionIsLocaledAttribute() {
+        $dl = 'description_'.App::getLocale();
+        if ( $this->$dl ) {
+            return true;
+        }
+        return false;
     }
 
     public function getViewsAmountAttribute() {

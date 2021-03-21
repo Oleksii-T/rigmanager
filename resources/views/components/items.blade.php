@@ -5,11 +5,7 @@
         <!--all post preview but image-->
         <div class="catalog-content">
             <!--title-->
-            @if (auth()->user() && !App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'title_'.App::getLocale()})
-                <div class="catalog-name"><a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}">{{ $post->{'title_'.App::getLocale()} }}</a></div>
-            @else
-                <div class="catalog-name"><a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}">{{$post->title}}</a></div>
-            @endif
+            <div class="catalog-name"><a href="{{loc_url(route('posts.show', ['post'=>$post->url_name]))}}">{{$post->title_localed}}</a></div>
             <!--under title line. Lables: type, view, region, date-->
             <div class="catalog-line">
                 <!--type-->
@@ -46,11 +42,7 @@
                 <div class="catalog-date">{{$post->created_at_readable}}</div>
             </div>
             <!--description-->
-            @if (auth()->user() && !App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'description_'.App::getLocale()})
-                <div class="catalog-text">{{ preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $post->{'description_'.App::getLocale()}) }}</div>
-            @else
-                <div class="catalog-text">{{preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $post->description)}}</div>
-            @endif
+            <div class="catalog-text">{{preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $post->description_localed)}}</div>
             <!--under description line. Lables: cost, urgent, import-->
             <div class="catalog-line-bottom">
                 <!--price-->

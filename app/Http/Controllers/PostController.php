@@ -159,7 +159,7 @@ class PostController extends Controller
         TranslatePost::dispatch($post, $input, true)->onQueue('translation');
         Session::flash('message-success', __('messages.postUploaded'));
         if ($request->wantsJson()) {
-            return true;
+            return json_encode(true);
         }
         return redirect(loc_url(route('profile.posts')));
     }
@@ -393,7 +393,7 @@ class PostController extends Controller
         TranslatePost::dispatch($post, $input, false)->onQueue('translation');
         Session::flash('message-success', __('messages.postEdited'));
         if ($request->wantsJson()) {
-            return true;
+            return json_encode(true);
         }
         return redirect(loc_url(route('profile.posts')));
     }
@@ -519,7 +519,7 @@ class PostController extends Controller
             return json_encode(0);
         } 
         // the post is outdated
-        if ( $post->active_to < Carbon::now() ) {
+        if ( $post->active_to && $post->active_to < Carbon::now() ) {
             return json_encode(-3);
         }
         //if user not subscribed and tryes activate post

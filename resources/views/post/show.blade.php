@@ -1,8 +1,8 @@
 @extends('layouts.page')
 
 @section('meta')
-	<title>{{$post->title . ' - ' . $post->tag_map[array_key_last($post->tag_map)] . ' ' . __('meta.title.post.show')}}</title>
-	<meta name="description" content="{{($post->cost ? $post->cost_readable : '') . ': ' . (strlen($post->description)>90 ? substr($post->description, 0, 90) . '...' : $post->description)}}">
+	<title>{{$post->title_localed . ' - ' . $post->tag_map[array_key_last($post->tag_map)] . ' ' . __('meta.title.post.show')}}</title>
+	<meta name="description" content="{{($post->cost ? $post->cost_readable : '') . ': ' . (strlen($post->description_localed)>90 ? substr($post->description_localed, 0, 90) . '...' : $post->description_localed)}}">
     <meta name="robots" content="index, follow">
 @endsection
 
@@ -18,11 +18,7 @@
         </li>
         @if ($loop->last)
             <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                @if (auth()->user() && !App::isLocale($post->origin_lang) && auth()->user()->is_standart && $post->{'title_'.App::getLocale()})
-                    <span itemprop="name">{{ $post->{'title_'.App::getLocale()} }}</span>
-                @else
-                    <span itemprop="name">{{$post->title}}</span>
-                @endif
+                <span itemprop="name">{{$post->title_localed}}</span>
                 <meta itemprop="position" content="{{$loop->index+4}}" />
             </li>
         @endif
@@ -65,23 +61,11 @@
             @endif
             <div class="prod-about">
                 @if (!App::isLocale($post->origin_lang))
-                    @if (auth()->user() && auth()->user()->is_standart)
-                        @if (!$post->{'title_'.App::getLocale()} || !$post->{'description_'.App::getLocale()})
-                            <div class="warning">{{__('ui.translationCorrupted')}}</div>
-                            <h1>{{$post->title}}</h1>
-                            <p>{{$post->description}}</p>
-                        @else
-                            <div class="warning">{{__('ui.originPostLang')}} <a class="show-origin-text" href="">{{$post->origin_lang_readable}}</a>.</div>
-                            <h1>{{ $post->{'title_'.App::getLocale()} }}</h1>
-                            <p>{{ $post->{'description_'.App::getLocale()} }}</p>
-                            <h1 class="hidden">{{$post->title}}</h1>
-                            <p class="hidden">{{$post->description}}</p>
-                        @endif
-                    @else
-                        <div class="warning">{{__('ui.translationRequireStandart')}} <a href="{{loc_url(route('plans'))}}">{{__('ui.footerSubscription')}}</a></div>
-                        <h1>{{$post->title}}</h1>
-                        <p>{{$post->description}}</p>
-                    @endif
+                    <div class="warning">{{__('ui.originPostLang')}} <a class="show-origin-text" href="">{{$post->origin_lang_readable}}</a>.</div>
+                    <h1>{{$post->title_localed}}</h1>
+                    <p>{{$post->description_localed}}</p>
+                    <h1 class="hidden">{{$post->title}}</h1>
+                    <p class="hidden">{{$post->description}}</p>
                 @else
                     <h1>{{$post->title}}</h1>
                     <p>{{$post->description}}</p>
