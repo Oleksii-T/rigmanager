@@ -424,26 +424,6 @@ class PostController extends Controller
         return redirect(loc_url(route('profile.posts')));
     }
 
-    /**
-     * Remove the specified resource from storage. Call via Ajax
-     *
-     * @param  int  $id
-     * @return boolean
-     */
-    public function destroyAjax($id)
-    {
-        $post = Post::findOrFail($id);
-        if ($this->isOwner($post->user->id)) {
-            $this->postImagesDelete($post);
-            if ($post->doc) {
-                Storage::delete($post->doc);
-            }
-            $post->delete();
-            return true;
-        }
-        return false;
-    }
-
     public function imgsDel($id)
     {
         $post = Post::findOrFail($id);
@@ -735,6 +715,9 @@ class PostController extends Controller
         $posts = auth()->user()->posts;
         foreach ($posts as $post) {
             $this->postImagesDelete($post);
+            if ($post->doc) {
+                Storage::delete($post->doc);
+            }
             $post->delete();
         }
         Session::flash('message-success', __('messages.allPostsDeleted'));

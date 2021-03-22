@@ -71,7 +71,6 @@ Route::middleware('verified')->group(function () {
     
     // post routes
     Route::post     ('ajax/posts/toggle/status/{post}',     'PostController@togglePost')        ->name('post.toggle'); //Ajax reqeust
-    Route::delete   ('ajax/posts/a//{post}',                'PostController@destroyAjax')       ->name('posts.destroy.ajax'); //Ajax reqeust
 
     Route::middleware('plan.standart')->group(function () {
         // post routes

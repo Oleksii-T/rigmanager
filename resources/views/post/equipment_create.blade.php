@@ -293,7 +293,7 @@
         <div id="popup-delete-post" class="popup">
             <div class="popup-title">{{__('ui.sure?')}}</div>
             <div class="sure-dialog">
-                <form method="POST" action="{{ loc_url(route('posts.destroy', ['post'=>$post->id])) }}">
+                <form method="POST" action="{{loc_url(route('posts.destroy', ['post'=>$post->id]))}}">
                     @csrf
                     @method('DELETE')
                     <button class="">{{__('ui.deletePost')}}</button>

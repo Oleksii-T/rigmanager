@@ -85,7 +85,7 @@
                                 <path transform="translate(0)" d="M444.87,3.12a10.68,10.68,0,0,0-15.09,0L67.12,365.79A10.66,10.66,0,0,0,82.2,380.87L444.87,18.2a10.67,10.67,0,0,0,0-15.08"/>
                             </svg>
                         </a>
-                        <a href="#popup-delete-post" class="bar-delete id_{{$post->id}}" data-fancybox>
+                        <a href="#popup-delete-post-{{$post->id}}" class="bar-delete id_{{$post->id}}" data-fancybox>
                             <svg viewBox="0 0 418.17 512" xmlns="http://www.w3.org/2000/svg">
                                 <path transform="translate(0)" d="M416.88,114.44,405.57,80.55A31.52,31.52,0,0,0,375.63,59h-95V28a28.06,28.06,0,0,0-28-28h-87a28.06,28.06,0,0,0-28,28V59h-95A31.54,31.54,0,0,0,12.6,80.55L1.3,114.44a25.37,25.37,0,0,0,24.06,33.4H37.18l26,321.6A46.54,46.54,0,0,0,109.29,512H314.16a46.52,46.52,0,0,0,46.1-42.56l26-321.6h6.54a25.38,25.38,0,0,0,24.07-33.4M167.56,30h83.06V59H167.56Zm162.8,437a16.36,16.36,0,0,1-16.2,15H109.29a16.36,16.36,0,0,1-16.2-15L67.27,147.84h288.9ZM31.79,117.84l9.27-27.79A1.56,1.56,0,0,1,42.55,89H375.63a1.55,1.55,0,0,1,1.48,1.07l9.27,27.79Z"/>
                                 <path transform="translate(0)" d="m282.52 466h0.79a15 15 0 0 0 15-14.22l14.09-270.4a15 15 0 0 0-30-1.56l-14.08 270.38a15 15 0 0 0 14.2 15.8"/>
@@ -98,6 +98,7 @@
             @endif
         </div>
     </div>
+    <!--pop up with views statictics-->
     @if (auth()->check() && auth()->user()->is_pro && $type=='profile.posts' && $post->views)
         <div id="popup-views-{{$post->id}}" class="popup">
             <div class="popup-title">{{__('ui.totalUniqViews') . ': ' . $post->views_amount}}</div>
@@ -109,6 +110,19 @@
                         <div class="prod-info-text">{{__('ui.lastView') . ': ' . $view['last_date']}}</div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+    @endif
+    <!--pop up with views statictics-->
+    @if ($type=='profile.posts')
+        <div id="popup-delete-post-{{$post->id}}" class="popup">
+            <div class="popup-title">{{__('ui.sure?')}}</div>
+            <div class="sure-dialog">
+                <form method="POST" action="{{loc_url(route('posts.destroy', ['post'=>$post->id]))}}">
+                    @csrf
+                    @method('DELETE')
+                    <button class="">{{__('ui.deletePost')}}</button>
+                </form>
             </div>
         </div>
     @endif

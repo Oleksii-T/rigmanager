@@ -106,12 +106,6 @@
             </form>
         </div>
     </div>
-    <div id="popup-delete-post" class="popup">
-        <div class="popup-title">{{__('ui.sure?')}}</div>
-        <div class="sure-dialog">
-            <a href="#" class="delete-post">{{__('ui.deletePost')}}</a>
-        </div>
-    </div>
 @endsection
 
 @section('scripts')
@@ -198,43 +192,6 @@
                     error: function() {
                         showPopUpMassage(false, "{{ __('messages.error') }}"); // pop up error message
                         button.removeClass('loading');
-                    }
-                });
-            });
-
-            //open modal delete confirm when user ask to
-            $('.bar-delete').click(function() {
-                var id = getIdFromClasses($(this).attr('class'), 'id_');
-                var oldClasses = $('#popup-delete-post a').attr('class');
-                $('#popup-delete-post a').attr('class', 'id_'+id+' '+oldClasses);
-            });
-
-            //delete one post
-            $('.delete-post').click(function() {
-                var postId = getIdFromClasses($(this).attr('class'), 'id_');
-                $.fancybox.close();
-                $('div.catalog-item.id_'+postId).addClass('hidden');
-                $('div.content h1 span').html($('div.content h1 span').html()-1);
-                var ajaxUrl = "{{route('posts.destroy.ajax', ':postId')}}";
-                ajaxUrl = ajaxUrl.replace(':postId', postId);
-                $.ajax({
-                    url: ajaxUrl,
-                    type: 'POST',
-                    data: {
-                        _method: 'DELETE',
-                        _token: "{{ csrf_token() }}",
-                    },
-                    success: function(data) {
-                        if (data) {
-                            showPopUpMassage(true, "{{ __('messages.postDeleted') }}");
-                        } else {
-                            $('div.catalog-item.id_'+postId).removeClass('hidden');
-                            showPopUpMassage(false, "{{ __('messages.postDeleteError') }}");
-                        }
-                    },
-                    error: function() {
-                        $('div.catalog-item.id_'+postId).removeClass('hidden');
-                        showPopUpMassage(false, "{{ __('messages.error') }}");
                     }
                 });
             });
