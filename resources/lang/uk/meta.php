@@ -23,6 +23,7 @@ return [
             'mailer' => 'Мої розсилки | rigmanger.com.ua',
             'mailer-edit' => 'Редагування розсилки | rigmanger.com.ua',
             'subscription' => 'Моя підписка | rigmanger.com.ua',
+            'admin' => 'Панель адміністрації | rigmanger.com.ua',
         ],
         'post' => [
             'create' => [
@@ -77,6 +78,7 @@ return [
             'mailer' => 'Мої розсилки. rigmanager.com.ua - спеціалізована дошка оголошень для учасників нафтогазового ринку.',
             'mailer-edit' => 'Редагування розсилки. rigmanager.com.ua - спеціалізована дошка оголошень для учасників нафтогазового ринку.',
             'subscription' => 'Моя підписка. rigmanager.com.ua - спеціалізована дошка оголошень для учасників нафтогазового ринку.',
+            'admin' => 'Панель адміністрації. rigmanager.com.ua - спеціалізована дошка оголошень для учасників нафтогазового ринку.',
         ],
         'post' => [
             'create' => [

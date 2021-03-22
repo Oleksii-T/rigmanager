@@ -9,7 +9,7 @@
             <li><a href="{{loc_url(route('mailer.index'))}}" class="{{$active=="mailer" ? 'active' : ''}}">{{__('ui.mailer')}}</a></li>
             <li><a href="{{loc_url(route('profile.subscription'))}}" class="{{$active=="subscription" ? 'active' : ''}}">{{__('ui.mySubscription')}}</a></li>
             @if (auth()->user()->role_id==1)
-                <li><a href="{{route('home').'/admin'}}">Voyager</a></li>
+                <li><a href="{{route('admin.panel')}}">Admin Panel</a></li>
             @endif
             <li><a href="#" onclick="document.getElementById('logout-form').submit();">{{__('ui.signOut')}}</a></li>
             <form id="logout-form" action="{{ loc_url(route('logout')) }}" method="POST" hidden>@csrf</form>

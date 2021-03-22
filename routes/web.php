@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\URL;
 */
 
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin/voyager'], function () {
     Voyager::routes();
 });
 

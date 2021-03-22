@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'make.locale' => \App\Http\Middleware\MakeLocale::class,
         'check.locale' => \App\Http\Middleware\CheckLocale::class,
         'plan.standart' => \App\Http\Middleware\Standart::class,
-        'plan.pro' => \App\Http\Middleware\Pro::class
+        'plan.pro' => \App\Http\Middleware\Pro::class,
+        'admin' => \App\Http\Middleware\Admin::class
     ];
 }

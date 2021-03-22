@@ -23,6 +23,7 @@ return [
             'mailer' => 'My mailers | rigmanger.com.ua',
             'mailer-edit' => 'Edit mailer | rigmanger.com.ua',
             'subscription' => 'My subscription | rigmanger.com.ua',
+            'admin' => 'Admin panel | rigmanger.com.ua',
         ],
         'post' => [
             'create' => [
@@ -77,6 +78,7 @@ return [
             'mailer' => 'My mailers. rigmanager.com.ua - specialized bulletin board for participants in the oil and gas market.',
             'mailer-edit' => 'Edit mailer. rigmanager.com.ua - specialized bulletin board for participants in the oil and gas market.',
             'subscription' => 'My subscription. rigmanager.com.ua - specialized bulletin board for participants in the oil and gas market.',
+            'admin' => 'Admin panel. rigmanager.com.ua - specialized bulletin board for participants in the oil and gas market.',
         ],
         'post' => [
             'create' => [
@@ -108,7 +110,7 @@ return [
         ],
         'error' => '',
     ],
-
+    
     //keywords
     'keywords' => [
         'home' => '',
