@@ -117,17 +117,6 @@ class PostController extends Controller
         $appLanguages = ['uk', 'ru', 'en'];
         $userTitleTranslations = [];
         $userDescTranslations = [];
-        /*
-        foreach ($appLanguages as $lang) {
-            if ( array_key_exists($lang, $input['title_translate']) === false ) {
-                $userTitleTranslations[] = $lang;
-            }
-            if ( array_key_exists($lang, $input['desc_translate']) === false ) {
-                $userDescTranslations[] = $lang;
-            }
-        }
-        $input['user_translations'] = ['title' => $userTitleTranslations, 'description' => $userDescTranslations];
-        */
 
         $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object
         $input['origin_lang'] = $translate->detectLanguage( $input['title'] . '. ' . $input['description'] )['languageCode']; // merge title and description and find out the origin language
@@ -136,7 +125,7 @@ class PostController extends Controller
         }
 
         //save document
-        if ($request->file('doc')) {
+        if ($request->hasFile('doc')) {
             $name = $request->file('doc')->getClientOriginalName();
             while(auth()->user()->posts()->where('doc', auth()->id().'/'.$name)->get()->isNotEmpty()) {
                 $rand = mb_strtolower(Str::random(3));
@@ -387,7 +376,11 @@ class PostController extends Controller
 
         // if there is images submited, upload them
         if ( $request->hasFile('images') ) {
-            $this->postImageUpload($request->file('images'), $post);
+            $imgs = $request->file('images');
+            if (count($imgs)+$post->images->where('version', 'origin')->count() > 5) {
+                abort(400, __('validation.maxfiles', ['max'=>5]));
+            }
+            $this->postImageUpload($imgs, $post);
         }
 
         TranslatePost::dispatch($post, $input, false)->onQueue('translation');

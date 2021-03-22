@@ -15,5 +15,6 @@ Disallow: */password
 Disallow: */import-rules
 Disallow: */posts/create
 Disallow: */posts/*/edit
+Disallow: /download
 
 Sitemap: https://www.rigmanager.com.ua/sitemap.xml

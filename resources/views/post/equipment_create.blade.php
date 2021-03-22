@@ -459,6 +459,7 @@
                         }
 
                         this.on("removedfile", function(file) {
+                            $('.dz-preview').length!=0 ? $('.dz-message').addClass('hidden') : $('.dz-message').removeClass('hidden');
                             if (file.id !== undefined) {
                                 ajaxUrl = "{{route('posts.img.delete', ['post'=>':postId', 'image'=>':imgNo'])}}";
                                 ajaxUrl = ajaxUrl.replace(':imgNo', file.id);
@@ -471,9 +472,7 @@
                                         _token: "{{ csrf_token() }}"
                                     },
                                     success: function(data) {
-                                        data
-                                            ? showPopUpMassage(true, "{{ __('messages.postImgDeleted') }}")
-                                            : showPopUpMassage(false, "{{ __('messages.error') }}");
+                                        data ? showPopUpMassage(true, "{{ __('messages.postImgDeleted') }}") : showPopUpMassage(false, "{{ __('messages.error') }}");
                                     },
                                     error: function() {
                                         showPopUpMassage(false, "{{ __('messages.error') }}");
@@ -500,6 +499,11 @@
                             $.each(data, function(key, el) {
                                 formData.append(el.name, el.value);
                             });
+
+                            var doc = $('input[name="doc"]')[0].files[0];
+                            if (typeof doc!=='undefined') {
+                                formData.append('doc', doc);
+                            }
                         });
 
                         this.on("successmultiple", function(){
@@ -551,6 +555,10 @@
                             $.each(data, function(key, el) {
                                 formData.append(el.name, el.value);
                             });
+                            var doc = $('input[name="doc"]')[0].files[0];
+                            if (typeof doc!=='undefined') {
+                                formData.append('doc', doc);
+                            }
                         });
 
                         this.on("successmultiple", function(){
