@@ -82,7 +82,8 @@ Route::middleware('verified')->group(function () {
         //posts routes
         Route::get      ('posts/create/service','PostController@serviceCreate') ->name('service.create');
         Route::get      ('posts/create/tender', 'PostController@tenderCreate')  ->name('tender.create');
-        Route::get      ('posts/{post}/edit/translations', 'PostController@editTranslations')  ->name('posts.trans.edit');
+        Route::get      ('posts/{post}/edit/translations', 'PostController@editTranslation')  ->name('posts.trans.edit');
+        Route::patch    ('posts/{post}/update/translations', 'PostController@updateTranslation')  ->name('posts.trans.update');
         Route::resource ('posts',               'PostController')               ->except(['index', 'show']);
         
         // mailer routes

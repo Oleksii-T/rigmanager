@@ -24,6 +24,7 @@
 			@endif
 			<div class="content-top-text">{{__('ui.plansFreeAccessTitle')}}</div>
 			<div class="sub">
+				<!--functionality name column-->
 				<div class="sub-side">
 					<div class="sub-info">
 						<div class="sub-info-item">
@@ -39,6 +40,9 @@
 							<div class="sub-info-text">{{__('ui.plansFav')}}</div>
 						</div>
 						<div class="sub-info-item">
+							<div class="sub-info-text">{{__('ui.plansTranslate')}} <a href="{{loc_url(route('faq'))}}#WhatIsAutoTranslator">?</a></div>
+						</div>
+						<div class="sub-info-item">
 							<div class="sub-info-text">{{__('ui.plansContacts')}}</div>
 						</div>
 						<div class="sub-info-item with-help">
@@ -47,9 +51,6 @@
 						</div>
 						<div class="sub-info-item">
 							<div class="sub-info-text">{{__('ui.plansMailer')}} <a href="{{loc_url(route('faq'))}}#WhatIsMailer">?</a></div>
-						</div>
-						<div class="sub-info-item">
-							<div class="sub-info-text">{{__('ui.plansTranslate')}} <a href="{{loc_url(route('faq'))}}#WhatIsAutoTranslator">?</a></div>
 						</div>
 						<div class="sub-info-item with-help">
 							<div class="sub-info-text">{{__('ui.publishPosts')}}
@@ -66,6 +67,7 @@
 						</div>
 					</div>
 				</div>
+				<!--start column-->
 				<div class="sub-col {{auth()->user() && !auth()->user()->is_standart ? 'sub-active' : ''}}">
 					<div class="sub-top">
 						<div class="sub-name">
@@ -93,6 +95,10 @@
 							<div class="sub-info-text">{{__('ui.plansFav')}}</div>
 						</div>
 						<div class="sub-info-item">
+							<img src="{{asset('icons/sub-check.svg')}}" alt="">
+							<div class="sub-info-text">{{__('ui.plansTranslate')}} <a href="{{loc_url(route('faq'))}}#WhatIsAutoTranslator">?</a></div>
+						</div>
+						<div class="sub-info-item">
 							<div class="sub-no"></div>
 							<div class="sub-info-text">{{__('ui.plansContacts')}}</div>
 						</div>
@@ -104,10 +110,6 @@
 						<div class="sub-info-item">
 							<div class="sub-no"></div>
 							<div class="sub-info-text">{{__('ui.plansMailer')}} <a href="{{loc_url(route('faq'))}}#WhatIsMailer">?</a></div>
-						</div>
-						<div class="sub-info-item">
-							<div class="sub-no"></div>
-							<div class="sub-info-text">{{__('ui.plansTranslate')}} <a href="{{loc_url(route('faq'))}}#WhatIsAutoTranslator">?</a></div>
 						</div>
 						<div class="sub-info-item with-help">
 							<div class="sub-no"></div>
@@ -129,6 +131,7 @@
 					</div>
 					<a href="" class="sub-mob">{{__('ui.details')}}</a>
 				</div>
+				<!--standart column-->
 				<div class="sub-col {{auth()->user() && auth()->user()->is_standart && !auth()->user()->is_pro ? 'sub-active' : ''}}">
 					<div class="sub-top">
 						<div class="sub-name">
@@ -157,6 +160,10 @@
 						</div>
 						<div class="sub-info-item">
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
+							<div class="sub-info-text">{{__('ui.plansTranslate')}} <a href="{{loc_url(route('faq'))}}#WhatIsAutoTranslator">?</a></div>
+						</div>
+						<div class="sub-info-item">
+							<img src="{{asset('icons/sub-check.svg')}}" alt="">
 							<div class="sub-info-text">{{__('ui.plansContacts')}}</div>
 						</div>
 						<div class="sub-info-item with-help">
@@ -167,10 +174,6 @@
 						<div class="sub-info-item">
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
 							<div class="sub-info-text">{{__('ui.plansMailer')}} <a href="{{loc_url(route('faq'))}}#WhatIsMailer">?</a></div>
-						</div>
-						<div class="sub-info-item">
-							<img src="{{asset('icons/sub-check.svg')}}" alt="">
-							<div class="sub-info-text">{{__('ui.plansTranslate')}} <a href="{{loc_url(route('faq'))}}#WhatIsAutoTranslator">?</a></div>
 						</div>
 						<div class="sub-info-item with-help">
 							<div class="sub-no"></div>
@@ -201,6 +204,7 @@
 						</form>
 					@endif
 				</div>
+				<!--pro column-->
 				<div class="sub-col {{auth()->user() && auth()->user()->is_pro ? 'sub-active' : ''}}">
 					<div class="sub-top">
 						<div class="sub-name">
@@ -229,6 +233,10 @@
 						</div>
 						<div class="sub-info-item">
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
+							<div class="sub-info-text">{{__('ui.plansTranslate')}} <a href="{{loc_url(route('faq'))}}#WhatIsAutoTranslator">?</a></div>
+						</div>
+						<div class="sub-info-item">
+							<img src="{{asset('icons/sub-check.svg')}}" alt="">
 							<div class="sub-info-text">{{__('ui.plansContacts')}}</div>
 						</div>
 						<div class="sub-info-item with-help">
@@ -239,10 +247,6 @@
 						<div class="sub-info-item">
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">
 							<div class="sub-info-text">{{__('ui.plansMailer')}} <a href="{{loc_url(route('faq'))}}#WhatIsMailer">?</a></div>
-						</div>
-						<div class="sub-info-item">
-							<img src="{{asset('icons/sub-check.svg')}}" alt="">
-							<div class="sub-info-text">{{__('ui.plansTranslate')}} <a href="{{loc_url(route('faq'))}}#WhatIsAutoTranslator">?</a></div>
 						</div>
 						<div class="sub-info-item with-help">
 							<img src="{{asset('icons/sub-check.svg')}}" alt="">

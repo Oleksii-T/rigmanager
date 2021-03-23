@@ -34,6 +34,9 @@ return [
     'postOutdated' => 'Це оголошення застаріло, будь ласка, поновіть період життя в налаштуваннях оголошення',
     'tooManyPostsError' => 'Ви досягли максимальної кількості оголошень. (200 для Standart, 500 для Pro)',
     'allPostsDeleted' => 'Всі оголошення були видалені!',
+    'tooManyUrgentPostsError' => 'Ви досягли максимальної кількості термінових оголошень. (100 для Standart, 300 для Pro)',
+    
+    'postTranslationEdited' => 'Переклад оголошення був змінен успішно!',
 
     'mailerRequestAdded' => 'Запит успішно додано до Розсилку!',
     'mailersDeactivated' => 'Всі Розсилки були успішно деактивовані!',
@@ -59,7 +62,6 @@ return [
     'mailerEmptyTypesError' => 'Необхідно вибрати хоча б один тип!',
     'mailerEmptyRolesError' => 'Необхідно вибрати хоча б один сектор!',
     'mailerEmptyThreadsError' => 'Оберіть обладнання або сервіс',
-    'tooManyUrgentPostsError' => 'Ви досягли максимальної кількості термінових оголошень. (100 для Standart, 300 для Pro)',
 
     'profileEdited' => 'Профіль було змінено успішно!',
     'profileImgDeleted' => 'Зображення профілю успішно видалено!',

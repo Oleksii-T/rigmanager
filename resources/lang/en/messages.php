@@ -35,6 +35,8 @@ return [
     'tooManyPostsError' => 'You have reached the maximum amount of posts. (200 for Standart, 500 for Pro)',
     'allPostsDeleted' => 'All posts has been deleted!',
     'tooManyUrgentPostsError' => 'You have reached the maximum number of urgent posts. (100 for Standart, 300 for Pro)',
+    
+    'postTranslationEdited' => 'Post translation has been changed successfully!',
 
     'mailerToManyTags' => 'Too many categories',
     'mailersDeactivated' => 'All mailer deactivated successfully!',

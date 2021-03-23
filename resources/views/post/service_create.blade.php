@@ -164,7 +164,7 @@
                         </div>
                         @if (isset($post))
                             <div class="form-section"> <!--edit_translations-->
-                                <p><a class="not-ready" href="{{loc_url(route('posts.trans.edit', ['post'=>$post->url_name]))}}">{{__('ui.editTrans')}}</a></p>
+                                <p><a href="{{loc_url(route('posts.trans.edit', ['post'=>$post->url_name]))}}">{{__('ui.editTrans')}}</a></p>
                             </div>
                         @endif
                         <div class="form-button-block">

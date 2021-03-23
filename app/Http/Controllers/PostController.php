@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Traits\ImageUploader;
 use Google\Cloud\Translate\TranslateClient;
+use App\Http\Requests\PostTranslationRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Traits\Tags;
@@ -391,7 +392,7 @@ class PostController extends Controller
         return redirect(loc_url(route('profile.posts')));
     }
 
-    public function editTranslations($locale, $urlName=null) {
+    public function editTranslation($locale, $urlName=null) {
         $urlName = $urlName==null ? $locale : $urlName;
         $post = Post::where('url_name', $urlName)->first();
         if (!$post) {
@@ -401,6 +402,24 @@ class PostController extends Controller
             abort(403);
         }
         return view('post.edit_translations', compact('post'));
+    }
+
+    public function updateTranslation(PostTranslationRequest $request, $locale, $id=null) {
+        $id = $id==null ? $locale : $id;
+        $post = Post::findOrFail($id);
+        if (!$this->isOwner($post->user->id)) {
+            abort(403);
+        }
+        
+        $input = $request->input();
+        $input['is_verified'] = false;
+
+        if (!$post->update($input)) {
+            Session::flash('message-error', __('messages.postEditedError'));
+            return back()->withInput();
+        }
+        Session::flash('message-success', __('messages.postTranslationEdited'));
+        return redirect(loc_url(route('profile.posts')));
     }
 
     /**

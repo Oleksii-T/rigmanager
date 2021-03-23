@@ -35,6 +35,8 @@ return [
     'tooManyPostsError' => 'Вы достигли максимального количества объявлений. (200 для Standart, 500 для Pro)',
     'allPostsDeleted' => 'Все объявления были удалены!',
     'tooManyUrgentPostsError' => 'Вы достигли максимального количества срочных объявлений. (100 для Standart, 300 для Pro)',
+    
+    'postTranslationEdited' => 'Перевод объявления был изменен успешно!',
 
     'mailerRequestAdded' => 'Запрос был успешно добавлен в Рассылку!',
     'mailersDeactivated' => 'Все Рассылки были успешно деактивирован!',

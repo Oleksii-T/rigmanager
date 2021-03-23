@@ -401,6 +401,20 @@ return [
     'lastView' => 'Last view',
     'importExport' => 'Import-Export',
 
+    //post translation edit messagess
+    'postTransSettingsHelp' => 'Our Auto-Translator is constantly improving, but still the translation is sometimes not accurate.
+        Here you can check and change the translation of your post.
+        You can learn more about the work of Auto-Translator',
+    'trasnlationEditWarning' => 'Your translation variant must match the original post text.',
+    'originalTitle' => 'Original title',
+    'ukTitle' => 'Translated title into Ukrainian',
+    'ruTitle' => 'Translated title into Russian',
+    'enTitle' => 'Translated title to English',
+    'originalDescription' => 'Original description',
+    'ukDescription' => 'Translated description into Ukrainian',
+    'ruDescription' => 'Translated description into Russian',
+    'enDescription' => 'Translated description into English',
+
     //post deactivated messages
     'postHiddenNotifSubject' => 'Post has been deactivated',
     'postHiddenNotifGreetings' => 'Hello',

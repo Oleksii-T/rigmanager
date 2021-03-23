@@ -74,11 +74,11 @@ return [
     'qAutoTranslator' => 'What is Auto-Translator',
     'aAutoTranslator' => 'Auto-Translator is automatic title and description translation in Ukrainian and Russian languages for your newly created posts.
         It is made up for increasing chances of finding your clients.
-        You will be able to see the result of the post translation by selecting the interface language you are interested in and going to your post page.
+        You will be able to see the result of the post translation by selecting the interface language and going to your post page.
+        The post translations can be found (to view or edit) on a special page, the link to which is on the edit post page.
         The user who opens the post will always have the possibility to see the original title and description if he reviews the post not in the original language.
         We are updating and improving our Auto-Translator to achieve the best translation result.
-        Currently, we are using Phrase-Based Google Cloud Translation Model.
-        Available only for Pro users.',
+        Currently, we are using Phrase-Based Google Cloud Translation Model.',
 
     'qImport' => 'What is bulk posts import?',
     'aImport' => 'Sometimes users want to publish a lot of posts. We understand, that create them one by one will take some time.

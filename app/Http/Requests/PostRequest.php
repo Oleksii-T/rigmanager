@@ -27,16 +27,14 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
-        $titleRule = 'required|string|min:10|max:70';
-        $descRule = 'required|string|min:10|max:9000';
         $rules = [
-            'title' => $titleRule,
+            'title' => 'required|string|min:10|max:70',
             'amount' => 'nullable|string|max:15',
             'company' => 'nullable|string|min:5|max:200',
             'manufacturer' => 'nullable|string|min:3|max:70',
             'manufactured_date' => 'nullable|string|min:3|max:70',
             'part_number' => 'nullable|string|min:3|max:70',
-            'description' => $descRule,
+            'description' => 'required|string|min:10|max:9000',
             'cost' => 'nullable|string|max:20',
             'town' => 'nullable|string|max:100',
             'user_email' => 'nullable|required_without:user_phone_raw|email|max:255',
@@ -46,28 +44,6 @@ class PostRequest extends FormRequest
             'images' => 'max:5',
             'doc' => 'nullable|mimes:pdf|max:10000',
         ];
-        if ( $this->request->get('title_translate') ) {
-            if ( !array_key_exists('uk', $this->request->get('title_translate')) ) {
-                $rules['title_uk'] = $titleRule;
-            }
-            if ( !array_key_exists('ru', $this->request->get('title_translate')) ) {
-                $rules['title_ru'] = $titleRule;
-            }
-            if ( !array_key_exists('en', $this->request->get('title_translate')) ) {
-                $rules['title_en'] = $titleRule;
-            }
-        }
-        if ( $this->request->get('desc_translate') ) {
-            if ( !array_key_exists('uk', $this->request->get('desc_translate')) ) {
-                $rules['description_uk'] = $descRule;
-            }
-            if ( !array_key_exists('ru', $this->request->get('desc_translate')) ) {
-                $rules['description_ru'] = $descRule;
-            }
-            if ( !array_key_exists('en', $this->request->get('desc_translate')) ) {
-                $rules['description_en'] = $descRule;
-            }
-        }
         return $rules;
     }
 
