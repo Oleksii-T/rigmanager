@@ -34,6 +34,7 @@
 					<div class="faq-hidden" style="display: block">
 						<p>Overall: {{\App\Post::all()->count()}}</p>
 						<p>Hidden: {{\App\Post::where('is_active', '0')->count()}}</p>
+						<p>Unverified: {{\App\Post::where('is_verified', false)->count()}}</p>
 						<p>Created last day: {{\App\Post::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(1))->count()}}</p>
 						<p>Created last week: {{\App\Post::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(7))->count()}}</p>
 					</div>

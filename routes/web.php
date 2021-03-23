@@ -65,6 +65,20 @@ Route::post     ('ajax/mailer/create',                  'MailerController@create
 Route::get      ('ajax/mailer/author/{author}',         'MailerController@createByAuthor')       ->name('mailer.create.by.author');// Ajax request
 
 Route::middleware('verified')->group(function () {
+
+    //admin routes
+    Route::middleware('admin')->group(function () {
+        Route::get('admin/overview', 'AdminController@index') ->name('admin.panel');
+        Route::get('admin/user-access', 'AdminController@userAccess') ->name('admin.user-access');
+        Route::get('admin/login-as', 'AdminController@loginAs') ->name('admin.login.as');
+        Route::get('admin/mailers', 'AdminController@mailers') ->name('admin.mailers');
+        Route::get('admin/graths', 'AdminController@graphs') ->name('admin.graphs');
+        Route::get('admin/unverified-posts', 'AdminController@unverifiedPosts') ->name('admin.up');
+        Route::get('admin/unverified-posts/history', 'AdminController@unverifiedPostsHistory') ->name('admin.uph');
+        Route::get('admin/unverified-posts/verify/{post}', 'AdminController@verifyPost') ->name('admin.verify');
+        Route::get('admin/post/edit/{post}/{user}', 'AdminController@editPost') ->name('admin.post.edit');
+    });
+
     // user routes
     Route::get      ('ajax/profile/favourite',              'UserController@addToFav')          ->name('toFav'); //Ajax reqeust
     Route::patch    ('ajax/profile/image/delete',                'UserController@userImageDelete')   ->name('profile.img.delete'); //Ajax reqeust

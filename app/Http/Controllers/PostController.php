@@ -312,17 +312,6 @@ class PostController extends Controller
         $appLanguages = ['uk', 'ru', 'en'];
         $userTitleTranslations = [];
         $userDescTranslations = [];
-        /*
-        foreach ($appLanguages as $lang) {
-            if ( array_key_exists($lang, $input['title_translate']) === false ) {
-                $userTitleTranslations[] = $lang;
-            }
-            if ( array_key_exists($lang, $input['desc_translate']) === false ) {
-                $userDescTranslations[] = $lang;
-            }
-        }
-        $input['user_translations'] = ['title' => $userTitleTranslations, 'description' => $userDescTranslations];
-        */
         
         // check origin language
         $translate = new TranslateClient(['key' => env('GCP_KEY')]); //create google translation object

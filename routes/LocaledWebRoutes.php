@@ -48,15 +48,6 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('verified')->group(function () {
 
-    Route::middleware('admin')->group(function () {
-        Route::get('admin/overview', 'AdminController@index') ->name('admin.panel');
-        Route::get('admin/user-access', 'AdminController@userAccess') ->name('admin.user-access');
-        Route::get('admin/login-as', 'AdminController@loginAs') ->name('admin.login.as');
-        Route::get('admin/mailers', 'AdminController@mailers') ->name('admin.mailers');
-        Route::get('admin/graths', 'AdminController@graphs') ->name('admin.graphs');
-        Route::get('admin/unverified-posts', 'AdminController@unverifiedPosts') ->name('admin.unverified-posts');
-    });
-
     //change subscriptiob routes
     Route::post('plans/change', 'SubscriptionController@update') ->name('plans.update');
     Route::get('plans/cancel', 'SubscriptionController@cancel') ->name('plans.cancel');
