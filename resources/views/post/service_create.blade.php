@@ -173,6 +173,9 @@
                                 <a href="#popup-delete-post" data-fancybox class="button button-warning">{{__('ui.deletePost')}}</a>
                             @endif
                         </div>
+                        <div class="post-publishing-alert hidden">
+                            <p>{{__('ui.postPublishingAlert')}} <img src="{{asset('icons/loading.svg')}}" alt=""></p>
+                        </div>
                     </fieldset>
                 </form>
             </div>
@@ -220,7 +223,7 @@
                     parallelUploads: 5,
                     maxFilesize: 5, // MB
                     addRemoveLinks: true,
-                    timeout: 5000,
+                    imeout: 10000,
                     maxFiles: 5,
                     acceptedFiles: '.jpeg,.jpg,.png',
                     autoProcessQueue: false,
@@ -309,7 +312,7 @@
                     parallelUploads: 5,
                     maxFilesize: 5, // MB
                     addRemoveLinks: true,
-                    timeout: 5000,
+                    imeout: 10000,
                     maxFiles: 5,
                     acceptedFiles: '.jpeg,.jpg,.png',
                     autoProcessQueue: false,
@@ -325,6 +328,7 @@
 
                         $("#form-post button[type=submit]").click(function (e) {
                             e.preventDefault();
+                            $('.post-publishing-alert').removeClass('hidden');
                             $('.dz-error').empty();
                             $('.dz-error').addClass('hidden');
                             $(this).addClass('loading');
@@ -356,30 +360,6 @@
                         });
                     },
                 });
-            }
-
-            // show error from submit post with dropzone 
-            function showErrorsFromDropzone(dz, error) {
-                $("#form-post button[type=submit]").removeClass('loading');
-                // parse error messages
-                if (typeof error['message'] != 'undefined' && error['message'] == "The given data was invalid.") { // if it is error from input fields
-                    showPopUpMassage(false, "{{ __('messages.postInputErrors') }}");
-                    var invalidInputErrors = error['errors'];
-                    $.each(invalidInputErrors, function(key, value) {
-                        $('.'+key+'.dz-error').text(value);
-                        $('input[name='+key+']').addClass('form-error');
-                        $('textarea[name='+key+']').addClass('form-error');
-                        $('select[name='+key+']').addClass('form-error');
-                        $('.'+key+'.dz-error').removeClass('hidden');
-                    });
-                } else if (typeof error['message'] != 'undefined' && error['message'] != '') {// if it is custom error from post upload no check for 400 error code
-                    showPopUpMassage(false, error['message']);
-                //} else if (typeof error['code'] != 'undefined') { // if it is any error with error code
-                    //showPopUpMassage(false, error['code'] + ". " + "{{__('messages.error')}}");
-                } else {
-                    showPopUpMassage(false, "{{__('messages.error')}}");
-                }
-                dz.removeAllFiles();
             }
 
             //select all values if it is editing 
@@ -510,6 +490,7 @@
 				errorClass: 'form-error',
                 invalidHandler: function(event, validator) {
                     $("#form-post button[type=submit]").removeClass('loading');
+                    $('.post-publishing-alert').addClass('hidden');
                 }
             });
         });

@@ -187,7 +187,6 @@ $(document).ready(function () {
 		}]
 	});
 
-
 	// sub mob dropdown
 	$(document).on('click','.sub-mob',function(e){
 		e.preventDefault();
@@ -374,6 +373,31 @@ $(document).ready(function () {
 		return false;
 	});
 });
+
+// show error from submit post with dropzone 
+function showErrorsFromDropzone(dz, error) {
+	$("#form-post button[type=submit]").removeClass('loading');
+	$('.post-publishing-alert').addClass('hidden');
+	// parse error messages
+	if (typeof error['message'] != 'undefined' && error['message'] == "The given data was invalid.") { // if it is error from input fields
+		showPopUpMassage(false, "{{ __('messages.postInputErrors') }}");
+		var invalidInputErrors = error['errors'];
+		$.each(invalidInputErrors, function(key, value) {
+			$('.'+key+'.dz-error').text(value);
+			$('input[name='+key+']').addClass('form-error');
+			$('textarea[name='+key+']').addClass('form-error');
+			$('select[name='+key+']').addClass('form-error');
+			$('.'+key+'.dz-error').removeClass('hidden');
+		});
+	} else if (typeof error['message'] != 'undefined' && error['message'] != '') {// if it is custom error from post upload no check for 400 error code
+		showPopUpMassage(false, error['message']);
+	} else if (error == 'Request timedout after 10000 seconds') {
+		window.location="{{loc_url(route('profile.posts'))}}";
+	} else {
+		showPopUpMassage(false, "{{__('messages.error')}}");
+	}
+	dz.removeAllFiles();
+}
 
 // faq dropdown
 function toggleFaqText(item) {

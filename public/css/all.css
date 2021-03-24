@@ -1938,6 +1938,17 @@ textarea.form-error {
 	max-width: 234px;
 	margin: 0 10px;
 }
+.post-publishing-alert {
+	margin-top: 30px;
+}
+.post-publishing-alert p {
+	color: green;
+	text-align: center;
+}
+.post-publishing-alert img {
+	height: 28px;
+	width: 28px;
+}
 .price-input {
 	display: -webkit-box;
 	display: -webkit-flex;

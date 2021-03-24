@@ -400,6 +400,7 @@ return [
     'totalUniqViews' => 'Всего уникальных просмотров',
     'lastView' => 'Последний просмотр',
     'importExport' => 'Импорт-Экспорт',
+    'postPublishingAlert' => 'Объявление публикуется. Подождите пожалуйста',
 
     //post translation edit messagess
     'postTransSettingsHelp' => 'Наш Авто-Переводчик постоянно усовершенствуется, но все равно перевод иногда бывает не точным.

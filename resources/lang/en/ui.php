@@ -400,6 +400,7 @@ return [
     'totalUniqViews' => 'Total unique views',
     'lastView' => 'Last view',
     'importExport' => 'Import-Export',
+    'postPublishingAlert' => 'Post been publishing. Please wait',
 
     //post translation edit messagess
     'postTransSettingsHelp' => 'Our Auto-Translator is constantly improving, but still the translation is sometimes not accurate.

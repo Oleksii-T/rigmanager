@@ -401,6 +401,7 @@ return [
     'totalUniqViews' => 'Усього унікальних переглядів',
     'lastView' => 'Останній перегляд',
     'importExport' => 'Імпорт-Експорт',
+    'postPublishingAlert' => 'Оголошення публікується. Зачекайте будь-ласка',
 
     //post translation edit messagess
     'postTransSettingsHelp' => 'Наш Авто-Перекладач постійно вдосконалюється, але все одно переклад іноді буває не точним.
