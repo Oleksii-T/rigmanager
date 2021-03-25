@@ -4,6 +4,11 @@
 	<title>{{__('meta.title.user.admin')}}</title>
 	<meta name="description" content="{{__('meta.description.user.admin')}}">
     <meta name="robots" content="noindex, nofollow">
+	<style>
+		.faq ol {
+			margin-top: -20px;
+		}
+	</style>
 @endsection
 
 @section('bc')

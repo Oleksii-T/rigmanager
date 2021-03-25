@@ -92,11 +92,11 @@
                         <li><a href="{{loc_url(route('search', ['type'=>'equipment-sell']))}}">{{__('ui.introSellEq')}}</a></li>
                         <li><a href="{{loc_url(route('search', ['type'=>'equipment-buy']))}}">{{__('ui.introBuyEq')}}</a></li>
                         <li><a href="{{loc_url(route('search', ['type'=>'services']))}}">{{__('ui.introSe')}}</a></li>
-                        <li><a class="not-ready" href="{{loc_url(route('search', ['type'=>'tenders']))}}">{{__('ui.introTender')}}</a></li>
+                        <!--<li><a class="not-ready" href="{{loc_url(route('search', ['type'=>'tenders']))}}">{{__('ui.introTender')}}</a></li>-->
                     </ul>
                     <ul class="mob-nav-list">
-                        <li><a class="not-ready" href="{{loc_url(route('about.us'))}}">{{__('ui.footerAbout')}}</a></li>
-                        <li><a class="not-ready" href="{{loc_url(route('blog'))}}">{{__('ui.footerBlog')}}</a></li>
+                        <!--<li><a class="not-ready" href="{{loc_url(route('about.us'))}}">{{__('ui.footerAbout')}}</a></li>-->
+                        <!--<li><a class="not-ready" href="{{loc_url(route('blog'))}}">{{__('ui.footerBlog')}}</a></li>-->
                         <li><a href="{{loc_url(route('plans'))}}">{{__('ui.footerSubscription')}}</a></li>
                         <li><a href="{{loc_url(route('contacts'))}}">{{__('ui.footerContact')}}</a></li>
                         <li><a href="{{loc_url(route('faq'))}}">FAQ</a></li>

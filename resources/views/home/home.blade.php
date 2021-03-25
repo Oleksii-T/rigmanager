@@ -22,9 +22,11 @@
                     <div class="top-links-item">
                         <a href="{{loc_url(route('search', ['type'=>'services']))}}">{{__('ui.introSe')}}</a>
                     </div>
+                    <!--
                     <div class="top-links-item">
                         <a class="not-ready" href="{{loc_url(route('search', ['type'=>'tenders']))}}">{{__('ui.introTender')}}</a>
                     </div>
+                    -->
                 </div>
                 <div class="top-form">
                     <form action="{{loc_url(route('search'))}}">
