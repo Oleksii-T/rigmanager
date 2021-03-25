@@ -34,9 +34,23 @@
 					<div class="faq-hidden" style="display: block">
 						<p>Overall: {{\App\Post::all()->count()}}</p>
 						<p>Hidden: {{\App\Post::where('is_active', '0')->count()}}</p>
-						<p>Unverified: {{\App\Post::where('is_verified', false)->count()}}</p>
+						<p>Not verified: {{\App\Post::where('is_verified', false)->count()}}</p>
 						<p>Created last day: {{\App\Post::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(1))->count()}}</p>
+						@if (\App\Post::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(1))->count() != 0)
+							<ol>
+								@foreach (\App\Post::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(1))->get() as $p)
+									<li><a class="orange" href="{{loc_url(route('posts.show', ['post'=>$p->url_name]))}}">{{$p->title}}</a></li>
+								@endforeach
+							</ol>
+						@endif
 						<p>Created last week: {{\App\Post::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(7))->count()}}</p>
+						@if (\App\Post::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(7))->count() != 0)
+							<ol>
+								@foreach (\App\Post::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(7))->get() as $p)
+									<li><a class="orange" href="{{loc_url(route('posts.show', ['post'=>$p->url_name]))}}">{{$p->title}}</a>. verified={{$p->is_verified}}</li>
+								@endforeach
+							</ol>
+						@endif
 					</div>
 				</div>
 				<div class="faq-item active">
@@ -51,8 +65,22 @@
 						<p>Not verified: {{\App\User::where('email_verified_at', 'null')->get()->count()}}</p>
 						<p>Google acc: {{\App\User::where('google_id', '!=', 'null')->get()->count()}}</p>
 						<p>Facebook acc: {{\App\User::where('facebook_id', '!=', 'null')->get()->count()}}</p>
-						<p>Created last day: {{\App\User::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(7))->count()}}</p>
+						<p>Created last day: {{\App\User::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(1))->count()}}</p>
+						@if (\App\User::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(1))->count() != 0)
+							<ol>
+								@foreach (\App\User::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(1))->get() as $u)
+									<li>{{$u->name}}. Id={{$u->id}}. Verified={{$u->email_verified_at}}. Posts={{$u->posts()->count()}}</li>
+								@endforeach
+							</ol>
+						@endif
 						<p>Created last week: {{\App\User::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(7))->count()}}</p>
+						@if (\App\User::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(7))->count() != 0)
+							<ol>
+								@foreach (\App\User::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(7))->get() as $u)
+									<li>{{$u->name}}. Id={{$u->id}}. Verified={{$u->email_verified_at}}. Posts={{$u->posts()->count()}}</li>
+								@endforeach
+							</ol>
+						@endif
 					</div>
 				</div>
 			</div>
