@@ -87,7 +87,7 @@ class AdminController extends Controller
             $p->save();
             Session::flash('message-success', 'Post ['.$request->get('row').'] was changed successfully');
         }
-        if ($request->has('skip')) {
+        if ($request->has('skip') && $request->get('skip')!='0') {
             return redirect( route('admin.up').'?skip='.$request->get('skip') );
         }
         return redirect(route('admin.up'));

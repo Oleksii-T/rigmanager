@@ -151,11 +151,12 @@
             if ("{{Request::has('skip')}}") {
                 var skip = "{{Request::get('skip')}}";
                 var url = "{{url()->current()}}";
+                $('.popup input[name=skip]').val(skip);
+                $('#verify-btn').attr('href', $('#verify-btn').attr('href') + '?skip=' + skip);
                 skip = parseInt(skip)+1;
                 url = url + '?skip=' + skip;
                 console.log(url);
                 $('#skip-btn').attr('href', url);
-                $('#verify-btn').attr('href', $('#verify-btn').attr('href') + '?skip=' + skip);
             }
         });
     </script>

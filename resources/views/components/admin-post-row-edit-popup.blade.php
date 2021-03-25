@@ -4,6 +4,7 @@
         <form method="POST" id="{{$row}}-edit-form" action="{{route('admin.post.edit.row', ['post'=>$id])}}">
             @csrf
             @method('PATCH')
+            <input type="text" class="hidden" name="skip" value="0">
             <input type="text" class="hidden" name="row" value="{{$row}}">
             @if ($textarea)
                 <textarea cols="30" rows="10" maxlength="9000" class="textarea" name="value" form="{{$row}}-edit-form">{{$value}}</textarea>
