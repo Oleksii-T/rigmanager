@@ -47,7 +47,7 @@
 						@if (\App\Post::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(7))->count() != 0)
 							<ol>
 								@foreach (\App\Post::whereDate('created_at', '>', \Carbon\Carbon::now()->subDays(7))->get() as $p)
-									<li><a class="orange" href="{{loc_url(route('posts.show', ['post'=>$p->url_name]))}}">{{$p->title}}</a>. verified={{$p->is_verified}}</li>
+									<li><a class="orange" href="{{loc_url(route('posts.show', ['post'=>$p->url_name]))}}">{{$p->title}}</a>. Verified={{$p->is_verified}}. User_id={{$p->user_id}}. User_name={{$p->user->name}}</li>
 								@endforeach
 							</ol>
 						@endif

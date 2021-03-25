@@ -77,6 +77,7 @@ Route::middleware('verified')->group(function () {
         Route::get('admin/unverified-posts/history', 'AdminController@unverifiedPostsHistory') ->name('admin.uph');
         Route::get('admin/unverified-posts/verify/{post}', 'AdminController@verifyPost') ->name('admin.verify');
         Route::get('admin/post/edit/{post}/{user}', 'AdminController@editPost') ->name('admin.post.edit');
+        Route::patch('admin/post/edit/{post}', 'AdminController@editPostRow') ->name('admin.post.edit.row');
     });
 
     // user routes

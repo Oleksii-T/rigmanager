@@ -12,7 +12,7 @@
         <meta itemprop="position" content="2" />
     </li>
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <span itemprop="name">User Accesss</span>
+        <span itemprop="name">Users</span>
         <meta itemprop="position" content="3" />
     </li>
 @endsection
@@ -21,7 +21,7 @@
     <div class="main-block">
         <x-admin-nav active='user-access'/>
         <div class="content">
-            <h1>User Accesss</h1>
+            <h1>Users</h1>
             <div class="content-top-text">Overall users: {{\App\User::all()->count()}}.
                 Banned - <img src="{{asset('icons/warning.svg')}}" style="width:15px;heigth:15px;margin:0 0 6px 5px" alt="">, Google users - <img src="{{asset('icons/google.svg')}}" style="width:15px;heigth:15px;margin:0 0 6px 5px" alt="">, Facebook users -   <img src="{{asset('icons/fb.svg')}}" style="width:10px;heigth:15px;margin:0 0 6px 5px" alt=""></div>
             <div class="faq">

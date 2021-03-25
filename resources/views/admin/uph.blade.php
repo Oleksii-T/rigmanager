@@ -4,6 +4,26 @@
 	<title>{{__('meta.title.user.admin')}}</title>
 	<meta name="description" content="{{__('meta.description.user.admin')}}">
     <meta name="robots" content="noindex, nofollow">
+    <style>
+        .hover-content {
+            position: relative;
+            cursor: pointer;
+        }
+        .hover-content span {
+            background-color: #282828;
+            padding: 2px 5px;
+            border-radius: 5px;
+            display: none;
+            position: absolute;
+            z-index: 100;
+            top: 100%;
+            left: 0px;
+            white-space: pre;
+        }
+        .hover-content:hover span{
+            display: block;
+        }
+    </style>
 @endsection
 
 @section('bc')
@@ -37,10 +57,10 @@
                         @foreach ($posts as $p)
                             <tr>
                                 <td>{{$p->id}}</td>
-                                <td>{{$p->user_id}}</td>
-                                <td style="max-width:200px">{{$p->title}}</td>
-                                <td>{{$p->verified_at}}</td>
-                                <td><a class="orange" href="{{route('admin.post.edit', ['post'=>$p->id, 'user'=>$p->user_id])}}">EDIT</a></td>
+                                <td class="hover-content">{{$p->user_id}} <span>{{$p->user->name}}</span></td>
+                                <td class="hover-content" style="max-width:180px"><a class="orange" href="{{loc_url(route('posts.show', ['post'=>$p->url_name]))}}">{{$p->title}}</a><span>{{$p->id}}. {{$p->description}}</span></td>
+                                <td class="hover-content" >{{$p->verified_at}}<span>Created at {{$p->created_at}}</span></td>
+                                <td><a class="orange" href="{{route('admin.post.edit', ['post'=>$p->id, 'user'=>$p->user_id])}}">U_EDIT</a></td>
                             </tr>
                         @endforeach
                     </table>

@@ -36,9 +36,13 @@ class AdminController extends Controller
         return view('admin.graphs');
     }
     
-    public function unverifiedPosts()
+    public function unverifiedPosts(Request $request)
     {
-        $p = Post::where('is_verified', false)->inRandomOrder()->limit(1)->get();
+        if ($request->has('skip')) {
+            $p = Post::where('is_verified', false)->oldest()->skip($request->get('skip'))->take(1)->get();
+        } else {
+            $p = Post::where('is_verified', false)->oldest()->take(1)->get();
+        }
         if ($p->isEmpty()) {
             Session::flash('message-success', 'All posts are verified!');
             return redirect(route('admin.panel'));
@@ -55,7 +59,7 @@ class AdminController extends Controller
         return view('admin.uph', compact('posts'));
     }
 
-    public function verifyPost($post)
+    public function verifyPost(Request $request, $post)
     {
         $p = Post::find($post);
         if (!$p) {
@@ -65,6 +69,26 @@ class AdminController extends Controller
             $p->verified_at = Carbon::now();
             $p->save();
             Session::flash('message-success', 'Post has been verified!');
+        }
+        if ($request->has('skip')) {
+            return redirect( route('admin.up').'?skip='.$request->get('skip') );
+        }
+        return redirect(route('admin.up'));
+    }
+
+    public function editPostRow(Request $request, $post)
+    {
+        $p = Post::find($post);
+        if (!$p) {
+            Session::flash('message-error', 'Post was not found');
+        } else {
+            $row = $request->get('row');
+            $p->$row = $request->get('value');
+            $p->save();
+            Session::flash('message-success', 'Post ['.$request->get('row').'] was changed successfully');
+        }
+        if ($request->has('skip')) {
+            return redirect( route('admin.up').'?skip='.$request->get('skip') );
         }
         return redirect(route('admin.up'));
     }

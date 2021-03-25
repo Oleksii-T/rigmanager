@@ -4,6 +4,18 @@
 	<title>{{__('meta.title.user.admin')}}</title>
 	<meta name="description" content="{{__('meta.description.user.admin')}}">
     <meta name="robots" content="noindex, nofollow">
+    <style>
+        .edit-row-icon {
+            width:18px;
+            height:18px;
+            display:inline-block;
+            vertical-align:middle;
+            cursor: pointer;
+        }
+        .edit-row-icon:hover path{
+            fill: #ff8d11
+        }
+    </style>
 @endsection
 
 @section('bc')
@@ -12,7 +24,7 @@
         <meta itemprop="position" content="2" />
     </li>
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <span itemprop="name">Unverified Post</span>
+        <span itemprop="name">Post verification</span>
         <meta itemprop="position" content="3" />
     </li>
 @endsection
@@ -21,8 +33,12 @@
     <div class="main-block">
         <x-admin-nav active='up'/>
         <div class="content">
-            <h1>Unverified Post <span class="orange">[total={{$t}}]</span></h1>
-            <div class="content-top-text"></div>
+            <h1>Post verification</h1>
+            <div class="content-top-text">Unverified posts left - <span class="orange">{{$t}}</span>.
+                @if (Request::has('skip'))
+                    <span class="orange">{{Request::get('skip')}} posts skipped!</span> <a href="{{url()->current()}}">Remove skip variable</a>
+                @endif
+            </div>
             <div class="u-p">
                 <div>
                     <h3>General</h3>
@@ -65,21 +81,21 @@
                 </div>
                 <div>
                     <h3>Title</h3>
-                    <p>[<span class="orange">--</span>] {{$p->title}}</p>
-                    <p>[<span class="orange">uk</span>] {{$p->title_uk}}</p>
-                    <p>[<span class="orange">ru</span>] {{$p->title_ru}}</p>
-                    <p>[<span class="orange">en</span>] {{$p->title_en}}</p>
+                    <p>[<span class="orange">--</span>] {{$p->title}} <svg href="#title-edit" data-fancybox class="edit-row-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 325 325.37515" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path xmlns="http://www.w3.org/2000/svg" d="m114.6875 284.675781-73.800781-73.800781 178.5-178.5 73.800781 73.800781zm-80.699219-60.800781 67.699219 67.699219-101.5 33.800781zm281.898438-140.300781-12.800781 12.800781-73.898438-73.898438 12.800781-12.800781c12.894531-12.902343 33.804688-12.902343 46.699219 0l27.199219 27.199219c12.800781 12.9375 12.800781 33.765625 0 46.699219zm0 0" fill="#ffffff" data-original="#000000" style=""/></g></svg></p>
+                    <p>[<span class="orange">uk</span>] {{$p->title_uk}} <svg href="#title_uk-edit" data-fancybox  class="edit-row-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 325 325.37515" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path xmlns="http://www.w3.org/2000/svg" d="m114.6875 284.675781-73.800781-73.800781 178.5-178.5 73.800781 73.800781zm-80.699219-60.800781 67.699219 67.699219-101.5 33.800781zm281.898438-140.300781-12.800781 12.800781-73.898438-73.898438 12.800781-12.800781c12.894531-12.902343 33.804688-12.902343 46.699219 0l27.199219 27.199219c12.800781 12.9375 12.800781 33.765625 0 46.699219zm0 0" fill="#ffffff" data-original="#000000" style=""/></g></svg></p>
+                    <p>[<span class="orange">ru</span>] {{$p->title_ru}} <svg href="#title_ru-edit" data-fancybox  class="edit-row-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 325 325.37515" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path xmlns="http://www.w3.org/2000/svg" d="m114.6875 284.675781-73.800781-73.800781 178.5-178.5 73.800781 73.800781zm-80.699219-60.800781 67.699219 67.699219-101.5 33.800781zm281.898438-140.300781-12.800781 12.800781-73.898438-73.898438 12.800781-12.800781c12.894531-12.902343 33.804688-12.902343 46.699219 0l27.199219 27.199219c12.800781 12.9375 12.800781 33.765625 0 46.699219zm0 0" fill="#ffffff" data-original="#000000" style=""/></g></svg></p>
+                    <p>[<span class="orange">en</span>] {{$p->title_en}} <svg href="#title_en-edit" data-fancybox  class="edit-row-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 325 325.37515" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path xmlns="http://www.w3.org/2000/svg" d="m114.6875 284.675781-73.800781-73.800781 178.5-178.5 73.800781 73.800781zm-80.699219-60.800781 67.699219 67.699219-101.5 33.800781zm281.898438-140.300781-12.800781 12.800781-73.898438-73.898438 12.800781-12.800781c12.894531-12.902343 33.804688-12.902343 46.699219 0l27.199219 27.199219c12.800781 12.9375 12.800781 33.765625 0 46.699219zm0 0" fill="#ffffff" data-original="#000000" style=""/></g></svg></p>
                 </div>
                 <div>
                     <h3>Description</h3>
-                    <p>[<span class="orange">--</span>] {{$p->description}}</p>
-                    <p>[<span class="orange">uk</span>] {{$p->description_uk}}</p>
-                    <p>[<span class="orange">ru</span>] {{$p->description_ru}}</p>
-                    <p>[<span class="orange">en</span>] {{$p->description_en}}</p>
+                    <p style="white-space:pre-line">[<span class="orange">--</span>] {{$p->description}} <svg href="#description-edit" data-fancybox  class="edit-row-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 325 325.37515" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path xmlns="http://www.w3.org/2000/svg" d="m114.6875 284.675781-73.800781-73.800781 178.5-178.5 73.800781 73.800781zm-80.699219-60.800781 67.699219 67.699219-101.5 33.800781zm281.898438-140.300781-12.800781 12.800781-73.898438-73.898438 12.800781-12.800781c12.894531-12.902343 33.804688-12.902343 46.699219 0l27.199219 27.199219c12.800781 12.9375 12.800781 33.765625 0 46.699219zm0 0" fill="#ffffff" data-original="#000000" style=""/></g></svg></p>
+                    <p style="white-space:pre-line">[<span class="orange">uk</span>] {{$p->description_uk}} <svg href="#description_uk-edit" data-fancybox  class="edit-row-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 325 325.37515" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path xmlns="http://www.w3.org/2000/svg" d="m114.6875 284.675781-73.800781-73.800781 178.5-178.5 73.800781 73.800781zm-80.699219-60.800781 67.699219 67.699219-101.5 33.800781zm281.898438-140.300781-12.800781 12.800781-73.898438-73.898438 12.800781-12.800781c12.894531-12.902343 33.804688-12.902343 46.699219 0l27.199219 27.199219c12.800781 12.9375 12.800781 33.765625 0 46.699219zm0 0" fill="#ffffff" data-original="#000000" style=""/></g></svg></p>
+                    <p style="white-space:pre-line">[<span class="orange">ru</span>] {{$p->description_ru}} <svg href="#description_ru-edit" data-fancybox  class="edit-row-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 325 325.37515" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path xmlns="http://www.w3.org/2000/svg" d="m114.6875 284.675781-73.800781-73.800781 178.5-178.5 73.800781 73.800781zm-80.699219-60.800781 67.699219 67.699219-101.5 33.800781zm281.898438-140.300781-12.800781 12.800781-73.898438-73.898438 12.800781-12.800781c12.894531-12.902343 33.804688-12.902343 46.699219 0l27.199219 27.199219c12.800781 12.9375 12.800781 33.765625 0 46.699219zm0 0" fill="#ffffff" data-original="#000000" style=""/></g></svg></p>
+                    <p style="white-space:pre-line">[<span class="orange">en</span>] {{$p->description_en}} <svg href="#description_en-edit" data-fancybox  class="edit-row-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 325 325.37515" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path xmlns="http://www.w3.org/2000/svg" d="m114.6875 284.675781-73.800781-73.800781 178.5-178.5 73.800781 73.800781zm-80.699219-60.800781 67.699219 67.699219-101.5 33.800781zm281.898438-140.300781-12.800781 12.800781-73.898438-73.898438 12.800781-12.800781c12.894531-12.902343 33.804688-12.902343 46.699219 0l27.199219 27.199219c12.800781 12.9375 12.800781 33.765625 0 46.699219zm0 0" fill="#ffffff" data-original="#000000" style=""/></g></svg></p>
                 </div>
                 <div>
                     <h3>Category</h3>
-                    <p>[<span class="orange">code</span>] {{$p->tag_encoded}}</p>
+                    <p>[<span class="orange">code</span>] {{$p->tag_encoded}}  <svg href="#tag_encoded-edit" data-fancybox  class="edit-row-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 325 325.37515" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path xmlns="http://www.w3.org/2000/svg" d="m114.6875 284.675781-73.800781-73.800781 178.5-178.5 73.800781 73.800781zm-80.699219-60.800781 67.699219 67.699219-101.5 33.800781zm281.898438-140.300781-12.800781 12.800781-73.898438-73.898438 12.800781-12.800781c12.894531-12.902343 33.804688-12.902343 46.699219 0l27.199219 27.199219c12.800781 12.9375 12.800781 33.765625 0 46.699219zm0 0" fill="#ffffff" data-original="#000000" style=""/></g></svg></p>
                     <p>[<span class="orange">readable</span>] {{$p->tag_readable}}</p>
                 </div>
                 <div>
@@ -104,11 +120,43 @@
                     </div>
                 </div>
                 <div class="up-btns" style="display:flex;justify-content:space-evenly">
-                    <a class="button" style="background-color:green" href="{{route('admin.verify', ['post'=>$p->id])}}">VERIFY</a>
-                    <a class="button button-blue" href="{{route('admin.up')}}">SKIP</a>
-                    <a class="button" style="background-color:red" href="{{route('admin.post.edit', ['post'=>$p->id, 'user'=>$p->user_id])}}">EDIT</a>
+                    <a class="button" id="verify-btn" style="background-color:green" href="{{route('admin.verify', ['post'=>$p->id])}}">VERIFY</a>
+                    <a class="button button-blue" id="skip-btn" href="{{url()->current()}}?skip=1">SKIP</a>
+                    <a class="button" style="background-color:red" href="{{route('admin.post.edit', ['post'=>$p->id, 'user'=>$p->user_id])}}">U_EDIT</a>
+                </div>
+                <div class="up-btns" style="display:flex;justify-content:space-evenly;margin-top:50px">
+                    <a class="button" href="{{loc_url(route('posts.show', ['post'=>$p->url_name]))}}">VIEW POST</a>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('modals')
+    <x-admin-post-row-edit-popup :id='$p->id' row='title' :value='$p->title' />
+    <x-admin-post-row-edit-popup :id='$p->id' row='title_uk' :value='$p->title_uk' />
+    <x-admin-post-row-edit-popup :id='$p->id' row='title_ru' :value='$p->title_ru' />
+    <x-admin-post-row-edit-popup :id='$p->id' row='title_en' :value='$p->title_en' />
+    <x-admin-post-row-edit-popup :id='$p->id' row='description' :value='$p->description' />
+    <x-admin-post-row-edit-popup :id='$p->id' row='description_uk' :value='$p->description_uk' />
+    <x-admin-post-row-edit-popup :id='$p->id' row='description_ru' :value='$p->description_ru' />
+    <x-admin-post-row-edit-popup :id='$p->id' row='description_en' :value='$p->description_en' />
+    <x-admin-post-row-edit-popup :id='$p->id' row='tag_encoded' :value='$p->tag_encoded' />
+@endsection
+
+
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if ("{{Request::has('skip')}}") {
+                var skip = "{{Request::get('skip')}}";
+                var url = "{{url()->current()}}";
+                skip = parseInt(skip)+1;
+                url = url + '?skip=' + skip;
+                console.log(url);
+                $('#skip-btn').attr('href', url);
+                $('#verify-btn').attr('href', $('#verify-btn').attr('href') + '?skip=' + skip);
+            }
+        });
+    </script>
 @endsection
