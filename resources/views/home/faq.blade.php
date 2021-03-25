@@ -40,28 +40,28 @@
 						{{__('faq.qForWhat')}}
 					</a>
 					<div class="faq-hidden">
-						<p>{{__('faq.aForWhat1')}}
-							<ol>
-								<li>{{__('faq.aForWhatCM1')}}</li>
-								<li>{{__('faq.aForWhatCM2')}}</li>
-								<li>{{__('faq.aForWhatCM3')}}</li>
-							</ol>
-							{{__('faq.aForWhat2')}}
-							<ol>
-								<li>{{__('faq.aForWhatSD1')}}</li>
-								<li>{{__('faq.aForWhatSD2')}}</li>
-								<li>{{__('faq.aForWhatSD3')}}</li>
-								<li>{{__('faq.aForWhatSD4')}}</li>
-								<li>{{__('faq.aForWhatSD5')}}</li>
-								<li>{{__('faq.aForWhatSD6')}}</li>
-							</ol>
-							{{__('faq.aForWhat3')}}
-							<ol>
-								<li>{{__('faq.aForWhatSaD1')}}</li>
-								<li>{{__('faq.aForWhatSaD2')}}</li>
-								<li>{{__('faq.aForWhatSaD3')}}</li>
-								<li>{{__('faq.aForWhatSaD4')}}</li>
-							</ol></p>
+						<p>{{__('faq.aForWhat1')}}</p>
+						<ol>
+							<li>{{__('faq.aForWhatCM1')}}</li>
+							<li>{{__('faq.aForWhatCM2')}}</li>
+							<li>{{__('faq.aForWhatCM3')}}</li>
+						</ol>
+						<p>{{__('faq.aForWhat2')}}</p>
+						<ol>
+							<li>{{__('faq.aForWhatSD1')}}</li>
+							<li>{{__('faq.aForWhatSD2')}}</li>
+							<li>{{__('faq.aForWhatSD3')}}</li>
+							<li>{{__('faq.aForWhatSD4')}}</li>
+							<li>{{__('faq.aForWhatSD5')}}</li>
+							<li>{{__('faq.aForWhatSD6')}}</li>
+						</ol>
+						<p>{{__('faq.aForWhat3')}}</p>
+						<ol>
+							<li>{{__('faq.aForWhatSaD1')}}</li>
+							<li>{{__('faq.aForWhatSaD2')}}</li>
+							<li>{{__('faq.aForWhatSaD3')}}</li>
+							<li>{{__('faq.aForWhatSaD4')}}</li>
+						</ol>
 					</div>
 				</div>
 				<div class="faq-item">

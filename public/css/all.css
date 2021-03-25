@@ -818,7 +818,7 @@ textarea.form-error {
 	-webkit-flex-wrap: wrap;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	max-width: 860px;
+	max-width: 670px;
 	margin: 0 auto;
 	padding: 0 0 50px;
 }
@@ -1749,6 +1749,9 @@ textarea.form-error {
 }
 .faq-top.active path,
 .faq-top:hover path {fill: #ff8d12;}
+.faq ol {
+	margin-top: -20px;
+}
 /************************* info contact page *************************/
 /************************* form-block *************************/
 .form-block {
