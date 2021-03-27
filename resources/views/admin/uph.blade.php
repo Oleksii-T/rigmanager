@@ -58,7 +58,7 @@
                             <tr>
                                 <td>{{$p->id}}</td>
                                 <td class="hover-content">{{$p->user_id}} <span>{{$p->user->name}}</span></td>
-                                <td class="hover-content" style="max-width:180px"><a class="orange" href="{{loc_url(route('posts.show', ['post'=>$p->url_name]))}}">{{$p->title}}</a><span>{{$p->id}}. {{$p->description}}</span></td>
+                                <td class="hover-content" style="max-width:180px"><a class="orange" href="{{loc_url(route('posts.show', ['post'=>$p->url_name]))}}">{{$p->title}}</a><span>{{$p->description}}</span></td>
                                 <td class="hover-content" >{{$p->verified_at}}<span>Created at {{$p->created_at}}</span></td>
                                 <td><a class="orange" href="{{route('admin.post.edit', ['post'=>$p->id, 'user'=>$p->user_id])}}">U_EDIT</a></td>
                             </tr>
