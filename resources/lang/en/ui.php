@@ -144,7 +144,8 @@ return [
     'userNameHelp' => 'Your name will be public within the web site.
         Only chars and digits are allowed.',
     'phone' => 'Phone number',
-    'phoneHelp' => 'Optional.',
+    'phoneHelp' => 'Without country code.
+        Optional.',
     'profileInfo' => 'Profile information',
     'deleteProfileImg' => 'Delete image',
     'passwordEncrypted' => 'In terms of safety, we store encrypted password. If forget password, you can change it in profile settings.',
