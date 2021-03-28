@@ -976,6 +976,12 @@ textarea.form-error {
 	background: #fff;
 	border-radius: 8px;
 }
+.brand-item.block-link {
+	cursor: default;
+}
+.brand-item.brand-valid {
+	border: 2px solid #ff8d11;
+}
 .brand-item img {
 	max-width: 95%;
 	max-height: 95%;

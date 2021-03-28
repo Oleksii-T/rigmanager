@@ -372,6 +372,10 @@ $(document).ready(function () {
 		$(tab_next).show();		
 		return false;
 	});
+
+	$('.block-link').click(function(e){
+		e.preventDefault();
+	});
 });
 
 // show error from submit post with dropzone 

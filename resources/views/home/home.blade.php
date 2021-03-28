@@ -128,17 +128,29 @@
             </div>
             <div class="brand-line">
                 <div class="brand-slider">
-                    @foreach ($partners as $partner)
-                        <div class="brand-slide">
-                            @if ($partner)
-                                <a href="{{loc_url(route('search', ['author'=>$partner->user->url_name]))}}" class="brand-item"><img src="{{asset($partner->logo)}}" alt=""></a>
-                            @else
-                                <a href="{{loc_url(route('faq'))}}#WhatIsPartner" class="brand-item"><img src="{{asset('icons/partnerIcon.svg')}}" alt=""></a>
-                            @endif
-                        </div>
-                    @endforeach
                     <div class="brand-slide">
-                        <a href="#" class="brand-item brand-more not-ready">{{__('ui.otherPartners')}}</a>
+                        <a href="{{loc_url(route('search', ['author'=>\App\User::find(2)->url_name]))}}" class="brand-item brand-valid"><img src="{{asset('icons/companies/beiken.jpeg')}}" alt=""></a>
+                    </div>
+                    <div class="brand-slide">
+                        <a href="#" class="brand-item block-link"><img src="{{asset('icons/companies/halliburton.svg')}}" alt=""></a>
+                    </div>
+                    <div class="brand-slide">
+                        <a href="#" class="brand-item block-link"><img src="{{asset('icons/companies/ppc.png')}}" alt=""></a>
+                    </div>
+                    <div class="brand-slide">
+                        <a href="#" class="brand-item block-link"><img src="{{asset('icons/companies/schlumberger.svg')}}" alt=""></a>
+                    </div>
+                    <div class="brand-slide">
+                        <a href="#" class="brand-item block-link"><img src="{{App::isLocale('uk') || App::isLocale('ru') ? asset('icons/companies/ubs-uk.svg') : asset('icons/companies/ubs-en.svg')}}" alt=""></a>
+                    </div>
+                    <div class="brand-slide">
+                        <a href="#" class="brand-item block-link"><img src="{{asset('icons/companies/weatherford.svg')}}" alt=""></a>
+                    </div>
+                    <div class="brand-slide">
+                        <a href="#" class="brand-item block-link"><img src="{{asset('icons/companies/dtek.svg')}}" alt=""></a>
+                    </div>
+                    <div class="brand-slide">
+                        <a href="#" class="brand-item block-link"><img src="{{asset('icons/companies/parker-drilling.png')}}" alt=""></a>
                     </div>
                 </div>
             </div>
