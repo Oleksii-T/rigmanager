@@ -127,7 +127,7 @@
 						{{__('faq.qWhatIsSocialAcc')}}
 					</a>
 					<div class="faq-hidden">
-						<p>{{__('faq.aWhatIsSocialAcc')}} <a class="link" href="{{loc_url(route('login.social', ['social'=>'google']))}}">Google</a> / <a class="link not-ready" href="{{route('login.social', ['social'=>'facebook'])}}">Facebook</a>.</p>
+						<p>{{__('faq.aWhatIsSocialAcc')}} <a class="link" href="{{loc_url(route('login.social', ['social'=>'google']))}}">Google</a> / <a class="link" href="{{route('login.social', ['social'=>'facebook'])}}">Facebook</a>.</p>
 					</div>
 				</div>
 				<div class="faq-item">

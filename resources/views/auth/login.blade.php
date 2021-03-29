@@ -37,7 +37,7 @@
                 </div>
                 <button class="button">{{__('ui.signIn')}}</button>
                 <div class="social-buttons">
-                    <a href="{{route('login.social', ['social'=>'facebook'])}}" class="social-fb not-ready"><img src="{{asset('icons/fb.svg')}}" alt=""></a>
+                    <a href="{{route('login.social', ['social'=>'facebook'])}}" class="social-fb"><img src="{{asset('icons/fb.svg')}}" alt=""></a>
                     <a href="{{route('login.social', ['social'=>'google'])}}" class="social-google"><img src="{{asset('icons/google.svg')}}" alt=""></a>
                 </div>
                 <div class="login-bottom">
