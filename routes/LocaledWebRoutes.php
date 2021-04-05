@@ -17,6 +17,7 @@ Route::get ('terms',                'HomeController@terms')     ->name('terms');
 Route::get ('privacy',              'HomeController@privacy')   ->name('privacy');
 Route::get ('sitemap',              'HomeController@sitemap')   ->name('site.map');
 Route::get ('blog',                 'HomeController@blog')      ->name('blog');
+Route::get ('blog/{article}',       'HomeController@blogArticle')->name('blog.article');
 Route::get ('about-us',             'HomeController@aboutUs')   ->name('about.us');
 Route::get ('import-rules',         'HomeController@import')    ->name('import.rules');
 Route::get ('contact-us',           'HomeController@contacts')  ->name('contacts');

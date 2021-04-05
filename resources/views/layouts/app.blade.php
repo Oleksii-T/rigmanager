@@ -84,8 +84,8 @@
 					</div>
 					<div class="footer-col">
 						<ul class="footer-nav">
-							<li class="hidden"><a class="not-ready" href="{{loc_url(route('about.us'))}}">{{__('ui.footerAbout')}}</a></li>
-							<li class="hidden"><a class="not-ready" href="{{loc_url(route('blog'))}}">{{__('ui.footerBlog')}}</a></li>
+							<li><a href="{{loc_url(route('about.us'))}}">{{__('ui.footerAbout')}}</a></li>
+							<li class="hidden"><a href="{{loc_url(route('blog'))}}">{{__('ui.footerBlog')}}</a></li>
 							<li><a href="{{loc_url(route('catalog'))}}">{{__('ui.catalog')}}</a></li>
 						</ul>
 					</div>

@@ -186,6 +186,15 @@ $(document).ready(function () {
 			}
 		}]
 	});
+	$('.blog-slider').slick({
+		slidesToShow: 3,
+		slidesToScroll: 3,
+		arrows: true,
+		prevArrow: $('.blog-slideshow .prod-prev'),
+		nextArrow: $('.blog-slideshow .prod-next'),
+		swipeToSlide: true,
+		infinite: false
+	});
 
 	// sub mob dropdown
 	$(document).on('click','.sub-mob',function(e){

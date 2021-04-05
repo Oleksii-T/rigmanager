@@ -72,7 +72,53 @@
 						{{__('faq.qWhyWe')}}
 					</a>
 					<div class="faq-hidden">
-						<p>{{__('faq.aWhyWe')}}</p>
+						<p></p>
+						<ol>
+							<li>{{__('faq.aWhyWe1')}}</li>
+							<li>{{__('faq.aWhyWe2')}}</li>
+							<li>{{__('faq.aWhyWe3')}}</li>
+							<li>{{__('faq.aWhyWe4')}}</li>
+							<li>{{__('faq.aWhyWe5')}}</li>
+							<li>{{__('faq.aWhyWe6')}}</li>
+							<li>{{__('faq.aWhyWe7')}}</li>
+							<li>{{__('faq.aWhyWe8')}}</li>
+							<li>{{__('faq.aWhyWe9')}}</li>
+							<li>{{__('faq.aWhyWe10')}}</li>
+							<li>{{__('faq.aWhyWe11')}}</li>
+						</ol>
+					</div>
+				</div>
+				<div class="faq-item">
+					<a href="" class="faq-top">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255.99 511.99">
+							<path d="M253,248.62,18.37,3.29A10.67,10.67,0,1,0,3,18L230.56,256,3,494A10.67,10.67,0,0,0,18.37,508.7L253,263.37A10.7,10.7,0,0,0,253,248.62Z"/>
+						</svg>
+						{{__('faq.qServices')}}
+					</a>
+					<div class="faq-hidden">
+						<p></p>
+						<ol>
+							<li>{{__('faq.aServices1')}}</li>
+							<li>{{__('faq.aServices2')}}</li>
+							<li>{{__('faq.aServices3')}}</li>
+							<li>{{__('faq.aServices4')}}</li>
+							<li>{{__('faq.aServices5')}}</li>
+							<li>{{__('faq.aServices6')}}</li>
+							<li>{{__('faq.aServices7')}}</li>
+							<li>{{__('faq.aServices8')}}</li>
+							<li>{{__('faq.aServices9')}}</li>
+							<li>{{__('faq.aServices10')}}</li>
+							<li>{{__('faq.aServices11')}}</li>
+							<li>{{__('faq.aServices12')}}</li>
+							<li>{{__('faq.aServices13')}}</li>
+							<li>{{__('faq.aServices14')}}</li>
+							<li>{{__('faq.aServices15')}}</li>
+							<li>{{__('faq.aServices16')}}</li>
+							<li>{{__('faq.aServices17')}}</li>
+							<li>{{__('faq.aServices18')}}</li>
+							<li>{{__('faq.aServices19')}}</li>
+							<li>{{__('faq.aServices20')}}</li>
+						</ol>
 					</div>
 				</div>
 				<div class="faq-item">

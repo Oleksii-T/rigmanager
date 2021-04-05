@@ -31,15 +31,40 @@ return [
     'aForWhatSaD3' => 'Simplify and control the purchasing/selling process',
     'aForWhatSaD4' => 'Publication of anonymous announcements if desired',
 
-    'qWhyWe' => 'Why our resource is better?',
-    'aWhyWe' => 'First of all, we are the first specialized website for cooperation of oil and gas companies of Ukraine.
-        We provide the strict scope of content, only Oil & Gas equipment and services. Nothing extra.
-        Personal data is the main deal for us, in other words - anonymity is the key.
-        For each post published, you are free to choose a minimum one contact field, email, or phone. We do not put bounds on your choices. Moreover, for each post, you could choose unique contact information.
-        We have developing system of categories thanks to which you can navigate through Oil & Gas equipment or services quickly and easily.
-        You have the possibility to subscribe to Mailer and get notification about Oil & Gas equipment or/end services you are looking for.
-        Our website supports three languages: Ukrainian, Russian and English. posts content is no exception.
-        Convenient system of bulk publication of posts.',
+    'qWhyWe' => 'Benefits',
+    'aWhyWe1' => 'Announcements exclusively in the oil and gas sphere;',
+    'aWhyWe2' => 'Safeguarding of personal information. The ability to work anonymously;',
+    'aWhyWe3' => 'Simple and intuitive interface is not overloaded with unnecessary buttons and functionality;',
+    'aWhyWe4' => 'Fast registration. Only e-mail and password are required;',
+    'aWhyWe5' => 'Fast publication of posts. Only title and description are required;',
+    'aWhyWe6' => 'An adapted form for creating posts for the oil and gas sphere;',
+    'aWhyWe7' => 'Convenient category system;',
+    'aWhyWe8' => 'Full 3-paganism. Ukrainian, Russian, English;',
+    'aWhyWe9' => 'Possibility of personal cooperation and getting help from representatives of the resource. Via the Internet or onsite to your office;',
+    'aWhyWe10' => 'Mailing system - receiving notifications about new posts on a particular topic;',
+    'aWhyWe11' => 'Ability to bulk import posts.',
+
+    'qServices' => 'Services',
+    'aServices1' => 'Specialized bulletin board for representatives of the oil and gas market and only;',
+    'aServices2' => 'Affiliate program;',
+    'aServices3' => 'Free access to viewing posts (limited);',
+    'aServices4' => 'Convenient and fast publication of posts of any complexity level;',
+    'aServices5' => 'Sale of a "standard" or "pro" subscription (in the future);',
+    'aServices6' => 'Informing all available and relevant goods and services in the oil and gas sphere;',
+    'aServices7' => 'Resource smart search;',
+    'aServices8' => 'Adaptive filtering of search queries;',
+    'aServices9' => 'Convenient category system;',
+    'aServices10' => 'Ability to save posts to the "Favorites" list for quick access;',
+    'aServices11' => 'Get contacts of authors;',
+    'aServices12' => 'Customizable "Mailer" to receive notifications of new posts on a particular topic;',
+    'aServices13' => 'Auto-translator of interface and announcements into Russian, Ukrainian and English;',
+    'aServices14' => 'Bulk import of posts to the site using a special import file;',
+    'aServices15' => 'Detailed statistics of views;',
+    'aServices16' => 'Mobile version of the site;',
+    'aServices17' => 'Providing assistance in publishing your posts;',
+    'aServices18' => 'Help adapting your lists / specifications for our import file and resource;',
+    'aServices19' => 'Optimization of your posts to increase the potential search results;',
+    'aServices20' => 'The ability to publish incognito.',
 
     'qBuy' => 'I need to buy equipment or find a service',
     'aBuy1' => 'You may use the',
@@ -71,7 +96,7 @@ return [
         Social accounts do not have a password.
         Login into such account only possible via',
 
-    'qAutoTranslator' => 'What is Auto-Translator',
+    'qAutoTranslator' => 'What is Auto-Translator?',
     'aAutoTranslator' => 'Auto-Translator is automatic title and description translation in Ukrainian and Russian languages for your newly created posts.
         It is made up for increasing chances of finding your clients.
         You will be able to see the result of the post translation by selecting the interface language and going to your post page.

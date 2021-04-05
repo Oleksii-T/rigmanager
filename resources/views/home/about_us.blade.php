@@ -15,16 +15,15 @@
 
 @section('content')
 	<div class="main-block">
-		<x-informations-nav active='blog'/>
-
+		<x-informations-nav active='about'/>
 		<div class="content">
 			<h1>{{__('ui.footerAbout')}}</h1>
 			<article class="policy">
-				<ol class="policy-list">
-					<li>
-						{{__('ui.workInProgress')}}
-					</li>
-				</ol>
+				<p class="aboutus-intro">{{__('ui.aboutUsIntro')}}</p>
+				<p class="aboutus-body">{{__('ui.aboutUsBody')}}</p>
+				<p class="aboutus-body">{{__('ui.aboutUsQ')}} <a href="{{loc_url(route('faq'))}}">{{__('ui.aboutUsQLink')}}</a>.</p>
+				<p class="aboutus-body">{{__('ui.aboutUsContact')}} <a href="{{loc_url(route('contacts'))}}">{{__('ui.aboutUsContactLink')}}</a>.</p>
+				<p class="aboutus-body">{{__('ui.aboutUsSlg')}}</p>
 			</article>
 		</div>
 	</div>
