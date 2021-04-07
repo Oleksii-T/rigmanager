@@ -15,6 +15,7 @@
 	<link rel="alternate" href="{{hreflang_url(url()->full(), 'ru')}}" hreflang="ru">
 	<link rel="alternate" href="{{hreflang_url(url()->full(), 'en')}}" hreflang="en">
 	<link rel="icon" href="{{asset('icons/favicon.png')}}" sizes="16x16">
+	<meta property="og:image" content="{{asset('icons/favicon.png')}}" />
 	<link media="all" rel="stylesheet" type="text/css" href="{{asset('css/all.css')}}" />
 	@if (env('APP_ENV')=='production')
 		<!-- Global site tag (gtag.js) - Google Analytics -->
