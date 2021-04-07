@@ -532,6 +532,7 @@ return [
     'account' => 'account',
     'plansHeader' => 'Cost and comparison of 
         rigmanager.com.ua plans',
+    'readMoreAboutPlans' => 'Read more about plans',
     'plansStartAcc' => 'Start
         Account',
     'plansStartAccHelp' => 'for
@@ -630,7 +631,7 @@ return [
     - Reduce potential procurement costs.
     - Increase the level of sales.
     Also, our resource can act as a tool for analyzing the market, available offers and their prices.',
-    'aboutUsQ' => 'Answers to additional questions, such as: what services we provide, how to work with us, benefits and much more, you can find on a special page -',
+    'aboutUsQ' => 'Answers to additional questions, such as: what services we provide, how to work with us, benefits, costs and much more, you can find on a special page -',
     'aboutUsQLink' => 'Frequently Asked Questions',
     'aboutUsContact' => 'If you have any questions or suggestions, you can contact us using the',
     'aboutUsContactLink' => 'Feedback page',

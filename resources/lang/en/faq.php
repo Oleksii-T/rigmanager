@@ -66,6 +66,12 @@ return [
     'aServices19' => 'Optimization of your posts to increase the potential search results;',
     'aServices20' => 'The ability to publish incognito.',
 
+    'qCost' => 'Cost',
+    'aCost1' => 'Our resource is only gaining popularity, therefore, all functionality is completely free. 
+        A list of future paid subscriptions is available',
+    'aCost2' => 'We do not influence, control or participate in contracts concluding between our clients. 
+        The list of paid functionality will grow, for example, providing analytics for your niche.',
+
     'qBuy' => 'I need to buy equipment or find a service',
     'aBuy1' => 'You may use the',
     'aBuy2' => 'of categories or use the search bar and you find what you looking for!

@@ -122,6 +122,18 @@
 					</div>
 				</div>
 				<div class="faq-item">
+					<a href="" id="cost" class="faq-top">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255.99 511.99">
+							<path d="M253,248.62,18.37,3.29A10.67,10.67,0,1,0,3,18L230.56,256,3,494A10.67,10.67,0,0,0,18.37,508.7L253,263.37A10.7,10.7,0,0,0,253,248.62Z"/>
+						</svg>
+						{{__('faq.qCost')}}
+					</a>
+					<div class="faq-hidden">
+						<p>{{__('faq.aCost1')}} <a href="{{loc_url(route('plans'))}}">{{__('ui.here')}}</a>. 
+							{{__('faq.aCost2')}}</p>
+					</div>
+				</div>
+				<div class="faq-item">
 					<a href="" class="faq-top">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255.99 511.99">
 							<path d="M253,248.62,18.37,3.29A10.67,10.67,0,1,0,3,18L230.56,256,3,494A10.67,10.67,0,0,0,18.37,508.7L253,263.37A10.7,10.7,0,0,0,253,248.62Z"/>
@@ -260,10 +272,12 @@
 				toggleFaqText( $('#WhatIsImport') );
 			} else if ( currLoc.includes('HowToCreateMailer') ) {
 				toggleFaqText( $('#HowToCreateMailer') );
-			}	else if ( currLoc.includes('#WhatIsPartner') ) {
+			} else if ( currLoc.includes('#WhatIsPartner') ) {
 				toggleFaqText( $('#WhatIsPartner') );
-			}	else if ( currLoc.includes('#WhyNotAllImported') ) {
+			} else if ( currLoc.includes('#WhyNotAllImported') ) {
 				toggleFaqText( $('#WhyNotAllImported') );
+			} else if ( currLoc.includes('#cost') ) {
+				toggleFaqText( $('#cost') );
 			}
         });
     </script>

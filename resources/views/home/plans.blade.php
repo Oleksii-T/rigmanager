@@ -22,7 +22,8 @@
 			@if (Session::has('subscription-required'))
 				<div class="content-top-text content-top-error">{{ Session::get('subscription-required') }}</div>
 			@endif
-			<div class="content-top-text">{{__('ui.plansFreeAccessTitle')}}</div>
+			<div class="content-top-text">{{__('ui.plansFreeAccessTitle')}}
+				<a href="{{loc_url(route('faq'))}}#cost">{{__('ui.readMoreAboutPlans')}}</a></div>
 			<div class="sub">
 				<!--functionality name column-->
 				<div class="sub-side">
