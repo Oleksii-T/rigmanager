@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Post;
+use App\Blog;
 
 class AdminController extends Controller
 {
@@ -98,5 +99,20 @@ class AdminController extends Controller
         auth()->loginUsingId($user);
         $post = Post::find($post);
         return redirect(route('posts.edit', ['post'=>$post->url_name]));
+    }
+
+    public function blogCreate() {
+        return view('admin.blog-create');
+    }
+
+    public function blogStore(Request $request) {
+        $input = $request->all();
+        $blog = new Blog($input);
+        $blog->save();
+        if ($request->has('created_at')) {
+            $blog->created_at = $request->created_at;
+            $blog->save();
+        }
+        return redirect(route('admin.panel'));
     }
 }

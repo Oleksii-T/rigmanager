@@ -86,6 +86,8 @@ Route::middleware('verified')->group(function () {
         Route::get('admin/unverified-posts/history', 'AdminController@unverifiedPostsHistory') ->name('admin.uph');
         Route::get('admin/unverified-posts/verify/{post}', 'AdminController@verifyPost') ->name('admin.verify');
         Route::get('admin/post/edit/{post}/{user}', 'AdminController@editPost') ->name('admin.post.edit');
+        Route::get('admin/blog/create', 'AdminController@blogCreate') ->name('admin.blog.create');
+        Route::post('admin/blog/store', 'AdminController@blogStore') ->name('admin.blog.store');
         Route::patch('admin/post/edit/{post}', 'AdminController@editPostRow') ->name('admin.post.edit.row');
     });
 

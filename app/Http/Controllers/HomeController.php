@@ -112,11 +112,10 @@ class HomeController extends Controller
     public function blog()
     {
         $blogs = Blog::all()->paginate(env('POSTS_PER_PAGE'));
-        $blogs = Blog::all()->paginate(1);
         return view('home.blog', compact('blogs'));
     }
 
-    public function blogArticle($locale, $article)
+    public function blogArticle($locale, $article=null)
     {
         $a = $article ? $article : $locale;
         $blog = Blog::whereSlug($a)->first();

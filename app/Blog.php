@@ -11,7 +11,7 @@ class Blog extends Model
     protected $appends = ['author_localed', 'title_localed', 'intro_localed', 'body_localed', 'outro_localed', 'description', 'created_at_readable',
         'imgs_arr', 'docs_arr', 'links_arr'];
 
-    protected $guarder = [
+    protected $guarded = [
         'id', 'created_at', 'updated_at', 'deleted_at'
     ];
 
@@ -47,7 +47,7 @@ class Blog extends Model
         if (!$this->docs) {
             return null;
         }
-        foreach (json_decode($this->docs) as $i=>$doc) {
+        foreach (json_decode($this->docs,true) as $i=>$doc) {
             $docs[] = [
                 'index' => $i,
                 'name' => substr($doc, strpos($doc, "/")),

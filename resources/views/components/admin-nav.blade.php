@@ -9,6 +9,7 @@
             <li><a href="{{route('admin.graphs')}}" class="{{$active=="graphs" ? 'active' : ''}}">Graphs</a></li>
             <li><a href="{{route('admin.up')}}" class="{{$active=="up" ? 'active' : ''}}">Post verification</a></li>
             <li><a href="{{route('admin.uph')}}" class="{{$active=="uph" ? 'active' : ''}}">Verified Posts Hystory</a></li>
+            <li><a href="{{route('admin.blog.create')}}" class="{{$active=="blog" ? 'active' : ''}}">Create blog</a></li>
             <li><a href="https://adm.rigmanager.com.ua/phpmyadmin/index.php">phpMyAdmin</a></li>
             <li><a href="{{loc_url(route('home')) . '/admin/voyager'}}">Voyager</a></li>
         </ul>
