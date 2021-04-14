@@ -111,31 +111,8 @@ class HomeController extends Controller
 
     public function blog()
     {
-        //{"uk":"Автор!","ru":"Автор","en":"Author"}
-        $t = [
-            'uk' => 'Мі відкрились!',
-            'ru' => 'Мы открылись!',
-            'en' => 'We have opened!'
-        ];
-        //{"uk":"Мі відкрились!","ru":"Мы открылись!","en":"We have opened!"}
-        $i = [
-            'uk' => 'Минуло досить багато часу поки наш вебсайт заробив в такому вигляді в якому ви його бачите зараз. Не дивлячись на це, у нашій команді ще величезна кількість ідей і планів з розвитку сервісу. Ми сподіваємося, що наша платформа допоможе у виконанні ваших завдань і ми зможемо перевести співпрацю нафтогазових компаній на новий рівень.',
-            'ru' => 'Прошло довольно много времени пока наш вебсайт заработал в таком виде в каком вы его видите сейчас. Не смотря на это, у нашей команде еще огромное количество идей и планов по развитию сервиса. Мы надеемся, что наша платформа поможет в выполнении ваших задач и мы сможем перевести сотрудничество нефтегазовых компаний на новый уровень.',
-            'en' => 'It took quite a long time for our website to work as you see it now. Despite this, our team still has a huge number of ideas and plans for the development of the service. We hope that our platform will help you to fulfill your tasks and we will be able to take the cooperation of oil and gas companies to a new level.'
-        ];
-        //{"uk":"Минуло досить багато часу поки наш вебсайт заробив в такому вигляді в якому ви його бачите зараз. Не дивлячись на це, у нашій команді ще величезна кількість ідей і планів з розвитку сервісу. Ми сподіваємося, що наша платформа допоможе у виконанні ваших завдань і ми зможемо перевести співпрацю нафтогазових компаній на новий рівень.","ru":"Прошло довольно много времени пока наш вебсайт заработал в таком виде в каком вы его видите сейчас. Не смотря на это, у нашей команде еще огромное количество идей и планов по развитию сервиса. Мы надеемся, что наша платформа поможет в выполнении ваших задач и мы сможем перевести сотрудничество нефтегазовых компаний на новый уровень.","en":"It took quite a long time for our website to work as you see it now. Despite this, our team still has a huge number of ideas and plans for the development of the service. We hope that our platform will help you to fulfill your tasks and we will be able to take the cooperation of oil and gas companies to a new level."}
-        $b = [
-            'uk' => 'Ми ведемо активну рекламну компанію по пошуку партнерів і збільшення кількості оголошень. Ми будемо раді будь-якому відкликанню і пропозицією!',
-            'ru' => 'Мы ведем активную рекламную компании по поиску партнеров и увеличению количества объявлений. Мы будем рады любому отзыву и предложению!',
-            'en' => 'We run an active advertising campaign to find partners and increase the number of ads. We will be glad to any feedback and suggestions!'
-        ];
-        //{"uk":"Ми ведемо активну рекламну компанію по пошуку партнерів і збільшення кількості оголошень. Ми будемо раді будь-якому відкликанню і пропозицією!","ru":"Мы ведем активную рекламную компании по поиску партнеров и увеличению количества объявлений. Мы будем рады любому отзыву и предложению!","en":"We run an active advertising campaign to find partners and increase the number of ads. We will be glad to any feedback and suggestions!"}
-        $o = [
-            'uk' => '',
-            'ru' => '',
-            'en' => ''
-        ];
-        $blogs = Blog::all();
+        $blogs = Blog::all()->paginate(env('POSTS_PER_PAGE'));
+        $blogs = Blog::all()->paginate(1);
         return view('home.blog', compact('blogs'));
     }
 

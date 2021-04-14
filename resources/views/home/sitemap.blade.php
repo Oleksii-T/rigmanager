@@ -53,7 +53,7 @@
 				<li><a href="">{{__('ui.info')}}</a>
 					<ul class="sitemap-sub">
 						<li><a href="{{loc_url(route('about.us'))}}">{{__('ui.footerAbout')}}</a></li>
-						<li class="hidden"><a href="{{loc_url(route('blog'))}}">{{__('ui.footerBlog')}}</a></li>
+						<li><a href="{{loc_url(route('blog'))}}">{{__('ui.footerBlog')}}</a></li>
 						<li><a href="{{loc_url(route('terms'))}}">{{__('ui.footerTerms')}}</a></li>
 						<li><a href="{{loc_url(route('privacy'))}}">{{__('ui.footerPrivacy')}}</a></li>
 						<li><a href="{{loc_url(route('site.map'))}}">{{__('ui.footerSiteMap')}}</a></li>

@@ -45,16 +45,25 @@ Route::get('download/posts-import', function() {
     abort(404);
 })->name('download.post.import');
 
-//post`s document download
+//post document download
 Route::get('download/post-document/{post}', function($post) {
     $file = public_path().'/storage/'.App\Post::findOrFail($post)->doc;
     if (file_exists($file)) {
         return response()->download($file);
-    } else {
-        dd($file);
     }
     abort(404);
 })->name('download.post.doc');
+
+//blog document download
+Route::get('download/blog-document/{blog}/{doc}', function($blog, $doc) {
+    $file = App\Blog::findOrFail($blog)->docs;
+    $file = public_path().'/icons/blog/'.json_decode($file)[$doc];
+    if (file_exists($file)) {
+        return response()->download($file);
+    }
+    dd('fail to download => ' . $file);
+    abort(404);
+})->name('download.blog.doc');
 
 //post views counter
 Route::post('ajax/post/viewed','PostController@viewed')->name('post.viewed'); //Ajax reqeust

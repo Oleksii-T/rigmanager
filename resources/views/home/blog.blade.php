@@ -17,18 +17,25 @@
 	<div class="main-block">
 		<x-informations-nav active='blog'/>
 		<div class="content">
-			<h1>Блог</h1>
-			<div class="blog">
-				@foreach ($blogs as $b)
-					<div class="blog-item">
-						<div class="blog-img"><a href="{{loc_url(route('blog.article', ['article'=>$b->slug]))}}"><img src="{{$b->thumbnail}}" alt=""></a></div>
-						<div class="blog-content">
-							<div class="blog-title"><a href="{{loc_url(route('blog.article', ['article'=>$b->slug]))}}">{{$b->title_localed}}</a><span class="blog-date">{{$b->created_at->toDateString()}}</span></div>
-							<div class="blog-text">{{$b->description}}</div>
+			<h1>{{__('ui.footerBlog')}}</h1>
+			@if ($blogs->isEmpty())
+				<p>{{__('ui.emptyBlog')}}</p>
+			@else
+				<div class="catalog blog">
+					@foreach ($blogs as $b)
+						<div class="catalog-item">
+							<a href="{{loc_url(route('blog.article', ['article'=>$b->slug]))}}" class="catalog-img"><img src="{{$b->thumbnail}}" alt=""></a>
+							<div class="catalog-content">
+								<div class="catalog-name"><a href="{{loc_url(route('blog.article', ['article'=>$b->slug]))}}">{{$b->title_localed}}</a><span class="blog-date">{{$b->created_at->toDateString()}}</span></div>
+								<div class="catalog-text">{{preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $b->description)}}</div>
+							</div>
 						</div>
-					</div>
-				@endforeach
-			</div>
+					@endforeach
+				</div>
+				<div class="pagination-field">
+					{{$blogs->appends(request()->input())->links()}}
+				</div>				
+			@endif
 		</div>
 	</div>
 @endsection

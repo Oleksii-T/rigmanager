@@ -4,7 +4,7 @@
         <div class="side-title">{{__('ui.info')}}</div>
         <ul class="side-list">
             <li><a href="{{loc_url(route('about.us'))}}" class="{{$active=="about" ? 'active' : ''}}">{{__('ui.footerAbout')}}</a></li>
-            <li class="hidden"><a href="{{loc_url(route('blog'))}}" class="{{$active=="blog" ? 'active' : ''}}">{{__('ui.footerBlog')}}</a></li>
+            <li><a href="{{loc_url(route('blog'))}}" class="{{$active=="blog" ? 'active' : ''}}">{{__('ui.footerBlog')}}</a></li>
             <li><a href="{{loc_url(route('terms'))}}" {{$active=="terms" ? 'class=active' : ''}}>{{__('ui.footerTerms')}}</a></li>
             <li><a href="{{loc_url(route('privacy'))}}" {{$active=="pp" ? 'class=active' : ''}}>{{__('ui.footerPrivacy')}}</a></li>
             <li><a href="{{loc_url(route('site.map'))}}" {{$active=="sitemap" ? 'class=active' : ''}}>{{__('ui.footerSiteMap')}}</a></li>

@@ -96,7 +96,7 @@
                     </ul>
                     <ul class="mob-nav-list">
                         <li><a href="{{loc_url(route('about.us'))}}">{{__('ui.footerAbout')}}</a></li>
-                        <li class="hidden"><a href="{{loc_url(route('blog'))}}">{{__('ui.footerBlog')}}</a></li>
+                        <li><a href="{{loc_url(route('blog'))}}">{{__('ui.footerBlog')}}</a></li>
                         <li><a href="{{loc_url(route('plans'))}}">{{__('ui.footerSubscription')}}</a></li>
                         <li><a href="{{loc_url(route('contacts'))}}">{{__('ui.footerContact')}}</a></li>
                         <li><a href="{{loc_url(route('faq'))}}">FAQ</a></li>

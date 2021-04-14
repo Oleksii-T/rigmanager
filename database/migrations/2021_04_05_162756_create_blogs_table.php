@@ -24,6 +24,7 @@ class CreateBlogsTable extends Migration
             $table->string('thumbnail', 100);
             $table->json('imgs')->nullable();
             $table->json('docs')->nullable();
+            $table->json('links')->nullable();
             $table->json('views')->nullable();
             $table->timestamps();
         });

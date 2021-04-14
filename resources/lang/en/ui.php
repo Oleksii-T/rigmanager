@@ -470,9 +470,20 @@ return [
     Policy',
     'footerDevelop' => 'Delelopment',
     'footerSiteMap' => 'Site map',
-    'footerBlog' => 'Blog',
+    'footerBlog' => 'News',
     'contactsFooter' => 'Сontact us by filling the form below or using the following credentials:',
     'ourPartners' => 'Our partners',
+
+    //blog
+    'emptyBlog' => 'Articles are publishing...',
+    'by' => 'By',
+    'posted' => 'posted',
+    'attachedImgs' => 'Attached images',
+    'attachedDocs' => 'Attached files',
+    'attachedLinks' => 'Attached links',
+    'blogSlg' => 'Thanks for your attention
+        with best regards,
+        :name',
 
     // sitemap
     'stMain' => 'Main',
