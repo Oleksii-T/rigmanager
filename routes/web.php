@@ -61,7 +61,6 @@ Route::get('download/blog-document/{blog}/{doc}', function($blog, $doc) {
     if (file_exists($file)) {
         return response()->download($file);
     }
-    dd('fail to download => ' . $file);
     abort(404);
 })->name('download.blog.doc');
 

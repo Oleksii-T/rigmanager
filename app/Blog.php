@@ -50,7 +50,7 @@ class Blog extends Model
         foreach (json_decode($this->docs,true) as $i=>$doc) {
             $docs[] = [
                 'index' => $i,
-                'name' => substr($doc, strpos($doc, "/")),
+                'name' => substr($doc, strpos($doc, "/")+1),
                 'link' => asset('icons/blog').'/'.$doc
             ];
         }
