@@ -92,8 +92,8 @@ class Blog extends Model
     */
     
     public function getDescriptionAttribute() {
-        $i = $this->intro ? json_decode($this->intro, true)[App::getLocale()]."\r\n" : '' ;
-        $b = $this->body ? json_decode($this->body, true)[App::getLocale()]."\r\n" : '' ;
+        $i = $this->intro ? json_decode($this->intro, true)[App::getLocale()]."\r\n\n" : '' ;
+        $b = $this->body ? json_decode($this->body, true)[App::getLocale()]."\r\n\n" : '' ;
         $o = $this->outro ? json_decode($this->outro, true)[App::getLocale()] : '' ;
         return $i . $b . $o;
     }
