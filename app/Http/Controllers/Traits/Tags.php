@@ -310,7 +310,7 @@ trait Tags
                 '27.1' => __('tags.slip'),
                 '27.2' => __('tags.heavingPlug'),
                 '27.3' => __('tags.manualClamp'),
-                '37.4' => __('tags.spider'),
+                '27.4' => __('tags.spider'),
                 '27.5' => __('tags.pipeClamp'),
                 '27.6' => __('tags.casingGrip'),
                 '27.7' => __('tags.elevator'),
@@ -684,7 +684,7 @@ trait Tags
                 '27.1' => 'klinya',
                 '27.2' => 'podemnye-probki',
                 '27.3' => 'ruchnye-zazhimy',
-                '37.4' => 'spajdera',
+                '27.4' => 'spajdera',
                 '27.5' => 'homuty',
                 '27.6' => 'homuty-dlya-obsadnyh', //TODO
                 '27.7' => 'ehlevatory',
