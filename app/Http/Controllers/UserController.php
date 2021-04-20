@@ -124,6 +124,7 @@ class UserController extends Controller
 
     public function userPosts(Request $request)
     {
+        //{"1": {"name": "Administrator","times": 1,"last_date": "2021-03-25"},"17": {"name": "Андрій","times": 1,"last_date": "2021-03-18"},"178.150.243.67": {"name": "","times": 1,"last_date": "2021-03-15"},"188.163.22.186": {"name": "","times": 1,"last_date": "2021-03-10"},"79.110.134.219":{"name": "","times": 1,"last_date": "2021-03-03"},"159.224.182.233": {"name": "","times": 1,"last_date": "2021-04-09"},"194.183.168.234": {"name": "","times": 1,"last_date": "2021-03-11"}}
         $searchValue = null;
         $sort = null;
         $searchC = new SearchController;

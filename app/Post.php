@@ -20,7 +20,7 @@ class Post extends Model
         'title_localed', 'description_localed', 'tag_readable', 'tag_map', 
         'condition_readable', 'cost_readable', 'user_phone_readable', 'user_phone_intern', 'region_readable', 
         'role_readable', 'type_readable', 'origin_lang_readable', 'type_readable_short', 'created_at_readable', 
-        'preview_image', 'views_amount', 'views_all', 'doc_name'
+        'preview_image', 'views_amount', 'views_all', 'doc_name', 'views_sorted_by_last'
     ];
 
     protected $guarded = [
@@ -121,6 +121,14 @@ class Post extends Model
     public function getViewsAttribute($value)
     {
         return json_decode($value, true);
+    }
+    
+    public function getViewsSortedByLastAttribute() {
+        $vs = collect($this->views);
+        $vs = $vs->sortByDesc(function ($v, $i) {
+            return Carbon::parse($v['last_date']);
+        });
+        return $vs;
     }
 
     public function setUserTranslationsAttribute($value)

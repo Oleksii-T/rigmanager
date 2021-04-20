@@ -225,7 +225,9 @@
 					<div class="faq-hidden">
 						<p>{{__('faq.aImport')}}
 						<a href="{{loc_url(route('post.import'))}}">{{__('ui.postImport')}}</a>
-						<a href="{{loc_url(route('import.rules'))}}">{{__('postImportRules.title')}}</a></p>
+						<a href="{{loc_url(route('import.rules'))}}">{{__('postImportRules.title')}}</a>
+						
+						{{__('faq.aImportExtra')}} <a href="{{loc_url(route('contacts'))}}">{{__('ui.here')}}</a>.</p>
 					</div>
 				</div>
 				<div class="faq-item">

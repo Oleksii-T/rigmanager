@@ -116,6 +116,7 @@ return [
         To solve such an issue we provide the Bulk posts import system.
         All you need to do is fill the import file with according to the rules and submit it.
         Available only for Pro users.',
+    'aImportExtra' => 'In addition, our team can help you adapt and publish your equipment list for our platform. Contact us for more details',
 
     'qWhyNotAllImported' => 'Why not all posts from my import file got published?',
     'aWhyNotAllImported' => 'The importing algorithm treats empty title or fully empty line as the end of file.

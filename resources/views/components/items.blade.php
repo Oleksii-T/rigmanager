@@ -103,11 +103,11 @@
         <div id="popup-views-{{$post->id}}" class="popup">
             <div class="popup-title">{{__('ui.totalUniqViews') . ': ' . $post->views_amount}}</div>
             <div class="popup-prod-info">
-                @foreach ($post->views as $view)
+                @foreach ($post->views_sorted_by_last as $view)
                     <div class="prod-info-item contact-phone">
                         <div class="prod-info-name">{{$view['name']==null ? __('ui.guest') : $view['name']}}:</div>
                         <div class="prod-info-text">{{__('ui.views') . ': ' . $view['times']}}</div>
-                        <div class="prod-info-text">{{__('ui.lastView') . ': ' . $view['last_date']}}</div>
+                        <div class="prod-info-text">{{__('ui.lastView') . ': ' . Carbon\Carbon::parse($view['last_date'])->isoFormat('YYYY, MMMM D')}}</div>
                     </div>
                 @endforeach
             </div>

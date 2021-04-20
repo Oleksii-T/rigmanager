@@ -38,13 +38,13 @@ class PostTranslationRequest extends FormRequest
             $rules['title_en'] = $titleRule;
         }
         if ($this->request->has('description_uk')) {
-            $rules['description_uk'] = $titleRule;
+            $rules['description_uk'] = $descRule;
         }
         if ($this->request->has('description_ru')) {
-            $rules['description_ru'] = $titleRule;
+            $rules['description_ru'] = $descRule;
         }
         if ($this->request->has('description_en')) {
-            $rules['description_en'] = $titleRule;
+            $rules['description_en'] = $descRule;
         }
         return $rules;
     }

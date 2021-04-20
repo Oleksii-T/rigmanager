@@ -632,7 +632,7 @@ return [
     'lastImported' => 'Last post',
 
     //about us
-    'aboutUsIntro' => 'rigmanager is the first specialized platform for cooperation of oil and gas companies in Ukraine.',
+    'aboutUsIntro' => 'rigmanager.com.ua - the first specialized web platform for cooperation of oil and gas companies in Ukraine.',
     'aboutUsBody' => 'We present a convenient tool for commercial and consulting activities of representatives of the oil and gas market.
     
     Our online web service can help you:
