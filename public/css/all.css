@@ -2145,6 +2145,8 @@ textarea.form-error {
 	color: #fff;
 }
 .green {color: #18c216;}
+
+.red {color: #c21616;}
 /*------------------------ profile-edit page ------------------------*/
 .profile-edit {
 	display: -webkit-box;

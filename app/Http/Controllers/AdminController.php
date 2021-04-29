@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Post;
 use App\Blog;
+use App\Mailer;
 
 class AdminController extends Controller
 {
@@ -29,7 +30,8 @@ class AdminController extends Controller
     
     public function mailers()
     {
-        return view('admin.mailers');
+        $mailers = Mailer::all();
+        return view('admin.mailers', compact('mailers'));
     }
     
     public function graphs()
@@ -107,9 +109,14 @@ class AdminController extends Controller
 
     public function blogStore(Request $request) {
         $input = $request->all();
+        $input['author'] = json_encode($input['author']);
+        $input['title'] = json_encode($input['title']);
+        $input['intro'] = json_encode($input['intro']);
+        $input['body'] = json_encode($input['body']);
+        $input['outro'] = json_encode($input['outro']);
         $blog = new Blog($input);
         $blog->save();
-        if ($request->has('created_at')) {
+        if ($request->has('created_at') && $input['created_at']) {
             $blog->created_at = $request->created_at;
             $blog->save();
         }
